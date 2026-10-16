@@ -1,14 +1,9 @@
-name: Verify published results
-
-on:
-  push:
-  pull_request:
-
+name: Verify current code and results
+on: [push, pull_request]
 permissions:
   contents: read
-
 jobs:
-  verify:
+  results:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,7 +11,18 @@ jobs:
         with:
           python-version: '3.11'
           cache: pip
-          cache-dependency-path: requirements-results.txt
-      - run: python -m pip install -r requirements-results.txt
+          cache-dependency-path: requirements.txt
+      - run: python -m pip install -r requirements.txt
       - run: python tools/verify_results.py
-      - run: python -m pytest -q phase1_jepa_memory/runs/phase1_deletion_assay/test_assay.py
+      - run: python -m pytest -q experiments/deletion/test_assay.py
+  predictor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt Pillow PyYAML
+      - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install -e . --no-deps
+      - run: python -m pytest -q experiments/predictor/control/test_centered_transport.py

@@ -33,14 +33,12 @@ Motion supports only a scoped feasibility interpretation. Reject-newest has ordi
 
 **Registered joint policy-stage readiness: not met. Original full Phase1_GO: false. Fresh independent confirmation and learned-policy advantage: not run.**
 
-## Earlier experiments
+## Primary records
 
-Earlier predictor revisions, stopped budget trials, software preflights, historical FAR experiments and reproduction adapters are preserved in the source archive. A budget stop with incomplete models is not an additional scientific failure. FAR results are a separate experiment and do not establish the proposal's JEPA milestone. The latest report does not replace negative outcomes with only favorable slices.
+- [Predictor outcome](../results/predictor/evaluation/job_7575/outcome.json)
+- [All 64 fixed-reference comparisons](../results/predictor/all_64_fixed_checks.csv)
+- [Deletion summary](../results/deletion/summary.json)
+- [Independent deletion audit](../results/deletion/independent_audit.json)
+- [Required reference evidence](../results/reference/verification.json)
 
-Primary records:
-
-- [Predictor outcome](../phase1_jepa_memory/runs/phase1_predictor_repair_v2/native_final7579/evaluation/job_7575/outcome.json)
-- [All 64 fixed-reference comparisons](../phase1_jepa_memory/runs/phase1_predictor_repair_v2/report/all_64_fixed_checks.csv)
-- [Deletion summary](../phase1_jepa_memory/runs/phase1_deletion_assay/native7590/output/job_7590/summary.json)
-- [Independent deletion audit](../phase1_jepa_memory/runs/phase1_deletion_assay/native7590/output/job_7590/independent_audit.json)
-- [Local pair-level recomputation](../phase1_jepa_memory/runs/phase1_deletion_assay/local_final_review.json)
+Only the latest complete evidence and required reference dependencies remain in this tree. Earlier unsuccessful or incomplete experiments are retained in Git history; cleanup does not change their outcomes or the latest acceptance criteria.

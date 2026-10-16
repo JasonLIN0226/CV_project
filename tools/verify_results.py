@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
 """Recompute published pair-level statistics on CPU without models or HPC access."""
 from pathlib import Path
-from collections import Counter
 import argparse, csv, hashlib, json
 import numpy as np
 
 ROOT=Path(__file__).resolve().parents[1]
-PROJECT=ROOT/'phase1_jepa_memory'
-ASSAY=PROJECT/'runs/phase1_deletion_assay/native7590/output/job_7590'
+ASSAY=ROOT/'results/deletion'
 
 def load(path):return json.loads(Path(path).read_text())
 def digest(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def check_manifest():
-    manifest=load(ROOT/'publication/source_and_results_manifest.json')
+    manifest=load(ROOT/'results/manifest.json')
     for item in manifest['files']:
         p=ROOT/item['path']
         assert p.is_file(),f'Missing published file: {item["path"]}'
         assert digest(p)==item['sha256'],f'Changed published source/result: {item["path"]}'
+    for directory in ('experiments/predictor/control', 'experiments/predictor/independent_audit', 'experiments/deletion'):
+        base=ROOT/directory
+        for name,expected in load(base/'source_lock.json')['files'].items():
+            assert digest(base/name)==expected,f'Frozen scientific source changed: {directory}/{name}'
     return len(manifest['files'])
 
 def main(skip_manifest=False):
@@ -74,7 +76,7 @@ def main(skip_manifest=False):
         counts[task]={'critical_pass':sum(r['passed'] for r in contrasts),'critical_total':len(contrasts),'ranking_pass':sum(r['passed'] for r in ranks),'ranking_total':len(ranks)}
     assert counts['gate']==dict(critical_pass=6,critical_total=18,ranking_pass=18,ranking_total=18)
     assert counts['motion']==dict(critical_pass=36,critical_total=36,ranking_pass=18,ranking_total=18)
-    outcome=load(PROJECT/'runs/phase1_predictor_repair_v2/native_final7579/evaluation/job_7575/outcome.json')
+    outcome=load(ROOT/'results/predictor/evaluation/job_7575/outcome.json')
     assert outcome['status']=='DEVELOPMENT_REJECTED' and not outcome['phase1_go'] and not outcome['confirmation_opened']
     for task,expected in [('gate',(50,32)),('motion',(35,8))]:
         t=outcome['tasks'][task]

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bounded-visual-memory"
+version = "0.2.0"
+description = "Latest I-JEPA predictor and equal-capacity deletion assay"
+requires-python = ">=3.10,<3.13"
+dependencies = ["numpy==1.26.4"]
+
+[project.optional-dependencies]
+model = [
+  "torch>=2.5,<3", "Pillow>=10,<12", "PyYAML>=6,<7", "matplotlib>=3.8,<4",
+  "transformers==5.5.4", "huggingface-hub==1.11.0", "safetensors==0.7.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["experiments/predictor/control/src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["experiments/predictor/control/src", "experiments/deletion"]
+testpaths = ["experiments/deletion/test_assay.py", "experiments/predictor/control/test_centered_transport.py"]

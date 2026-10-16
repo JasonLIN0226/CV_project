@@ -1,6 +1,0 @@
-b-10-119
-10.144.0.133 
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4Ok4ilTnSoSQlWLc1zLfyJQjZ1wJX57ruCWkT0wJbo root@b-10-119
-{"UTC": "2026-10-16T00:30:23.709266+00:00", "command": ["/opt/slurm/bin/sbatch", "--parsable", "--dependency=afterok:7534", "/scratch/xl4358/phase1_predictor_repair/approved_8h/control/repair_train.sbatch"], "source_lock_sha256": "69f577e71ae44cc02a45b89e75facfdc53854085ba36acba11ee45f285beaa17", "returncode": 0, "stdout": "7535\n", "stderr": "", "job_id": 7535, "status": "SUBMITTED_ACTUAL_RECEIPT"}
-{"UTC": "2026-10-16T00:30:23.816471+00:00", "command": ["/opt/slurm/bin/sbatch", "--parsable", "--dependency=afterany:7535", "--export=ALL,TRAINING_JOB=7535", "/scratch/xl4358/phase1_predictor_repair/approved_8h/control/repair_evaluate.sbatch"], "source_lock_sha256": "69f577e71ae44cc02a45b89e75facfdc53854085ba36acba11ee45f285beaa17", "returncode": 0, "stdout": "7536\n", "stderr": "", "job_id": 7536, "status": "SUBMITTED_ACTUAL_RECEIPT"}
-{"UTC": "2026-10-16T00:30:23.868945+00:00", "command": ["/opt/slurm/bin/sbatch", "--parsable", "--dependency=afterany:7536", "/scratch/xl4358/phase1_predictor_repair/approved_8h/independent_audit/audit.sbatch"], "source_lock_sha256": "69f577e71ae44cc02a45b89e75facfdc53854085ba36acba11ee45f285beaa17", "returncode": 0, "stdout": "7537\n", "stderr": "", "job_id": 7537, "status": "SUBMITTED_ACTUAL_RECEIPT"}
