@@ -1,0 +1,45 @@
+{
+  "UTC": "2026-10-16T01:59:36.228164+00:00",
+  "purpose": "Read-only diagnosis of completed7535; no optimizer/GPU/fresh9137",
+  "tasks": [
+    "gate",
+    "motion"
+  ],
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "checkpoint": "best",
+  "splits": [
+    "train",
+    "validation",
+    "test_long_gap",
+    "test_distractor_shift"
+  ],
+  "conditions": [
+    "privileged_small_budget",
+    "full_history"
+  ],
+  "pairs_per_slice": 32,
+  "selection": "first32completepairs in unchanged manifest order",
+  "metrics": [
+    "fullnormalizedMSE",
+    "common_pair_MSE",
+    "quarter_pair_difference_MSE",
+    "pair_signal_amplitude",
+    "common_history_correction_RMS",
+    "pair_history_correction_RMS",
+    "centered_history_RMS",
+    "within_history_velocity_RMS",
+    "transport_magnitude_RMS",
+    "translation_memory_correction_sensitivity"
+  ],
+  "translation_intervention": "Onefixedseed0Gaussian0.1RMS common latent offset addedtoallobservations/current; sensitivityonly, not new physical performance case",
+  "old_control": "/scratch/xl4358/phase1_predictor_repair/approved_8h/control",
+  "source_lock_sha256": "69f577e71ae44cc02a45b89e75facfdc53854085ba36acba11ee45f285beaa17",
+  "current_checkpoint_certificate": "/scratch/xl4358/phase1_predictor_repair/approved_8h/training/job_7535/all_models_completion.json",
+  "no_hyperparameter_sweep_or_optimizer": true,
+  "GPU_cap_seconds": 28800,
+  "prior_GPU_seconds": 9797
+}

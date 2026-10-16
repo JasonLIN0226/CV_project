@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "INVALID_UNBOUND_TEMPLATE_NOT_SUBMITTABLE",
+  "training_job_id": 7251,
+  "training_root": "/scratch/xl4358/phase1_v6_real_wd020/job_7251",
+  "training_control": "/scratch/xl4358/phase1_jepa_memory_v6_real_wd020",
+  "encoding_root": "/scratch/xl4358/phase1_v5_real_encoding_frame/job_7187",
+  "encoding_control": "/scratch/xl4358/phase1_jepa_memory_v5_encoding_frame",
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "horizons": [
+    1,
+    4,
+    16,
+    64
+  ],
+  "capacities": [
+    8,
+    16,
+    32
+  ],
+  "primary_capacity": 16,
+  "annotation_frame_phase_proved": false,
+  "actual_training_report_sha256": null,
+  "actual_fit_proof_sha256": null,
+  "actual_checkpoint_files": null,
+  "design_sha256": "28c4b7b748db530db5a8fd341603a8ab1e0245f166a43999290a4f134e730fe3",
+  "budget": {
+    "cpu_threads": 4,
+    "memory_gb": 16,
+    "hours": 2,
+    "soft_stop_seconds": 6900,
+    "preflight_states": 8
+  },
+  "statistics": {
+    "unit": "participant_after_episode_then_recording_aggregation",
+    "bootstrap": 10000,
+    "seed": 0,
+    "CI": 0.95,
+    "seeds_separate_and_participant_pooled": true
+  },
+  "health_scope": "All2356validation queries/all4conditions/all4horizons/all3seeds; literal full5120D normalized MSE; basis oracle and persistence diagnostics",
+  "deletion_scope": "All78recordings/FIFO16 andReservoir16 source trajectories/four uniformly chosen valid states/all17primary deletions/common32Reservoir draws/all3seeds; one joint .5instant+.5continuation oracle choice, exacttie earliesttimestamp; h16/h64 report same chosen deletion",
+  "replay_scope": "All198episodes/3frozen models/FIFO,Reservoir,Uniform online persistent records/capacity16main and8,32fixedsecondary/same38queries/noarchive/reentry",
+  "missing_semantic_components": "Verb readout/NLL, within-activity drift, switch response and different-activity donor recovery remain unavailable; no guessed label/frame join or fabricated donor",
+  "return_status": "REJECTED if an actual required visual subgate fails; INCONCLUSIVE when visual checks pass while registered semantic checks are unavailable; never Phase1GO",
+  "no_fit_or_training": true,
+  "no_labels_or_sealed_reads": true,
+  "no_new_science_submitted": true,
+  "optimizer_weight_decay": 0.2,
+  "old_reference_job_id": 7209,
+  "old_visual_diagnostic_job_id": 7226,
+  "fixed_old_reference_comparison": "New full-history must have positive original95% participant CI against old7209 recent and old7209 full at h16/h64 for3seeds+pooled (16checks), using old executed7226scalar SHA, no old reinference. Separate from originalA/B, no weaker gate.",
+  "old_raw_sha256": "d158c869a132f1db35fbdc2491802c6899a4770dfc13a0338c0facca30eeed2c"
+}

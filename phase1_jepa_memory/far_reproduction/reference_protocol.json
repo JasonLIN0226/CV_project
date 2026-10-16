@@ -1,0 +1,74 @@
+{
+  "target": "FAR LoopNav first main experiment",
+  "reproduction_kind": "official_checkpoint_evaluation_not_from_scratch_training",
+  "upstream_commit": "2963105c0f1db25214202d2c089cdf33041270f3",
+  "source_lock_sha256": "f5dee7da4dc3eb14eacf2ab0595c1303cd13176e5a3bc913e3f19881846fe11f",
+  "release": {
+    "models": {
+      "repo": "1202kbs/FAR-Checkpoints",
+      "sha": "097d4b1ea8ae8a649eda1c53840780b857337c8d",
+      "gated": false,
+      "private": false,
+      "listing_sha256": "839dd99f5fba6217fc409fec0c765bdf3f6474dbfd3655c93da4287bb28e64ea"
+    },
+    "datasets": {
+      "repo": "1202kbs/FAR-Datasets-LoopNav",
+      "sha": "5c036c6d9576e2c2fce5b58bc66a0c096f3520a8",
+      "gated": false,
+      "private": false,
+      "listing_sha256": "19b66e6bb27d46cef3575be4c7295ce1e3e9a2cc5e45efc2b1303a6dc1f62c13"
+    }
+  },
+  "test_split": 3840,
+  "expected_official_eligible": 3796,
+  "eligibility": "unchanged public build_episode and full metadata scan",
+  "arms": [
+    "B_posefa_temporal",
+    "B_posefa_worldmem",
+    "pnp_meta_only",
+    "pnp_jepa_frozen",
+    "pnp_visual_only",
+    "pnp_learned_vmz",
+    "pnp_longlive",
+    "pnp_ablz"
+  ],
+  "checkpoint_step": 700000,
+  "sampler": "DDIM20",
+  "rollout_stride_frames": 4,
+  "context_size": 12,
+  "pool_size": 1000,
+  "worldmem_pool_size": 200,
+  "seed": 0,
+  "num_clips": null,
+  "max_steps": null,
+  "metrics": [
+    "PSNR",
+    "LPIPS",
+    "DreamSim"
+  ],
+  "aggregate": "original rollout_loopnav_analysis notebook protocol; separate trajectories/loopclosure/paired bootstrap",
+  "phase1_transfer_after_reference": true,
+  "resource": {
+    "course": "csci_ga_2271-2026fa",
+    "one_A100": true,
+    "science_threads": 4,
+    "memory_gb": 60,
+    "max_wall_seconds": 14400,
+    "soft_budget_seconds": 13800,
+    "first_full_record_all_arms_budget_projection": true
+  },
+  "deviations_predeclared": [
+    "approved Python3.11 vs author reference3.12; native dependency/driver compatibility before inference",
+    "author uses unequal candidate pool WorldMem200 vs FAR1000; reproduce as reported, disclose, no silent fix",
+    "uses published inference checkpoints, no claim to recover author training histories/optimizer"
+  ],
+  "environment_policy": "Do not modify phase1_env; separate dependency target with approved interpreter only",
+  "complete_status_requires": [
+    "all eligible clips and all arms",
+    "every scalar finite",
+    "actual model/data/source bindings before and after",
+    "no incomplete clip omitted",
+    "actual final Slurm exit0:0",
+    "independent aggregation of raw scalar records"
+  ]
+}

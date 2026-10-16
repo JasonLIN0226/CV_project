@@ -1,0 +1,13 @@
+{
+  "status": "PRERECORDED_PENDING_JOB_PLACEMENT_REPAIR_NOT_NEW_SCIENCE",
+  "job_id": 6984,
+  "observations": {
+    "explicit_b19_100": "PENDING ReqNodeNotAvail; no start estimate; node NOT_RESPONDING with BootTime=None",
+    "scheduler_test_candidate_b19_36": "No-allocation test accepted; actual node IDLE+CLOUD+POWERED_DOWN without NOT_RESPONDING"
+  },
+  "conclusion": "The explicit unregistered node constraint prevented scheduling. This does not explain the two previous UID0 cancellations.",
+  "repair": "Clear only the pending job ReqNodeList; exclude two actual failed/drained nodes. Preserve same job ID, source, all50688 observations, encoder, first512 gate, oneA100, CPU4,60G,4h.",
+  "primary_scontrol_documentation": "https://slurm.schedmd.com/scontrol.html#OPT_ReqNodeList",
+  "no_additional_job_submission": true,
+  "no_admin_node_state_or_security_change": true
+}

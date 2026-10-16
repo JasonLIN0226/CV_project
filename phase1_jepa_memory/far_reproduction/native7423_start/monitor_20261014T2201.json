@@ -1,0 +1,144 @@
+{
+  "utc": "2026-10-14T22:01:01.962327+00:00",
+  "host": "b-19-75",
+  "sacct": {
+    "returncode": 0,
+    "stdout": "7412|TIMEOUT|0:0|2026-10-14T20:47:42|2026-10-14T21:47:42|csci_ga_2271-2026fa|01:00:00\n7413|CANCELLED by 3850228|0:0|None|2026-10-14T21:53:39|csci_ga_2271-2026fa|00:00:00\n7421|COMPLETED|0:0|2026-10-14T21:37:12|2026-10-14T21:54:23|csci_ga_2271-2026fa|00:17:11\n7422|COMPLETED|0:0|2026-10-14T21:55:42|2026-10-14T21:56:18|csci_ga_2271-2026fa|00:00:36\n7423|RUNNING|0:0|2026-10-14T21:58:12|Unknown|csci_ga_2271-2026fa|00:02:56\n",
+    "stderr": ""
+  },
+  "squeue": {
+    "returncode": 0,
+    "stdout": "7423 cv-far-recovered-eval RUNNING 2:56 b-19-75\n",
+    "stderr": ""
+  },
+  "GPU": {
+    "returncode": 0,
+    "stdout": "NVIDIA A100-SXM4-40GB, 610.43.02, 13502 MiB, 84 %\n",
+    "stderr": ""
+  },
+  "scheduler_floor": {
+    "before": {
+      "returncode": 0,
+      "stdout": "JobId=7423 JobName=cv-far-recovered-eval UserId=xl4358(3850228) GroupId=xl4358(3850228) MCS_label=N/A Priority=13644 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=RUNNING Reason=None Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:02:57 TimeLimit=03:34:00 TimeMin=N/A SubmitTime=2026-10-14T21:56:18 EligibleTime=2026-10-14T21:56:18 AccrueTime=2026-10-14T21:56:18 StartTime=2026-10-14T21:58:12 EndTime=2026-10-15T01:32:12 Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-14T21:56:23 Scheduler=Main Partition=c12m85-a100-1 AllocNode:Sid=3-gcp-r2:2666 ReqNodeList=(null) ExcNodeList=(null) NodeList=b-19-75 BatchHost=b-19-75 NumNodes=1 NumCPUs=12 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=4,mem=60G,node=1,billing=4,gres/gpu=1 AllocTRES=cpu=12,mem=60G,node=1,billing=12,gres/gpu=1 Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=4 MinMemoryNode=60G MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/scratch/xl4358/phase1_far_metadata_keys/evaluate_recovered.sbatch WorkDir=/scratch/xl4358/phase1_far_metadata_keys StdErr=/scratch/xl4358/phase1_far_metadata_keys/logs/evaluate-7423.err StdIn=/dev/null StdOut=/scratch/xl4358/phase1_far_metadata_keys/logs/evaluate-7423.out TresPerNode=gres/gpu:1 TresPerTask=cpu=4 \n",
+      "stderr": ""
+    },
+    "update": {
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Unspecified error for job 7423\n"
+    },
+    "after": {
+      "returncode": 0,
+      "stdout": "JobId=7423 JobName=cv-far-recovered-eval UserId=xl4358(3850228) GroupId=xl4358(3850228) MCS_label=N/A Priority=13644 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=RUNNING Reason=None Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:03:02 TimeLimit=03:34:00 TimeMin=N/A SubmitTime=2026-10-14T21:56:18 EligibleTime=2026-10-14T21:56:18 AccrueTime=2026-10-14T21:56:18 StartTime=2026-10-14T21:58:12 EndTime=2026-10-15T01:32:12 Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-14T21:56:23 Scheduler=Main Partition=c12m85-a100-1 AllocNode:Sid=3-gcp-r2:2666 ReqNodeList=(null) ExcNodeList=(null) NodeList=b-19-75 BatchHost=b-19-75 NumNodes=1 NumCPUs=12 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=4,mem=60G,node=1,billing=4,gres/gpu=1 AllocTRES=cpu=12,mem=60G,node=1,billing=12,gres/gpu=1 Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=4 MinMemoryNode=60G MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/scratch/xl4358/phase1_far_metadata_keys/evaluate_recovered.sbatch WorkDir=/scratch/xl4358/phase1_far_metadata_keys StdErr=/scratch/xl4358/phase1_far_metadata_keys/logs/evaluate-7423.err StdIn=/dev/null StdOut=/scratch/xl4358/phase1_far_metadata_keys/logs/evaluate-7423.out TresPerNode=gres/gpu:1 TresPerTask=cpu=4 \n",
+      "stderr": ""
+    }
+  },
+  "sources": {
+    "/scratch/xl4358/phase1_far_metadata_keys/source_lock.json": {
+      "sha256": "bc116864cafc4befe58f0f80f441b78db8d79f21c7d5369ad36d67eb33c4887e",
+      "files": 12,
+      "all_match": true
+    },
+    "/scratch/xl4358/phase1_far_reference/upstream_source_lock.json": {
+      "sha256": "f5dee7da4dc3eb14eacf2ab0595c1303cd13176e5a3bc913e3f19881846fe11f",
+      "files": 159,
+      "all_match": true
+    },
+    "/scratch/xl4358/phase1_far_reference/evaluation_source_lock.json": {
+      "sha256": "a941ab106917c3efdb7516806b1f1a21faa870dc47d5e229e2fec10d512df0f9",
+      "files": 10,
+      "all_match": true
+    }
+  },
+  "receipt": {
+    "returncode": 0,
+    "stdout": "7423",
+    "stderr": "",
+    "certificate_path": "/scratch/xl4358/phase1_far_metadata_keys/output/job_7421/certificate.json",
+    "certificate_sha256": "090c658432edff67395f3d27cde63dad0094e0bdbc801b29c9952741800ebe30",
+    "preparation_job": 7421,
+    "source_lock_sha256": "bc116864cafc4befe58f0f80f441b78db8d79f21c7d5369ad36d67eb33c4887e",
+    "prior_GPU_seconds": 1580,
+    "remaining_soft_GPU_seconds": 12220,
+    "remaining_wall_seconds": 12820,
+    "status": "SUBMITTED_ACTUAL_RECEIPT",
+    "job_id": 7423,
+    "metadata_job": 7422
+  },
+  "receipt_sha256": "8120f9d64eb35da93a0a473479fc745c508d5e50368fc3cce63118ec6b136bde",
+  "certificate": {
+    "status": "CURRENT_IDENTITIES_AND_OFFICIAL_ELIGIBILITY_COMPLETE",
+    "job_id": 7421,
+    "test_records": 3840,
+    "frames": 2515992,
+    "eligible_clips_sha256": "bb5d7e6e930dabfedacd4256c3a51c50ef52375794cdb359225f5058349b0e98",
+    "original_numeric_proof_sha256": "4c8853c81766d4765fa5292be088df57ab67d0a216567de4ffa88ac035ae4541",
+    "original_model_proof_sha256": "c0b51f927d27a93f8cc4d6758243ccce8784b01604c9f15ef881c695dfdb014a",
+    "original_numeric_proof_reused_after_exact_current_SHA": true,
+    "current_SHA_audit_source_job": 7412,
+    "current_SHA_audit_evidence_sha256": "3ae1ef33e57a5828010d6857b734d5748d12e402a2fd9f9bff9ba34520da4220",
+    "stat_boundary_all_data_precedes_SHA_audit_job_start": true,
+    "new_numeric_tensor_traversal_claimed": false,
+    "new_full_current_SHA_scan_claimed": false,
+    "eligibility_only_shape_tensor_optimization": true,
+    "paired_equivalence_sha256": "b74c2e8e164fd458f4791f7687fb028a7b17b44dbd01df41ab7b75d929cc0bc9",
+    "original_scientific_source_lock_sha256": "f5dee7da4dc3eb14eacf2ab0595c1303cd13176e5a3bc913e3f19881846fe11f",
+    "source_lock_sha256": "bc116864cafc4befe58f0f80f441b78db8d79f21c7d5369ad36d67eb33c4887e",
+    "prior_GPU_seconds": 1580,
+    "remaining_soft_GPU_seconds": 12220,
+    "elapsed_seconds": 1018.6730394099999,
+    "model_forward_or_training": false,
+    "files": 7680,
+    "models": 11,
+    "metric_files": 27
+  },
+  "eligible": {
+    "clips": 3796,
+    "scanned": 3840,
+    "sha256": "bb5d7e6e930dabfedacd4256c3a51c50ef52375794cdb359225f5058349b0e98",
+    "total_target_steps": 218575
+  },
+  "data_and_metric_stat_boundaries_match": true,
+  "executed_data_proof.json": {
+    "test_records": 3840,
+    "frames": 2515992,
+    "scope": "Original complete finite/axis proof reused after completed7412 CPU full current SHA and current all-file stat boundary; metadata-only eligibility certificate; GPU stat identities verified",
+    "certificate_sha256": "090c658432edff67395f3d27cde63dad0094e0bdbc801b29c9952741800ebe30",
+    "original_proof_sha256": "4c8853c81766d4765fa5292be088df57ab67d0a216567de4ffa88ac035ae4541",
+    "new_GPU_full_tensor_traversal_claimed": false
+  },
+  "executed_data_proof.json_sha256": "4c9d14f863791f8dc1b272e1d13e70979a9a3a55eba2b60acb3d693deaeb4185",
+  "executed_model_proof.json": {
+    "protocol_sha256": "02be83c26ecc5d1c06c59a8ab66d74914784667ed60c587c5756e9165832e33f",
+    "all_finite": true,
+    "gpu": "NVIDIA A100-SXM4-40GB",
+    "torch": "2.7.0+cu128",
+    "python": "3.11.17 (main, Oct  7 2026, 00:02:24) [GCC 15.3.0]",
+    "science_threads": 4,
+    "inference_started": false
+  },
+  "executed_model_proof.json_sha256": "c0b51f927d27a93f8cc4d6758243ccce8784b01604c9f15ef881c695dfdb014a",
+  "launch_status.json": {
+    "status": "OFFICIAL_ROLLOUT_ENTERED",
+    "prior_GPU_seconds": 1580,
+    "elapsed_including_prior_GPU_seconds": 1745.01982859
+  },
+  "launch_status.json_sha256": "6990cba8ecbadbbe9d0a302dd35a5291cac0a4218988e41e29a8f977ef7ae437",
+  "evaluate-7423.err": {
+    "bytes": 1230,
+    "tail": "/scratch/xl4358/phase1_far_reference/vendor/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.\n  warnings.warn(\n/scratch/xl4358/phase1_far_reference/vendor/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.\n  warnings.warn(msg)\nUsing cache found in /scratch/xl4358/phase1_far_reference/upstream/models/cache/hub/facebookresearch_dino_main\n/scratch/xl4358/phase1_far_reference/vendor/torch/nn/utils/weight_norm.py:143: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.\n  WeightNorm.apply(module, name, dim)\n/scratch/xl4358/phase1_far_reference/vendor/peft/tuners/tuners_utils.py:331: UserWarning: Already found a `peft_config` attribute in the model. This will lead to having multiple adapters in the model. Make sure to know what you are doing!\n  warnings.warn(\n"
+  },
+  "evaluate-7423.out": {
+    "bytes": 4214,
+    "tail": "--------------------------------------------------------------------------------+\n| NVIDIA-SMI 610.43.02              KMD Version: 610.43.02     CUDA UMD Version: 13.3     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:00:04.0 Off |                    0 |\n| N/A   34C    P0             48W /  400W |       0MiB /  40960MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n[build] models/loopnav/temporal                  mem=TemporalRetrieval  steps=700000\n[build] models/loopnav/worldmem                  mem=WorldMemRetrieval  steps=700000\n[build] models/loopnav/far_meta                  mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_frozen_encoder        mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_visual                mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_multicue              mem=PnPRetrieval       steps=700000\n[build] models/loopnav/longlive_rag              mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_ablation_z            mem=PnPRetrieval       steps=700000\nUsing cached /scratch/xl4358/phase1_far_reference/upstream/models/cache/hub\n[clips] loaded 3796 eligible episodes from cache\n[shard 0] 30368 records pending (1748600 steps)\n"
+  },
+  "scalar_record_count": 0,
+  "compact_before_SHA": {
+    "evaluation_submission.json": "8120f9d64eb35da93a0a473479fc745c508d5e50368fc3cce63118ec6b136bde",
+    "evaluation_binding.json": "f5f538066aceb5015a5d46db7f845e062ac7e9bc90b03184e14399cb23b97546",
+    "superseded_preparation_retirement.json": "b02c45f06154796b147c8f6a88354ddd3de66f50c0bebb181542c4d48e61621b",
+    "old7412_timeout_boundary.json": "e675dc6011389676f74bd0fda6ebb0a8b0feece19205d79211fafd90fcc517be",
+    "monitor_20261014T2152.json": "ee6adececaa0fdec40774c7f6749ccf086387f2dac85e0c0221d4985b33b2b6d",
+    "scheduler_floor_result.json": "ba5319d502373f3e29235df4ed7d6de8678ce7d836c158b214248ab534c7ef6c"
+  }
+}

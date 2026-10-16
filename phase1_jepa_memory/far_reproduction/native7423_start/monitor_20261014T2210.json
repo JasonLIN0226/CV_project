@@ -1,0 +1,82 @@
+{
+  "utc": "2026-10-14T22:09:50.854895+00:00",
+  "sacct": {
+    "returncode": 0,
+    "stdout": "7423|RUNNING|0:0|csci_ga_2271-2026fa|2026-10-14T21:58:12|Unknown|00:11:44|03:34:00\n7423.batch|RUNNING|0:0|csci_ga_2271-2026fa|2026-10-14T21:58:12|Unknown|00:11:44|\n7423.extern|RUNNING|0:0|csci_ga_2271-2026fa|2026-10-14T21:58:12|Unknown|00:11:44|\n",
+    "stderr": ""
+  },
+  "squeue": {
+    "returncode": 0,
+    "stdout": "7423 RUNNING cv-far-recovered-eval gres/gpu:1 b-19-75\n",
+    "stderr": ""
+  },
+  "GPU": {
+    "returncode": 0,
+    "stdout": "85 %, 19820 MiB, NVIDIA A100-SXM4-40GB\n",
+    "stderr": ""
+  },
+  "progress.json": {
+    "status": "EVALUATION_IN_PROGRESS",
+    "records": 6,
+    "steps": 516,
+    "elapsed_seconds": 2258.143039453
+  },
+  "launch_status.json": {
+    "status": "OFFICIAL_ROLLOUT_ENTERED",
+    "prior_GPU_seconds": 1580,
+    "elapsed_including_prior_GPU_seconds": 2258.1629794
+  },
+  "evaluate-7423.out": {
+    "bytes": 5020,
+    "sha256": "db9ad8559a5cb323f4ac541477d9fd97c2619a5b41c90cb3b52d5e73fd0673d9",
+    "tail": "\n   SubmitTime=2026-10-14T21:56:18 EligibleTime=2026-10-14T21:56:18\n   AccrueTime=2026-10-14T21:56:18\n   StartTime=2026-10-14T21:58:12 EndTime=2026-10-15T01:32:12 Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-14T21:56:23 Scheduler=Main\n   Partition=c12m85-a100-1 AllocNode:Sid=3-gcp-r2:2666\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=b-19-75\n   BatchHost=b-19-75\n   NumNodes=1 NumCPUs=12 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=4,mem=60G,node=1,billing=4,gres/gpu=1\n   AllocTRES=cpu=12,mem=60G,node=1,billing=12,gres/gpu=1\n   Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=*\n   MinCPUsNode=4 MinMemoryNode=60G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/scratch/xl4358/phase1_far_metadata_keys/evaluate_recovered.sbatch\n   WorkDir=/scratch/xl4358/phase1_far_metadata_keys\n   StdErr=/scratch/xl4358/phase1_far_metadata_keys/logs/evaluate-7423.err\n   StdIn=/dev/null\n   StdOut=/scratch/xl4358/phase1_far_metadata_keys/logs/evaluate-7423.out\n   TresPerNode=gres/gpu:1\n   TresPerTask=cpu=4\n   \n\nWed Oct 14 21:58:12 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 610.43.02              KMD Version: 610.43.02     CUDA UMD Version: 13.3     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:00:04.0 Off |                    0 |\n| N/A   34C    P0             48W /  400W |       0MiB /  40960MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n[build] models/loopnav/temporal                  mem=TemporalRetrieval  steps=700000\n[build] models/loopnav/worldmem                  mem=WorldMemRetrieval  steps=700000\n[build] models/loopnav/far_meta                  mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_frozen_encoder        mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_visual                mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_multicue              mem=PnPRetrieval       steps=700000\n[build] models/loopnav/longlive_rag              mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_ablation_z            mem=PnPRetrieval       steps=700000\nUsing cached /scratch/xl4358/phase1_far_reference/upstream/models/cache/hub\n[clips] loaded 3796 eligible episodes from cache\n[shard 0] 30368 records pending (1748600 steps)\n[B_posefa_temporal] clip  1026 (05-03_20-02-00.npy): 86 steps  lpips 0.679  dreamsim 0.223  | shard 1/30368 recs  ETA 24059 min (15:01)\n[B_posefa_worldmem] clip  1026 (05-03_20-02-00.npy): 86 steps  lpips 0.647  dreamsim 0.300  | shard 2/30368 recs  ETA 24722 min (02:05)\n[pnp_meta_only] clip  1026 (05-03_20-02-00.npy): 86 steps  lpips 0.405  dreamsim 0.112  | shard 3/30368 recs  ETA 26888 min (14:13)\n[pnp_jepa_frozen] clip  1026 (05-03_20-02-00.npy): 86 steps  lpips 0.532  dreamsim 0.124  | shard 4/30368 recs  ETA 27943 min (07:49)\n[pnp_visual_only] clip  1026 (05-03_20-02-00.npy): 86 steps  lpips 0.531  dreamsim 0.128  | shard 5/30368 recs  ETA 28571 min (18:19)\n[pnp_learned_vmz] clip  1026 (05-03_20-02-00.npy): 86 steps  lpips 0.593  dreamsim 0.203  | shard 6/30368 recs  ETA 28992 min (01:21)\n"
+  },
+  "evaluate-7423.err": {
+    "bytes": 7132,
+    "sha256": "570cfb3fb185943e544f0150dac5eae34e45f7888416146cf6cacca4704a34f1",
+    "tail": "01 in main\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/core/utils.py\", line 186 in run_job\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/_internal/hydra.py\", line 119 in run\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/_internal/utils.py\", line 458 in <lambda>\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/_internal/utils.py\", line 220 in run_and_report\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/_internal/utils.py\", line 457 in _run_app\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/_internal/utils.py\", line 394 in _run_hydra\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/main.py\", line 94 in decorated_main\n  File \"/scratch/xl4358/phase1_far_metadata_keys/evaluate_recovered.py\", line 174 in main\n  File \"/scratch/xl4358/phase1_far_metadata_keys/evaluate_recovered.py\", line 191 in <module>\nTimeout (0:05:00)!\nThread 0x000014bda195f740 (most recent call first):\n  File \"/scratch/xl4358/phase1_far_reference/upstream/src/far/layers/embeddings.py\", line 76 in forward\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/nn/modules/module.py\", line 1762 in _call_impl\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/nn/modules/module.py\", line 1751 in _wrapped_call_impl\n  File \"/scratch/xl4358/phase1_far_reference/upstream/src/far/layers/embeddings.py\", line 101 in <listcomp>\n  File \"/scratch/xl4358/phase1_far_reference/upstream/src/far/layers/embeddings.py\", line 101 in forward\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/nn/modules/module.py\", line 1762 in _call_impl\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/nn/modules/module.py\", line 1751 in _wrapped_call_impl\n  File \"/scratch/xl4358/phase1_far_reference/upstream/src/far/memories/pnp_cl.py\", line 353 in _encode_body\n  File \"/scratch/xl4358/phase1_far_reference/upstream/src/far/memories/pnp_cl.py\", line 336 in forward\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/nn/modules/module.py\", line 1762 in _call_impl\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/nn/modules/module.py\", line 1751 in _wrapped_call_impl\n  File \"/scratch/xl4358/phase1_far_reference/upstream/src/far/memories/pnp_cl.py\", line 727 in _encode\n  File \"/scratch/xl4358/phase1_far_reference/upstream/src/far/memories/pnp_cl.py\", line 906 in forward\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/_dynamo/eval_frame.py\", line 838 in _fn\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/nn/modules/module.py\", line 1762 in _call_impl\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/nn/modules/module.py\", line 1751 in _wrapped_call_impl\n  File \"/scratch/xl4358/phase1_far_reference/upstream/scripts/world/eval_rollout.py\", line 107 in forward\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/nn/modules/module.py\", line 1762 in _call_impl\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/nn/modules/module.py\", line 1751 in _wrapped_call_impl\n  File \"/scratch/xl4358/phase1_far_reference/upstream/src/far/models/ldwm_core.py\", line 408 in prepare_context\n  File \"/scratch/xl4358/phase1_far_reference/upstream/src/far/models/ldwm_core.py\", line 1306 in sample_latent\n  File \"/scratch/xl4358/phase1_far_reference/upstream/scripts/world/eval_rollout.py\", line 189 in rollout_clip\n  File \"/scratch/xl4358/phase1_far_reference/vendor/torch/utils/_contextlib.py\", line 116 in decorate_context\n  File \"/scratch/xl4358/phase1_far_metadata_keys/evaluate_recovered.py\", line 137 in rollout\n  File \"/scratch/xl4358/phase1_far_reference/upstream/scripts/world/eval_rollout.py\", line 501 in main\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/core/utils.py\", line 186 in run_job\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/_internal/hydra.py\", line 119 in run\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/_internal/utils.py\", line 458 in <lambda>\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/_internal/utils.py\", line 220 in run_and_report\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/_internal/utils.py\", line 457 in _run_app\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/_internal/utils.py\", line 394 in _run_hydra\n  File \"/scratch/xl4358/phase1_far_reference/vendor/hydra/main.py\", line 94 in decorated_main\n  File \"/scratch/xl4358/phase1_far_metadata_keys/evaluate_recovered.py\", line 174 in main\n  File \"/scratch/xl4358/phase1_far_metadata_keys/evaluate_recovered.py\", line 191 in <module>\n"
+  },
+  "scalar_files": [
+    {
+      "path": "scalars/B_posefa_worldmem/01026.npz",
+      "bytes": 9854
+    },
+    {
+      "path": "scalars/pnp_learned_vmz/01026.npz",
+      "bytes": 10148
+    },
+    {
+      "path": "scalars/pnp_visual_only/01026.npz",
+      "bytes": 10135
+    },
+    {
+      "path": "scalars/pnp_meta_only/01026.npz",
+      "bytes": 8950
+    },
+    {
+      "path": "scalars/pnp_jepa_frozen/01026.npz",
+      "bytes": 10249
+    },
+    {
+      "path": "scalars/B_posefa_temporal/01026.npz",
+      "bytes": 8998
+    }
+  ],
+  "budget_guard": {
+    "armed.json": {
+      "status": "ARMED_NOT_YET_TRIGGERED",
+      "utc": "2026-10-14T22:06:19.150626+00:00",
+      "pid": 7901,
+      "job_id": 7423,
+      "initial_state": [
+        "7423",
+        "RUNNING",
+        "csci_ga_2271-2026fa",
+        "2026-10-14T21:58:12"
+      ],
+      "deadline_utc": "2026-10-15T01:31:52+00:00",
+      "cancel_request_lead_seconds": 3,
+      "no_model_or_GPU_work": true
+    }
+  }
+}

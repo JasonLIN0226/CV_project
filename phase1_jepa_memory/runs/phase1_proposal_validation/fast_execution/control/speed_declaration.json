@@ -1,0 +1,17 @@
+{
+  "utc": "2026-10-15T17:30:36.674266+00:00",
+  "human_steering": "能加快实验最好，我要尽快出结果",
+  "kind": "EXACT_IO_AND_VALIDATION_CACHING_BEFORE_ANY_FULL_TRIAL_GPU_SUBMISSION",
+  "method_changed": false,
+  "precision_changed": false,
+  "samples_seeds_epochs_losses_optimizer_selection_gates_changed": false,
+  "source_pending_budget44_preserved_never_submitted": true,
+  "optimizations": [
+    "Cache only original legal evidence timestamp and observed/planned action arrays for train/validation, no RGB/state/class read",
+    "Reuse exactly original per-condition validation tensors/targets/batch boundaries on allocated GPU",
+    "Original FeatureStore.sample algorithm and original metric operations unchanged, explicit adapter verifies its sample AST matches original after only metadata loader replacement"
+  ],
+  "required_proof": "Compare original and cached samples/targets/info bitwise and RNG state for every1216 train+validation episode and all4 conditions for each task, before scientific training; fail closed on any mismatch. Data source stat boundaries retained.",
+  "budget": "Existing approved cumulative5h including226s prior; no additional GPU cap",
+  "no_held_out_before_all6_complete": true
+}

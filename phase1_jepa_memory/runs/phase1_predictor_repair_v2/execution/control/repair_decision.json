@@ -1,0 +1,52 @@
+{
+  "UTC": "2026-10-16T02:08:38.777812+00:00",
+  "status": "ONE_SECOND_REPAIR_FIXED_AFTER_READONLY_DIAGNOSIS",
+  "native_diagnosis_sha256": "c64b1367ed7b3dc9ce3e1e6e389537b1d3ece93e4fd5dd92a822d0c8db8cfcd6",
+  "native_result_sha256": "c64b1367ed7b3dc9ce3e1e6e389537b1d3ece93e4fd5dd92a822d0c8db8cfcd6",
+  "candidate": "CenteredTransportPredictor",
+  "candidate_module": "src/phase1/centered_transport.py",
+  "candidate_module_sha256": "a4e2c78f434b1cde59ffd8ad9e4018bbe7113c29a7af1581f68e99ac0df6e287",
+  "all_original_tasks_seeds_counts_epochs_conditions_horizons_gates_preserved": true,
+  "development_seen_is_exploratory_not_independent_confirmation": true,
+  "candidate_sweep_or_per_seed_tuning": false,
+  "training": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "clip_norm": 1.0,
+    "batch_size": 64,
+    "epochs": 120,
+    "schedule": "epoch-level5epoch linear warmup from1/5base tobase; then cosine frombase to0.1base byepoch120",
+    "pair_weight": 2.0,
+    "rank_weight": 0.5,
+    "gate_common_anchor_weight": 1.0,
+    "motion_common_anchor_weight": 0.0,
+    "selection": "earliest minimum of equal four-condition two-horizon validation normalized MSE",
+    "steps_each_model": 7680
+  },
+  "architecture": {
+    "hidden": 128,
+    "heads": 4,
+    "history_queries": 4,
+    "relation_queries": 2,
+    "read_all_history": true,
+    "no_selector_TopK": true,
+    "no_absolute_visual_level_in_correction": true,
+    "no_query_gap_or_extrapolated_values_in_learned_keys": true,
+    "elapsed_time_only_explicit_linear_transport_value": true,
+    "zero_value_history_gives_exact_reference": true,
+    "all_value_readouts_linear_without_bias": true,
+    "small_nonzero_readout_std": 0.001
+  },
+  "why_one_composite_trial": "Observed failures motivate testing common-offset invariance and separating learned content weights from explicit elapsed transport; this is one fixed composite, not an ablation proving a unique cause.",
+  "fresh9137_opened": false,
+  "science_submitted": false,
+  "phase1_go": false,
+  "method_references": [
+    "https://arxiv.org/abs/2205.13504",
+    "https://github.com/cure-lab/LTSF-Linear/blob/main/models/NLinear.py",
+    "https://proceedings.mlr.press/v97/lee19d.html"
+  ],
+  "adaptation_not_paper_reproduction": true,
+  "full_dev_and_confirmation_budget_must_fit_remaining19003s": true
+}

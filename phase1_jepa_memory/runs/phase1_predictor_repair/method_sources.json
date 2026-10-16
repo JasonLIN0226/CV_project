@@ -1,0 +1,23 @@
+{
+  "SetTransformer": {
+    "paper": "https://proceedings.mlr.press/v97/lee19d.html",
+    "official_code": "https://github.com/juho-lee/set_transformer",
+    "official_module": "https://raw.githubusercontent.com/juho-lee/set_transformer/master/modules.py",
+    "principle": "learned seed attention pooling over all valid retained tokens",
+    "license": "MIT; Copyright (c) 2020 Juho Lee",
+    "adaptations": "strict masks, empty-history safe pooling, query conditioned on legal recent observations and horizon-specific action prefix"
+  },
+  "RelationNetworks": {
+    "paper": "https://arxiv.org/abs/1706.01427",
+    "principle": "explicit shared relational processing",
+    "adaptations": "adjacent retained observation differences divided by observed time interval; no hidden physical state, labels, or oracle velocity"
+  },
+  "own_adaptations": [
+    "single correction branch gated by actual history presence rather than subtracting two side-network outputs",
+    "bounded relative learned time inputs with explicit feature transport",
+    "small nonzero final readout to permit internal gradients at first update"
+  ],
+  "not_reproduction_or_novelty_claim": true,
+  "selection_after_revealed6301_development_failure": true,
+  "candidate_provisional_until_native_diagnosis": true
+}

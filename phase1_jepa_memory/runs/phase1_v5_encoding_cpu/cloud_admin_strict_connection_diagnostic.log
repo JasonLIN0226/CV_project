@@ -1,0 +1,50 @@
+OpenSSH_9.4p1, LibreSSL 3.3.6
+debug1: Reading configuration data /private/tmp/phase1-hpc-control/config
+debug1: /private/tmp/phase1-hpc-control/config line 77: Applying options for phase1-cloud-admin
+debug1: Setting implicit ProxyCommand from ProxyJump: ssh -F /private/tmp/phase1-hpc-control/config -v -W '[%h]:%p' phase1-torch
+debug1: Authenticator provider $SSH_SK_PROVIDER did not resolve; disabling
+debug1: Executing proxy command: exec ssh -F /private/tmp/phase1-hpc-control/config -v -W '[10.144.0.50]:22' phase1-torch
+debug1: identity file /Users/linxiangyu/.ssh/id_ed25519 type 3
+debug1: identity file /Users/linxiangyu/.ssh/id_ed25519-cert type -1
+debug1: Local version string SSH-2.0-OpenSSH_9.4
+OpenSSH_9.4p1, LibreSSL 3.3.6
+debug1: Reading configuration data /private/tmp/phase1-hpc-control/config
+debug1: /private/tmp/phase1-hpc-control/config line 1: Applying options for phase1-torch
+debug1: Authenticator provider $SSH_SK_PROVIDER did not resolve; disabling
+debug1: mux_client_request_stdio_fwd: master session id: 2
+debug1: Remote protocol version 2.0, remote software version OpenSSH_9.9
+debug1: compat_banner: match: OpenSSH_9.9 pat OpenSSH* compat 0x04000000
+debug1: Authenticating to 10.144.0.50:22 as 'xl4358'
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts2: No such file or directory
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: algorithm: curve25519-sha256
+debug1: kex: host key algorithm: ssh-ed25519
+debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+debug1: SSH2_MSG_KEX_ECDH_REPLY received
+debug1: Server host key: ssh-ed25519 SHA256:LG/AJU6ZmBI3WIFpcy+pquCuquGOoMQv/AaOd0exMR4
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts2: No such file or directory
+debug1: Host '10.144.0.50' is known and matches the ED25519 host key.
+debug1: Found key in /private/tmp/phase1-hpc-control/known_hosts:65
+debug1: rekey out after 134217728 blocks
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: SSH2_MSG_NEWKEYS received
+debug1: rekey in after 134217728 blocks
+debug1: get_agent_identities: bound agent to hostkey
+debug1: get_agent_identities: agent returned 1 keys
+debug1: Will attempt key: /Users/linxiangyu/.ssh/id_ed25519 ED25519 SHA256:IwMZLvgoThP4PQmKHd62JVcdIsmc7r3F0IhP0ddYDeg explicit agent
+debug1: SSH2_MSG_EXT_INFO received
+debug1: kex_input_ext_info: server-sig-algs=<ecdsa-sha2-nistp256,sk-ecdsa-sha2-nistp256@openssh.com,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-ed25519,sk-ssh-ed25519@openssh.com,rsa-sha2-256,rsa-sha2-512>
+debug1: kex_input_ext_info: publickey-hostbound@openssh.com=<0>
+debug1: kex_input_ext_info: ping@openssh.com (unrecognised)
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,keyboard-interactive
+debug1: Next authentication method: publickey
+debug1: Offering public key: /Users/linxiangyu/.ssh/id_ed25519 ED25519 SHA256:IwMZLvgoThP4PQmKHd62JVcdIsmc7r3F0IhP0ddYDeg explicit agent
+debug1: Server accepts key: /Users/linxiangyu/.ssh/id_ed25519 ED25519 SHA256:IwMZLvgoThP4PQmKHd62JVcdIsmc7r3F0IhP0ddYDeg explicit agent
+Connection closed by UNKNOWN port 65535

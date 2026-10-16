@@ -1,0 +1,92 @@
+{
+  "declared_utc": "2026-10-15T05:16:50.738601+00:00",
+  "human_request": "\u8865\u4e0a\u65e0\u8bb0\u5fc6\u548crecent-only\u5bf9\u7167\uff0c\u628aphase1 test\u771f\u6b63\u505a\u5b8c\u6574\uff1b\u5148\u8bf4\u660e\u8bbe\u8ba1\u548cGPU\u65f6\u95f4\uff0c\u7136\u540e\u81ea\u884c\u5b9e\u9a8c\uff0c\u660e\u65e9\u9a8c\u6536",
+  "scope": "Complete the explicit-memory controls for the same eight-scene FAR-based Phase1 test; not original I-JEPA/SPACE GO or independent confirmatory validation",
+  "old_science_job": 7426,
+  "old_analysis_job": 7435,
+  "old_output": "/scratch/xl4358/phase1_far_phase1/output/job_7426",
+  "old_input_proof_sha256": "c0e98d64a10aff9248c05d17c5f7894534039452955ba12e3b09bb8b7752b4c1",
+  "old_source_lock_sha256": "e53cf22195b277ef2be12c87151632ee706f19d0eb16a41819861628fad1fcbb",
+  "old_analysis_lock_sha256": "765def947f04d9f2a9a78d4d0659acb7f2764473c07f09488d7143c6d5bde7dc",
+  "old_protocol_sha256": "3845db102ca99b4f1649a40bc23db4123a8227a18087b61361248de8bfe2c4d2",
+  "model": "same official far_multicue checkpoint0700000, fixed generator weights, no training",
+  "policies": [
+    "Current_only",
+    "Recent_only"
+  ],
+  "old_policies": [
+    "FIFO",
+    "Reservoir",
+    "FAR_current",
+    "Archive_reference"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "clips": 8,
+  "new_records": 48,
+  "new_target_steps": 3498,
+  "combined_records": 144,
+  "combined_target_steps": 10494,
+  "controls": {
+    "Current_only": "Exactly one current latent; zero explicit past slots. Native variable-length generator with memory=None. No duplicate/zero padded valid history. Current is generated autoregressively after the shared observed starting frame. This removes explicit historical memory, not all information carried by current.",
+    "Recent_only": "FIFO16 past capacity plus separate current, chronological last11 past plus current passed directly. Native memory=None; no learned retrieval. Total12 true context frames, no padding. Distinct from old FIFO16 whose FAR reader selected11 of16."
+  },
+  "same_episode_selection_and_full_target_axis": true,
+  "DDIM_steps": 20,
+  "rollout_stride": 4,
+  "pnp_chunk_size_old": 1,
+  "maximum_context_size": 12,
+  "current_context_size": 1,
+  "recent_context_size": 12,
+  "retention_capacities": {
+    "Current_only": 0,
+    "Recent_only": 16
+  },
+  "weights_data_actions_initial_current_metrics_unchanged": true,
+  "no_future_images_or_route_to_retention": true,
+  "no_deleted_payload_key_archive_or_reentry": true,
+  "only_ID_trace_persisted": true,
+  "no_GT_return_latent_to_current": true,
+  "primary": "DreamSim final ceil(n/4) real predictions, equal scene weighting and three seeds averaged within scene",
+  "primary_comparisons": [
+    "Reservoir over Current_only",
+    "Reservoir over Recent_only"
+  ],
+  "secondary_comparisons": [
+    "Recent_only over Current_only",
+    "FIFO over Recent_only",
+    "FAR_current over Current_only",
+    "FAR_current over Recent_only",
+    "FAR_current over Reservoir"
+  ],
+  "secondary_metrics": [
+    "DreamSim full",
+    "LPIPS full/tail",
+    "PSNR full/tail",
+    "route and seed breakdown"
+  ],
+  "statistics": "8-scene paired bootstrap10000seed0, exact one-sided signflip256, Holm adjustment across the two primary p values; individual 95% CI and raw effects disclosed. Both positive lower CI plus Holm p<0.05 support this bounded two-control criterion; original GO unchanged.",
+  "post_hoc_addition_disclosed": true,
+  "Reservoir_selected_after_old_pilot_disclosed": true,
+  "no_adaptive_scene_seed_metric_or_threshold_selection": true,
+  "budget": {
+    "course": "csci_ga_2271-2026fa",
+    "GPU": "one A100",
+    "science_threads": 4,
+    "memory_gb": 60,
+    "new_wall_seconds": 7200,
+    "new_soft_seconds": 6600,
+    "estimate_seconds": [
+      3000,
+      5400
+    ],
+    "estimate_basis": "old four-policy96-record run actual6410sec; two additional policies48records, half target steps; current-only should reduce attention work; queue excluded",
+    "additional_budget_authorized_by_latest_human_request": true,
+    "first_complete_clip_both_policies_all3seeds_projection_required": true,
+    "failure": "Preserve partial; never reduce scenes/seeds/steps or automatically resubmit science"
+  },
+  "runtime_compatibility_gate": "First real native forward must show one/current or12/recent valid frames and finite outputs. No padding, no learned parameter changes; reject incompatibility rather than silently relabel another model."
+}

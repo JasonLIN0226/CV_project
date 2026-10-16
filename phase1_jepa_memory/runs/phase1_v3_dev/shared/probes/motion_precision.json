@@ -1,0 +1,214 @@
+{
+  "mode": "confirm",
+  "scope": "validation_only",
+  "fit_split": "train",
+  "selection_split": "validation",
+  "evaluation_splits": [
+    "validation"
+  ],
+  "target": "visible_pre_occlusion_signed_x_velocity_in_normalized_coordinates_per_frame",
+  "input": "train_only_compressed_visual_features_and_matched_legal_timestamps_past_actions",
+  "cache_signature": "c23e728e79bb6c82f5a2c5b36aa32cb05e9d1ea2bf5afbb649d5d23b3910cce4",
+  "input_basis_sha256": "010426084c5f5139aa8426a13e3a816371331d1e69d1dce9dcf14f43de8297fa",
+  "normalization_sha256": "96027aa115c03cc91c8aa60a9a11968fb194b9a05cde8b04d95adb87e28797cb",
+  "results": [
+    {
+      "policy": "current",
+      "variant": "two_frame",
+      "split": "validation",
+      "signed_speed_mse": {
+        "mean": 1.387580841924895e-06,
+        "low": 1.0503231721725727e-06,
+        "high": 1.8223071260560123e-06,
+        "pairs": 96
+      },
+      "span_steps": {
+        "min": 3,
+        "max": 6,
+        "mean": 4.3125
+      },
+      "ridge": 10.0,
+      "ridge_selected_on": "validation"
+    },
+    {
+      "policy": "current",
+      "variant": "single_start",
+      "split": "validation",
+      "signed_speed_mse": {
+        "mean": 3.322225385106145e-05,
+        "low": 3.0095432267639674e-05,
+        "high": 3.671319078203224e-05,
+        "pairs": 96
+      },
+      "span_steps": {
+        "min": 3,
+        "max": 6,
+        "mean": 4.3125
+      },
+      "ridge": 10.0,
+      "ridge_selected_on": "validation"
+    },
+    {
+      "policy": "current",
+      "variant": "single_end",
+      "split": "validation",
+      "signed_speed_mse": {
+        "mean": 3.592130826265068e-05,
+        "low": 3.448554433612655e-05,
+        "high": 3.743300237646202e-05,
+        "pairs": 96
+      },
+      "span_steps": {
+        "min": 3,
+        "max": 6,
+        "mean": 4.3125
+      },
+      "ridge": 10.0,
+      "ridge_selected_on": "validation"
+    },
+    {
+      "policy": "wide_span",
+      "variant": "two_frame",
+      "split": "validation",
+      "signed_speed_mse": {
+        "mean": 5.847299364626712e-07,
+        "low": 4.615773544446608e-07,
+        "high": 7.272428851643582e-07,
+        "pairs": 96
+      },
+      "span_steps": {
+        "min": 5,
+        "max": 13,
+        "mean": 8.84375
+      },
+      "ridge": 0.01,
+      "ridge_selected_on": "validation"
+    },
+    {
+      "policy": "wide_span",
+      "variant": "single_start",
+      "split": "validation",
+      "signed_speed_mse": {
+        "mean": 2.49077561417683e-05,
+        "low": 2.207871020146206e-05,
+        "high": 2.791370871566349e-05,
+        "pairs": 96
+      },
+      "span_steps": {
+        "min": 5,
+        "max": 13,
+        "mean": 8.84375
+      },
+      "ridge": 10.0,
+      "ridge_selected_on": "validation"
+    },
+    {
+      "policy": "wide_span",
+      "variant": "single_end",
+      "split": "validation",
+      "signed_speed_mse": {
+        "mean": 3.592130826265068e-05,
+        "low": 3.448554433612641e-05,
+        "high": 3.743300237646238e-05,
+        "pairs": 96
+      },
+      "span_steps": {
+        "min": 5,
+        "max": 13,
+        "mean": 8.84375
+      },
+      "ridge": 10.0,
+      "ridge_selected_on": "validation"
+    }
+  ],
+  "comparisons": [
+    {
+      "comparison": "wide_two_vs_current_two",
+      "split": "validation",
+      "absolute_mse_reduction": {
+        "mean": 8.028509054622238e-07,
+        "low": 4.956132215936642e-07,
+        "high": 1.1638962066143007e-06,
+        "pairs": 96
+      },
+      "passed": true
+    },
+    {
+      "comparison": "current_two_vs_single_start",
+      "split": "validation",
+      "absolute_mse_reduction": {
+        "mean": 3.183467300913655e-05,
+        "low": 2.8793230824450286e-05,
+        "high": 3.526838015778158e-05,
+        "pairs": 96
+      },
+      "passed": true
+    },
+    {
+      "comparison": "current_two_vs_single_end",
+      "split": "validation",
+      "absolute_mse_reduction": {
+        "mean": 3.453372742072578e-05,
+        "low": 3.30004748248474e-05,
+        "high": 3.60714255486061e-05,
+        "pairs": 96
+      },
+      "passed": true
+    },
+    {
+      "comparison": "wide_span_two_vs_single_start",
+      "split": "validation",
+      "absolute_mse_reduction": {
+        "mean": 2.432302620530563e-05,
+        "low": 2.1535410973915174e-05,
+        "high": 2.7294536989413686e-05,
+        "pairs": 96
+      },
+      "passed": true
+    },
+    {
+      "comparison": "wide_span_two_vs_single_end",
+      "split": "validation",
+      "absolute_mse_reduction": {
+        "mean": 3.5336578326188e-05,
+        "low": 3.390128817485606e-05,
+        "high": 3.684812933372658e-05,
+        "pairs": 96
+      },
+      "passed": true
+    }
+  ],
+  "gates": {
+    "validation": {
+      "wide_better_than_current": true,
+      "policies": {
+        "current": {
+          "strongest_single_selected_on_validation": "single_start",
+          "better_than_matched_strongest_single": true,
+          "better_than_each_single": true
+        },
+        "wide_span": {
+          "strongest_single_selected_on_validation": "single_start",
+          "better_than_matched_strongest_single": true,
+          "better_than_each_single": true
+        }
+      },
+      "passed": true
+    }
+  },
+  "passed": true,
+  "strongest_single": {
+    "current": "single_start",
+    "wide_span": "single_start"
+  },
+  "checkpoints": {
+    "motion_precision/current_two_frame.npz": "5c78f0e509695187a68c97b981714b3895cb3afb2bb3eaff659a6e40ac996a23",
+    "motion_precision/current_single_start.npz": "3067718945038c95a590e393aa6af5df3992ca6b4e7d58ad7bab38ff7f0b98f1",
+    "motion_precision/current_single_end.npz": "c52e27ff86fc72a307137e30c4c3d4e7ce02bf51641377486c174880133d45c2",
+    "motion_precision/wide_span_two_frame.npz": "de3ac0be85388fef55fe338561a210ef1e935214a419815970902a671e1d9408",
+    "motion_precision/wide_span_single_start.npz": "9e03e57e6cf1003f5da09f4d8e10c5c2cd0d7eaacfca1afd8a4fea3570c5f2cc",
+    "motion_precision/wide_span_single_end.npz": "fdf3337e61eb61e653b38b85e5ad369ab2bbdb6a770556553e02a3a44463c0cb"
+  },
+  "code_hash": "e456714c06b304ce396b046d15dc26a80eca55fa30d7638df415190d04225928",
+  "policy_signature": "d0c94568af7c6102a2a20bc2e58c55095a61e305ca4fb1c5f5c889f1141794bd"
+}

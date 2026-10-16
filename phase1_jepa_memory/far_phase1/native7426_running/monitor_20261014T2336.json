@@ -1,0 +1,62 @@
+{
+  "utc": "2026-10-14T23:36:03.266733+00:00",
+  "sacct": {
+    "rc": 0,
+    "stdout": "7426|RUNNING|0:0|csci_ga_2271-2026fa|2026-10-14T22:38:12|Unknown|00:57:58|b-19-16\n7426.batch|RUNNING|0:0|csci_ga_2271-2026fa|2026-10-14T22:38:12|Unknown|00:57:58|b-19-16\n7426.extern|RUNNING|0:0|csci_ga_2271-2026fa|2026-10-14T22:38:12|Unknown|00:57:58|b-19-16\n7435|PENDING|0:0|csci_ga_2271-2026fa|Unknown|Unknown|00:00:00|None assigned\n",
+    "stderr": ""
+  },
+  "squeue": {
+    "rc": 0,
+    "stdout": "7426|cv-far-phase1|RUNNING|csci_ga_2271-2026fa|b-19-16|(null)\n7435|cv-far-phase1-audit|PENDING|csci_ga_2271-2026fa||afterany:7426(unfulfilled)\n",
+    "stderr": ""
+  },
+  "progress.json": {
+    "completed_steps": 3747,
+    "records": 63,
+    "elapsed_seconds": 3457.0173443139997
+  },
+  "first_clip_budget.json": {
+    "projection_seconds": 6449.642434239,
+    "soft_seconds": 11340,
+    "passed": true,
+    "complete_clip_all_policies_all_seeds": true
+  },
+  "raw_record_count": 63,
+  "trace_count": 63,
+  "out_size": 3425,
+  "out_tail": "    CUDA UMD Version: 13.3     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:00:04.0 Off |                    0 |\n| N/A   43C    P0             50W /  400W |       0MiB /  40960MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n[build] /scratch/xl4358/phase1_far_reference/upstream/models/loopnav/far_multicue mem=PnPRetrieval       steps=700000\nUsing cached /scratch/xl4358/phase1_far_reference/upstream/models/cache/hub\n",
+  "err_size": 1230,
+  "err_tail": "/scratch/xl4358/phase1_far_reference/vendor/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.\n  warnings.warn(\n/scratch/xl4358/phase1_far_reference/vendor/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.\n  warnings.warn(msg)\nUsing cache found in /scratch/xl4358/phase1_far_reference/upstream/models/cache/hub/facebookresearch_dino_main\n/scratch/xl4358/phase1_far_reference/vendor/torch/nn/utils/weight_norm.py:143: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.\n  WeightNorm.apply(module, name, dim)\n/scratch/xl4358/phase1_far_reference/vendor/peft/tuners/tuners_utils.py:331: UserWarning: Already found a `peft_config` attribute in the model. This will lead to having multiple adapters in the model. Make sure to know what you are doing!\n  warnings.warn(\n",
+  "gpu_snapshot": {
+    "rc": 0,
+    "stdout": "NVIDIA A100-SXM4-40GB, 83 %, 9822 MiB\n",
+    "stderr": ""
+  },
+  "source_guard": [
+    {
+      "root": "/scratch/xl4358/phase1_far_phase1",
+      "lock_sha256": "e53cf22195b277ef2be12c87151632ee706f19d0eb16a41819861628fad1fcbb",
+      "current_files": {
+        "online_memory.py": "d9bb35427043443754525092500e874f9951c52373e5cefc8540fb3e7af68787",
+        "run_phase1.py": "faa239a1700223697a280c7c4442fde92aed80de9c2984191e748b673d74bcf9",
+        "phase1.sbatch": "b3c464874616c4207cd609bd12d823f4e78185e1daa754e0047eacf26b19973f",
+        "protocol.json": "3845db102ca99b4f1649a40bc23db4123a8227a18087b61361248de8bfe2c4d2",
+        "input_proof.json": "c0e98d64a10aff9248c05d17c5f7894534039452955ba12e3b09bb8b7752b4c1",
+        "local_checks.json": "315a71e36b364e6a9a4bcc8a149ce8efc9dc8daf522b5c5e09c438a11ce1678a"
+      },
+      "matched": true
+    },
+    {
+      "root": "/scratch/xl4358/phase1_far_phase1_analysis",
+      "lock_sha256": "765def947f04d9f2a9a78d4d0659acb7f2764473c07f09488d7143c6d5bde7dc",
+      "current_files": {
+        "aggregate.py": "f4ecda2c9ae1052ec072c62614a7fca0eaf6294c8117f74315eee32f95b68895",
+        "analysis.sbatch": "52cda79d4af0cd4dc637e1fd666cc10ffd519c5a0682fab3302ad75af68bdc43",
+        "analysis_protocol.json": "cb1e962b743e1de276f29e2f7c982a8d48a78c13d7a1537ed21991a1cc2682b2",
+        "checks.json": "bf8e6df39b3056ab075a2f0e45165763f759997b27e60c953085ecb3c04e31ae"
+      },
+      "matched": true
+    }
+  ],
+  "scope": "Lightweight progress/logs and science6/analysis4 current source guard only; no model/data rescan, no metric score inspection"
+}

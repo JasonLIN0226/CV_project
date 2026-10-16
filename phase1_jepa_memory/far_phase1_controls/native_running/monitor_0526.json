@@ -1,0 +1,52 @@
+{
+  "utc": "2026-10-15T05:25:48.617690+00:00",
+  "science_native": "7454|RUNNING|0:0|2026-10-15T05:23:16|Unknown|00:02:39\n7454.batch|RUNNING|0:0|2026-10-15T05:23:16|Unknown|00:02:39\n7454.extern|RUNNING|0:0|2026-10-15T05:23:16|Unknown|00:02:39\n7456|PENDING|0:0|Unknown|Unknown|00:00:00\n",
+  "progress.json": {
+    "completed_steps": 75,
+    "records": 1,
+    "elapsed_seconds": 149.842434037
+  },
+  "executed_model_proof.json": {
+    "all_actual_loaded_floating_tensors_finite": true,
+    "input_proof_sha256": "a1f11a8a8c90ae6f050a9ced02b0c1a4dca1c11deb42105f71e26cf89348ac1e",
+    "source_locks": {
+      "/scratch/xl4358/phase1_far_phase1_controls/source_lock.json": "321b69b2c8316b269661a6c571cc64bddeab09a6b067992d08562f5a977ff97e",
+      "/scratch/xl4358/phase1_far_reference/upstream_source_lock.json": "f5dee7da4dc3eb14eacf2ab0595c1303cd13176e5a3bc913e3f19881846fe11f"
+    },
+    "GPU": "NVIDIA A100-SXM4-40GB",
+    "threads": 4,
+    "torch": "2.7.0+cu128",
+    "inference_started": false
+  },
+  "executed_context_proof.json": {
+    "Current_only": {
+      "actual_context_shape": [
+        1,
+        1,
+        16,
+        18,
+        32
+      ],
+      "expected_true_frames": 1,
+      "native_generator_class": "far.generators.cdit_mod_pose_fa.CDiT",
+      "learned_retrieval_disabled": true,
+      "padding_or_duplicate_history": false
+    },
+    "Recent_only": {
+      "actual_context_shape": [
+        1,
+        12,
+        16,
+        18,
+        32
+      ],
+      "expected_true_frames": 12,
+      "native_generator_class": "far.generators.cdit_mod_pose_fa.CDiT",
+      "learned_retrieval_disabled": true,
+      "padding_or_duplicate_history": false
+    }
+  },
+  "stderr_size": 1230,
+  "stderr_tail": "/scratch/xl4358/phase1_far_reference/vendor/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.\n  warnings.warn(\n/scratch/xl4358/phase1_far_reference/vendor/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.\n  warnings.warn(msg)\nUsing cache found in /scratch/xl4358/phase1_far_reference/upstream/models/cache/hub/facebookresearch_dino_main\n/scratch/xl4358/phase1_far_reference/vendor/torch/nn/utils/weight_norm.py:143: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.\n  WeightNorm.apply(module, name, dim)\n/scratch/xl4358/phase1_far_reference/vendor/peft/tuners/tuners_utils.py:331: UserWarning: Already found a `peft_config` attribute in the model. This will lead to having multiple adapters in the model. Make sure to know what you are doing!\n  warnings.warn(\n",
+  "gpu": "NVIDIA A100-SXM4-40GB, 85 %, 4322 MiB\n"
+}

@@ -1,0 +1,120 @@
+--- original_frozen_evaluate_reference.py
++++ separate_evaluate_recovered.py
+@@ -9,11 +9,14 @@
+ import sys
+ import time
+ 
+-ROOT = Path(__file__).resolve().parent
++RECOVERY = Path(__file__).resolve().parent
++ROOT = Path("/scratch/xl4358/phase1_far_reference")
+ UPSTREAM = ROOT / "upstream"
+-OUT = ROOT / "evaluation" / ("job_" + os.environ["SLURM_JOB_ID"])
++OUT = RECOVERY / "evaluation" / ("job_" + os.environ["SLURM_JOB_ID"])
+ OUT.mkdir(parents=True, exist_ok=True)
+-START = time.monotonic()
++START = time.monotonic() - 1580
++import faulthandler
++faulthandler.dump_traceback_later(300, repeat=True)
+ 
+ 
+ def sha(p):
+@@ -53,38 +56,33 @@
+         raise RuntimeError("author Torch/CUDA dependency target not active")
+     torch.set_num_threads(4)
+     source()
++    recovery_lock = json.loads((RECOVERY / "source_lock.json").read_text())
++    assert all(sha(RECOVERY / n) == h for n,h in recovery_lock["files"].items())
++    recovery_binding = json.loads((RECOVERY / "evaluation_binding.json").read_text())
++    certificate_path = Path(recovery_binding["certificate_path"])
++    assert sha(certificate_path) == recovery_binding["certificate_sha256"]
++    cert = json.loads(certificate_path.read_text())
++    assert cert["status"] == "CURRENT_IDENTITIES_AND_OFFICIAL_ELIGIBILITY_COMPLETE"
++    assert cert["source_lock_sha256"] == sha(RECOVERY / "source_lock.json")
++    for entry in cert["files"] + cert["metrics"]:
++        st = (UPSTREAM / entry["path"]).stat()
++        assert (st.st_size, st.st_mtime_ns) == (entry["bytes"], entry["mtime_ns"])
+     binding = json.loads((ROOT / "evaluation_binding.json").read_text())
+     if binding["protocol_sha256"] != sha(ROOT / "reference_protocol.json"):
+         raise RuntimeError("actual controller protocol binding differs")
+     if binding["evaluation_source_sha256"] != sha(ROOT / "evaluation_source_lock.json"):
+         raise RuntimeError("actual controller source binding differs")
+     protocol = json.loads((ROOT / "reference_protocol.json").read_text())
+-    import numpy as np
+-    index = json.loads((UPSTREAM / "results/indices/loopnav/loopnav_latent_test.json").read_text())
+-    ids = index["sample_ids"]
+-    if len(ids) != 3840 or len(set(ids)) != 3840:
+-        raise RuntimeError("official test split count/identity mismatch")
+-    inputs, total_frames = [], 0
+-    for name in ids:
+-        path = UPSTREAM / name
+-        lat = np.load(path, mmap_mode="r", allow_pickle=False)
+-        frames = json.loads(path.with_suffix(".json").read_text())
+-        if lat.ndim != 4 or tuple(lat.shape[1:]) != (16, 18, 32) or lat.dtype != np.float32:
+-            raise RuntimeError("actual observation shape/dtype mismatch")
+-        if len(frames) != lat.shape[0]:
+-            raise RuntimeError("frame log and observation array are not aligned")
+-        for i in range(0, len(lat), 128):
+-            if not np.isfinite(lat[i:i + 128]).all():
+-                raise RuntimeError("nonfinite actual observation array")
+-        poses = np.array([[f[k] for k in ("x", "y", "z", "pitch", "yaw")] for f in frames])
+-        if not np.isfinite(poses).all():
+-            raise RuntimeError("nonfinite actual camera metadata")
+-        total_frames += len(lat)
+-        inputs.append({"path": name, "sha256": sha(path), "bytes": path.stat().st_size,
+-                       "frames": len(lat), "frame_log_sha256": sha(path.with_suffix(".json"))})
+-        del lat, frames, poses
+-    save("executed_data_proof.json", {"test_records": len(ids), "frames": total_frames,
+-                                     "all_finite_and_frame_logs_aligned": True, "files": inputs})
++    original_data_proof = ROOT / "evaluation/job_7403/executed_data_proof.json"
++    assert sha(original_data_proof) == cert["original_numeric_proof_sha256"]
++    old = json.loads(original_data_proof.read_text())
++    assert old["test_records"] == cert["test_records"] == 3840
++    assert old["frames"] == cert["frames"] == 2515992
++    inputs = old["files"]
++    save("executed_data_proof.json", {"test_records": 3840, "frames": cert["frames"],
++         "scope": "Original complete finite/axis proof reused after independent CPU full current SHA; GPU stat identities verified",
++         "certificate_sha256": sha(certificate_path), "original_proof_sha256": sha(original_data_proof),
++         "new_GPU_full_tensor_traversal_claimed": False, "files": inputs})
+     bundles = json.loads((ROOT / "bundles.json").read_text())["bundles"]
+     selected = [e for e in bundles if e.get("corpus") == "loopnav"
+                 or e["path"] == "oasis_500m_vit_vae.pth"]
+@@ -122,11 +120,20 @@
+     records = 0
+     original_print = builtins.print
+     scalar_output = OUT / "scalars"
++    scalar_output.mkdir(exist_ok=True)
++    eligible_path = certificate_path.parent / "eligible_clips.json"
++    assert sha(eligible_path) == cert["eligible_clips_sha256"]
++    import shutil
++    shutil.copyfile(eligible_path, scalar_output / "eligible_clips.json")
++    save("launch_status.json", {"status": "ORIGINAL_MODEL_AND_METRIC_INITIALIZATION", "prior_GPU_seconds": 1580,
++                               "remaining_soft_seconds": 13800 - (time.monotonic() - START)})
+ 
+     def rollout(*a, **kw):
+         nonlocal first_work
+         if first_work is None:
+             first_work = time.monotonic()
++        save("launch_status.json", {"status": "OFFICIAL_ROLLOUT_ENTERED", "prior_GPU_seconds": 1580,
++                                    "elapsed_including_prior_GPU_seconds": time.monotonic() - START})
+         return real_rollout(*a, **kw)
+ 
+     def print_guard(*a, **kw):
+@@ -168,14 +175,13 @@
+     finally:
+         builtins.print = original_print
+     source()
+-    for e in inputs:
+-        p = UPSTREAM / e["path"]
+-        if sha(p) != e["sha256"] or sha(p.with_suffix(".json")) != e["frame_log_sha256"]:
+-            raise RuntimeError("actual observations changed during evaluation")
++    for entry in cert["files"] + cert["metrics"]:
++        st = (UPSTREAM / entry["path"]).stat()
++        assert (st.st_size, st.st_mtime_ns) == (entry["bytes"], entry["mtime_ns"])
+     expected = protocol["expected_official_eligible"] * len(protocol["arms"])
+     if records != expected:
+         raise RuntimeError("incomplete official record count")
+-    save("completion.json", {"status": "ALL_OFFICIAL_ROLLOUT_RECORDS_COMPLETE_AGGREGATION_PENDING",
++    save("completion.json", {"status": "ALL_OFFICIAL_ROLLOUT_RECORDS_COMPLETE_FINAL_CPU_SHA_AND_AGGREGATION_PENDING",
+                              "records": records, "elapsed_seconds": time.monotonic() - START,
+                              "data_or_seed_or_method_reduction": False})
+ 

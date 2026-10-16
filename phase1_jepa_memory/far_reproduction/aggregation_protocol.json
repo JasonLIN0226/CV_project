@@ -1,0 +1,36 @@
+{
+  "frozen_utc": "2026-10-14T17:17:11.858496+00:00",
+  "upstream_commit": "2963105c0f1db25214202d2c089cdf33041270f3",
+  "primary_author_notebook_route": "ABCA",
+  "primary_author_notebook_window": "fractional grid np.linspace(.02,1,25), positions>=.75, mean interpolated metric per clip then equal clip mean",
+  "full_battery_reporting": [
+    "ABA",
+    "ABCA",
+    "both"
+  ],
+  "windows": [
+    "FULL_TRAJECTORY",
+    "FINAL_QUARTER",
+    "LAST_5_SECONDS_ELIGIBLE_ONLY"
+  ],
+  "bootstrap": {
+    "B": 2000,
+    "seed": 0,
+    "resampling_unit": "clip",
+    "paired_differences_same_clip_draws": true,
+    "percentiles": [
+      2.5,
+      97.5
+    ]
+  },
+  "metrics": [
+    "PSNR",
+    "LPIPS",
+    "DreamSim"
+  ],
+  "paired_wilcoxon": "two-sided",
+  "do_not_drop_missing_arms_or_intersect_away_incomplete_clips": true,
+  "published_reference_points_are_closure_window_not_full_trajectory": true,
+  "frozen_before_heldout_inference": true,
+  "interpretation": "known-scene trajectory generalization; archive recall; WorldMem candidate pool unequal as published"
+}

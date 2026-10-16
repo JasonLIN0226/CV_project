@@ -1,0 +1,39 @@
+mode: confirm
+output: runs/phase1_v2
+device: cuda
+threads: 4
+data:
+  seed: 6301
+  motion_dt: [3, 6]
+  pairs:
+    train: 512
+    validation: 96
+    test_id: 128
+    test_long_gap: 128
+    test_distractor_shift: 128
+encoder:
+  backend: ijepa
+  repository: facebook/ijepa_vith14_1k
+  revision: f157467ea509bc356ff9f61fd3c0d840eec5e04e
+  pooling: grid2
+  dtype: float32
+  batch_size: 2
+model:
+  hidden: 128
+  layers: 2
+  heads: 4
+  dropout: 0.0
+  rank: 128
+training:
+  epochs: 120
+  batch_size: 64
+  lr: 0.001
+  lr_step: 40
+  lr_gamma: 0.5
+  pair_weight: 2.0
+  rank_weight: 0.5
+  seeds: [17, 29, 43]
+evaluation:
+  bootstrap: 2000
+  latency_warmup: 10
+  latency_repeats: 30

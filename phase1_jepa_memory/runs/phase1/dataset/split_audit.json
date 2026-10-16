@@ -1,0 +1,170 @@
+{
+  "passed": true,
+  "signature": "423ae8d6d9fe5a788c9514bb8487876591934e13bfd3a14959db79d7edd2c7d7",
+  "checks": [
+    "exact_recent_rgb",
+    "exact_all_actions",
+    "historical_evidence_differs",
+    "visible_targets_differ",
+    "historical_timestamps",
+    "target_action_indices",
+    "pair_split_disjoint",
+    "seed_disjoint",
+    "label_balance",
+    "deterministic_generation",
+    "motion_second_frame_matched",
+    "pairwise_timing_action_nuisance_independence"
+  ],
+  "splits": [
+    {
+      "task": "gate",
+      "split": "train",
+      "pairs": 256,
+      "episodes": 512,
+      "frames": 12224,
+      "labels": {
+        "0": 256,
+        "1": 256
+      },
+      "gap_min": 5,
+      "gap_max": 10,
+      "query_min": 11,
+      "query_max": 23
+    },
+    {
+      "task": "gate",
+      "split": "validation",
+      "pairs": 64,
+      "episodes": 128,
+      "frames": 3126,
+      "labels": {
+        "0": 64,
+        "1": 64
+      },
+      "gap_min": 5,
+      "gap_max": 10,
+      "query_min": 12,
+      "query_max": 23
+    },
+    {
+      "task": "gate",
+      "split": "test_id",
+      "pairs": 128,
+      "episodes": 256,
+      "frames": 6276,
+      "labels": {
+        "0": 128,
+        "1": 128
+      },
+      "gap_min": 5,
+      "gap_max": 10,
+      "query_min": 11,
+      "query_max": 23
+    },
+    {
+      "task": "gate",
+      "split": "test_long_gap",
+      "pairs": 128,
+      "episodes": 256,
+      "frames": 10614,
+      "labels": {
+        "0": 128,
+        "1": 128
+      },
+      "gap_min": 20,
+      "gap_max": 32,
+      "query_min": 26,
+      "query_max": 45
+    },
+    {
+      "task": "gate",
+      "split": "test_distractor_shift",
+      "pairs": 128,
+      "episodes": 256,
+      "frames": 6128,
+      "labels": {
+        "0": 128,
+        "1": 128
+      },
+      "gap_min": 5,
+      "gap_max": 10,
+      "query_min": 11,
+      "query_max": 23
+    },
+    {
+      "task": "motion",
+      "split": "train",
+      "pairs": 256,
+      "episodes": 512,
+      "frames": 14062,
+      "labels": {
+        "0": 256,
+        "1": 256
+      },
+      "gap_min": 5,
+      "gap_max": 10,
+      "query_min": 14,
+      "query_max": 26
+    },
+    {
+      "task": "motion",
+      "split": "validation",
+      "pairs": 64,
+      "episodes": 128,
+      "frames": 3538,
+      "labels": {
+        "0": 64,
+        "1": 64
+      },
+      "gap_min": 5,
+      "gap_max": 10,
+      "query_min": 16,
+      "query_max": 25
+    },
+    {
+      "task": "motion",
+      "split": "test_id",
+      "pairs": 128,
+      "episodes": 256,
+      "frames": 7078,
+      "labels": {
+        "0": 128,
+        "1": 128
+      },
+      "gap_min": 5,
+      "gap_max": 10,
+      "query_min": 14,
+      "query_max": 27
+    },
+    {
+      "task": "motion",
+      "split": "test_long_gap",
+      "pairs": 128,
+      "episodes": 256,
+      "frames": 11654,
+      "labels": {
+        "0": 128,
+        "1": 128
+      },
+      "gap_min": 20,
+      "gap_max": 32,
+      "query_min": 30,
+      "query_max": 47
+    },
+    {
+      "task": "motion",
+      "split": "test_distractor_shift",
+      "pairs": 128,
+      "episodes": 256,
+      "frames": 7122,
+      "labels": {
+        "0": 128,
+        "1": 128
+      },
+      "gap_min": 5,
+      "gap_max": 10,
+      "query_min": 15,
+      "query_max": 27
+    }
+  ]
+}

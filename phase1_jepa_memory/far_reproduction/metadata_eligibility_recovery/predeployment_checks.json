@@ -1,0 +1,43 @@
+{
+  "utc": "2026-10-14T21:29:46.930714+00:00",
+  "checks": [
+    {
+      "file": "prepare_launch.py",
+      "Python_AST": true
+    },
+    {
+      "file": "evaluate_recovered.py",
+      "Python_AST": true
+    },
+    {
+      "file": "register_evaluation.py",
+      "Python_AST": true
+    },
+    {
+      "file": "prepare_launch.sbatch",
+      "shell_syntax": true
+    },
+    {
+      "file": "register_evaluation.sbatch",
+      "shell_syntax": true
+    },
+    {
+      "file": "evaluate_recovered.sbatch",
+      "shell_syntax": true
+    },
+    {
+      "original_build_episode_branch_tests": [
+        "has_audio",
+        "so > 0",
+        "cfg.max_steps is not None",
+        "steps < max(1, int(cfg.min_steps))",
+        "has_audio",
+        "so >= len(goal_idx)",
+        "has_audio"
+      ],
+      "no_visual_payload_values_in_any_eligibility_branch": true,
+      "scope": "Static source audit; 16 real pairs mandatory in actual job before full metadata scan"
+    }
+  ],
+  "no_real_metadata_equivalence_claimed_yet": true
+}

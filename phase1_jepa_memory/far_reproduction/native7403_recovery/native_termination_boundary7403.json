@@ -1,0 +1,64 @@
+{
+  "utc": "2026-10-14T20:41:36.758504+00:00",
+  "host": "b-9-10",
+  "allocation": {
+    "returncode": 0,
+    "stdout": "7411 ood-jupyter RUNNING 1:24 b-9-10\n",
+    "stderr": ""
+  },
+  "sacct": {
+    "returncode": 0,
+    "stdout": "7403|CANCELLED by 0|0:0|0:0|csci_ga_2271-2026fa|2026-10-14T19:34:41|2026-10-14T20:01:01|00:26:20|None|0|b-19-14|||\n7403.batch|CANCELLED|0:15||csci_ga_2271-2026fa|2026-10-14T19:34:41|2026-10-14T20:01:03|00:26:22|||b-19-14|||\n7403.extern|COMPLETED|0:0||csci_ga_2271-2026fa|2026-10-14T19:34:41|2026-10-14T20:01:03|00:26:22|||b-19-14|||\n7409|CANCELLED by 3850228|0:0|0:0|csci_ga_2271-2026fa|2026-10-14T20:27:42|2026-10-14T20:37:54|00:10:12|None|0|b-9-9|||\n7409.batch|CANCELLED|0:15||csci_ga_2271-2026fa|2026-10-14T20:27:42|2026-10-14T20:37:55|00:10:13|||b-9-9|||\n7409.extern|COMPLETED|0:0||csci_ga_2271-2026fa|2026-10-14T20:27:42|2026-10-14T20:37:55|00:10:13|||b-9-9|||\n7411|RUNNING|0:0|0:0|csci_ga_2271-2026fa|2026-10-14T20:40:12|Unknown|00:01:32|None|0|b-9-10|||\n7411.batch|RUNNING|0:0||csci_ga_2271-2026fa|2026-10-14T20:40:12|Unknown|00:01:32|||b-9-10|||\n7411.extern|RUNNING|0:0||csci_ga_2271-2026fa|2026-10-14T20:40:12|Unknown|00:01:32|||b-9-10|||\n",
+    "stderr": ""
+  },
+  "scontrol7403": {
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "slurm_load_jobs error: Invalid job id specified\n"
+  },
+  "final_files": {
+    "executed_data_proof.json": {
+      "bytes": 1231375,
+      "sha256": "4c8853c81766d4765fa5292be088df57ab67d0a216567de4ffa88ac035ae4541"
+    },
+    "executed_model_proof.json": {
+      "bytes": 4800,
+      "sha256": "c0b51f927d27a93f8cc4d6758243ccce8784b01604c9f15ef881c695dfdb014a"
+    },
+    "input_proof_summary_20261014T2000.json": {
+      "bytes": 4168,
+      "sha256": "6bee358c5d9de59703fdea445e23bedd67b176617451fd46757e713ed3876573"
+    },
+    "monitor_20261014T1958.json": {
+      "bytes": 19481,
+      "sha256": "dcc74e0dda3020cf5d29a37bb3f26178c8ee3606c64710b3e86fb389c44796f3"
+    },
+    "monitor_20261014T2001.json": {
+      "bytes": 14057,
+      "sha256": "c5c5d45530063f23d2cd969b4baa8e7c77ecb0dd28bca3d407b7938b6636dee4"
+    }
+  },
+  "source": {
+    "/scratch/xl4358/phase1_far_reference/evaluation_source_lock.json": {
+      "sha256": "a941ab106917c3efdb7516806b1f1a21faa870dc47d5e229e2fec10d512df0f9",
+      "files": 10,
+      "match": true
+    },
+    "/scratch/xl4358/phase1_far_reference/upstream_source_lock.json": {
+      "sha256": "f5dee7da4dc3eb14eacf2ab0595c1303cd13176e5a3bc913e3f19881846fe11f",
+      "files": 159,
+      "match": true
+    }
+  },
+  "scalars_counts": {},
+  "log_out": {
+    "sha256": "460ecdd0c8ba7d7acb4ba79e9b0fb181d2c3a9e554b1b3500fc07f0c0228f186",
+    "bytes": 4603,
+    "tail": "    Disabled |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n[build] models/loopnav/temporal                  mem=TemporalRetrieval  steps=700000\n[build] models/loopnav/worldmem                  mem=WorldMemRetrieval  steps=700000\n[build] models/loopnav/far_meta                  mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_frozen_encoder        mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_visual                mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_multicue              mem=PnPRetrieval       steps=700000\n[build] models/loopnav/longlive_rag              mem=PnPRetrieval       steps=700000\n[build] models/loopnav/far_ablation_z            mem=PnPRetrieval       steps=700000\nDownloading: \"https://download.pytorch.org/models/alexnet-owt-7be5be79.pth\" to /scratch/xl4358/phase1_far_reference/upstream/models/cache/hub/checkpoints/alexnet-owt-7be5be79.pth\nDownloading checkpoint\nUnzipping...\nDownloading: \"https://github.com/facebookresearch/dino/zipball/main\" to /scratch/xl4358/phase1_far_reference/upstream/models/cache/hub/main.zip\nDownloading: \"https://dl.fbaipublicfiles.com/dino/dino_vitbase16_pretrain/dino_vitbase16_pretrain.pth\" to /scratch/xl4358/phase1_far_reference/upstream/models/cache/hub/checkpoints/dino_vitbase16_pretrain.pth\n"
+  },
+  "log_err": {
+    "sha256": "3629aabeb3f660d05d07276d77d2ee9052057f3b4ea0f4fb022286f73c93646e",
+    "bytes": 6511,
+    "tail": "4<00:01, 207MB/s]\n 78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 940M/1.17G [00:04<00:01, 208MB/s]\n 80%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589  | 960M/1.17G [00:04<00:01, 184MB/s]\n 82%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 988M/1.17G [00:04<00:01, 209MB/s]\n 84%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d | 0.99G/1.17G [00:04<00:00, 231MB/s]\n 86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b | 1.01G/1.17G [00:04<00:00, 186MB/s]\n 88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 1.03G/1.17G [00:05<00:00, 191MB/s]\n 90%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 1.05G/1.17G [00:05<00:00, 199MB/s]\n 92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 1.08G/1.17G [00:05<00:00, 204MB/s]\n 93%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e| 1.10G/1.17G [00:05<00:00, 209MB/s]\n 95%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 1.12G/1.17G [00:05<00:00, 204MB/s]\n 98%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a| 1.15G/1.17G [00:05<00:00, 236MB/s]\n100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 1.17G/1.17G [00:05<00:00, 222MB/s]\n\n  0%|          | 0.00/327M [00:00<?, ?B/s]\n  2%|\u258f         | 6.50M/327M [00:00<00:04, 68.1MB/s]\n  9%|\u2589         | 28.8M/327M [00:00<00:01, 165MB/s] \n 16%|\u2588\u258c        | 51.8M/327M [00:00<00:01, 200MB/s]\n 22%|\u2588\u2588\u258f       | 70.9M/327M [00:00<00:02, 114MB/s]\n 29%|\u2588\u2588\u2589       | 94.9M/327M [00:00<00:01, 148MB/s]\n 37%|\u2588\u2588\u2588\u258b      | 122M/327M [00:00<00:01, 183MB/s] \n 46%|\u2588\u2588\u2588\u2588\u258c     | 151M/327M [00:00<00:00, 214MB/s]\n 54%|\u2588\u2588\u2588\u2588\u2588\u258d    | 177M/327M [00:00<00:00, 232MB/s]\n 62%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 202M/327M [00:01<00:00, 241MB/s]\n 71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588   | 232M/327M [00:01<00:00, 258MB/s]\n 80%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589  | 260M/327M [00:01<00:00, 271MB/s]\n 88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 289M/327M [00:01<00:00, 279MB/s]\n 97%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b| 318M/327M [00:01<00:00, 285MB/s]\n100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 327M/327M [00:01<00:00, 224MB/s]\n/scratch/xl4358/phase1_far_reference/vendor/torch/nn/utils/weight_norm.py:143: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.\n  WeightNorm.apply(module, name, dim)\n/scratch/xl4358/phase1_far_reference/vendor/peft/tuners/tuners_utils.py:331: UserWarning: Already found a `peft_config` attribute in the model. This will lead to having multiple adapters in the model. Make sure to know what you are doing!\n  warnings.warn(\n[2026-10-14T20:01:01.978] error: *** JOB 7403 ON b-19-14 CANCELLED AT 2026-10-14T20:01:01 DUE to SIGNAL Terminated ***\n"
+  }
+}

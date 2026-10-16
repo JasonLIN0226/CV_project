@@ -1,0 +1,90 @@
+{
+  "actual_binding_complete": false,
+  "decoder": {
+    "architecture": "linear2048to24",
+    "batch": 128,
+    "clip": 1.0,
+    "epochs": 30,
+    "forecast_normalization": "L2",
+    "lr": 0.0003,
+    "precision": "BF16",
+    "selection": "earliest minimum full-training BCE",
+    "train_feature_normalization": "L2",
+    "train_known_observations": 172887,
+    "unknown_training_observations_masked": 411,
+    "warmup_ratio": 0.05,
+    "weight_decay": 0.05
+  },
+  "decoder_and_benchmark_reconstructed": true,
+  "label_independent_audit": "/scratch/xl4358/phase1_space_indexed_labels_masked/job_7320/root_independent_label_axis_audit.json",
+  "label_independent_audit_sha256": "38b83e86f96b601be7c39b2136c736f921cf3171b44a18fe1b94b268a944e44a",
+  "label_report": "/scratch/xl4358/phase1_space_indexed_labels_masked/job_7320/alignment_report.json",
+  "label_report_sha256": "cddba690efd55fec5b318861986d334d357d14225c08474ce1cb7ee70d945323",
+  "methods": [
+    "recent",
+    "fifo",
+    "reservoir",
+    "space",
+    "utility_only",
+    "state_only"
+  ],
+  "old_IJEPA_raw_axis_claim": false,
+  "paper": "SPACE",
+  "queries": {
+    "end_inclusive": "L-65",
+    "per_record": "L-87",
+    "start_full_memory_anchor": 23,
+    "total_validation_queries": 68514
+  },
+  "recovery": {
+    "AUC": "trapezoidal offsets1..16/span15",
+    "REC": "(d0-dh)/max(d0,1e-8)",
+    "common_keep_counter": true,
+    "corruption_percent": [
+      25,
+      50
+    ],
+    "donor": "strict earlier full-state with different nonempty verbset",
+    "eligible_anchors_per_record": 4,
+    "fixed_same_activity_future_updates": 16,
+    "memory_distance": "1 minus payload-origin multiset overlap/K",
+    "offsets": [
+      0,
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "recent_only_recovery": "not applicable, no retained payload",
+    "task_distance": "mean absolute clean/perturbed sigmoid probabilities across4h24verbs"
+  },
+  "resources": {
+    "allocation_seconds": 14400,
+    "gpus": 1,
+    "memory_gb": 60,
+    "science_threads": 4,
+    "soft_seconds": 13800,
+    "type": "A100"
+  },
+  "scores": {
+    "Action_NLL": "sum24 BCE, uniform4h, meanrecord then meanparticipant",
+    "LRAP_and_R5": "full known targets; emptytarget1; background and foreground-only disclosed",
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 0,
+    "mAP": "all24 classes perrecord; absent-positive AP0",
+    "paired_inference": "average seed gains withinparticipant, bootstrap10 people, exact one-sided sign flips",
+    "reference": "frozen decoder on true future features, not deployable"
+  },
+  "sealed_test_used": false,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "source_and_design_frozen_before_semantic_fit_and_scores": true,
+  "source_commit": "5a073bcc303f006834bfb6ae0010c11747ded615",
+  "strict_exact_published_implementation_claim": false,
+  "training_root": "/scratch/xl4358/phase1_space_paper_training",
+  "training_submission": "/scratch/xl4358/phase1_space_paper_training/training_submission.json"
+}

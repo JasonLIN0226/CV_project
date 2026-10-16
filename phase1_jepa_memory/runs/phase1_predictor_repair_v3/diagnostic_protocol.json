@@ -1,0 +1,42 @@
+{
+  "UTC": "2026-10-16T03:57:26.695068+00:00",
+  "scope": "CPU read-only diagnosis of completed7574; no optimizer/retuning/9137",
+  "old_root": "/scratch/xl4358/phase1_predictor_repair_v2/execution",
+  "completed_jobs": [
+    7574,
+    7575,
+    7576
+  ],
+  "parent_final_verification_sha256": "dc8eaf5ce1276698e8fc31539167da1d0b57511aaf7bb9a4a2e7107531eaa967",
+  "tasks": [
+    "gate",
+    "motion"
+  ],
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "splits": [
+    "train",
+    "validation",
+    "test_id",
+    "test_long_gap",
+    "test_distractor_shift"
+  ],
+  "pair_selection": "first64completepairs in originalmanifest order, validation64; no cherry-picking",
+  "conditions": [
+    "privileged_small_budget",
+    "full_history"
+  ],
+  "decompositions": [
+    "pair_common_MSE and quarter_pair_difference_MSE exactidentity",
+    "frame-only and transport-only additive contributions without retraining",
+    "frozen train-only decoder target/predicted position error and inferred visible-velocity quality",
+    "feature-space secant extrapolation residual and magnitude vsgap",
+    "evaluation-only simulation reflection incidence and exact legal action transport discrepancy"
+  ],
+  "sibling_labels_states_never_model_inputs": true,
+  "full_evaluation_requirements_unchanged": true,
+  "no_scientific_training": true
+}

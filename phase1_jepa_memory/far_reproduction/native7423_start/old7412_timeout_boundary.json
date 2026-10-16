@@ -1,0 +1,64 @@
+{
+  "utc": "2026-10-14T21:53:39.203221+00:00",
+  "sacct_before": {
+    "returncode": 0,
+    "stdout": "7412|TIMEOUT|0:0|2026-10-14T20:47:42|2026-10-14T21:47:42|csci_ga_2271-2026fa|None|0\n7412.batch|CANCELLED|0:15|2026-10-14T20:47:42|2026-10-14T21:47:42|csci_ga_2271-2026fa||\n7412.extern|COMPLETED|0:0|2026-10-14T20:47:42|2026-10-14T21:47:42|csci_ga_2271-2026fa||\n7413|PENDING|0:0|Unknown|Unknown|csci_ga_2271-2026fa|None|0\n",
+    "stderr": ""
+  },
+  "old_nine_frozen_source_match": true,
+  "old_progress": {
+    "stage": "ORIGINAL_ELIGIBILITY_SCAN",
+    "records": 3072,
+    "total": 3840,
+    "elapsed_seconds": 3545.542440588
+  },
+  "old_logs": {
+    "prepare-7412.err": {
+      "bytes": 111,
+      "sha256": "e76461f2275fdcf3614bb9a116b4d9e10829a293303e507292612fd09a2cfceb",
+      "tail": "[2026-10-14T21:47:42.255] error: *** JOB 7412 ON b-9-19 CANCELLED AT 2026-10-14T21:47:42 DUE TO TIME LIMIT ***\n"
+    },
+    "prepare-7412.out": {
+      "bytes": 1593,
+      "sha256": "ef168ac14af51e7c2638cfd56aef47f68c54a4302b9db0d045ad311c90aabe73",
+      "tail": "b-9-19\n10.144.0.131 \n256 SHA256:c9b27TP/vCD8mB8x146bWD6bMMu0UpKSYWi8fQpigmk root@b-9-19 (ED25519)\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF9XI/ZL6JKAp/YE/ecJu1kr+pYUoaTZXxRXvp7SJ/UK root@b-9-19\nJobId=7412 JobName=cv-far-launch-prepare\n   UserId=xl4358(3850228) GroupId=xl4358(3850228) MCS_label=N/A\n   Priority=13625 Nice=0 Account=csci_ga_2271-2026fa QOS=normal\n   JobState=RUNNING Reason=None Dependency=(null)\n   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:00:00 TimeLimit=01:00:00 TimeMin=N/A\n   SubmitTime=2026-10-14T20:46:37 EligibleTime=2026-10-14T20:46:37\n   AccrueTime=2026-10-14T20:46:37\n   StartTime=2026-10-14T20:47:42 EndTime=2026-10-14T21:47:42 Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-14T20:46:53 Scheduler=Main\n   Partition=interactive AllocNode:Sid=3-gcp-r2:7644\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=b-9-19\n   BatchHost=b-9-19\n   NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=1,mem=1500M,node=1,billing=1\n   AllocTRES=cpu=2,mem=1500M,node=1,billing=2\n   Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=*\n   MinCPUsNode=1 MinMemoryNode=1500M MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/scratch/xl4358/phase1_far_launch_recovery/prepare_launch.sbatch\n   WorkDir=/home/xl4358\n   StdErr=/scratch/xl4358/phase1_far_launch_recovery/logs/prepare-7412.err\n   StdIn=/dev/null\n   StdOut=/scratch/xl4358/phase1_far_launch_recovery/logs/prepare-7412.out\n   TresPerTask=cpu=1\n   \n\n"
+    }
+  },
+  "old_GPU_markers": {
+    "evaluation_submission_attempt.json": false,
+    "evaluation_submission.json": false,
+    "evaluation_binding.json": false
+  },
+  "cancel_invalid7413": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "sacct_after": {
+    "returncode": 0,
+    "stdout": "7412|TIMEOUT|0:0|2026-10-14T20:47:42|2026-10-14T21:47:42|csci_ga_2271-2026fa\n7413|CANCELLED by 3850228|0:0|None|2026-10-14T21:53:39|csci_ga_2271-2026fa\n",
+    "stderr": ""
+  },
+  "new_preparation_progress": {
+    "stage": "ORIGINAL_FUNCTIONS_METADATA_ELIGIBILITY_SCAN",
+    "records": 3840,
+    "total": 3840,
+    "elapsed_seconds": 772.730969279
+  },
+  "eligible_cache": {
+    "clips": 3796,
+    "scanned": 3840,
+    "sha256": "bb5d7e6e930dabfedacd4256c3a51c50ef52375794cdb359225f5058349b0e98",
+    "params": {
+      "num_clips": null,
+      "start_offset": 0,
+      "rollout_stride": 4,
+      "min_steps": 1,
+      "max_steps": null,
+      "context_pool_size": 1000,
+      "seed": 0,
+      "dataset": "loopnav_latent",
+      "min_coverage": null
+    }
+  }
+}

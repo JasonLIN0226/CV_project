@@ -1,0 +1,18 @@
+/scratch/xl4358/phase1_env/lib/python3.11/site-packages/torch/cuda/__init__.py:1074: UserWarning: Can't initialize NVML
+  raw_cnt = _raw_device_count_nvml()
+Traceback (most recent call last):
+  File "/scratch/xl4358/phase1_jepa_memory_v4_development/scripts/v4_develop_gate.py", line 140, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/scratch/xl4358/phase1_jepa_memory_v4_development/scripts/v4_develop_gate.py", line 134, in main
+    result=run(a.source_output,a.frozen_v3_root,a.frozen_source_directory,a.diagnostic_root,a.output,a.protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/xl4358/phase1_jepa_memory_v4_development/scripts/v4_develop_gate.py", line 74, in run
+    c = bind_gate_authorization(c, authorization)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/xl4358/phase1_jepa_memory_v4_development/src/phase1/v4_pipeline.py", line 70, in bind_gate_authorization
+    binding, _ = _actual_binding(authorization)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/xl4358/phase1_jepa_memory_v4_development/src/phase1/v4_pipeline.py", line 47, in _actual_binding
+    raise ValueError("Actual original-reference Gate diagnostic is not SUPPORTED: " + "; ".join(result["reasons"]))
+ValueError: Actual original-reference Gate diagnostic is not SUPPORTED: [Errno 2] No such file or directory: '/scratch/xl4358/phase1_v3_dev/verification.json'

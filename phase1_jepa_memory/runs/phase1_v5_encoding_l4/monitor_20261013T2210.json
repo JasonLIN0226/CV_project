@@ -1,0 +1,5573 @@
+{
+  "status": "ACTUAL_RUNNING_GPU_ENCODING_METADATA_HANDOFF7207_AFTEROK7188",
+  "created_utc": "2026-10-13T22:24:50.232625+00:00",
+  "native_queue": "7187|RUNNING|csci_ga_2271-2026fa|c12m85-a100-1|b-19-56|1:53:10|(null)\n7188|PENDING|csci_ga_2271-2026fa|n2c48m24||0:00|afterok:7187(unfulfilled)\n7207|PENDING|csci_ga_2271-2026fa|n2c48m24||0:00|afterok:7188(unfulfilled)\n",
+  "native_sacct": "7187|RUNNING|0:0|csci_ga_2271-2026fa|c12m85-a100-1|2026-10-13T20:31:31|Unknown|01:53:26|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n7188|PENDING|0:0|csci_ga_2271-2026fa|n2c48m24|Unknown|Unknown|00:00:00|\n7207|PENDING|0:0|csci_ga_2271-2026fa|n2c48m24|Unknown|Unknown|00:00:00|\n",
+  "all_frozen_sources_SHA_equal": {
+    "encoding": {
+      "protocol.json": "c456f06f572df47e66e7863ca752e22214c44846ab9be9934955f31ffa79ac7c",
+      "manifest.json": "eb4ff098e79b4bf1038db1115c8aa9a7b6872c390ef38347c9e2ad84752b4d01",
+      "pts_report.json": "c85481d98636e2e6c0b8911ba8d920195a6b76166af940b70b97333e818da996",
+      "design.json": "28c4b7b748db530db5a8fd341603a8ab1e0245f166a43999290a4f134e730fe3",
+      "authorization.json": "e3161e89a37e5d0e63916c7e180e7c2a685a06c644d4c816f477afbab215575c",
+      "src/phase1/__init__.py": "d45076af62de5cc47c8f5d69833d8135ef39586face345742334367293671b6d",
+      "src/phase1/encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871",
+      "src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14",
+      "src/phase1/v5_encoding.py": "5e25e971000752ea0749e45389ab6e65df903917d6a1d5e2e0fbcdeaab3f1085",
+      "scripts/v5_encode_real.py": "1d0885d281f5e25d2c7d4b29f081e55133bba4b31fab8ea35e451557a8097d9c",
+      "scripts/v5_causal_frame_stream.py": "a695bdbb4f970e041c738fdf11fab6a0f4fad1e594430f5a20ffd442913fcb10",
+      "scripts/v5_video_causality.py": "6ec55db658e204879e1bbcc2d28e8e42a2a53152219e3f45bbbdb520ddbd11f7",
+      "tests/test_v5_encoding.py": "d49ab82a89a51982497aeb22ea3baccb2e73808ead61320184c658f975f56eb5",
+      "decode_performance_proof.json": "96195cd40dac558f994a039315e3c1f70b66a8baebec14f534f6f03068f05b5f"
+    },
+    "audit": {
+      "src/phase1/__init__.py": "d45076af62de5cc47c8f5d69833d8135ef39586face345742334367293671b6d",
+      "src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14",
+      "src/phase1/encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871",
+      "src/phase1/v5_encoding_l4.py": "94a72f7a1c2844f33cae98f29d7680a9f44e10e9cea62b59ab941737226c4674",
+      "src/phase1/v5_real_reader.py": "dd9e10320eeceb4df3751dff216103d823cc1fef0f7d4fb3c2c278c96068a8f3",
+      "src/phase1/v5_real_training.py": "205d1ed5a7ec1d87817512c9b5b290dbb4682d59892c83911122dcea4c471efd",
+      "scripts/v5_audit_l4_cache.py": "c378f20d3c03744e9e064374eaf503ae07eae678bb035d9de2af084e30173aa7",
+      "scripts/v5_retention.py": "26ad16682859751f0ee7e6da55d0cc684180c23005b358d3f6d18782cb8d36b1",
+      "tests/test_v5_cache_audit.py": "c31fdd51c34e1f23ec6a37f2d0e640fc861d5ce58f4853486bbe6ca5330376bb",
+      "protocol.json": "51c0b25cffb63a9f7ea2e8f3a059c4ab99cc020b976d1a400d6ac167ecf78b26"
+    },
+    "handoff": {
+      "bind_and_submit_frame_reader.py": "344c5d77de9b8af7b595846517f2ffed79374c136f0129ffd11bc1e57226b913",
+      "software/preparation.json": "62fc65da55e7027a07d96497193ab68d053cbb0e00d58c3e931f4ecea2870176",
+      "software/pytest.ini": "91818595aaf0b65ccac26507447c8432d29cf89ec1ea5055e649bdcd66bf38b6",
+      "software/scripts/v5_retention.py": "26ad16682859751f0ee7e6da55d0cc684180c23005b358d3f6d18782cb8d36b1",
+      "software/scripts/v5_train_real.py": "b9f6b1894c24515014ec15a120e50081991a7fc93195b33327e9b98082305e76",
+      "software/src/phase1/__init__.py": "d45076af62de5cc47c8f5d69833d8135ef39586face345742334367293671b6d",
+      "software/src/phase1/v5_real_reader.py": "dd9e10320eeceb4df3751dff216103d823cc1fef0f7d4fb3c2c278c96068a8f3",
+      "software/src/phase1/v5_real_training.py": "78327cd52b086e1e3461a0359e8988f7abf9ee4a450fd5332a653d167dba3d64",
+      "software/tests/test_v5_frame_cache_guard.py": "146b6be07a6667725f7109941766386c5f5392390f7bf02e2958724efa5fb35c",
+      "software/tests/test_v5_real_reader.py": "e3b4574934ff912d2e9382eded8f32764ae081dd912ed20c3ae3bad544cfe33d",
+      "software/tests/test_v5_real_training.py": "8a260bb3c8a7e9c90da6b6bc56d374b3766ccce2d986d493bc843e5bc1de2ba5",
+      "software_manifest.json": "af6a247d4c157b0ab2eea70414b1bdc0bce76389a0be3f933a8735c447b794c2",
+      "software_proof.json": "5676caeb7feb3591cbac658ac499a535d24157085e32c36524d5676d3467829f",
+      "training_template.json": "e4d83e07c016df5b7c2294c092c810576517e187224e6b40762c89986d7ba911"
+    }
+  },
+  "encoding_report_snapshot": {
+    "schema_version": 1,
+    "status": "RUNNING_FROZEN_SINGLE_FRAME_ENCODING",
+    "job_id": "7187",
+    "course": "csci_ga_2271-2026fa",
+    "host": "b-19-56",
+    "device": "NVIDIA A100-SXM4-40GB",
+    "runtime": {
+      "torch": "2.12.1+cu126",
+      "cuda": "12.6",
+      "numpy": "1.26.4",
+      "av": "18.0.0",
+      "cpu_threads": 4
+    },
+    "protocol_sha256": "c456f06f572df47e66e7863ca752e22214c44846ab9be9934955f31ffa79ac7c",
+    "source_lock_sha256": "cd667fc4f029660c198353570686a8ed8f069a0e2dab1434e912776f5521985e",
+    "manifest_sha256": "eb4ff098e79b4bf1038db1115c8aa9a7b6872c390ef38347c9e2ad84752b4d01",
+    "pts_report_sha256": "c85481d98636e2e6c0b8911ba8d920195a6b76166af940b70b97333e818da996",
+    "new_weights_trained": false,
+    "predictor_trained": false,
+    "task_labels_read": false,
+    "sealed_rgb_or_numeric_labels_read": false,
+    "phase1_passed": false,
+    "frames_encoded": 49152,
+    "forwards": 24576,
+    "planned_frames": 50688,
+    "completed_recordings": [
+      {
+        "recording": "nusar-2021_action_both_9011-c13b_9011_user_id_2021-02-01_160915",
+        "participant": "9011",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9011-c13b_9011_user_id_2021-02-01_160915/C10095_rgb.mp4",
+        "rgb_sha256": "d06cf50103c19228ceade1aed54b37d553ce23be5bef6bbb66468021a9f62c3e",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_000.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "a3f6bbabb4d38009cb1de3268656d58d1ec9ddf6428da34b886dfd7804f0cb4a",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9011-b06b_9011_user_id_2021-02-01_154253",
+        "participant": "9011",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9011-b06b_9011_user_id_2021-02-01_154253/C10095_rgb.mp4",
+        "rgb_sha256": "5e5d775a989f65275c1bdfc2d05da32c90b1fdf02b78e7e4721be53c04917f1b",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_001.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "1908acdcc02ad937c64e45e64ad05ecc4f8069c26b9c499b169d645ddecc9875",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9013-a28_9013_user_id_2021-02-02_134923",
+        "participant": "9013",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9013-a28_9013_user_id_2021-02-02_134923/C10095_rgb.mp4",
+        "rgb_sha256": "5c7d156659bbd93c702f808165175a7c7ab57f957e01142edb35d25dc8071864",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_002.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "0227aac1a5f21fa327167d8db73e9c5894f660237e4c54ad8b1f0e80f60f0477",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9013-c09c_9013_user_id_2021-02-24_113951",
+        "participant": "9013",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9013-c09c_9013_user_id_2021-02-24_113951/C10095_rgb.mp4",
+        "rgb_sha256": "4dba71ebfeb81ae101e2d6e714f9a2a8f8bcab4a7ede9ff4297c510e5866f09c",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_003.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "edfea3689ad19a36e0442f90d688623d6503fd0f740a135d7b8c424f74d86151",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9016-b06a_9016_user_id_2021-02-17_141229",
+        "participant": "9016",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9016-b06a_9016_user_id_2021-02-17_141229/C10095_rgb.mp4",
+        "rgb_sha256": "f69ac467f97690ba4033e757446f81c791c2bf83bce0287d7dbea2412f1b6c9e",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_004.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "f0a747e3000435bff92ab335531c3ac646f19a683dc25d9e9a54c6dae9c8be18",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9016-a24_9016_user_id_2021-02-17_135905",
+        "participant": "9016",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9016-a24_9016_user_id_2021-02-17_135905/C10095_rgb.mp4",
+        "rgb_sha256": "bf0068660a5afca76d47d5685f8f49c5e203cbd0049026d53cb6b3f1dad07c48",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_005.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "8943c86de5cd27551d337d4bf1222ce5e4ab8aaaf23aed6cef0d932bcd51a3bf",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9022-c03e_9022_user_id_2021-02-23_111647",
+        "participant": "9022",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9022-c03e_9022_user_id_2021-02-23_111647/C10095_rgb.mp4",
+        "rgb_sha256": "0725f07768b9e3ae0f9ea4b917c6c5729369cd8a26d0d5202d5269c7741d936e",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_006.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "bcbc90cc073b240c6e04f9a1d88460a70e0628581c01f82fb0c610b914483a55",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9022-b03b_9022_user_id_2021-02-03_113201",
+        "participant": "9022",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9022-b03b_9022_user_id_2021-02-03_113201/C10095_rgb.mp4",
+        "rgb_sha256": "ab2a41b006f16e73c64e4922ea3caf24b7f3e1314d5df535a6872db6914bc2ba",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_007.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "51d6a0216fb1fef67f745ce0cc001ea16000cf6dda6cd985e0e65b27e3ea89ea",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9024-c11a_9024_user_id_2021-02-23_153251",
+        "participant": "9024",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9024-c11a_9024_user_id_2021-02-23_153251/C10095_rgb.mp4",
+        "rgb_sha256": "0044dec57dbb605f16e7d2e96bc81f9666864809a833fbd36077a8c4b22e561c",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_008.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "f4281e0a41d0287edac243d62cac3cd27f049d95bb479b72da312f159964c755",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9024-c09b_9024_user_id_2021-02-23_152108",
+        "participant": "9024",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9024-c09b_9024_user_id_2021-02-23_152108/C10095_rgb.mp4",
+        "rgb_sha256": "fc65493f0f581880f4268fd9e54f772af9cefe1dbe2a074370856a37b36a6536",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_009.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "3c9e604ae30d4be893263de993b3f58cbf74464a428c17af6270f54bb21693b7",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9025-b08d_9025_user_id_2021-02-03_153246",
+        "participant": "9025",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9025-b08d_9025_user_id_2021-02-03_153246/C10095_rgb.mp4",
+        "rgb_sha256": "913cadceb53d23eec799cf934d19eb43d12b3eeec30b4d0b66fee1a79d532821",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_010.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "67076d30f1d827303c6eca431cdbbb344dd73310b45c3cd06b70210ad9cafc20",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9025-c05a_9025_user_id_2021-02-18_102043",
+        "participant": "9025",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9025-c05a_9025_user_id_2021-02-18_102043/C10095_rgb.mp4",
+        "rgb_sha256": "0714bdfe3aea38472facf2f46b50085d567ef0436c939ad4a7e3a375d2742b82",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_011.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "48134d1424b3ff429e424ce0024fc3298a5263153241f10b6fca27454bdca54f",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9033-c12e_9033_user_id_2021-02-18_150129",
+        "participant": "9033",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9033-c12e_9033_user_id_2021-02-18_150129/C10095_rgb.mp4",
+        "rgb_sha256": "4b11779e343ac561da9d47487c172ed1ec816c18e5f587d01532861d11fe09c3",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_012.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "8be7427eca3d3cfa9d4e739c32bb1937842a04bd01762df68da9336e9a480826",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9033-a30_9033_user_id_2021-02-18_141254",
+        "participant": "9033",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9033-a30_9033_user_id_2021-02-18_141254/C10095_rgb.mp4",
+        "rgb_sha256": "2816deec76caa89984a3a756e0a34ecba24abe9d634345618d3a094dd258aea7",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_013.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "70dd101d9b9b6a19be25a47c6f15b008d8ab83ea83b5437efaec7c17d2195103",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9034-a31_9034_user_id_2021-02-23_171931",
+        "participant": "9034",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9034-a31_9034_user_id_2021-02-23_171931/C10095_rgb.mp4",
+        "rgb_sha256": "afa09fd837313c16beaf1dc9a492164df038c597d6288aed9acac8fe51eca45b",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_014.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "f0eb4f5039c769c2adc20e7a8043ff8c19f4036e8437da9e46438534fbffe138",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9034-b02b_9034_user_id_2021-02-23_172457",
+        "participant": "9034",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9034-b02b_9034_user_id_2021-02-23_172457/C10095_rgb.mp4",
+        "rgb_sha256": "0085c46313c3486437f44dff5f468c637919c41742f5b1f8e1c2051f69843f45",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_015.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "f72f50d5dba187e07db405ecaa9414834d3fab9c31bcd620737a1cf9f18b95b5",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9035-c07b_9035_user_id_2021-02-04_171214",
+        "participant": "9035",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9035-c07b_9035_user_id_2021-02-04_171214/C10095_rgb.mp4",
+        "rgb_sha256": "f85dfd9010467aa22d677103e586c59b3e186c3ad70591e926e485a33621fa29",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_016.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "1a51278c8c239decce2a11a6e4174955e25b81374524dac9d68050d0ddc77052",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9035-c02c_9035_user_id_2021-02-04_164442",
+        "participant": "9035",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9035-c02c_9035_user_id_2021-02-04_164442/C10095_rgb.mp4",
+        "rgb_sha256": "0e5b1ab2435cb3b086a2a602ecbc17b2c183745c03071ede1e5c07e5600af6a2",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_017.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "90783cc6d46d27dbeb2b0d4ce5afd6a6e3e9a3089df63fcdd3432a13456b1da0",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9043-a24_9043_user_id_2021-02-05_131831",
+        "participant": "9043",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9043-a24_9043_user_id_2021-02-05_131831/C10095_rgb.mp4",
+        "rgb_sha256": "99cf3e67deed0c9d98881d86bcd4747f0bb12dfe7b32f452351b0396167fdb6f",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_018.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "002701409f5be486494b32d1480df57540bb237153b37deeef63ccf9f8ccaa2b",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9043-a12_9043_user_id_2021-02-05_130910",
+        "participant": "9043",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9043-a12_9043_user_id_2021-02-05_130910/C10095_rgb.mp4",
+        "rgb_sha256": "afef245818dc42967da3f65f5c102ce557dd186db7fdf3a6248ae9e9af338267",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_019.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "74afd94ed0e2d291c9831575e0537e8b01cf81c6e1b1e55fa2e15ce0f32d165e",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9044-b01a_9044_user_id_2021-02-05_160818",
+        "participant": "9044",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9044-b01a_9044_user_id_2021-02-05_160818/C10095_rgb.mp4",
+        "rgb_sha256": "9830fd705609792210221d3b1a1a138d8fac7b7892751f6247cf71a8ccf9a860",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_020.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "84afc95038e83f24e0964d26fce10572475c4d109da135756df7682c2256f3b6",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9044-b05b_9044_user_id_2021-02-19_091348",
+        "participant": "9044",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9044-b05b_9044_user_id_2021-02-19_091348/C10095_rgb.mp4",
+        "rgb_sha256": "443243498ebee1cb371ca91f81929cc87496679e2477b087a3cc1f71ab65bf5c",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_021.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "5d23a997ecf71ad54e382afbfeba00d31c9fff386bd9bed248caebf0c9608302",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9046-c10b_9046_user_id_2021-02-22_111419",
+        "participant": "9046",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9046-c10b_9046_user_id_2021-02-22_111419/C10095_rgb.mp4",
+        "rgb_sha256": "fa251f414ebc38e6ba6aa57fbf5203a3bbd903a7feffc3411abc09726724b142",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_022.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "95a737dc9ae5d01f3f95b722f14104ff9bd2cf68c5c32184a54f84479cba0791",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9046-c01d_9046_user_id_2021-02-22_110733",
+        "participant": "9046",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9046-c01d_9046_user_id_2021-02-22_110733/C10095_rgb.mp4",
+        "rgb_sha256": "03b2d9aac91bea430f91f0555d49d288837ef7e782b32347c7492a08ef7aaf1f",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_023.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "16a11f3ef2ccf5435c97588439c02e77c53b5c4315231306de0f646befd1b4af",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9051-c12a_9051_user_id_2021-02-22_121059",
+        "participant": "9051",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9051-c12a_9051_user_id_2021-02-22_121059/C10095_rgb.mp4",
+        "rgb_sha256": "aa91f741db1f52469c56c0c915f4b32004f94450278f404023a3e1d9f7f8f058",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_024.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "2daf945e03996f50a0619ec6eb4d5a6f61ae2906783a2746ba424883d363cec0",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9051-b03a_9051_user_id_2021-02-22_114140",
+        "participant": "9051",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9051-b03a_9051_user_id_2021-02-22_114140/C10095_rgb.mp4",
+        "rgb_sha256": "80bad0538f8b13c5eab5182fd24d482c551f9711ff50fa3548016732d59cfb34",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_025.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "08718450a226c18ad233127461b29b6d429b3c1d1b2371426d88c00ce5cb559e",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9052-c12c_9052_user_id_2021-02-08_114847",
+        "participant": "9052",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9052-c12c_9052_user_id_2021-02-08_114847/C10095_rgb.mp4",
+        "rgb_sha256": "7c45e84a6b9b67dac459f5ea2acb172c9ecad7de4c9d2b919c281fa2ffb6067d",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_026.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "5d44823876fab47477efed7bb930bde9d8ba58b2829b18dddceb3cfb4e629608",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9052-b06a_9052_user_id_2021-02-08_110734",
+        "participant": "9052",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9052-b06a_9052_user_id_2021-02-08_110734/C10095_rgb.mp4",
+        "rgb_sha256": "6410a090f570656d69a02d0af4632ed5aa7e12680fdd667260a01e76e8d5d29a",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_027.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "cd2927c3680fb11c86b0b75005094d837cf137846493ffbac9807df3b82e356c",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9053-c03e_9053_user_id_2021-02-08_135619",
+        "participant": "9053",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9053-c03e_9053_user_id_2021-02-08_135619/C10095_rgb.mp4",
+        "rgb_sha256": "0fd602423d8f7ee8743df0eb51acea8e9a48f95379b7df70ddd594c9438d28d0",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_028.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "01fb5c9fa809212575fce6875d57e81871e3389ec5957908389fd07ce4b096b8",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9053-c10b_9053_user_id_2021-02-08_143830",
+        "participant": "9053",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9053-c10b_9053_user_id_2021-02-08_143830/C10095_rgb.mp4",
+        "rgb_sha256": "96f83c560ce3b59627375e0b5575ccc655f7b4cfc27b086a28c97f458c49e31b",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_029.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "ab8656466b880a2c7331ffc869476028b57cf2f61f2b6072e620f6b575c9c14e",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9055-c12b_9055_user_id_2021-02-24_111107",
+        "participant": "9055",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9055-c12b_9055_user_id_2021-02-24_111107/C10095_rgb.mp4",
+        "rgb_sha256": "0fdc355a2cea716ed7d5811d9a18ec00ca3c37d425a6c3c9ac11deedc2e1d301",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_030.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "cd35ec18304c846c8b44c51b8b709c1816822025e90ec76e8617a9d59d208b58",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9055-b08b_9055_user_id_2021-02-24_104106",
+        "participant": "9055",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9055-b08b_9055_user_id_2021-02-24_104106/C10095_rgb.mp4",
+        "rgb_sha256": "83f0425ac2783ee6eadd2dead3350258f1392300179f8669c217d6fbf559a4dd",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_031.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "c7e51103d213fbace86a6da9f9d74b6d2302c935a6ecf8e32bcfb2f2b0784d9f",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9062-b02b_9062_user_id_2021-02-09_152026",
+        "participant": "9062",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9062-b02b_9062_user_id_2021-02-09_152026/C10095_rgb.mp4",
+        "rgb_sha256": "4d446899334f9d760fe666bee640ad2f69852a0fc79bc1fb43da3139511c1f62",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_032.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "662ea6b193da836bd433c795242856ec94938b1715ce668ae64772c6f8ac417b",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9062-c08c_9062_user_id_2021-02-09_160823",
+        "participant": "9062",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9062-c08c_9062_user_id_2021-02-09_160823/C10095_rgb.mp4",
+        "rgb_sha256": "bdfaaec42848ea98cb01e5a7cf6bb70e54ff3e2c98cfa5e1333a9c167b338087",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_033.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "1e53bc8d49a67b3231e0ded7c53c810bbc426e6e04c7458753418f286326783d",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9063-c07b_9063_user_id_2021-02-17_095115",
+        "participant": "9063",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9063-c07b_9063_user_id_2021-02-17_095115/C10095_rgb.mp4",
+        "rgb_sha256": "dfc27bccb43cbc54ce8c2d06b6374243bbd31318b4aa024ffe07ac466ff5f718",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_034.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "1f0fb3cf7c6e60f93e6f657fc40d62c8e6926a0dc36f7b1b34be190671ba885d",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9063-c02b_9063_user_id_2021-02-17_094025",
+        "participant": "9063",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9063-c02b_9063_user_id_2021-02-17_094025/C10095_rgb.mp4",
+        "rgb_sha256": "eb8d217e3cc3244250c078a53c995b069b9d635f734237dff6d44ac51299042e",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_035.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "48adf4249c159048dbe4d00c6bb4dc7363ac7276de56f7f1e62a17ef0255f5bd",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9064-a20_9064_user_id_2021-02-22_161628",
+        "participant": "9064",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9064-a20_9064_user_id_2021-02-22_161628/C10095_rgb.mp4",
+        "rgb_sha256": "d76506cfaffe9a024a0484f8d97055ee78a30020edf19ae450b0b8e2112fb379",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_036.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "60724cbc6a3b3b385f76f6c8f52630586a4035a3ab960c655e4b830ea24b60af",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9064-a30_9064_user_id_2021-02-22_162122",
+        "participant": "9064",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9064-a30_9064_user_id_2021-02-22_162122/C10095_rgb.mp4",
+        "rgb_sha256": "4f0a15cbdda8fe915b33485522a39f1e7227a8ef5ccd434e3436d7f84043e220",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_037.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "2d41d2eebc691721a033745f271334a6db42d8c8d012249c40267543e2cce232",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9065-c09c_9095_user_id_2021-02-17_124439",
+        "participant": "9065",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9065-c09c_9095_user_id_2021-02-17_124439/C10095_rgb.mp4",
+        "rgb_sha256": "1cc1d66a343f3a4ca224dd51e100f9e1892fd464b53e7980dfcc5dac446fad0b",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_038.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "144f39812a42ea0584e3dc26d09d358463d549f6cee9364204924e0f70eb7fe5",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9065-b06d_9095_user_id_2021-02-17_123817",
+        "participant": "9065",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9065-b06d_9095_user_id_2021-02-17_123817/C10095_rgb.mp4",
+        "rgb_sha256": "8dac6b3bb15a039bf6134a143251c39f681777111f27ae3a2502690512644008",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_039.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "bc553e997a46b1e6583d4583f8e9b2d45d2f9d210b244bf4381a1e70e2ce9ef8",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9066-a09_9066_user_id_2021-02-17_152039",
+        "participant": "9066",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9066-a09_9066_user_id_2021-02-17_152039/C10095_rgb.mp4",
+        "rgb_sha256": "c57e51c1941ddc679a797146c1675c3415452d05dce7a3da18e895e4b33c25de",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_040.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "3e9f804fb12c6bc803bcac1e0cda6960b301732cb30ed49b8bf74b35464a978e",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9066-b06a_9066_user_id_2021-02-17_155256",
+        "participant": "9066",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9066-b06a_9066_user_id_2021-02-17_155256/C10095_rgb.mp4",
+        "rgb_sha256": "3fe30e451a2ee258d91e6f5ab1829bea976d48f4aba0cc396c5192adf92f8b06",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_041.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "c1fbc5106bc57f7cd11393d8042ef4bbb3d0cebf4283020c2e1561ada57559c5",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9072-a14_9071_user_id_2021-02-11_104901",
+        "participant": "9072",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9072-a14_9071_user_id_2021-02-11_104901/C10095_rgb.mp4",
+        "rgb_sha256": "023f86ed50df234f0ff860ad3cadcff2f0072383c6b4928f66638c627f13dee4",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_042.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "433382a70987bfb2ffd08b2a6d228637ef3d7688b4918fbaf7ec7343d84482a1",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9072-b03a_9072_user_id_2021-02-11_111335",
+        "participant": "9072",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9072-b03a_9072_user_id_2021-02-11_111335/C10095_rgb.mp4",
+        "rgb_sha256": "1d10f86e434230bd1d77d026cc18276e62fd593d2dbfcc1deb530d5517ad8465",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_043.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "2fa6d5e8880f1fa35a7642af669641c8e9e1b6800725c30538405071b25ffa58",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9074-a27_9074_user_id_2021-02-11_153419",
+        "participant": "9074",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9074-a27_9074_user_id_2021-02-11_153419/C10095_rgb.mp4",
+        "rgb_sha256": "e4bd7e0ed0063213d8aeac119b34ef34ff4eeb427a0293e35508426c302bf417",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_044.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "301bdb9c14f06ddb21a97557153b20e321a2716db36a83b723beab16058eba89",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9074-a29_9074_user_id_2021-02-11_154856",
+        "participant": "9074",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9074-a29_9074_user_id_2021-02-11_154856/C10095_rgb.mp4",
+        "rgb_sha256": "09fcf88216aae49895f3a9996b8dadabf56802189efb576835f02932a93ecbc3",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_045.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "4fbaad4d66f48553aa7dc80420bcfca0ba7b6a730c82876bd96c40deaccace9f",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9075-c10c_9075_user_id_2021-02-12_100519",
+        "participant": "9075",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9075-c10c_9075_user_id_2021-02-12_100519/C10095_rgb.mp4",
+        "rgb_sha256": "a6384264840b382efc4b597f6cb0b189f4ba7956f25a4b719a1b6102482590f8",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_046.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "aa93ff48f0fbba42bf73bb706776ecbbaf962de2a7e29861f79b4efd509d361a",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9075-a06_9075_user_id_2021-02-12_091509",
+        "participant": "9075",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9075-a06_9075_user_id_2021-02-12_091509/C10095_rgb.mp4",
+        "rgb_sha256": "3900169c4706bf49224557c7fc3f4e7ad443d0e440327b876f4d9e2c0bc0d62c",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_047.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "ac669c516b431e41c794f7a8b05d8b3be1c4786569ede126c1af259eba7c59a5",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9081-c08a_9081_user_id_2021-02-12_160626",
+        "participant": "9081",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9081-c08a_9081_user_id_2021-02-12_160626/C10095_rgb.mp4",
+        "rgb_sha256": "31d5e47e5ad2866a1ac03b810ba94558d570b51f04f90de0e54eacd827e659da",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_048.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "ba130ba1305a95ecac6c3948a3149d715a86faf4c9215c60aef64160a6948753",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9081-b04d_9081_user_id_2021-02-12_160020",
+        "participant": "9081",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9081-b04d_9081_user_id_2021-02-12_160020/C10095_rgb.mp4",
+        "rgb_sha256": "18d31debaef0bfd25735bb7aa52744fb11915b5950fb7b86e8edc39ca8028bf8",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_049.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "33373648115ebb3b8150a2627d154f81a0c85c4e4db9e6f841a327cdceaaa1d5",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9082-a31_9082_user_id_2021-02-16_132731",
+        "participant": "9082",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9082-a31_9082_user_id_2021-02-16_132731/C10095_rgb.mp4",
+        "rgb_sha256": "a68c641ad6639d0ee6fda980f75138e1d83e090efcce8c8af5aa91e74b4e7b88",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_050.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "bb3f73b99ae7c24e86bbc8a66c4fb41f94da58a586a8fee36f0c569d5287490d",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9082-c08c_9082_user_id_2021-02-16_094651",
+        "participant": "9082",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9082-c08c_9082_user_id_2021-02-16_094651/C10095_rgb.mp4",
+        "rgb_sha256": "b5b10014730a69449815eb448a52feb928187e1880bb502b2953c8e713fa8bb0",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_051.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "564b15b5c93520455beb40ad78394a02429083d52eaf18c867d910755d660aa5",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9084-c02a_9084_user_id_2021-02-25_140008",
+        "participant": "9084",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9084-c02a_9084_user_id_2021-02-25_140008/C10095_rgb.mp4",
+        "rgb_sha256": "bd858562403a27c56b1166116ef75e8ddcf58f7fc7eefe28ff96f7f45860ebea",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_052.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "0f55f5d6e9bfd4360beb44b55d022d46c4ba3d8974ef557c2260dc81dff3c037",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9084-b05c_9084_user_id_2021-02-25_152453",
+        "participant": "9084",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9084-b05c_9084_user_id_2021-02-25_152453/C10095_rgb.mp4",
+        "rgb_sha256": "0f18cdc3b3d32ba7c38cc413f983d8fed9367d8a641ac6486d93ecc0acb0c960",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_053.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "6a03531c9497b083a99fcb0da5a6cd325923e61749dcb79e2c159dce558fe1a5",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9085-b05c_9085_user_id_2021-02-22_173439",
+        "participant": "9085",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9085-b05c_9085_user_id_2021-02-22_173439/C10095_rgb.mp4",
+        "rgb_sha256": "9c717aa83c0561d4569f0fadcb0e9d9cc8e30f609536eb72b21623696c9261dc",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_054.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "f5782a5d4c40af22191e0e12d5a2c3d17e27a4f632059affcc74c09efcb42ab4",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9085-c12d_9085_user_id_2021-02-22_180245",
+        "participant": "9085",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9085-c12d_9085_user_id_2021-02-22_180245/C10095_rgb.mp4",
+        "rgb_sha256": "aa9fb49595f10b22826ae9a65e52a4d5de7463ba17d34e50e3261b5016bd366a",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_055.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "a6dc864789ca36256aaf92ad852c49a971d66bc55c501c3f826a074363e9a856",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9086-c13a_9086_user_id_2021-02-16_151024",
+        "participant": "9086",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9086-c13a_9086_user_id_2021-02-16_151024/C10095_rgb.mp4",
+        "rgb_sha256": "9821dc79198fd028a96db3a93d68cb66fae023fd9211246d7b7aa7560436767b",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_056.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "0ae6d1ef81d7600d8f6b4da399ed9e3bfb5bbfcc0c91bb415f17883944881100",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9086-c13a_9086_user_id_2021-02-16_152408",
+        "participant": "9086",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9086-c13a_9086_user_id_2021-02-16_152408/C10095_rgb.mp4",
+        "rgb_sha256": "64346707c7244306dd96e312d3895cb9fccd844665ba607b82b3feb2e4f0bd7f",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_057.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "d4a5a5f7a7a36876743f21578403067c7d774efdb290bf063e50d22386367f56",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9023-c04b_9023_user_id_2021-02-23_144136",
+        "participant": "9023",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9023-c04b_9023_user_id_2021-02-23_144136/C10095_rgb.mp4",
+        "rgb_sha256": "6a17eec2803fd72dfbfaaad9ea65c540b0544658dfd9ae938cd2417b73b4e325",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_058.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "3260b99a84101755830292d7922b084dfdcc1c675244fa2d829a07b7c4515b8e",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9023-b05d_9023_user_id_2021-02-23_135325",
+        "participant": "9023",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9023-b05d_9023_user_id_2021-02-23_135325/C10095_rgb.mp4",
+        "rgb_sha256": "529e967edcdedfd4950de521fcf132bb67fa8b6d527d76973d9195b1ab13bb52",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_059.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "2ae56a60b05edbad88015d1e6f331013dd736014bc7bea9ad8c7b3a2ae5aca6d",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9036-b08c_9036_user_id_2021-02-17_163111",
+        "participant": "9036",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9036-b08c_9036_user_id_2021-02-17_163111/C10095_rgb.mp4",
+        "rgb_sha256": "6f67cec4259b43045d6b9fa90d05c04b6f84ba9594ecce1ac90e3227296158ff",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_060.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "2a2f99e81ec094f503d8be97c63ac239e88c448501bbce44d7d381bfdfbb1350",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9036-c13b_9036_user_id_2021-02-18_094212",
+        "participant": "9036",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9036-c13b_9036_user_id_2021-02-18_094212/C10095_rgb.mp4",
+        "rgb_sha256": "b85647ba2c33795a451f05c33275263f8d675de67bb2e3856a72ecb666df65fa",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_061.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "f9f0cef6a6a1531c8dc9d8fb76fa31d46c1be3e390ef5a39a8e4dc4359e79dae",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9041-c13f_9041_user_id_2021-02-05_103116",
+        "participant": "9041",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9041-c13f_9041_user_id_2021-02-05_103116/C10095_rgb.mp4",
+        "rgb_sha256": "7c6525da13181d8691af2dc84cbb3e78c33d4473519d58905c851a09a31a8fef",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_062.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "1df0348a1fc5d25bf942dda5466acc711f403832bcc9b343eda07c45b09f7814",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9041-c14b_9041_user_id_2021-02-05_104936",
+        "participant": "9041",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9041-c14b_9041_user_id_2021-02-05_104936/C10095_rgb.mp4",
+        "rgb_sha256": "285c406be6fc99d70841b515a0c27496e9125a0a08dcf7a7bdf401dba8c65806",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_063.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "12e94e90ff38abd52ce7f76ce488c4717fe2858ea58240eac16f0745f952acc1",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9045-b05d_9045_user_id_2021-02-05_171423",
+        "participant": "9045",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9045-b05d_9045_user_id_2021-02-05_171423/C10095_rgb.mp4",
+        "rgb_sha256": "35f3a2a003ca13d7276ba406b37ebe4cc9c273969ceb16e25c093827f2f04c8a",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_064.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "49fae77c15c8653bf69125bd9bc713d4b34bb323e42a954355ddfd8e3eec8e5b",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9045-b06c_9045_user_id_2021-02-19_121606",
+        "participant": "9045",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9045-b06c_9045_user_id_2021-02-19_121606/C10095_rgb.mp4",
+        "rgb_sha256": "b605af91005c219cd0b04e52c2173068ed42ee791587022a872052ae660cc3a1",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_065.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "352be5bb6660d9e7232c70279a07fba2cc9e62e9e23a3e4f11f6c130284029dc",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9054-c11a_9054_user_id_2021-02-08_162610",
+        "participant": "9054",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9054-c11a_9054_user_id_2021-02-08_162610/C10095_rgb.mp4",
+        "rgb_sha256": "c632558270bbcc906a5c3f432b597ae6be79974a30a2aa05bcbbc3d13d211bbf",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_066.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "a8b31c71a5de968f7389bf3a16f8881e70f568acf973335c350a308fb9f8c630",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9054-c05a_9054_user_id_2021-02-08_160931",
+        "participant": "9054",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9054-c05a_9054_user_id_2021-02-08_160931/C10095_rgb.mp4",
+        "rgb_sha256": "365ff6dd124fa44395f6dc783a0457efa29c422e262d708ffb58bebcff6a6bb8",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_067.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "9e4de80a196f54c59e6d0a84a45ffcde958eff83220d4584193a08d62aa11878",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9056-c09a_9056_user_id_2021-02-22_140419",
+        "participant": "9056",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9056-c09a_9056_user_id_2021-02-22_140419/C10095_rgb.mp4",
+        "rgb_sha256": "1ed0e60a5b08141783fe80eeef96609b42aff904104fa92cd2d7f4e2d84fa1c7",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_068.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "49269f62c2c6dc0ed687a826d605d08a03a2640e78d922af2ce8e53344f25ae0",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9056-a19_9056_user_id_2021-02-22_141312",
+        "participant": "9056",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9056-a19_9056_user_id_2021-02-22_141312/C10095_rgb.mp4",
+        "rgb_sha256": "c3c03a3eff0faa2dd210a0672a68ab64b6e403fa868d5fac0f773b87ad4fa3a4",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_069.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "68ef617202014b4dff32fb969f276b71ab400fd595d72b87982e5c8b8b063b20",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9061-c02a_9061_user_id_2021-02-09_141537",
+        "participant": "9061",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9061-c02a_9061_user_id_2021-02-09_141537/C10095_rgb.mp4",
+        "rgb_sha256": "7bbbf85830e89de06296708bb1bf8c34cb5369b1e255e1cb28055f77cc0d0f5c",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_070.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "9658d88c1e1179f3fe39ed179d02bc0d6215719d943055e99456aa77d3deee0f",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9061-b08d_9061_user_id_2021-02-09_141038",
+        "participant": "9061",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9061-b08d_9061_user_id_2021-02-09_141038/C10095_rgb.mp4",
+        "rgb_sha256": "5216f0350a3f474b2c7370958f56608412a2725d80bd37d826fc54c0a4daae02",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_071.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "4fa2c4a49611eb60ede28dd97adb9a14bda9a01f7fc574b1622b0a7bff185103",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9071-c14a_9071_user_id_2021-02-11_092353",
+        "participant": "9071",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9071-c14a_9071_user_id_2021-02-11_092353/C10095_rgb.mp4",
+        "rgb_sha256": "5082834664955fdf629c463131b5e7542a908e5c343f885ee82321c0a5c3c203",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_072.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "daaa6b526d1ba27a105fdc3d383718b0de29ab21f66ec227e80ad8758bbf972c",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9071-b05d_9071_user_id_2021-02-11_094129",
+        "participant": "9071",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9071-b05d_9071_user_id_2021-02-11_094129/C10095_rgb.mp4",
+        "rgb_sha256": "8dee2ed9a7387bfbd9867ecb279ad7499f6527bfe3f59249095f90211f943c5c",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_073.npy",
+          "shape": [
+            768,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 15728768,
+          "sha256": "d0b500bc34466c9149695e1161ce2441ae1935fa263f2d2d58e9391c84c8bb9b",
+          "timestamp_sha256": "a86a2bc12f9a55962374932911c945a57de8eee967cae63df71047c8dac3bd41",
+          "forwards": 384
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9076-c12c_9076_user_id_2021-02-12_113921",
+        "participant": "9076",
+        "split": "validation",
+        "rgb_path": "recordings/nusar-2021_action_both_9076-c12c_9076_user_id_2021-02-12_113921/C10095_rgb.mp4",
+        "rgb_sha256": "1863be979385812798a47e651447e521d1974cc93f87b0059422dc65b079047a",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 2,
+            "start_seconds": [
+              256,
+              1
+            ],
+            "last_observation_seconds": [
+              767,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 3,
+            "start_seconds": [
+              384,
+              1
+            ],
+            "last_observation_seconds": [
+              1023,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_074.npy",
+          "shape": [
+            1024,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 20971648,
+          "sha256": "3cf6a4a68562df6e7cb80f3cf5d666173103fa669c0bbc7a6b905e74c0b12cba",
+          "timestamp_sha256": "de71637696eaf1500f6a4d7c88e210592a1504b3d1776cd9e626d68c7415b4b8",
+          "forwards": 512
+        }
+      }
+    ],
+    "preflight_passed": true,
+    "actual_official_checkpoint_files": {
+      "model.safetensors": {
+        "bytes": 2523108984,
+        "sha256": "ad6c1f6e318ace5633bea4496bc5c76248f6dc59c9a0d8a010cf31ed9dee2da8"
+      },
+      "config.json": {
+        "bytes": 497,
+        "sha256": "4ea10a6c56020bfcdaff768056a3d5763b991c81da9556a79ef1ad0a06d61846"
+      },
+      "preprocessor_config.json": {
+        "bytes": 325,
+        "sha256": "a34861a24e781942424ad790b82bc99348404a2e64ea882de88c40905851698d"
+      }
+    },
+    "encoder_metadata_sha256": "870a9bbceca9abb30c1f3242e6c0a08f3dd6a6b84b2970b9e6dbf95441819774",
+    "setup_seconds": 38.341418937,
+    "elapsed_seconds": 6774.320655783,
+    "first512_projected_total_seconds": 7965.841047513
+  },
+  "all_current_completed_files_before_after_SHA_size_stable": [
+    {
+      "path": "recording_000.npy",
+      "bytes": 10485888,
+      "sha256": "a3f6bbabb4d38009cb1de3268656d58d1ec9ddf6428da34b886dfd7804f0cb4a",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_001.npy",
+      "bytes": 5243008,
+      "sha256": "1908acdcc02ad937c64e45e64ad05ecc4f8069c26b9c499b169d645ddecc9875",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_002.npy",
+      "bytes": 5243008,
+      "sha256": "0227aac1a5f21fa327167d8db73e9c5894f660237e4c54ad8b1f0e80f60f0477",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_003.npy",
+      "bytes": 15728768,
+      "sha256": "edfea3689ad19a36e0442f90d688623d6503fd0f740a135d7b8c424f74d86151",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_004.npy",
+      "bytes": 5243008,
+      "sha256": "f0a747e3000435bff92ab335531c3ac646f19a683dc25d9e9a54c6dae9c8be18",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_005.npy",
+      "bytes": 5243008,
+      "sha256": "8943c86de5cd27551d337d4bf1222ce5e4ab8aaaf23aed6cef0d932bcd51a3bf",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_006.npy",
+      "bytes": 5243008,
+      "sha256": "bcbc90cc073b240c6e04f9a1d88460a70e0628581c01f82fb0c610b914483a55",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_007.npy",
+      "bytes": 10485888,
+      "sha256": "51d6a0216fb1fef67f745ce0cc001ea16000cf6dda6cd985e0e65b27e3ea89ea",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_008.npy",
+      "bytes": 10485888,
+      "sha256": "f4281e0a41d0287edac243d62cac3cd27f049d95bb479b72da312f159964c755",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_009.npy",
+      "bytes": 10485888,
+      "sha256": "3c9e604ae30d4be893263de993b3f58cbf74464a428c17af6270f54bb21693b7",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_010.npy",
+      "bytes": 20971648,
+      "sha256": "67076d30f1d827303c6eca431cdbbb344dd73310b45c3cd06b70210ad9cafc20",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_011.npy",
+      "bytes": 20971648,
+      "sha256": "48134d1424b3ff429e424ce0024fc3298a5263153241f10b6fca27454bdca54f",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_012.npy",
+      "bytes": 15728768,
+      "sha256": "8be7427eca3d3cfa9d4e739c32bb1937842a04bd01762df68da9336e9a480826",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_013.npy",
+      "bytes": 10485888,
+      "sha256": "70dd101d9b9b6a19be25a47c6f15b008d8ab83ea83b5437efaec7c17d2195103",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_014.npy",
+      "bytes": 10485888,
+      "sha256": "f0eb4f5039c769c2adc20e7a8043ff8c19f4036e8437da9e46438534fbffe138",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_015.npy",
+      "bytes": 10485888,
+      "sha256": "f72f50d5dba187e07db405ecaa9414834d3fab9c31bcd620737a1cf9f18b95b5",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_016.npy",
+      "bytes": 20971648,
+      "sha256": "1a51278c8c239decce2a11a6e4174955e25b81374524dac9d68050d0ddc77052",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_017.npy",
+      "bytes": 5243008,
+      "sha256": "90783cc6d46d27dbeb2b0d4ce5afd6a6e3e9a3089df63fcdd3432a13456b1da0",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_018.npy",
+      "bytes": 10485888,
+      "sha256": "002701409f5be486494b32d1480df57540bb237153b37deeef63ccf9f8ccaa2b",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_019.npy",
+      "bytes": 10485888,
+      "sha256": "74afd94ed0e2d291c9831575e0537e8b01cf81c6e1b1e55fa2e15ce0f32d165e",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_020.npy",
+      "bytes": 20971648,
+      "sha256": "84afc95038e83f24e0964d26fce10572475c4d109da135756df7682c2256f3b6",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_021.npy",
+      "bytes": 20971648,
+      "sha256": "5d23a997ecf71ad54e382afbfeba00d31c9fff386bd9bed248caebf0c9608302",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_022.npy",
+      "bytes": 10485888,
+      "sha256": "95a737dc9ae5d01f3f95b722f14104ff9bd2cf68c5c32184a54f84479cba0791",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_023.npy",
+      "bytes": 10485888,
+      "sha256": "16a11f3ef2ccf5435c97588439c02e77c53b5c4315231306de0f646befd1b4af",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_024.npy",
+      "bytes": 10485888,
+      "sha256": "2daf945e03996f50a0619ec6eb4d5a6f61ae2906783a2746ba424883d363cec0",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_025.npy",
+      "bytes": 10485888,
+      "sha256": "08718450a226c18ad233127461b29b6d429b3c1d1b2371426d88c00ce5cb559e",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_026.npy",
+      "bytes": 20971648,
+      "sha256": "5d44823876fab47477efed7bb930bde9d8ba58b2829b18dddceb3cfb4e629608",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_027.npy",
+      "bytes": 10485888,
+      "sha256": "cd2927c3680fb11c86b0b75005094d837cf137846493ffbac9807df3b82e356c",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_028.npy",
+      "bytes": 15728768,
+      "sha256": "01fb5c9fa809212575fce6875d57e81871e3389ec5957908389fd07ce4b096b8",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_029.npy",
+      "bytes": 15728768,
+      "sha256": "ab8656466b880a2c7331ffc869476028b57cf2f61f2b6072e620f6b575c9c14e",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_030.npy",
+      "bytes": 5243008,
+      "sha256": "cd35ec18304c846c8b44c51b8b709c1816822025e90ec76e8617a9d59d208b58",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_031.npy",
+      "bytes": 5243008,
+      "sha256": "c7e51103d213fbace86a6da9f9d74b6d2302c935a6ecf8e32bcfb2f2b0784d9f",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_032.npy",
+      "bytes": 15728768,
+      "sha256": "662ea6b193da836bd433c795242856ec94938b1715ce668ae64772c6f8ac417b",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_033.npy",
+      "bytes": 20971648,
+      "sha256": "1e53bc8d49a67b3231e0ded7c53c810bbc426e6e04c7458753418f286326783d",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_034.npy",
+      "bytes": 20971648,
+      "sha256": "1f0fb3cf7c6e60f93e6f657fc40d62c8e6926a0dc36f7b1b34be190671ba885d",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_035.npy",
+      "bytes": 20971648,
+      "sha256": "48adf4249c159048dbe4d00c6bb4dc7363ac7276de56f7f1e62a17ef0255f5bd",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_036.npy",
+      "bytes": 10485888,
+      "sha256": "60724cbc6a3b3b385f76f6c8f52630586a4035a3ab960c655e4b830ea24b60af",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_037.npy",
+      "bytes": 15728768,
+      "sha256": "2d41d2eebc691721a033745f271334a6db42d8c8d012249c40267543e2cce232",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_038.npy",
+      "bytes": 15728768,
+      "sha256": "144f39812a42ea0584e3dc26d09d358463d549f6cee9364204924e0f70eb7fe5",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_039.npy",
+      "bytes": 10485888,
+      "sha256": "bc553e997a46b1e6583d4583f8e9b2d45d2f9d210b244bf4381a1e70e2ce9ef8",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_040.npy",
+      "bytes": 10485888,
+      "sha256": "3e9f804fb12c6bc803bcac1e0cda6960b301732cb30ed49b8bf74b35464a978e",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_041.npy",
+      "bytes": 10485888,
+      "sha256": "c1fbc5106bc57f7cd11393d8042ef4bbb3d0cebf4283020c2e1561ada57559c5",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_042.npy",
+      "bytes": 20971648,
+      "sha256": "433382a70987bfb2ffd08b2a6d228637ef3d7688b4918fbaf7ec7343d84482a1",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_043.npy",
+      "bytes": 10485888,
+      "sha256": "2fa6d5e8880f1fa35a7642af669641c8e9e1b6800725c30538405071b25ffa58",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_044.npy",
+      "bytes": 20971648,
+      "sha256": "301bdb9c14f06ddb21a97557153b20e321a2716db36a83b723beab16058eba89",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_045.npy",
+      "bytes": 5243008,
+      "sha256": "4fbaad4d66f48553aa7dc80420bcfca0ba7b6a730c82876bd96c40deaccace9f",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_046.npy",
+      "bytes": 15728768,
+      "sha256": "aa93ff48f0fbba42bf73bb706776ecbbaf962de2a7e29861f79b4efd509d361a",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_047.npy",
+      "bytes": 5243008,
+      "sha256": "ac669c516b431e41c794f7a8b05d8b3be1c4786569ede126c1af259eba7c59a5",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_048.npy",
+      "bytes": 10485888,
+      "sha256": "ba130ba1305a95ecac6c3948a3149d715a86faf4c9215c60aef64160a6948753",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_049.npy",
+      "bytes": 5243008,
+      "sha256": "33373648115ebb3b8150a2627d154f81a0c85c4e4db9e6f841a327cdceaaa1d5",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_050.npy",
+      "bytes": 5243008,
+      "sha256": "bb3f73b99ae7c24e86bbc8a66c4fb41f94da58a586a8fee36f0c569d5287490d",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_051.npy",
+      "bytes": 10485888,
+      "sha256": "564b15b5c93520455beb40ad78394a02429083d52eaf18c867d910755d660aa5",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_052.npy",
+      "bytes": 10485888,
+      "sha256": "0f55f5d6e9bfd4360beb44b55d022d46c4ba3d8974ef557c2260dc81dff3c037",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_053.npy",
+      "bytes": 15728768,
+      "sha256": "6a03531c9497b083a99fcb0da5a6cd325923e61749dcb79e2c159dce558fe1a5",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_054.npy",
+      "bytes": 10485888,
+      "sha256": "f5782a5d4c40af22191e0e12d5a2c3d17e27a4f632059affcc74c09efcb42ab4",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_055.npy",
+      "bytes": 5243008,
+      "sha256": "a6dc864789ca36256aaf92ad852c49a971d66bc55c501c3f826a074363e9a856",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_056.npy",
+      "bytes": 15728768,
+      "sha256": "0ae6d1ef81d7600d8f6b4da399ed9e3bfb5bbfcc0c91bb415f17883944881100",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_057.npy",
+      "bytes": 15728768,
+      "sha256": "d4a5a5f7a7a36876743f21578403067c7d774efdb290bf063e50d22386367f56",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_058.npy",
+      "bytes": 5243008,
+      "sha256": "3260b99a84101755830292d7922b084dfdcc1c675244fa2d829a07b7c4515b8e",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_059.npy",
+      "bytes": 5243008,
+      "sha256": "2ae56a60b05edbad88015d1e6f331013dd736014bc7bea9ad8c7b3a2ae5aca6d",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_060.npy",
+      "bytes": 20971648,
+      "sha256": "2a2f99e81ec094f503d8be97c63ac239e88c448501bbce44d7d381bfdfbb1350",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_061.npy",
+      "bytes": 20971648,
+      "sha256": "f9f0cef6a6a1531c8dc9d8fb76fa31d46c1be3e390ef5a39a8e4dc4359e79dae",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_062.npy",
+      "bytes": 20971648,
+      "sha256": "1df0348a1fc5d25bf942dda5466acc711f403832bcc9b343eda07c45b09f7814",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_063.npy",
+      "bytes": 15728768,
+      "sha256": "12e94e90ff38abd52ce7f76ce488c4717fe2858ea58240eac16f0745f952acc1",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_064.npy",
+      "bytes": 20971648,
+      "sha256": "49fae77c15c8653bf69125bd9bc713d4b34bb323e42a954355ddfd8e3eec8e5b",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_065.npy",
+      "bytes": 15728768,
+      "sha256": "352be5bb6660d9e7232c70279a07fba2cc9e62e9e23a3e4f11f6c130284029dc",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_066.npy",
+      "bytes": 20971648,
+      "sha256": "a8b31c71a5de968f7389bf3a16f8881e70f568acf973335c350a308fb9f8c630",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_067.npy",
+      "bytes": 20971648,
+      "sha256": "9e4de80a196f54c59e6d0a84a45ffcde958eff83220d4584193a08d62aa11878",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_068.npy",
+      "bytes": 15728768,
+      "sha256": "49269f62c2c6dc0ed687a826d605d08a03a2640e78d922af2ce8e53344f25ae0",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_069.npy",
+      "bytes": 10485888,
+      "sha256": "68ef617202014b4dff32fb969f276b71ab400fd595d72b87982e5c8b8b063b20",
+      "shape": [
+        512,
+        5120
+      ]
+    },
+    {
+      "path": "recording_070.npy",
+      "bytes": 20971648,
+      "sha256": "9658d88c1e1179f3fe39ed179d02bc0d6215719d943055e99456aa77d3deee0f",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_071.npy",
+      "bytes": 5243008,
+      "sha256": "4fa2c4a49611eb60ede28dd97adb9a14bda9a01f7fc574b1622b0a7bff185103",
+      "shape": [
+        256,
+        5120
+      ]
+    },
+    {
+      "path": "recording_072.npy",
+      "bytes": 20971648,
+      "sha256": "daaa6b526d1ba27a105fdc3d383718b0de29ab21f66ec227e80ad8758bbf972c",
+      "shape": [
+        1024,
+        5120
+      ]
+    },
+    {
+      "path": "recording_073.npy",
+      "bytes": 15728768,
+      "sha256": "d0b500bc34466c9149695e1161ce2441ae1935fa263f2d2d58e9391c84c8bb9b",
+      "shape": [
+        768,
+        5120
+      ]
+    },
+    {
+      "path": "recording_074.npy",
+      "bytes": 20971648,
+      "sha256": "3cf6a4a68562df6e7cb80f3cf5d666173103fa669c0bbc7a6b905e74c0b12cba",
+      "shape": [
+        1024,
+        5120
+      ]
+    }
+  ],
+  "stderr_bytes": 0,
+  "new_metadata_handoff_submitted": 7207,
+  "new_science_submitted": false,
+  "actual_complete_cache_verified": false,
+  "actual_reader_training_started": false,
+  "reader_formal_protocol_written": false,
+  "weights_arrays_downloaded": false,
+  "phase1_go": false
+}

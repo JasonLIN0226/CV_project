@@ -1,0 +1,453 @@
+{
+  "protocol": {
+    "declared_utc": "2026-10-15T23:41:35.150849+00:00",
+    "status": "FROZEN_SINGLE_POST_DIAGNOSIS_REPAIR_BEFORE_NEW_GPU_OUTPUTS",
+    "human_authorization": "Human requests next proposal Phase1 validation, sound literature-informed design and autonomous execution; no guarantee of empirical success.",
+    "scope": "One post-diagnosis development repair on original Gate and occludedMotion, unchanged gates; fresh confirmation remains closed until both pass.",
+    "tasks": [
+      "gate",
+      "motion"
+    ],
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "epochs": 120,
+    "data_seed": 6301,
+    "horizons": [
+      3,
+      6
+    ],
+    "recent": 4,
+    "history_B": 2,
+    "conditions": [
+      "recent_only",
+      "full_history",
+      "privileged_small_budget",
+      "random_small_budget"
+    ],
+    "additional_evaluation_condition": "wrong_evidence plus persistence; original task state metrics and latent metrics both retained",
+    "immutable_inputs": {
+      "gate": {
+        "data_source_config": "/scratch/xl4358/phase1_v3_dev/gate/reference/resolved_config.json",
+        "data_source_config_sha256": "e2b737cb814f5e09be6c0ceea6e668e0e07c9f43496e951be1d899d0269ef392",
+        "basis_sha256": "3200e2c07d7a49b6d359652d2840ed9a9e78a76f32c001d8e9a01b92492b6106",
+        "frozen_v3_verification": "/scratch/xl4358/phase1_v3_verified_view/verification.json",
+        "frozen_v3_verification_sha256": "a36baa1372b736e0cddebde99cbc6d49202a10b4bd9e35b86c20728c6bedaedf",
+        "original_contract": {
+          "data": {
+            "seed": 6301,
+            "tasks": [
+              "gate",
+              "motion"
+            ],
+            "image_size": 96,
+            "recent": 4,
+            "horizons": [
+              3,
+              6
+            ],
+            "budget": 2,
+            "gap": [
+              5,
+              10
+            ],
+            "long_gap": [
+              20,
+              32
+            ],
+            "cue_start": [
+              2,
+              7
+            ],
+            "cue_duration": [
+              1,
+              3
+            ],
+            "motion_dt": [
+              3,
+              6
+            ],
+            "pairs": {
+              "train": 512,
+              "validation": 96,
+              "test_id": 128,
+              "test_long_gap": 128,
+              "test_distractor_shift": 128
+            }
+          },
+          "encoder": {
+            "backend": "ijepa",
+            "repository": "facebook/ijepa_vith14_1k",
+            "revision": "f157467ea509bc356ff9f61fd3c0d840eec5e04e",
+            "pooling": "grid2",
+            "dtype": "float32",
+            "batch_size": 2,
+            "smoke_size": 12,
+            "local_files_only": false,
+            "cache_dir": null
+          },
+          "normalization": {
+            "std_floor": 0.05
+          },
+          "training": {
+            "seeds": [
+              17,
+              29,
+              43
+            ],
+            "epochs": 120,
+            "batch_size": 64,
+            "lr": 0.001,
+            "weight_decay": 0.0001,
+            "clip": 1.0,
+            "lr_step": 40,
+            "lr_gamma": 0.5,
+            "pair_weight": 2.0,
+            "rank_weight": 0.5
+          },
+          "decision": {
+            "min_seeds": 3,
+            "min_pairs": 32,
+            "probe_accuracy": 0.75,
+            "readout_accuracy": 0.8,
+            "readout_position_rmse": 0.05,
+            "latent_relative_improvement": 0.1,
+            "state_relative_improvement": 0.1,
+            "absolute_state_gain": 0.05,
+            "absolute_latent_gain": 0.01,
+            "baseline_floor": 0.02,
+            "position_baseline_floor": 1e-05,
+            "absolute_position_mse_gain": 1e-06,
+            "wrong_evidence_gain": 0.05,
+            "full_history_tolerance": 0.05,
+            "pair_distance_floor": 1e-06
+          },
+          "evaluation": {
+            "random_seed": 901,
+            "bootstrap": 2000,
+            "latency_warmup": 10,
+            "latency_repeats": 30
+          }
+        }
+      },
+      "motion": {
+        "data_source_config": "/scratch/xl4358/phase1_v3_dev/motion/reference/resolved_config.json",
+        "data_source_config_sha256": "3ce7db93aa98f4fab7586d1a85bbb456bef5a49c97c2e80b47525cbcfb154b90",
+        "basis_sha256": "010426084c5f5139aa8426a13e3a816371331d1e69d1dce9dcf14f43de8297fa",
+        "frozen_v3_verification": "/scratch/xl4358/phase1_v3_verified_view/verification.json",
+        "frozen_v3_verification_sha256": "a36baa1372b736e0cddebde99cbc6d49202a10b4bd9e35b86c20728c6bedaedf",
+        "original_contract": {
+          "data": {
+            "seed": 6301,
+            "tasks": [
+              "gate",
+              "motion"
+            ],
+            "image_size": 96,
+            "recent": 4,
+            "horizons": [
+              3,
+              6
+            ],
+            "budget": 2,
+            "gap": [
+              5,
+              10
+            ],
+            "long_gap": [
+              20,
+              32
+            ],
+            "cue_start": [
+              2,
+              7
+            ],
+            "cue_duration": [
+              1,
+              3
+            ],
+            "motion_dt": [
+              3,
+              6
+            ],
+            "pairs": {
+              "train": 512,
+              "validation": 96,
+              "test_id": 128,
+              "test_long_gap": 128,
+              "test_distractor_shift": 128
+            }
+          },
+          "encoder": {
+            "backend": "ijepa",
+            "repository": "facebook/ijepa_vith14_1k",
+            "revision": "f157467ea509bc356ff9f61fd3c0d840eec5e04e",
+            "pooling": "grid2",
+            "dtype": "float32",
+            "batch_size": 2,
+            "smoke_size": 12,
+            "local_files_only": false,
+            "cache_dir": null
+          },
+          "normalization": {
+            "std_floor": 0.05
+          },
+          "training": {
+            "seeds": [
+              17,
+              29,
+              43
+            ],
+            "epochs": 120,
+            "batch_size": 64,
+            "lr": 0.001,
+            "weight_decay": 0.0001,
+            "clip": 1.0,
+            "lr_step": 40,
+            "lr_gamma": 0.5,
+            "pair_weight": 2.0,
+            "rank_weight": 0.5
+          },
+          "decision": {
+            "min_seeds": 3,
+            "min_pairs": 32,
+            "probe_accuracy": 0.75,
+            "readout_accuracy": 0.8,
+            "readout_position_rmse": 0.05,
+            "latent_relative_improvement": 0.1,
+            "state_relative_improvement": 0.1,
+            "absolute_state_gain": 0.05,
+            "absolute_latent_gain": 0.01,
+            "baseline_floor": 0.02,
+            "position_baseline_floor": 1e-05,
+            "absolute_position_mse_gain": 1e-06,
+            "wrong_evidence_gain": 0.05,
+            "full_history_tolerance": 0.05,
+            "pair_distance_floor": 1e-06
+          },
+          "evaluation": {
+            "random_seed": 901,
+            "bootstrap": 2000,
+            "latency_warmup": 10,
+            "latency_repeats": 30
+          }
+        }
+      }
+    },
+    "candidate": "RelationalMemoryPredictor; full retained history PMA and observed adjacent relations, bounded relative time and explicit linear observed-feature transport; frozen exact recent anchor.",
+    "side_net": {
+      "hidden": 128,
+      "heads": 4,
+      "history_PMA_queries": 4,
+      "relation_PMA_queries": 2,
+      "read_all_history": true,
+      "topK_or_retention_selector": false,
+      "relative_age_bounded_by_actual_observed_history_span": true,
+      "explicit_linear_elapsed_transport_only_from_observed_feature_difference": true,
+      "empty_history_exact_frozen_recent_reference": true,
+      "single_history_branch_no_subtraction_of_two_learned_side_outputs": true,
+      "small_nonzero_readout_std": 0.001,
+      "no_target_hiddenstate_futureRGB_siblingID_inputs": true
+    },
+    "training": {
+      "optimizer": "AdamW",
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "clip_norm": 1.0,
+      "batch_size": 64,
+      "epochs": 120,
+      "schedule": "epoch-level5epoch linear warmup from1/5base tobase; then cosine frombase to0.1base byepoch120",
+      "pair_weight": 2.0,
+      "rank_weight": 0.5,
+      "gate_common_anchor_weight": 1.0,
+      "motion_common_anchor_weight": 0.0,
+      "selection": "earliest minimum of equal four-condition two-horizon validation normalized MSE",
+      "steps_each_model": 7680
+    },
+    "literature": [
+      {
+        "title": "Set Transformer",
+        "url": "https://proceedings.mlr.press/v97/lee19d.html",
+        "official_code": "https://github.com/juho-lee/set_transformer",
+        "borrowed": "learned seed pooling over all retained entries; MIT license included",
+        "adaptation_not_reproduction": true
+      },
+      {
+        "title": "A simple neural network module for relational reasoning",
+        "url": "https://arxiv.org/abs/1706.01427",
+        "borrowed": "observed-frame relation representation; adjacent elapsed-time feature transport is our explicit adaptation",
+        "adaptation_not_reproduction": true
+      }
+    ],
+    "local_prior_evidence": [
+      "v3 controlled probes decode historical cue/direction while recent is chance",
+      "Gate frozen common-component replacement diagnostic supported but requires sibling predictions; never deployed",
+      "v5 generic reader failed development adoption; preserve all old weights/results"
+    ],
+    "causality": [
+      "No hidden-state/class/evidence IDs/target/future-image tensor enters predictor",
+      "h3 never reads h4-h6 future control prefix",
+      "Original privileged timestamps and pair boundaries unchanged",
+      "Only train data fit gradient; only validation chooses checkpoint",
+      "No sibling at single-trajectory inference",
+      "Same frozen recent predictor for every memory condition; no capacity-specific networks"
+    ],
+    "adoption": "Reuse original complete task rules AND all24 candidate-vs-fixed-reference-recent checks AND all8 difficult-slice privileged absolute-MSE checks per task. Gate difficult slice distractor_shift; Motion long_gap. Missing or failed checks reject, no threshold/seed/slice deletion.",
+    "confirmation": "Remain closed on seed9137 and all sealed test data until BOTH development tasks pass. Independent confirmation then requires separately frozen resource/provenance design, fresh training-only transforms and locked models before test. This development never returns Phase1_GO.",
+    "resources": {
+      "GPU": "one course A100, four science threads,60G",
+      "account": "csci_ga_2271-2026fa",
+      "partition": "c12m85-a100-1",
+      "cumulative_GPU_cap_seconds": 18000,
+      "prior_actual_GPU_seconds": 6247,
+      "remaining_shared_GPU_seconds": 11753,
+      "new_job_wall_seconds": 11700,
+      "soft_remaining_seconds": 11573,
+      "models_development": 6,
+      "models_confirmation": 12,
+      "full_confirmation_RGB_frame_upper_bound": 198656,
+      "shared_cost_guard": "Measured complete candidate and reference epochs on both tasks, actual official frozen batch2 encoder throughput on existing devRGB; reserve full dev+fresh12models+all encoding+15%margin+900s overhead, reject missing measurements; repeat guard each20epochs. No dedup in this implementation.",
+      "no_CPU_model_training_fallback": true,
+      "approved_python": "/scratch/xl4358/phase1_env/bin/python",
+      "overhead": "900s plus twice actual measured encoder load/finite/initial equivalence proof cost, for separate fresh trainval and locked-test encoder stages; all actual allocation wall charged.",
+      "fresh_CPU_fits_outside_GPU": "Fresh normalization/basis/readout fitting and RGB generation must run on CPU allocations with no reserved GPU; if done inside any GPU allocation that wall must be explicitly charged and forecast again."
+    },
+    "stop": "Real budget overrun or failure preserves partial; no shortening epochs/seeds, no blind resubmission/unknown outcome retry, no automatic new candidate.",
+    "phase1_passed": false,
+    "budget_approval_required": false,
+    "repair_decision_sha256": "16c1360f0e4ad1715bb14d99b523db191761fcbba9162e90e6b0005c51d0bc8b",
+    "data_and_metrics": "Immutable original data/basis/cache/reference source configurations below remain byte-identical. Candidate architecture and optimizer change explicitly; samples/conditions/loss/selection/acceptance do not. Training cannot load heldout; full completion required for evaluation.",
+    "reference_cost_profile": "Two discarded newly initialized reference-workload epochs on existing train/validation, used only for cost. No fresh9137, no reference confirmation claim, all wall charged.",
+    "encoder_cost_profile": "Existing6301trainingRGB only; original offline officialIJEPAfloat32batch2/grid2, finite frozen actual weights, exact pair/permutation/duplicate probe, conservative minimum observed throughput. Full198656frame upperbound, no dedup.",
+    "independent_source_lock_sha256": "379304f565c5c7fe896c8017113f7747c75c8ce9a746a6bece4eac8a42628da9",
+    "determinism": "torch.use_deterministic_algorithms(True); CUBLAS_WORKSPACE_CONFIG=:4096:8; original float32 precision and batch64 unchanged",
+    "frozen_utc": "2026-10-15T23:50:51.182987+00:00",
+    "exact_causal_boundary_execution": {
+      "UTC": "2026-10-15T23:50:51.182987+00:00",
+      "kind": "EXACT_CAUSAL_BOUNDARY_BATCHING_BEFORE_NEW_GPU",
+      "old_common_anchor_sha256": "27bc43cca2b4bb9b5188b1bf3df1ec60d7fbc390d4b1ee6c14635fad867f5a5d",
+      "current_common_anchor_sha256": "c637841aa5fca6bcd8f65ba97afb1e3d4fbbf552a76ecc9142f84cf3e3beff93",
+      "all_original_whitelist_shape_device_finite_temporal_current_predicates_preserved": true,
+      "history_physically_removed_and_outputs_detached_exactly_as_original": true,
+      "change": "Batch the same per-trajectory equality/validity checks and recent tensor gathers; avoid per-row accelerator synchronization. No cached validation bypass.",
+      "required_native_proof": "All24 actual original validation tensors through original and vectorized transform on both CPU and CUDA; output tensors bitwise identical and input versions unchanged before scientific training.",
+      "local_boundary_fixtures": 10,
+      "original_HPC_sources_untouched": true,
+      "no_method_loss_sampling_selection_or_passing_rule_change": true
+    },
+    "native_diagnosis_result_sha256": "f3c4bac0155d027fa18642eda60a1a9a7666084242259630f1de9dce3bfbde61"
+  },
+  "source_files": {
+    "SET_TRANSFORMER_LICENSE.txt": "4b288f2e6078720cef1d81b5e8eb83a36697a6365526b52902516cf056bc6dab",
+    "authorization.json": "9930d00afb0aeb1a01861024dbf05f134bb9f08ba5c7c759bb034ff2101eb8ad",
+    "exact_boundary_execution.json": "68b04ce132581ce68a3598f6d4518e10e6c47c58c55ceda3af6205fe551f223c",
+    "native_preflight.py": "0c1e2f48d06ccfa1413519117d4127da04267b771a9b9335cb852dc42d53768e",
+    "preflight.sbatch": "f5ca450be0e6595bc791455fc6d29c942bb7d9dce9c3a7a7502b464e6003f211",
+    "protocol.json": "559935e65e6e54effe3cad4ee61902db92f6adff1423575f05a05d448232b3f3",
+    "repair_decision.json": "16c1360f0e4ad1715bb14d99b523db191761fcbba9162e90e6b0005c51d0bc8b",
+    "repair_evaluate.sbatch": "b7b19fcc5260c936e26859f2d4f553aa37e3a2255108d549bd142b8597602477",
+    "repair_train.sbatch": "a0bbf282920dc018e51ba2fb7ce59b47b22cade177fc7340ff3a96c30f845a7d",
+    "run_repair.py": "7090531dbe4de59e04d74010df1617287d04811e2ddf2112ac72f8c14fbbb2a9",
+    "software_preflight.json": "ed1533ce4252ca88c1d79f6869189934384524b9e78984b314ed5b7a4adc70b1",
+    "src/phase1/__init__.py": "d45076af62de5cc47c8f5d69833d8135ef39586face345742334367293671b6d",
+    "src/phase1/anchored_memory.py": "9f2d7ad2e9b3653f78b3d133a3f440345c68e127c12c74ea07632793d5ac8d00",
+    "src/phase1/cache.py": "5935e62802ef2bf8a5590f559948eb1c1fa1d3f9c4826780ef4ce188d7a96bc0",
+    "src/phase1/cli.py": "a72f7dcb7893576b821e6e3a750be6957874d4faf3b958a93d28c59c57ec48e9",
+    "src/phase1/common_anchor.py": "c637841aa5fca6bcd8f65ba97afb1e3d4fbbf552a76ecc9142f84cf3e3beff93",
+    "src/phase1/common_anchor_legacy.py": "27bc43cca2b4bb9b5188b1bf3df1ec60d7fbc390d4b1ee6c14635fad867f5a5d",
+    "src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+    "src/phase1/data.py": "9e65a464e36dcda9fb6fd542d78d9a71b3a01dcc0109ce30317a09483c4d4467",
+    "src/phase1/diagnostics.py": "2c53bc7a00ed87424c3dc1b871c4adbfa5a08c82022402efac92d9d0858679f8",
+    "src/phase1/encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871",
+    "src/phase1/envs.py": "64b07f972fc5144d5d13c7bd614c1c796d67a73521043efc57073454ac4c12a7",
+    "src/phase1/evaluation.py": "65ae67c8a28f608deb53bb1b782d4cbdcccc7a633ec8dd6c1bffbb0990126798",
+    "src/phase1/exact_runtime_cache.py": "ba609f31e18799000ca7780011a690782932c1499d1428e1cf22382145ad1a25",
+    "src/phase1/experiment.py": "b63dbbe54b47f50cf943a9b6f0acdbba013cc235640d9f89d6577dc82d0b886e",
+    "src/phase1/gate_diagnostics.py": "11f891286d2f0413e514bc8bf08e095f20765400c7cf3d5d03766d14761c2337",
+    "src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+    "src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+    "src/phase1/motion_mechanism.py": "130b52cc3defe3e3f4a2135ca8e89b0f5fe6122d4eff8a7f53a66a6fa02f649a",
+    "src/phase1/probes.py": "50219b0167cf6fdd829962db566f14808ea1cdad6c5ebf9628992054e2c53988",
+    "src/phase1/proposal_evaluation.py": "e1dade29c5279a4bce90d91c1f5a3191e789b12620c5845c280203264108c9c9",
+    "src/phase1/proposal_trial.py": "a492c57173fd97a2f702f671bf4728765abf52a9deafa2512a6025f0f4819c65",
+    "src/phase1/relational_memory.py": "552f63109cbbbcc0889e93e379b2a92bc245e0a59c37158c616e353ececd0be4",
+    "src/phase1/repair_evaluation.py": "e47a4590edc64825f4077d44105eab1dc63cf407e481fec6bb8f8d080cdd75f6",
+    "src/phase1/repair_trial.py": "dee44d6e5576cef3e85dcb1197aaabb82f79afe201583065fe70532a433b6a82",
+    "src/phase1/reporting.py": "447a7e9c3cfb4d28c3545db1475ab8e09dbf9b83401f49593767a4492a3d5ba7",
+    "src/phase1/resource_guard.py": "bbb9279481bef4926da7634757d49404f412e20052808654fc9518e29a7b9281",
+    "src/phase1/stats.py": "767912a6a1617f7e932c1c807031c4ae1809e007045007e818990f2e3d6d9d08",
+    "src/phase1/training.py": "0e30f8c45e84a4dc966d3020066c0686b8c4b951a6447c52ecc85d309a14a235",
+    "src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14",
+    "src/phase1/v4_adoption.py": "647151ac1b895a89035b7caac64a5a3891d4e58d80bb17bae42e9caa1ec2eeae",
+    "src/phase1/v4_pipeline.py": "0bf05efa0334c39128769242dbd67f97a81a4e55945bd8c0925aa626debf9260",
+    "src/phase1/v5_encoding.py": "5e25e971000752ea0749e45389ab6e65df903917d6a1d5e2e0fbcdeaab3f1085",
+    "src/phase1/v5_encoding_cpu.py": "f2b06df2ebf3684d7878d581dfa536bab254e03c3cfaff3437a96d98a358fd8e",
+    "src/phase1/v5_encoding_l4.py": "94a72f7a1c2844f33cae98f29d7680a9f44e10e9cea62b59ab941737226c4674",
+    "src/phase1/v5_motion_evaluation.py": "2ac545e4bcd7fcb939900a2007462e3e76211e41229d39754baddd83551e0cc3",
+    "src/phase1/v5_motion_training.py": "4809633abee7ab341ffd3baa93aa3f1eed98392d5fb718c381240e2297579158",
+    "src/phase1/v5_real_reader.py": "dd9e10320eeceb4df3751dff216103d823cc1fef0f7d4fb3c2c278c96068a8f3",
+    "src/phase1/v5_real_training.py": "205d1ed5a7ec1d87817512c9b5b290dbb4682d59892c83911122dcea4c471efd",
+    "src/phase1/v5_real_training_cpu.py": "3b3a577b3a69477403ef676e84a99ec29029f15377f74e144779a318a8c51e8e",
+    "src/phase1/v5_real_training_l4.py": "6b797baa13f22884ec62296fcd1626f01d62e911736445906690ee411541622d",
+    "src/phase1/v5_synthetic_evaluation.py": "2200435d3aa5e747f754d88cf1a70e41b211b372ca5d81bcb409f9a0c93bf3b3",
+    "src/phase1/v5_synthetic_reader.py": "48d6664f5902814f0ee3e7744a8e70ba1beb8ccc11e80be96e84e0b2c2f34dde",
+    "src/phase1/v5_synthetic_training.py": "85028bb048db012e903c7154dde86cd066c27408c4d6c160bf76bb4cd88e6452",
+    "test_relational_memory.py": "f58847aa3198f9854e5751c966af755d667c86edfcf15d99f41ede2a05c44f2a"
+  },
+  "approved_budget": {
+    "utc": "2026-10-15T23:03:09.385900+00:00",
+    "direct_human_instruction": "那就继续诊断Gate种子不稳定和Motion长遮挡失败的原因，借鉴已有方法修正预测器，在剩余GPU预算内重新验证。不要改通过门槛，两任务都通过后直接做独立确认，尽快给我结论。",
+    "authorized": true,
+    "GPU_total_cap_seconds": 18000,
+    "prior_actual_GPU_seconds": 6247,
+    "remaining_GPU_seconds": 11753,
+    "remaining_shared_by": [
+      "any repair preflight or failures",
+      "development six models",
+      "conditional fresh encoding and twelve confirmation models"
+    ],
+    "unchanged_acceptance_gates": true,
+    "all_seeds_samples_horizons_and120epochs_preserved": true,
+    "only_both_development_tasks_supported_then_confirmation": true,
+    "old_complete_sources_results_read_only": true,
+    "no_selector_or_FAR_reproduction": true
+  },
+  "fast_input_proof": {
+    "UTC": "2026-10-15T23:58:52.804071+00:00",
+    "job": "7523",
+    "source_lock_sha256": "9ab65cd2e422085672d753a9b8bb1ff462861271cfbb42899ce54c116e838ab4",
+    "all_exact": true,
+    "tasks": {
+      "gate": {
+        "episodes": 1216,
+        "conditions": 4,
+        "exact_samples_targets_info_rng": 4864,
+        "metadata_fingerprint": "d4e0918d52a18ee488e3715e3d77d7181d905aa831ea3ff6ca80116d9c22541c",
+        "no_held_out_rows": true,
+        "sampler_AST_equal_except_pure_loader": true,
+        "exact_validation_batches": 12,
+        "exact_original_recent_boundary_batches": 12
+      },
+      "motion": {
+        "episodes": 1216,
+        "conditions": 4,
+        "exact_samples_targets_info_rng": 4864,
+        "metadata_fingerprint": "8039844557e5dcd0e2466cc736981c96e1c0dce3dca8ce171229d9e4882bd060",
+        "no_held_out_rows": true,
+        "sampler_AST_equal_except_pure_loader": true,
+        "exact_validation_batches": 12,
+        "exact_original_recent_boundary_batches": 12
+      }
+    },
+    "prior_native_parents": "7485|COMPLETED|0:0\n7486|COMPLETED|0:0\n7487|COMPLETED|0:0\n7518|COMPLETED|0:0\n",
+    "native_GPU_ledger": "7477|FAILED|100|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n7480|FAILED|126|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n7485|COMPLETED|6021|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n",
+    "prior_GPU_used_seconds": 6247,
+    "remaining_shared_GPU_seconds": 11753,
+    "no_CPU_model_training": true,
+    "no_fresh9137_access": true,
+    "phase1_go": false
+  },
+  "phase1_go": false
+}

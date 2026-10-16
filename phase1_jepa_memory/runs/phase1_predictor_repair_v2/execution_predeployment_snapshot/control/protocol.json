@@ -1,0 +1,358 @@
+{
+  "declared_utc": "2026-10-15T23:41:35.150849+00:00",
+  "status": "FROZEN_SAME_REPAIR_HUMAN8H_BUDGET_AND_EXACT_EPOCH_RESUME",
+  "human_authorization": "Human requests next proposal Phase1 validation, sound literature-informed design and autonomous execution; no guarantee of empirical success.",
+  "scope": "One post-diagnosis development repair on original Gate and occludedMotion, unchanged gates; fresh confirmation remains closed until both pass.",
+  "tasks": [
+    "gate",
+    "motion"
+  ],
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "epochs": 120,
+  "data_seed": 6301,
+  "horizons": [
+    3,
+    6
+  ],
+  "recent": 4,
+  "history_B": 2,
+  "conditions": [
+    "recent_only",
+    "full_history",
+    "privileged_small_budget",
+    "random_small_budget"
+  ],
+  "additional_evaluation_condition": "wrong_evidence plus persistence; original task state metrics and latent metrics both retained",
+  "immutable_inputs": {
+    "gate": {
+      "data_source_config": "/scratch/xl4358/phase1_v3_dev/gate/reference/resolved_config.json",
+      "data_source_config_sha256": "e2b737cb814f5e09be6c0ceea6e668e0e07c9f43496e951be1d899d0269ef392",
+      "basis_sha256": "3200e2c07d7a49b6d359652d2840ed9a9e78a76f32c001d8e9a01b92492b6106",
+      "frozen_v3_verification": "/scratch/xl4358/phase1_v3_verified_view/verification.json",
+      "frozen_v3_verification_sha256": "a36baa1372b736e0cddebde99cbc6d49202a10b4bd9e35b86c20728c6bedaedf",
+      "original_contract": {
+        "data": {
+          "seed": 6301,
+          "tasks": [
+            "gate",
+            "motion"
+          ],
+          "image_size": 96,
+          "recent": 4,
+          "horizons": [
+            3,
+            6
+          ],
+          "budget": 2,
+          "gap": [
+            5,
+            10
+          ],
+          "long_gap": [
+            20,
+            32
+          ],
+          "cue_start": [
+            2,
+            7
+          ],
+          "cue_duration": [
+            1,
+            3
+          ],
+          "motion_dt": [
+            3,
+            6
+          ],
+          "pairs": {
+            "train": 512,
+            "validation": 96,
+            "test_id": 128,
+            "test_long_gap": 128,
+            "test_distractor_shift": 128
+          }
+        },
+        "encoder": {
+          "backend": "ijepa",
+          "repository": "facebook/ijepa_vith14_1k",
+          "revision": "f157467ea509bc356ff9f61fd3c0d840eec5e04e",
+          "pooling": "grid2",
+          "dtype": "float32",
+          "batch_size": 2,
+          "smoke_size": 12,
+          "local_files_only": false,
+          "cache_dir": null
+        },
+        "normalization": {
+          "std_floor": 0.05
+        },
+        "training": {
+          "seeds": [
+            17,
+            29,
+            43
+          ],
+          "epochs": 120,
+          "batch_size": 64,
+          "lr": 0.001,
+          "weight_decay": 0.0001,
+          "clip": 1.0,
+          "lr_step": 40,
+          "lr_gamma": 0.5,
+          "pair_weight": 2.0,
+          "rank_weight": 0.5
+        },
+        "decision": {
+          "min_seeds": 3,
+          "min_pairs": 32,
+          "probe_accuracy": 0.75,
+          "readout_accuracy": 0.8,
+          "readout_position_rmse": 0.05,
+          "latent_relative_improvement": 0.1,
+          "state_relative_improvement": 0.1,
+          "absolute_state_gain": 0.05,
+          "absolute_latent_gain": 0.01,
+          "baseline_floor": 0.02,
+          "position_baseline_floor": 1e-05,
+          "absolute_position_mse_gain": 1e-06,
+          "wrong_evidence_gain": 0.05,
+          "full_history_tolerance": 0.05,
+          "pair_distance_floor": 1e-06
+        },
+        "evaluation": {
+          "random_seed": 901,
+          "bootstrap": 2000,
+          "latency_warmup": 10,
+          "latency_repeats": 30
+        }
+      }
+    },
+    "motion": {
+      "data_source_config": "/scratch/xl4358/phase1_v3_dev/motion/reference/resolved_config.json",
+      "data_source_config_sha256": "3ce7db93aa98f4fab7586d1a85bbb456bef5a49c97c2e80b47525cbcfb154b90",
+      "basis_sha256": "010426084c5f5139aa8426a13e3a816371331d1e69d1dce9dcf14f43de8297fa",
+      "frozen_v3_verification": "/scratch/xl4358/phase1_v3_verified_view/verification.json",
+      "frozen_v3_verification_sha256": "a36baa1372b736e0cddebde99cbc6d49202a10b4bd9e35b86c20728c6bedaedf",
+      "original_contract": {
+        "data": {
+          "seed": 6301,
+          "tasks": [
+            "gate",
+            "motion"
+          ],
+          "image_size": 96,
+          "recent": 4,
+          "horizons": [
+            3,
+            6
+          ],
+          "budget": 2,
+          "gap": [
+            5,
+            10
+          ],
+          "long_gap": [
+            20,
+            32
+          ],
+          "cue_start": [
+            2,
+            7
+          ],
+          "cue_duration": [
+            1,
+            3
+          ],
+          "motion_dt": [
+            3,
+            6
+          ],
+          "pairs": {
+            "train": 512,
+            "validation": 96,
+            "test_id": 128,
+            "test_long_gap": 128,
+            "test_distractor_shift": 128
+          }
+        },
+        "encoder": {
+          "backend": "ijepa",
+          "repository": "facebook/ijepa_vith14_1k",
+          "revision": "f157467ea509bc356ff9f61fd3c0d840eec5e04e",
+          "pooling": "grid2",
+          "dtype": "float32",
+          "batch_size": 2,
+          "smoke_size": 12,
+          "local_files_only": false,
+          "cache_dir": null
+        },
+        "normalization": {
+          "std_floor": 0.05
+        },
+        "training": {
+          "seeds": [
+            17,
+            29,
+            43
+          ],
+          "epochs": 120,
+          "batch_size": 64,
+          "lr": 0.001,
+          "weight_decay": 0.0001,
+          "clip": 1.0,
+          "lr_step": 40,
+          "lr_gamma": 0.5,
+          "pair_weight": 2.0,
+          "rank_weight": 0.5
+        },
+        "decision": {
+          "min_seeds": 3,
+          "min_pairs": 32,
+          "probe_accuracy": 0.75,
+          "readout_accuracy": 0.8,
+          "readout_position_rmse": 0.05,
+          "latent_relative_improvement": 0.1,
+          "state_relative_improvement": 0.1,
+          "absolute_state_gain": 0.05,
+          "absolute_latent_gain": 0.01,
+          "baseline_floor": 0.02,
+          "position_baseline_floor": 1e-05,
+          "absolute_position_mse_gain": 1e-06,
+          "wrong_evidence_gain": 0.05,
+          "full_history_tolerance": 0.05,
+          "pair_distance_floor": 1e-06
+        },
+        "evaluation": {
+          "random_seed": 901,
+          "bootstrap": 2000,
+          "latency_warmup": 10,
+          "latency_repeats": 30
+        }
+      }
+    }
+  },
+  "candidate": "CenteredTransportPredictor; full retained history PMA and observed adjacent relations, bounded relative time and explicit linear observed-feature transport; frozen exact recent anchor.",
+  "side_net": {
+    "hidden": 128,
+    "heads": 4,
+    "history_PMA_queries": 4,
+    "relation_PMA_queries": 2,
+    "read_all_history": true,
+    "topK_or_retention_selector": false,
+    "relative_age_bounded_by_actual_observed_history_span": true,
+    "explicit_linear_elapsed_transport_only_from_observed_feature_difference": true,
+    "empty_history_exact_frozen_recent_reference": true,
+    "single_history_branch_no_subtraction_of_two_learned_side_outputs": true,
+    "small_nonzero_readout_std": 0.001,
+    "no_target_hiddenstate_futureRGB_siblingID_inputs": true
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "clip_norm": 1.0,
+    "batch_size": 64,
+    "epochs": 120,
+    "schedule": "epoch-level5epoch linear warmup from1/5base tobase; then cosine frombase to0.1base byepoch120",
+    "pair_weight": 2.0,
+    "rank_weight": 0.5,
+    "gate_common_anchor_weight": 1.0,
+    "motion_common_anchor_weight": 0.0,
+    "selection": "earliest minimum of equal four-condition two-horizon validation normalized MSE",
+    "steps_each_model": 7680
+  },
+  "literature": [
+    {
+      "title": "Set Transformer",
+      "url": "https://proceedings.mlr.press/v97/lee19d.html",
+      "official_code": "https://github.com/juho-lee/set_transformer",
+      "borrowed": "learned seed pooling over all retained entries; MIT license included",
+      "adaptation_not_reproduction": true
+    },
+    {
+      "title": "A simple neural network module for relational reasoning",
+      "url": "https://arxiv.org/abs/1706.01427",
+      "borrowed": "observed-frame relation representation; adjacent elapsed-time feature transport is our explicit adaptation",
+      "adaptation_not_reproduction": true
+    }
+  ],
+  "local_prior_evidence": [
+    "v3 controlled probes decode historical cue/direction while recent is chance",
+    "Gate frozen common-component replacement diagnostic supported but requires sibling predictions; never deployed",
+    "v5 generic reader failed development adoption; preserve all old weights/results"
+  ],
+  "causality": [
+    "No hidden-state/class/evidence IDs/target/future-image tensor enters predictor",
+    "h3 never reads h4-h6 future control prefix",
+    "Original privileged timestamps and pair boundaries unchanged",
+    "Only train data fit gradient; only validation chooses checkpoint",
+    "No sibling at single-trajectory inference",
+    "Same frozen recent predictor for every memory condition; no capacity-specific networks"
+  ],
+  "adoption": "Reuse original complete task rules AND all24 candidate-vs-fixed-reference-recent checks AND all8 difficult-slice privileged absolute-MSE checks per task. Gate difficult slice distractor_shift; Motion long_gap. Missing or failed checks reject, no threshold/seed/slice deletion.",
+  "confirmation": "Remain closed on seed9137 and all sealed test data until BOTH development tasks pass. Independent confirmation then requires separately frozen resource/provenance design, fresh training-only transforms and locked models before test. This development never returns Phase1_GO.",
+  "resources": {
+    "GPU": "one course A100, four science threads,60G",
+    "account": "csci_ga_2271-2026fa",
+    "partition": "c12m85-a100-1",
+    "cumulative_GPU_cap_seconds": 28800,
+    "prior_actual_GPU_seconds": 6411,
+    "remaining_shared_GPU_seconds": 22389,
+    "new_job_wall_seconds": 22329,
+    "soft_remaining_seconds": 22209,
+    "models_development": 6,
+    "models_confirmation": 12,
+    "full_confirmation_RGB_frame_upper_bound": 198656,
+    "shared_cost_guard": "Measured complete candidate and reference epochs on both tasks, actual official frozen batch2 encoder throughput on existing devRGB; reserve full dev+fresh12models+all encoding+15%margin+900s overhead, reject missing measurements; repeat guard each20epochs. No dedup in this implementation.",
+    "no_CPU_model_training_fallback": true,
+    "approved_python": "/scratch/xl4358/phase1_env/bin/python",
+    "overhead": "900s plus twice actual measured encoder load/finite/initial equivalence proof cost, for separate fresh trainval and locked-test encoder stages; all actual allocation wall charged.",
+    "fresh_CPU_fits_outside_GPU": "Fresh normalization/basis/readout fitting and RGB generation must run on CPU allocations with no reserved GPU; if done inside any GPU allocation that wall must be explicitly charged and forecast again."
+  },
+  "stop": "Real budget overrun or failure preserves partial; no shortening epochs/seeds, no blind resubmission/unknown outcome retry, no automatic new candidate.",
+  "phase1_passed": false,
+  "budget_approval_required": false,
+  "repair_decision_sha256": "dbd46a375391765d4dbe662d4b3804def887952a027591eac5dd7aae5687e588",
+  "data_and_metrics": "Immutable original data/basis/cache/reference source configurations below remain byte-identical. Candidate architecture and optimizer change explicitly; samples/conditions/loss/selection/acceptance do not. Training cannot load heldout; full completion required for evaluation.",
+  "reference_cost_profile": "Two discarded newly initialized reference-workload epochs on existing train/validation, used only for cost. No fresh9137, no reference confirmation claim, all wall charged.",
+  "encoder_cost_profile": "Existing6301trainingRGB only; original offline officialIJEPAfloat32batch2/grid2, finite frozen actual weights, exact pair/permutation/duplicate probe, conservative minimum observed throughput. Full198656frame upperbound, no dedup.",
+  "independent_source_lock_sha256": "1e784f6dec75dd6ba820829d8e447e854a2426c706e7020ff0ce9c0685c4e3cc",
+  "determinism": "torch.use_deterministic_algorithms(True); CUBLAS_WORKSPACE_CONFIG=:4096:8; original float32 precision and batch64 unchanged",
+  "frozen_utc": "2026-10-16T00:25:46.492730+00:00",
+  "exact_causal_boundary_execution": {
+    "UTC": "2026-10-15T23:50:51.182987+00:00",
+    "kind": "EXACT_CAUSAL_BOUNDARY_BATCHING_BEFORE_NEW_GPU",
+    "old_common_anchor_sha256": "27bc43cca2b4bb9b5188b1bf3df1ec60d7fbc390d4b1ee6c14635fad867f5a5d",
+    "current_common_anchor_sha256": "c637841aa5fca6bcd8f65ba97afb1e3d4fbbf552a76ecc9142f84cf3e3beff93",
+    "all_original_whitelist_shape_device_finite_temporal_current_predicates_preserved": true,
+    "history_physically_removed_and_outputs_detached_exactly_as_original": true,
+    "change": "Batch the same per-trajectory equality/validity checks and recent tensor gathers; avoid per-row accelerator synchronization. No cached validation bypass.",
+    "required_native_proof": "All24 actual original validation tensors through original and vectorized transform on both CPU and CUDA; output tensors bitwise identical and input versions unchanged before scientific training.",
+    "local_boundary_fixtures": 10,
+    "original_HPC_sources_untouched": true,
+    "no_method_loss_sampling_selection_or_passing_rule_change": true
+  },
+  "native_diagnosis_result_sha256": "f3c4bac0155d027fa18642eda60a1a9a7666084242259630f1de9dce3bfbde61",
+  "budget_resume_declaration_sha256": "e5570e601e2afd59f0fcf2fe967cc439596612930c522a474fe02709a2c48dfb",
+  "native_partial_origin_sha256": "e04a60da75107572f04ad10d4b7827eef93f9f4f5c7c19973c60b353923e8ebd",
+  "human_extra_3h_authorization_sha256": "79799ce22d3e76b36a4a7491606aff6a9bf49c33dff61cf19dcd8bbf4eaaf68b",
+  "inherited_resource_proof": {
+    "path": "/scratch/xl4358/phase1_predictor_repair/approved_8h/training/job_7535/native_resource_probe.json",
+    "sha256": "7e0185ea02a8ed1c4e1497339026eaa434344405cda0a439a66bcb9d4d221982",
+    "actual_gpu_path": "/scratch/xl4358/phase1_predictor_repair/approved_8h/training/job_7535/actual_gpu.json",
+    "actual_gpu_sha256": "feb851b0945bbce54380ba2c94f9f797255540723bf4fe08d540600a1b938731",
+    "encoder_source_sha256": {
+      "encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871",
+      "cache.py": "5935e62802ef2bf8a5590f559948eb1c1fa1d3f9c4826780ef4ce188d7a96bc0",
+      "model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+      "training.py": "0e30f8c45e84a4dc966d3020066c0686b8c4b951a6447c52ecc85d309a14a235",
+      "v5_encoding.py": "5e25e971000752ea0749e45389ab6e65df903917d6a1d5e2e0fbcdeaab3f1085"
+    }
+  },
+  "second_repair_diagnostic_sha256": "c64b1367ed7b3dc9ce3e1e6e389537b1d3ece93e4fd5dd92a822d0c8db8cfcd6",
+  "all_candidate_models_from_scratch": true
+}

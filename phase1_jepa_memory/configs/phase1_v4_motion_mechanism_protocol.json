@@ -1,0 +1,144 @@
+{
+  "protocol_id": "phase1_v4_motion_frozen_mechanism_v1",
+  "status_at_registration": "PREPARED_NOT_RUN",
+  "purpose": "Test whether the fixed motion predictor is harmed by using action-aligned projected history in its velocity regression, subject first to a necessary fixed-output-basis feasibility bound.",
+  "not_a_phase1_go_result": true,
+  "execution_prerequisite": "Inspect and verify the actual completed frozen checkpoint-by-frame-policy diagnostic before deciding whether to launch this diagnostic. That grid may distinguish checkpoint and input-policy effects; no outcome is assumed here. Do not run while another course science job is active.",
+  "primary": {
+    "checkpoint_arm": "reference",
+    "input_policy": "old_start_end",
+    "scientific_hash": "1b9085e5e4d475d0ae7097563f565a5cef109162667f362fbcbc077d67dd08c8"
+  },
+  "replication": {
+    "checkpoint_arm": "motion_wide_span",
+    "input_policy": "wide_zero_end",
+    "scientific_hash": "d17e95f3243933be08f7782b62562f70dcef7d210f1769222ffc62a3b2491154",
+    "can_rescue_failed_primary": false,
+    "cannot_change_primary_policy_or_select_best_seed": true
+  },
+  "source_proof": {
+    "training_code_hash": "6a190d8f29ebc82b16ec272335010da2379814bfdfdc7c44bbe6de5422eb2d0f",
+    "evaluation_code_hash": "e29f058b8219a245332353929166cfb3b96bffdb22d0d678d7208feed7bd1870",
+    "cache_signature": "c23e728e79bb6c82f5a2c5b36aa32cb05e9d1ea2bf5afbb649d5d23b3910cce4",
+    "normalization_sha256": "96027aa115c03cc91c8aa60a9a11968fb194b9a05cde8b04d95adb87e28797cb",
+    "motion_basis_sha256": "010426084c5f5139aa8426a13e3a816371331d1e69d1dce9dcf14f43de8297fa",
+    "required_before_evaluation": [
+      "Every original best/latest checkpoint and training log is complete, finite, provenance-valid, and has exactly 120 balanced epochs for seeds 17, 29, 43.",
+      "The best checkpoint is the original earliest minimum of four-condition validation normalized MSE, averaging the two horizons. Never select from this diagnostic.",
+      "Retained original evaluation raw hash and checkpoint proof match the actual files.",
+      "Dataset, feature index, normalization, motion basis, and state decoder are identical across the two source arms.",
+      "Basis metadata says motion/train; the ordered stored train IDs equal the original motion/train manifest membership exactly; all loaded checkpoint basis buffers equal the persisted basis arrays. No fitting is allowed."
+    ],
+    "frozen_source_directory": "If current scientific code has changed, execute the complete archived phase1 package in an isolated import namespace. Do not substitute old hashes into current scientific code. Record the actual loaded source directory and file hashes.",
+    "native_reproduction": {
+      "original_forward": "Exact clone of each selected model and buffers; native manual forward must reproduce the actual original forward byte for byte on validation batches.",
+      "raw_keys": ["seed", "task", "split", "horizon", "condition", "pair", "episode"],
+      "raw_metrics": "All original evaluation.METRICS for all five evaluated conditions, all four nontraining development splits, both horizons and all three seeds.",
+      "absolute_tolerance": 1e-7,
+      "relative_tolerance": 1e-6,
+      "excluded_from_raw_comparison": "Persistence is not evaluated here. Auxiliary columns outside METRICS are not used; the original state_true_y auxiliary export is known to be incorrect.",
+      "failure_action": "Stop as invalid diagnostic. Do not interpret or select a candidate."
+    }
+  },
+  "fixed_science": {
+    "development_data_seed": 6301,
+    "task": "motion",
+    "training_seeds": [17, 29, 43],
+    "epochs": 120,
+    "threads": 4,
+    "recent_frames": 4,
+    "privileged_history_budget": 2,
+    "horizons": [3, 6],
+    "train_pairs": 512,
+    "validation_pairs": 96,
+    "old_development_pairs_per_test_slice": 128,
+    "input_and_output_rank": 128,
+    "mse_coefficient": 1.0,
+    "pair_difference_mse_coefficient": 2.0,
+    "pair_ranking_coefficient": 0.5,
+    "age_divisor": 8.0,
+    "velocity_variance_floor": 0.01,
+    "model_training": false,
+    "changes_to_data_dynamics_encoder_target_basis_memory_attention_parameters_loss": false
+  },
+  "information_boundary": {
+    "train": "Only existing train-fitted normalization, input/output bases, state decoder and completed checkpoint artifacts may be read. No component is refitted.",
+    "validation": "The only split on which the pure-p velocity intervention is evaluated. All seeds, horizons and five conditions are exported; the four original training conditions enter the aggregate safety gate.",
+    "old_development_tests": "test_id, test_long_gap and test_distractor_shift were already revealed. Read native predictions for reproduction and a target-aware basis feasibility ceiling only. Do not evaluate or choose pure-p variants on these slices at this stage.",
+    "fresh_confirmation": "Do not open, generate, fit on, or evaluate fresh confirmation data in this diagnostic.",
+    "predictor_inputs": "Use the unchanged FeatureStore.sample and collate whitelist: observed feature frames at or before query, legal ages/types/masks, known past controls, and the horizon-prefix future controls. No target, state, class, pair ID or episode ID enters either forward path.",
+    "scoring_only": "True future features and sibling futures are used only after prediction for scores and the explicitly nondeployable oracle. Hidden states/classes are read only for the unchanged evaluation decoder metrics.",
+    "wrong_evidence": "Swap the matched sibling's actual selected historical frames, including frame zero in the wide arm; retain times and legal actions.",
+    "recent_anchor": "Within each checkpoint, both siblings must have exactly equal recent input tensors; native and pure-p recent outputs must be byte identical. The primary reference recent remains the fixed external acceptance anchor for any later training trial."
+  },
+  "basis_feasibility_diagnostic": {
+    "label": "TRUE_FUTURE_ORACLE_LOWER_BOUND_NOT_DEPLOYABLE",
+    "model_output_space": "current + target_mean + B c, with the persisted motion output basis B and arbitrary coefficient vector c per episode and horizon.",
+    "residual": "r = true_future - current - target_mean in the original normalized full visual feature space.",
+    "oracle_mse": "mean((r - (r @ pinv(B).T) @ B.T)^2)",
+    "arithmetic": "Float64 Moore-Penrose pseudoinverse with rcond=1e-12. Record numerical rank. Do not assume orthonormal columns or fit a new basis.",
+    "coefficient_vector": "Uses the true future and is therefore not a legal deployed predictor or Phase 1 result.",
+    "comparison": "Compare the oracle error against the same episode's fixed primary-reference recent error, each seed and after averaging the three seeds at each episode.",
+    "required_slices": ["test_id", "test_long_gap", "test_distractor_shift"],
+    "required_horizons": [3, 6],
+    "veto": "If any required old-development seed/horizon/split, or its measured-seed mean, has point maximum possible improvement below the original threshold, do not train the velocity candidate.",
+    "original_relative_threshold": 0.1,
+    "original_low_baseline_fallback": {"baseline_floor": 0.02, "absolute_error_reduction_threshold": 0.01},
+    "reported_intervals": "Report original paired_improvement 95% base-pair bootstrap intervals as context; veto uses the prespecified point ceiling. The validation ceiling is also reported.",
+    "passing_bound_means": "Only that this fixed output space does not rule out the required gain on observed development. It does not establish learnability, confidence-interval acceptance, causation, or fresh-test success.",
+    "no_automatic_rank_expansion": true
+  },
+  "velocity_intervention": {
+    "only_change": "The dependent variable in the existing weighted velocity regression changes from aligned projected history p + past_action(past_controls) to raw projected history p.",
+    "native": "v_native = -sum_i w_i (age_i - mean_age) (aligned_i - mean_aligned) / max(weighted_age_variance, 0.01)",
+    "candidate": "v_p = -sum_i w_i (age_i - mean_age) (p_i - mean_p) / max(weighted_age_variance, 0.01)",
+    "unchanged": [
+      "All model parameters and buffers, selected frames, recent buffer, masks, timestamps, batch ordering and padding",
+      "Attention weights, weighted age variance and its 0.01 floor",
+      "Action-aligned memory mean and past-action mean",
+      "All future action prefixes and the learned action/output networks",
+      "Full normalized future target and h3/h6 scoring"
+    ],
+    "downstream_use": "All existing occurrences of velocity, transported memory and velocity-action interaction consistently receive v_p. This is one upstream intervention, not separate edits.",
+    "training_or_parameter_update": false,
+    "rng_and_buffers": "Freeze eval mode; exact clone; compare parameter/buffer hashes before and after; require each paired forward to leave global Python/NumPy/Torch CPU RNG unchanged; restore the caller RNG after checkpoint construction.",
+    "two_frame_algebra": "For start < end, dt=end-start, kappa=variance/max(variance,0.01): v_native = 8*kappa*((p_end-p_start)/dt - W*sum(actions[start:end])/dt). Also v_native=v_p+v_action, using the actual attention and past-action tensors.",
+    "scalar_exports": ["span_steps", "variance", "kappa", "variance_floor_active", "native_velocity_mean_square", "pure_velocity_mean_square", "action_velocity_mean_square", "raw_visual_secant_mean_square", "raw_action_secant_mean_square", "action_to_visual_energy_ratio", "decomposition_max_abs_error", "two_frame_formula_max_abs_error"],
+    "algebra_tolerance": {"atol": 2e-5, "rtol": 2e-4, "reason": "Float32 weighted-covariance cancellation; native prediction reproduction remains byte exact."},
+    "interpretation_limit": "The action component is measured, not assumed harmful. This inference-only change is off-policy for weights trained on aligned velocity. A failed frozen contrast conservatively stops this branch, but does not prove that retraining every alternative would fail."
+  },
+  "statistics_and_eligibility": {
+    "resampling_unit": "Base trajectory pair, keeping both siblings together. Average horizons/conditions only for the prespecified aggregate; average measured seeds within the same episode before pooled resampling. Never count seeds, horizons, frames or siblings as independent extra samples.",
+    "bootstrap_replicates": 2000,
+    "bootstrap_seed": 0,
+    "interval": "Two-sided percentile 95% interval, matching original stats.py.",
+    "primary_privileged_gate": "For every seed 17/29/43 and separately h3/h6, native normalized future MSE minus pure-p normalized future MSE must have CI low > 0. Require the measured-seed mean at each horizon to satisfy the same rule.",
+    "primary_aggregate_gate": "For every seed and the measured-seed mean, the equal-weight average across recent_only/full_history/privileged_small_budget/random_small_budget and h3/h6 must have native-minus-pure mean >= 0; export the interval. This aggregate rule does not certify that every individual condition is noninferior.",
+    "additional_reported_metrics": "All original metrics, including state position MSE and pair margin. No auxiliary metric substitutes for a failed primary future-MSE gate.",
+    "authorize_singlefactor_training": "All source/input/forward/raw/algebra invariants pass AND no basis veto AND every primary validation gate passes. Wide replication cannot rescue any failure.",
+    "multiple_testing": "Every prespecified component must pass; no selection of the best seed, horizon, slice, arm or condition.",
+    "eligibility_not_submission": true
+  },
+  "only_conditional_training_candidate": {
+    "factor": "velocity regression dependent variable aligned -> p",
+    "input_policy": "Original start/end for both matched reference and candidate",
+    "everything_else": "Keep original shared predictor, parameter count, four-condition mixture, data/dynamics, train-only basis, targets, MSE+2 pair MSE+0.5 rank, seeds, 120 epochs, and earliest minimum validation-MSE checkpoint selection.",
+    "minimum_later_adoption": [
+      "All original task GO gates, with no threshold reduction or seed exclusion",
+      "Candidate privileged prediction versus fixed matched-reference recent under original gain rules for every required split/horizon/seed",
+      "Absolute candidate privileged MSE improvement versus matched-reference privileged prediction, preventing apparent gain caused by a deteriorating baseline",
+      "Fresh locked confirmation only after both task development decisions are supported, following the existing v4 protocol"
+    ],
+    "requires_separate_training_preregistration_and_actual_execution": true,
+    "no_implicit_change_of_rank_objective_or_model": true
+  },
+  "stop_conditions": [
+    "Any original raw, checkpoint, code, basis, membership, input, recent, RNG or weight proof fails: stop as invalid and investigate provenance, without interpreting science.",
+    "Any required fixed-basis ceiling is below the unchanged original threshold: veto velocity training, report the bottleneck, and do not automatically change rank.",
+    "Any primary seed/horizon privileged validation CI fails or the aggregate mean worsens: stop this candidate; do not select wide, another seed, coefficient, checkpoint or policy to rescue it.",
+    "If eligible, record eligibility only. No training, coefficient scan, architecture addition, new encoder, new target or fresh-test access occurs in this diagnostic."
+  ],
+  "outputs": ["motion_mechanism.json", "motion_mechanism.md", "motion_mechanism.raw.csv", "motion_mechanism.velocity.csv", "motion_mechanism.oracle.csv"],
+  "output_integrity": "Write only into a new diagnostic output path outside original run/shared/source directories; refuse existing mechanism outputs; verify hashes of all original files and the actually loaded scientific source before and after. Record source and diagnostic code hashes.",
+  "compute": "CPU-only cached-feature inference and scoring on one authorized course allocation. No encoder pass, GPU request, model fit, basis fit or data regeneration. Native/oracle and validation intervention may share a cache pass, but basis veto is applied before any later training eligibility."
+}

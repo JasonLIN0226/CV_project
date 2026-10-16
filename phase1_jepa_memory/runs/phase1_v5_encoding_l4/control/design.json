@@ -1,0 +1,377 @@
+{
+  "schema_version": 1,
+  "design_version": "v5",
+  "status": "DESIGN_COMPLETE_PROPOSED_NOT_IMPLEMENTED_NOT_RUN",
+  "request": "Redesign experiments from data onward, adapting only necessary ideas from the reviewed papers.",
+  "scope": "Real streaming-video feasibility plus unchanged original paired-physics acceptance; no learned deletion policy in Phase 1.",
+  "primary_data": {
+    "dataset": "Assembly101",
+    "camera": "C10095_rgb",
+    "split_origin": "SPACE participant-disjoint custom protocol, not official Assembly101 task split",
+    "participant_ids": {
+      "train": [
+        "9011",
+        "9013",
+        "9016",
+        "9022",
+        "9024",
+        "9025",
+        "9033",
+        "9034",
+        "9035",
+        "9043",
+        "9044",
+        "9046",
+        "9051",
+        "9052",
+        "9053",
+        "9055",
+        "9062",
+        "9063",
+        "9064",
+        "9065",
+        "9066",
+        "9072",
+        "9074",
+        "9075",
+        "9081",
+        "9082",
+        "9084",
+        "9085",
+        "9086"
+      ],
+      "validation": [
+        "9023",
+        "9036",
+        "9041",
+        "9045",
+        "9054",
+        "9056",
+        "9061",
+        "9071",
+        "9076",
+        "9083"
+      ],
+      "test": [
+        "9012",
+        "9014",
+        "9015",
+        "9021",
+        "9026",
+        "9031",
+        "9032",
+        "9042",
+        "9073"
+      ]
+    },
+    "metadata_selection_file": "designs/phase1_v5_assembly_metadata_selection.json",
+    "metadata_selection_sha256": "6247f23f3924d779737543c9e7f3ce3a040106abf9790487fc06eba0187aa6d6",
+    "recordings_per_participant": 2,
+    "planned_recording_counts": {
+      "train": 58,
+      "validation": 20,
+      "test": 18
+    },
+    "metadata_selection_seed": 27183,
+    "rgb_or_labels_downloaded": false,
+    "data_access": "User acceptance of official HF dataset contact-sharing conditions required before download; do not bypass.",
+    "sampling_fps": 2,
+    "timestamp_source": "Actual video PTS; official annotations use 30fps-extracted frame IDs, raw video nominal60fps.",
+    "episode_tokens": 256,
+    "maximum_nonoverlapping_episodes_per_recording": 4,
+    "episode_reset": "All methods clear memory at the same episode start, not at action boundaries.",
+    "short_video_policy": "No padding or concatenation; report insufficient-duration exclusions. No outcome-based replacement. Stop if a planned participant lacks eligible data.",
+    "query_start_step": 40,
+    "query_stride": 4,
+    "query_condition": "All four target frames inside the episode; same grid across methods and capacities.",
+    "development_image_encoding_upper_bound": 79872,
+    "sealed_test_image_encoding_upper_bound": 18432,
+    "count_is_planning_only": true
+  },
+  "encoder": {
+    "backend": "ijepa",
+    "repository": "facebook/ijepa_vith14_1k",
+    "revision": "f157467ea509bc356ff9f61fd3c0d840eec5e04e",
+    "processor": "Existing verified official no-crop processor",
+    "pooling": "grid2",
+    "dtype": "float32",
+    "batch_size": 2,
+    "frozen": true,
+    "causality": "Exactly one observed RGB frame per feature; no centered multi-frame window.",
+    "tsm_features_used": false,
+    "no_backbone_scan": true
+  },
+  "reader": {
+    "type": "Causal Transformer proposal",
+    "hidden": 256,
+    "layers": 2,
+    "heads": 4,
+    "ffn": 1024,
+    "input_and_output_basis_rank": 128,
+    "basis_and_normalization": "Train-only once; original synthetic fits reused for development bridge.",
+    "output": "current + train target mean + predicted coefficients times train-only residual basis; score full normalized target features.",
+    "position": "Actual age/time metadata remains identical under deletion; no reindex-based ordinal position.",
+    "physical_handcrafted_transport_removed": true,
+    "real_inputs": [
+      "observed features",
+      "observed timestamps and recent/history role",
+      "query horizon"
+    ],
+    "synthetic_additional_inputs": "Original legal past controls and horizon-specific planned-control prefix, never h6 controls in h3.",
+    "labels_as_predictor_inputs": false,
+    "separate_reader_per_policy": false,
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "real_training": {
+      "epochs": 30,
+      "batch_size": 64,
+      "optimizer": "AdamW",
+      "lr": 0.0003,
+      "weight_decay": 0.05,
+      "warmup_fraction": 0.05,
+      "model_dropout": 0.1,
+      "history_dropout": 0.15,
+      "memory_mixture": {
+        "recent_only": 0.25,
+        "fifo16": 0.25,
+        "reservoir16": 0.25,
+        "episode_full_prefix": 0.25
+      },
+      "loss": "Equal-weight normalized full-feature MSE across all four horizons",
+      "selection": "Earliest minimum equal-weight four-condition by four-horizon validation MSE"
+    },
+    "synthetic_training": {
+      "epochs": 120,
+      "batch_size": 64,
+      "optimizer_and_schedule": "Original v3 configuration",
+      "pair_mse_weight": 2.0,
+      "ranking_weight": 0.5,
+      "model_dropout": 0.0,
+      "history_dropout": "Original v3 unchanged",
+      "horizons": [
+        3,
+        6
+      ],
+      "recent": 4,
+      "budget": 2,
+      "selection": "Original earliest equal four-condition by two-horizon validation MSE"
+    },
+    "new_development_predictors": 9,
+    "reused_actual_v3_reference_predictors": 6,
+    "architecture_compute_comparison": "Report actual parameters/MACs/time; matched data/steps does not imply identical architecture compute."
+  },
+  "real_readout": {
+    "type": "24-way multilabel linear sigmoid",
+    "fit_split": "train only",
+    "fit_target": "Observed true encoded-frame active-verb union; no policy or predictor loss gradient.",
+    "seed": 0,
+    "l2": 0.001,
+    "epochs": 200,
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "batch_size": 256,
+    "validation_tuning": false,
+    "task_nll": "Mean 24 Bernoulli negative log likelihoods; all valid queries primary, foreground/background/boundary strata additional.",
+    "secondary": [
+      "macro mAP",
+      "Recall@5"
+    ],
+    "baseline": "Train label-frequency constant prediction"
+  },
+  "memory": {
+    "recent": 8,
+    "primary_capacity": 16,
+    "secondary_capacities": [
+      8,
+      32
+    ],
+    "horizons": [
+      1,
+      4,
+      16,
+      64
+    ],
+    "seconds_per_step": 0.5,
+    "recent_and_history_overlap": false,
+    "admission": "The item exiting recent becomes incoming history; fill free slots, otherwise permanently delete one of K+1 including possible rejection of incoming.",
+    "online_policies": [
+      "FIFO",
+      "Reservoir",
+      "Uniform random eviction"
+    ],
+    "reference_conditions": [
+      "recent_only",
+      "episode_full_history"
+    ],
+    "external_archive_or_extra_visual_summary": false,
+    "oracle_deployment_legal": false
+  },
+  "stage_A": {
+    "question": "Can encoded historical evidence be used by the common future predictor?",
+    "real_required_checks": [
+      "True-future readout beats train-frequency prior with participant-paired interval",
+      "Full episode history beats recent-only full-feature MSE at h16 and h64, each seed and participant-pooled interval",
+      "The same contrast improves future-action NLL at h16/h64, each seed and pooled"
+    ],
+    "additional": "Report every horizon and stratum, original basis oracle feasibility and all four memory conditions; no hidden-coordinate-only score.",
+    "synthetic_required_checks": "All original task rules plus fixed v3-reference recent and critical absolute privileged-MSE checks; no changed thresholds.",
+    "stop": "If real features/readout or actual reader/history checks fail, report the unresolved bottleneck; no automatic encoder change, rank expansion or selector training."
+  },
+  "stage_B": {
+    "question": "Do different deletions have measurable consequences under one frozen predictor?",
+    "source_trajectories": [
+      "FIFO16",
+      "Reservoir16"
+    ],
+    "states_per_recording_per_trajectory": 4,
+    "state_sampling": "Uniform deterministic valid full-memory states across eligible episodes, no loss/label-driven selection.",
+    "candidate_count": 17,
+    "continuation_steps": 32,
+    "continuation_policy": "Reservoir with common observed future and coupled per-update random draws across forks.",
+    "cost": "0.5 times immediate four-horizon MSE mean plus 0.5 times 32-step mean of four-horizon MSE",
+    "oracle_choice": "One joint-cost minimizer per state; exact ties delete earliest real timestamp. Do not separately pick the h16/h64 winners.",
+    "per_horizon_costs_reported": [
+      1,
+      4,
+      16,
+      64
+    ],
+    "action_nll_reported_for_all_candidates": true,
+    "real_required_checks": "Joint-cost oracle gain and gains at h16 and h64 versus both FIFO and Reservoir, positive intervals for every seed and participant-pooled estimate.",
+    "meaning": "Auxiliary oracle headroom, not a deployable result or evidence a lightweight policy can learn it.",
+    "synthetic_control": "Original evidence timestamps plus filler form three entries; all deletion alternatives retain exactly two; report gate cue and motion start/end contrasts separately."
+  },
+  "stage_C": {
+    "question": "What happens after repeated irreversible eviction?",
+    "trajectories": "Chronological per-episode replay; same stream/queries/encoder/reader/decoder/capacity across each matched comparison.",
+    "metrics": [
+      "Every-horizon feature MSE and verb NLL",
+      "Full-memory update count",
+      "Within-activity predictive drift",
+      "Activity-switch response",
+      "Clean/perturbed recovery"
+    ],
+    "corruption": {
+      "capacity": 16,
+      "fraction": 0.5,
+      "slots": 8,
+      "donor": "Same episode, older different annotated activity; evaluator injection only, never archive access for policy",
+      "offsets": [
+        0,
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "missing": "Report unavailable intervention/donor, never fabricate"
+    },
+    "no_stability_only_success": true
+  },
+  "statistics": {
+    "real_unit": "Participant, after within-episode then recording and participant aggregation; equal participant weights.",
+    "real_bootstrap": 10000,
+    "synthetic_unit": "Original base pair, siblings together",
+    "synthetic_bootstrap": 2000,
+    "bootstrap_seed": 0,
+    "interval": "Two-sided percentile95%",
+    "report_seeds_separately": true,
+    "no_frame_candidate_or_seed_pseudoreplication": true
+  },
+  "decision_rules": {
+    "real_signal_status": [
+      "REAL_FEASIBILITY_SUPPORTED",
+      "REJECTED",
+      "INCONCLUSIVE"
+    ],
+    "real_signal_is_phase1_go": false,
+    "original_rules_file": "configs/phase1_v4_protocol.json",
+    "original_rules_unchanged": true,
+    "original_rejections_preserved": true,
+    "independent_confirmation_requires": "Both original-task actual development adoption comparisons supported, real signal supported, all actual current checkpoint proofs complete and valid.",
+    "confirmation_synthetic": {
+      "seed": 9137,
+      "pairs_per_task": {
+        "train": 512,
+        "validation": 96,
+        "test_id": 256,
+        "test_long_gap": 256,
+        "test_distractor_shift": 256
+      },
+      "models": 12,
+      "roles": [
+        "new matched reference",
+        "new candidate"
+      ],
+      "seeds": [
+        17,
+        29,
+        43
+      ],
+      "epochs": 120,
+      "all_locked_before_tests": true,
+      "physics_and_thresholds": "Original unchanged",
+      "new_train_only_fits": true
+    },
+    "confirmation_real": "18 sealed recordings from9 held-out participants; all3 real predictors and decoder fixed before feature/label evaluation; no test adaptation.",
+    "phase2_policy_training": "Separate future protocol after Phase1, not included in present design."
+  },
+  "proposed_compute_limits": {
+    "data_audit": {
+      "cpu_threads": 4,
+      "hours": 1
+    },
+    "real_development_encoding": {
+      "a100": 1,
+      "hours": 4,
+      "preflight_frames": 512
+    },
+    "real_reader_training": {
+      "a100": 1,
+      "hours": 4
+    },
+    "synthetic_candidate_training_per_task": {
+      "cpu_threads": 4,
+      "memory_gb": 16,
+      "hours": 4,
+      "tasks": 2,
+      "sequential": true
+    },
+    "frozen_diagnostics": {
+      "cpu_threads": 4,
+      "memory_gb": 16,
+      "hours": 2,
+      "preflight_states": 8
+    },
+    "confirmation": "Separate locked resource plan only after actual gates. No present allocation.",
+    "over_budget": "Stop and report; do not silently reduce tasks, resolution, epochs, seeds or increase walltime.",
+    "course": "csci_ga_2271-2026fa",
+    "one_science_job_at_a_time": true
+  },
+  "necessary_changes": [
+    "Real procedural-video data and subject splits",
+    "One generic temporal reader, shared across memory policies",
+    "Direct B+1-to-B and continuous eviction evaluation",
+    "Separate representation/reader/deletion diagnostics"
+  ],
+  "not_adopted": [
+    "Learned retention in Phase1",
+    "PPO/GRPO joint model-policy training",
+    "Future-attention proxy supervision",
+    "Slow predictive basin and utility retrieval bank",
+    "Multiple datasets or encoder/hyperparameter scans"
+  ],
+  "before_execution": [
+    "Complete code and meaningful information-boundary smoke/preflight; software success is not science",
+    "Resolve earlier unspecified model switch without repeating its pending question",
+    "User completes official Assembly101 access conditions before any gated-data download",
+    "Hash-lock actual manifest/code/config; source and old outputs isolated",
+    "Verify current scheduler/course allocation identity; no dead-IP retries"
+  ],
+  "legacy_v4_gate": "Prepared but unsubmitted; not automatically combined with v5 reader candidate.",
+  "legacy_v4_velocity": "NOT_ELIGIBLE branch remains stopped.",
+  "new_data_or_training_executed": false
+}

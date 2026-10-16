@@ -1,0 +1,81 @@
+{
+  "status": "PRIMARY_PAPER_AND_SUPPLEMENT_AUDIT_NOT_REPRODUCED",
+  "scope": "Other eviction-policy papers and their first controlled studies or prerequisites; these papers do not share a standardized Stage 1 gate.",
+  "papers": [
+    {
+      "name": "Episodic Memory Reader",
+      "venue": "ACL 2019",
+      "primary": "https://aclanthology.org/P19-1434.pdf",
+      "supplement": "https://aclanthology.org/attachments/P19-1434.Supplementary.pdf",
+      "sections": [
+        "3.3",
+        "4.1",
+        "4.3",
+        "Supplement A",
+        "Supplement C"
+      ],
+      "first_study": "bAbI Task 2 with clean/noisy streams, 40 facts, 5 questions, memory 5/10/15; FIFO/LIFO/uniform and independent/contextual scorers; 3 runs.",
+      "prerequisite": "TVQA reader pretrained on annotated relevant frames to match the S+V timestamp baseline.",
+      "attribution": "Report solvable supporting-evidence retention separately from answer accuracy.",
+      "backbone": "Joint task/policy training is described; do not call the whole method frozen."
+    },
+    {
+      "name": "Reinforced Neural Processes",
+      "venue": "ICML 2026 RLxF Workshop",
+      "primary": "https://merl.com/publications/docs/TR2026-095.pdf",
+      "sections": [
+        "3.5",
+        "4.1",
+        "4.2"
+      ],
+      "first_study": "Four delayed dynamical streams; train prefix and held-out final 20%; memory 16/32/64/128; 10 seeds; matched backbone update budget.",
+      "reward": "Same current predictor and observed future evaluate chosen versus alternative memory.",
+      "backbone": "Jointly adapted, explicitly not frozen.",
+      "limitation": "Joint improvement does not isolate policy alone; no standalone Stage 1 pass protocol stated."
+    },
+    {
+      "name": "Learning to Evict from Key-Value Cache",
+      "venue": "ICML 2026 per current arXiv author metadata",
+      "primary": "https://arxiv.org/html/2602.10238v2",
+      "sections": [
+        "3.1.1",
+        "3.2",
+        "4.1",
+        "4.2",
+        "A.2"
+      ],
+      "prerequisite": "Fixed base LLM supplies offline Q/K/V traces; future attention supervises a cached-K/V/position policy.",
+      "evaluation": "RULER-4k accuracy and OASST2-4k perplexity against random, recency and other policies across matched absolute cache budgets; reward-proxy ablations plus live downstream tasks.",
+      "limitation": "Future attention is a surrogate and its additive/nested ranking argument does not automatically transfer to complementary visual evidence."
+    },
+    {
+      "name": "Neural Garbage Collection",
+      "venue": "2026 arXiv paper",
+      "primary": "https://arxiv.org/html/2604.18002",
+      "sections": [
+        "4.5",
+        "4.6",
+        "5.2"
+      ],
+      "first_study": "Countdown, 250 updates, 1024 held-out problems; increasing eviction curriculum, no-eviction and heuristic controls, replay-mask and eviction-gradient ablations.",
+      "backbone": "Joint reasoning and eviction, no requirement for an already successful frozen reader.",
+      "limitation": "Co-adaptation tests a different estimand from fixed-predictor eviction."
+    },
+    {
+      "name": "What Should an Agent Remember?",
+      "venue": "2026 arXiv evaluation preprint",
+      "primary": "https://arxiv.org/html/2610.00366",
+      "sections": [
+        "3",
+        "4",
+        "5"
+      ],
+      "first_study": "Retention by selection factorial design, same 300 episodes, separate target survival and required-fact recall; SQuAD replication.",
+      "limitation": "An evaluation paper, not a trained deletion policy. Oracle retention/selection are privileged diagnostics."
+    }
+  ],
+  "implication_for_our_project": "Propose separate reader usability, matched-state deletion consequences, and sequential retention evaluations before a learned deletion policy. Proposal only; retain all actual failures and original GO rules.",
+  "new_protocol_preregistered": false,
+  "new_science_launched": false,
+  "pending_model_clarification_unchanged": true
+}

@@ -1,0 +1,70 @@
+{
+  "utc": "2026-10-15T23:32:43.453740+00:00",
+  "native_result_source": "native_diagnostic_completed7518/diagnostics/job_7518/diagnostic_results.json",
+  "native_result_sha256": "f3c4bac0155d027fa18642eda60a1a9a7666084242259630f1de9dce3bfbde61",
+  "native_diagnostic_job": "7518COMPLETED0:0;161CPUwallseconds;0GPU",
+  "all_144_diagnostic_slices_finite": true,
+  "full12_current_best_latest_checkpoints_and48old_sources3diagnostic_sources_verified": true,
+  "compact_transfer": "native_diagnostic_completed7518/transfer_integrity.json",
+  "gate": [
+    {
+      "seed": 17,
+      "best_epoch": 12,
+      "diagnostic_32pair_validation_mse": 0.1000470519065857,
+      "best_predicted_target_pair_RMS_ratio": 0.038537089711828745,
+      "best_history_correction_RMS": 0.015450290869921446,
+      "latest_epoch": 120,
+      "latest_diagnostic_validation_mse": 0.14440886303782463
+    },
+    {
+      "seed": 29,
+      "best_epoch": 120,
+      "diagnostic_32pair_validation_mse": 0.03666558861732483,
+      "best_predicted_target_pair_RMS_ratio": 0.9770916274816678,
+      "best_history_correction_RMS": 0.2694943994283676,
+      "latest_epoch": 120,
+      "latest_diagnostic_validation_mse": 0.03666558861732483
+    },
+    {
+      "seed": 43,
+      "best_epoch": 119,
+      "diagnostic_32pair_validation_mse": 0.03478610888123512,
+      "best_predicted_target_pair_RMS_ratio": 0.978677305261485,
+      "best_history_correction_RMS": 0.27060656249523163,
+      "latest_epoch": 120,
+      "latest_diagnostic_validation_mse": 0.03482096083462238
+    }
+  ],
+  "motion": [
+    {
+      "seed": 17,
+      "validation_pair_RMS_ratio": 0.8068136877004279,
+      "long_gap_pair_RMS_ratio": 0.40442969794628864,
+      "long_gap_time_visual_embedding_RMS_ratio": 2.0261529742580424,
+      "age_plus16_diagnostic_output_change_RMS": 0.13816555589437485
+    },
+    {
+      "seed": 29,
+      "validation_pair_RMS_ratio": 0.8422161514291086,
+      "long_gap_pair_RMS_ratio": 0.34094926612895166,
+      "long_gap_time_visual_embedding_RMS_ratio": 1.9579079751053117,
+      "age_plus16_diagnostic_output_change_RMS": 0.14502199739217758
+    },
+    {
+      "seed": 43,
+      "validation_pair_RMS_ratio": 0.8475801860337271,
+      "long_gap_pair_RMS_ratio": 0.4621226389869043,
+      "long_gap_time_visual_embedding_RMS_ratio": 2.308939796940334,
+      "age_plus16_diagnostic_output_change_RMS": 0.16324015706777573
+    }
+  ],
+  "interpretation": {
+    "gate": "Seed17 selected model scarcely separates histories on the fixed diagnostic validation pairs; seeds29/43 nearly preserve target pair amplitude. Later seed17 corrections grow while validation worsens. Supports an optimization/reader-learning failure, not replacing the original checkpoint-selection rule.",
+    "motion": "Long-gap sibling prediction amplitude is weaker than validation; absolute-time embeddings increase relative to visual embeddings and shifting age changes output. Supports testing a bounded relative-time reader with explicit observed-feature transport. Does not prove absolute-time embedding is the sole cause.",
+    "counterfactual_warning": "Age+16 with identical RGB/targets is a representation-sensitivity diagnostic, not a physically valid new test or a passing performance score."
+  },
+  "candidate_decision": "Keep the single previously provisional PMA+observed-relations architecture; stabilize optimization with a fixed lower LR/warmup schedule; no candidate sweep or held-out selection. Full executable training/evaluation protocol still must be completed and locked before GPU submission.",
+  "original_acceptance_gates_unchanged": true,
+  "fresh9137_accessed": false,
+  "phase1_go": false
+}

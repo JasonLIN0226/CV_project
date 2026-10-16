@@ -1,0 +1,51 @@
+{
+  "status": "BINDING_TEMPLATE_NOT_PREREGISTERED_NOT_SUBMITTED",
+  "course": "csci_ga_2271-2026fa",
+  "encoding_job_id": null,
+  "encoding_source_lock_sha256": "01f0adc454082c050331fc7d30911814f46c8cbf4740b56697b12796dc9797df",
+  "cache_audit_source_lock_sha256": null,
+  "actual_cache_audit_sha256": null,
+  "actual_encoding_report_sha256": null,
+  "data_scope": "all58train20validation_no_sealed",
+  "actual_required_observations": 50688,
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "epochs": 30,
+  "horizons": [
+    1,
+    4,
+    16,
+    64
+  ],
+  "reader": {
+    "rank": 128,
+    "hidden": 256,
+    "layers": 2,
+    "heads": 4,
+    "ffn": 1024,
+    "dropout": 0.1
+  },
+  "batch_size": 64,
+  "base_queries_per_batch": 16,
+  "history_dropout": 0.15,
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.0003,
+    "weight_decay": 0.05,
+    "warmup_fraction": 0.05,
+    "schedule": "cosine_to_zero"
+  },
+  "budget": {
+    "gpu_count": 0,
+    "cpu_threads": 4,
+    "hours": 4,
+    "soft_stop_seconds": 13800,
+    "preflight": "first_complete_epoch_including_validation_times90_plus_setup"
+  },
+  "requires_actual_complete_cpu_cache_and_audit_before_formal_lock_fit_or_submit": true,
+  "no_scientific_model_optimizer_loss_or_seed_change": true,
+  "not_phase1_go": true
+}

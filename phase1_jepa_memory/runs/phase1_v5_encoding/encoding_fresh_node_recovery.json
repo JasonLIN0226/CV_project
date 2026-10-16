@@ -1,0 +1,41 @@
+{
+  "status": "ONE_FRESH_NODE_OPERATIONAL_RECOVERY_PREREGISTERED_NOT_SUBMITTED",
+  "failed_actual_jobs": [
+    6965,
+    6980
+  ],
+  "backup_submission_rejected": {
+    "partition": "c24m170-a100-2",
+    "exit_code": 1,
+    "job_id": null,
+    "actual_error": "partition c24m170-a100-2 is invalid for this job",
+    "no_allocation": true
+  },
+  "metadata_tests": {
+    "test_only_no_allocations": true,
+    "typed_one_a100_on_c12_accepted": true,
+    "c24_one_gpu_rejected": true,
+    "test_only_estimate_id": 6983,
+    "estimate_is_not_actual_job": true
+  },
+  "fresh_target": {
+    "node": "b-19-100",
+    "partition": "c12m85-a100-1",
+    "boot_time": null,
+    "slurmd_start": null,
+    "current_state": "IDLE+CLOUD+POWERED_DOWN+NOT_RESPONDING",
+    "gpu_a100": 1,
+    "no_prior_runtime_observed": true
+  },
+  "operational_hypothesis": "Explicitly target an as-yet-unbooted node after two startup failures on previously booted nodes. This does not establish stale-node causation; if startup fails again, stop this automatic recovery sequence rather than resubmit endlessly.",
+  "resources": {
+    "course": "csci_ga_2271-2026fa",
+    "requested_gpu_a100": 1,
+    "cpus": 4,
+    "memory_gb": 60,
+    "walltime": "04:00:00"
+  },
+  "same_source_lock_sha256": "384ef961b067c6c0d7189e02ca370a13d680c5d8e11e13df67d1fdf8b3537ca2",
+  "same_model_encoder_data_and_first512_gate": true,
+  "scientific_hypothesis_or_threshold_change": false
+}

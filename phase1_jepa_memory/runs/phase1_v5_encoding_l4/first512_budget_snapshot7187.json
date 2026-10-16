@@ -1,0 +1,208 @@
+{
+  "status": "ACTUAL_GPU_FIRST512_BUDGET_PASS_ENCODING_CONTINUES_NOT_FULLCACHE_NOT_READERTRAINING",
+  "created_utc": "2026-10-13T20:35:45.107528+00:00",
+  "actual_course_guard": "7187|RUNNING|csci_ga_2271-2026fa|c12m85-a100-1|b-19-56\n",
+  "actual_slurm": "7187|RUNNING|0:0|csci_ga_2271-2026fa|c12m85-a100-1|2026-10-13T20:31:31|00:04:14|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n",
+  "all14_source_sha_verified": {
+    "protocol.json": "c456f06f572df47e66e7863ca752e22214c44846ab9be9934955f31ffa79ac7c",
+    "manifest.json": "eb4ff098e79b4bf1038db1115c8aa9a7b6872c390ef38347c9e2ad84752b4d01",
+    "pts_report.json": "c85481d98636e2e6c0b8911ba8d920195a6b76166af940b70b97333e818da996",
+    "design.json": "28c4b7b748db530db5a8fd341603a8ab1e0245f166a43999290a4f134e730fe3",
+    "authorization.json": "e3161e89a37e5d0e63916c7e180e7c2a685a06c644d4c816f477afbab215575c",
+    "src/phase1/__init__.py": "d45076af62de5cc47c8f5d69833d8135ef39586face345742334367293671b6d",
+    "src/phase1/encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871",
+    "src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14",
+    "src/phase1/v5_encoding.py": "5e25e971000752ea0749e45389ab6e65df903917d6a1d5e2e0fbcdeaab3f1085",
+    "scripts/v5_encode_real.py": "1d0885d281f5e25d2c7d4b29f081e55133bba4b31fab8ea35e451557a8097d9c",
+    "scripts/v5_causal_frame_stream.py": "a695bdbb4f970e041c738fdf11fab6a0f4fad1e594430f5a20ffd442913fcb10",
+    "scripts/v5_video_causality.py": "6ec55db658e204879e1bbcc2d28e8e42a2a53152219e3f45bbbdb520ddbd11f7",
+    "tests/test_v5_encoding.py": "d49ab82a89a51982497aeb22ea3baccb2e73808ead61320184c658f975f56eb5",
+    "decode_performance_proof.json": "96195cd40dac558f994a039315e3c1f70b66a8baebec14f534f6f03068f05b5f"
+  },
+  "encoding_report_snapshot": {
+    "schema_version": 1,
+    "status": "RUNNING_FROZEN_SINGLE_FRAME_ENCODING",
+    "job_id": "7187",
+    "course": "csci_ga_2271-2026fa",
+    "host": "b-19-56",
+    "device": "NVIDIA A100-SXM4-40GB",
+    "runtime": {
+      "torch": "2.12.1+cu126",
+      "cuda": "12.6",
+      "numpy": "1.26.4",
+      "av": "18.0.0",
+      "cpu_threads": 4
+    },
+    "protocol_sha256": "c456f06f572df47e66e7863ca752e22214c44846ab9be9934955f31ffa79ac7c",
+    "source_lock_sha256": "cd667fc4f029660c198353570686a8ed8f069a0e2dab1434e912776f5521985e",
+    "manifest_sha256": "eb4ff098e79b4bf1038db1115c8aa9a7b6872c390ef38347c9e2ad84752b4d01",
+    "pts_report_sha256": "c85481d98636e2e6c0b8911ba8d920195a6b76166af940b70b97333e818da996",
+    "new_weights_trained": false,
+    "predictor_trained": false,
+    "task_labels_read": false,
+    "sealed_rgb_or_numeric_labels_read": false,
+    "phase1_passed": false,
+    "frames_encoded": 1152,
+    "forwards": 576,
+    "planned_frames": 50688,
+    "completed_recordings": [
+      {
+        "recording": "nusar-2021_action_both_9011-c13b_9011_user_id_2021-02-01_160915",
+        "participant": "9011",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9011-c13b_9011_user_id_2021-02-01_160915/C10095_rgb.mp4",
+        "rgb_sha256": "d06cf50103c19228ceade1aed54b37d553ce23be5bef6bbb66468021a9f62c3e",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          },
+          {
+            "episode": 1,
+            "start_seconds": [
+              128,
+              1
+            ],
+            "last_observation_seconds": [
+              511,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_000.npy",
+          "shape": [
+            512,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 10485888,
+          "sha256": "a3f6bbabb4d38009cb1de3268656d58d1ec9ddf6428da34b886dfd7804f0cb4a",
+          "timestamp_sha256": "7d8a0e3de88cb520d846b27d5d37cde7f4321cd311d130dd59d5922bdddaae1c",
+          "forwards": 256
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9011-b06b_9011_user_id_2021-02-01_154253",
+        "participant": "9011",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9011-b06b_9011_user_id_2021-02-01_154253/C10095_rgb.mp4",
+        "rgb_sha256": "5e5d775a989f65275c1bdfc2d05da32c90b1fdf02b78e7e4721be53c04917f1b",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_001.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "1908acdcc02ad937c64e45e64ad05ecc4f8069c26b9c499b169d645ddecc9875",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      },
+      {
+        "recording": "nusar-2021_action_both_9013-a28_9013_user_id_2021-02-02_134923",
+        "participant": "9013",
+        "split": "train",
+        "rgb_path": "recordings/nusar-2021_action_both_9013-a28_9013_user_id_2021-02-02_134923/C10095_rgb.mp4",
+        "rgb_sha256": "5c7d156659bbd93c702f808165175a7c7ab57f957e01142edb35d25dc8071864",
+        "episodes": [
+          {
+            "episode": 0,
+            "start_seconds": [
+              0,
+              1
+            ],
+            "last_observation_seconds": [
+              255,
+              2
+            ],
+            "tokens": 256,
+            "queries": 38,
+            "maximum_selection_lag_seconds": [
+              0,
+              1
+            ]
+          }
+        ],
+        "feature": {
+          "path": "recording_002.npy",
+          "shape": [
+            256,
+            5120
+          ],
+          "dtype": "float32",
+          "bytes": 5243008,
+          "sha256": "0227aac1a5f21fa327167d8db73e9c5894f660237e4c54ad8b1f0e80f60f0477",
+          "timestamp_sha256": "97a8bfcbd968f40d4c7ac39c1ee198b17b65bce240b30e6cf2a2480a192b5e6b",
+          "forwards": 128
+        }
+      }
+    ],
+    "preflight_passed": true,
+    "actual_official_checkpoint_files": {
+      "model.safetensors": {
+        "bytes": 2523108984,
+        "sha256": "ad6c1f6e318ace5633bea4496bc5c76248f6dc59c9a0d8a010cf31ed9dee2da8"
+      },
+      "config.json": {
+        "bytes": 497,
+        "sha256": "4ea10a6c56020bfcdaff768056a3d5763b991c81da9556a79ef1ad0a06d61846"
+      },
+      "preprocessor_config.json": {
+        "bytes": 325,
+        "sha256": "a34861a24e781942424ad790b82bc99348404a2e64ea882de88c40905851698d"
+      }
+    },
+    "encoder_metadata_sha256": "870a9bbceca9abb30c1f3242e6c0a08f3dd6a6b84b2970b9e6dbf95441819774",
+    "setup_seconds": 38.341418937,
+    "elapsed_seconds": 220.549150857,
+    "first512_projected_total_seconds": 7965.841047513
+  },
+  "first512_feature_bytes_rehashed_before_after_stable": true,
+  "first512_feature_sha_exact_equal_prior7179": true,
+  "feature_sha256": "a3f6bbabb4d38009cb1de3268656d58d1ec9ddf6428da34b886dfd7804f0cb4a",
+  "complete_cache_audit_finished": false,
+  "reader_training_started": false,
+  "phase1_go": false,
+  "arrays_weights_mirrored": false
+}

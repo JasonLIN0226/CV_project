@@ -1,0 +1,28 @@
+{
+  "observed_utc": "2026-10-14T03:20:06.984696+00:00",
+  "source": "https://api.github.com/repos/assembly-101/assembly101-action-recognition/issues/1/comments?per_page=100",
+  "pagination_link": null,
+  "comments": [
+    {
+      "id": 1200097250,
+      "url": "https://github.com/assembly-101/assembly101-action-recognition/issues/1#issuecomment-1200097250",
+      "author": "dibschat",
+      "association": "COLLABORATOR",
+      "body": "Hi!\r\n\r\nIf you are asking about the per-frame TSM features for action anticipation/segmentation, we directly use the 2D backbone of the TSM (without any shifting operations) pretrained for action recognition to extract the features for each frame.\r\nWe also tried a (2D backbone + shifting) version where we densely sampled 8 consecutive frames in a sliding window manner and have the 2048-D segment feature correspond to the middle frame of the segment - but the performance improvement was extremely marginal. Hence, we sticked to the lightweight 2D backbone only."
+    },
+    {
+      "id": 1200149365,
+      "url": "https://github.com/assembly-101/assembly101-action-recognition/issues/1#issuecomment-1200149365",
+      "author": "olga-zats",
+      "association": "NONE",
+      "body": "Hi!\r\n\r\nThank you for the response, that's exactly what I meant :)\r\n\r\nBest,\r\nOlga"
+    },
+    {
+      "id": 1791697133,
+      "url": "https://github.com/assembly-101/assembly101-action-recognition/issues/1#issuecomment-1791697133",
+      "author": "aleflabo",
+      "association": "NONE",
+      "body": "Hi! \r\n\r\nI'm trying to extract the features of a dataset after training the proposed TSM on it. Following the suggestion above, I should train the 2D backbone without shift, and this is what I'm trying:\r\n\r\n`python main.py dataset RGB --arch resnet50 --num_segments 8 --gd 20 --lr 0.001 --lr_steps 20 40 --epochs 50 --batch-size 32 -j 16 --dropout 0.5 --consensus_type=avg --eval-freq=1 --npb --tune_from=pretrained_models/tsm_rgb_epic.ckpt --gpus 0 1\r\n`\r\nIn this way the features in output of the base_model have a shape of (128, 2048). This is due to the number of segments, 128 = num_segments*batch_size. \r\n\r\nHow should I handle this problem to save the correct 2048-D tensor per frame?\r\n\r\nKind regards,\r\nAlessandro\r\n"
+    }
+  ]
+}

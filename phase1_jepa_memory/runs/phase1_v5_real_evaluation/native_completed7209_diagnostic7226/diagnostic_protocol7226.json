@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "status": "ACTUAL_ALL6_MODEL_HASH_BOUND_FROZEN_REAL_DIAGNOSTICS",
+  "training_job_id": 7209,
+  "training_root": "/scratch/xl4358/phase1_v5_real_frame_training/job_7209",
+  "training_control": "/scratch/xl4358/phase1_jepa_memory_v5_real_frame_training",
+  "encoding_root": "/scratch/xl4358/phase1_v5_real_encoding_frame/job_7187",
+  "encoding_control": "/scratch/xl4358/phase1_jepa_memory_v5_encoding_frame",
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "horizons": [
+    1,
+    4,
+    16,
+    64
+  ],
+  "capacities": [
+    8,
+    16,
+    32
+  ],
+  "primary_capacity": 16,
+  "annotation_frame_phase_proved": false,
+  "actual_training_report_sha256": "dce34836a41224bcaeec87a0d25d263769f5e1ebe9e12a84b018595984b100cb",
+  "actual_fit_proof_sha256": "18c44903742143b482aef5a7c035aa2540fb3f60ba8963c50971be8abc5fd7aa",
+  "actual_checkpoint_files": {
+    "seed_17/best.pt": "54ab370c4e98b53aa7ebb6bc8b9777d489090a3eda6cb771a973260e2a9595f7",
+    "seed_17/latest.pt": "9dcd837e62fb5654b1c567ea768ff46640e2bb1abd5a2faaa30bacb847e65e9e",
+    "seed_17/training.csv": "f67a9452f683cd3823b60a7bddfb3870bd8385d1e9d96dfee8f76ea341c4c8e2",
+    "seed_17/checkpoint_proof.json": "12a486a34280aa9db3474a97f8013afea59a884a6927263002456da61fba2ede",
+    "seed_29/best.pt": "9914834014d516af3511b4738c2b194161c08e82538973f2a6f245bd15cdb735",
+    "seed_29/latest.pt": "d7e647026a9a4395854c59c0431f8f768f949427438599495e274723856db6e2",
+    "seed_29/training.csv": "69474d56f53c0979f02575e0cc3fb824549c4167db196160cafa355817bb1b76",
+    "seed_29/checkpoint_proof.json": "17755317347eba59b9582ff50e9c1bd11dbdbf26f36b57c615a4cc33dbf0a8c3",
+    "seed_43/best.pt": "b08f5712c80ee84c7706705b27c74d7a2c557051401f5b85725527458fdbfcdb",
+    "seed_43/latest.pt": "99d8a7628e79e8713a95c97034f5d76633fe7f713aa11281f77eaf42849d6806",
+    "seed_43/training.csv": "6cce09882fd5a0ec10bde62d9a35e3f8018bcaa85d67f09c0b0b58d1250d7ad4",
+    "seed_43/checkpoint_proof.json": "ca83cff70cef1fe108915add043e719d709141cddf800db746694a63e82008d2"
+  },
+  "design_sha256": "28c4b7b748db530db5a8fd341603a8ab1e0245f166a43999290a4f134e730fe3",
+  "budget": {
+    "cpu_threads": 4,
+    "memory_gb": 16,
+    "hours": 2,
+    "soft_stop_seconds": 6900,
+    "preflight_states": 8
+  },
+  "statistics": {
+    "unit": "participant_after_episode_then_recording_aggregation",
+    "bootstrap": 10000,
+    "seed": 0,
+    "CI": 0.95,
+    "seeds_separate_and_participant_pooled": true
+  },
+  "health_scope": "All2356validation queries/all4conditions/all4horizons/all3seeds; literal full5120D normalized MSE; basis oracle and persistence diagnostics",
+  "deletion_scope": "All78recordings/FIFO16 andReservoir16 source trajectories/four uniformly chosen valid states/all17primary deletions/common32Reservoir draws/all3seeds; one joint .5instant+.5continuation oracle choice, exacttie earliesttimestamp; h16/h64 report same chosen deletion",
+  "replay_scope": "All198episodes/3frozen models/FIFO,Reservoir,Uniform online persistent records/capacity16main and8,32fixedsecondary/same38queries/noarchive/reentry",
+  "missing_semantic_components": "Verb readout/NLL, within-activity drift, switch response and different-activity donor recovery remain unavailable; no guessed label/frame join or fabricated donor",
+  "return_status": "REJECTED if an actual required visual subgate fails; INCONCLUSIVE when visual checks pass while registered semantic checks are unavailable; never Phase1GO",
+  "no_fit_or_training": true,
+  "no_labels_or_sealed_reads": true,
+  "actual_model_proof_sha256": "187d3155c98659de0c3452f5bda86273cda780a69aa8337510ccb89d11886776"
+}

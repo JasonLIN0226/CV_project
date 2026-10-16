@@ -1,0 +1,51 @@
+{
+  "utc": "2026-10-15T17:46:16.798019+00:00",
+  "sacct": "7485|RUNNING|0:0|2026-10-15T17:44:22|Unknown|00:02:01|b-19-75\n7485.batch|RUNNING|0:0|2026-10-15T17:44:22|Unknown|00:02:01|b-19-75\n7485.extern|RUNNING|0:0|2026-10-15T17:44:22|Unknown|00:02:01|b-19-75\n7486|PENDING|0:0|Unknown|Unknown|00:00:00|None assigned\n7487|PENDING|0:0|Unknown|Unknown|00:00:00|None assigned\n",
+  "current": {
+    "first_epoch_budget.json": {
+      "projection_seconds": 9846.775780851594,
+      "soft_seconds": 17174,
+      "passed": true,
+      "method_pass": false,
+      "prior_GPU_seconds_charged": 226,
+      "measured_full_epochs": {
+        "gate": 11.663731646999992,
+        "motion": 7.467000071000001
+      },
+      "preload_seconds": {
+        "gate": 39.302129670999996,
+        "motion": 26.791411014999994
+      },
+      "uncompleted_epochs": 718,
+      "safety_factor": 1.1,
+      "additional_model_setup_reserve_seconds": 240,
+      "proof_reserve_seconds": 300
+    },
+    "preload.json": {
+      "tasks": {
+        "gate": 39.302129670999996,
+        "motion": 26.791411014999994
+      },
+      "held_out_loaded": false,
+      "original_FeatureStore_unchanged": true,
+      "elapsed_seconds": 72.125095807
+    },
+    "progress.json": {
+      "task": "gate",
+      "seed": 17,
+      "epoch": 2,
+      "step": 128,
+      "completed_models": 0,
+      "held_out_evaluated": false
+    },
+    "actual_gpu.json": {
+      "job": "7485",
+      "account": "csci_ga_2271-2026fa",
+      "GPU": "NVIDIA A100-SXM4-40GB",
+      "torch": "2.12.1+cu126",
+      "threads": 4
+    }
+  },
+  "stderr": "",
+  "stdout_tail": "b-19-75\n10.144.0.52 \nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHtpSnAom5OMzBQ5aYIcIvycShU/KNV/JUdU9EdZ3gXc root@b-19-75\nNVIDIA A100-SXM4-40GB, 610.43.02, 40960 MiB\nEPOCH gate seed=17 1/120 val=0.09876540 seconds=11.66\nEPOCH motion seed=17 1/120 val=0.15755496 seconds=7.47\nEPOCH gate seed=17 2/120 val=0.09881758 seconds=9.29\n"
+}

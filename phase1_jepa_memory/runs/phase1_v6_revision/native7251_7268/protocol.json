@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "ACTUAL_ALL6_MODEL_HASH_BOUND_FROZEN_REAL_DIAGNOSTICS",
+  "training_job_id": 7251,
+  "training_root": "/scratch/xl4358/phase1_v6_real_wd020/job_7251",
+  "training_control": "/scratch/xl4358/phase1_jepa_memory_v6_real_wd020",
+  "encoding_root": "/scratch/xl4358/phase1_v5_real_encoding_frame/job_7187",
+  "encoding_control": "/scratch/xl4358/phase1_jepa_memory_v5_encoding_frame",
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "horizons": [
+    1,
+    4,
+    16,
+    64
+  ],
+  "capacities": [
+    8,
+    16,
+    32
+  ],
+  "primary_capacity": 16,
+  "annotation_frame_phase_proved": false,
+  "actual_training_report_sha256": "e7da2f91dbc05f9cd5c6ab349c63f60848ca79da8059674db378bc6c62f50b73",
+  "actual_fit_proof_sha256": "18c44903742143b482aef5a7c035aa2540fb3f60ba8963c50971be8abc5fd7aa",
+  "actual_checkpoint_files": {
+    "seed_17/best.pt": "e063537ba62602be1af22ec530d727080b67d7e402188e91089b86665fe3dfe8",
+    "seed_17/latest.pt": "949ee3dbaedc8a553d11487d09fa7794d5692fb8ccc44a6a076cc339d46d98ad",
+    "seed_17/training.csv": "52754ea2c7d8a0678be8e7b2273f6c142ef0342d5b58f948430507663fbaca41",
+    "seed_17/checkpoint_proof.json": "5830e49f1381af92e29892486cac801d5ada51e1a28e73086354e46fc4d5ba52",
+    "seed_29/best.pt": "0ee75b469290985e0348fdc6a47346d53fceb2f3da2b29c272a5fd3d56b4e04e",
+    "seed_29/latest.pt": "874db75c0ddc95f8136b31abf9d39ce58276f9878592b40bd010b694d2b43da3",
+    "seed_29/training.csv": "66861f0565fbf64f6c83b902e3046ef82d4d17558fe3fe6bafde710e399b86ae",
+    "seed_29/checkpoint_proof.json": "415e07b5fcb326474b6d385e0195e84c94de3d197ef99bab7e86bf8bbb207bc1",
+    "seed_43/best.pt": "4dee4f2fe38edbf890ce0d27407b54a0524d8ff9ea79b26626044399b292852d",
+    "seed_43/latest.pt": "8787370ed1f1ec5d57383995f68ab19f297e9faf57787c55bff1db0c0c059dec",
+    "seed_43/training.csv": "e9baa47792f400f03aa1eafbcf20e886a0cc93ac66d3cf535c23e4f731bc27e4",
+    "seed_43/checkpoint_proof.json": "f20a3056c4e6ff2403985ecc7569c3a608cbd3ddf06d48698e0d4fa1e399cfa6"
+  },
+  "design_sha256": "28c4b7b748db530db5a8fd341603a8ab1e0245f166a43999290a4f134e730fe3",
+  "budget": {
+    "cpu_threads": 4,
+    "memory_gb": 16,
+    "hours": 2,
+    "soft_stop_seconds": 6900,
+    "preflight_states": 8
+  },
+  "statistics": {
+    "unit": "participant_after_episode_then_recording_aggregation",
+    "bootstrap": 10000,
+    "seed": 0,
+    "CI": 0.95,
+    "seeds_separate_and_participant_pooled": true
+  },
+  "health_scope": "All2356validation queries/all4conditions/all4horizons/all3seeds; literal full5120D normalized MSE; basis oracle and persistence diagnostics",
+  "deletion_scope": "All78recordings/FIFO16 andReservoir16 source trajectories/four uniformly chosen valid states/all17primary deletions/common32Reservoir draws/all3seeds; one joint .5instant+.5continuation oracle choice, exacttie earliesttimestamp; h16/h64 report same chosen deletion",
+  "replay_scope": "All198episodes/3frozen models/FIFO,Reservoir,Uniform online persistent records/capacity16main and8,32fixedsecondary/same38queries/noarchive/reentry",
+  "missing_semantic_components": "Verb readout/NLL, within-activity drift, switch response and different-activity donor recovery remain unavailable; no guessed label/frame join or fabricated donor",
+  "return_status": "REJECTED if an actual required visual subgate fails; INCONCLUSIVE when visual checks pass while registered semantic checks are unavailable; never Phase1GO",
+  "no_fit_or_training": true,
+  "no_labels_or_sealed_reads": true,
+  "optimizer_weight_decay": 0.2,
+  "old_reference_job_id": 7209,
+  "old_visual_diagnostic_job_id": 7226,
+  "fixed_old_reference_comparison": "New full-history must have positive original95% participant CI against old7209 recent and old7209 full at h16/h64 for3seeds+pooled (16checks), using old executed7226scalar SHA, no old reinference. Separate from originalA/B, no weaker gate.",
+  "old_raw_sha256": "d158c869a132f1db35fbdc2491802c6899a4770dfc13a0338c0facca30eeed2c",
+  "actual_model_proof_sha256": "b8f41d7579c92722a7eca0b80f63c80aede6347ae744bf7b47de425b39cdca85"
+}

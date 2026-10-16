@@ -1,0 +1,61 @@
+{
+  "utc": "2026-10-14T22:41:48.059007+00:00",
+  "host": "b-19-16",
+  "sacct": {
+    "returncode": 0,
+    "stdout": "7424|CANCELLED by 3850228|0:0|csci_ga_2271-2026fa|2026-10-14T22:23:12|2026-10-14T22:37:37|00:14:25|00:15:00|billing=2,cpu=2,mem=1500M,node=1\n7424.batch|CANCELLED|0:15|csci_ga_2271-2026fa|2026-10-14T22:23:12|2026-10-14T22:37:38|00:14:26||cpu=2,mem=1500M,node=1\n7424.extern|COMPLETED|0:0|csci_ga_2271-2026fa|2026-10-14T22:23:12|2026-10-14T22:37:38|00:14:26||billing=2,cpu=2,mem=1500M,node=1\n7426|RUNNING|0:0|csci_ga_2271-2026fa|2026-10-14T22:38:12|Unknown|00:03:43|03:19:00|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n7426.batch|RUNNING|0:0|csci_ga_2271-2026fa|2026-10-14T22:38:12|Unknown|00:03:43||cpu=12,gres/gpu=1,mem=60G,node=1\n7426.extern|RUNNING|0:0|csci_ga_2271-2026fa|2026-10-14T22:38:12|Unknown|00:03:43||billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n",
+    "stderr": ""
+  },
+  "squeue": {
+    "returncode": 0,
+    "stdout": "7426 RUNNING cv-far-phase1 gres/gpu:1 b-19-16\n",
+    "stderr": ""
+  },
+  "GPU": {
+    "returncode": 0,
+    "stdout": "34 %, 4354 MiB, NVIDIA A100-SXM4-40GB\n",
+    "stderr": ""
+  },
+  "progress.json": {
+    "completed_steps": 150,
+    "records": 2,
+    "elapsed_seconds": 221.64159365400002
+  },
+  "executed_model_proof": {
+    "all_actual_loaded_floating_tensors_finite": true,
+    "input_proof_sha256": "c0e98d64a10aff9248c05d17c5f7894534039452955ba12e3b09bb8b7752b4c1",
+    "source_locks": {
+      "/scratch/xl4358/phase1_far_phase1/source_lock.json": "e53cf22195b277ef2be12c87151632ee706f19d0eb16a41819861628fad1fcbb",
+      "/scratch/xl4358/phase1_far_reference/upstream_source_lock.json": "f5dee7da4dc3eb14eacf2ab0595c1303cd13176e5a3bc913e3f19881846fe11f"
+    },
+    "GPU": "NVIDIA A100-SXM4-40GB",
+    "threads": 4,
+    "torch": "2.7.0+cu128",
+    "inference_started": false,
+    "floating_tensor_count": 487,
+    "sha256": "b1c8bf4a5e89275401876e093a6a5f0093a4aa77001775c759120324349e6deb"
+  },
+  "raw_records": [
+    "1708_0_Reservoir.npz",
+    "1708_0_FIFO.npz"
+  ],
+  "trace_files": [
+    "trace_1708_0_Reservoir.json",
+    "trace_1708_0_FIFO.json"
+  ],
+  "phase1-7426.out": {
+    "bytes": 3425,
+    "sha256": "43b3fc1882771ff3d09f928b1de57ae43c3bc0f473fe1341872690778dd8a219",
+    "tail": "None SecsPreSuspend=0 LastSchedEval=2026-10-14T22:36:23 Scheduler=Main\n   Partition=c12m85-a100-1 AllocNode:Sid=3-gcp-r2:9619\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=b-19-16\n   BatchHost=b-19-16\n   NumNodes=1 NumCPUs=12 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=4,mem=60G,node=1,billing=4,gres/gpu=1\n   AllocTRES=cpu=12,mem=60G,node=1,billing=12,gres/gpu=1\n   Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=*\n   MinCPUsNode=4 MinMemoryNode=60G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/scratch/xl4358/phase1_far_phase1/phase1.sbatch\n   WorkDir=/scratch/xl4358/phase1_far_phase1\n   StdErr=/scratch/xl4358/phase1_far_phase1/logs/phase1-7426.err\n   StdIn=/dev/null\n   StdOut=/scratch/xl4358/phase1_far_phase1/logs/phase1-7426.out\n   TresPerNode=gres/gpu:1\n   TresPerTask=cpu=4\n   \n\nWed Oct 14 22:38:12 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 610.43.02              KMD Version: 610.43.02     CUDA UMD Version: 13.3     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:00:04.0 Off |                    0 |\n| N/A   43C    P0             50W /  400W |       0MiB /  40960MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n[build] /scratch/xl4358/phase1_far_reference/upstream/models/loopnav/far_multicue mem=PnPRetrieval       steps=700000\nUsing cached /scratch/xl4358/phase1_far_reference/upstream/models/cache/hub\n"
+  },
+  "phase1-7426.err": {
+    "bytes": 1230,
+    "sha256": "de4a21dc93e44dca67544cab20719683a5d5cdd0f14359d0e4d650c4b957f400",
+    "tail": "/scratch/xl4358/phase1_far_reference/vendor/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.\n  warnings.warn(\n/scratch/xl4358/phase1_far_reference/vendor/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.\n  warnings.warn(msg)\nUsing cache found in /scratch/xl4358/phase1_far_reference/upstream/models/cache/hub/facebookresearch_dino_main\n/scratch/xl4358/phase1_far_reference/vendor/torch/nn/utils/weight_norm.py:143: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.\n  WeightNorm.apply(module, name, dim)\n/scratch/xl4358/phase1_far_reference/vendor/peft/tuners/tuners_utils.py:331: UserWarning: Already found a `peft_config` attribute in the model. This will lead to having multiple adapters in the model. Make sure to know what you are doing!\n  warnings.warn(\n"
+  },
+  "source": {
+    "sha256": "e53cf22195b277ef2be12c87151632ee706f19d0eb16a41819861628fad1fcbb",
+    "files": 6,
+    "all_match": true
+  }
+}

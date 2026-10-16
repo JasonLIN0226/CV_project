@@ -1,0 +1,18 @@
+{
+  "utc": "2026-10-14T18:29:11.119648+00:00",
+  "hostname": "b-9-10",
+  "squeue": "7395 cv-far-recovered-bind PENDING 0:00 \n7394 cv-far-dependencies RUNNING 11:30 b-9-10\n",
+  "sacct": "7394|RUNNING|0:0|2026-10-14T18:17:41|Unknown|csci_ga_2271-2026fa|billing=2,cpu=2,mem=1500M,node=1|\n7394.batch|RUNNING|0:0|2026-10-14T18:17:41|Unknown|csci_ga_2271-2026fa|cpu=2,mem=1500M,node=1|\n7394.extern|RUNNING|0:0|2026-10-14T18:17:41|Unknown|csci_ga_2271-2026fa|billing=2,cpu=2,mem=1500M,node=1|\n7395|PENDING|0:0|Unknown|Unknown|csci_ga_2271-2026fa||\n",
+  "source_lock_sha256": "7106bbebe6244b835e260b6e5d96d8eab0232e6875036da275e2fdd26e2dc4fa",
+  "logs/prepare-7394.out": {
+    "bytes": 1612,
+    "sha256": "9e02d0e0e0780b1da066adcaa501c375ecba7617d7b078ed63dbba41a3bcb897",
+    "tail": "b-9-10\n10.144.0.82 \n256 SHA256:aL7MwHoQcu0bN5K/ykkKAlEHjaaxBqny1CMY63Nk87E root@b-9-10 (ED25519)\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDgtSeKW/4R5D0XMvCD6S8LLsuXl8b9pksnFjO3R7JT7 root@b-9-10\nJobId=7394 JobName=cv-far-dependencies\n   UserId=xl4358(3850228) GroupId=xl4358(3850228) MCS_label=N/A\n   Priority=13625 Nice=0 Account=csci_ga_2271-2026fa QOS=normal\n   JobState=RUNNING Reason=None Dependency=(null)\n   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:00:00 TimeLimit=01:00:00 TimeMin=N/A\n   SubmitTime=2026-10-14T18:16:25 EligibleTime=2026-10-14T18:16:25\n   AccrueTime=2026-10-14T18:16:25\n   StartTime=2026-10-14T18:17:41 EndTime=2026-10-14T19:17:41 Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-14T18:16:52 Scheduler=Backfill\n   Partition=interactive AllocNode:Sid=3-gcp-r2:8455\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=b-9-10\n   BatchHost=b-9-10\n   NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=1,mem=1500M,node=1,billing=1\n   AllocTRES=cpu=2,mem=1500M,node=1,billing=2\n   Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=*\n   MinCPUsNode=1 MinMemoryNode=1500M MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/scratch/xl4358/phase1_far_dependency_smallcpu/recover_dependencies.sbatch\n   WorkDir=/home/xl4358\n   StdErr=/scratch/xl4358/phase1_far_dependency_smallcpu/logs/prepare-7394.err\n   StdIn=/dev/null\n   StdOut=/scratch/xl4358/phase1_far_dependency_smallcpu/logs/prepare-7394.out\n   TresPerTask=cpu=1\n   \n\n"
+  },
+  "logs/prepare-7394.err": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tail": ""
+  },
+  "vendor_exists": false
+}

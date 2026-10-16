@@ -1,0 +1,23 @@
+{
+  "utc": "2026-10-15T17:10:54.223332+00:00",
+  "kind": "ONE_BOUNDED_EXECUTION_REPAIR_BEFORE_NEW_GPU",
+  "original_guard_stopped_actual7477": true,
+  "original_control_source_preserved": true,
+  "reason": "First epoch includes one-time feature checksum/decompression/normalization/projection. Its repeated cost is unknown. This repair separates actual one-time preload from full warm train+validation epochs on both tasks. No presumption that speed will pass.",
+  "method_architecture_loss_sample_seeds_epochs_optimizer_selection_tests_unchanged": true,
+  "data_seed": 6301,
+  "sealed9137_opened": false,
+  "prior_GPU_seconds_charged": 100,
+  "total_GPU_wall_cap_seconds": 7200,
+  "remaining_wall_seconds": 7100,
+  "remaining_soft_seconds": 6500,
+  "new_allocation_wall_minutes": 118,
+  "new_allocation_wall_seconds": 7080,
+  "budget_test": "Preload legal train/validation features once for both tasks under existing SHA checks; run exactly first complete epoch of Gate17 and Motion17; include actual elapsed preparation, remaining718 epochs at1.10*maximum measured warm epoch time,60s per remaining4 model initializations and300s proof reserve. Continue only projection<=6500 from new run start.",
+  "budget_rejection": "Save both genuine1epoch partials; no more repair/retry or scientific scope reduction under this budget.",
+  "checkpoint_policy": "Start new candidate source/protocol signatures from scratch; do not reuse old7477weights. Save and restore original RNG/optimizer/scheduler around the two-task interleave. Both pilot epochs count toward original120 each.",
+  "cache_boundary": "Only existing FeatureStore train/validation features and projected_features preloaded; original sample/collate/model/metric definitions unmodified. No metadata memoization or reference output cache. No held-out features loaded by preload.",
+  "resource_change_only": "Runtime order and budget accounting; random process reset per model and restored from checkpoint, no hyperparameter or scientific gate change.",
+  "first_epoch_validation_seen": true,
+  "no_held_out_values_seen": true
+}

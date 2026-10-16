@@ -1,0 +1,84 @@
+{
+  "schema_version": 2,
+  "status": "PREREGISTERED_DATA_ONLY_NOT_SCIENCE_NOT_MODEL_SELECTION",
+  "authorized_request": "Human requested \u8fdb\u884c\u5b9e\u9a8c; advance independent v5 data preflight while earlier unspecified model clarification remains unresolved.",
+  "scope": "Only all78 pinned development RGB files. No labels, features, model changes, training or held-out payloads.",
+  "inputs": {
+    "manifest_sha256": "eb4ff098e79b4bf1038db1115c8aa9a7b6872c390ef38347c9e2ad84752b4d01",
+    "design_sha256": "28c4b7b748db530db5a8fd341603a8ab1e0245f166a43999290a4f134e730fe3",
+    "actual_acquisition_report_sha256": "db5034199cd96f9ce3e8077b1d950683399ccb34ddf35c5a3f93eea7f86d3672"
+  },
+  "timeline": {
+    "source": "Actual MP4 packet PTS then sparse independently decoded presentation frames; rational arithmetic.",
+    "sorting": "Presentation PTS sorted once; packet DTS must strictly increase, PTS unique, no missing/synthesized PTS.",
+    "mapping_gate": "First actual presentation time0; actual nominal60fps and exact1/60-second PTS increments. Otherwise DATA_PREFLIGHT_REJECTED: no inferred alignment or recording replacement.",
+    "annotation_numeric_mapping": "floor(actual selected presentation seconds*30), not raw60fps IDs. Labels/end-frame inclusion/label-origin semantics remain unverified; no task readout until resolved."
+  },
+  "sampling": {
+    "fps": 2,
+    "selection": "latest actual presentation frame at or before requested clock; lag<=1/30sec",
+    "episode_tokens": 256,
+    "maximum_episodes_per_recording": 4,
+    "episode_starts_seconds": [
+      0,
+      128,
+      256,
+      384
+    ],
+    "eligibility": "All256 observations supported; no padding or concatenation. Stop scientific continuation if any planned participant lacks an eligible recording.",
+    "query_start": 40,
+    "query_stride": 4,
+    "horizons": [
+      1,
+      4,
+      16,
+      64
+    ],
+    "all_horizons_in_episode": true
+  },
+  "decode_probes": {
+    "per_recording": "0s,1/120s,0.5s and each eligible episode first/last observation; common deterministic times, no content/loss selection.",
+    "independent_check": "Actual selected decoded frame PTS must equal nearest-past frame from packet timeline. Later decoded search-terminating frames discarded.",
+    "limit": "Sparse decode checks do not establish full-frame decoding integrity; full encoding must retain timestamp/corruption checks."
+  },
+  "decoder": {
+    "package": "av",
+    "version": "18.0.0",
+    "source": "https://pypi.org/pypi/av/18.0.0/json",
+    "installation": "Same existing HPC Python. Immutable wheel extracted to separate data-only vendor directory; original Python environment unchanged; all extracted bytes checked against wheel before import.",
+    "requires": "CPython3.11+ x86_64 glibc>=2.28; actual runtime3.11.17/glibc2.34 verified.",
+    "linux_wheel": {
+      "filename": "av-18.0.0-cp311-abi3-manylinux_2_28_x86_64.whl",
+      "sha256": "ae56b40b6f8b067a8ad2dac664fbfbabac7f7a55b9a7bb031eb99289252bc017",
+      "bytes": 35536910
+    },
+    "local_artificial_fixture_wheel": {
+      "filename": "av-18.0.0-cp311-abi3-macosx_14_0_arm64.whl",
+      "sha256": "35274c20d2ad3b4774fe632bcef2e34af79858ddf899352339cc3babbc13a484"
+    }
+  },
+  "budget": {
+    "course": "csci_ga_2271-2026fa",
+    "cpu_threads": 4,
+    "cpus_requested": 4,
+    "memory_gb": 16,
+    "gpus": 0,
+    "time_limit": "01:00:00",
+    "soft_stop_seconds": 3300,
+    "first_recording_projection": "elapsed first prespecified recording*78; stop if projected>3300s; no extra budget or easier sample substitution.",
+    "one_data_or_science_job_at_a_time": true
+  },
+  "outputs": "Compact scalar/runtime/hash/episode and sparse probe metadata only. No video, image, feature arrays, or weights transferred to Mac.",
+  "decision": "PTS_AND_ELIGIBILITY_VERIFIED_ANNOTATION_LABELS_PENDING or DATA_PREFLIGHT_REJECTED or STOPPED. Never Phase1GO or model/reader evidence.",
+  "failure_policy": "Preserve actual partial report/logs and scheduler state; inspect source and actual input proof before any recovery.",
+  "original_failures_and_go_thresholds_preserved": true,
+  "pending_model_clarification_preserved": true,
+  "preregistered_utc": "2026-10-13T00:11:40.559110+00:00",
+  "amendment": {
+    "basis": "ActualHPCexistingPython3.11.17/glibc2.34/x86_64. V1AV19requires3.12, caughtbeforeuploadortrial. KeeporiginalPythonenv; usecompatibleofficialAV18wheelinitsownvendor.",
+    "previous_protocol_sha256": "8f4f921b8d4734a92e9b00f4b8a383b053e35be62e6ab20aa3f94bdf2266cfb0",
+    "previous_bundle_sha256": "8d0feb4827d993a4013c695b44a0cac7a9f09f7b4aabf8bd2a3a4b4cb474ee7b",
+    "v1_deployed_or_executed": false,
+    "scientific_model_or_gates_changed": false
+  }
+}

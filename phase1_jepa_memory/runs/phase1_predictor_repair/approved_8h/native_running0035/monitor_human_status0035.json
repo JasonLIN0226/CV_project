@@ -1,0 +1,87 @@
+{
+  "UTC": "2026-10-16T00:35:28.360041+00:00",
+  "native": "7535|RUNNING|0:0|2026-10-16T00:32:27|Unknown|185|b-19-18\n7535.batch|RUNNING|0:0|2026-10-16T00:32:27|Unknown|185|b-19-18\n7535.extern|RUNNING|0:0|2026-10-16T00:32:27|Unknown|185|b-19-18\n7536|PENDING|0:0|Unknown|Unknown|0|None assigned\n7537|PENDING|0:0|Unknown|Unknown|0|None assigned\n",
+  "deployment_final": "7529|CANCELLED by 3850228|0:0|2026-10-16T00:22:57|2026-10-16T00:34:08|671\n",
+  "files": {
+    "progress.json": {
+      "task": "gate",
+      "seed": 17,
+      "epoch": 14,
+      "step": 896,
+      "completed_models": 0,
+      "held_out_evaluated": false
+    },
+    "first_epoch_budget.json": {
+      "cost_prediction_only": true,
+      "phase1_go": false,
+      "development_models": 6,
+      "confirmation_models": 12,
+      "each_epochs": 120,
+      "prior_actual_gpu_seconds": 6411,
+      "new_actual_gpu_seconds_charged": 118.0,
+      "remaining_development_raw_seconds": 3897.603490723999,
+      "complete_confirmation_training_raw_seconds": 5778.582665040004,
+      "complete_confirmation_encoding_raw_seconds": 4910.9994851844385,
+      "safety_multiplier": 1.15,
+      "remaining_fixed_reserve_seconds": 968.295233886,
+      "projected_cumulative_gpu_seconds": 24272.558720976707,
+      "cap_seconds": 28800,
+      "fits_shared_cap": true,
+      "if_rejected": "Stop with true partial evidence; do not shorten scope or relax gates",
+      "measured_full_epochs": {
+        "gate": 6.442605466000003,
+        "motion": 4.414228769999994
+      },
+      "preload_seconds": {
+        "gate": 54.05628470899998,
+        "motion": 26.340512339000014
+      },
+      "allocation_start_utc": "2026-10-16T00:32:27Z",
+      "native_allocation": "7535|RUNNING|2026-10-16T00:32:27|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n",
+      "fresh9137_opened": false,
+      "method_pass": false
+    },
+    "actual_gpu.json": {
+      "job": "7535",
+      "account": "csci_ga_2271-2026fa",
+      "GPU": "NVIDIA A100-SXM4-40GB",
+      "torch": "2.12.1+cu126",
+      "threads": 4
+    },
+    "preload.json": {
+      "tasks": {
+        "gate": 54.05628470899998,
+        "motion": 26.340512339000014
+      },
+      "held_out_loaded": false,
+      "original_FeatureStore_unchanged": true,
+      "elapsed_seconds": 101.164611866
+    },
+    "actual_recent_boundary_gate.json": {
+      "exact_original_batches": 12,
+      "all_tensors_bitwise_equal": true,
+      "input_versions_unchanged": true,
+      "no_model_or_gradient_step": true
+    },
+    "actual_recent_boundary_motion.json": {
+      "exact_original_batches": 12,
+      "all_tensors_bitwise_equal": true,
+      "input_versions_unchanged": true,
+      "no_model_or_gradient_step": true
+    }
+  },
+  "current_sources": {
+    "control": {
+      "count": 58,
+      "lock_sha256": "69f577e71ae44cc02a45b89e75facfdc53854085ba36acba11ee45f285beaa17"
+    },
+    "independent_audit": {
+      "count": 3,
+      "lock_sha256": "c7f002ccc5bfd97131f246ce116441aacb938a9d1390328d46879217563acd5d"
+    }
+  },
+  "phase1_go": false,
+  "fresh9137_opened": false,
+  "stderr_bytes": 0,
+  "GPU_snapshot": "NVIDIA A100-SXM4-40GB, 15 %, 1330 MiB\n"
+}

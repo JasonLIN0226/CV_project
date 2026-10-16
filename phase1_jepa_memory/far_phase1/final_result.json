@@ -1,0 +1,135 @@
+{
+  "utc": "2026-10-15T05:06:07.271004+00:00",
+  "status": "COMPLETE_VERIFIED_SMALL_PILOT_FAR_CURRENT_SUPERIORITY_NOT_SUPPORTED",
+  "scope": "Direct FAR to Phase1 pilot only; full FAR reproduction cancelled; original Phase1 GO unchanged",
+  "science": {
+    "job": 7426,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "start_utc": "2026-10-14T22:38:12",
+    "end_utc": "2026-10-15T00:25:02",
+    "wall_seconds": 6410,
+    "GPU": "one A100-SXM4-40GB",
+    "course": "csci_ga_2271-2026fa",
+    "records": 96,
+    "steps": 6996,
+    "scenes": 8,
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "analysis": {
+    "job": 7435,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "start_utc": "2026-10-15T00:26:43",
+    "end_utc": "2026-10-15T00:28:36",
+    "no_GPU_or_forward": true
+  },
+  "primary": {
+    "FIFO": {
+      "mean": 0.33269880215326947,
+      "seed_SD": 0.011521203597627991,
+      "seed_means": [
+        0.32121396623551846,
+        0.3326264079660177,
+        0.34425603225827217
+      ]
+    },
+    "Reservoir": {
+      "mean": 0.17948864621575922,
+      "seed_SD": 0.014301097743522225,
+      "seed_means": [
+        0.16912256681825966,
+        0.19580405740998685,
+        0.17353931441903114
+      ]
+    },
+    "FAR_current": {
+      "mean": 0.3389438471446435,
+      "seed_SD": 0.006756368740045364,
+      "seed_means": [
+        0.34553682431578636,
+        0.33203515596687794,
+        0.3392595611512661
+      ]
+    },
+    "Archive_reference": {
+      "mean": 0.19538963865488768,
+      "seed_SD": 0.028552922471007474,
+      "seed_means": [
+        0.22747863363474607,
+        0.18590194545686245,
+        0.1727883368730545
+      ]
+    }
+  },
+  "primary_paired": {
+    "FIFO": {
+      "mean_improvement": -0.006245044991374016,
+      "paired_scene_bootstrap95": [
+        -0.024792282531658806,
+        0.012272272879878681
+      ],
+      "exact_one_sided_signflip_p": 0.73046875,
+      "independent_units": 8,
+      "seeds_averaged_within_scene": true
+    },
+    "Reservoir": {
+      "mean_improvement": -0.15945520092888427,
+      "paired_scene_bootstrap95": [
+        -0.21783229794042808,
+        -0.09981878656738749
+      ],
+      "exact_one_sided_signflip_p": 1.0,
+      "independent_units": 8,
+      "seeds_averaged_within_scene": true
+    }
+  },
+  "final_native_proof_sha256": "5b8628ecf49602070e0b703cfe94588759688a64ce1b606f4dce9b997a513d72",
+  "independent_asset_source_raw_stats_storage_replay": "PASS_INDEPENDENT_FINAL_NATIVE_SOURCE_ASSET_RAW_STATISTICS_STORAGE_REPLAY",
+  "exact_Reservoir_algorithm_R_trace_replay": true,
+  "analysis_own4_source_verified": true,
+  "transfer": {
+    "files": 25,
+    "bytes": 207032,
+    "three_SHA_equal": true,
+    "path": "far_phase1/native_completed7426_7435/transfer_integrity.json"
+  },
+  "control7451": {
+    "single_necessary_final_evidence_connection": true,
+    "GPUs": 0,
+    "native_start_utc": "2026-10-15T04:53:16",
+    "host": "b-9-10",
+    "ip": "10.144.0.25",
+    "alias": "phase1-far-finalevidence7451",
+    "fingerprint": "SHA256:HhvJY47ecla2LnA5WYQxnYOiJHaDxrvhew1Ad2n3ng8",
+    "identity_from_authenticated_metadata_Notebook_and_Torch_keyscan_exact": true,
+    "scancel_returncode": 0,
+    "SSH_disconnect_during_self_release": true,
+    "normal_portal_terminal": "Completed",
+    "post_shutdown_native_actor_exit_not_read": true,
+    "ended_alias_do_not_reconnect": true
+  },
+  "new_training_or_GPU_rerun": false,
+  "report": {
+    "utc": "2026-10-15T05:06:07.271004+00:00",
+    "docx": "/Users/linxiangyu/Desktop/MSDS Semester1/CV/project/phase1_jepa_memory/far_phase1/report/Memory_Retention_Phase1_Report.docx",
+    "docx_sha256": "562e6b188d42f4af286ef1bd45224230d9f723a93933f8235c308fd5c0a07b88",
+    "pages": 2,
+    "all_pages_visually_inspected": true,
+    "blank_page_removed_and_latest_render_verified": true,
+    "figures": 2,
+    "black_and_white": true,
+    "conclusion_last": true,
+    "Google_Doc_updated": false,
+    "Google_Doc_reason": "Existing focus/write access limitation not re-probed; prior document preserved."
+  },
+  "supervision_automation": {
+    "id": "cv-hpc",
+    "actual_app_delete_status": "deleted",
+    "reason": "Fixed experiment, independent audit, compact transfer and report complete; no active science to monitor."
+  }
+}

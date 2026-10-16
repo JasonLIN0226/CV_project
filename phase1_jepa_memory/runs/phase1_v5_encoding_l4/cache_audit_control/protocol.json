@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "PREREGISTERED_FUTURE_COMPLETE_CACHE_AUDIT_NO_FIT_OR_TRAINING",
+  "created_utc": "2026-10-13T04:55:13.463239+00:00",
+  "encoding_job_id": 7004,
+  "encoding_control": "/scratch/xl4358/phase1_jepa_memory_v5_encoding_l4",
+  "encoding_root": "/scratch/xl4358/phase1_v5_real_encoding_l4/job_7004",
+  "encoding_source_lock_sha256": "39fe05f2e7ddb65bf9f144b13e0cd327cf2cdf289c3c204d25ee52334280d88c",
+  "encoding_protocol_sha256": "ec4a27b8d2a5f6a6442ddb9d1731501b5016194832f0f7d93b92e15c1e147345",
+  "output": "/scratch/xl4358/phase1_v5_real_encoding_l4/job_7004/full_cache_audit.json",
+  "required_actual_parent": "COMPLETED0:0 on declared course g2-standard-12 with actual one GPU; report success label alone insufficient",
+  "checks": [
+    "All78file SHA/size/dtype/shape/finite; each before-after SHA stable",
+    "Actual source/protocol/encoder/official cached weights/metadata binding",
+    "All episode descriptors and timestamp hashes independently replayed",
+    "Exact complete train/validation participants/names/counts and no partial/extra files",
+    "No labels, basis fitting, model training or GPU inference"
+  ],
+  "root_numerical_audit_not_independent_delegated_review": true,
+  "resource": {
+    "course": "csci_ga_2271-2026fa",
+    "partition": "n2c48m24",
+    "cpus": 4,
+    "memory_gb": 16,
+    "gpus": 0,
+    "time_limit": "00:30:00"
+  },
+  "dependency": "afterok:7004; no science overlaps",
+  "reader_submission_blocked_until_actual_cache_audit": true,
+  "phase1_go": false
+}

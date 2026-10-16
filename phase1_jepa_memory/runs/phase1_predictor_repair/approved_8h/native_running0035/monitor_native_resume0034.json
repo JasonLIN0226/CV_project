@@ -1,0 +1,173 @@
+{
+  "UTC": "2026-10-16T00:34:42.030802+00:00",
+  "native7535": "7535|RUNNING|0:0|2026-10-16T00:32:27|Unknown|135|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n7535.batch|RUNNING|0:0|2026-10-16T00:32:27|Unknown|135|csci_ga_2271-2026fa|cpu=12,gres/gpu=1,mem=60G,node=1\n7535.extern|RUNNING|0:0|2026-10-16T00:32:27|Unknown|135|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n",
+  "native7529_final": "7529|CANCELLED by 3850228|0:0|2026-10-16T00:22:57|2026-10-16T00:34:08|671|csci_ga_2271-2026fa|billing=2,cpu=2,mem=1500M,node=1\n",
+  "squeue": "7535|cv-phase1-repair|RUNNING|b-19-18|b-19-18\n7537|cv-phase1-repair-independent|PENDING||(Dependency)\n7536|cv-phase1-repair-audit|PENDING||(Dependency)\n",
+  "scientific_files": {
+    "actual_gpu.json": {
+      "sha256": "feb851b0945bbce54380ba2c94f9f797255540723bf4fe08d540600a1b938731",
+      "contents": {
+        "job": "7535",
+        "account": "csci_ga_2271-2026fa",
+        "GPU": "NVIDIA A100-SXM4-40GB",
+        "torch": "2.12.1+cu126",
+        "threads": 4
+      }
+    },
+    "actual_recent_boundary_gate.json": {
+      "sha256": "3c62b91a839d054422a314d2401b1269b1816672c98ac12195977aa21a1b0054",
+      "contents": {
+        "exact_original_batches": 12,
+        "all_tensors_bitwise_equal": true,
+        "input_versions_unchanged": true,
+        "no_model_or_gradient_step": true
+      }
+    },
+    "actual_recent_boundary_motion.json": {
+      "sha256": "3c62b91a839d054422a314d2401b1269b1816672c98ac12195977aa21a1b0054",
+      "contents": {
+        "exact_original_batches": 12,
+        "all_tensors_bitwise_equal": true,
+        "input_versions_unchanged": true,
+        "no_model_or_gradient_step": true
+      }
+    },
+    "first_epoch_budget.json": {
+      "sha256": "7b4554c18df91035c9b85edf5a1ba4a69e88075ec7d3f6ca75467dd81dda89f3",
+      "contents": {
+        "cost_prediction_only": true,
+        "phase1_go": false,
+        "development_models": 6,
+        "confirmation_models": 12,
+        "each_epochs": 120,
+        "prior_actual_gpu_seconds": 6411,
+        "new_actual_gpu_seconds_charged": 118.0,
+        "remaining_development_raw_seconds": 3897.603490723999,
+        "complete_confirmation_training_raw_seconds": 5778.582665040004,
+        "complete_confirmation_encoding_raw_seconds": 4910.9994851844385,
+        "safety_multiplier": 1.15,
+        "remaining_fixed_reserve_seconds": 968.295233886,
+        "projected_cumulative_gpu_seconds": 24272.558720976707,
+        "cap_seconds": 28800,
+        "fits_shared_cap": true,
+        "if_rejected": "Stop with true partial evidence; do not shorten scope or relax gates",
+        "measured_full_epochs": {
+          "gate": 6.442605466000003,
+          "motion": 4.414228769999994
+        },
+        "preload_seconds": {
+          "gate": 54.05628470899998,
+          "motion": 26.340512339000014
+        },
+        "allocation_start_utc": "2026-10-16T00:32:27Z",
+        "native_allocation": "7535|RUNNING|2026-10-16T00:32:27|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n",
+        "fresh9137_opened": false,
+        "method_pass": false
+      }
+    },
+    "progress.json": {
+      "sha256": "8ec464082bd85ae1fbfaf9067c78eaab1a25d132d69125f66badec6f35e755c3",
+      "contents": {
+        "task": "gate",
+        "seed": 17,
+        "epoch": 4,
+        "step": 256,
+        "completed_models": 0,
+        "held_out_evaluated": false
+      }
+    },
+    "preload.json": {
+      "sha256": "5a371ae9e70981840db49557e2b05bc8ee0c1463b32141c74bf22048fa3897f5",
+      "contents": {
+        "tasks": {
+          "gate": 54.05628470899998,
+          "motion": 26.340512339000014
+        },
+        "held_out_loaded": false,
+        "original_FeatureStore_unchanged": true,
+        "elapsed_seconds": 101.164611866
+      }
+    }
+  },
+  "source": {
+    "control": {
+      "lock_sha256": "69f577e71ae44cc02a45b89e75facfdc53854085ba36acba11ee45f285beaa17",
+      "current_files": {
+        "SET_TRANSFORMER_LICENSE.txt": "4b288f2e6078720cef1d81b5e8eb83a36697a6365526b52902516cf056bc6dab",
+        "authorization.json": "32a274f603cab93f2b984115660d0591ea029e1c22e9a03dc902fccd8c4ad5e9",
+        "budget_authorization_8h.json": "79799ce22d3e76b36a4a7491606aff6a9bf49c33dff61cf19dcd8bbf4eaaf68b",
+        "budget_resume_declaration.json": "e5570e601e2afd59f0fcf2fe967cc439596612930c522a474fe02709a2c48dfb",
+        "exact_boundary_execution.json": "68b04ce132581ce68a3598f6d4518e10e6c47c58c55ceda3af6205fe551f223c",
+        "native_partial_origin.json": "e04a60da75107572f04ad10d4b7827eef93f9f4f5c7c19973c60b353923e8ebd",
+        "native_preflight.py": "f1c8151574fd04a1e1f9ba266aed0679e252b3a9424f04c437fb99a6b63b6310",
+        "preflight.sbatch": "d7a308fb73f8df059ea37848df1a8643782100049c04e7e313ae41f9c8f8adfa",
+        "protocol.json": "020ee436d7568e9a03e5b0b166f052427a0dcb7ce873f4739e0edc6007d3547f",
+        "repair_decision.json": "16c1360f0e4ad1715bb14d99b523db191761fcbba9162e90e6b0005c51d0bc8b",
+        "repair_evaluate.sbatch": "0b32f679a3c3cef9e43cf21b89f6d6735f390486ce767b3d44590ee09fb9825b",
+        "repair_train.sbatch": "d588e2b22921804ca50e3e9c30822e48701b45e75964c94b0f6dae1cfe684627",
+        "run_repair.py": "7090531dbe4de59e04d74010df1617287d04811e2ddf2112ac72f8c14fbbb2a9",
+        "software_preflight.json": "ed1533ce4252ca88c1d79f6869189934384524b9e78984b314ed5b7a4adc70b1",
+        "src/phase1/__init__.py": "d45076af62de5cc47c8f5d69833d8135ef39586face345742334367293671b6d",
+        "src/phase1/anchored_memory.py": "9f2d7ad2e9b3653f78b3d133a3f440345c68e127c12c74ea07632793d5ac8d00",
+        "src/phase1/cache.py": "5935e62802ef2bf8a5590f559948eb1c1fa1d3f9c4826780ef4ce188d7a96bc0",
+        "src/phase1/cli.py": "a72f7dcb7893576b821e6e3a750be6957874d4faf3b958a93d28c59c57ec48e9",
+        "src/phase1/common_anchor.py": "c637841aa5fca6bcd8f65ba97afb1e3d4fbbf552a76ecc9142f84cf3e3beff93",
+        "src/phase1/common_anchor_legacy.py": "27bc43cca2b4bb9b5188b1bf3df1ec60d7fbc390d4b1ee6c14635fad867f5a5d",
+        "src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+        "src/phase1/data.py": "9e65a464e36dcda9fb6fd542d78d9a71b3a01dcc0109ce30317a09483c4d4467",
+        "src/phase1/diagnostics.py": "2c53bc7a00ed87424c3dc1b871c4adbfa5a08c82022402efac92d9d0858679f8",
+        "src/phase1/encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871",
+        "src/phase1/envs.py": "64b07f972fc5144d5d13c7bd614c1c796d67a73521043efc57073454ac4c12a7",
+        "src/phase1/evaluation.py": "65ae67c8a28f608deb53bb1b782d4cbdcccc7a633ec8dd6c1bffbb0990126798",
+        "src/phase1/exact_runtime_cache.py": "ba609f31e18799000ca7780011a690782932c1499d1428e1cf22382145ad1a25",
+        "src/phase1/experiment.py": "b63dbbe54b47f50cf943a9b6f0acdbba013cc235640d9f89d6577dc82d0b886e",
+        "src/phase1/gate_diagnostics.py": "11f891286d2f0413e514bc8bf08e095f20765400c7cf3d5d03766d14761c2337",
+        "src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+        "src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+        "src/phase1/motion_mechanism.py": "130b52cc3defe3e3f4a2135ca8e89b0f5fe6122d4eff8a7f53a66a6fa02f649a",
+        "src/phase1/probes.py": "50219b0167cf6fdd829962db566f14808ea1cdad6c5ebf9628992054e2c53988",
+        "src/phase1/proposal_evaluation.py": "e1dade29c5279a4bce90d91c1f5a3191e789b12620c5845c280203264108c9c9",
+        "src/phase1/proposal_trial.py": "a492c57173fd97a2f702f671bf4728765abf52a9deafa2512a6025f0f4819c65",
+        "src/phase1/relational_memory.py": "552f63109cbbbcc0889e93e379b2a92bc245e0a59c37158c616e353ececd0be4",
+        "src/phase1/repair_evaluation.py": "e47a4590edc64825f4077d44105eab1dc63cf407e481fec6bb8f8d080cdd75f6",
+        "src/phase1/repair_trial.py": "7e92f381ec5586cc82c6995c3f1623ee4ec9fc7cfe7241ea5245ce28eb5d377f",
+        "src/phase1/reporting.py": "447a7e9c3cfb4d28c3545db1475ab8e09dbf9b83401f49593767a4492a3d5ba7",
+        "src/phase1/resource_guard.py": "92f7830678f7610cadc5ed82441d397390dfd47c02ef8f15de3de0e9dd95f9ca",
+        "src/phase1/stats.py": "767912a6a1617f7e932c1c807031c4ae1809e007045007e818990f2e3d6d9d08",
+        "src/phase1/training.py": "0e30f8c45e84a4dc966d3020066c0686b8c4b951a6447c52ecc85d309a14a235",
+        "src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14",
+        "src/phase1/v4_adoption.py": "647151ac1b895a89035b7caac64a5a3891d4e58d80bb17bae42e9caa1ec2eeae",
+        "src/phase1/v4_pipeline.py": "0bf05efa0334c39128769242dbd67f97a81a4e55945bd8c0925aa626debf9260",
+        "src/phase1/v5_encoding.py": "5e25e971000752ea0749e45389ab6e65df903917d6a1d5e2e0fbcdeaab3f1085",
+        "src/phase1/v5_encoding_cpu.py": "f2b06df2ebf3684d7878d581dfa536bab254e03c3cfaff3437a96d98a358fd8e",
+        "src/phase1/v5_encoding_l4.py": "94a72f7a1c2844f33cae98f29d7680a9f44e10e9cea62b59ab941737226c4674",
+        "src/phase1/v5_motion_evaluation.py": "2ac545e4bcd7fcb939900a2007462e3e76211e41229d39754baddd83551e0cc3",
+        "src/phase1/v5_motion_training.py": "4809633abee7ab341ffd3baa93aa3f1eed98392d5fb718c381240e2297579158",
+        "src/phase1/v5_real_reader.py": "dd9e10320eeceb4df3751dff216103d823cc1fef0f7d4fb3c2c278c96068a8f3",
+        "src/phase1/v5_real_training.py": "205d1ed5a7ec1d87817512c9b5b290dbb4682d59892c83911122dcea4c471efd",
+        "src/phase1/v5_real_training_cpu.py": "3b3a577b3a69477403ef676e84a99ec29029f15377f74e144779a318a8c51e8e",
+        "src/phase1/v5_real_training_l4.py": "6b797baa13f22884ec62296fcd1626f01d62e911736445906690ee411541622d",
+        "src/phase1/v5_synthetic_evaluation.py": "2200435d3aa5e747f754d88cf1a70e41b211b372ca5d81bcb409f9a0c93bf3b3",
+        "src/phase1/v5_synthetic_reader.py": "48d6664f5902814f0ee3e7744a8e70ba1beb8ccc11e80be96e84e0b2c2f34dde",
+        "src/phase1/v5_synthetic_training.py": "85028bb048db012e903c7154dde86cd066c27408c4d6c160bf76bb4cd88e6452",
+        "test_relational_memory.py": "f58847aa3198f9854e5751c966af755d667c86edfcf15d99f41ede2a05c44f2a"
+      }
+    },
+    "independent_audit": {
+      "lock_sha256": "c7f002ccc5bfd97131f246ce116441aacb938a9d1390328d46879217563acd5d",
+      "current_files": {
+        "audit.sbatch": "c3c87b804745ae937935a60a554447eea93a91d32fdaacd499ec956c6e745783",
+        "run_audit.py": "e03cf36549545af6fbec9c5b927bd7a7c7e3ee72127f16cf16a5bf7d1d449017",
+        "verify_scalar_results.py": "b4a5b285a728b2e24e66115a4514d120a7986649701886d332a9d8fc7d987825"
+      }
+    }
+  },
+  "phase1_go": false,
+  "confirmation_opened": false,
+  "train-7535.out": {
+    "bytes": 318
+  },
+  "train-7535.err": {
+    "bytes": 0
+  }
+}
