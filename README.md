@@ -23,6 +23,10 @@ Counts describe registered comparisons, not independent datasets. The original s
 
 This is an explanatory drawing, not a model prediction.
 
+## Next step
+
+[Executed signal diagnosis and next experiment](docs/NEXT_STEP.md): the existing pools always place nuisance content newest. The added zero-GPU analysis measures pair-level stability and remaining headroom; counterbalanced pool code is prepared and tested, with no policy training or new predictor inference.
+
 ## Run the checks
 
 ```bash
