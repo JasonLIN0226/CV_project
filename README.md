@@ -2,32 +2,48 @@
 
 Can the prediction error caused by deleting an observation help decide what a limited visual memory should retain?
 
-This repository contains the **latest complete I-JEPA predictor and equal-capacity deletion assay**. It is an I-JEPA prototype, not a V-JEPA experiment. No learned retention policy or fresh independent confirmation has been run.
+## Latest verified status — 19 October 2026
 
-## Results
+**Development checks are satisfied for both tasks. Full Phase1_GO remains unestablished: fresh independent confirmation did not run. No retention policy has been trained.**
 
-| Check | Gate | Motion |
+| Registered checks satisfied | Gate | Motion |
 |---|---:|---:|
-| Evidence readable from features | 3/3 | 3/3 |
-| History improves prediction | 23/24 | 8/24 |
-| Prediction responds to historical content | 24/24 | 24/24 |
-| Fixed-reference checks | 32/32 | 8/32 |
-| Critical deletion contrasts | 6/18 | 36/36 |
-| Cross-horizon deletion checks | 18/18 | 18/18 |
+| Original prediction requirements | 51/51 | 51/51 |
+| Additional fixed-reference requirements | 32/32 | 32/32 |
+| Task-specific deletion diagnostics | 72/72 | 72/72 |
 
-Counts describe registered comparisons, not independent datasets. The original strict Phase One criteria and joint policy-stage readiness rule remain **unmet**. Motion has a consistent relative deletion signal in the tested pools; Gate deletion stability and Motion long-occlusion prediction remain limitations.
+Counts are correlated registered comparisons, not independent trials or prediction-accuracy percentages. Gate's deletion count measures critical-versus-other deletion contrasts; Motion's measures cross-horizon, future-informed oracle comparisons. Neither establishes a deployable retention policy. Development data have been repeatedly inspected.
 
-[English report](reports/Phase1_Report.pdf) · [Editable Word report](reports/Phase1_Report.docx) · [Design and test definitions](docs/EXPERIMENTS.md) · [Results explained](docs/RESULTS.md)
+![Audited development checks](reports/independent_confirmation_boundary/development_counts.png)
 
-![Paired Gate and Motion tasks](reports/figures/01_tasks.png)
+Gate's complete temporal-extrapolation contribution was disabled. Motion uses frozen-reference visual prediction plus guarded position and a fixed equal-weight training-only observation-innovation map. Neural predictors remained frozen during this final repair; two small maps were fitted. All original thresholds were retained. This is a controlled synthetic **I-JEPA** prototype, not a V-JEPA or real-video confirmation.
 
-This is an explanatory drawing, not a model prediction.
+[Full result explanation and limitations](docs/PHASE1_LATEST.md) · [Illustrated English Word report](reports/independent_confirmation_boundary/Phase1_Confirmation_Review.docx) · [Published evidence manifest](results/phase1_latest/manifest.json)
 
-## Next step
+## Independent confirmation and GPU accounting
 
-[Executed signal diagnosis and next experiment](docs/NEXT_STEP.md): the existing pools always place nuisance content newest. The added zero-GPU analysis measures pair-level stability and remaining headroom; counterbalanced pool code is prepared and tested, with no policy training or new predictor inference.
+CPU execution equivalence passed, but fresh seed 9137 was never generated or accessed: **0/12 new neural models and 0/2 new maps**. A failed startup job underwent 56 automatic requeues, creating 57 GPU allocation records without entering the experiment script. Cumulative GPU allocation reached **39,651 seconds (11 h 00 m 51 s)** against the approved **28,800 seconds (8 h)**, an excess of **10,851 seconds (3 h 00 m 51 s)**.
 
-## Run the checks
+The agent's execution guard failed to cover configuration and automatic requeue stages. This is an execution-protection failure, not a fresh scientific rejection. All compute tasks are ended, the temporary evidence node was released, and monitoring was deleted. New GPU submissions are stopped under the exhausted budget.
+
+[Native accounting](results/phase1_latest/budget_boundary.json) · [57 allocation records](results/phase1_latest/startup_allocations.csv) · [Independent accounting replay](results/phase1_latest/budget_local_audit.json)
+
+## Verify the published update
+
+```bash
+python tools/verify_phase1_latest.py
+```
+
+This standard-library-only check verifies the evidence hashes, registered comparison counts, allocation durations and final status. It does not run models, use a GPU or replace the original raw-data audits. Detailed per-comparison estimates and confidence intervals are in the [Gate](results/phase1_latest/gate_summary.json) and [Motion](results/phase1_latest/motion_summary.json) evidence.
+
+## Existing implementation and earlier study
+
+The repository also retains the frozen predictor, equal-capacity deletion assay and earlier numerical evidence. The original report and results below describe the earlier baseline; use the dated update above for the current status.
+
+- [Experimental design and test definitions](docs/EXPERIMENTS.md)
+- [Earlier baseline results](docs/RESULTS.md)
+- [Earlier illustrated report](reports/Phase1_Report.pdf)
+- [Reproduction and external assets](docs/REPRODUCIBILITY.md)
 
 ```bash
 python -m pip install -r requirements.txt
@@ -35,26 +51,4 @@ python tools/verify_results.py
 python -m pytest -q experiments/deletion/test_assay.py
 ```
 
-The verifier checks retained file hashes and independently recomputes 180 statistics from 11,520 pair-level rows. These commands do not download models, train, or use a GPU.
-
-Predictor software checks additionally require PyTorch, Pillow and PyYAML:
-
-```bash
-python -m pip install -e '.[model]'
-python -m pytest -q
-```
-
-[Reproduction and external assets](docs/REPRODUCIBILITY.md) explains report rebuilding and the limits of full model replay.
-
-## Layout
-
-- `experiments/predictor/`: one frozen predictor version, training/evaluation code and independent audit.
-- `experiments/deletion/`: one inference-only deletion assay and its tests.
-- `experiments/reference/`: three original source files required by the frozen-reference verification.
-- `results/`: latest numerical evidence, six-model training records and required reference probes/configurations.
-- `reports/`: one report in Word/PDF, its figures and plotted values.
-- `tools/`: result verification and report rebuilding.
-
-Unused historical experiments, duplicate implementations, old reports and monitoring/deployment records have been removed from the current tree. Earlier commits retain the archive. The frozen predictor's complete source-lock set is kept so its provenance and imports remain verifiable; legacy helpers inside that set are not additional active experiments.
-
-Model weights, encoded arrays and HPC-only raw rows are external. No old Slurm allocation or SSH endpoint is a live connection. Proposal GPU use remains 12,723 seconds; cleanup and scalar checks add no GPU usage.
+Those commands verify the earlier retained evidence and assay software. Model weights, encoded arrays and large raw artifacts remain external HPC assets. No historical Slurm allocation or SSH endpoint is a live connection.
