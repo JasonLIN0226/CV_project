@@ -2,6 +2,18 @@
 
 Can the prediction error caused by deleting an observation help decide what a limited visual memory should retain?
 
+## Phase 2 development execution — 20 October 2026
+
+A separate, newly initialized development run now implements the proposal's bounded memory interface, varied-history training with memory dropout, and frozen equal-capacity deletion supervision. It uses the retained source and official frozen I-JEPA, without claiming to reproduce the missing latest repaired Phase 1 models.
+
+- **Actual A100 execution completed:** job 9285, A100-SXM4-40GB with matching physical UUID, 169 allocated GPU seconds. Real PushT encoding and 128 new controlled episodes / 3,616 frames passed interface and sample checks.
+- **New Gate/Motion CPU predictors trained:** four epochs each with parameter updates and exact frozen validation replay. Validation was slightly worse than initialization; no quality improvement is claimed.
+- **Deletion pilot completed:** 238 distinct streaming parents (190 train / 48 validation), 714 equal-K forks and 1,428 finite multi-horizon loss values. This is development supervision, not a trained retention scorer or model-driven planning result.
+
+[Execution evidence](docs/PHASE2_HPC_RUN.md) · [Training contract](docs/PHASE2_PREDICTOR_PILOT.md) · [Deletion pilot](docs/PHASE2_DELETION_PILOT.md) · [Missing original assets](docs/PHASE1_HANDOFF_CHECKLIST_ZH.md)
+
+The older report and GPU ledger below describe the original study and are preserved separately. Its additional `Phase1_GO` criteria are not new prerequisites imposed on the proposal's Phase 2.
+
 ## Latest verified status — 19 October 2026
 
 **Development checks are satisfied for both tasks. Full Phase1_GO remains unestablished: fresh independent confirmation did not run. No retention policy has been trained.**
