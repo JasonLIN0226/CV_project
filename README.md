@@ -21,8 +21,9 @@ The 302/310 total counts correlated comparisons, not independent trials or accur
 
 ## Report and data
 
-- [Complete illustrated English report — Word](reports/phase1_independent_confirmation_20261020/Phase1_Independent_Confirmation_Report.docx)
-- [Complete report — PDF](reports/phase1_independent_confirmation_20261020/Phase1_Independent_Confirmation_Report.pdf)
+- [Current detailed experiment walkthrough — Word](reports/phase1_experimental_walkthrough_20261020/Phase1_Experimental_Walkthrough_and_Evaluation_Report.docx)
+- [Current detailed experiment walkthrough — PDF](reports/phase1_experimental_walkthrough_20261020/Phase1_Experimental_Walkthrough_and_Evaluation_Report.pdf)
+- [Independent-confirmation technical report — Word](reports/phase1_independent_confirmation_20261020/Phase1_Independent_Confirmation_Report.docx)
 - [Verified numerical results](results/phase1_independent_confirmation/local_verified_results_20261020.json)
 - [Current result and limitations](docs/PHASE1_LATEST.md)
 - [Reproduction and external assets](docs/REPRODUCIBILITY.md)
@@ -44,7 +45,7 @@ The first verifier checks the published snapshot hashes and final counts without
 
 ```bash
 python -m pip install -r requirements-report.txt
-python tools/build_independent_confirmation_report.py
+python tools/build_phase1_experimental_walkthrough.py
 ```
 
 ## Repository layout
@@ -53,7 +54,7 @@ python tools/build_independent_confirmation_report.py
 - `results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/`: final frozen execution source; its dependencies and earlier snapshots are retained for provenance.
 - Other `experiments/` and `results/` folders: required development methods, controls, negative results and audit evidence. These are historical evidence, not additional current conclusions.
 - `tests/`: local software checks; `tools/`: analysis, verification and report generation.
-- `reports/`: one current report, its source figures and machine-readable manifest.
+- `reports/`: the current detailed walkthrough, the independent-confirmation technical report, source figures and machine-readable manifests.
 
 Weights, encoded arrays and large raw HPC outputs remain external under the recorded asset paths. They are downloadable from the model handoff Release; they are not stored in Git history. GPU settlement was 53,544 of the approved 69,299 seconds; all HPC jobs have ended. Historical connection aliases are not live endpoints.
 

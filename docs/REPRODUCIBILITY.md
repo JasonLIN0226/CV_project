@@ -18,10 +18,10 @@ These checks validate file integrity, counts and software. They do not rerun mod
 
 ```bash
 python -m pip install -r requirements-report.txt
-python tools/build_independent_confirmation_report.py
+python tools/build_phase1_experimental_walkthrough.py
 ```
 
-The builder reads `results/phase1_independent_confirmation/local_verified_results_20261020.json` and the retained explanatory figures. It writes the current Word report and plots. PDF export requires LibreOffice or Word. After editing, render and inspect every page; refresh the publication manifest after approved changes.
+The current builder reads `results/phase1_independent_confirmation/local_verified_results_20261020.json`, the frozen confirmation protocol, and the retained explanatory figures. It writes the 14-page detailed experiment walkthrough and its machine-readable manifest. The subordinate `tools/build_independent_confirmation_report.py` remains available for the shorter technical report. PDF export requires LibreOffice or Word. After editing, render and inspect every page; refresh the publication manifest after approved changes.
 
 ## Scientific source and external assets
 
