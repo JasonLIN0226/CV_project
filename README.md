@@ -15,6 +15,10 @@ Can the prediction error caused by deleting an observation identify what limited
 
 The 302/310 total counts correlated comparisons, not independent trials or accuracy. All eight failures concern long-gap Motion against reject-newest: feature error improves by 9.4–11.1%, but decoded-position gain has a 95% interval containing zero. This supports a task-alignment limitation; it does not identify a unique causal mechanism. Under the unchanged all-checks rule, retention-policy training cannot begin.
 
+## Verified model handoff
+
+[Download the development and independent-confirmation model assets](https://github.com/JasonLIN0226/CV_project/releases/tag/phase1-asset-handoff-20261020) · [Asset mapping, exact versions and verification instructions](handoff/README.md). The two model families are separate; large weights live in Release assets, not Git history.
+
 ## Report and data
 
 - [Complete illustrated English report — Word](reports/phase1_independent_confirmation_20261020/Phase1_Independent_Confirmation_Report.docx)
