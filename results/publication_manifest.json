@@ -1,14 +1,14 @@
 {
   "date": "2026-10-20",
-  "scope": "Published current source, report, compact scientific evidence and required historical provenance. External HPC weights, arrays and raw fresh rows are not included.",
+  "scope": "Current source, report, compact scientific evidence and complete model handoff metadata. Native weights and maps are versioned Release assets, not Git history.",
   "final_status": "PHASE1_ORIGINAL_STANDARD_NOT_MET",
-  "local_default_tests": 63,
+  "local_default_tests": 66,
   "local_confirmation_tests": 12,
   "files": [
     {
       "path": ".github/workflows/verify-results.yml",
-      "bytes": 1033,
-      "sha256": "16b5583d9b3a59894209fb6388e7f11eea5ae5a210abddf95d23a01795a6c613"
+      "bytes": 1412,
+      "sha256": "c478462f9cb9499f5b7fc215f39244fd74976ee6b1d4396a97e0a4e3402a12a6"
     },
     {
       "path": ".gitignore",
@@ -17,8 +17,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4211,
-      "sha256": "384222ad079a45380b02c2fca40a799333409b70bd92897347fac04bc3ff51c9"
+      "bytes": 4271,
+      "sha256": "28d677c9ac8b6e430d5af742d29deddb4b26754903aa6b931cf2b5c06b7fcbfc"
     },
     {
       "path": "docs/CLEANUP_MANIFEST.json",
@@ -2622,8 +2622,8 @@
     },
     {
       "path": "handoff/README.md",
-      "bytes": 7269,
-      "sha256": "22a239932300d4b723449b70b1e8fcc63f5cd6e51e04310ae667f4427795425e"
+      "bytes": 10343,
+      "sha256": "fdab7eef42b4d0e6e04d89ea42c330b299ac154787ce1979248253268a178b71"
     },
     {
       "path": "handoff/asset_manifest.json",
@@ -2631,9 +2631,34 @@
       "sha256": "18514953f3e02bd0d8a0d3ee63e4845ef61c54ae4ca901fc7b97808f6ed4608f"
     },
     {
+      "path": "handoff/binary_integrity_audit.json",
+      "bytes": 206,
+      "sha256": "c6a3e3a45e2c61c6e855f02519ee2b619dafd57b744c02d93b59931656e49265"
+    },
+    {
+      "path": "handoff/inference.py",
+      "bytes": 10378,
+      "sha256": "6880838b2c2f992aef9a11732a6f391b2bb8e974fecfd2bd87e3f4ff4bd2fac3"
+    },
+    {
+      "path": "handoff/inference_smoke.json",
+      "bytes": 2418,
+      "sha256": "c23423312577c9c5cd7df6396210c849284e3057d44ce264f3cd70b015402c16"
+    },
+    {
       "path": "handoff/source_archive_manifest.json",
-      "bytes": 406,
-      "sha256": "e260203e740d75b1a3d6adf7a08feddfaf7e781a403ea515cafca1e5b9a513ac"
+      "bytes": 399,
+      "sha256": "b9664826e8973aa9ba25c8b55f2145027424fd1f9a8daa9681ba6662010b4fa6"
+    },
+    {
+      "path": "handoff/supplemental_manifest.json",
+      "bytes": 852,
+      "sha256": "ddab0cc00bde9826157b8e0c9b3a723c66baf6e3d0dada8adf640c112a7f6823"
+    },
+    {
+      "path": "handoff/teammate_intake_audit.json",
+      "bytes": 12393,
+      "sha256": "3b0a9c8f1052ebb01e71d118c5d59e9dd8eee25933d41259df699487e4a92dbf"
     },
     {
       "path": "handoff/training_identity.json",
@@ -2647,8 +2672,8 @@
     },
     {
       "path": "handoff/verify_handoff.py",
-      "bytes": 2107,
-      "sha256": "bc2884ef1650c385780d4ec1324ed1f30fe446e80ccaeb8cafd0a53b3a6eb556"
+      "bytes": 3067,
+      "sha256": "a54a1de194ef80fafa2c157dd01e97b0babf0503265fe266b7ee71065dd03d03"
     },
     {
       "path": "pyproject.toml",
@@ -13437,8 +13462,13 @@
     },
     {
       "path": "tests/test_gate_validation_deletion.py",
-      "bytes": 3184,
-      "sha256": "06193882e969cb5b3af141610f7bcbe12d4a62934fae6bfbbbc581edf10cda20"
+      "bytes": 3152,
+      "sha256": "411d0bd62bff6c91c8c35e15e7cae90856bd2fb665737c65cb38daf33165a8e9"
+    },
+    {
+      "path": "tests/test_handoff_intake.py",
+      "bytes": 1491,
+      "sha256": "8d91fca9376a861ba7e1f368ae0f7bba4e9d42cda98485d3f64ac146f4d15a97"
     },
     {
       "path": "tests/test_signal_diagnostics.py",

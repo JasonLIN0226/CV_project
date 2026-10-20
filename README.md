@@ -17,7 +17,7 @@ The 302/310 total counts correlated comparisons, not independent trials or accur
 
 ## Verified model handoff
 
-[Download the development and independent-confirmation model assets](https://github.com/JasonLIN0226/CV_project/releases/tag/phase1-asset-handoff-20261020) · [Asset mapping, exact versions and verification instructions](handoff/README.md). The two model families are separate; large weights live in Release assets, not Git history.
+[Download the development and independent-confirmation model assets](https://github.com/JasonLIN0226/CV_project/releases/tag/phase1-asset-handoff-20261020-v2) · [Asset mapping, exact versions and verification instructions](handoff/README.md). The two model families are separate; large weights live in Release assets, not Git history.
 
 ## Report and data
 
@@ -55,6 +55,6 @@ python tools/build_independent_confirmation_report.py
 - `tests/`: local software checks; `tools/`: analysis, verification and report generation.
 - `reports/`: one current report, its source figures and machine-readable manifest.
 
-Weights, encoded arrays and large raw HPC outputs remain external under the recorded asset paths. They are not included in GitHub. GPU settlement was 53,544 of the approved 69,299 seconds; all HPC jobs have ended. Historical connection aliases are not live endpoints.
+Weights, encoded arrays and large raw HPC outputs remain external under the recorded asset paths. They are downloadable from the model handoff Release; they are not stored in Git history. GPU settlement was 53,544 of the approved 69,299 seconds; all HPC jobs have ended. Historical connection aliases are not live endpoints.
 
 Superseded reports, outdated prose, duplicate renders, deployment ZIPs and generated caches were removed. Failed scientific evidence and immutable source locks were preserved. No new training, threshold changes or retention-policy experiment is part of this publication.

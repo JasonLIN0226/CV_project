@@ -1,8 +1,8 @@
 # Phase 1 verified model handoff
 
-Download: https://github.com/JasonLIN0226/CV_project/releases/tag/phase1-asset-handoff-20261020
+Download: https://github.com/JasonLIN0226/CV_project/releases/tag/phase1-asset-handoff-20261020-v2
 
-Verified on the original HPC asset store on 20 October 2026. All 313 exported files match their applicable frozen source/model locks; all six archives and the original manifest passed native-before/local/native-after SHA256 checks. Every archive member was also checked against its file-level SHA256 and size. No training, fitting, model forward or encoding was performed for this export. Checkpoints were verified as bytes against their locks, not deserialized during export.
+Verified on the original HPC asset store on 20 October 2026. All 313 exported files match their applicable frozen source/model locks; all six archives and the original manifest passed native-before/local/native-after SHA256 checks. Every archive member was also checked against its file-level SHA256 and size. No training, fitting, model forward or encoding was performed for this export. After export, an independent fresh download audit strictly loaded all 24 best checkpoints and four production maps, ran finite synthetic-input forward checks, and verified exact empty-history reference identity. See `inference_smoke.json`. This is a software compatibility check, not a new scientific experiment.
 
 ## Development and confirmation are separate
 
@@ -31,22 +31,22 @@ The full manifest records original path, resolved original path, package-relativ
 
 ## Download and verify
 
-Release assets contain `manifest.json` (identical to `handoff/asset_manifest.json` in this repo), `SHA256SUMS`, six model/metadata archives, `phase1-source-988fe9e.tar.gz`, `source_archive_manifest.json`, `verify_handoff.py`, `transfer_integrity.json`, `training_identity.json`, and this README. The source archive is the exact published scientific snapshot at commit `988fe9e784225bb7b584901c82357905f854f5c0`; subsequent handoff metadata does not change that scientific source.
+Release assets contain `manifest.json` (identical to `handoff/asset_manifest.json` in this repo), `SHA256SUMS`, six model/metadata archives, `phase1-source.tar.gz`, `source_archive_manifest.json`, `verify_handoff.py`, `transfer_integrity.json`, `training_identity.json`, and this README. The source archive includes the corrected portable tests and inference adapter. Its exact code commit, size and SHA are in the release source_archive_manifest.json. Scientific source locks and native model archives are unchanged. The v2 release also includes development-supplemental_provenance.tar.gz and supplemental_manifest.json: the exact retained verification.json requested by the teammate, matching her pre-existing SHA. This supplemental copy is transparently marked as retained published provenance, not a new HPC read.
 
 ```bash
 # Download release assets into a new directory.
-gh release download phase1-asset-handoff-20261020 --repo JasonLIN0226/CV_project --dir assets
+gh release download phase1-asset-handoff-20261020-v2 --repo JasonLIN0226/CV_project --dir assets
 cd assets
 shasum -a 256 -c SHA256SUMS
-python3 verify_handoff.py --manifest manifest.json --root .
+python3 verify_handoff.py --manifest manifest.json --root . --supplement supplemental_manifest.json
 mkdir intake
 for archive in development-*.tar.gz independent_confirmation-*.tar.gz; do
   tar -xzf "$archive" -C intake
 done
-python3 verify_handoff.py --manifest manifest.json --root intake --extracted
+python3 verify_handoff.py --manifest manifest.json --root intake --extracted --supplement supplemental_manifest.json
 ```
 
-To use the teammate's older Phase2 required-assets checker, point its `--root` to `assets/intake/development`. Files preserve the tree beneath `/scratch/xl4358/` within the relevant variant. That checker covers the old development assets only; the supplied verifier covers both twelve-model families. Checks are SHA/size integrity checks, not a repeat of scientific inference.
+To use the teammate's older Phase2 required-assets checker, point its `--root` to `assets/intake/development`. Files preserve the tree beneath `/scratch/xl4358/` within the relevant variant. That checker covers the old development assets only; the supplied verifier covers both twelve-model families. The teammate checker now matches all 21/21 required assets, including reference verification. SHA/size integrity checks are separate from the included inference smoke check.
 
 The additional training_identity.json reconciles each family and task's 1,024 locked basis training IDs with its actual dataset manifest (512 pairs), without loading a predictor or refitting a map. Map preparation/crossfit provenance is also retained in the source archive under results/motion_observation_map and results/motion_scene_calibration; fresh map preparation is under results/phase1_independent_confirmation/execution_v9_cpu_incarnation/native_first_training/fresh/observation_maps.
 
@@ -57,3 +57,45 @@ The source archive contains the predictor architecture and its dependencies unde
 Checkpoint loading must use the matching family, task, seed, reference, basis, normalization and readout. Historical Slurm/resource guards expect the original HPC layout; this package preserves them as provenance and does not claim a new portable planning implementation. Large caches can be reconstructed from the supplied source and identity manifests, but rebuilt files need their own provenance and must not be assumed bitwise identical.
 
 No PushT/planning experiment was implemented by this Phase1 project. The teammate's Phase2 code is independent. No retention policy was trained here. This controlled synthetic I-JEPA prototype includes a training-supervised position readout and observed-RGB guard; it is not V-JEPA or real-video validation. Independent confirmation's eight Motion long-gap deletion failures remain unchanged.
+
+## Portable inference: no HPC account required
+
+Use a clean checkout of the v2 source (or extract `phase1-source.tar.gz`), install the
+package and CPU model dependencies, then load the extracted archives. No encoder,
+GPU, refit, training, or old absolute HPC directory is required for this check.
+
+```bash
+python -m pip install -r requirements.txt Pillow PyYAML
+python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+python -m pip install -e . --no-deps
+python handoff/inference.py --intake /absolute/path/to/assets/intake
+```
+
+```python
+from handoff.inference import Predictor, pack
+model = Predictor('/absolute/path/to/assets/intake', 'development', 'gate', 17)
+# encoded_features: original 5120-dimensional I-JEPA output for observed frames.
+z = model.normalize(encoded_features)  # skip if already normalized with this family
+sample = pack(z, known_actions, query=24, retained=(2, 10))
+prediction = model.predict(sample)  # normalized future features, h=3,6
+```
+
+For Motion K=2, also pass `query`, `retained_rgb` (two actual retained RGB frames),
+`current_rgb`, and `own_actions` to `predict`. Guard fallback and the fixed 0.5 map
+mix follow the locked inference exactly. Other history counts retain the original
+candidate output. Gate disables the entire transport output for every history
+count. The API consumes no hidden states, targets or future images. Input features
+must come from the original I-JEPA feature representation; this is not a PushT
+encoder adapter. Retention policies and planning remain the teammate's Phase2 work.
+
+## Publication audit and limitations
+
+The first release exposed two packaging issues: one test relied on a neighboring
+local project directory, and the old Phase2 inventory lacked one verification
+JSON in its expected extracted path. Both are corrected in v2. Original six native
+archives keep their exact SHA256 values. No model, map, sample, metric or threshold
+was changed. `inference_smoke.json` records real checkpoint loading, not interface
+mocks. `teammate_intake_audit.json` records the teammate's independent inventory
+checker; its older unverified-scope wording is retained rather than rewritten.
+The raw HPC scientific audit and current report remain the authority on results:
+strict Phase1 is NOT met because eight fresh long-gap Motion checks fail.

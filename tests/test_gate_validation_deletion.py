@@ -11,7 +11,7 @@ def test_all_physical_delete_paths_equal_direct_packing():
   assert np.array_equal(direct['current'],z[q]) and direct['actions'].shape==(6,2)
 def test_canonical_old_two_frame_sample_unchanged():
  # Execute only the actual old frozen sample definition as a numerical fixture.
- text=(p.parent/'phase1_jepa_memory/runs/phase1_deletion_assay/run_assay.py').read_text();tree=ast.parse(text);node=next(x for x in tree.body if isinstance(x,ast.FunctionDef) and x.name=='sample');ns={'np':np};exec(compile(ast.Module(body=[node],type_ignores=[]),'old_sample_fixture','exec'),ns)
+ text=(p/'experiments/deletion/run_assay.py').read_text();tree=ast.parse(text);node=next(x for x in tree.body if isinstance(x,ast.FunctionDef) and x.name=='sample');ns={'np':np};exec(compile(ast.Module(body=[node],type_ignores=[]),'old_sample_fixture','exec'),ns)
  z,pr,a,q=fixture();assert m.same(m.pack(z,pr,a,q,(2,10)),ns['sample'](z,pr,a,q,(2,10)))
 def test_reject_duplicate_future_and_recent_deletions():
  import pytest

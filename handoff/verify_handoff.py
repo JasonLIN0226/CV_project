@@ -37,10 +37,28 @@ def verify(manifest, root, extracted=False):
                 model_deserialized=False, training=False)
 
 
+def verify_supplement(manifest, root, extracted=False):
+    if manifest['status'] != 'PUBLISHED_COPY_MATCHES_TEAMMATE_EXPECTED_SHA':
+        raise ValueError('Unknown supplemental provenance')
+    entries = manifest['files'] if extracted else manifest['packages']
+    for entry in entries:
+        rel = entry['relative_path'] if extracted else entry['name']
+        path = (root / rel).resolve()
+        if (not path.is_relative_to(root.resolve()) or not path.is_file()
+                or path.stat().st_size != entry['bytes'] or sha(path) != entry['sha256']):
+            raise ValueError('Missing or mismatched supplemental file: '+rel)
+    return len(entries)
+
+
 if __name__=='__main__':
     p=argparse.ArgumentParser()
     p.add_argument('--manifest', required=True)
     p.add_argument('--root', required=True)
     p.add_argument('--extracted', action='store_true')
+    p.add_argument('--supplement', help='Separate retained-reference provenance manifest')
     args=p.parse_args()
-    print(json.dumps(verify(json.loads(Path(args.manifest).read_text()),Path(args.root),args.extracted)))
+    result = verify(json.loads(Path(args.manifest).read_text()),Path(args.root),args.extracted)
+    if args.supplement:
+        result['supplemental_files_verified'] = verify_supplement(
+            json.loads(Path(args.supplement).read_text()), Path(args.root), args.extracted)
+    print(json.dumps(result))
