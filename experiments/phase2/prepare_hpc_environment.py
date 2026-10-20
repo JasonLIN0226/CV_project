@@ -23,7 +23,8 @@ def main():
     env = os.environ.copy()
     env.update(UV_CACHE_DIR=str(root/'cache/uv'), UV_PYTHON_INSTALL_DIR=str(root/'python'),
                UV_PYTHON_BIN_DIR=str(root/'python-bin'), PIP_CACHE_DIR=str(root/'cache/pip'),
-               XDG_CACHE_HOME=str(root/'cache/xdg'), HF_HOME=str(root/'cache/huggingface'))
+               XDG_CACHE_HOME=str(root/'cache/xdg'), HF_HOME=str(root/'cache/huggingface'),
+               HF_HUB_DISABLE_XET='1')
     commands = []
     began = time.monotonic()
     def run(command, timeout=1200):
@@ -45,6 +46,12 @@ def main():
     run([uv, 'pip', 'install', '--python', py, '--no-deps', '-e', repo])
     run([py, '-m', 'pip', 'check'])
     run([py, '-c', 'import torch, torchvision, transformers, gym_pusht; from transformers import AutoImageProcessor, IJepaModel; print(torch.__version__, torchvision.__version__, transformers.__version__)'])
+    download = ("from huggingface_hub import snapshot_download; "
+                "print(snapshot_download('facebook/ijepa_vith14_1k', "
+                "revision='f157467ea509bc356ff9f61fd3c0d840eec5e04e', "
+                "allow_patterns=['*.json','*.safetensors'], cache_dir="
+                + repr(str(root/'cache/ijepa')) + "))")
+    run([py, '-c', download])
     packages = subprocess.check_output([str(py), '-m', 'pip', 'freeze'], env=env, text=True)
     (root/'environment.txt').write_text(packages)
     result = {'status':'ready', 'scope':'CPU dependency preparation only',
