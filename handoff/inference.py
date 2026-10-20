@@ -84,8 +84,8 @@ class Predictor:
         if family not in ('development', 'independent_confirmation') or task not in ('gate', 'motion') or seed not in (17,29,43):
             raise ValueError('Choose an explicit published family, task and seed')
         self.family, self.task, self.seed = family, task, seed
-        self.root = Path(intake).resolve()
-        self.manifest = json.loads(Path(manifest or REPO/'handoff/asset_manifest.json').read_text())
+        self.root = Path(intake).expanduser().resolve()
+        self.manifest = json.loads(Path(manifest or REPO/'handoff/asset_manifest.json').expanduser().read_text())
         records = [r for r in self.manifest['files'] if r['variant'] == family]
 
         def checked(record):

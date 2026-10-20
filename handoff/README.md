@@ -64,6 +64,10 @@ No PushT/planning experiment was implemented by this Phase1 project. The teammat
 Use a clean checkout of the v2 source (or extract `phase1-source.tar.gz`), install the
 package and CPU model dependencies, then load the extracted archives. No encoder,
 GPU, refit, training, or old absolute HPC directory is required for this check.
+Keep the source checkout after the editable installation. The package reads its
+frozen inference code beside that checkout; it does not need the checkout to be
+your working directory. This is an editable-source installation, not a standalone
+wheel distribution.
 
 ```bash
 python -m pip install -r requirements.txt Pillow PyYAML
@@ -89,6 +93,15 @@ count. The API consumes no hidden states, targets or future images. Input featur
 must come from the original I-JEPA feature representation; this is not a PushT
 encoder adapter. Retention policies and planning remain the teammate's Phase2 work.
 
+Both the source checkout and extracted `intake` can live in your own directories,
+including paths with spaces. After the editable install, `from handoff.inference
+import Predictor` also works in a notebook outside the checkout. Pass your own
+intake path (or `~/...`) to `Predictor`; no NYU/HPC account, SSH session, VPN or
+credentials are read during loading. `original_path`, `resolved_original_path`,
+historical config output paths and old Slurm scripts are provenance only. Do not
+run those historical HPC scripts as portable entry points, and do not create
+`/scratch/xl4358` symlinks. SHA/size checks use only `relative_path` beneath intake.
+
 ## Publication audit and limitations
 
 The first release exposed two packaging issues: one test relied on a neighboring
@@ -100,3 +113,5 @@ mocks. `teammate_intake_audit.json` records the teammate's independent inventory
 checker; its older unverified-scope wording is retained rather than rewritten.
 The raw HPC scientific audit and current report remain the authority on results:
 strict Phase1 is NOT met because eight fresh long-gap Motion checks fail.
+
+Offline relocation evidence is in `portability_audit.json`: both model families were loaded from a new path with spaces, with an empty HOME and no HPC credentials; original paths, network connections and subprocess launches were blocked. All 24 best checkpoints and four production maps passed. Replacing original-path provenance fields with unusable paths left predictions identical. The editable install now includes the `handoff` module, and CI imports it from outside the checkout.
