@@ -1,0 +1,43 @@
+{
+  "stage": "LOCKED_LOCAL_SCALAR_DIAGNOSIS",
+  "created_utc": "2026-10-18T21:25:58.439380+00:00",
+  "purpose": "Separate observed complete-feature prediction deficits from horizon-transfer and feature-position disagreement; no new method selection.",
+  "inputs": {
+    "output/job_8349/paired_deletions.csv": "4676187ebe7522ea28a9a08b3920e040dd56ed1ed4ced10c50bec9ba039efc96",
+    "output/job_8349/prediction_components.json": "1666ead9de74226ab00e60bbdc3b5e7f2f470c3ebcd680375e9eeda26fa2c288",
+    "output/job_8349/fixed_reference_pairs.csv": "ef894130de4a3aa9d8e29901513cbb2b9cc390f045e0b79b4fd13db2a94afa1c",
+    "output/job_8349/summary.json": "53c8a3a45b259bc425fa276ee9df80594c9f6aa8beb112b1bf9272bc705b195e",
+    "output/job_8349/independent_audit.json": "a305d5383c8cddaaf0fb9db215671a143c7e4ef6729c4fd1dae8229fa8488088",
+    "transfer_integrity.json": "f33154258cf68acebc95a51413a8cfbd372b15d23ab3159f983c2d81acdfe8a8"
+  },
+  "scope": "All existing 2304 Motion compact deletion rows; three seeds, three splits, two horizons, 128 matched pairs per split. Original prediction/fixed-reference results remain unchanged.",
+  "analyses": [
+    "Report all original feature and position benefit components; do not substitute task readout for complete-feature acceptance.",
+    "For each split/horizon, average seeds within each pair, then measure transferred-choice minus same-horizon future-feature-oracle loss. Feature regret is nonnegative by construction; position difference need not be.",
+    "For each split/horizon/baseline (uniform/FIFO/reject-newest), report paired feature/task gain CIs, strict positive/tie/negative signs and feature-positive/task-negative joint signs. Report seed-mean and all-three-seed support counts.",
+    "Report long-gap candidate vs unchanged fixed same-capacity reference from original output; maintain comparator identity."
+  ],
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 0,
+    "unit": "128 paired scenes within each split; seeds averaged within pair first",
+    "interval": "percentile 95%; descriptive, no multiplicity adjustment or new pass rule"
+  },
+  "sign_tolerance": 1e-12,
+  "limitations": [
+    "Compact pair rows average siblings and six candidate pools, so joint signs are pair-average outcomes, not individual deletion events.",
+    "Cannot reconstruct raw deletion ranks, selection agreement, a task-optimal deletion oracle, vector residual causes, or past-only learnability from compact columns.",
+    "Already revealed synthetic development data; no independent confirmation."
+  ],
+  "forbidden": [
+    "predictor/encoder calls",
+    "fitting or retraining",
+    "candidate changes or selection",
+    "new acceptance thresholds",
+    "fresh9137 access",
+    "retention-policy training",
+    "HPC allocation",
+    "GitHub update"
+  ],
+  "GPU_added": 0
+}

@@ -1,54 +1,56 @@
 # Bounded Visual Memory
 
-Can the prediction error caused by deleting an observation help decide what a limited visual memory should retain?
+Can the prediction error caused by deleting an observation identify what limited visual memory should retain?
 
-## Latest verified status — 19 October 2026
+## Final independent confirmation — 20 October 2026
 
-**Development checks are satisfied for both tasks. Full Phase1_GO remains unestablished: fresh independent confirmation did not run. No retention policy has been trained.**
+**Phase1 did not pass the registered rule.** Gate passes 155/155 checks; Motion passes 147/155. The independent raw-data audit passed. All 12 fresh models completed 120 epochs and 7,680 steps before the fresh seed 9137 test was opened. No retention policy was trained.
 
-| Registered checks satisfied | Gate | Motion |
+| Registered checks | Gate | Motion |
 |---|---:|---:|
-| Original prediction requirements | 51/51 | 51/51 |
-| Additional fixed-reference requirements | 32/32 | 32/32 |
-| Task-specific deletion diagnostics | 72/72 | 72/72 |
+| Original prediction (includes evidence probes) | 51/51 | 51/51 |
+| Fixed-reference prediction | 32/32 | 32/32 |
+| Deletion reliability | 72/72 | 64/72 |
+| Total | 155/155 | 147/155 |
 
-Counts are correlated registered comparisons, not independent trials or prediction-accuracy percentages. Gate's deletion count measures critical-versus-other deletion contrasts; Motion's measures cross-horizon, future-informed oracle comparisons. Neither establishes a deployable retention policy. Development data have been repeatedly inspected.
+The 302/310 total counts correlated comparisons, not independent trials or accuracy. All eight failures concern long-gap Motion against reject-newest: feature error improves by 9.4–11.1%, but decoded-position gain has a 95% interval containing zero. This supports a task-alignment limitation; it does not identify a unique causal mechanism. Under the unchanged all-checks rule, retention-policy training cannot begin.
 
-![Audited development checks](reports/independent_confirmation_boundary/development_counts.png)
+## Report and data
 
-Gate's complete temporal-extrapolation contribution was disabled. Motion uses frozen-reference visual prediction plus guarded position and a fixed equal-weight training-only observation-innovation map. Neural predictors remained frozen during this final repair; two small maps were fitted. All original thresholds were retained. This is a controlled synthetic **I-JEPA** prototype, not a V-JEPA or real-video confirmation.
-
-[Full result explanation and limitations](docs/PHASE1_LATEST.md) · [Illustrated English Word report](reports/independent_confirmation_boundary/Phase1_Confirmation_Review.docx) · [Published evidence manifest](results/phase1_latest/manifest.json)
-
-## Independent confirmation and GPU accounting
-
-CPU execution equivalence passed, but fresh seed 9137 was never generated or accessed: **0/12 new neural models and 0/2 new maps**. A failed startup job underwent 56 automatic requeues, creating 57 GPU allocation records without entering the experiment script. Cumulative GPU allocation reached **39,651 seconds (11 h 00 m 51 s)** against the approved **28,800 seconds (8 h)**, an excess of **10,851 seconds (3 h 00 m 51 s)**.
-
-The agent's execution guard failed to cover configuration and automatic requeue stages. This is an execution-protection failure, not a fresh scientific rejection. All compute tasks are ended, the temporary evidence node was released, and monitoring was deleted. New GPU submissions are stopped under the exhausted budget.
-
-[Native accounting](results/phase1_latest/budget_boundary.json) · [57 allocation records](results/phase1_latest/startup_allocations.csv) · [Independent accounting replay](results/phase1_latest/budget_local_audit.json)
-
-## Verify the published update
-
-```bash
-python tools/verify_phase1_latest.py
-```
-
-This standard-library-only check verifies the evidence hashes, registered comparison counts, allocation durations and final status. It does not run models, use a GPU or replace the original raw-data audits. Detailed per-comparison estimates and confidence intervals are in the [Gate](results/phase1_latest/gate_summary.json) and [Motion](results/phase1_latest/motion_summary.json) evidence.
-
-## Existing implementation and earlier study
-
-The repository also retains the frozen predictor, equal-capacity deletion assay and earlier numerical evidence. The original report and results below describe the earlier baseline; use the dated update above for the current status.
-
-- [Experimental design and test definitions](docs/EXPERIMENTS.md)
-- [Earlier baseline results](docs/RESULTS.md)
-- [Earlier illustrated report](reports/Phase1_Report.pdf)
+- [Complete illustrated English report — Word](reports/phase1_independent_confirmation_20261020/Phase1_Independent_Confirmation_Report.docx)
+- [Complete report — PDF](reports/phase1_independent_confirmation_20261020/Phase1_Independent_Confirmation_Report.pdf)
+- [Verified numerical results](results/phase1_independent_confirmation/local_verified_results_20261020.json)
+- [Current result and limitations](docs/PHASE1_LATEST.md)
 - [Reproduction and external assets](docs/REPRODUCIBILITY.md)
+- [Cleanup record](docs/CLEANUP_MANIFEST.json)
+
+This is a controlled synthetic **I-JEPA** study, with a supervised training-only position readout and observed-RGB guard. It is not V-JEPA or real-video validation. Both tasks use 512 training pairs, 96 validation pairs, and three test conditions with 256 pairs each. Reference and candidate models use seeds 17, 29 and 43. All train-only transforms, two maps and models were locked before test generation.
+
+## Verify and reproduce
 
 ```bash
 python -m pip install -r requirements.txt
+python tools/verify_independent_confirmation.py
 python tools/verify_results.py
-python -m pytest -q experiments/deletion/test_assay.py
+python tools/verify_phase1_latest.py
+python -m pytest -q
 ```
 
-Those commands verify the earlier retained evidence and assay software. Model weights, encoded arrays and large raw artifacts remain external HPC assets. No historical Slurm allocation or SSH endpoint is a live connection.
+The first verifier checks the published snapshot hashes and final counts without HPC access. The other verifiers check earlier retained evidence. Local verification is not a repeat of HPC model inference or its raw-data audit.
+
+```bash
+python -m pip install -r requirements-report.txt
+python tools/build_independent_confirmation_report.py
+```
+
+## Repository layout
+
+- `experiments/independent_confirmation/`: fresh confirmation methods and statistics.
+- `results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/`: final frozen execution source; its dependencies and earlier snapshots are retained for provenance.
+- Other `experiments/` and `results/` folders: required development methods, controls, negative results and audit evidence. These are historical evidence, not additional current conclusions.
+- `tests/`: local software checks; `tools/`: analysis, verification and report generation.
+- `reports/`: one current report, its source figures and machine-readable manifest.
+
+Weights, encoded arrays and large raw HPC outputs remain external under the recorded asset paths. They are not included in GitHub. GPU settlement was 53,544 of the approved 69,299 seconds; all HPC jobs have ended. Historical connection aliases are not live endpoints.
+
+Superseded reports, outdated prose, duplicate renders, deployment ZIPs and generated caches were removed. Failed scientific evidence and immutable source locks were preserved. No new training, threshold changes or retention-policy experiment is part of this publication.

@@ -1,0 +1,22 @@
+{
+  "UTC": "2026-10-19T03:03:30.307418+00:00",
+  "round": 1,
+  "hypothesis": "Previous current-only linear head omitted historical scene location and overfit with123effective df per256pairs; add a causal sibling-invariant scene-centre and cap32effective df",
+  "method": "Additive RBF kernel ridge on2observed-history/control-derived scene-centre coordinates plus128frozen projected-current features; weights .5/.5, output in126original position-null directions",
+  "target": "Existing pair-common residual from fixed historical-reference composite; no new base-model forward",
+  "input_boundary": "Latest actually retained normalized feature decoded by fixed train-only decoder, known controls since that observation plus known query-to-horizon controls; no true state, sibling, future image or sibling-average geometry in deployment",
+  "pair_invariant": "Exact equal contexts across original siblings required before fitting; identical corrections preserve original prediction contrast and decoded position",
+  "data": "Same512original trainpairs and fixed2foldseed0 grouped bypair; all96validationpairs only after successful crossfit",
+  "capacity": "Use train-input-only mean/std and median pair-distance bandwidths. Solve ridge lambda by input-spectrum constraint sum(eig/(eig+lambda))=31 plusintercept=32; fixed80bisection, no outcome/hyperparameter grid",
+  "continued_fit_rule": "All6crossfitmeancommon gainspositive and both seed-mean-horizon pairedbootstrap2000seed0 lower95CIpositive. Resource screen only, original acceptance unchanged. Thenfit6fulltrainheads",
+  "validation": "Original8feature and8position rules allmet; all8incremental feature lower95CI>0 against fixed priorbest. Failedscreen stops this fixed round. No test until success and model/source hashes locked. Independent32CI/vector audit mandatory",
+  "baseline": "Recent-only and non2memory identity remain unchanged. Exactly2past inputs receive fixedhead after existingRGBvalidityguard only",
+  "budget": "One A100/4threads60G/600s hardcap540softstop. Prior13077 includes312allocatedbootseconds of nativeCANCELLED8511; cumulative<=28800. No math/data/threshold change.",
+  "interpretation": "These revealed-development rounds are exploratory, not independent confirmation. Fresh9137 unopened until full original development+audit support; no pass guarantee",
+  "sources": [
+    "https://scikit-learn.org/stable/modules/kernel_ridge.html",
+    "https://papers.nips.cc/paper/2783-gaussian-process-dynamical-models"
+  ],
+  "association_sha256": "b5c2046ce1f2afaec99d7bbb265fb3881a3c10a526b854c825c58ac34b2c114a",
+  "execution_fix": "No scientific execution in8511; correct missing deterministicCUDA environment. Preserve13originalsources and receipts."
+}

@@ -1,0 +1,20 @@
+{
+  "UTC": "2026-10-18T14:38:58.482747+00:00",
+  "command": [
+    "/opt/slurm/bin/sbatch",
+    "--parsable",
+    "--job-name=cv-age-final-evidence",
+    "--account=csci_ga_2271-2026fa",
+    "--partition=interactive",
+    "--cpus-per-task=1",
+    "--mem=1500M",
+    "--time=00:10:00",
+    "--dependency=afterany:8275",
+    "--output=/scratch/xl4358/phase1_age_control_a1/logs/final-%j.out",
+    "--error=/scratch/xl4358/phase1_age_control_a1/logs/final-%j.err",
+    "--wrap=/scratch/xl4358/phase1_env/bin/python -u /scratch/xl4358/phase1_age_control_a1/collect_native_final.py"
+  ],
+  "source_sha256": "e053f29a359ef67bf39333c832a375159e571f2a0e0277af3407cb1eddd4d119",
+  "GPU": 0,
+  "no_forward": true
+}

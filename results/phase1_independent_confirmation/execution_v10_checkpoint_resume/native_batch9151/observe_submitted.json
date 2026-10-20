@@ -1,0 +1,93 @@
+{
+  "UTC": "2026-10-20T01:08:45.525371+00:00",
+  "route_job": 9155,
+  "native_route_state": "RUNNING",
+  "squeue": "9160|p1-encode_test-4133e433|PENDING|0:00|\n9158|p1-train_gpu-4133e433|RUNNING|32:35|b-19-48\n9154|p1-standalone-primary|RUNNING|36:35|b-9-19\n9155|p1-standalone-peer|RUNNING|37:05|b-9-20\n9161|p1-evaluate_cpu-4133e433|PENDING|0:00|\n9159|p1-lock_cpu-4133e433|PENDING|0:00|\n9162|p1-audit_cpu-4133e433|PENDING|0:00|\n9163|p1-evidence_cpu-4133e433|PENDING|0:00|\n",
+  "receipts": {
+    "audit_cpu_submission.json": {
+      "job": 9162,
+      "parent": 9161
+    },
+    "encode_test_submission.json": {
+      "job": 9160,
+      "parent": 9159
+    },
+    "evaluate_cpu_submission.json": {
+      "job": 9161,
+      "parent": 9160
+    },
+    "evidence_cpu_submission.json": {
+      "job": 9163,
+      "parent": 9162
+    },
+    "lock_cpu_submission.json": {
+      "job": 9159,
+      "parent": 9158
+    },
+    "train_gpu_submission.json": {
+      "job": 9158,
+      "parent": null
+    }
+  },
+  "completed": {
+    "resume_cpu.json": {
+      "job": 9073,
+      "execution_completed": true
+    }
+  },
+  "failures": {},
+  "guardian": {
+    "watchdog_submission.json": {
+      "job": 9154
+    },
+    "watchdog_cleanup_submission.json": {
+      "job": 9155
+    },
+    "guardian_native_preflight.json": {
+      "status": "PASS_NATIVE_CPU_GUARDIAN_AND_CLEANUP",
+      "guardian": 9154,
+      "cleanup": 9155,
+      "real_paired_heartbeat_cycles": 8
+    },
+    "heartbeat": {
+      "job": 9154,
+      "updated_epoch": 1792458523.3075166,
+      "charged_GPU_seconds": 47211,
+      "reason": null
+    }
+  },
+  "progress": {
+    "sequence_budget.json": {
+      "GPU_job_ids": [
+        8951,
+        9030,
+        9086,
+        9115,
+        9118,
+        9120,
+        9158,
+        9160
+      ],
+      "epochs": {
+        "reference/gate/17": 120,
+        "reference/gate/29": 120,
+        "reference/gate/43": 120,
+        "reference/motion/17": 120,
+        "reference/motion/29": 120,
+        "reference/motion/43": 120,
+        "candidate/gate/17": 120,
+        "candidate/gate/29": 120,
+        "candidate/gate/43": 120,
+        "candidate/motion/17": 120,
+        "candidate/motion/29": 87
+      },
+      "encoded_frames": 62418
+    },
+    "last_budget_forecast.json": {
+      "actual_GPU_seconds": 47184,
+      "remaining_cap_seconds": 22115,
+      "fits": true,
+      "projected_cumulative_seconds": 55091.93834771053
+    }
+  }
+}

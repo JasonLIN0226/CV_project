@@ -1,0 +1,53 @@
+{
+  "created_utc": "2026-10-18T21:39:05.009316+00:00",
+  "scope": "Read-only diagnosis of all 82944 existing locked Motion deletion scalar rows. No model, encoder or fitting calls.",
+  "parent": "/scratch/xl4358/phase1_motion_locked_test/output/job_8349",
+  "raw_sha256": "0a37198ceed84eb7290e13c102534e4e2f39d3279f26f433eb20956af8f107a5",
+  "parent_summary_sha256": "53c8a3a45b259bc425fa276ee9df80594c9f6aa8beb112b1bf9272bc705b195e",
+  "paired_sha256": "4676187ebe7522ea28a9a08b3920e040dd56ed1ed4ced10c50bec9ba039efc96",
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "splits": [
+    "test_id",
+    "test_long_gap",
+    "test_distractor_shift"
+  ],
+  "horizons": [
+    3,
+    6
+  ],
+  "pairs_per_split": 128,
+  "siblings": 2,
+  "pools": 6,
+  "deletions": 3,
+  "feature_tie": 1e-08,
+  "task_tie": 1e-12,
+  "analyses": [
+    "Within each seed/episode/pool/horizon compare all three feature-error and position-error deletion orderings, with ties retained.",
+    "Measure feature-best set overlap and fractional task-optimal selection; report all pools and both-metrics-nonflat pools separately.",
+    "Compare feature-selected and cross-horizon-feature-selected task error to task-optimal and uniform task errors. Tied feature choices averaged exactly as parent.",
+    "Average pools/siblings then seeds inside each matched pair before paired 10000-draw bootstrap seed0; report each split/horizon, not pooled independent datasets.",
+    "Replay original compact oracle/baseline means from raw forks and independently reconstruct all new paired statistics."
+  ],
+  "no_new_pass_threshold": true,
+  "no_candidate_changes": true,
+  "no_training": true,
+  "fresh9137_closed": true,
+  "policy": false,
+  "GPU": 0,
+  "CPU": {
+    "threads": 4,
+    "GB": 16,
+    "max_minutes": 15,
+    "allocation": "one necessary existing-scalar analysis node"
+  },
+  "limitations": [
+    "Feature-optimal and task-optimal use revealed future targets; neither is a learned or deployable policy.",
+    "Position readout does not replace full-feature original requirements.",
+    "Raw scalar records identify within-pool ranking alignment, not vector residual causes or intrinsic task importance.",
+    "New 95% CIs are descriptive, unadjusted; original gates and original rejected outcome stay unchanged."
+  ]
+}

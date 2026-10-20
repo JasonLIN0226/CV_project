@@ -1,0 +1,98 @@
+{
+  "authorization": "User requests autonomous targeted analyze-plan-execute loop, original thresholds and8hcap",
+  "rounds": [
+    {
+      "round": 0,
+      "type": "Read-only association",
+      "result": "All6cells show current-context8.2\u201310.5% and causal scene-centre3.4\u20138.1% smaller residual-neighbor distance versus random; allfixed1000permutationp=.000999",
+      "analysis": "Both appearance and legally observed historical scene geometry carry association. Geometry omission is supported but current appearance still useful; associations do not prove an effective predictor. Existing linearhead generalizationgap49\u201355%fitgain versus40\u201347%heldoutloss requires capacity control.",
+      "next_plan": "One prespecified additive-RBF kernel with legal sibling-invariant historical/controlscene-centre and current128features, train-input-only effective df32;CUDAfit only existingresidual cache. Groupedtraincrossfit first; cachedoriginalvalidation only after support.",
+      "GPU_added": 0
+    },
+    {
+      "round": 1,
+      "type": "Fixed causal-context KRR",
+      "status": "AUDITED_TRAIN_AND_VALIDATION_SUPPORTED",
+      "source_lock_sha256": "778a8ac078253a5bd1c94838fde5fb7db79cd100d027474fcb284392ce95f5e9",
+      "next_analysis": "Native settlement, independent all18KKTsystems/crossfit, originalvalidation8+8 and incremental8 with32CI audits; no altered acceptance or blindtestgrid",
+      "new_GPU_job": 8512,
+      "new_GPU_seconds": 27,
+      "cancelled_preexecution_job": 8511,
+      "cancelled_allocated_GPU_seconds": 312,
+      "mean_crossfit_relative_reductions": [
+        0.0818576097,
+        0.0526067027,
+        0.0632682178,
+        0.0418570796,
+        0.093270042,
+        0.0662804435
+      ],
+      "validation_feature_checks": "8/8",
+      "validation_position_checks": "8/8",
+      "validation_incremental_checks": "8/8",
+      "validation_incremental_relative_range": [
+        0.0263306152,
+        0.0956160846
+      ],
+      "native_independent_intervals": 32,
+      "local_interval_replay_max_difference": 0,
+      "analysis": "Adding causal historicalscene context jointly with fixedinput-onlydf32 overcomes the failedcurrent-onlylinearhead generalization gap. Actualvalidation errors improve with positive pairedCI inall8cells. This doesnot isolate the causal effect ofcontext from modelclass/regularization; no current-onlydf32ablation hasrun. Existingbase models saw all512trainpairs, so traincrossfit ishead-specific and validationremainsrevealeddevelopment.",
+      "next_plan": "Freezeall6headSHAand18testsourcefiles; runfulloriginal51+32 and72deletioncomparisons exactlyonce, plusindependentvector/scalaraudit. No newtuning basedontest. Conditionalindependentconfirmation onlyifall requireddevelopment gates support."
+    },
+    {
+      "round": "locked review",
+      "type": "No-fit original tests and deletion controls",
+      "job": 8513,
+      "status": "COMPLETE_WITH_INDEPENDENT_AUDIT_REJECTED",
+      "source_lock_sha256": "9f907b563e8ba3a4880fd2a66e6553e659d4bb2f8c74f6bf46d13b0297ecfbf7",
+      "new_GPU_seconds": 0,
+      "original_prediction": "49/51",
+      "fixed_reference": "26/32",
+      "deletion": "70/72",
+      "analysis": "Originalprediction anddeletion eachgain1check, but4critical longgap h3checks fail versusfixedreference. Netcriticalregression despitevalidation8/8incremental support. Do notadopt. Causalcentre omitsvelocity-dependent futureobjectspread, andin-samplepredictorresidual targets shift1.43\u20131.81x into validation whiletargetvariance ratio stays.968\u2013.974.",
+      "next_plan": "Replace in-samplepredictor-residual calibration with a shared2Dcausal-future-position observation-innovation map. Fit future-minus-current latent target fromexistingtraincache; currentfeature skip supportsappearance transfer. Fixedposition-null output andalloriginal gates retained. Pairgroupedcrossfit versusmatched train-mean innovation baseline, thenvalidationagainstpriorbest. No neuralretraining, no test-driven conditional switches, no fresh9137. Freeze beforefit."
+    },
+    {
+      "round": 2,
+      "status": "AUDITED_SCREEN_SUPPORTED_VALIDATION_REJECTED",
+      "method": "2Dcausal futureposition -> observationinnovation map withcurrentfeature skip",
+      "reason": "Round1partial49/51+26/32+70/72criticalregression; removeinsamplebase-residualtargetshift andmissingtime-dependentfuturegeometry",
+      "source_lock_sha256": "b342ee65859436c5941121efb4500b199fba1822390f9a242b21e5720bd24e7b",
+      "new_GPU_hard_cap": 600,
+      "acceptance": "original51+32+72unchanged;screenagainstmatchedconstantinnovation,validationall8+8+8beforetest",
+      "fresh9137": false,
+      "GPU_job": 8518,
+      "CPU_job": 8519,
+      "new_GPU_seconds": 27,
+      "screen": "Geometryinnovation reducesheldoutprojectederror45.66%/47.12%versusconstantmean",
+      "validation_original": "8/8feature+8/8position",
+      "validation_incremental": "3/8",
+      "analysis": "Replacingallposition-nulllearnedvisualoutput discardscomplementaryinformation. Neural/observationerrorcosines.689\u2013.743; disagreementMSE.041\u2013.049. Preserve both via one fixedequal-weightcombination, not coefficientsearch."
+    },
+    {
+      "round": 3,
+      "method": "Single fixed.5neural+.5observationmixture, existing2maps; no training ornewGPU",
+      "validation_original": "8/8feature+8/8position",
+      "validation_incremental": "8/8",
+      "validation_relative_gain_range": [
+        0.1385,
+        0.1797
+      ],
+      "local32CI_replay_max": 0,
+      "full_CPU_job": 8522,
+      "final_evidence_job": 8523,
+      "source_lock_sha256": "1df92952ea33474859a57b9cbc165ffa873be47ee16fb9bbf1e8d10a862f4326",
+      "status": "COMPLETE_INDEPENDENTLY_AUDITED_DEVELOPMENT_SUPPORTED",
+      "weight_grid": false,
+      "test_driven_coefficient_switch": false,
+      "GPU_settled_total": 13131,
+      "next": "Lock current method; no more development tuning. Complete fresh confirmation executor and verify native cost guard before9137 generation.",
+      "original_prediction": "51/51",
+      "fixed_reference": "32/32",
+      "deletion": "72/72",
+      "independent_audit": "PASS",
+      "local_CI_replays": 320,
+      "analysis": "Keeping complementary neural visual output and causal geometry innovation with one fixed equal mixture resolves all registered development failures. This is adaptive revealed6301 evidence, not independent confirmation."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+import csv,json,hashlib
+from pathlib import Path
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+R=Path(__file__).resolve().parents[1];D=R/'results/motion_reference_null_validation';N=D/'native_completed';O=N/'output/job_8414'
+s=json.loads((O/'summary.json').read_text());a=json.loads((O/'independent_audit.json').read_text());proof=json.loads((N/'transfer_integrity.json').read_text());assert proof['native_before_local_native_after_all_match']
+for n,v in proof['files'].items():assert hashlib.sha256((N/n).read_bytes()).hexdigest()==v['sha256']
+assert a['status']=='PASS_INDEPENDENT_QR_AND_SCALAR_AUDIT'
+with (O/'scalar_rows.csv').open() as f:raw=list(csv.DictReader(f))
+ix=np.random.default_rng(0).integers(0,96,(2000,96));diff=[]
+for c in s['cells']:
+ seeds=(17,29,43) if c['seed']=='mean' else (c['seed'],);rr=[r for r in raw if int(r['seed']) in seeds and int(r['horizon'])==c['horizon']];pairs=sorted({r['pair'] for r in rr});assert len(pairs)==96
+ for name,arm,metric,floor,absolute in [('feature_vs_recent','recent','feature_mse',.02,.01),('position_vs_recent','recent','position_mse',1e-5,1e-6),('feature_vs_current','current','feature_mse',.02,.01),('position_vs_current','current','position_mse',1e-5,1e-6)]:
+  def vec(arm):return np.array([np.mean([float(r[metric]) for r in rr if r['arm']==arm and r['pair']==p]) for p in pairs])
+  b,z=vec(arm),vec('candidate');useabs=b.mean()<floor
+  effect=lambda x,y:(x-y if useabs else (x-y)/np.maximum(x,floor))
+  v=float(effect(b.mean(),z.mean()));lo,hi=np.quantile(effect(b[ix].mean(1),z[ix].mean(1)),[.025,.975]);d=max(abs(v-c[name]['mean']),abs(lo-c[name]['low']),abs(hi-c[name]['high']));assert d<1e-11;diff.append(d)
+(D/'local_review.json').write_text(json.dumps(dict(status='PASS',intervals=32,max_difference=max(diff)),indent=2)+'\n')
+cs=[c for c in s['cells'] if c['seed']=='mean'];fig,ax=plt.subplots(figsize=(6,3.7),layout='constrained');values=[100*c['feature_vs_recent']['mean'] for c in cs];ax.bar(['3 steps','6 steps'],values,color='.45',edgecolor='black');ax.axhline(10,color='black',ls='--',label='Unchanged 10% effect floor');ax.set(ylabel='Full-feature MSE reduction vs recent (%)',ylim=(0,12),title='Frozen output ablation: below the original effect floor');ax.legend(fontsize=8)
+for i,v in enumerate(values):ax.text(i,v+.2,f'{v:.2f}%',ha='center')
+fig.savefig(D/'validation_result.png',dpi=160);plt.close(fig)
+lines=['# Motion: frozen reference-null validation','','One fixed, validation-only ablation; no training, fitting, model/encoder call, new GPU or test/fresh9137 access. Reuse all96original validation pairs, seeds17/29/43, horizons3/6 and1,152complete cached predictions. Source and assets remain locked.','','The candidate starts with the frozen recent prediction and adds the minimum correction inside the original128-dimensional output basis needed to preserve the current historical prediction\'s decoded position. It keeps the original5120-dimensional prediction error and position error, not a replacement metric. The exact formula is recorded in protocol.json. The decoder is supervised and fixed; its position-null components are not proven semantically irrelevant.','','![Validation feature effect](../results/motion_reference_null_validation/validation_result.png)','','| Check | Met / total |','|---|---:|',f"| Original feature-effect numeric rule |{s['feature_checks']}/8|",f"| Original position-effect numeric rule |{s['position_checks']}/8|",f"| Incremental feature improvement over current candidate |{s['incremental_feature_positive']}/8|",'','Counts include3seed estimates and their mean at2horizons; these are shared-data comparisons, not8independent experiments. The earlier validation screen requires all three groups before any test. This is not original Phase1 acceptance.','','| Horizon | Feature reduction vs recent, 95% CI | Feature error change vs current | Position reduction vs recent |','|---|---|---:|---:|']
+for c in cs:
+ v=c['feature_vs_recent'];lines.append(f"|{c['horizon']}|{100*v['mean']:.2f}% [{100*v['low']:.2f}, {100*v['high']:.2f}]|+{-100*c['feature_vs_current']['mean']:.2f}%|{100*c['position_vs_recent']['mean']:.2f}%|")
+lines+=['','The original relative feature-effect floor remains10% with positive paired95%lowerCI; neither seed-mean cell reaches it. Position output is preserved numerically, yet full-feature error becomes worse than the current candidate. Thus replacing all position-null historical components with recent components discards useful visual prediction, even though those components do not determine this fixed readout\'s position. This rejects this single adapter; it does not prove that every training-free adapter must fail.','','Independent QR reconstruction matches within'+f"{a['vector_max_difference']:.3g}"+'; all4,608scalar rows and32paired2000-draw bootstrap intervals were independently checked, then locally replayed. Eleven compact native-before/local/native-after hashes match. Complete vectors remain on HPC.','','**Decision: reject this candidate and stop before test.** Keep the existing predictor and all original results, including Motion40/51prediction,13/32fixed-reference and0/8critical long-gap. The earlier scoring-only72/72result remains a separate future-informed diagnostic. No Phase1_GO, policy training, fresh confirmation or GitHub update. GPU remains12,723/28,800seconds; this experiment adds0seconds.']
+(R/'docs/MOTION_REFERENCE_NULL_VALIDATION.md').write_text('\n'.join(lines)+'\n');print(json.dumps(dict(status='REPORT_COMPLETE',feature='0/8',position='8/8',local_intervals=32)))

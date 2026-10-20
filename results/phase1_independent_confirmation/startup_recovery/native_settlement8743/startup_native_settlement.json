@@ -1,0 +1,362 @@
+{
+  "current_CPU_native": {
+    "arguments": [
+      "/opt/slurm/bin/scontrol",
+      "show",
+      "job",
+      "-o",
+      "8743"
+    ],
+    "exit": 0,
+    "stdout": "JobId=8743 JobName=ood-jupyter UserId=xl4358(3850228) GroupId=xl4358(3850228) MCS_label=N/A Priority=14667 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=RUNNING Reason=None Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:01:26 TimeLimit=00:15:00 TimeMin=N/A SubmitTime=2026-10-19T15:38:44 EligibleTime=2026-10-19T15:38:44 AccrueTime=2026-10-19T15:38:44 StartTime=2026-10-19T15:39:36 EndTime=2026-10-19T15:54:36 Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-19T15:38:45 Scheduler=Main Partition=interactive AllocNode:Sid=ood-burst-2:2356842 ReqNodeList=(null) ExcNodeList=(null) NodeList=b-9-19 BatchHost=b-9-19 NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=1,mem=1500M,node=1,billing=1 AllocTRES=cpu=2,mem=1500M,node=1,billing=2 Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=1 MinMemoryNode=1500M MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=(null) WorkDir=/home/xl4358/ondemand/data/sys/dashboard/batch_connect/sys/burst_jupyter/output/f48eba23-5c5d-43d9-b7db-f832c4780b95 StdErr=/home/xl4358/ondemand/data/sys/dashboard/batch_connect/sys/burst_jupyter/output/f48eba23-5c5d-43d9-b7db-f832c4780b95/output.log StdIn=/dev/null StdOut=/home/xl4358/ondemand/data/sys/dashboard/batch_connect/sys/burst_jupyter/output/f48eba23-5c5d-43d9-b7db-f832c4780b95/output.log TresPerTask=cpu=1 \n",
+    "stderr": ""
+  },
+  "source77_current_match": true,
+  "receipts": {
+    "receipts/preflight_cpu_submission.json": {
+      "stage": "preflight_cpu",
+      "job": 8533,
+      "parent": null,
+      "stdout": "8533",
+      "source_lock_sha256": "a41915dfb4fdb32a629e92445af5243c71b84e620433f0bc6256db2da33a4e8a",
+      "actual_submission_UTC": "2026-10-19T04:54:24.140561+00:00"
+    },
+    "receipts/preflight_cpu_submission_attempt.json": {
+      "stage": "preflight_cpu",
+      "parent": null,
+      "unknown_do_not_retry": true
+    },
+    "receipts/preflight_gpu_submission.json": {
+      "stage": "preflight_gpu",
+      "job": 8536,
+      "parent": 8533,
+      "stdout": "8536",
+      "source_lock_sha256": "a41915dfb4fdb32a629e92445af5243c71b84e620433f0bc6256db2da33a4e8a",
+      "actual_submission_UTC": "2026-10-19T05:00:42.679564+00:00"
+    },
+    "receipts/preflight_gpu_submission_attempt.json": {
+      "stage": "preflight_gpu",
+      "parent": 8533,
+      "unknown_do_not_retry": true
+    }
+  },
+  "small": {
+    "preflight_cpu.json": {
+      "all_exact": true,
+      "samples": 9728,
+      "validation_batches": 24,
+      "tasks": {
+        "gate": {
+          "samples": 4864,
+          "validation_batches": 12,
+          "metadata_fingerprint": "d4e0918d52a18ee488e3715e3d77d7181d905aa831ea3ff6ca80116d9c22541c",
+          "all_exact": true,
+          "seed": 6301
+        },
+        "motion": {
+          "samples": 4864,
+          "validation_batches": 12,
+          "metadata_fingerprint": "8039844557e5dcd0e2466cc736981c96e1c0dce3dca8ce171229d9e4882bd060",
+          "all_exact": true,
+          "seed": 6301
+        }
+      },
+      "gate": {
+        "full_feature_predictions": 240,
+        "max_difference": 0.0,
+        "all_seeds": true,
+        "training": false
+      },
+      "motion": {
+        "vectors": 468,
+        "max_difference": 0.0,
+        "no_model_forward": true
+      },
+      "encoder_cache": {
+        "revision": "f157467ea509bc356ff9f61fd3c0d840eec5e04e",
+        "files": {
+          "/scratch/xl4358/phase1_hf_cache/hub/models--facebook--ijepa_vith14_1k/snapshots/f157467ea509bc356ff9f61fd3c0d840eec5e04e/config.json": {
+            "sha256": "4ea10a6c56020bfcdaff768056a3d5763b991c81da9556a79ef1ad0a06d61846",
+            "resolved_path": "/scratch/xl4358/phase1_hf_cache/hub/models--facebook--ijepa_vith14_1k/blobs/21482bdb62359e27a6bca29347812ce2731ac18b",
+            "bytes": 497,
+            "mtime_ns": 1791696351755658401,
+            "official_object_id": "21482bdb62359e27a6bca29347812ce2731ac18b"
+          },
+          "/scratch/xl4358/phase1_hf_cache/hub/models--facebook--ijepa_vith14_1k/snapshots/f157467ea509bc356ff9f61fd3c0d840eec5e04e/model.safetensors": {
+            "sha256": "ad6c1f6e318ace5633bea4496bc5c76248f6dc59c9a0d8a010cf31ed9dee2da8",
+            "resolved_path": "/scratch/xl4358/phase1_hf_cache/hub/models--facebook--ijepa_vith14_1k/blobs/ad6c1f6e318ace5633bea4496bc5c76248f6dc59c9a0d8a010cf31ed9dee2da8",
+            "bytes": 2523108984,
+            "mtime_ns": 1791696789089340847,
+            "official_object_id": "ad6c1f6e318ace5633bea4496bc5c76248f6dc59c9a0d8a010cf31ed9dee2da8"
+          },
+          "/scratch/xl4358/phase1_hf_cache/hub/models--facebook--ijepa_vith14_1k/snapshots/f157467ea509bc356ff9f61fd3c0d840eec5e04e/preprocessor_config.json": {
+            "sha256": "a34861a24e781942424ad790b82bc99348404a2e64ea882de88c40905851698d",
+            "resolved_path": "/scratch/xl4358/phase1_hf_cache/hub/models--facebook--ijepa_vith14_1k/blobs/273d24924a8bd10227b532d603484f165dcb0b5d",
+            "bytes": 325,
+            "mtime_ns": 1791696635976341844,
+            "official_object_id": "273d24924a8bd10227b532d603484f165dcb0b5d"
+          }
+        },
+        "official_object_content_verified": true,
+        "no_download": true
+      },
+      "fresh9137_accessed": false,
+      "CPU_training": false,
+      "GPU_seconds": 0
+    },
+    "fresh/sequence_budget.json": {
+      "prior_settled_seconds": 13131,
+      "cap_seconds": 28800,
+      "native_prior_verified": true,
+      "native_prior": [
+        {
+          "job": 7477,
+          "state": "FAILED",
+          "exitcode": "3:0",
+          "elapsed": 100,
+          "start": "2026-10-15T17:04:20",
+          "end": "2026-10-15T17:06:00",
+          "account": "csci_ga_2271-2026fa",
+          "tres": {
+            "billing": "12",
+            "cpu": "12",
+            "gres/gpu": "1",
+            "mem": "60G",
+            "node": "1"
+          },
+          "native": "7477|FAILED|3:0|100|2026-10-15T17:04:20|2026-10-15T17:06:00|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+        },
+        {
+          "job": 7480,
+          "state": "FAILED",
+          "exitcode": "3:0",
+          "elapsed": 126,
+          "start": "2026-10-15T17:17:52",
+          "end": "2026-10-15T17:19:58",
+          "account": "csci_ga_2271-2026fa",
+          "tres": {
+            "billing": "12",
+            "cpu": "12",
+            "gres/gpu": "1",
+            "mem": "60G",
+            "node": "1"
+          },
+          "native": "7480|FAILED|3:0|126|2026-10-15T17:17:52|2026-10-15T17:19:58|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+        },
+        {
+          "job": 7485,
+          "state": "COMPLETED",
+          "exitcode": "0:0",
+          "elapsed": 6021,
+          "start": "2026-10-15T17:44:22",
+          "end": "2026-10-15T19:24:43",
+          "account": "csci_ga_2271-2026fa",
+          "tres": {
+            "billing": "12",
+            "cpu": "12",
+            "gres/gpu": "1",
+            "mem": "60G",
+            "node": "1"
+          },
+          "native": "7485|COMPLETED|0:0|6021|2026-10-15T17:44:22|2026-10-15T19:24:43|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+        },
+        {
+          "job": 7524,
+          "state": "FAILED",
+          "exitcode": "3:0",
+          "elapsed": 164,
+          "start": "2026-10-16T00:00:56",
+          "end": "2026-10-16T00:03:40",
+          "account": "csci_ga_2271-2026fa",
+          "tres": {
+            "billing": "12",
+            "cpu": "12",
+            "gres/gpu": "1",
+            "mem": "60G",
+            "node": "1"
+          },
+          "native": "7524|FAILED|3:0|164|2026-10-16T00:00:56|2026-10-16T00:03:40|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+        },
+        {
+          "job": 7535,
+          "state": "COMPLETED",
+          "exitcode": "0:0",
+          "elapsed": 3386,
+          "start": "2026-10-16T00:32:27",
+          "end": "2026-10-16T01:28:53",
+          "account": "csci_ga_2271-2026fa",
+          "tres": {
+            "billing": "12",
+            "cpu": "12",
+            "gres/gpu": "1",
+            "mem": "60G",
+            "node": "1"
+          },
+          "native": "7535|COMPLETED|0:0|3386|2026-10-16T00:32:27|2026-10-16T01:28:53|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+        },
+        {
+          "job": 7574,
+          "state": "COMPLETED",
+          "exitcode": "0:0",
+          "elapsed": 2807,
+          "start": "2026-10-16T02:15:58",
+          "end": "2026-10-16T03:02:45",
+          "account": "csci_ga_2271-2026fa",
+          "tres": {
+            "billing": "12",
+            "cpu": "12",
+            "gres/gpu": "1",
+            "mem": "60G",
+            "node": "1"
+          },
+          "native": "7574|COMPLETED|0:0|2807|2026-10-16T02:15:58|2026-10-16T03:02:45|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+        },
+        {
+          "job": 7582,
+          "state": "FAILED",
+          "exitcode": "3:0",
+          "elapsed": 119,
+          "start": "2026-10-16T04:15:28",
+          "end": "2026-10-16T04:17:27",
+          "account": "csci_ga_2271-2026fa",
+          "tres": {
+            "billing": "12",
+            "cpu": "12",
+            "gres/gpu": "1",
+            "mem": "60G",
+            "node": "1"
+          },
+          "native": "7582|FAILED|3:0|119|2026-10-16T04:15:28|2026-10-16T04:17:27|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+        },
+        {
+          "job": 8496,
+          "state": "COMPLETED",
+          "exitcode": "0:0",
+          "elapsed": 42,
+          "start": "2026-10-19T02:25:33",
+          "end": "2026-10-19T02:26:15",
+          "account": "csci_ga_2271-2026fa",
+          "tres": {
+            "billing": "12",
+            "cpu": "12",
+            "gres/gpu": "1",
+            "mem": "60G",
+            "node": "1"
+          },
+          "native": "8496|COMPLETED|0:0|42|2026-10-19T02:25:33|2026-10-19T02:26:15|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+        },
+        {
+          "job": 8511,
+          "state": "CANCELLED",
+          "exitcode": "0:0",
+          "elapsed": 312,
+          "start": "2026-10-19T03:05:11",
+          "end": "2026-10-19T03:10:23",
+          "account": "csci_ga_2271-2026fa",
+          "tres": {
+            "billing": "12",
+            "cpu": "12",
+            "gres/gpu": "1",
+            "mem": "60G",
+            "node": "1"
+          },
+          "native": "8511|CANCELLED by 3850228|0:0|312|2026-10-19T03:05:11|2026-10-19T03:10:23|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+        },
+        {
+          "job": 8512,
+          "state": "COMPLETED",
+          "exitcode": "0:0",
+          "elapsed": 27,
+          "start": "2026-10-19T03:13:03",
+          "end": "2026-10-19T03:13:30",
+          "account": "csci_ga_2271-2026fa",
+          "tres": {
+            "billing": "12",
+            "cpu": "12",
+            "gres/gpu": "1",
+            "mem": "60G",
+            "node": "1"
+          },
+          "native": "8512|COMPLETED|0:0|27|2026-10-19T03:13:03|2026-10-19T03:13:30|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+        },
+        {
+          "job": 8518,
+          "state": "COMPLETED",
+          "exitcode": "0:0",
+          "elapsed": 27,
+          "start": "2026-10-19T03:32:33",
+          "end": "2026-10-19T03:33:00",
+          "account": "csci_ga_2271-2026fa",
+          "tres": {
+            "billing": "12",
+            "cpu": "12",
+            "gres/gpu": "1",
+            "mem": "60G",
+            "node": "1"
+          },
+          "native": "8518|COMPLETED|0:0|27|2026-10-19T03:32:33|2026-10-19T03:33:00|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+        }
+      ],
+      "total_frames": 198656,
+      "GPU_job_ids": [
+        8536
+      ],
+      "epochs": {},
+      "encoded_frames": 0
+    },
+    "fresh/last_budget_forecast.json": {
+      "status": "COMPLETE_SEQUENCE_COST_FORECAST",
+      "actual_GPU_seconds": 13131.0,
+      "remaining_cap_seconds": 15669.0,
+      "projected_cumulative_seconds": 26096.453839071866,
+      "remaining_raw": {
+        "training": 5194.31232491999,
+        "encoding": 4910.999505676415,
+        "maps": 27.0,
+        "native_preflight": 300.0
+      },
+      "fixed_reserve": 968.295233886,
+      "safety": 1.15,
+      "fits": true,
+      "native": [],
+      "cap_seconds": 28800,
+      "scientific_pass": false,
+      "UTC": "2026-10-19T05:00:42.443965+00:00"
+    }
+  },
+  "metadata": [
+    {
+      "arguments": [
+        "/opt/slurm/bin/sacct",
+        "-D",
+        "-n",
+        "-P",
+        "-j",
+        "8533,8536",
+        "--format=JobID,JobIDRaw,State,ExitCode,ElapsedRaw,Start,End,Submit,Eligible,Account,AllocTRES"
+      ],
+      "exit": 0,
+      "stdout": "8533|8533|FAILED|2:0|2|2024-10-09T08:37:36|2024-10-09T08:37:38|2024-10-09T08:35:07|2024-10-09T08:35:07|ece_gy_9143-2024fa|billing=12,cpu=12,gres/gpu=1,mem=85000M,node=1\n8533.batch|8533.batch|FAILED|2:0|2|2024-10-09T08:37:36|2024-10-09T08:37:38|2024-10-09T08:37:36|2024-10-09T08:37:36|ece_gy_9143-2024fa|cpu=12,gres/gpu=1,mem=85000M,node=1\n8533.extern|8533.extern|COMPLETED|0:0|2|2024-10-09T08:37:36|2024-10-09T08:37:38|2024-10-09T08:37:36|2024-10-09T08:37:36|ece_gy_9143-2024fa|billing=12,cpu=12,gres/gpu=1,mem=85000M,node=1\n8536|8536|FAILED|2:0|19|2024-10-09T08:40:06|2024-10-09T08:40:25|2024-10-09T08:37:36|2024-10-09T08:37:36|ece_gy_9143-2024fa|billing=12,cpu=12,gres/gpu=1,mem=85000M,node=1\n8536.batch|8536.batch|FAILED|2:0|19|2024-10-09T08:40:06|2024-10-09T08:40:25|2024-10-09T08:40:06|2024-10-09T08:40:06|ece_gy_9143-2024fa|cpu=12,gres/gpu=1,mem=85000M,node=1\n8536.extern|8536.extern|COMPLETED|0:0|19|2024-10-09T08:40:06|2024-10-09T08:40:25|2024-10-09T08:40:06|2024-10-09T08:40:06|ece_gy_9143-2024fa|billing=12,cpu=12,gres/gpu=1,mem=85000M,node=1\n8533|8533|COMPLETED|0:0|282|2026-10-19T04:56:03|2026-10-19T05:00:45|2026-10-19T04:54:24|2026-10-19T04:54:24|csci_ga_2271-2026fa|billing=24,cpu=24,mem=16G,node=1\n8533.batch|8533.batch|COMPLETED|0:0|282|2026-10-19T04:56:03|2026-10-19T05:00:45|2026-10-19T04:56:03|2026-10-19T04:56:03|csci_ga_2271-2026fa|cpu=24,mem=16G,node=1\n8533.extern|8533.extern|COMPLETED|0:0|282|2026-10-19T04:56:03|2026-10-19T05:00:45|2026-10-19T04:56:03|2026-10-19T04:56:03|csci_ga_2271-2026fa|billing=24,cpu=24,mem=16G,node=1\n8536|8536|REQUEUED|0:0|528|2026-10-19T05:01:13|2026-10-19T05:10:01|2026-10-19T05:00:42|2026-10-19T05:01:13|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|469|2026-10-19T05:12:13|2026-10-19T05:20:02|2026-10-19T05:10:03|2026-10-19T05:12:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|467|2026-10-19T05:22:14|2026-10-19T05:30:01|2026-10-19T05:20:03|2026-10-19T05:22:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|449|2026-10-19T05:32:32|2026-10-19T05:40:01|2026-10-19T05:30:02|2026-10-19T05:32:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|468|2026-10-19T05:42:13|2026-10-19T05:50:01|2026-10-19T05:40:02|2026-10-19T05:42:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|461|2026-10-19T05:52:20|2026-10-19T06:00:01|2026-10-19T05:50:03|2026-10-19T05:52:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|448|2026-10-19T06:02:33|2026-10-19T06:10:01|2026-10-19T06:00:02|2026-10-19T06:02:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|470|2026-10-19T06:12:11|2026-10-19T06:20:01|2026-10-19T06:10:02|2026-10-19T06:12:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|457|2026-10-19T06:22:25|2026-10-19T06:30:02|2026-10-19T06:20:03|2026-10-19T06:22:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|471|2026-10-19T06:32:11|2026-10-19T06:40:02|2026-10-19T06:30:03|2026-10-19T06:32:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|467|2026-10-19T06:42:14|2026-10-19T06:50:01|2026-10-19T06:40:03|2026-10-19T06:42:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|450|2026-10-19T06:52:31|2026-10-19T07:00:01|2026-10-19T06:50:02|2026-10-19T06:52:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|450|2026-10-19T07:02:31|2026-10-19T07:10:01|2026-10-19T07:00:02|2026-10-19T07:02:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|467|2026-10-19T07:12:14|2026-10-19T07:20:01|2026-10-19T07:10:02|2026-10-19T07:12:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|472|2026-10-19T07:22:09|2026-10-19T07:30:01|2026-10-19T07:20:03|2026-10-19T07:22:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|450|2026-10-19T07:32:32|2026-10-19T07:40:02|2026-10-19T07:30:03|2026-10-19T07:32:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|474|2026-10-19T07:42:08|2026-10-19T07:50:02|2026-10-19T07:40:03|2026-10-19T07:42:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|473|2026-10-19T07:52:09|2026-10-19T08:00:02|2026-10-19T07:50:03|2026-10-19T07:52:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|467|2026-10-19T08:02:14|2026-10-19T08:10:01|2026-10-19T08:00:03|2026-10-19T08:02:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|471|2026-10-19T08:12:10|2026-10-19T08:20:01|2026-10-19T08:10:02|2026-10-19T08:12:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|449|2026-10-19T08:22:32|2026-10-19T08:30:01|2026-10-19T08:20:02|2026-10-19T08:22:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|469|2026-10-19T08:32:12|2026-10-19T08:40:01|2026-10-19T08:30:03|2026-10-19T08:32:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|468|2026-10-19T08:42:14|2026-10-19T08:50:02|2026-10-19T08:40:03|2026-10-19T08:42:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|467|2026-10-19T08:52:15|2026-10-19T09:00:02|2026-10-19T08:50:03|2026-10-19T08:52:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|450|2026-10-19T09:02:32|2026-10-19T09:10:02|2026-10-19T09:00:03|2026-10-19T09:02:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|439|2026-10-19T09:12:42|2026-10-19T09:20:01|2026-10-19T09:10:03|2026-10-19T09:12:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|471|2026-10-19T09:22:10|2026-10-19T09:30:01|2026-10-19T09:20:02|2026-10-19T09:22:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|471|2026-10-19T09:32:10|2026-10-19T09:40:01|2026-10-19T09:30:02|2026-10-19T09:32:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|467|2026-10-19T09:42:14|2026-10-19T09:50:01|2026-10-19T09:40:02|2026-10-19T09:42:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|449|2026-10-19T09:52:32|2026-10-19T10:00:01|2026-10-19T09:50:02|2026-10-19T09:52:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|464|2026-10-19T10:02:17|2026-10-19T10:10:01|2026-10-19T10:00:03|2026-10-19T10:02:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|471|2026-10-19T10:12:10|2026-10-19T10:20:01|2026-10-19T10:10:02|2026-10-19T10:12:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|478|2026-10-19T10:22:03|2026-10-19T10:30:01|2026-10-19T10:20:02|2026-10-19T10:22:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|449|2026-10-19T10:32:32|2026-10-19T10:40:01|2026-10-19T10:30:02|2026-10-19T10:32:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|471|2026-10-19T10:42:10|2026-10-19T10:50:01|2026-10-19T10:40:02|2026-10-19T10:42:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|449|2026-10-19T10:52:32|2026-10-19T11:00:01|2026-10-19T10:50:02|2026-10-19T10:52:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|472|2026-10-19T11:02:09|2026-10-19T11:10:01|2026-10-19T11:00:03|2026-10-19T11:02:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|461|2026-10-19T11:12:21|2026-10-19T11:20:02|2026-10-19T11:10:02|2026-10-19T11:12:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|473|2026-10-19T11:22:09|2026-10-19T11:30:02|2026-10-19T11:20:03|2026-10-19T11:22:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|352|2026-10-19T11:34:10|2026-10-19T11:40:02|2026-10-19T11:30:03|2026-10-19T11:32:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|472|2026-10-19T11:42:10|2026-10-19T11:50:02|2026-10-19T11:40:03|2026-10-19T11:42:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|472|2026-10-19T11:52:10|2026-10-19T12:00:02|2026-10-19T11:50:03|2026-10-19T11:52:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|466|2026-10-19T12:02:15|2026-10-19T12:10:01|2026-10-19T12:00:03|2026-10-19T12:02:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|444|2026-10-19T12:12:37|2026-10-19T12:20:01|2026-10-19T12:10:02|2026-10-19T12:12:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|453|2026-10-19T12:22:28|2026-10-19T12:30:01|2026-10-19T12:20:02|2026-10-19T12:22:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|449|2026-10-19T12:32:32|2026-10-19T12:40:01|2026-10-19T12:30:02|2026-10-19T12:32:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|466|2026-10-19T12:42:15|2026-10-19T12:50:01|2026-10-19T12:40:02|2026-10-19T12:42:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|449|2026-10-19T12:52:32|2026-10-19T13:00:01|2026-10-19T12:50:03|2026-10-19T12:52:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|449|2026-10-19T13:02:32|2026-10-19T13:10:01|2026-10-19T13:00:02|2026-10-19T13:02:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|466|2026-10-19T13:12:15|2026-10-19T13:20:01|2026-10-19T13:10:02|2026-10-19T13:12:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|470|2026-10-19T13:22:12|2026-10-19T13:30:02|2026-10-19T13:20:03|2026-10-19T13:22:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|470|2026-10-19T13:32:12|2026-10-19T13:40:02|2026-10-19T13:30:03|2026-10-19T13:32:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|466|2026-10-19T13:42:15|2026-10-19T13:50:01|2026-10-19T13:40:03|2026-10-19T13:42:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|437|2026-10-19T13:52:45|2026-10-19T14:00:02|2026-10-19T13:50:02|2026-10-19T13:52:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|467|2026-10-19T14:02:15|2026-10-19T14:10:02|2026-10-19T14:00:03|2026-10-19T14:02:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|REQUEUED|0:0|359|2026-10-19T14:14:02|2026-10-19T14:20:01|2026-10-19T14:10:03|2026-10-19T14:12:04|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n8536|8536|CANCELLED by 0|0:0|796|2026-10-19T14:26:45|2026-10-19T14:40:01|2026-10-19T14:20:02|2026-10-19T14:22:03|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "/opt/slurm/bin/scontrol",
+        "show",
+        "job",
+        "-o",
+        "8536"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "slurm_load_jobs error: Invalid job id specified\n"
+    }
+  ],
+  "stage_attempts": [
+    "preflight_cpu.json"
+  ],
+  "failures": {},
+  "fresh_permit_exists": false,
+  "no_model_or_encoder_forward_by_this_reader": true,
+  "official_preflight_cpu_sha256": "2d274e6c92e6906961fddca5d076cfc649e85a61f556ac4f7cae8eaba3e65910"
+}

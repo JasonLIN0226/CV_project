@@ -1,0 +1,17 @@
+# Frozen observed-content validity guard — validation only
+
+## Question and borrowed mechanism
+
+Do not update a prediction with a missing/occluded measurement. This is the established prediction/update separation in tracking (MathWorks Kalman missing-observation documentation: https://www.mathworks.com/help/vision/ug/using-kalman-filter-for-object-tracking.html). We borrow that separation only, not a Kalman filter implementation or a novel retention policy.
+
+The previous unconditional geometric projection improves the prescribed informative pair but worsens arbitrary equal-capacity subsets. Test exactly one guard, fixed before new evaluation: the interior arena crops of BOTH actually retained RGB frames must differ from the CURRENT observed crop. Crop x[.10,.90),y[.30,.73); integer pixel boundaries; exact inequality, no learned/tuned threshold. It excludes the renderer's outside distractors. If enabled, apply the byte-identical existing strength-1 geometry correction; otherwise preserve the frozen baseline prediction exactly. No deletion choice is made by this guard.
+
+This adds retained/current RGB as a validity input, rather than using encoded features only. It deliberately exploits the fixed shutter/arena of the synthetic simulator. Even perfect agreement with visibility annotations is a benchmark-specific input check, NOT a general visibility detector, new representation result or an annotation oracle. Neither visibility metadata, evidence labels, deleted RGB, siblings, nor future targets may enter the gate. Metadata is copied only for scoring afterward. Future arrays remain in the old on-disk containers, but only kept timestamps and current q are passed to the guard.
+
+Reuse ALL original96validationpairs/192episodes, three unchanged frozen models, horizons3/6, six clock-only pools and every deletion choice. No pairs removed. Capacity remains2past+same4recent in all arms. Reuse all20736cached baseline prediction vectors and41472parent scalar rows with source/hash/audit verification. New62208scalar rows in baseline,unconditional,observed_guard;1728compact paired rows. No predictor/encoder forward, training, fitting, test forward, fresh9137 or GPU. Do not modify source, strength or mask after inspecting new values.
+
+Reuse the original static-pool analysis unchanged:10000paired-basepair bootstrap seed0, three seed estimates then seed mean, same tie tolerance and all zero-signal cases. Cross-horizon future-feature-oracle deletion choices remain scoring-only upper bounds, not learned or past-only policies. Independently reconstruct all288original statistics and32incremental paired intervals. Independently replay every gate from observed RGB, recompute every full-vector feature/position loss with QR/SVD, verify exact fallback and all asset/source hashes. Only compact scalars/JSON/source travel with native-before/local/native-afterSHA; large vectors/RGB/rawCSV remainHPC.
+
+Report all changes and activation counts, including failures. This bounded validation diagnosis does not replace ANY original51+32Motion gates or establish Phase1_GO, and does not automatically open tests or9137. Original Motion35/51+8/32 remains until a separately frozen complete test evaluation. Keep Gate candidate unchanged. NewGPU0; settled12723/28800seconds; no GitHub update.
+
+One authorized short courseCPU allocation,4scientificthreads16G/0GPU/30minutes. Single execution marker; unknown outcome is not a reason to resubmit. Release and verify after compact transfer.

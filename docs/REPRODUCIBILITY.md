@@ -1,53 +1,36 @@
-# Reproduction
+# Reproducibility
 
-Use Python 3.10–3.12 from the repository root.
+## Published snapshot
 
-## Verify existing results
+Use Python 3.10–3.12. The repository contains frozen source, compact development evidence, final confirmation summaries and the report. Run from the repository root:
 
 ```bash
 python -m pip install -r requirements.txt
+python tools/verify_independent_confirmation.py
 python tools/verify_results.py
-python -m pytest -q experiments/deletion/test_assay.py
-```
-
-Expected: 11,520 unique finite pair-level rows, 180 recomputed statistics and 9 deletion-assay software tests. The verifier checks `results/manifest.json` and all three retained scientific source locks. Original outcomes remain unchanged.
-
-The native raw audit covered 55,296 deletion rows. Those raw rows remain HPC-only; local recomputation starts from transferred pair aggregates and does not repeat the underlying forward pass.
-
-## Check the predictor
-
-```bash
-python -m pip install -e '.[model]'
+python tools/verify_phase1_latest.py
 python -m pytest -q
 ```
 
-These tests use small synthetic tensors on CPU and do not train a scientific model or access research data. The installed `phase1` package comes only from `experiments/predictor/control/src`, the retained complete predictor version. The other reference source files are evidence, not another installed package.
+These checks validate file integrity, counts and software. They do not rerun model inference. The fresh HPC independent audit replayed 310 decision checks, 248,832 prediction rows, 248,832 deletion rows and 18,432 paired deletion summaries. Its reported maximum original-statistic difference is zero. The local final JSON is a compact transcription of audited outcomes; full fresh pair-level arrays remain external, so this checkout alone cannot independently recompute fresh confidence intervals from raw rows.
 
-## Rebuild the report
+## Current report
 
 ```bash
 python -m pip install -r requirements-report.txt
-# Install Poppler so pdftoppm is available on PATH.
-python tools/build_report.py --output build/report
+python tools/build_independent_confirmation_report.py
 ```
 
-The builder reads only the retained scalar evidence. It recreates the report's eleven figures and editable Word document without overwriting the delivered report. Export Word to PDF using Word, LibreOffice or Google Docs and inspect the pages if making a new PDF. The checked PDF in `reports/` remains the original Google Docs export.
+The builder reads `results/phase1_independent_confirmation/local_verified_results_20261020.json` and the retained explanatory figures. It writes the current Word report and plots. PDF export requires LibreOffice or Word. After editing, render and inspect every page; refresh the publication manifest after approved changes.
 
-## Full scientific replay
+## Scientific source and external assets
 
-`experiments/predictor/control/run_repair.py` provides the original train/evaluate/verify stages. `experiments/deletion/run_assay.py` is the original inference-only assay. Their protocols and source hashes are unchanged. They require the original course allocation and asset layout; they are not portable one-command launchers.
+The canonical final execution is `results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/`, with registered source lock `4133e4335f87f0b719376f45c71ac9adb52e05b3e2c45550bcb22863472727d9`. Execution-only repairs and interruption evidence are retained separately. Earlier snapshots and negative results are dependencies and provenance, not runnable live submissions. Do not blindly resubmit historical job scripts.
 
-External assets required:
+The complete study used new seed 9137 data; 512 training, 96 validation and 256 pairs per test condition per task; 12 new reference/candidate models at 120 epochs and 7,680 steps; two new maps and train-only transforms. Test generation followed locking all model assets. Training/validation encoding comprised 62,418 frames. Final numerical evidence records its original HPC locations under the v9 `fresh` directory, while resumed execution source is v10. These distinct paths reflect reuse, not different test results.
 
-- Official I-JEPA weights and processor at the protocol's pinned revision.
-- Encoded 6301 features, train-only normalization and basis.
-- Frozen recent-reference and six selected predictor checkpoints, plus state readouts.
-- Native raw metrics/arrays for original raw-level auditing.
+To repeat model inference or raw auditing, obtain the matching I-JEPA checkpoint/processor, feature caches, all 12 locked model assets, maps, normalization/PCA/readouts, original paired manifests and raw rows from the recorded HPC asset store. Weights and large arrays are deliberately excluded from GitHub. Their availability is not guaranteed by a local JSON path. Historical SSH aliases must not be reused.
 
-Hashes and original paths remain in the protocols, checkpoint proofs and `results/deletion/asset_ledger.json`. An asset identifier does not mean the binary is included. Required older reference probe evidence and original source files are retained because the latest results depend on them. Unrelated older experiments are available only in Git history.
+## Attribution and scope
 
-Fresh 9137 data and the 12-model independent confirmation were not run. Verification does not generate them, request HPC resources, or start training.
-
-## Attribution
-
-I-JEPA uses `facebook/ijepa_vith14_1k`, revision `f157467ea509bc356ff9f61fd3c0d840eec5e04e`. The predictor adapts last-observation centering from NLinear and learned query pooling from Set Transformer; the original Set Transformer license is retained at `experiments/predictor/control/SET_TRANSFORMER_LICENSE.txt`. External ownership and checkpoint licenses still apply.
+I-JEPA: `facebook/ijepa_vith14_1k`, revision `f157467ea509bc356ff9f61fd3c0d840eec5e04e`. The predictor adapts last-observation centering from NLinear and learned-query pooling from Set Transformer. The original Set Transformer license is retained in `experiments/predictor/control/SET_TRANSFORMER_LICENSE.txt`. External checkpoint licenses apply. This is a synthetic I-JEPA study, not V-JEPA or real-video validation; position readouts use training supervision and the guard uses observed RGB.

@@ -1,0 +1,23 @@
+# Gate deletion-cost mismatch diagnosis
+
+Authorized 18 October 2026: diagnose why deletion cost and task importance disagree; reuse existing results; no predictor retraining and no change to acceptance thresholds. No GitHub publication.
+
+First reuse all 6,912 Gate paired rows and 54 original per-seed checks from8275. Classify failed feature checks by nonpositive mean, positive effect below10%, or uncertainty; preserve original decisions. These counts are correlated development checks, not independent replication.
+
+Then replay ONLY the original41,472 Gate scalar outcomes from the exact three frozen7574 Gate models. Same6301 caches,128pairs per original split,3seeds,3cue positions,3deletions,2siblings, horizons3/6. No new pools/targets/data, fitting, normalization, encoder run, policy or9137 access. Verify every full-feature error and binary task outcome against the SHA-pinned8275 raw reference. Keep all cases and seeds.
+
+Evaluation-only decompositions, fixed before replay:
+1. e=p-z; class score is the existing frozen affine decoder, effective weight w=weight[:,0]/std. u=w/||w||. Full5120-dimensional MSE equals readout-parallel squared error/D plus orthogonal squared error/D. The orthogonal part is invisible to this particular class readout; do NOT call it background or universally task-irrelevant.
+2. Across paired siblings, full mean error equals common-mean error plus half-difference error. The latter measures recovery of the paired future contrast; no representation is fitted.
+3. Project error onto the existing128-dimensional output span and its orthogonal complement (QR only orthonormalizes the fixed matrix). Deletion-invariant outside-span error can dilute a relative10% effect, but cannot reverse an absolute effect sign. This is an explanation check, not permission to remove it from acceptance.
+4. Record original0/1 error, continuous signed decoder margin, squared score error to the true-feature score, and squared score error to the original +/-1 class. Binary thresholding can hide/flip small score changes; no threshold is tuned. Check the same frozen decoder on actual target features to distinguish readout failure from prediction failure.
+
+Aggregate deletion-of-cue minus mean other-deletions within each independent base pair, averaging siblings first. Preserve6,912pair/seed/position/horizon rows. Report original54seed cells and18seed-mean cells; mean seeds within pair before10,000bootstrap resamples seed0. Decomposition CIs are descriptive, not substitute gates. No condition/seed selected from outcomes; no new significance-based claim of success.
+
+Predictor inputs remain the original whitelist. Scoring truth, decoder and future targets are used only after forward; pool construction uses the same privileged diagnostic timing as8275. Decomposition tests include exact identities and a synthetic counterexample where classification improves while total feature MSE worsens. Fixed first-pair vector witnesses stay HPC and support independent primitive recomputation; the audit also checks ALL paired rows and original per-fork errors/axes. No probes are refitted and no representation is erased before the predictor. The affine-score projection sanity check is algebra, not independent causal evidence.
+
+One actual course CPU allocation, csci_ga_2271-2026fa/n2c48m24,4scientific threads16G30min/GPU0. Approved Python /scratch/xl4358/phase1_env/bin/python. CPU soft1200seconds. Exclusive execution marker, no retry of unknown outcome. Required success: original models/assets/source stable, all41,472raw outcomes reproduced, all decomposition identities, target pairing, exact6,912coverage and independent audit pass. Otherwise truthful partial. Keep previous outcomes unchanged. Scientific interpretations are post-hoc development explanations, not originalPhase1_GO or independent confirmation.
+
+Methodological context: frozen linear probes (Alain & Bengio,1610.01644) measure accessible information; Amnesic Probing (Elazar et al.,TACL2021,2021.tacl-1.10) cautions that accessible information is not equivalent to behavioral use. Here we use an existing decoder and real deletion forks, not a reproduction of their learned erasure procedure.
+
+Pre-replay additive descriptive check: for each same-capacity three-fork parent, record whether any cue-retaining alternative improves task error, whether one improves BOTH original metrics, and whether ALL task-improving alternatives increase full-feature error. Use1e-8 for numerical ties, not a new success threshold. This identifies tradeoffs within the fixed candidates, not global policy infeasibility. No native diagnostic has executed when this addition is frozen.

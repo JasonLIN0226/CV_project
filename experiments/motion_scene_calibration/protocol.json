@@ -1,0 +1,40 @@
+{
+  "UTC": "2026-10-19T02:18:49.976073+00:00",
+  "method": "6fixed ridge heads, position-null paired-common residual;128current+6legalactions ->126coefficients; full training512pairs",
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "horizons": [
+    3,
+    6
+  ],
+  "train_pairs": 512,
+  "validation_pairs": 96,
+  "training_data_seed": 6301,
+  "alpha": ".01*mean train normalized Gram diagonal; single value, intercept unpenalized",
+  "train_normalization": "train-fold-only for fixed2fold screen; original full512train-only finalhead normalization",
+  "crossfit": "Sorted512opaque training pairs, default_rng0permutation, first256fold0,last256fold1. Both seed-mean horizons absolute common-MSE gain positive; no hyperparameter grid",
+  "validation": "All8original feature+position numeric and all8incremental lowerCI>0 versus previous best composite. Resource screen only.",
+  "data_access": "CPU prepacking reads existing validation caches only for provenance/packing; no validation targets or test data enter head fitting; evaluate calibrated validation only after audited train crossfit support",
+  "conditional_test": "Only after independent fit/validation audit: exact heads SHA lock, unchanged original51+32+72 with all original seeds/conditions/data/thresholds, K!=2identity. Failedtest stops; no coefficient/anchor switching.",
+  "prior_GPU_seconds": 12723,
+  "GPU_stage_hard_cap_seconds": 600,
+  "GPU_soft_guard_seconds": 540,
+  "total_GPU_cap_seconds": 28800,
+  "provisional_confirmation_reserve_seconds": 14490,
+  "confirmation_reserve_is_estimate": true,
+  "confirmation_boundary": "Original fresh9137/12newmodels120epochs/newtrain transforms; same calibration recipe trained ONLYfreshtrain; freeze complete executor and remeasure full budget before fresh access; no devweights\u6362test",
+  "baseline_validation_summary_sha256": "3a221a8dec7eb371efddbbca2fa1777c7d29f247606abeff011b116b2c77870c",
+  "base_weights_lock": "parent_lock.json",
+  "frozen_state_digest_mandatory": true,
+  "scalar_replay_tolerance": 2e-06,
+  "software_equivalence_not_science": true,
+  "CPU_scientific_fitting": false,
+  "report_boundary": "Development repeatedly revealed; no independent confirmation until full frozen protocol succeeds",
+  "startup_projection": "Actualelapsed + remaining batches * maximum warm batch wall *1.25 +120reserve <=540 at secondbatch of eachseed; cold-start costs already included in actualelapsed",
+  "source_edits_during_execution": false,
+  "no_unknown_submission_retry": true,
+  "geometry_summary_sha256": "11c5e3cfeb748cda75010ea37cf95ba30b82ae4fec73b01d3fd9559ccb2c3a49"
+}

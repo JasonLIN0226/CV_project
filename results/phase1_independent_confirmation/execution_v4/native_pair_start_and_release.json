@@ -1,0 +1,48 @@
+{
+  "watchdog_submission.json": {
+    "job": 8784,
+    "source_lock_sha256": "5375a36b459771d7d97a64ca15eecfbaa86b87414e576391eb9651fe62fbc764",
+    "stdout": "8784",
+    "CPU_only": true
+  },
+  "watchdog_cleanup_submission.json": {
+    "job": 8785,
+    "source_lock_sha256": "5375a36b459771d7d97a64ca15eecfbaa86b87414e576391eb9651fe62fbc764",
+    "CPU_only": true
+  },
+  "guardian_native_preflight.json": {
+    "status": "PASS_NATIVE_CPU_GUARDIAN_AND_CLEANUP",
+    "guardian": 8784,
+    "cleanup": 8785,
+    "source_lock_sha256": "5375a36b459771d7d97a64ca15eecfbaa86b87414e576391eb9651fe62fbc764",
+    "no_GPU": true,
+    "actual_GPU_startup_cancellation_not_exercised": true,
+    "paired_live_guardians": true,
+    "scheduler_forces_Requeue1": true,
+    "native_CPU_cancel_verified": true
+  },
+  "receipts/preflight_cpu_submission.json": {
+    "stage": "preflight_cpu",
+    "job": 8783,
+    "parent": null,
+    "stdout": "8783",
+    "source_lock_sha256": "5375a36b459771d7d97a64ca15eecfbaa86b87414e576391eb9651fe62fbc764",
+    "actual_submission_UTC": "2026-10-19T16:19:36.499605+00:00"
+  },
+  "squeue": "8770 ood-jupyter COMPLETING 13:15\n8783 p1-preflight_cpu-5375a36b RUNNING 4:34\n8785 p1-cleanup-5375a36b RUNNING 0:34\n8784 p1-budget-watch-5375a36b RUNNING 2:04\n",
+  "release8770": "JobId=8770 JobName=ood-jupyter UserId=xl4358(3850228) GroupId=xl4358(3850228) MCS_label=N/A Priority=14667 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=COMPLETING Reason=None Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:15 RunTime=00:13:15 TimeLimit=00:15:00 TimeMin=N/A SubmitTime=2026-10-19T16:10:05 EligibleTime=2026-10-19T16:10:05 AccrueTime=2026-10-19T16:10:05 StartTime=2026-10-19T16:11:36 EndTime=2026-10-19T16:24:51 Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-19T16:10:15 Scheduler=Main Partition=interactive AllocNode:Sid=ood-burst-2:2359588 ReqNodeList=(null) ExcNodeList=(null) NodeList=b-9-24 BatchHost=b-9-24 NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=1,mem=1500M,node=1,billing=1 AllocTRES=cpu=2,mem=1500M,node=1,billing=2 Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=1 MinMemoryNode=1500M MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=(null) WorkDir=/home/xl4358/ondemand/data/sys/dashboard/batch_connect/sys/burst_jupyter/output/cd50aba5-12b0-472c-b6f2-b0af626fc262 StdErr=/home/xl4358/ondemand/data/sys/dashboard/batch_connect/sys/burst_jupyter/output/cd50aba5-12b0-472c-b6f2-b0af626fc262/output.log StdIn=/dev/null StdOut=/home/xl4358/ondemand/data/sys/dashboard/batch_connect/sys/burst_jupyter/output/cd50aba5-12b0-472c-b6f2-b0af626fc262/output.log TresPerTask=cpu=1 \n",
+  "watchdog_status.json": {
+    "job": 8784,
+    "updated_epoch": 1792427109.688978,
+    "reason": null,
+    "source_lock_sha256": "5375a36b459771d7d97a64ca15eecfbaa86b87414e576391eb9651fe62fbc764",
+    "charged_GPU_seconds": 39651
+  },
+  "guardian_peer_status.json": {
+    "job": 8785,
+    "updated_epoch": 1792427110.02946,
+    "reason": null,
+    "source_lock_sha256": "5375a36b459771d7d97a64ca15eecfbaa86b87414e576391eb9651fe62fbc764",
+    "charged_GPU_seconds": null
+  }
+}
