@@ -35,3 +35,11 @@ Outputs are physically separated:
 The scorer-input files contain neither future features nor future action sequences nor simulator state. Future actions are supplied only to the offline predictor call, limited to the requested horizon; future target features remain in the outer loss computation. Validation labels are separate from scorer-training labels, and sibling forks keep their original group and split.
 
 Local tests use synthetic vectors and explicitly labeled fixtures. Passing them establishes software contracts only. Actual dataset claims require the real frozen-checkpoint run and its generated artifacts. A successful bounded pilot does not demonstrate predictor quality, a learned-retention improvement, complete Phase 2 baseline results or Phase 1 planning completion.
+
+## Recorded 20 October run
+
+The actual CPU pilot completed in **10.21 seconds** at `4ff9529d892f6ae6a255647493704d5d8e23e55c`, using the newly trained Gate/Motion models after A100 job 9285. Four continuous parent policies produced 320 policy-origin records, deduplicated into **238 parents**: **190 train / 48 validation**. Each parent has three equal-K=2 deletions and horizons 3/6: **714 deletion forks / 1,428 finite loss values**. Thirty preselected parents were recomputed exactly. No test feature arrays were loaded and there were no missing horizons or excluded episodes.
+
+The downloaded new-development backup includes all raw feature arrays, bases, checkpoints and supervision shards. All **472 file hashes** and the archive SHA-256 were checked locally. Independent shard checks confirm matching parent IDs, input/label separation, causal timestamp bounds, exactly two retained entries per fork and finite loss values. Source hashes match the executed commit. See [portable proof](../results/phase2_hpc/20261020/deletion_pilot.json).
+
+These labels come from the small new predictor pilot whose trained validation error was slightly worse than its initialization. Their availability establishes the supervision pipeline; it does not establish useful ranking signal, a trained scorer, or superior retention. The scorer remains a later proposal phase.

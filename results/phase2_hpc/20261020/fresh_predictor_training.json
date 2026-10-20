@@ -219,5 +219,46 @@
     "predictor_trained": true,
     "trained_retention_baseline_results": false,
     "learned_retention_scorer_trained": false
+  },
+  "development_quality_comparison": {
+    "gate": {
+      "initial_validation_mse": 0.10755177835623424,
+      "best_trained_validation_mse": 0.10793113211790721,
+      "training_log_sha256": "8f586e16072abfed41d49ae1013a2d0a51e79f0e9c1e35c9c2abd1cbe6ac9c6a",
+      "validation_mse_by_completed_epoch": [
+        0.10793113211790721,
+        0.10848100110888481,
+        0.10958607122302055,
+        0.11117095376054446
+      ],
+      "initial_validation_by_mode": {
+        "random_fixed": 0.10628142207860947,
+        "random_subset": 0.10575211048126221,
+        "fifo": 0.10594639927148819,
+        "reservoir": 0.11431087553501129,
+        "temporal_buckets": 0.10594639927148819,
+        "visual_diversity": 0.10707346349954605
+      }
+    },
+    "motion": {
+      "initial_validation_mse": 0.1542912075916926,
+      "best_trained_validation_mse": 0.15475597977638245,
+      "training_log_sha256": "67b94109299a0f08edd1a1e3be4d098637a661ccb5d7388492dae65576a414ec",
+      "validation_mse_by_completed_epoch": [
+        0.15475597977638245,
+        0.1562045911947886,
+        0.1594966252644857,
+        0.16632460554440817
+      ],
+      "initial_validation_by_mode": {
+        "random_fixed": 0.155558243393898,
+        "random_subset": 0.1540360152721405,
+        "fifo": 0.15362437069416046,
+        "reservoir": 0.1548008918762207,
+        "temporal_buckets": 0.15362437069416046,
+        "visual_diversity": 0.1541033536195755
+      }
+    },
+    "interpretation": "Both selected trained checkpoints are slightly worse than initialization. No improvement or generalization claim."
   }
 }
