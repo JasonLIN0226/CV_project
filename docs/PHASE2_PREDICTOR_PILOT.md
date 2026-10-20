@@ -6,12 +6,12 @@ Run inside the existing CPU allocation, after the real encoded report is complet
 
 ```bash
 "$TASK_ROOT/venv/bin/python" "$TASK_ROOT/repo/experiments/phase2/train_predictor_pilot.py" \
-  --data-root "$TASK_ROOT/data" --encoded-report "$TASK_ROOT/runs/9284/encoded" \
+  --data-root "$TASK_ROOT/data" --encoded-report "$TASK_ROOT/runs/9285/encoded" \
   --output "$TASK_ROOT/runs/new-cpu-predictor-pilot" \
   --epochs 4 --seed 17 --dropout 0.15 --batch-size 32 --threads 4 --timeout-seconds 1200
 ```
 
-`9284` identifies the currently planned encoder allocation; use the actual completed report path when running elsewhere. Output must be new. The parent limits runtime to at most 20 minutes, hides CUDA from the worker, records commands/source hashes/settings/Git HEAD/logs/exit status, and terminates the worker process group on timeout. A partial run retains completed-epoch training snapshots and must not be reported as a completed pilot. No job is submitted.
+`9285` identifies the completed encoder allocation for the recorded 20 October run; use the actual completed report path when running elsewhere. Output must be new. The parent limits runtime to at most 20 minutes, hides CUDA from the worker, records commands/source hashes/settings/Git HEAD/logs/exit status, and terminates the worker process group on timeout. A partial run retains completed-epoch training snapshots and must not be reported as a completed pilot. No job is submitted.
 
 The exact encoder runtime configuration comes from the completed encoding report, because encoder fields participate in the cache signature. The earlier raw data preparation configuration is not interchangeable. The report, cache, normalizer, observation archives, and retained-source hashes are checked before training. Only train/validation feature arrays and actions are loaded by the trainer; no test prediction metrics are computed.
 
@@ -24,3 +24,7 @@ Checkpoints are selected by the earliest minimum validation feature MSE averaged
 The pilot demonstrates that real-cache, varied-history/dropout predictor training executes. Four epochs on this small development dataset do not establish scientific superiority, generalization, full Phase 2 completion, or readiness of a PushT predictor. Absolute-coordinate PushT actions remain incompatible with this inherited additive-control bridge.
 
 Local tests use synthetic vectors explicitly labeled `NOT_JEPA`; they check real optimizer updates, validation checkpoint selection/freeze replay, no test-feature access, train-only basis fitting, and rejection of incomplete real-encoder reports. They are software checks, not A100 or research evidence.
+
+## Recorded execution
+
+The actual Linux CPU pilot completed on 20 October 2026 in 15.32 seconds at source `1d18e93`, after completed A100 job 9285. Both tasks completed four epochs and 24 optimizer steps, with real parameter updates and exact frozen validation replay. The run used only the new train/validation data. See [the execution record](PHASE2_HPC_RUN.md) and [portable training evidence](../results/phase2_hpc/20261020/fresh_predictor_training.json).

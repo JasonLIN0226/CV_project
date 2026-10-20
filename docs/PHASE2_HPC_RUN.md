@@ -1,6 +1,19 @@
 # Course HPC execution record — 20 October 2026
 
-The remote Linux CPU preparation and checks passed at exact source commit **`6f8703ca11bf47a996605401ab55e303e403db98`**. At the archived **04:57:24 UTC** snapshot, A100 job **9284** had an allocation and remained `CONFIGURING` in `scontrol`. This record does not establish that CUDA execution or encoding had started.
+A100 job **9285 completed successfully** on 20 October 2026, followed by a completed fresh CPU predictor pilot for Gate and Motion. The hardware UUID was checked against both PyTorch and `nvidia-smi`; official I-JEPA encoded real PushT observations and all 128 new controlled episodes. These are development execution results, not the six scientific baseline results or model-driven planning validation.
+
+## Completed A100 and fresh predictor runs
+
+Replacement job **9285** ran on an **NVIDIA A100-SXM4-40GB**, with one visible CUDA device and a matching physical UUID. The exact encoder checkout was `6f8703ca11bf47a996605401ab55e303e403db98`; all recorded source hashes match that commit. Scheduler accounting reports `COMPLETED`, exit `0:0`, **05:05:41–05:08:30 UTC**, one GPU allocated for **169 seconds**. The driver took 169.28 seconds. The earlier failed launch remains recorded below; its final zero-duration accounting does not reconstruct the provisioning interval observed earlier.
+
+- Real PushT paired observations produced finite float32 features of shape **25 × 5120**. Parameters remained frozen, all modules remained in evaluation mode, visible control features matched, and masked observations changed the features. This establishes the encoder interface, not history necessity or planning.
+- The controlled encoder stage completed in **117.02 seconds**: **128 episodes / 3,616 frames**, 5120-dimensional official I-JEPA features and **864 audited sample rows**. Train-only normalization was independently recomputed exactly from 64 training episodes / 1,696 frames. Test-split features were encoded, but no test target samples or prediction metrics were generated.
+- After the encoder process exited, the checkout advanced to `1d18e93a6fe8f8e23a358407a0d5ec399f8ede23`. **15 targeted Linux checks passed**. The new CPU predictor pilot ran **05:08:53–05:09:08 UTC**, taking **15.32 seconds**, on existing CPU job 9280.
+- Both Gate and Motion completed **4 epochs / 24 optimizer steps**, seed 17, six varied-history training modes and 0.15 whole-memory dropout. Each model has 211,040 parameters, input rank 128 and train-fitted output rank 95. Actual parameter changes and exact frozen validation replay were verified. Validation selected epoch 1 for both tasks; its MSE was **0.107931** (Gate) and **0.154756** (Motion). These are development checkpoint-selection scores, not a baseline comparison or generalization finding.
+
+The new models preserve the supplied predictor architecture and locked source, and do not reproduce the teammate's unavailable repaired Phase 1 checkpoints. No retention scorer or model-driven planner was trained in these runs. Scientific deletion supervision is a separate next stage.
+
+The completed evidence export contains **43 files**, all independently SHA-256 verified after download. All recorded encoder and trainer source hashes were also checked against their respective Git commits. Full originals live in ignored `build/hpc-20261020/training-completed/`; portable records are [`a100_encoding.json`](../results/phase2_hpc/20261020/a100_encoding.json), [`fresh_predictor_training.json`](../results/phase2_hpc/20261020/fresh_predictor_training.json), and [`scheduler_after_encoding.json`](../results/phase2_hpc/20261020/scheduler_after_encoding.json). The previous initial export remains unchanged.
 
 ## Verified CPU work
 
