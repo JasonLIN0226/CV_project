@@ -145,3 +145,73 @@ Run only the independent adapter checks with:
 ```bash
 .venv/bin/python -m pytest -q tests/test_phase2_training_samples.py
 ```
+
+## Prepare samples from real frozen encoder features
+
+`experiments/phase2/prepare_encoded_samples.py` connects the fresh controlled RGB
+dataset to the official frozen encoder and this sampler. It requires the completed
+`prepare_controlled_data.py` output, an explicit model-cache location, device, and a
+new report directory. The public runner accepts only pinned
+`facebook/ijepa_vith14_1k` revision
+`f157467ea509bc356ff9f61fd3c0d840eec5e04e`, float32 computation and grid2 pooling.
+The official processor remains governed by the unchanged encoder's no-center-crop
+check. There is no smoke-pixel or random-weight fallback in this command.
+
+```bash
+.venv/bin/python experiments/phase2/prepare_encoded_samples.py \
+  --data-root /actual/scratch/project/phase2-data \
+  --cache-dir /actual/scratch/project/model-cache \
+  --device cuda \
+  --output /actual/scratch/project/encoded-report-001 \
+  --batch-size 2
+```
+
+Use the actual allocated GPU and a compatible PyTorch/torchvision installation;
+the pinned Transformers image-processor path needs torchvision even with the PIL
+backend. The scheduler's externally bounded allocation controls runtime. This
+script does not submit jobs or request additional resources.
+
+The runner checks the preparation-file hashes and retained source lock, rechecks
+the observation-only dataset boundary, then calls unchanged `phase1.cache.encode`.
+It leaves `resolved_config.json` untouched and saves the actual rebased runtime
+configuration as the new report's `encoder_config.json`. The feature cache is
+written beneath the data root's `features/` directory, with per-episode checksums
+and the native index/pair-feature audit. All development splits are encoded and
+checked for consistent representations; this is not an untouched-test evaluation.
+
+After the cache is complete, unchanged `fit_normalization` uses **training frames
+only**. The wrapper independently recomputes training membership, frame count,
+mean and standard deviation and requires exact agreement with saved float32
+statistics. It then loads every episode's features through the new `FeatureEpisode`
+contract. Only train and validation episodes produce predictor samples; the
+`test_*` splits produce no target examples, scores or deletion labels.
+
+The default sample schedule makes one example for each of the six independent
+sample modes per training episode per sample epoch, with two sample epochs and
+dropout probability 0.15. Every validation episode/mode is sampled once with dropout
+off and then replayed to check deterministic equality. These are **sample epochs**,
+not optimizer epochs. The 128-episode preparation defaults yield 768 training and
+96 validation sample rows. These counts change with dataset/sample configuration.
+
+Each compact `sample_rows.jsonl` row stores identities, selected timestamps,
+dropout decisions, horizon masks, and hashes of arrays produced by the historical
+input bridge. `sample_summary.json` records split/group counts, feature-file
+checksums, normalization verification, sampling statistics and explicit false
+training/baseline/deletion-result flags. No encoded feature vectors or future
+targets are copied into these compact rows. The source cache and configuration
+are needed to reconstruct them.
+
+Feature caching is resumable after interruption. Keep the same data root, model
+cache path, encoder settings, batch size and retained source files; use a **new**
+empty report directory on each invocation. Native signature checks reject drift.
+For an explicit partial cache check, `--max-episodes N` processes at most N pending
+episodes. A partial invocation saves `partial_cache_saved_resume_required`, does
+not fit normalization or generate samples, and must not be described as complete.
+Only `official_encoding_and_sample_audit_completed` establishes completion of this
+preparation stage. `progress.json` and any `failure.json` record the actual stage.
+
+This stage still does not fit the predictor basis, initialize/train a predictor,
+bind model-dependent retention baselines, produce scientific deletion supervision,
+or verify baseline-model planning. Fixture tests of the orchestration use a clearly
+labeled `smoke_pixels_NOT_JEPA` cache through the helper API and never download a
+second model or count as real encoder execution.

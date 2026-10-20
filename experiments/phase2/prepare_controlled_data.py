@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 import hashlib
 import importlib.metadata
 import json
+import os
 from pathlib import Path
 import platform
 import subprocess
@@ -151,6 +152,7 @@ def run(output: Path, *, seed=20261020, train_pairs=16, eval_pairs=4):
     source_hashes = {str(p.relative_to(ROOT)): sha256(p) for p in source_paths}
     outputs = [output/"resolved_config.json", output/"dataset/manifest.json", output/"dataset/split_audit.json",
                output/"observation_boundary_audit.json", output/"observation_index.json", output/"split_roles.json"]
+    slurm_job_id = os.environ.get("SLURM_JOB_ID")
     provenance = {
         "schema_version": 1, "status": "new_cpu_dataset_generated_and_structurally_audited",
         "created_utc": datetime.now(timezone.utc).isoformat(), "scope": "new_development_smoke_data_only",
@@ -162,7 +164,15 @@ def run(output: Path, *, seed=20261020, train_pairs=16, eval_pairs=4):
                                                           "long_gap", "cue_start", "cue_duration", "motion_dt")},
         "counts": {k: boundary[k] for k in ("episodes", "pairs", "frames", "unique_environment_seeds")},
         "native_audit_passed": native_audit["passed"], "observation_boundary_passed": boundary["passed"],
-        "elapsed_seconds": time.perf_counter()-started, "device": "cpu", "gpu_allocation_seconds": 0,
+        "elapsed_seconds": time.perf_counter()-started, "device": "cpu",
+        "slurm_job_id": slurm_job_id,
+        "gpu_allocation_seconds": None if slurm_job_id else 0,
+        "resource_accounting_note": (
+            "CPU execution inside a Slurm allocation; GPU allocation time is unknown here. "
+            "Use scheduler accounting for this job, including CPU-only work and idle time."
+            if slurm_job_id else
+            "Local CPU execution; this command did not request or hold a Slurm GPU allocation."
+        ),
         "encoder_run": False, "normalization_fitted": False, "basis_fitted": False, "predictor_trained": False,
         "baseline_results_generated": False, "deletion_supervision_generated": False,
         "inactive_config_sections": ["encoder", "normalization", "probe", "model", "training", "evaluation", "decision"],
