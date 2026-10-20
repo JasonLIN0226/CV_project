@@ -1,0 +1,86 @@
+{
+  "binary_RGB_action_archives_committed": false,
+  "collection_tests": {
+    "elapsed_seconds": 1.27,
+    "failed": 0,
+    "passed": 8,
+    "scope": "collection contracts, diagnostic isolation, numerical tolerance and immutable protocol; not predictor or planning validation"
+  },
+  "copied_raw_json": {
+    "initial_failed_attempt.json": {
+      "bytes": 665,
+      "raw_path": "build/pusht-planning-development-20261020-attempt1-exact-diagnostics/failed_attempt.json",
+      "sha256": "e23235c00363df995d426c0fa19b32b05a99572f3c23e5736c072b98ea0c84f6"
+    },
+    "preparation_manifest.json": {
+      "bytes": 25899,
+      "raw_path": "build/pusht-planning-development-20261020/preparation_manifest.json",
+      "sha256": "d187ca7ed4080bdf7fe7032f2c4f6dbe522b73c1b1bd52df81685f5f0130ccc5"
+    },
+    "protocol.json": {
+      "bytes": 23336,
+      "raw_path": "build/pusht-planning-development-20261020/protocol.json",
+      "sha256": "96e5ac3df252f376d230092aa59699270170ccf3b4c5b2be012d790528b207fa"
+    },
+    "protocol_frozen_before_collection.json": {
+      "bytes": 983,
+      "raw_path": "build/pusht-planning-development-20261020/protocol_frozen_before_collection.json",
+      "sha256": "1f7e674d2af6cd88378efa1a811e27ca7132f5470a4a6c5435c2917a731bd919"
+    },
+    "structural_audit.json": {
+      "bytes": 877,
+      "raw_path": "build/pusht-planning-development-20261020/structural_audit.json",
+      "sha256": "ffc5006b5f57f25b22dfd55d651b7e54901821893875fc1dfda96bc8845fa586"
+    },
+    "train_coverage_audit.json": {
+      "bytes": 19735,
+      "raw_path": "build/history-diagnosis-20261020/planning/pusht_train_coverage_reproducible.json",
+      "sha256": "c52d0e1d7d7ce0f0ce39c39948361ad422ee9962c9d0f9a8675cdcb7c1d5fcb6"
+    }
+  },
+  "current_source_sha256": {
+    "experiments/phase2/audit_pusht_training_data.py": "17755a22af87ca1fd34c3f372c6565ffc0415db1822de5ee24fb71a9c910c1d0",
+    "experiments/phase2/prepare_pusht_planning_data.py": "0176218bd693868a9bcee5b7fad56bfb056b7c0fe767a903279bdf5b69c80466",
+    "tests/test_phase2_audit_pusht_training_data.py": "7b7690b642a072a3420f2bdead106bd5d7163f4c5049b8277be1a86ac6e27ce0",
+    "tests/test_phase2_prepare_pusht_planning_data.py": "fd06b36e1e29f6857954004a14324043f2f0d58b3c4ee1c84e89e2e472fb9bba"
+  },
+  "initial_attempt_protocol_sha256": "059e810c7f8cc94946e657047a571353ff8de67fbef05b508eed741ffb8496a1",
+  "initial_attempt_source_sha256": "a5385ae99d8fedc7934858f132ff15c280e931adecca523b04262ec9db1dee58",
+  "raw_dataset_root": "build/pusht-planning-development-20261020",
+  "raw_failed_attempt_root": "build/pusht-planning-development-20261020-attempt1-exact-diagnostics",
+  "redaction_note": "No redactions were necessary: selected JSON files contain only relative paths. Copies are byte-identical to the retained raw JSON files; raw binary data and failed-attempt source remain under ignored build/.",
+  "remaining": [
+    "frozen I-JEPA encoding of this new PushT corpus",
+    "train-only feature normalization/basis",
+    "separate verified exogenous goal RGB",
+    "learned PushT absolute-action-conditioned dynamics",
+    "history-necessity validation",
+    "model-driven MPC execution"
+  ],
+  "reproduction_commands": [
+    ".venv/bin/python -m pytest -q tests/test_phase2_prepare_pusht_planning_data.py",
+    ".venv/bin/python -m pytest -q tests/test_phase2_audit_pusht_training_data.py",
+    ".venv/bin/python experiments/phase2/prepare_pusht_planning_data.py --output build/pusht-planning-development-NEW",
+    ".venv/bin/python experiments/phase2/audit_pusht_training_data.py --input build/pusht-planning-development-NEW --output build/pusht-train-coverage-NEW.json"
+  ],
+  "status": "portable_copy_of_completed_CPU_preparation_and_TRAIN_only_audit",
+  "timing_note": "26.390 s collection and 36.685 s total describe the successful attempt only. The preserved failed attempt and diagnostic replays were not timed; no aggregate all-attempt duration is claimed.",
+  "training_audit_tests": {
+    "elapsed_seconds": 0.07,
+    "failed": 0,
+    "passed": 2,
+    "scope": "Reserved validation/evaluation diagnostic reads are forbidden; tampered train diagnostics fail before parsing."
+  },
+  "validation": {
+    "collector_and_environment_source_hashes_verified": 4,
+    "data_artifact_hashes_verified": 148,
+    "initial_and_successful_policy_masks_splits_identical": true,
+    "only_protocol_additions_after_first_attempt": [
+      "paired_diagnostic_float_absolute_tolerance",
+      "paired_pixels_actions_flags_and_integer_counts"
+    ],
+    "paired_diagnostic_tolerance": 1e-12,
+    "permanent_audit_reproduces_original_training_audit_rows_and_statistics": true,
+    "pixel_action_flag_and_integer_count_equality": "exact"
+  }
+}

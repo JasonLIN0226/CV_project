@@ -1,0 +1,140 @@
+{
+  "schema": "phase2_independent_checks_v1",
+  "started_at_utc": "2026-10-20T22:54:24.129312+00:00",
+  "scope": "CPU software contracts and real PushT environment interface only",
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "platform": "macOS-15.7.3-arm64-arm-64bit",
+  "git_base": "19f9135308f6d7f75f369f3b7091a6b493070042",
+  "gpu_allocations_submitted": 0,
+  "gpu_allocation_seconds": 0,
+  "trained_model_evaluation": false,
+  "predictor_training": false,
+  "scientific_deletion_dataset_generated": false,
+  "six_model_bound_baseline_results": false,
+  "baseline_model_planning_verified": false,
+  "phase2_completed": false,
+  "checks": [
+    {
+      "name": "dependencies",
+      "argv": [
+        "$REPOSITORY/.venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.14254237501882017,
+      "log": "dependencies.log",
+      "log_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "name": "published_latest_evidence",
+      "argv": [
+        "$REPOSITORY/.venv/bin/python",
+        "tools/verify_phase1_latest.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.021449249936267734,
+      "log": "published_latest_evidence.log",
+      "log_sha256": "fa4a082912ce667d20d0494ce9714e7c0848fdb140659f4073fb294d9bcdb37f"
+    },
+    {
+      "name": "published_earlier_evidence",
+      "argv": [
+        "$REPOSITORY/.venv/bin/python",
+        "tools/verify_results.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.37270350009202957,
+      "log": "published_earlier_evidence.log",
+      "log_sha256": "833838bef46abb86c6143b4d808c1a3a56e5866d8729831c7d84f4f46cfe10e0"
+    },
+    {
+      "name": "software_tests",
+      "argv": [
+        "$REPOSITORY/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml",
+        "$REPOSITORY/build/history-diagnosis-20261020/final-software-checks/tests.xml"
+      ],
+      "exit_code": 0,
+      "seconds": 6.73683595797047,
+      "log": "software_tests.log",
+      "log_sha256": "449927854d6ba0cc5e125f5fc82be96fb64fe9294d3a64bec046161a58d540fe"
+    },
+    {
+      "name": "pusht_interface",
+      "argv": [
+        "$REPOSITORY/.venv/bin/python",
+        "experiments/phase2/pusht.py",
+        "--output",
+        "$REPOSITORY/build/history-diagnosis-20261020/final-software-checks/pusht",
+        "--seed",
+        "17",
+        "--steps",
+        "24"
+      ],
+      "exit_code": 0,
+      "seconds": 0.25248249992728233,
+      "log": "pusht_interface.log",
+      "log_sha256": "c9e5710235db0d3474878bc315db4f8fe6337d171d9327997eac1e68a778c770"
+    }
+  ],
+  "source_sha256": {
+    "experiments/phase2/audit_pusht_training_data.py": "17755a22af87ca1fd34c3f372c6565ffc0415db1822de5ee24fb71a9c910c1d0",
+    "experiments/phase2/causal_model_scores.py": "5b24102d58821d53c8ad32bc2b5765530d00b1c91927ca2de420af824a8fbcbd",
+    "experiments/phase2/deletion.py": "6c3d7d34ec6a065f88dcf06f79a3787e509cda26d0fc0b00ec553a398e3de951",
+    "experiments/phase2/diagnose_history.py": "7714b97a010f2b330192b7ad5f13ed0081608719e7708f458a2d5f44fc53ae91",
+    "experiments/phase2/diagnose_training_objective.py": "b5c44137a573f74d698927ab4c85509b8ab4fea682045f5221446cef6d3541e2",
+    "experiments/phase2/frozen_predictor.py": "a64c479c24f6ac22c99978045197fe354545247a602efcb38b8b9fd30dc812fc",
+    "experiments/phase2/generate_deletion_pilot.py": "baae41c86ffac52885ee3a1eb1546b6749b24f2ce351eb2c57d155fe1628b429",
+    "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+    "experiments/phase2/portable_snapshot.py": "ca3b29ced972df802ca5eecdde70fc21b8d8cba80c531d23ad8ff22a3a3e64c9",
+    "experiments/phase2/prepare_controlled_data.py": "6be1691285ea76ff15a2299ddd93ee1b3cfb15d0d6335deca0c426b11fec075f",
+    "experiments/phase2/prepare_encoded_samples.py": "2860cefc1770bf70ddc85ea971e81832a80dcd555420679a9b3bdd9dd1956d00",
+    "experiments/phase2/prepare_hpc_environment.py": "799fa96a44bb350cb514b6ae9dd6019d855fe278bff031f07fcdb285f4ef5e35",
+    "experiments/phase2/prepare_pusht_planning_data.py": "0176218bd693868a9bcee5b7fad56bfb056b7c0fe767a903279bdf5b69c80466",
+    "experiments/phase2/pusht.py": "285cd9f41e5c89e4266d05947a2e1ad8406f17c5740ef4fd3a5ff0519831dbc6",
+    "experiments/phase2/run_encoder_pilot.py": "806c1c7ab13849ca2c01aebaa65ee549e38cdc586edc03fc2e384448d876aa9c",
+    "experiments/phase2/run_gate_followup_phase2.py": "492e9577f4c4e4bb809e8e9a70f5e19565dc9f350a2e4c6ee187fdb7132e83f0",
+    "experiments/phase2/run_hpc_pipeline.py": "f88d56e1f50fcb2a14562902b4d236d2959970feae009b79ee97aa221c34560e",
+    "experiments/phase2/run_independent.py": "c240ef7f18f3996c25506353ca79afdcce4745a2324f2facf765d6ab1cafda55",
+    "experiments/phase2/run_local_mps_encoder.py": "8673aad7a34084a797d0fa51f13ed81e26944982e24efbff607f6ce3d0dab812",
+    "experiments/phase2/run_retention_baseline_pilot.py": "d359c65074341e34fcf50857c850aadf275a100969259a1d66e205ba4bb8876d",
+    "experiments/phase2/train_predictor_followup.py": "fcde4fb0e91ddcea8e21ec9acb55c815d6f3c11a8e34e21b837af8398d9aefa5",
+    "experiments/phase2/train_predictor_pilot.py": "60c3c64330640171baa9d5d73c913081b03bd21ad326e13a0651af81aa886ff8",
+    "experiments/phase2/training_samples.py": "a8ca0490308488bff5a560e767093175fb7e76abbab58179570dc447b4310143",
+    "experiments/phase2/verify_assets.py": "104254c5bc2fbd5b774fbbc6416e31c5fc7f2221173cd015a2568f08e04aa960",
+    "tests/test_phase2_assets.py": "056d48b401bc8597d341b701b17f66a29ff9f882f5cae3eedf9f8b45d515b20b",
+    "tests/test_phase2_audit_pusht_training_data.py": "7b7690b642a072a3420f2bdead106bd5d7163f4c5049b8277be1a86ac6e27ce0",
+    "tests/test_phase2_causal_model_scores.py": "634612f074bdebd18bd7582fe416daea37a00a7929a8f6bda905d00eec1643ce",
+    "tests/test_phase2_controlled_data.py": "cbd62129518a39f4fd1bda3f72870667e724f6d205fe4a171f0bf26216634781",
+    "tests/test_phase2_deletion.py": "5258d86e321df01bbfbf088d12c8fd1b60e2a068ec13664274e45e8c21675c61",
+    "tests/test_phase2_deletion_pilot.py": "c67da560038f4f2aa30fba783a7d523353660d06fd119d055eb8d6e8919ed8bf",
+    "tests/test_phase2_encoded_samples.py": "4823c1757c46094458dfed86d744a179167b46493ce0ba70f57246b4989c27a4",
+    "tests/test_phase2_frozen_predictor.py": "20ed8953696e476e1fca18787204a8c8a4ae1a7a57d9d8532ec0a02c7af1682e",
+    "tests/test_phase2_gate_followup.py": "398eb6997b765668b0f3f9a9d1a4c0f871adc2bd405a5c8d7ab040062fcbf18e",
+    "tests/test_phase2_history_diagnostic.py": "03b088a91ad4ce8c0151ab38d29b7704bab381eebe73cb626af175ca3dae9562",
+    "tests/test_phase2_memory.py": "f85eff172f4a615a2f08b75701c608912999e6a3a4e177be11d221e499c3cac2",
+    "tests/test_phase2_portable_snapshot.py": "9ca16fa4ed171164395b84591e28eb574628fdb9fc8750e1e55a8e6f3f3c6d80",
+    "tests/test_phase2_predictor_followup.py": "097ac120988a12271ff88a59d43ee046be0970dcbec80ba13ab0cfa843edca47",
+    "tests/test_phase2_predictor_pilot.py": "c87aab7997e008721990f62e6af8f41839466bcd58983f6fc5efa484e50a726b",
+    "tests/test_phase2_prepare_pusht_planning_data.py": "fd06b36e1e29f6857954004a14324043f2f0d58b3c4ee1c84e89e2e472fb9bba",
+    "tests/test_phase2_pusht.py": "3af0c3a4d243cc52fed74007da992758baea081a0e3486c51893bb45491bd852",
+    "tests/test_phase2_retention_baseline_pilot.py": "fa819c7b27003c1ddf97ae894c808809884f04f765dec31eadb8529c5f180474",
+    "tests/test_phase2_training_objective.py": "c0e52631e514b57475cd2843a464942351d9d7906d3fad241fbd810b88d70775",
+    "tests/test_phase2_training_samples.py": "4eacb0215c2f468bc15b990441a3f2d524016e1830ccc76b8491332acce8fbc3"
+  },
+  "software_test_counts": {
+    "tests": 229,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pusht_manifest_sha256": "d3c1875f0164c04f311d8fa1314292136af0434465ec62c19bb43576efa94061",
+  "independent_checks_passed": true,
+  "elapsed_seconds": 7.7185913749272,
+  "finished_at_utc": "2026-10-20T22:54:31.847882+00:00"
+}

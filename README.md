@@ -2,15 +2,58 @@
 
 Can the prediction error caused by deleting an observation help decide what a limited visual memory should retain?
 
+## Predictor diagnosis and independent continuation — 20 October 2026
+
+The original four-epoch predictors depended on history but did not benefit from it
+on validation. A fixed CPU follow-up now identifies a useful **Gate development
+candidate** after removing input whitening; **Motion still lacks a net history
+benefit**. These are newly trained models, separate from the teammate's missing
+final repaired checkpoints.
+
+- **Why validation worsened:** the paired training objective can improve while
+  ordinary MSE worsens. In Gate, whitening also amplified directions almost absent
+  from training: 81/128 coordinates contributed 78% of validation projected energy.
+  Training-only masking reduced this harm but did not recover useful history.
+- **Fixed follow-up completed:** three projection arms × two tasks × 40 epochs,
+  with the same architecture, output basis, objective and seed. Checkpoint selection
+  includes epoch zero. Gate's no-whitening arm selected epoch 35 and reduced
+  six-sampler validation MSE from 0.105936 to 0.097827. Correct privileged K=2
+  history scored 0.074275 versus recent-only 0.102571; wrong sibling history scored
+  0.196949. Motion's correct-history condition still did not beat recent-only.
+- **Gate Phase 2 continuation executed:** the new checkpoint was explicitly bound
+  to six online baselines (48 episode/policy rows, 96 horizon losses) and fresh
+  deletion supervision (94 train + 24 validation parents, 354 equal-K forks,
+  708 losses). All losses were independently checked from saved predictions.
+  Diversity and attention are strong baselines on this development split.
+- **Independent PushT corpus prepared:** 48 episodes, split 32/8/8, with 4,656
+  frames per masked/unmasked variant. Absolute XY actions remain ordered, and
+  masking occurs before encoding. This completes data preparation, not baseline
+  model planning or history-necessity validation.
+- **Final checks:** 229 tests passed with zero failures, errors or skips, plus
+  dependency checks, both historical evidence verifiers and the real PushT
+  interface. `python tools/verify_phase2_history.py` verifies the published
+  diagnosis receipts and arithmetic without rerunning models.
+
+The Gate control improvement uses four repeatedly inspected validation pairs and
+privileged evidence. It is **not learned-retention performance or an independent
+generalization result**. The new runs use CPU and existing downloaded I-JEPA
+features; they do not consume another A100 allocation. Original snapshots remain
+unchanged, and no test arrays were opened in predictor diagnosis or follow-up.
+
+[Diagnosis, controls and reproduction](docs/PHASE2_HISTORY_DIAGNOSIS.md) ·
+[Gate baseline and deletion continuation](docs/PHASE2_GATE_FOLLOWUP_CONTINUATION.md) ·
+[PushT preparation and remaining planning work](docs/PHASE2_PUSHT_PLANNING_PREPARATION.md) ·
+[Portable evidence](results/phase2_history/20261020)
+
 ## Phase 2 development execution — 20 October 2026
 
 A separate, newly initialized development run now implements the proposal's bounded memory interface, varied-history training with memory dropout, and frozen equal-capacity deletion supervision. It uses the retained source and official frozen I-JEPA, without claiming to reproduce the missing latest repaired Phase 1 models.
 
-- **Actual A100 execution completed:** job 9285, A100-SXM4-40GB with matching physical UUID, 169 allocated GPU seconds. Real PushT encoding and 128 new controlled episodes / 3,616 frames passed interface and sample checks.
+- **Actual A100 execution completed:** job 9285, A100-SXM4-40GB with matching physical UUID, 169 allocated GPU seconds. Real PushT interface encoding and 128 new controlled Gate/Motion episodes / 3,616 frames passed interface and sample checks.
 - **New Gate/Motion CPU predictors trained:** four epochs each with parameter updates and exact frozen validation replay. Validation was slightly worse than initialization; no quality improvement is claimed.
 - **Deletion pilot completed:** 238 distinct streaming parents (190 train / 48 validation), 714 equal-K forks and 1,428 finite multi-horizon loss values. This is development supervision, not a trained retention scorer or model-driven planning result.
 - **Six retention baselines executed:** FIFO, reservoir, temporal buckets, visual diversity, prediction surprise and attention produced 96 episode/policy rows and 192 horizon losses on 16 validation episodes (eight independent pairs). This small, reused-validation pilot is not a generalization result; total auxiliary memory bytes differ between policies.
-- **Final software checks:** 181 tests passed with no failures, errors or skips. All task compute sessions ended, and full new data/model and baseline-result backups were downloaded and hash-verified.
+- **Software checks at that snapshot:** 181 tests passed with no failures, errors or skips. All task compute sessions ended, and full new data/model and baseline-result backups were downloaded and hash-verified.
 
 [Execution evidence](docs/PHASE2_HPC_RUN.md) · [Training contract](docs/PHASE2_PREDICTOR_PILOT.md) · [Deletion pilot](docs/PHASE2_DELETION_PILOT.md) · [Six-policy pilot](docs/PHASE2_RETENTION_BASELINE_PILOT.md) · [Missing original assets](docs/PHASE1_HANDOFF_CHECKLIST_ZH.md)
 

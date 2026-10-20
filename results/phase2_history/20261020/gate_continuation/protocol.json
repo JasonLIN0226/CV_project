@@ -1,0 +1,67 @@
+{
+  "created_utc": "2026-10-20T22:53:34.900202+00:00",
+  "task": "gate",
+  "arm": "unit_columns",
+  "selected_epoch": 35,
+  "recent": 4,
+  "capacity": 2,
+  "horizons": [
+    3,
+    6
+  ],
+  "seed": 17,
+  "baseline_split": "validation",
+  "baseline_policies": [
+    "fifo",
+    "reservoir",
+    "temporal_buckets",
+    "visual_diversity",
+    "prediction_surprise",
+    "attention"
+  ],
+  "deletion_splits": [
+    "train",
+    "validation"
+  ],
+  "deletion_parent_policies": [
+    "fifo",
+    "reservoir",
+    "temporal_buckets",
+    "visual_diversity"
+  ],
+  "query_rule": "same declared query following continuous replay",
+  "timeout_seconds": 300,
+  "scorer_training": false,
+  "test_arrays": false,
+  "equal_auxiliary_bytes": false,
+  "source_sha256": {
+    "experiments/phase2/run_gate_followup_phase2.py": "492e9577f4c4e4bb809e8e9a70f5e19565dc9f350a2e4c6ee187fdb7132e83f0",
+    "experiments/phase2/frozen_predictor.py": "a64c479c24f6ac22c99978045197fe354545247a602efcb38b8b9fd30dc812fc",
+    "experiments/phase2/causal_model_scores.py": "5b24102d58821d53c8ad32bc2b5765530d00b1c91927ca2de420af824a8fbcbd",
+    "experiments/phase2/generate_deletion_pilot.py": "baae41c86ffac52885ee3a1eb1546b6749b24f2ce351eb2c57d155fe1628b429",
+    "experiments/phase2/run_retention_baseline_pilot.py": "d359c65074341e34fcf50857c850aadf275a100969259a1d66e205ba4bb8876d",
+    "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+    "experiments/phase2/deletion.py": "6c3d7d34ec6a065f88dcf06f79a3787e509cda26d0fc0b00ec553a398e3de951",
+    "experiments/phase2/training_samples.py": "a8ca0490308488bff5a560e767093175fb7e76abbab58179570dc447b4310143",
+    "experiments/phase2/portable_snapshot.py": "ca3b29ced972df802ca5eecdde70fc21b8d8cba80c531d23ad8ff22a3a3e64c9",
+    "experiments/phase2/train_predictor_followup.py": "fcde4fb0e91ddcea8e21ec9acb55c815d6f3c11a8e34e21b837af8398d9aefa5"
+  },
+  "runtime_threads": {
+    "environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "OMP_NUM_THREADS": null,
+      "MKL_NUM_THREADS": null
+    },
+    "torch_threads": 4,
+    "torch_interop_threads": 10,
+    "numpy_version": "1.26.4",
+    "blas_libraries": [
+      {
+        "library": "libopenblas64_.0.dylib",
+        "query_symbol": "openblas_get_num_threads64_",
+        "effective_threads": 1
+      }
+    ]
+  }
+}
