@@ -6,7 +6,7 @@ The user asked to proceed with work that does not require the teammate's unavail
 
 The unified runner completed on local macOS CPU with Python 3.12.14. **80 tests passed, 0 failed, 0 skipped**: 54 new Phase 2 tests and 26 inherited tests. Both supplied Phase 1 evidence verification scripts and `pip check` also passed. A real `gym_pusht/PushT-v0` paired trace completed 24 actions / 25 RGB observations. No GPU allocation was submitted; GPU allocation use was zero.
 
-Evidence is in [`build/phase2-independent-20261020/verified/`](../build/phase2-independent-20261020/verified/): `manifest.json`, `tests.xml`, test/verifier logs, the installed environment listing, and `pusht/manifest.json`, `paired_trace.npz`, `paired_trace.png`, `diagnostics_only.json`. The manifest records exact hashes of the new source and tests, commands, exit codes, elapsed times and explicit incomplete scientific stages. `build/` is deliberately excluded from Git. The earlier pre-pin smoke is preserved in a sibling `pre-pin-pusht` folder; the `verified` run is the reported result.
+Portable evidence is committed in [`results/phase2_independent/20261020/`](../results/phase2_independent/20261020/): `initial_checks.json`, `initial_pusht.json` and the contact sheet. Command paths in the portable check manifest use `<REPO>` in place of the local absolute checkout path; source and original log hashes remain unchanged. Full local evidence is in `build/phase2-independent-20261020/verified/`: `manifest.json`, `tests.xml`, test/verifier logs, environment listing, and PushT trace/diagnostic arrays. The manifest records source and test hashes, commands, exit codes, timing and incomplete scientific stages. `build/` is excluded from Git. The earlier pre-pin smoke is preserved in a sibling `pre-pin-pusht` folder; the `verified` run is the reported result.
 
 Base source: `JasonLIN0226/CV_project` commit `2c73c6bca11a9396cdb0546b8bf78b52445e7b22`. New source is on local branch `phase2/independent-interfaces-20261020`. Inherited scientific source/protocol files were not altered.
 
@@ -29,7 +29,7 @@ The chosen initial interface variant blacks out timestamps 8–12 inclusive. Con
 
 The contact sheet shows unoccluded control above masked input. Columns are timestamps 0, 7, 8, 11, 12, 13, 17. Real JEPA encoding, memory necessity and planning flags remain false.
 
-![Paired PushT RGB trace](../build/phase2-independent-20261020/verified/pusht/paired_trace.png)
+![Paired PushT RGB trace](../results/phase2_independent/20261020/paired_trace.png)
 
 ## Re-run the independent work
 
