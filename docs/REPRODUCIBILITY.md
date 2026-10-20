@@ -29,7 +29,9 @@ The canonical final execution is `results/phase1_independent_confirmation/execut
 
 The complete study used new seed 9137 data; 512 training, 96 validation and 256 pairs per test condition per task; 12 new reference/candidate models at 120 epochs and 7,680 steps; two new maps and train-only transforms. Test generation followed locking all model assets. Training/validation encoding comprised 62,418 frames. Final numerical evidence records its original HPC locations under the v9 `fresh` directory, while resumed execution source is v10. These distinct paths reflect reuse, not different test results.
 
-To repeat model inference or raw auditing, obtain the matching I-JEPA checkpoint/processor, feature caches, all 12 locked model assets, maps, normalization/PCA/readouts, original paired manifests and raw rows from the recorded HPC asset store. Weights and large arrays are deliberately excluded from GitHub. Their availability is not guaranteed by a local JSON path. Historical SSH aliases must not be reused.
+Both final development and fresh confirmation model families are now available in the [verified model handoff Release](https://github.com/JasonLIN0226/CV_project/releases/tag/phase1-asset-handoff-20261020-v2). Follow [handoff instructions](../handoff/README.md) to download matching references/candidates, fitted maps, normalization/PCA/readouts and identity manifests. The portable `handoff/inference.py` adapter strictly loads the paired assets and runs CPU inference without historical HPC paths. Release archives keep weights out of Git history.
+
+Repeating full dataset inference or the fresh raw-statistic audit additionally requires the matching original I-JEPA checkpoint/processor, RGB/feature caches and raw rows from the recorded HPC asset store, or explicitly provenance-tracked reconstruction. These large caches/raw rows are excluded from the handoff; a JSON path alone does not guarantee access. Historical SSH aliases must not be reused.
 
 ## Attribution and scope
 
