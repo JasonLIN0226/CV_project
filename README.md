@@ -17,7 +17,7 @@ The 302/310 total counts correlated comparisons, not independent trials or accur
 
 ## Verified model handoff
 
-[Download the development and independent-confirmation model assets](https://github.com/JasonLIN0226/CV_project/releases/tag/phase1-asset-handoff-20261020-v2) · [Asset mapping, exact versions and verification instructions](handoff/README.md). The two model families are separate; large weights live in Release assets, not Git history.
+[Download the development and independent-confirmation model assets](https://github.com/JasonLIN0226/CV_project/releases/tag/phase1-asset-handoff-20261020-v2) · [Asset mapping, exact versions and verification instructions](handoff/README.md). [Publication and loading audit](handoff/publication_audit.json). The two model families are separate; large weights live in Release assets, not Git history.
 
 ## Report and data
 

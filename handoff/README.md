@@ -44,6 +44,7 @@ for archive in development-*.tar.gz independent_confirmation-*.tar.gz; do
   tar -xzf "$archive" -C intake
 done
 python3 verify_handoff.py --manifest manifest.json --root intake --extracted --supplement supplemental_manifest.json
+python3 teammate_verify_assets.py --manifest teammate_required_assets.json --root intake/development --include-optional
 ```
 
 To use the teammate's older Phase2 required-assets checker, point its `--root` to `assets/intake/development`. Files preserve the tree beneath `/scratch/xl4358/` within the relevant variant. That checker covers the old development assets only; the supplied verifier covers both twelve-model families. The teammate checker now matches all 21/21 required assets, including reference verification. SHA/size integrity checks are separate from the included inference smoke check.
