@@ -1,6 +1,16 @@
 # Course HPC execution record — 20 October 2026
 
-A100 job **9285 completed successfully** on 20 October 2026, followed by a completed fresh CPU predictor pilot for Gate and Motion. The hardware UUID was checked against both PyTorch and `nvidia-smi`; official I-JEPA encoded real PushT observations and all 128 new controlled episodes. These are development execution results, not the six scientific baseline results or model-driven planning validation.
+A100 job **9285 completed successfully** on 20 October 2026, followed by completed fresh CPU predictor, deletion-supervision and six-policy validation pilots for Gate and Motion. The hardware UUID was checked against both PyTorch and `nvidia-smi`; official I-JEPA encoded real PushT observations and all 128 new controlled episodes. These are development execution results; model-driven planning validation remains incomplete.
+
+## Final validation, backups and resource release
+
+At source commit `6ac378b3d24a39611cb55c862e934e06381cbae0`, the six actual retention baselines completed in **7.51 CPU seconds**: **96 episode/policy rows and 192 h3/h6 losses** over 16 validation episodes (eight independent pairs). FIFO and temporal buckets had the lowest mean losses in this small pilot. Checkpoint selection had already used this validation split; the comparison is not untouched-test confirmation. Observation capacity was equal (R=4, K=2), while total auxiliary bytes differed. See [six-policy methods and results](PHASE2_RETENTION_BASELINE_PILOT.md).
+
+The final local independent suite passed **181 tests, zero failures/errors/skips**, plus both published-evidence verifiers, dependency checks and a real PushT trace. The 29 recorded source/test hashes match the executed code in `6ac378b`. The separate Linux six-policy preflight passed 18 tests. [Software evidence](../results/phase2_independent/20261020/latest_software_checks.json) preserves the check scope; it does not itself claim model evaluation.
+
+All **472 files** in the full new development-data/model backup and all **nine files** in the six-policy backup were verified after download. An independent audit reran all 1,428 deletion losses from the frozen models and raw inputs, agreeing within **4.79e-8** across different PyTorch versions (tolerance 1e-6). A separate baseline audit recomputed all 192 losses from saved predictions exactly, checked pair aggregates, online traces and checkpoint identities; this latter audit did not rerun model inference. The original archives remain outside Git, while portable manifests and summaries are committed.
+
+After these checks and downloads, the remaining CPU job **9280 was canceled**. A fresh reload of My Interactive Sessions showed **9280 Completed**; immediately before cancellation it was the only queued/running job shown for the account. A100 job 9285 had already completed with scheduler-recorded elapsed time 169 seconds. No new task jobs remain running. The CPU completion observation comes from the portal, not a final exported `sacct` record; no exact final CPU allocation duration is claimed. See [release and backup receipt](../results/phase2_hpc/20261020/completion_receipt.json).
 
 ## Completed A100 and fresh predictor runs
 

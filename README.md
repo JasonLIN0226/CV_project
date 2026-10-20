@@ -9,8 +9,10 @@ A separate, newly initialized development run now implements the proposal's boun
 - **Actual A100 execution completed:** job 9285, A100-SXM4-40GB with matching physical UUID, 169 allocated GPU seconds. Real PushT encoding and 128 new controlled episodes / 3,616 frames passed interface and sample checks.
 - **New Gate/Motion CPU predictors trained:** four epochs each with parameter updates and exact frozen validation replay. Validation was slightly worse than initialization; no quality improvement is claimed.
 - **Deletion pilot completed:** 238 distinct streaming parents (190 train / 48 validation), 714 equal-K forks and 1,428 finite multi-horizon loss values. This is development supervision, not a trained retention scorer or model-driven planning result.
+- **Six retention baselines executed:** FIFO, reservoir, temporal buckets, visual diversity, prediction surprise and attention produced 96 episode/policy rows and 192 horizon losses on 16 validation episodes (eight independent pairs). This small, reused-validation pilot is not a generalization result; total auxiliary memory bytes differ between policies.
+- **Final software checks:** 181 tests passed with no failures, errors or skips. All task compute sessions ended, and full new data/model and baseline-result backups were downloaded and hash-verified.
 
-[Execution evidence](docs/PHASE2_HPC_RUN.md) · [Training contract](docs/PHASE2_PREDICTOR_PILOT.md) · [Deletion pilot](docs/PHASE2_DELETION_PILOT.md) · [Missing original assets](docs/PHASE1_HANDOFF_CHECKLIST_ZH.md)
+[Execution evidence](docs/PHASE2_HPC_RUN.md) · [Training contract](docs/PHASE2_PREDICTOR_PILOT.md) · [Deletion pilot](docs/PHASE2_DELETION_PILOT.md) · [Six-policy pilot](docs/PHASE2_RETENTION_BASELINE_PILOT.md) · [Missing original assets](docs/PHASE1_HANDOFF_CHECKLIST_ZH.md)
 
 The older report and GPU ledger below describe the original study and are preserved separately. Its additional `Phase1_GO` criteria are not new prerequisites imposed on the proposal's Phase 2.
 

@@ -9,6 +9,8 @@
 3. **配套 predictor 与 frozen reference checkpoints。** 两个任务、seeds `17/29/43` 的六个 candidate `best.pt` 位于 `/scratch/xl4358/phase1_predictor_repair_v2/execution/training/job_7574/predictor/` 下；另需各 reference 目录中的六个 `best.pt`。若最新版本更换过其中任何模型，请明确替代关系，保留对应 hashes 和完成记录。
 4. **与这些 checkpoints 配套的 transforms 和数据身份。** 每个任务的 `basis.npz` 及 JSON、`features/normalization.npz` 及 JSON、resolved config、dataset manifest、feature index、相关 provenance/audit 小文件。请保留原 episode/pair IDs、data seed、模型 seeds、train/validation/test 划分、生成配置和源版本；说明哪些开发/test 数据已被查看，哪些仍未使用。旧记录的数据 seed 是 `6301`；不能把后来重建的数据当作原始未见测试。
 
+5. **如果已有 PushT / baseline planning 实现，请补源码、模型配置、动作和时间定义、运行命令及 rollout 记录。** 如果此前没有实现，说明尚未做即可，不需要补造结果。本分支已独立完成真实 PushT 观测接口和官方 I-JEPA 编码；baseline model 驱动的 planning 验证仍需补齐。
+
 对应 reference 根目录：
 
 - `/scratch/xl4358/phase1_v3_dev/gate/reference/`
@@ -39,3 +41,7 @@ python3 -m experiments.phase2.verify_assets --mapping /path/to/path_mapping.json
 映射值是绝对路径；同时提供 `--root` 时，也可用该目录内的相对路径。工具只读文件字节计算 SHA-256，区分缺失、内容不匹配与读取失败，不下载、不执行模型、不反序列化 `.pt`/`.npz`。退出码 `0` 仅表示清单内必要资产全部匹配；最新 repair/maps、完整数据目录和科学结果仍需单独核实。
 
 在交接期间，Phase 2 通用记忆接口、baseline、删除监督合同和 PushT 接口可以独立继续。原任务的额外 fresh-confirmation/T8 流程不新增为本次 proposal 的执行门槛。
+
+## 20 October 独立推进状态
+
+不等待以上原始资产，新开发分支已完成 A100 上的公开 I-JEPA 编码、128 条新受控轨迹、两个新初始化预测器的训练/冻结试跑、238 个去重父状态的删除监督，以及六类 retention baseline 的小规模验证比较（16 条验证轨迹，96 条策略预测记录）。最终 181 项软件测试全部通过。预测器验证误差略差于初始化，六策略结果也只来自重复使用的开发验证集，不据此宣称效果提升或 Phase 2 全部完成。实际日志、代码版本和限制见 [运行记录](PHASE2_HPC_RUN.md)。这些新数据和权重已备份，不替代上面用于接续和复核你原实验的交接包；baseline-model planning 仍待完成。

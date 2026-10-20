@@ -1,0 +1,696 @@
+{
+  "run": {
+    "status": "completed",
+    "started_utc": "2026-10-20T05:21:08.462606+00:00",
+    "scope": "new_six_policy_development_validation_prediction_pilot",
+    "device": "cpu",
+    "source_sha256": {
+      "experiments/phase2/run_retention_baseline_pilot.py": "d359c65074341e34fcf50857c850aadf275a100969259a1d66e205ba4bb8876d",
+      "experiments/phase2/causal_model_scores.py": "5b24102d58821d53c8ad32bc2b5765530d00b1c91927ca2de420af824a8fbcbd",
+      "experiments/phase2/frozen_predictor.py": "a64c479c24f6ac22c99978045197fe354545247a602efcb38b8b9fd30dc812fc",
+      "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c"
+    },
+    "settings": {
+      "data_root": "<TASK_ROOT>/data",
+      "encoded_report": "<TASK_ROOT>/runs/9285/encoded",
+      "predictor_root": "<TASK_ROOT>/runs/cpu-predictor-pilot",
+      "output": "<TASK_ROOT>/runs/cpu-six-retention-pilot",
+      "seed": 17,
+      "threads": 4,
+      "timeout_seconds": 600,
+      "worker": false
+    },
+    "gpu_job_submitted": false,
+    "slurm_job_id": "9280",
+    "gpu_allocation_seconds": null,
+    "resource_note": "CPU worker; enclosing allocation requires scheduler accounting.",
+    "scientific_phase2_completed": false,
+    "git_head": "6ac378b3d24a39611cb55c862e934e06381cbae0",
+    "command": [
+      "<TASK_ROOT>/venv/bin/python",
+      "<TASK_ROOT>/repo/experiments/phase2/run_retention_baseline_pilot.py",
+      "--worker",
+      "--data-root",
+      "<TASK_ROOT>/data",
+      "--encoded-report",
+      "<TASK_ROOT>/runs/9285/encoded",
+      "--predictor-root",
+      "<TASK_ROOT>/runs/cpu-predictor-pilot",
+      "--output",
+      "<TASK_ROOT>/runs/cpu-six-retention-pilot",
+      "--seed",
+      "17",
+      "--threads",
+      "4",
+      "--timeout-seconds",
+      "600"
+    ],
+    "summary_sha256": "927971d4ad56c2dad457de4d24968efb14b462fc764b9d42b55bd21fb472e510",
+    "six_retention_prediction_pilot_completed": true,
+    "ended_utc": "2026-10-20T05:21:15.971572+00:00",
+    "wall_seconds": 7.508992219999982,
+    "worker_exit_code": 0,
+    "worker_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "summary": {
+    "schema": "phase2_six_retention_validation_pilot_v1",
+    "status": "completed",
+    "scope": "new_development_validation_prediction_pilot",
+    "data_seed": 20261020,
+    "model_seed": 17,
+    "policies": [
+      "fifo",
+      "reservoir",
+      "temporal_buckets",
+      "visual_diversity",
+      "prediction_surprise",
+      "attention"
+    ],
+    "capacity": 2,
+    "recent_length": 4,
+    "horizons": [
+      3,
+      6
+    ],
+    "episode_policy_rows": 96,
+    "unique_episodes": 16,
+    "unique_pairs": 8,
+    "query_rule": "existing declared query; entire episode replayed continuously",
+    "attention_definition": "actual frozen DynamicsPredictor content salience softmax over current candidate memories, conditioned on current feature; not transformer multihead attention",
+    "surprise_definition": "MSE(F(context_at_t_minus_3,realized_actions_t_minus_3_through_t_minus_1),observed_feature_t); immutable when observed",
+    "surprise_warmup": "No score until the first full recent context at t=3 matures at t=6; missing score has existing lowest priority, deterministic oldest tie-break",
+    "surprise_pending_bound": 3,
+    "equal_real_memory_capacity": true,
+    "equal_total_memory_bytes": false,
+    "auxiliary_budget_difference_reported": true,
+    "loss": "raw float64 mean squared residual in full normalized feature space; per horizon",
+    "checkpoint_selection_used_this_validation_split": true,
+    "untouched_test_claim": false,
+    "test_feature_arrays_loaded": 0,
+    "training_quality_context": [
+      {
+        "task": "gate",
+        "initial_training_validation_mse": 0.10755177835623424,
+        "selected_training_validation_mse": 0.10793113211790721,
+        "relative_change_percent": 0.35271733063908517,
+        "interpretation": "Pilot training execution does not imply predictive improvement; positive change means worse MSE."
+      },
+      {
+        "task": "motion",
+        "initial_training_validation_mse": 0.1542912075916926,
+        "selected_training_validation_mse": 0.15475597977638245,
+        "relative_change_percent": 0.30123050557735453,
+        "interpretation": "Pilot training execution does not imply predictive improvement; positive change means worse MSE."
+      }
+    ],
+    "aggregate": [
+      {
+        "task": "gate",
+        "policy": "fifo",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.10559376563342689,
+          0.10658951409660596
+        ],
+        "pair_sample_std": [
+          0.005532794686994125,
+          0.0030203672385315933
+        ],
+        "pair_feature_mse": {
+          "365649fbf76cb4091b0007a7": [
+            0.10071391894566914,
+            0.11058687091146084
+          ],
+          "37604bc2f8000bea4dc686d6": [
+            0.1127269801089997,
+            0.10717535881936399
+          ],
+          "9de9f60a7d27ab926a42ced0": [
+            0.10716902229226732,
+            0.10377689938597741
+          ],
+          "f2fee915e5cc89179fcdd4ee": [
+            0.10176514118677137,
+            0.1048189272696216
+          ]
+        },
+        "total_online_seconds": 0.015538830997684272,
+        "max_total_logical_bytes": 123615
+      },
+      {
+        "task": "gate",
+        "policy": "reservoir",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.11619097041661411,
+          0.12445475845991086
+        ],
+        "pair_sample_std": [
+          0.01906050673672364,
+          0.03300267952596488
+        ],
+        "pair_feature_mse": {
+          "365649fbf76cb4091b0007a7": [
+            0.10112964160537977,
+            0.11050157260208543
+          ],
+          "37604bc2f8000bea4dc686d6": [
+            0.11374847013022318,
+            0.1086905316183219
+          ],
+          "9de9f60a7d27ab926a42ced0": [
+            0.10618245717934614,
+            0.1047970483139064
+          ],
+          "f2fee915e5cc89179fcdd4ee": [
+            0.1437033127515073,
+            0.17382988130532973
+          ]
+        },
+        "total_online_seconds": 0.01603873299973202,
+        "max_total_logical_bytes": 123629
+      },
+      {
+        "task": "gate",
+        "policy": "temporal_buckets",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.10559376563342689,
+          0.10658951409660596
+        ],
+        "pair_sample_std": [
+          0.005532794686994125,
+          0.0030203672385315933
+        ],
+        "pair_feature_mse": {
+          "365649fbf76cb4091b0007a7": [
+            0.10071391894566914,
+            0.11058687091146084
+          ],
+          "37604bc2f8000bea4dc686d6": [
+            0.1127269801089997,
+            0.10717535881936399
+          ],
+          "9de9f60a7d27ab926a42ced0": [
+            0.10716902229226732,
+            0.10377689938597741
+          ],
+          "f2fee915e5cc89179fcdd4ee": [
+            0.10176514118677137,
+            0.1048189272696216
+          ]
+        },
+        "total_online_seconds": 0.018792832001054194,
+        "max_total_logical_bytes": 123627
+      },
+      {
+        "task": "gate",
+        "policy": "visual_diversity",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.10736890498996149,
+          0.10762551470978246
+        ],
+        "pair_sample_std": [
+          0.006947917045561074,
+          0.0039631829194273285
+        ],
+        "pair_feature_mse": {
+          "365649fbf76cb4091b0007a7": [
+            0.10176005190243959,
+            0.11020316034805949
+          ],
+          "37604bc2f8000bea4dc686d6": [
+            0.11652937739211941,
+            0.11179196102840147
+          ],
+          "9de9f60a7d27ab926a42ced0": [
+            0.10899457782927974,
+            0.10382014642950582
+          ],
+          "f2fee915e5cc89179fcdd4ee": [
+            0.10219161283600722,
+            0.10468679103316306
+          ]
+        },
+        "total_online_seconds": 0.0641316330020345,
+        "max_total_logical_bytes": 123627
+      },
+      {
+        "task": "gate",
+        "policy": "prediction_surprise",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.10621764996816233,
+          0.106604649450458
+        ],
+        "pair_sample_std": [
+          0.00547105757970839,
+          0.0033520455946140174
+        ],
+        "pair_feature_mse": {
+          "365649fbf76cb4091b0007a7": [
+            0.10189044659635793,
+            0.11067636799071517
+          ],
+          "37604bc2f8000bea4dc686d6": [
+            0.11386014497263539,
+            0.10763800871539639
+          ],
+          "9de9f60a7d27ab926a42ced0": [
+            0.10645333651861964,
+            0.10282105489009014
+          ],
+          "f2fee915e5cc89179fcdd4ee": [
+            0.10266667178503638,
+            0.10528316620563027
+          ]
+        },
+        "total_online_seconds": 0.3101171460034493,
+        "max_total_logical_bytes": 131466
+      },
+      {
+        "task": "gate",
+        "policy": "attention",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.10604866766268939,
+          0.10750012152668303
+        ],
+        "pair_sample_std": [
+          0.005191797488844963,
+          0.003106987068296132
+        ],
+        "pair_feature_mse": {
+          "365649fbf76cb4091b0007a7": [
+            0.10233734803807576,
+            0.11117335656971086
+          ],
+          "37604bc2f8000bea4dc686d6": [
+            0.11326602924204718,
+            0.10896528189547418
+          ],
+          "9de9f60a7d27ab926a42ced0": [
+            0.10639968053462741,
+            0.10517505660838398
+          ],
+          "f2fee915e5cc89179fcdd4ee": [
+            0.10219161283600722,
+            0.10468679103316306
+          ]
+        },
+        "total_online_seconds": 0.13574061999679543,
+        "max_total_logical_bytes": 123619
+      },
+      {
+        "task": "motion",
+        "policy": "fifo",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.15591423494353157,
+          0.1517449016928827
+        ],
+        "pair_sample_std": [
+          0.022124030164921656,
+          0.027944082320269518
+        ],
+        "pair_feature_mse": {
+          "43560a85beb616d81db9e996": [
+            0.14034699561163863,
+            0.1295640549298165
+          ],
+          "9030d18ed77d36e74b6e98a4": [
+            0.18209008294172857,
+            0.18862678873580552
+          ],
+          "921ed2d05c95b2157361f91f": [
+            0.16617644731220707,
+            0.15821992607274593
+          ],
+          "bab088808335ebba01e68e47": [
+            0.135043413908552,
+            0.1305688370331629
+          ]
+        },
+        "total_online_seconds": 0.017854526002793136,
+        "max_total_logical_bytes": 123615
+      },
+      {
+        "task": "motion",
+        "policy": "reservoir",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.15808438019897456,
+          0.1538384277902008
+        ],
+        "pair_sample_std": [
+          0.021079287199178006,
+          0.026547408420398332
+        ],
+        "pair_feature_mse": {
+          "43560a85beb616d81db9e996": [
+            0.14398098429503728,
+            0.1315977245710251
+          ],
+          "9030d18ed77d36e74b6e98a4": [
+            0.18202117226161738,
+            0.18871377978280474
+          ],
+          "921ed2d05c95b2157361f91f": [
+            0.16917994954487847,
+            0.16023995654386233
+          ],
+          "bab088808335ebba01e68e47": [
+            0.13715541469436512,
+            0.13480225026311105
+          ]
+        },
+        "total_online_seconds": 0.018709714000124222,
+        "max_total_logical_bytes": 123629
+      },
+      {
+        "task": "motion",
+        "policy": "temporal_buckets",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.15591423494353157,
+          0.1517449016928827
+        ],
+        "pair_sample_std": [
+          0.022124030164921656,
+          0.027944082320269518
+        ],
+        "pair_feature_mse": {
+          "43560a85beb616d81db9e996": [
+            0.14034699561163863,
+            0.1295640549298165
+          ],
+          "9030d18ed77d36e74b6e98a4": [
+            0.18209008294172857,
+            0.18862678873580552
+          ],
+          "921ed2d05c95b2157361f91f": [
+            0.16617644731220707,
+            0.15821992607274593
+          ],
+          "bab088808335ebba01e68e47": [
+            0.135043413908552,
+            0.1305688370331629
+          ]
+        },
+        "total_online_seconds": 0.02194820199656533,
+        "max_total_logical_bytes": 123627
+      },
+      {
+        "task": "motion",
+        "policy": "visual_diversity",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.15655953783930415,
+          0.1520194563464473
+        ],
+        "pair_sample_std": [
+          0.021915130650398667,
+          0.02824702241855835
+        ],
+        "pair_feature_mse": {
+          "43560a85beb616d81db9e996": [
+            0.14154139899221296,
+            0.13008051232394102
+          ],
+          "9030d18ed77d36e74b6e98a4": [
+            0.18244667838206663,
+            0.1893728508037419
+          ],
+          "921ed2d05c95b2157361f91f": [
+            0.16671450002633004,
+            0.15842404963581258
+          ],
+          "bab088808335ebba01e68e47": [
+            0.13553557395660693,
+            0.13020041262229382
+          ]
+        },
+        "total_online_seconds": 0.07728167800314623,
+        "max_total_logical_bytes": 123627
+      },
+      {
+        "task": "motion",
+        "policy": "prediction_surprise",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.15619471750322503,
+          0.15215474099769638
+        ],
+        "pair_sample_std": [
+          0.02201360963550786,
+          0.027617381093328845
+        ],
+        "pair_feature_mse": {
+          "43560a85beb616d81db9e996": [
+            0.14053801349222395,
+            0.1299722449185035
+          ],
+          "9030d18ed77d36e74b6e98a4": [
+            0.18209702587058488,
+            0.18854048472176702
+          ],
+          "921ed2d05c95b2157361f91f": [
+            0.16664832158570406,
+            0.15867860092583413
+          ],
+          "bab088808335ebba01e68e47": [
+            0.13549550906438723,
+            0.13142763342468083
+          ]
+        },
+        "total_online_seconds": 0.3744817069982673,
+        "max_total_logical_bytes": 131466
+      },
+      {
+        "task": "motion",
+        "policy": "attention",
+        "horizons": [
+          3,
+          6
+        ],
+        "episodes": 8,
+        "independent_pairs": 4,
+        "mean_pair_feature_mse": [
+          0.1581723169207928,
+          0.1553718502422228
+        ],
+        "pair_sample_std": [
+          0.02402905424224804,
+          0.03056348844814007
+        ],
+        "pair_feature_mse": {
+          "43560a85beb616d81db9e996": [
+            0.14322144574795986,
+            0.13346616502651215
+          ],
+          "9030d18ed77d36e74b6e98a4": [
+            0.18673673579630634,
+            0.19531276809907255
+          ],
+          "921ed2d05c95b2157361f91f": [
+            0.1686870243612138,
+            0.16315616396155264
+          ],
+          "bab088808335ebba01e68e47": [
+            0.13404406177769118,
+            0.12955230388175387
+          ]
+        },
+        "total_online_seconds": 0.167284149993975,
+        "max_total_logical_bytes": 123620
+      }
+    ],
+    "frozen_model_audits": [
+      {
+        "frozen_predictor": {
+          "passed": true,
+          "task": "gate",
+          "seed": 17,
+          "device": "cpu",
+          "checkpoint_sha256": "a95bd252e10bafcf44cd156df446514eba9da3e57ad59da7ed9ccf8a5ac58c99",
+          "state_sha256": "f92404923f67d6d6154ba17b95496100d8bcbc8f53b6d8373372c87f151f2994",
+          "parameter_buffer_identity_unchanged": true,
+          "all_modules_eval": true,
+          "trainable_parameters": 0,
+          "model_calls": 96,
+          "feature_dimension": 5120,
+          "horizons": [
+            3,
+            6
+          ],
+          "artifact_sha256": {
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/run_manifest.json": "a667b0da6b0c0a80e40b79b4f37fece19bfd00f41b0653327fb0881fca70f7db",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/training_result.json": "fd3670b2b142b111a75a3c6374b0d2a240b0035fec4ed585e0e60e404bcab9ec",
+            "<TASK_ROOT>/runs/9285/encoded/manifest.json": "6c11ea0e25c72a94d6cda63adc099849c4abd6da5fd39155c51bb885cce6424a",
+            "<TASK_ROOT>/runs/9285/encoded/encoder_config.json": "e2e2f89cc4b445cb19ac329295649d3b9301a9e040b167c098a734a25fee2496",
+            "<TASK_ROOT>/runs/9285/encoded/sample_summary.json": "37f75ad64350a2e788adf019ed4f2e9badfcc25ce78af6f1249f3bc016d63416",
+            "<TASK_ROOT>/repo/experiments/phase2/train_predictor_pilot.py": "60c3c64330640171baa9d5d73c913081b03bd21ad326e13a0651af81aa886ff8",
+            "<TASK_ROOT>/repo/experiments/phase2/training_samples.py": "a8ca0490308488bff5a560e767093175fb7e76abbab58179570dc447b4310143",
+            "<TASK_ROOT>/repo/experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+            "<TASK_ROOT>/repo/experiments/phase2/prepare_encoded_samples.py": "2860cefc1770bf70ddc85ea971e81832a80dcd555420679a9b3bdd9dd1956d00",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/training.py": "0e30f8c45e84a4dc966d3020066c0686b8c4b951a6447c52ecc85d309a14a235",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/cache.py": "5935e62802ef2bf8a5590f559948eb1c1fa1d3f9c4826780ef4ce188d7a96bc0",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+            "<TASK_ROOT>/data/resolved_config.json": "27bb55fdee25bed048ada92d1907586a9b9585bd87dccfeaf74c980dd23c80ef",
+            "<TASK_ROOT>/data/dataset/manifest.json": "7188bd6de6b54eaaff75d22c8d3c631a1467f1d6e5b14c19bd1c269c37ee0d05",
+            "<TASK_ROOT>/data/features/index.json": "a25354d475dfe9e4e50da2aa0823602be0d106a1b48bd94d9f83696c388c3287",
+            "<TASK_ROOT>/data/features/normalization.npz": "2ecbe84ae1555e2e8f5fae49e49bab02fd5475f31ff7b4e4694e19791c61a690",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/predictor/gate/seed_17/frozen.pt": "a95bd252e10bafcf44cd156df446514eba9da3e57ad59da7ed9ccf8a5ac58c99",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/training_config.json": "e08b8534abd2bebcb788a25d4ee065b2aa3c9e0f0cdb09efc9617643711f5136",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/predictor/gate/basis.npz": "e0901075908b15f886cfce3c6c965920c9262c15c201dc6da5a87cb486f652bd"
+          }
+        },
+        "score_operations": {
+          "attention_calls": 130,
+          "contexts_prepared": 154,
+          "delayed_h3_predictions": 130,
+          "direct_predictions": 96
+        },
+        "prepared_float32_values": 643,
+        "prepared_numeric_bytes_including_timestamp": 2580,
+        "delayed_surprise_semantics": "q-time memory/context with controls realized by q+3; targets are never model inputs",
+        "shared_predictor_parameter_buffer_bytes": 5452160
+      },
+      {
+        "frozen_predictor": {
+          "passed": true,
+          "task": "motion",
+          "seed": 17,
+          "device": "cpu",
+          "checkpoint_sha256": "9b3ea6d76cdb903a34852200f42284b1569b49a2caf52fa88da930f2b00afa94",
+          "state_sha256": "4579ae5964782c6178bfd5cc4077f961c0aa49f356a9a6280b09125c52391211",
+          "parameter_buffer_identity_unchanged": true,
+          "all_modules_eval": true,
+          "trainable_parameters": 0,
+          "model_calls": 96,
+          "feature_dimension": 5120,
+          "horizons": [
+            3,
+            6
+          ],
+          "artifact_sha256": {
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/run_manifest.json": "a667b0da6b0c0a80e40b79b4f37fece19bfd00f41b0653327fb0881fca70f7db",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/training_result.json": "fd3670b2b142b111a75a3c6374b0d2a240b0035fec4ed585e0e60e404bcab9ec",
+            "<TASK_ROOT>/runs/9285/encoded/manifest.json": "6c11ea0e25c72a94d6cda63adc099849c4abd6da5fd39155c51bb885cce6424a",
+            "<TASK_ROOT>/runs/9285/encoded/encoder_config.json": "e2e2f89cc4b445cb19ac329295649d3b9301a9e040b167c098a734a25fee2496",
+            "<TASK_ROOT>/runs/9285/encoded/sample_summary.json": "37f75ad64350a2e788adf019ed4f2e9badfcc25ce78af6f1249f3bc016d63416",
+            "<TASK_ROOT>/repo/experiments/phase2/train_predictor_pilot.py": "60c3c64330640171baa9d5d73c913081b03bd21ad326e13a0651af81aa886ff8",
+            "<TASK_ROOT>/repo/experiments/phase2/training_samples.py": "a8ca0490308488bff5a560e767093175fb7e76abbab58179570dc447b4310143",
+            "<TASK_ROOT>/repo/experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+            "<TASK_ROOT>/repo/experiments/phase2/prepare_encoded_samples.py": "2860cefc1770bf70ddc85ea971e81832a80dcd555420679a9b3bdd9dd1956d00",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/training.py": "0e30f8c45e84a4dc966d3020066c0686b8c4b951a6447c52ecc85d309a14a235",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/cache.py": "5935e62802ef2bf8a5590f559948eb1c1fa1d3f9c4826780ef4ce188d7a96bc0",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+            "<TASK_ROOT>/data/resolved_config.json": "27bb55fdee25bed048ada92d1907586a9b9585bd87dccfeaf74c980dd23c80ef",
+            "<TASK_ROOT>/data/dataset/manifest.json": "7188bd6de6b54eaaff75d22c8d3c631a1467f1d6e5b14c19bd1c269c37ee0d05",
+            "<TASK_ROOT>/data/features/index.json": "a25354d475dfe9e4e50da2aa0823602be0d106a1b48bd94d9f83696c388c3287",
+            "<TASK_ROOT>/data/features/normalization.npz": "2ecbe84ae1555e2e8f5fae49e49bab02fd5475f31ff7b4e4694e19791c61a690",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/predictor/motion/seed_17/frozen.pt": "9b3ea6d76cdb903a34852200f42284b1569b49a2caf52fa88da930f2b00afa94",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/training_config.json": "e08b8534abd2bebcb788a25d4ee065b2aa3c9e0f0cdb09efc9617643711f5136",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/predictor/motion/basis.npz": "9fae208630f27d03a930bbc17c9a8f19b959cce14a92e616e6907a8e0abbece0"
+          }
+        },
+        "score_operations": {
+          "attention_calls": 160,
+          "contexts_prepared": 184,
+          "delayed_h3_predictions": 160,
+          "direct_predictions": 96
+        },
+        "prepared_float32_values": 643,
+        "prepared_numeric_bytes_including_timestamp": 2580,
+        "delayed_surprise_semantics": "q-time memory/context with controls realized by q+3; targets are never model inputs",
+        "shared_predictor_parameter_buffer_bytes": 5452160
+      }
+    ],
+    "cache_signature": "587298e3c4ec416e430fd19f0817e61f12df65d1915fa93ac0dd9e03484c8e4c",
+    "encoder_hash": "caaf35f0bbb97992cc49450dafdc6cfbe0e84395650bd61a48f3718f175e2fa4",
+    "normalization_sha256": "2ecbe84ae1555e2e8f5fae49e49bab02fd5475f31ff7b4e4694e19791c61a690",
+    "learned_retention_scorer_trained": false,
+    "baseline_model_planning_verified": false,
+    "scientific_phase2_completed": false,
+    "files": {
+      "online_trace.jsonl": "e93a849462d19ae53600144357952749d758f65b5ead9b5ed6738bc35bf93e39",
+      "prediction_vectors.npz": "ffccb16a31cc5e1899694609e7981d4adcb40dbde1cfd1f45832558e6845bbaa",
+      "episode_results.json": "f081d70768881594cdb1f9400d3ffbf61dbcc9a81d4e917bd126a7ac96cc4f58"
+    }
+  },
+  "downloaded_file_hashes_verified": 9,
+  "original_run_sha256": "08081b8b2a90fe73393110c9a0f2f2dd9120eb1aa5333675203892281f115470",
+  "original_summary_sha256": "927971d4ad56c2dad457de4d24968efb14b462fc764b9d42b55bd21fb472e510",
+  "export_index_sha256": "b2b662ab072eca1ddfd8a7bf42ddb53e598fceff31b30a9b410a588f0a04fcfc",
+  "local_backup": "build/hpc-20261020/six-policy",
+  "independent_post_download_audit": {
+    "saved_prediction_loss_values_recomputed": 192,
+    "maximum_absolute_loss_difference": 0,
+    "online_events_checked": 2316,
+    "artifact_hashes_verified": 42,
+    "actual_checkpoint_state_hashes_matched": true,
+    "model_inference_rerun": false,
+    "scope": "Recomputed losses from saved predictions and verified raw targets, aggregates, streaming trace and checkpoint state; did not rerun model inference."
+  }
+}

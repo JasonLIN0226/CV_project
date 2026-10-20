@@ -26,3 +26,22 @@ Retentions receive observations one at a time and at most the immediately execut
 Outputs include the complete online retention trace, per-episode query predictions, raw per-horizon feature MSE, retained timestamps, grouped-pair means and sample standard deviations, latency, memory counters and frozen checkpoint/cache/source hashes. Siblings and horizons do not count as independent samples. The training record's initial versus selected validation MSE is preserved: successful training execution is not evidence of predictive improvement, and a positive reported percentage means worse MSE.
 
 This run trains neither a retention scorer nor another predictor and does not run PushT planning. It supplies limited reproducible six-policy prediction results if execution completes. It is not a claim of learned-policy benefit, generalization, equal auxiliary memory budgets or complete scientific Phase 2.
+
+## Recorded execution
+
+The actual Linux CPU pilot completed in **7.51 seconds** at `6ac378b3d24a39611cb55c862e934e06381cbae0`, after **18 targeted Linux tests passed**. It produced 96 episode/policy rows, 192 per-horizon losses, and 12 task/policy aggregate cells. No test feature arrays were loaded; both checkpoint/state identities remained unchanged. Full raw predictions and online traces were downloaded and all nine exported file hashes verified.
+
+The following values are mean paired validation MSE (lower is better), with **four independent scene pairs per task**. FIFO and temporal buckets tied for the lowest means in this small run; the result does not establish generalization or a winner on fresh test data.
+
+| Policy | Gate h3 | Gate h6 | Motion h3 | Motion h6 |
+|---|---:|---:|---:|---:|
+| fifo | 0.105594 | 0.106590 | 0.155914 | 0.151745 |
+| reservoir | 0.116191 | 0.124455 | 0.158084 | 0.153838 |
+| temporal_buckets | 0.105594 | 0.106590 | 0.155914 | 0.151745 |
+| visual_diversity | 0.107369 | 0.107626 | 0.156560 | 0.152019 |
+| prediction_surprise | 0.106218 | 0.106605 | 0.156195 | 0.152155 |
+| attention | 0.106049 | 0.107500 | 0.158172 | 0.155372 |
+
+Maximum reported persistent logical payload was 123,615–123,629 bytes for the other policies and 131,466 bytes for surprise, plus shared predictor parameters/buffers (5,452,160 bytes). Pending surprise contexts never exceeded three. This is an equal observation-capacity comparison, **not an equal total-byte comparison**.
+
+An independent post-download audit recomputed all 192 losses exactly from saved predictions and raw normalized targets, checked all 12 pair aggregates, 2,316 online events and 42 artifact hashes, and matched checkpoint state hashes. That audit did not rerun model inference. See [portable run evidence](../results/phase2_hpc/20261020/six_retention_baselines.json).
