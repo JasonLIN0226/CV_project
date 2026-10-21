@@ -42,6 +42,14 @@ python3 -m experiments.phase2.verify_assets --mapping /path/to/path_mapping.json
 
 在交接期间，Phase 2 通用记忆接口、baseline、删除监督合同和 PushT 接口可以独立继续。原任务的额外 fresh-confirmation/T8 流程不新增为本次 proposal 的执行门槛。
 
-## 20 October 独立推进状态
+## 20 October 早期独立试跑记录
 
-不等待以上原始资产，新开发分支已完成 A100 上的公开 I-JEPA 编码、128 条新受控轨迹、两个新初始化预测器的训练/冻结试跑、238 个去重父状态的删除监督，以及六类 retention baseline 的小规模验证比较（16 条验证轨迹，96 条策略预测记录）。最终 181 项软件测试全部通过。预测器验证误差略差于初始化，六策略结果也只来自重复使用的开发验证集，不据此宣称效果提升或 Phase 2 全部完成。实际日志、代码版本和限制见 [运行记录](PHASE2_HPC_RUN.md)。这些新数据和权重已备份，不替代上面用于接续和复核你原实验的交接包；baseline-model planning 仍待完成。
+不等待以上原始资产，新开发分支已完成 A100 上的公开 I-JEPA 编码、128 条新 Gate/Motion 受控轨迹、两个新初始化预测器的训练/冻结试跑、238 个去重父状态的删除监督，以及六类 retention baseline 的小规模验证比较（16 条验证轨迹，96 条策略预测记录）。该轮 181 项软件测试全部通过。预测器验证误差略差于初始化，六策略结果也只来自重复使用的开发验证集，不据此宣称效果提升或 Phase 2 全部完成。实际日志、代码版本和限制见 [运行记录](PHASE2_HPC_RUN.md)。这些新数据和权重已备份，不替代上面用于接续和复核你原实验的交接包；baseline-model planning 仍待完成。
+
+## 20 October 最新独立推进状态
+
+后续已完成历史使用诊断，以及三种输入投影 × 两个任务 × 40 epochs 的固定 CPU 对照；选模包含 epoch 0。Gate 去掉白化的 epoch 35 候选获得开发集历史收益：recent-only MSE 0.102571，正确 privileged K=2 历史 0.074275，错误历史 0.196949。Motion 仍未建立正确历史相对 recent-only 的净收益。这里只使用四对反复检查的验证场景，不是独立泛化或 learned retention 结论，详见 [诊断报告](PHASE2_HISTORY_DIAGNOSIS.md)。
+
+该 Gate 模型已重新绑定并运行六类 baseline（48 条 episode-policy 记录、96 个损失），生成新的删除监督（94 train + 24 validation parents，354 forks、708 个损失），与早期双任务试跑产物分别保留。详见 [Gate 续跑记录](PHASE2_GATE_FOLLOWUP_CONTINUATION.md)。另已独立采集 48 条 PushT 轨迹及遮挡/无遮挡对照，每种条件 4,656 帧；这批新数据尚未编码，也未完成模型驱动 planning，详见 [PushT 准备记录](PHASE2_PUSHT_PLANNING_PREPARATION.md)。最新完整软件检查为 **229 项通过，零失败、错误和跳过**。
+
+上述代码、文档、图表和可发布 JSON 证据均在 [PR #1](https://github.com/JasonLIN0226/CV_project/pull/1)。模型、特征、RGB/action 和预测向量二进制保留在本地 `build/`，未加入 Git。以上进展可独立继续，但不能替代本清单要求的原始模型交接；原模型复现所需材料仍通过 [issue #2](https://github.com/JasonLIN0226/CV_project/issues/2) 跟踪。Proposal 下一步是训练 past/present-only set-conditioned scorer 及等容量 attention-target 对照，进行独立不可逆流式评估，并继续补齐 Motion 和 PushT planning。
