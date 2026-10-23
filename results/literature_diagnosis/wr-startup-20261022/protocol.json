@@ -1,0 +1,58 @@
+{
+  "version": "wr-shared-initial-prefix-v1",
+  "created_utc": "2026-10-23T00:39:41.098372+00:00",
+  "hypothesis": "Missing startup score/peak history prevents early-cue event admission",
+  "scope": "causal no-new-information intervention on reused development data; not new held-out confirmation",
+  "prefix_copies": 4,
+  "prefix_rule": "Repeat first already-observed feature four times, prepend four zero action intervals, shift all original timestamps/query by four",
+  "prefix_choice": "fixed from Gaussian min_history2 plus MAD min_history2; no outcome tuning or sweep",
+  "policies": [
+    "wr",
+    "fifo",
+    "attention",
+    "visual_diversity"
+  ],
+  "recent": 4,
+  "capacity": 2,
+  "wr_parameters_unchanged": true,
+  "horizons": [
+    3,
+    6
+  ],
+  "loss": "one retained set; mean normalized feature MSE across h3/h6",
+  "episodes": {
+    "old_train": 32,
+    "fresh_development": 192
+  },
+  "new_visual_encoding": false,
+  "new_training": false,
+  "model_changes": false,
+  "utility_scorer_training": false,
+  "evaluation_only": [
+    "cue timestamps",
+    "future targets",
+    "local deletion oracle"
+  ],
+  "paired_bootstrap": {
+    "unit": "scene pair after sibling mean",
+    "repetitions": 10000,
+    "seed": 20261022
+  },
+  "source_sha256": {
+    "experiments/phase2/diagnose_wr_startup.py": "414630c644e30695986bcfb98e935f55af392303081f0d9e61fb66ec982f706a",
+    "experiments/phase2/literature_baselines.py": "e83a4a46eb661601f37d2aca02e2ccad7c6d7179bb0f5675fb3914852f8ccc0d",
+    "experiments/phase2/run_literature_baselines.py": "c2de98fca247f72792be0d3cad7c32ec69f8e2c391dc92c8377d14371770a818",
+    "experiments/phase2/run_retention_baseline_pilot.py": "d359c65074341e34fcf50857c850aadf275a100969259a1d66e205ba4bb8876d",
+    "experiments/phase2/causal_model_scores.py": "5b24102d58821d53c8ad32bc2b5765530d00b1c91927ca2de420af824a8fbcbd",
+    "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+    "experiments/phase2/run_fresh_literature_diagnostic.py": "82b284fca38ba8478d80e44a74bfcac76e94ca5d4f32882d66228408eafe3885",
+    "experiments/phase2/run_gate_followup_phase2.py": "492e9577f4c4e4bb809e8e9a70f5e19565dc9f350a2e4c6ee187fdb7132e83f0",
+    "experiments/phase2/portable_snapshot.py": "ca3b29ced972df802ca5eecdde70fc21b8d8cba80c531d23ad8ff22a3a3e64c9"
+  },
+  "fresh_manifest_sha256": "07ecc6ce6d425d2a706e97178c61b964c2380691837a0ce7da8a1a23279b5e0d",
+  "comparison_boundaries": [
+    "Prefix changes initialization and number of decisions; shared-policy controls quantify these effects",
+    "Original item relative ages/actions and query targets are unchanged",
+    "Prefix is a diagnostic counterfactual, not a retuned replacement WR or an improvement claim for original WR paper"
+  ]
+}

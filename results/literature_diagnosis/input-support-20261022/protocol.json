@@ -1,0 +1,50 @@
+{
+  "version": "gate-train-prefix-support-v1",
+  "created_utc": "2026-10-23T00:58:01.549894+00:00",
+  "scope": "posthoc diagnostic on already observed development trajectories; not confirmation",
+  "support_fit": "only z[:query+1] from all32 old Gate TRAIN episodes in original unit-column projection",
+  "threshold": 0.0001,
+  "threshold_semantics": "mean(projected**2,axis=0)<1e-4, float32; existing inactive_columns definition",
+  "predictor_intervention": "zero unsupported coordinates of projected_z and projected_current; raw current output skip, learned weights/actions, and all other inputs unchanged",
+  "fixed_sets": "all192 actual attention K2, all192 original global best-with/without cue, all72 available original local actual-parent cue comparisons; no set reoptimization",
+  "cue_probe": "reconstruct prior cue and cue-minus-current lambda1 ridge exactly on old32train, assert every prior saved score; zero unsupported coefficient rows with means/std/other weights frozen",
+  "statistics": "5000 scene-pair bootstrap samples, seed20261022; full sets and fixed originally cue-harmed cohorts",
+  "model_refitting": false,
+  "policy_refitting": false,
+  "test_arrays": false,
+  "runtime": {
+    "python": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/.venv/bin/python",
+    "numpy": "1.26.4",
+    "torch": "2.14.1",
+    "blas": {
+      "name": "openblas64",
+      "found": true,
+      "version": "0.3.23.dev",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/arm64-builds/include",
+      "lib directory": "/opt/arm64-builds/lib",
+      "openblas configuration": "USE_64BITINT=1 DYNAMIC_ARCH=1 DYNAMIC_OLDER= NO_CBLAS= NO_LAPACK= NO_LAPACKE= NO_AFFINITY=1 USE_OPENMP= SANDYBRIDGE MAX_THREADS=3",
+      "pc file directory": "/usr/local/lib/pkgconfig"
+    }
+  },
+  "rank": "descriptive TRAIN-prefix distinct frames and numerical projected rank at source-float32 tolerance; no fitted replacement basis",
+  "hashes": {
+    "experiments/phase2/diagnose_gate_input_support.py": "cf16bed59568e20995baa2c994100420910a169fc50a4e84ecd7bc7272fd303f",
+    "experiments/phase2/diagnose_training_objective.py": "b5c44137a573f74d698927ab4c85509b8ab4fea682045f5221446cef6d3541e2",
+    "experiments/phase2/diagnose_gate_oracle_metric.py": "09b69635f30950572e913a39ab675ece954e34dd1f86fd7ee225d5dd70a14e83",
+    "experiments/phase2/diagnose_gate_reader_local.py": "d7cd2e308a87fc95abf7e675ec9da5b552d4fd1079c5a84dcf55fe6a5bd4c914",
+    "build/literature-baselines-20261022/fresh-eval/episode_results.json": "81145cfea4e81fa5273634749060314f1a9c9b400391fe9fc2a05425113144ab",
+    "build/literature-diagnosis-20261022/metric-reader-v2/episode_rows.json": "c37d305dd4725b5413ef839ea79e86e1feecf4605bdafe3d062ab97d78880c33",
+    "build/literature-diagnosis-20261022/metric-reader-v2/summary.json": "608023b19ebe7ed6a8bda71b0d5d2fa3d3533cea16c124047b701606b414081e",
+    "build/literature-diagnosis-20261022/reader-local-v2/parents.json": "fc8122cf05e8bedb81e516a237023265a94983199f2b6874dcdadf4f5419bfef",
+    "build/literature-diagnosis-20261022/reader-local-v2/episode_rows.json": "e6a8883e26b808ff9e8252820db1d35a6b790ced3f5e9fec9fee3a15b19224d5",
+    "build/literature-diagnosis-20261022/reader-local-v2/cue_probe.json": "3e5c689369f2e66360512788548d5abf65228c005a8b63b2b9add3dc91c23f8d",
+    "build/literature-diagnosis-20261022/reader-local-v2/summary.json": "6444a35f868377cbac02e82166d4444f51a9a4b4895dcc1324a816669a897fa3"
+  },
+  "limitations": [
+    "Masking can itself be out of distribution, not an adopted repair.",
+    "Unsupported means low training second moment, not proof a coordinate is semantically useless.",
+    "Global best sets are hindsight; local comparisons hold one original candidate parent.",
+    "Cue probes are privileged evaluation probes, not retention scorers or proof of unavailable encoder information."
+  ]
+}

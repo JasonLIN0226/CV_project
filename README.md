@@ -31,6 +31,9 @@ The CV comparison fixes the predictor, recent buffer R=4 and retained capacity K
 - [Independent code and artifact audit](docs/LITERATURE_BASELINE_AUDIT.md)
 - [Development protocol, per-episode results and provenance](results/literature_baselines/dev-20261022/README.md)
 - [Fresh development evaluation and execution evidence](docs/LITERATURE_BASELINE_FRESH_REPORT.md)
+- [Follow-up: WR startup, cue-deletion errors, causal learnability and prior predictive-memory cases](docs/BASELINE_ORACLE_DIAGNOSIS_20261022.md)
+
+The follow-up isolates WR's early-cue startup loss, audits predictor and metric behavior on identical candidate sets, and runs fixed linear learnability probes with matched attention and shuffled-label controls. These exploratory probes do not establish deletion-utility superiority. Oracle gains include future-dependent selection and, after evidence is lost, conflicting optimal actions for identical bounded states. They are not all recoverable by a causal retention policy.
 
 The first development report reuses four previously inspected validation pairs; it is not independent generalization evidence. The fresh diagnostic protocol uses separate seed 20261022 scenes, the old normalization and already frozen predictor/student checkpoints. Its ID, longer-gap and distractor-shift conditions are new **development** data, not the official seed 9137 test and not three established failure mechanisms. The fresh report is the authority for its execution status and results.
 
@@ -86,6 +89,7 @@ python tools/build_phase1_experimental_walkthrough.py
 - `handoff/`: official model-family mapping, portable loading interface and asset verification.
 - `experiments/phase2/`: independent development interfaces, predictor diagnostics and literature-baseline implementations.
 - `results/literature_baselines/`: baseline protocols, compact results, figures and provenance.
+- `results/literature_diagnosis/`: frozen follow-up protocols, complete diagnostic rows, audits and figures.
 - Other `experiments/` and `results/` folders: development methods, controls, negative results and audit evidence; read each dated report for its scope.
 - `tests/`: local software checks; `tools/`: analysis, verification and report generation.
 - `reports/`: the formal Phase1 detailed walkthrough, independent-confirmation technical report, source figures and machine-readable manifests.

@@ -200,3 +200,8 @@ past-only 输入预测出来。一般而言，相同的可观察历史若对应�
 
 [早期四对场景的 dev-v3 快照](LITERATURE_BASELINE_DEVELOPMENT_REPORT.md)保留用于追溯，
 本文件是随后新增场景的结果，不替换或追改早期观察。
+
+后续更新（2026-10-22）：上述待核查问题已继续做 WR 共同前缀控制、同 parent 的
+reader／metric 分解、past-only 固定 probe 与输入支持域控制。请读
+[综合诊断及与旧 PM 案例的连接](BASELINE_ORACLE_DIAGNOSIS_20261022.md)。
+本报告保留最初运行时的结果和判断，不将后续探索追写为预先提出的结论。
