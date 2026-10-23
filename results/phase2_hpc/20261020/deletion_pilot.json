@@ -1,0 +1,437 @@
+{
+  "run": {
+    "status": "completed",
+    "started_utc": "2026-10-20T05:14:17.284940+00:00",
+    "scope": "new_development_frozen_equal_K_deletion_pilot",
+    "device": "cpu",
+    "source_sha256": {
+      "experiments/phase2/generate_deletion_pilot.py": "baae41c86ffac52885ee3a1eb1546b6749b24f2ce351eb2c57d155fe1628b429",
+      "experiments/phase2/frozen_predictor.py": "a64c479c24f6ac22c99978045197fe354545247a602efcb38b8b9fd30dc812fc",
+      "experiments/phase2/deletion.py": "6c3d7d34ec6a065f88dcf06f79a3787e509cda26d0fc0b00ec553a398e3de951",
+      "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+      "experiments/phase2/training_samples.py": "a8ca0490308488bff5a560e767093175fb7e76abbab58179570dc447b4310143"
+    },
+    "settings": {
+      "data_root": "<TASK_ROOT>/data",
+      "encoded_report": "<TASK_ROOT>/runs/9285/encoded",
+      "predictor_root": "<TASK_ROOT>/runs/cpu-predictor-pilot",
+      "output": "<TASK_ROOT>/runs/cpu-deletion-pilot",
+      "seed": 17,
+      "threads": 4,
+      "timeout_seconds": 600,
+      "worker": false
+    },
+    "gpu_job_submitted": false,
+    "slurm_job_id": "9280",
+    "gpu_allocation_seconds": null,
+    "resource_note": "CPU worker; use scheduler accounting for any enclosing allocation.",
+    "scientific_phase2_completed": false,
+    "git_head": "4ff9529d892f6ae6a255647493704d5d8e23e55c",
+    "command": [
+      "<TASK_ROOT>/venv/bin/python",
+      "<TASK_ROOT>/repo/experiments/phase2/generate_deletion_pilot.py",
+      "--worker",
+      "--data-root",
+      "<TASK_ROOT>/data",
+      "--encoded-report",
+      "<TASK_ROOT>/runs/9285/encoded",
+      "--predictor-root",
+      "<TASK_ROOT>/runs/cpu-predictor-pilot",
+      "--output",
+      "<TASK_ROOT>/runs/cpu-deletion-pilot",
+      "--seed",
+      "17",
+      "--threads",
+      "4",
+      "--timeout-seconds",
+      "600"
+    ],
+    "summary_sha256": "6c4fe34e83eedc0edc6c58f00d447bfa3e60d1dbf9b8d77704627f9a60e7a6b3",
+    "loss_labels_generated": true,
+    "ended_utc": "2026-10-20T05:14:27.497059+00:00",
+    "wall_seconds": 10.212146669000049,
+    "worker_exit_code": 0,
+    "worker_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "summary": {
+    "schema": "phase2_equal_k_deletion_pilot_v1",
+    "status": "new_development_equal_k_deletion_pilot_completed",
+    "data_seed": 20261020,
+    "device": "cpu",
+    "base_seed": 17,
+    "capacity": 2,
+    "recent_length": 4,
+    "horizons": [
+      3,
+      6
+    ],
+    "parent_policies": [
+      "fifo",
+      "reservoir",
+      "temporal_buckets",
+      "visual_diversity"
+    ],
+    "parent_sampling_rule": "each_train_validation_episode_declared_query_after_continuous_prefix_replay",
+    "deduplication": "same_task_checkpoint_episode_query_candidate_ids_saved_once_with_all_policy_origins",
+    "loss": {
+      "name": "raw_full_normalized_feature_MSE",
+      "reduction": "mean_over_feature_dimensions",
+      "dtype": "float64_residual_reduction_from_float32_predictions_targets",
+      "horizon_aggregation": null,
+      "ties": "raw_values_preserved_no_margin_or_ranking_threshold"
+    },
+    "cache_signature": "587298e3c4ec416e430fd19f0817e61f12df65d1915fa93ac0dd9e03484c8e4c",
+    "encoder_hash": "caaf35f0bbb97992cc49450dafdc6cfbe0e84395650bd61a48f3718f175e2fa4",
+    "normalization_sha256": "2ecbe84ae1555e2e8f5fae49e49bab02fd5475f31ff7b4e4694e19791c61a690",
+    "encoded_manifest_sha256": "6c11ea0e25c72a94d6cda63adc099849c4abd6da5fd39155c51bb885cce6424a",
+    "split_roles": {
+      "train": "training",
+      "validation": "validation",
+      "test_id": "development_smoke",
+      "test_long_gap": "development_smoke",
+      "test_distractor_shift": "development_smoke"
+    },
+    "tasks": [
+      {
+        "task": "gate",
+        "parent_policy_records": 160,
+        "unique_parents": 118,
+        "recomputed_parents": 15,
+        "exclusions": [],
+        "shards": [
+          {
+            "task": "gate",
+            "split": "train",
+            "unique_parents": 94,
+            "deletion_forks": 282,
+            "available_loss_values": 564,
+            "files": {
+              "scorer_inputs/gate_train.npz": "855156dd08e8885edf3aeb4e1993b1b8db0bcecd96a7ae12688b49784edaca5a",
+              "labels/gate_train.npz": "068f79df5899f5ef7aabe67e4093a6a55f6298a81dbeab158eba341df2cf66c7",
+              "metadata/gate_train.json": "643459f2fcc2c1400e451a5b4700c04a5ec528f726ca5a6a41ce918ed3a79831"
+            }
+          },
+          {
+            "task": "gate",
+            "split": "validation",
+            "unique_parents": 24,
+            "deletion_forks": 72,
+            "available_loss_values": 144,
+            "files": {
+              "scorer_inputs/gate_validation.npz": "58f311a43eb21753e209943d01d974b5d03f1b2e615f24342ed499a7151f220f",
+              "labels/gate_validation.npz": "45655f81e7bfd34c4c5e4e4fac8c70fe305a581e2ed497179489092480be3729",
+              "metadata/gate_validation.json": "91effa77ada6021974e5d1e4de0f4944b53d3919d0f7531b80520d21b3383039"
+            }
+          }
+        ],
+        "frozen_evaluator_audit": {
+          "passed": true,
+          "task": "gate",
+          "seed": 17,
+          "device": "cpu",
+          "checkpoint_sha256": "a95bd252e10bafcf44cd156df446514eba9da3e57ad59da7ed9ccf8a5ac58c99",
+          "state_sha256": "f92404923f67d6d6154ba17b95496100d8bcbc8f53b6d8373372c87f151f2994",
+          "parameter_buffer_identity_unchanged": true,
+          "all_modules_eval": true,
+          "trainable_parameters": 0,
+          "model_calls": 798,
+          "feature_dimension": 5120,
+          "horizons": [
+            3,
+            6
+          ],
+          "artifact_sha256": {
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/run_manifest.json": "a667b0da6b0c0a80e40b79b4f37fece19bfd00f41b0653327fb0881fca70f7db",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/training_result.json": "fd3670b2b142b111a75a3c6374b0d2a240b0035fec4ed585e0e60e404bcab9ec",
+            "<TASK_ROOT>/runs/9285/encoded/manifest.json": "6c11ea0e25c72a94d6cda63adc099849c4abd6da5fd39155c51bb885cce6424a",
+            "<TASK_ROOT>/runs/9285/encoded/encoder_config.json": "e2e2f89cc4b445cb19ac329295649d3b9301a9e040b167c098a734a25fee2496",
+            "<TASK_ROOT>/runs/9285/encoded/sample_summary.json": "37f75ad64350a2e788adf019ed4f2e9badfcc25ce78af6f1249f3bc016d63416",
+            "<TASK_ROOT>/repo/experiments/phase2/train_predictor_pilot.py": "60c3c64330640171baa9d5d73c913081b03bd21ad326e13a0651af81aa886ff8",
+            "<TASK_ROOT>/repo/experiments/phase2/training_samples.py": "a8ca0490308488bff5a560e767093175fb7e76abbab58179570dc447b4310143",
+            "<TASK_ROOT>/repo/experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+            "<TASK_ROOT>/repo/experiments/phase2/prepare_encoded_samples.py": "2860cefc1770bf70ddc85ea971e81832a80dcd555420679a9b3bdd9dd1956d00",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/training.py": "0e30f8c45e84a4dc966d3020066c0686b8c4b951a6447c52ecc85d309a14a235",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/cache.py": "5935e62802ef2bf8a5590f559948eb1c1fa1d3f9c4826780ef4ce188d7a96bc0",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+            "<TASK_ROOT>/data/resolved_config.json": "27bb55fdee25bed048ada92d1907586a9b9585bd87dccfeaf74c980dd23c80ef",
+            "<TASK_ROOT>/data/dataset/manifest.json": "7188bd6de6b54eaaff75d22c8d3c631a1467f1d6e5b14c19bd1c269c37ee0d05",
+            "<TASK_ROOT>/data/features/index.json": "a25354d475dfe9e4e50da2aa0823602be0d106a1b48bd94d9f83696c388c3287",
+            "<TASK_ROOT>/data/features/normalization.npz": "2ecbe84ae1555e2e8f5fae49e49bab02fd5475f31ff7b4e4694e19791c61a690",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/predictor/gate/seed_17/frozen.pt": "a95bd252e10bafcf44cd156df446514eba9da3e57ad59da7ed9ccf8a5ac58c99",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/training_config.json": "e08b8534abd2bebcb788a25d4ee065b2aa3c9e0f0cdb09efc9617643711f5136",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/predictor/gate/basis.npz": "e0901075908b15f886cfce3c6c965920c9262c15c201dc6da5a87cb486f652bd"
+          }
+        }
+      },
+      {
+        "task": "motion",
+        "parent_policy_records": 160,
+        "unique_parents": 120,
+        "recomputed_parents": 15,
+        "exclusions": [],
+        "shards": [
+          {
+            "task": "motion",
+            "split": "train",
+            "unique_parents": 96,
+            "deletion_forks": 288,
+            "available_loss_values": 576,
+            "files": {
+              "scorer_inputs/motion_train.npz": "ce0e6c82266c932f09f017c5c8fbdb402f50706552710e8e7924b0356cd4f97a",
+              "labels/motion_train.npz": "1fcd2808ce141bc1dc86b4ebb024762819ab350b380d802e6551c37520d7ce9d",
+              "metadata/motion_train.json": "4ac4428e59ec164be5a9cc771ea17a4158ef84584ea36da834775c5fcb975c71"
+            }
+          },
+          {
+            "task": "motion",
+            "split": "validation",
+            "unique_parents": 24,
+            "deletion_forks": 72,
+            "available_loss_values": 144,
+            "files": {
+              "scorer_inputs/motion_validation.npz": "37116e4990c6dbf07867ec4261cc4faa7d0d51396a68261f035b67cc3346797c",
+              "labels/motion_validation.npz": "61dbd52eedee02fa8e8bec5a249030f90413565d1dd4c522b9765584184bd658",
+              "metadata/motion_validation.json": "7ad0a0730792adcc535a9c5ca34a71ec835e1186a8e68681aaa1b58c78c8f899"
+            }
+          }
+        ],
+        "frozen_evaluator_audit": {
+          "passed": true,
+          "task": "motion",
+          "seed": 17,
+          "device": "cpu",
+          "checkpoint_sha256": "9b3ea6d76cdb903a34852200f42284b1569b49a2caf52fa88da930f2b00afa94",
+          "state_sha256": "4579ae5964782c6178bfd5cc4077f961c0aa49f356a9a6280b09125c52391211",
+          "parameter_buffer_identity_unchanged": true,
+          "all_modules_eval": true,
+          "trainable_parameters": 0,
+          "model_calls": 810,
+          "feature_dimension": 5120,
+          "horizons": [
+            3,
+            6
+          ],
+          "artifact_sha256": {
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/run_manifest.json": "a667b0da6b0c0a80e40b79b4f37fece19bfd00f41b0653327fb0881fca70f7db",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/training_result.json": "fd3670b2b142b111a75a3c6374b0d2a240b0035fec4ed585e0e60e404bcab9ec",
+            "<TASK_ROOT>/runs/9285/encoded/manifest.json": "6c11ea0e25c72a94d6cda63adc099849c4abd6da5fd39155c51bb885cce6424a",
+            "<TASK_ROOT>/runs/9285/encoded/encoder_config.json": "e2e2f89cc4b445cb19ac329295649d3b9301a9e040b167c098a734a25fee2496",
+            "<TASK_ROOT>/runs/9285/encoded/sample_summary.json": "37f75ad64350a2e788adf019ed4f2e9badfcc25ce78af6f1249f3bc016d63416",
+            "<TASK_ROOT>/repo/experiments/phase2/train_predictor_pilot.py": "60c3c64330640171baa9d5d73c913081b03bd21ad326e13a0651af81aa886ff8",
+            "<TASK_ROOT>/repo/experiments/phase2/training_samples.py": "a8ca0490308488bff5a560e767093175fb7e76abbab58179570dc447b4310143",
+            "<TASK_ROOT>/repo/experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+            "<TASK_ROOT>/repo/experiments/phase2/prepare_encoded_samples.py": "2860cefc1770bf70ddc85ea971e81832a80dcd555420679a9b3bdd9dd1956d00",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/training.py": "0e30f8c45e84a4dc966d3020066c0686b8c4b951a6447c52ecc85d309a14a235",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/cache.py": "5935e62802ef2bf8a5590f559948eb1c1fa1d3f9c4826780ef4ce188d7a96bc0",
+            "<TASK_ROOT>/repo/experiments/predictor/control/src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+            "<TASK_ROOT>/data/resolved_config.json": "27bb55fdee25bed048ada92d1907586a9b9585bd87dccfeaf74c980dd23c80ef",
+            "<TASK_ROOT>/data/dataset/manifest.json": "7188bd6de6b54eaaff75d22c8d3c631a1467f1d6e5b14c19bd1c269c37ee0d05",
+            "<TASK_ROOT>/data/features/index.json": "a25354d475dfe9e4e50da2aa0823602be0d106a1b48bd94d9f83696c388c3287",
+            "<TASK_ROOT>/data/features/normalization.npz": "2ecbe84ae1555e2e8f5fae49e49bab02fd5475f31ff7b4e4694e19791c61a690",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/predictor/motion/seed_17/frozen.pt": "9b3ea6d76cdb903a34852200f42284b1569b49a2caf52fa88da930f2b00afa94",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/training_config.json": "e08b8534abd2bebcb788a25d4ee065b2aa3c9e0f0cdb09efc9617643711f5136",
+            "<TASK_ROOT>/runs/cpu-predictor-pilot/predictor/motion/basis.npz": "9fae208630f27d03a930bbc17c9a8f19b959cce14a92e616e6907a8e0abbece0"
+          }
+        }
+      }
+    ],
+    "six_retention_baseline_results": false,
+    "learned_retention_scorer_trained": false,
+    "baseline_model_planning_verified": false,
+    "scientific_phase2_completed": false,
+    "loaded_episode_ids": [
+      "03b83a0d55ee818224fffc97",
+      "0450fef6055eb89c1a6368a3",
+      "0f13d78d0fa70d18a3307b2d",
+      "12d380c0d0a96104df8ad039",
+      "130cb668c3d1f866f34569ce",
+      "17185885d9523dc736efea71",
+      "190d8d42dd7e85f1ec74ff13",
+      "21b5ada812d00ae85f5b667a",
+      "22a2f4d2d9bd6883d87ab136",
+      "27d5a75f9babcbc2acebe581",
+      "2da654dc6133ffa7ebaf2e87",
+      "2efaad70c46bebabbb177b4c",
+      "312e50cbe06549ce3fd8a317",
+      "33b4dc6fb5873f96c1e013a2",
+      "38db0efd8e7bb83cbdee6d1c",
+      "3badf798ca9bc8c7beb0bec8",
+      "3ded8987df24787a920dea50",
+      "3f453820754d171a193c11a2",
+      "4164dd71a672a8956fae00a2",
+      "43359b825880f6165ae39fd6",
+      "4439a02b35f3a5d2b84c67da",
+      "4c64d05bcd831d6e6930d58f",
+      "4ceb1d96c8dd3fc9b72bf637",
+      "50083da5c1b4dc3c804d6200",
+      "51c5d21e2ab7e66bb29b8799",
+      "58ffd607da5bbbd6a8a326ae",
+      "5c8717c9f65667831b4520c1",
+      "6064f0d6f5f5f29cc902acff",
+      "61904c34d5d0f1e96625de66",
+      "6288c45cc578dfbf33f6ca77",
+      "62c565d4caabc08b16a48c2a",
+      "62d140a7699ec1d611a80f98",
+      "6837fa3986de82c061a3e147",
+      "6c3a64f3be087d6e8e4a26bc",
+      "6e3447dd4485b832b7ece0b2",
+      "6e3d2cd8fe7ab6b8d57960d8",
+      "702cccc71dbca1b5996577ea",
+      "73cdf86520a5eda8874ba3da",
+      "7766d6f8bd9a451896c71a11",
+      "79d30926f8d122b7a9a89936",
+      "7bd88ddebfb10b1a621fb300",
+      "813682e1c7cac709e4ea6a1f",
+      "81f7ce710a3409c8db6ebac7",
+      "8508d9f87b2d121f2a5eeaf4",
+      "855991d6b068059ccbbda360",
+      "86f0ced4d24d616f472ac985",
+      "898ebb9692f76f1f201e8adc",
+      "953a1a405dda3bd363a7d6b0",
+      "98934fef8306f1f232934071",
+      "9a6d5ced8ffbe778d039dee5",
+      "9be1440c511835555566ad9a",
+      "9f50439c0c1ed4a54652e751",
+      "a288679f05a8856034855fa4",
+      "b881bf79a8b494e5a8a9605a",
+      "ba83b77c1fef268715dc191f",
+      "ba8a7db53d04858a2273ec35",
+      "bba6252c3d23d00db053c5f5",
+      "bc4714ddc8f75d6bd393992e",
+      "c4d0f4d4051b7345168d80eb",
+      "c63dcb0d52e6837f1c23f563",
+      "c655de0ad74fa9abca1b4ae8",
+      "c8ce72b2468303636273cf1b",
+      "c924eab7dcbea4b8e582ff4c",
+      "cb1797086aec015e5c96ad33",
+      "cec5bd4b81242a7b8c6a0161",
+      "d33b4474003f7fa930b03c94",
+      "d881d9c3022f3499206c8481",
+      "dbac69f8b6d1961f8eff7a7f",
+      "dd86e7d108a9af221134c26b",
+      "e69f580cf1e074d84c435e5d",
+      "ee7ac1c61f893b94e01c0281",
+      "efc12420748a997942ef4694",
+      "f1192919054b836747d42a5e",
+      "f1583f139d7b0f729bd4f458",
+      "f22d4853dd3f849b2ece2080",
+      "f38d13b1bfe65a4b0aa13565",
+      "f3916eb707a3a9a00a5ca57a",
+      "f8c75a04885a18fd466cc8dc",
+      "fac8f999e615e22087e7503c",
+      "ff86c3948bf07f40300eb383"
+    ],
+    "test_feature_arrays_loaded": 0,
+    "loss_labels_generated": true,
+    "unique_parents": 238,
+    "parent_policy_records": 320,
+    "recomputed_parents": 30
+  },
+  "original_run_sha256": "9d7c04e83922f70e5f28bf429c78623792fe8155834f3398029fa9dc1ad67c95",
+  "original_summary_sha256": "6c4fe34e83eedc0edc6c58f00d447bfa3e60d1dbf9b8d77704627f9a60e7a6b3",
+  "downloaded_archive_sha256": "10ff336733ac5c5985b0fbc8dde7596d93936fa6384f9da8fbd01c4ea3d97fd6",
+  "downloaded_file_count_verified": 472,
+  "independent_binary_schema_checks": [
+    {
+      "task": "gate",
+      "split": "train",
+      "parents": 94,
+      "inputs_keys": [
+        "parent_id",
+        "current_time",
+        "candidate_timestamps",
+        "candidate_representations",
+        "recent_timestamps",
+        "recent_representations",
+        "candidate_past_actions",
+        "recent_past_actions"
+      ],
+      "labels_keys": [
+        "parent_id",
+        "horizons",
+        "horizon_mask",
+        "feature_mse",
+        "deleted_timestamps",
+        "kept_timestamps"
+      ]
+    },
+    {
+      "task": "gate",
+      "split": "validation",
+      "parents": 24,
+      "inputs_keys": [
+        "parent_id",
+        "current_time",
+        "candidate_timestamps",
+        "candidate_representations",
+        "recent_timestamps",
+        "recent_representations",
+        "candidate_past_actions",
+        "recent_past_actions"
+      ],
+      "labels_keys": [
+        "parent_id",
+        "horizons",
+        "horizon_mask",
+        "feature_mse",
+        "deleted_timestamps",
+        "kept_timestamps"
+      ]
+    },
+    {
+      "task": "motion",
+      "split": "train",
+      "parents": 96,
+      "inputs_keys": [
+        "parent_id",
+        "current_time",
+        "candidate_timestamps",
+        "candidate_representations",
+        "recent_timestamps",
+        "recent_representations",
+        "candidate_past_actions",
+        "recent_past_actions"
+      ],
+      "labels_keys": [
+        "parent_id",
+        "horizons",
+        "horizon_mask",
+        "feature_mse",
+        "deleted_timestamps",
+        "kept_timestamps"
+      ]
+    },
+    {
+      "task": "motion",
+      "split": "validation",
+      "parents": 24,
+      "inputs_keys": [
+        "parent_id",
+        "current_time",
+        "candidate_timestamps",
+        "candidate_representations",
+        "recent_timestamps",
+        "recent_representations",
+        "candidate_past_actions",
+        "recent_past_actions"
+      ],
+      "labels_keys": [
+        "parent_id",
+        "horizons",
+        "horizon_mask",
+        "feature_mse",
+        "deleted_timestamps",
+        "kept_timestamps"
+      ]
+    }
+  ],
+  "independent_parent_counts": {
+    "train": 190,
+    "validation": 48
+  },
+  "scope": "New development frozen-predictor deletion labels; no retention-scorer training or performance claim."
+}

@@ -1,0 +1,132 @@
+{
+  "version": "gate-cue-content-age-action-v1",
+  "created_utc": "2026-10-23T03:07:20.193479+00:00",
+  "scope": "fixed posthoc diagnosis on all72 comparable parents from already observed fresh192 development set",
+  "main_factors": {
+    "content": [
+      "noncue",
+      "correct cue"
+    ],
+    "age": [
+      "noncue time",
+      "cue time"
+    ],
+    "past_action": [
+      "suffix from noncue time",
+      "suffix from cue time"
+    ]
+  },
+  "arms": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      2,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      1
+    ],
+    [
+      2,
+      1,
+      0
+    ],
+    [
+      2,
+      1,
+      1
+    ]
+  ],
+  "wrong_cue": "sibling feature at the same original cue timestamp, at all4 matched age/action settings",
+  "fixed": [
+    "shared filler content/time/action",
+    "four recent frames",
+    "raw current skip",
+    "query and future controls",
+    "predictor weights",
+    "h3/h6 same joint history"
+  ],
+  "endpoints": "111 is original best-with-cue; 000 original best-without-cue; all144 exact saved-vector comparisons required",
+  "effects": "all balanced main/interaction contrasts plus exact order-averaged (Shapley) allocation of endpoint111-minus000 loss; evaluator input effects, not causal physics",
+  "cohorts": "all72 and fixed originally cue-harmed27; 5000 scene-pair bootstrap samples seed20261022",
+  "representative_rule": "max positive content allocation among originalbad; max age allocation among originalbad; most negative correct-minus-wrong loss at cue age/action among original cue-helped; deterministic episode-ID ties",
+  "model_training": false,
+  "policy_training": false,
+  "test_arrays": false,
+  "runtime": {
+    "python": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/.venv/bin/python",
+    "numpy": "1.26.4",
+    "torch": "2.14.1",
+    "threads": 1,
+    "blas": {
+      "name": "openblas64",
+      "found": true,
+      "version": "0.3.23.dev",
+      "detection method": "pkgconfig",
+      "include directory": "/opt/arm64-builds/include",
+      "lib directory": "/opt/arm64-builds/lib",
+      "openblas configuration": "USE_64BITINT=1 DYNAMIC_ARCH=1 DYNAMIC_OLDER= NO_CBLAS= NO_LAPACK= NO_LAPACKE= NO_AFFINITY=1 USE_OPENMP= SANDYBRIDGE MAX_THREADS=3",
+      "pc file directory": "/usr/local/lib/pkgconfig"
+    }
+  },
+  "source_sha256": {
+    "experiments/phase2/diagnose_gate_cue_factors.py": "b5a70d077425be8386258c3bb8bb60b42a4fd8e2fae2394e79c26e2736b7e621",
+    "experiments/phase2/diagnose_gate_oracle_metric.py": "09b69635f30950572e913a39ab675ece954e34dd1f86fd7ee225d5dd70a14e83",
+    "experiments/phase2/causal_model_scores.py": "5b24102d58821d53c8ad32bc2b5765530d00b1c91927ca2de420af824a8fbcbd",
+    "experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66"
+  },
+  "input_sha256": {
+    "build/literature-diagnosis-20261022/reader-local-v2/parents.json": "fc8122cf05e8bedb81e516a237023265a94983199f2b6874dcdadf4f5419bfef",
+    "build/literature-diagnosis-20261022/reader-local-v2/episode_rows.json": "e6a8883e26b808ff9e8252820db1d35a6b790ced3f5e9fec9fee3a15b19224d5",
+    "build/literature-diagnosis-20261022/reader-local-v2/predictions.npz": "b6d30ec907785c37d92b182561da97bf94912840bcc695a77e6db001a1497895",
+    "build/literature-diagnosis-20261022/reader-local-v2/protocol.json": "3211d5d530fb13466edab359ce0619ccc343e0e603f18fa1a2b06faea4acd605"
+  },
+  "limitations": [
+    "Crossed content/time/action inputs can be OOD and physically inconsistent.",
+    "Wrong cue is an evaluator-only matched content intervention.",
+    "Chosen endpoints minimize the original future loss within their fixed cue classes; they are hindsight, not causal policies.",
+    "Factor interactions preclude one unconditional scalar cause; allocation convention shares interactions across factors.",
+    "No adapted policy performance or independent generalization claim."
+  ]
+}

@@ -1,0 +1,2662 @@
+{
+  "method": "10,000 percentile bootstrap resamples of 32 scene-pair means within each condition; siblings and frozen PaFu seeds averaged first",
+  "seed": 20261022,
+  "ci_scope": "Scene-sampling uncertainty conditional on the three frozen students; exploratory, no multiplicity correction",
+  "by_condition": {
+    "id": {
+      "policies": {
+        "fifo": {
+          "mean_mse": {
+            "mean": 0.1172865917457711,
+            "ci95": [
+              0.11411722006084503,
+              0.12071451176936025
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.0033096217669095268,
+            "ci95": [
+              0.0025826335804906967,
+              0.004117427524832476
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.038418735516792125,
+            "ci95": [
+              0.031424555218570606,
+              0.04561662551442306
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": 0.0028720698058735646,
+            "ci95": [
+              0.001903527288309494,
+              0.003850152898566133
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.609375,
+            "ci95": [
+              0.53125,
+              0.6875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.953125,
+            "ci95": [
+              0.890625,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.515625,
+            "ci95": [
+              0.46875,
+              0.5625
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 64,
+          "cue_retained_with_positive_local_regret_rows": 0,
+          "max_dynamic_logical_bytes": 123614,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.003159179654176114,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 0,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 0,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 0,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 0,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "reservoir": {
+          "mean_mse": {
+            "mean": 0.11495818865767843,
+            "ci95": [
+              0.10393664866462365,
+              0.12765697924561098
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.00938302652836812,
+            "ci95": [
+              0.003916760089168114,
+              0.01893609282701498
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.03609033242869948,
+            "ci95": [
+              0.026273452661602026,
+              0.047434691288686305
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.28125,
+            "ci95": [
+              0.125,
+              0.4375
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": 0.0005436667177809171,
+            "ci95": [
+              -0.009501786614607972,
+              0.012521569835125911
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.578125,
+            "ci95": [
+              0.46875,
+              0.6875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.96875,
+            "ci95": [
+              0.921875,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.453125,
+            "ci95": [
+              0.359375,
+              0.546875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 46,
+          "cue_retained_with_positive_local_regret_rows": 11,
+          "max_dynamic_logical_bytes": 123628,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.002410396591585595,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 18,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 4,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 4,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 5,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.0625,
+              "ci95": [
+                0.0,
+                0.140625
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.078125,
+              "ci95": [
+                0.0,
+                0.171875
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "visual_diversity": {
+          "mean_mse": {
+            "mean": 0.11011544626542139,
+            "ci95": [
+              0.09015189446201766,
+              0.13169064432165983
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.023170785479003184,
+            "ci95": [
+              0.010702889714842135,
+              0.03721168533869068
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.03124759003644242,
+            "ci95": [
+              0.017997538064876906,
+              0.04609948320535716
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": -0.00429907567447614,
+            "ci95": [
+              -0.02370435016504725,
+              0.01610859362263408
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.703125,
+            "ci95": [
+              0.578125,
+              0.828125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.9375,
+            "ci95": [
+              0.875,
+              0.984375
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.3125,
+            "ci95": [
+              0.1875,
+              0.453125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 0,
+          "cue_retained_with_positive_local_regret_rows": 45,
+          "max_dynamic_logical_bytes": 123626,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.010843570933502633,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 64,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 18,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 18,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 22,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.28125,
+              "ci95": [
+                0.15625,
+                0.40625
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.34375,
+              "ci95": [
+                0.203125,
+                0.5
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "attention": {
+          "mean_mse": {
+            "mean": 0.1100592173250684,
+            "ci95": [
+              0.09055457063500269,
+              0.13122844621614724
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.01943437217123617,
+            "ci95": [
+              0.009152035779454304,
+              0.031433780082516044
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.031191361096089446,
+            "ci95": [
+              0.01829733283405626,
+              0.0458032601736968
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": -0.004355304614829117,
+            "ci95": [
+              -0.022948913727513443,
+              0.015728768380978975
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.640625,
+            "ci95": [
+              0.53125,
+              0.75
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.890625,
+            "ci95": [
+              0.8125,
+              0.953125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.328125,
+            "ci95": [
+              0.203125,
+              0.46875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 0,
+          "cue_retained_with_positive_local_regret_rows": 41,
+          "max_dynamic_logical_bytes": 123619,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.03474959195955307,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 64,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 18,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 18,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 15,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.28125,
+              "ci95": [
+                0.15625,
+                0.40625
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.234375,
+              "ci95": [
+                0.109375,
+                0.375
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "prediction_surprise": {
+          "mean_mse": {
+            "mean": 0.12743217358632158,
+            "ci95": [
+              0.1150694546293756,
+              0.14244716330598176
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.018008766760181632,
+            "ci95": [
+              0.007731660374540874,
+              0.030911014911616477
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.04856431735734262,
+            "ci95": [
+              0.03855728882373857,
+              0.05979386543931628
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.21875,
+            "ci95": [
+              0.09375,
+              0.375
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": 0.013017651646424065,
+            "ci95": [
+              0.0012509450517362473,
+              0.027168687904012497
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.640625,
+            "ci95": [
+              0.5625,
+              0.71875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.984375,
+            "ci95": [
+              0.953125,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.59375,
+            "ci95": [
+              0.5,
+              0.6875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 50,
+          "cue_retained_with_positive_local_regret_rows": 13,
+          "max_dynamic_logical_bytes": 131465,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.0795599701214087,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 14,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 9,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 9,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 9,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.140625,
+              "ci95": [
+                0.03125,
+                0.265625
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.140625,
+              "ci95": [
+                0.03125,
+                0.265625
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "wr": {
+          "mean_mse": {
+            "mean": 0.11878144506798584,
+            "ci95": [
+              0.09968343948974032,
+              0.1391623274922494
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.023384612467693154,
+            "ci95": [
+              0.01086752850233736,
+              0.03761231199454612
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.03991358883900688,
+            "ci95": [
+              0.026810454086715795,
+              0.054210258195144405
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.75,
+            "ci95": [
+              0.59375,
+              0.90625
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": 0.004366923128088309,
+            "ci95": [
+              -0.013830195652088723,
+              0.023624281680691563
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.703125,
+            "ci95": [
+              0.59375,
+              0.8125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.9375,
+            "ci95": [
+              0.875,
+              0.984375
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.4375,
+            "ci95": [
+              0.296875,
+              0.578125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 16,
+          "cue_retained_with_positive_local_regret_rows": 37,
+          "max_dynamic_logical_bytes": 124271,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.016351502088582492,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 48,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 16,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 16,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 19,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.25,
+              "ci95": [
+                0.125,
+                0.375
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.296875,
+              "ci95": [
+                0.15625,
+                0.4375
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "pafu": {
+          "mean_mse": {
+            "mean": 0.10948845089419966,
+            "ci95": [
+              0.09054264231076714,
+              0.129790305167054
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "local_regret": {
+            "mean": 0.021498936569800217,
+            "ci95": [
+              0.011760368658401816,
+              0.03267093013941188
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "hindsight_regret": {
+            "mean": 0.03062059466522069,
+            "ci95": [
+              0.01840074018402714,
+              0.0445433319134048
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "evidence_survived": {
+            "mean": 0.9895833333333334,
+            "ci95": [
+              0.9739583333333334,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "delta_vs_recent": {
+            "mean": -0.00492607104569788,
+            "ci95": [
+              -0.02300593045465228,
+              0.014274050568340019
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.6770833333333333,
+            "ci95": [
+              0.578125,
+              0.7760416666666666
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.9166666666666666,
+            "ci95": [
+              0.859375,
+              0.9635416666666667
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.33333333333333337,
+            "ci95": [
+              0.20312499999999997,
+              0.46875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "cue_loss_rows": 2,
+          "cue_retained_with_positive_local_regret_rows": 129,
+          "max_dynamic_logical_bytes": 123619,
+          "controller_parameter_bytes": 82308,
+          "mean_online_seconds_per_episode": 0.029840559903580772,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 190,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 53,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 53,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 50,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.2760416666666667,
+              "ci95": [
+                0.15625,
+                0.40625
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 192
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.26041666666666663,
+              "ci95": [
+                0.140625,
+                0.390625
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 192
+            }
+          }
+        }
+      },
+      "pafu_teacher": {
+        "mean_mse": {
+          "mean": 0.10990719662816965,
+          "ci95": [
+            0.09035415352197947,
+            0.13111181975313127
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "teacher_local_regret": {
+          "mean": 0.02191768230377022,
+          "ci95": [
+            0.01163920610636404,
+            0.03370074087012756
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "student_minus_teacher_mse": {
+          "mean": -0.0004187457339700037,
+          "ci95": [
+            -0.002768614952322494,
+            0.0019633269050542594
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "same_deletion_as_student": {
+          "mean": 0.7760416666666666,
+          "ci95": [
+            0.7135416666666666,
+            0.8333333333333334
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "same_deletion_rows": 149,
+        "rows": 192,
+        "student_vs_controls": {
+          "attention": {
+            "mean": -0.0005707664308687616,
+            "ci95": [
+              -0.0039153322150819805,
+              0.0022612808818230643
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "visual_diversity": {
+            "mean": -0.0006269953712217393,
+            "ci95": [
+              -0.004320848649064262,
+              0.002749615636356569
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "wr": {
+            "mean": -0.00929299417378619,
+            "ci95": [
+              -0.01634840753261663,
+              -0.0028699493876843127
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          }
+        }
+      },
+      "hindsight_cue": {
+        "episodes": 64,
+        "selected_keeps_cue": 46,
+        "strictly_prefers_cue": 46,
+        "strictly_prefers_no_cue": 18,
+        "no_cue_preference_pair_fraction": {
+          "mean": 0.28125,
+          "ci95": [
+            0.15625,
+            0.40625
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        }
+      },
+      "references": {
+        "recent_only": {
+          "mean": 0.11441452193989754,
+          "ci95": [
+            0.11140964697524336,
+            0.11767686310512318
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "privileged_evidence": {
+          "mean": 0.11000640163510336,
+          "ci95": [
+            0.0898509191362883,
+            0.13165752262687042
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "hindsight_K2": {
+          "mean": 0.07886785622897896,
+          "ci95": [
+            0.0708239492555525,
+            0.08719625393192047
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        }
+      },
+      "history_controls": {
+        "recent_only_mse": {
+          "mean": 0.11441452193989754,
+          "ci95": [
+            0.11140964697524336,
+            0.11767686310512318
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "privileged_evidence_mse": {
+          "mean": 0.11000640163510336,
+          "ci95": [
+            0.0898509191362883,
+            0.13165752262687042
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "wrong_sibling_evidence_mse": {
+          "mean": 0.1922954666774898,
+          "ci95": [
+            0.16392682692041463,
+            0.22211476519930812
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "privileged_minus_recent": {
+          "mean": -0.004408120304794155,
+          "ci95": [
+            -0.023884837699647738,
+            0.01619344396856923
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "wrong_minus_privileged": {
+          "mean": 0.08228906504238645,
+          "ci95": [
+            0.03459100903534844,
+            0.13054029242547482
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        }
+      }
+    },
+    "long_gap": {
+      "policies": {
+        "fifo": {
+          "mean_mse": {
+            "mean": 0.11631298508226767,
+            "ci95": [
+              0.11178698328503556,
+              0.12115392371151797
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.0034910400185538685,
+            "ci95": [
+              0.002612107843655713,
+              0.004412304373306378
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.04428035798073541,
+            "ci95": [
+              0.03902821545599487,
+              0.04973742205894715
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": 0.002240111262991205,
+            "ci95": [
+              0.0010141810436975378,
+              0.00357765781505246
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.59375,
+            "ci95": [
+              0.53125,
+              0.65625
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.578125,
+            "ci95": [
+              0.484375,
+              0.671875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 64,
+          "cue_retained_with_positive_local_regret_rows": 0,
+          "max_dynamic_logical_bytes": 123614,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.0032421266987512354,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 0,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 0,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 0,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 0,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "reservoir": {
+          "mean_mse": {
+            "mean": 0.11728537718584442,
+            "ci95": [
+              0.11268227685061259,
+              0.12227090185177188
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.003959643486086563,
+            "ci95": [
+              0.0028286678384067446,
+              0.00520207253042596
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.04525275008431215,
+            "ci95": [
+              0.040083639284028805,
+              0.0506156409425631
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": 0.003212503366567941,
+            "ci95": [
+              0.0017401579934618859,
+              0.004789263914802588
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.578125,
+            "ci95": [
+              0.515625,
+              0.640625
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.59375,
+            "ci95": [
+              0.53125,
+              0.671875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 64,
+          "cue_retained_with_positive_local_regret_rows": 0,
+          "max_dynamic_logical_bytes": 123628,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.004171247894191765,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 0,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 0,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 0,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 0,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "visual_diversity": {
+          "mean_mse": {
+            "mean": 0.09790209625200647,
+            "ci95": [
+              0.08501150904052059,
+              0.11290596890931481
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.012820245026822379,
+            "ci95": [
+              0.005308727881216807,
+              0.02218864704486427
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.025869469150474174,
+            "ci95": [
+              0.016066639289133603,
+              0.03784728228631885
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": -0.01617077756727003,
+            "ci95": [
+              -0.02991464535401474,
+              -0.0006847549307894846
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.578125,
+            "ci95": [
+              0.453125,
+              0.703125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.984375,
+            "ci95": [
+              0.953125,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.265625,
+            "ci95": [
+              0.140625,
+              0.40625
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 0,
+          "cue_retained_with_positive_local_regret_rows": 37,
+          "max_dynamic_logical_bytes": 123626,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.01643919985872344,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 64,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 15,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 15,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 16,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.234375,
+              "ci95": [
+                0.125,
+                0.359375
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.25,
+              "ci95": [
+                0.125,
+                0.390625
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "attention": {
+          "mean_mse": {
+            "mean": 0.09854033609913602,
+            "ci95": [
+              0.08600983404172148,
+              0.11284719072471516
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.012468356657811966,
+            "ci95": [
+              0.005935743824576392,
+              0.021024403025535605
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.026507708997603747,
+            "ci95": [
+              0.017066382677405692,
+              0.037984198946836474
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": -0.015532537720140458,
+            "ci95": [
+              -0.028947027459138137,
+              -0.0007241880537586927
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.65625,
+            "ci95": [
+              0.53125,
+              0.78125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.953125,
+            "ci95": [
+              0.890625,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.28125,
+            "ci95": [
+              0.15625,
+              0.421875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 0,
+          "cue_retained_with_positive_local_regret_rows": 42,
+          "max_dynamic_logical_bytes": 123619,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.04911031482515682,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 64,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 15,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 15,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 10,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.234375,
+              "ci95": [
+                0.125,
+                0.359375
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.15625,
+              "ci95": [
+                0.046875,
+                0.28125
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "prediction_surprise": {
+          "mean_mse": {
+            "mean": 0.12510791572682636,
+            "ci95": [
+              0.11810751309382346,
+              0.13411150595386265
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.014908443293067106,
+            "ci95": [
+              0.009005485984425474,
+              0.02247168281734424
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.05307528862529408,
+            "ci95": [
+              0.046800056410369675,
+              0.06036534395974868
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.15625,
+            "ci95": [
+              0.03125,
+              0.28125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": 0.011035041907549885,
+            "ci95": [
+              0.0059879474031603605,
+              0.018432358782124
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.671875,
+            "ci95": [
+              0.59375,
+              0.75
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.671875,
+            "ci95": [
+              0.59375,
+              0.75
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 54,
+          "cue_retained_with_positive_local_regret_rows": 9,
+          "max_dynamic_logical_bytes": 131465,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.11528164247829409,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 10,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 4,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 4,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 4,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.0625,
+              "ci95": [
+                0.0,
+                0.15625
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.0625,
+              "ci95": [
+                0.0,
+                0.15625
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "wr": {
+          "mean_mse": {
+            "mean": 0.10263676675225467,
+            "ci95": [
+              0.091839761198505,
+              0.11507020871650134
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.008151470215264075,
+            "ci95": [
+              0.002532899989354017,
+              0.016604260204021642
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.03060413965072239,
+            "ci95": [
+              0.02097315117318503,
+              0.041707335256325424
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.65625,
+            "ci95": [
+              0.5,
+              0.8125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": -0.011436107067021811,
+            "ci95": [
+              -0.02262630877097912,
+              0.0012208774640285992
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.578125,
+            "ci95": [
+              0.46875,
+              0.6875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.96875,
+            "ci95": [
+              0.921875,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.328125,
+            "ci95": [
+              0.203125,
+              0.453125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 22,
+          "cue_retained_with_positive_local_regret_rows": 24,
+          "max_dynamic_logical_bytes": 124431,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.0174196744846995,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 42,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 8,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 8,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 8,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.125,
+              "ci95": [
+                0.046875,
+                0.234375
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.125,
+              "ci95": [
+                0.03125,
+                0.234375
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "pafu": {
+          "mean_mse": {
+            "mean": 0.10098718309648305,
+            "ci95": [
+              0.08791235105132686,
+              0.11523646971085796
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "local_regret": {
+            "mean": 0.016576241642166367,
+            "ci95": [
+              0.00923127755272087,
+              0.02543085436111611
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "hindsight_regret": {
+            "mean": 0.02895455599495078,
+            "ci95": [
+              0.019193663777309918,
+              0.04015474138613748
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "evidence_survived": {
+            "mean": 0.9895833333333334,
+            "ci95": [
+              0.9739583333333334,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "delta_vs_recent": {
+            "mean": -0.01308569072279342,
+            "ci95": [
+              -0.027060787763444522,
+              0.0017376894356586235
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.6875,
+            "ci95": [
+              0.5885416666666667,
+              0.78125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.9479166666666667,
+            "ci95": [
+              0.90625,
+              0.984375
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.2760416666666667,
+            "ci95": [
+              0.15625,
+              0.40625
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "cue_loss_rows": 2,
+          "cue_retained_with_positive_local_regret_rows": 132,
+          "max_dynamic_logical_bytes": 123619,
+          "controller_parameter_bytes": 82308,
+          "mean_online_seconds_per_episode": 0.045622568827335876,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 190,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 45,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 45,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 32,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.234375,
+              "ci95": [
+                0.125,
+                0.359375
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 192
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.16666666666666666,
+              "ci95": [
+                0.06770833333333333,
+                0.28125
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 192
+            }
+          }
+        }
+      },
+      "pafu_teacher": {
+        "mean_mse": {
+          "mean": 0.09876731673461903,
+          "ci95": [
+            0.08605830386907896,
+            0.1132179176229129
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "teacher_local_regret": {
+          "mean": 0.014356375280302335,
+          "ci95": [
+            0.007408039623830528,
+            0.023189096472086265
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "student_minus_teacher_mse": {
+          "mean": 0.002219866361864037,
+          "ci95": [
+            -0.0007562011811773084,
+            0.005677631672828522
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "same_deletion_as_student": {
+          "mean": 0.796875,
+          "ci95": [
+            0.734375,
+            0.859375
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "same_deletion_rows": 153,
+        "rows": 192,
+        "student_vs_controls": {
+          "attention": {
+            "mean": 0.002446846997347038,
+            "ci95": [
+              -0.0010484778789816042,
+              0.0064705616271523965
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "visual_diversity": {
+            "mean": 0.00308508684447661,
+            "ci95": [
+              -0.002501850436927746,
+              0.008772270910328634
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "wr": {
+            "mean": -0.001649583655771609,
+            "ci95": [
+              -0.011739153142783502,
+              0.00777006079461104
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          }
+        }
+      },
+      "hindsight_cue": {
+        "episodes": 64,
+        "selected_keeps_cue": 49,
+        "strictly_prefers_cue": 49,
+        "strictly_prefers_no_cue": 15,
+        "no_cue_preference_pair_fraction": {
+          "mean": 0.234375,
+          "ci95": [
+            0.125,
+            0.359375
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        }
+      },
+      "references": {
+        "recent_only": {
+          "mean": 0.11407287381927649,
+          "ci95": [
+            0.109864834570962,
+            0.11850884011105284
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "privileged_evidence": {
+          "mean": 0.0976729242153353,
+          "ci95": [
+            0.08479237612507505,
+            0.11250523743858246
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "hindsight_K2": {
+          "mean": 0.07203262710153228,
+          "ci95": [
+            0.06680673071579918,
+            0.07727068557853356
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        }
+      },
+      "history_controls": {
+        "recent_only_mse": {
+          "mean": 0.11407287381927649,
+          "ci95": [
+            0.109864834570962,
+            0.11850884011105284
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "privileged_evidence_mse": {
+          "mean": 0.0976729242153353,
+          "ci95": [
+            0.08479237612507505,
+            0.11250523743858246
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "wrong_sibling_evidence_mse": {
+          "mean": 0.21957709929664432,
+          "ci95": [
+            0.18626689466420093,
+            0.25323396900809225
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "privileged_minus_recent": {
+          "mean": -0.016399949603941186,
+          "ci95": [
+            -0.030235748020382598,
+            -0.0008281561860285983
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "wrong_minus_privileged": {
+          "mean": 0.12190417508130902,
+          "ci95": [
+            0.07690614617060301,
+            0.1649121475104695
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        }
+      }
+    },
+    "distractor_shift": {
+      "policies": {
+        "fifo": {
+          "mean_mse": {
+            "mean": 0.13864032304038126,
+            "ci95": [
+              0.13428964773248755,
+              0.14366496660033587
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.004883711885781161,
+            "ci95": [
+              0.003615215853587189,
+              0.006283561946852904
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.04152340043393975,
+            "ci95": [
+              0.03652811667520803,
+              0.046367145737789224
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": 0.009813715111529021,
+            "ci95": [
+              0.007231613821078962,
+              0.012996137976451817
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.640625,
+            "ci95": [
+              0.546875,
+              0.734375
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.703125,
+            "ci95": [
+              0.625,
+              0.796875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 64,
+          "cue_retained_with_positive_local_regret_rows": 0,
+          "max_dynamic_logical_bytes": 123614,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.0013435101209324785,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 0,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 0,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 0,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 0,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "reservoir": {
+          "mean_mse": {
+            "mean": 0.13232075803699958,
+            "ci95": [
+              0.12124782041192125,
+              0.14403039870465725
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.013738172023828587,
+            "ci95": [
+              0.008456127376898947,
+              0.01969359287846267
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.035203835430558064,
+            "ci95": [
+              0.027467278722036383,
+              0.04293883537379262
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.5625,
+            "ci95": [
+              0.40625,
+              0.75
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": 0.003494150108147338,
+            "ci95": [
+              -0.0069526341156685165,
+              0.01428989078037925
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.6875,
+            "ci95": [
+              0.609375,
+              0.765625
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.4375,
+            "ci95": [
+              0.328125,
+              0.546875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 28,
+          "cue_retained_with_positive_local_regret_rows": 26,
+          "max_dynamic_logical_bytes": 123628,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.0016470341015519807,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 36,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 9,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 9,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 9,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.140625,
+              "ci95": [
+                0.0625,
+                0.21875
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.140625,
+              "ci95": [
+                0.0625,
+                0.21875
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "visual_diversity": {
+          "mean_mse": {
+            "mean": 0.11888113126474963,
+            "ci95": [
+              0.10443778224132101,
+              0.13480850482624723
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.012297979190029354,
+            "ci95": [
+              0.005267207844903777,
+              0.021163026206776143
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.021764208658308113,
+            "ci95": [
+              0.012774472211230908,
+              0.03235427315940522
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": -0.009945476664102615,
+            "ci95": [
+              -0.02325419197573418,
+              0.005112004313580581
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.5,
+            "ci95": [
+              0.359375,
+              0.640625
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.890625,
+            "ci95": [
+              0.8125,
+              0.953125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.296875,
+            "ci95": [
+              0.171875,
+              0.421875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 0,
+          "cue_retained_with_positive_local_regret_rows": 32,
+          "max_dynamic_logical_bytes": 123626,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.006409132627595682,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 64,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 13,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 13,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 14,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.203125,
+              "ci95": [
+                0.109375,
+                0.296875
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.21875,
+              "ci95": [
+                0.125,
+                0.328125
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "attention": {
+          "mean_mse": {
+            "mean": 0.12159100684578578,
+            "ci95": [
+              0.10803926376264841,
+              0.13616440109536906
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.008084017082308066,
+            "ci95": [
+              0.003922992484623436,
+              0.013352027148121842
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.02447408423934427,
+            "ci95": [
+              0.015458495453091822,
+              0.034499403419089476
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": -0.0072356010830664595,
+            "ci95": [
+              -0.020177294087683654,
+              0.006816674007541431
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.515625,
+            "ci95": [
+              0.390625,
+              0.640625
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.90625,
+            "ci95": [
+              0.84375,
+              0.96875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.28125,
+            "ci95": [
+              0.171875,
+              0.3910156249999943
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 0,
+          "cue_retained_with_positive_local_regret_rows": 33,
+          "max_dynamic_logical_bytes": 123619,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.015996734487998765,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 64,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 13,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 13,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 2,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.203125,
+              "ci95": [
+                0.109375,
+                0.296875
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.03125,
+              "ci95": [
+                0.0,
+                0.078125
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "prediction_surprise": {
+          "mean_mse": {
+            "mean": 0.13226783076755488,
+            "ci95": [
+              0.1246604013325321,
+              0.13915906503591532
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.0035486218493914036,
+            "ci95": [
+              0.0026495881665104196,
+              0.004515365009983195
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.03515090816111339,
+            "ci95": [
+              0.029013321060922557,
+              0.04099162450507096
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.09375,
+            "ci95": [
+              0.0,
+              0.21875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": 0.003441222838702658,
+            "ci95": [
+              -0.003593180590387606,
+              0.009527804429252553
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.578125,
+            "ci95": [
+              0.5,
+              0.671875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.578125,
+            "ci95": [
+              0.484375,
+              0.671875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 58,
+          "cue_retained_with_positive_local_regret_rows": 5,
+          "max_dynamic_logical_bytes": 131465,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.03786823497466685,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 6,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 0,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 0,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 0,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "wr": {
+          "mean_mse": {
+            "mean": 0.12098087844274608,
+            "ci95": [
+              0.1083260649402538,
+              0.13448259364463183
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_regret": {
+            "mean": 0.008138147379524587,
+            "ci95": [
+              0.003246614629063463,
+              0.01599249708113146
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_regret": {
+            "mean": 0.02386395583630456,
+            "ci95": [
+              0.015875976363634928,
+              0.0333655609274552
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "evidence_survived": {
+            "mean": 0.625,
+            "ci95": [
+              0.4375,
+              0.78125
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "delta_vs_recent": {
+            "mean": -0.007845729486106172,
+            "ci95": [
+              -0.02014155880658032,
+              0.005409546957254038
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.53125,
+            "ci95": [
+              0.40625,
+              0.65625
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.921875,
+            "ci95": [
+              0.859375,
+              0.984375
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.40625,
+            "ci95": [
+              0.265625,
+              0.546875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 64
+          },
+          "cue_loss_rows": 24,
+          "cue_retained_with_positive_local_regret_rows": 17,
+          "max_dynamic_logical_bytes": 124271,
+          "controller_parameter_bytes": 0,
+          "mean_online_seconds_per_episode": 0.010994226253387751,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 40,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 6,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 6,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 5,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.09375,
+              "ci95": [
+                0.015625,
+                0.171875
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.078125,
+              "ci95": [
+                0.015625,
+                0.15625
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 64
+            }
+          }
+        },
+        "pafu": {
+          "mean_mse": {
+            "mean": 0.12250676266996507,
+            "ci95": [
+              0.10851217768131509,
+              0.13757350792473536
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "local_regret": {
+            "mean": 0.009293723590560465,
+            "ci95": [
+              0.004921816939111661,
+              0.014887934910259701
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "hindsight_regret": {
+            "mean": 0.025389840063523555,
+            "ci95": [
+              0.016406223047329832,
+              0.03563181609954221
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "evidence_survived": {
+            "mean": 1.0,
+            "ci95": [
+              1.0,
+              1.0
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "delta_vs_recent": {
+            "mean": -0.006319845258887172,
+            "ci95": [
+              -0.01948714189055855,
+              0.007975354279156851
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "local_positive_regret_fraction": {
+            "mean": 0.59375,
+            "ci95": [
+              0.48958333333333337,
+              0.6927083333333334
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "hindsight_positive_regret_fraction": {
+            "mean": 0.9114583333333333,
+            "ci95": [
+              0.859375,
+              0.9583333333333333
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "worse_than_recent_fraction": {
+            "mean": 0.30729166666666663,
+            "ci95": [
+              0.19791666666666666,
+              0.421875
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "cue_loss_rows": 0,
+          "cue_retained_with_positive_local_regret_rows": 114,
+          "max_dynamic_logical_bytes": 123619,
+          "controller_parameter_bytes": 82308,
+          "mean_online_seconds_per_episode": 0.018238672313600546,
+          "cue_oracle": {
+            "baseline_retains_cue_rows": 192,
+            "baseline_retains_but_selected_hindsight_drops_cue_rows": 39,
+            "baseline_retains_but_hindsight_strictly_prefers_no_cue_rows": 39,
+            "baseline_retains_but_local_strictly_prefers_no_cue_rows": 6,
+            "joint_retained_and_hindsight_prefers_no_cue": {
+              "mean": 0.203125,
+              "ci95": [
+                0.109375,
+                0.296875
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 192
+            },
+            "joint_retained_and_local_prefers_no_cue": {
+              "mean": 0.03125,
+              "ci95": [
+                0.0,
+                0.078125
+              ],
+              "independent_pairs": 32,
+              "episode_seed_rows": 192
+            }
+          }
+        }
+      },
+      "pafu_teacher": {
+        "mean_mse": {
+          "mean": 0.12323434983429912,
+          "ci95": [
+            0.1092340076753542,
+            0.13838145234536084
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "teacher_local_regret": {
+          "mean": 0.010021310754894529,
+          "ci95": [
+            0.005639543059997889,
+            0.015587176765948358
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "student_minus_teacher_mse": {
+          "mean": -0.0007275871643340642,
+          "ci95": [
+            -0.001992928568651701,
+            0.00025927890161243797
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "same_deletion_as_student": {
+          "mean": 0.8645833333333334,
+          "ci95": [
+            0.7864583333333334,
+            0.9322916666666667
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 192
+        },
+        "same_deletion_rows": 166,
+        "rows": 192,
+        "student_vs_controls": {
+          "attention": {
+            "mean": 0.0009157558241792878,
+            "ci95": [
+              -0.0008045735270024131,
+              0.0027218255309566955
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "visual_diversity": {
+            "mean": 0.0036256314052154444,
+            "ci95": [
+              -0.0009261460135267204,
+              0.009175617209234634
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          },
+          "wr": {
+            "mean": 0.0015258842272190005,
+            "ci95": [
+              -0.006142758371832936,
+              0.009328417127560057
+            ],
+            "independent_pairs": 32,
+            "episode_seed_rows": 192
+          }
+        }
+      },
+      "hindsight_cue": {
+        "episodes": 64,
+        "selected_keeps_cue": 51,
+        "strictly_prefers_cue": 51,
+        "strictly_prefers_no_cue": 13,
+        "no_cue_preference_pair_fraction": {
+          "mean": 0.203125,
+          "ci95": [
+            0.109375,
+            0.296875
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        }
+      },
+      "references": {
+        "recent_only": {
+          "mean": 0.12882660792885223,
+          "ci95": [
+            0.12481375765300166,
+            0.1330068772070372
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "privileged_evidence": {
+          "mean": 0.11901320109938628,
+          "ci95": [
+            0.10468792922288177,
+            0.13488108151347208
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "hindsight_K2": {
+          "mean": 0.0971169226064415,
+          "ci95": [
+            0.09015259521292186,
+            0.10449069710528859
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        }
+      },
+      "history_controls": {
+        "recent_only_mse": {
+          "mean": 0.12882660792885223,
+          "ci95": [
+            0.12481375765300166,
+            0.1330068772070372
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "privileged_evidence_mse": {
+          "mean": 0.11901320109938628,
+          "ci95": [
+            0.10468792922288177,
+            0.13488108151347208
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "wrong_sibling_evidence_mse": {
+          "mean": 0.23869068928260706,
+          "ci95": [
+            0.2117483283425134,
+            0.2653841838259191
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "privileged_minus_recent": {
+          "mean": -0.009813406829465965,
+          "ci95": [
+            -0.02330823051331049,
+            0.0053186574421151146
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        },
+        "wrong_minus_privileged": {
+          "mean": 0.1196774881832208,
+          "ci95": [
+            0.08035432082062592,
+            0.15757180194074522
+          ],
+          "independent_pairs": 32,
+          "episode_seed_rows": 64
+        }
+      }
+    }
+  }
+}

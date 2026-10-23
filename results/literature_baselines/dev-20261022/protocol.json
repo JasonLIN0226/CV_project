@@ -1,0 +1,68 @@
+{
+  "version": "literature-bank-dev-v1",
+  "created_utc": "2026-10-22T23:57:56.071118+00:00",
+  "scope": "existing_gate_development_only",
+  "recent": 4,
+  "capacity": 2,
+  "horizons": [
+    3,
+    6
+  ],
+  "objective": "mean of h3 and h6 feature MSE; one shared deletion decision",
+  "teacher": "real frozen additive reader pooling; offline bidirectional query probe 0..t+6; per-key temporal-group max then equal group mean; normalized targets",
+  "teacher_limit": "not original DiT/QKV; earlier-than-key probe outside causal reader training domain",
+  "student": {
+    "seeds": [
+      17,
+      23,
+      41
+    ],
+    "epochs": 100,
+    "hidden": 32,
+    "lr": 0.001,
+    "selection": "fixed final epoch; no validation selection",
+    "targets": "attention only"
+  },
+  "wr": {
+    "gaussian_window": 4,
+    "scalar_score_window": 64,
+    "gamma": 1.0,
+    "nms_radius": 3,
+    "confirmation_delay": 1
+  },
+  "train_pairs": [
+    "0d11446958dbd689cc3597c2",
+    "1c8791cf7ed67b87bc9b649d",
+    "43288bb1ef48e4f8af60737c",
+    "4792ef390b224f1076fa8892",
+    "5430109783f20e94046dd18f",
+    "567899d1b7f6495c006116ae",
+    "7e52970cd80b637c05f81769",
+    "878912a98eb2da1b6c87e910",
+    "87da69c03d2219efeb77d7ea",
+    "90379e69fe58c82be63b50f5",
+    "97ce610f2ee56cc5bf3d786a",
+    "bc1b208f0954927460366edc",
+    "e69a178b612bd2dd10ca5599",
+    "e7e862877d6e8e8150c24f0b",
+    "eaa291928eb0b6e5cf95d6a2",
+    "f0e5397547870ab1a9fc0bb0"
+  ],
+  "validation_pairs": [
+    "365649fbf76cb4091b0007a7",
+    "37604bc2f8000bea4dc686d6",
+    "9de9f60a7d27ab926a42ced0",
+    "f2fee915e5cc89179fcdd4ee"
+  ],
+  "test_arrays": false,
+  "own_utility_scorer": false,
+  "independent_generalization": false,
+  "oracle_archive": "evaluation only; no callback or online object holds it",
+  "source_sha256": {
+    "experiments/phase2/run_literature_baselines.py": "c2de98fca247f72792be0d3cad7c32ec69f8e2c391dc92c8377d14371770a818",
+    "experiments/phase2/literature_baselines.py": "e83a4a46eb661601f37d2aca02e2ccad7c6d7179bb0f5675fb3914852f8ccc0d",
+    "experiments/phase2/causal_model_scores.py": "5b24102d58821d53c8ad32bc2b5765530d00b1c91927ca2de420af824a8fbcbd",
+    "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+    "experiments/phase2/run_retention_baseline_pilot.py": "d359c65074341e34fcf50857c850aadf275a100969259a1d66e205ba4bb8876d"
+  }
+}

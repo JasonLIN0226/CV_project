@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "status": "new_cpu_dataset_generated_and_structurally_audited",
+  "created_utc": "2026-10-20T04:36:21.237074+00:00",
+  "scope": "new_development_smoke_data_only",
+  "data_seed": 20261020,
+  "data_config_sha256": "435f21a645ebe0ba4a22b201c6b6af056043e74d381f9cc87a4b62a30134505a",
+  "base_data_seed": 6301,
+  "reserved_confirmation_seed_accessed": false,
+  "base_config": "results/reference/gate/resolved_config.json",
+  "source_commit": "1ed233a845725a4fa02d58da4033029ad83190b9",
+  "source_sha256": {
+    "experiments/predictor/control/src/phase1/envs.py": "64b07f972fc5144d5d13c7bd614c1c796d67a73521043efc57073454ac4c12a7",
+    "experiments/predictor/control/src/phase1/data.py": "9e65a464e36dcda9fb6fd542d78d9a71b3a01dcc0109ce30317a09483c4d4467",
+    "experiments/predictor/control/src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+    "experiments/predictor/control/src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14",
+    "experiments/phase2/prepare_controlled_data.py": "b9b30c16440fa21b6d3c36f7e91591ccd3ba5805610c63208c542886dc3758f3",
+    "results/reference/gate/resolved_config.json": "e2b737cb814f5e09be6c0ceea6e668e0e07c9f43496e951be1d899d0269ef392"
+  },
+  "changes_from_inherited_data_config": {
+    "seed": 20261020,
+    "pairs": {
+      "train": 16,
+      "validation": 4,
+      "test_id": 4,
+      "test_long_gap": 4,
+      "test_distractor_shift": 4
+    }
+  },
+  "unchanged_dynamics": {
+    "image_size": 96,
+    "recent": 4,
+    "budget": 2,
+    "horizons": [
+      3,
+      6
+    ],
+    "gap": [
+      5,
+      10
+    ],
+    "long_gap": [
+      20,
+      32
+    ],
+    "cue_start": [
+      2,
+      7
+    ],
+    "cue_duration": [
+      1,
+      3
+    ],
+    "motion_dt": [
+      3,
+      6
+    ]
+  },
+  "counts": {
+    "episodes": 128,
+    "pairs": 64,
+    "frames": 3616,
+    "unique_environment_seeds": 64
+  },
+  "native_audit_passed": true,
+  "observation_boundary_passed": true,
+  "elapsed_seconds": 4.119750750018284,
+  "device": "cpu",
+  "gpu_allocation_seconds": 0,
+  "encoder_run": false,
+  "normalization_fitted": false,
+  "basis_fitted": false,
+  "predictor_trained": false,
+  "baseline_results_generated": false,
+  "deletion_supervision_generated": false,
+  "inactive_config_sections": [
+    "encoder",
+    "normalization",
+    "probe",
+    "model",
+    "training",
+    "evaluation",
+    "decision"
+  ],
+  "python": "3.12.14",
+  "packages": {
+    "numpy": "1.26.4",
+    "Pillow": "11.3.0",
+    "PyYAML": "6.0.3",
+    "torch": "2.14.1"
+  },
+  "output_sha256": {
+    "resolved_config.json": "272675805fc2c94f1807a13d428cff32eb2c68c1c70f0fd35fd9263f92b7b16f",
+    "dataset/manifest.json": "214529c4403afc83c9f690337d6015815a8586452c724cc012d1de152ba74c78",
+    "dataset/split_audit.json": "9cc90f8ddd70465c644ae40d7be8d1df4c97e13f01fd3519710304138e76e816",
+    "observation_boundary_audit.json": "2d3250e1ac7d303c21d7454b17b27d6d5185e52243ac77dd85bf0d1db2624160",
+    "observation_index.json": "fe7682c0564a7c274b553bd96cfc24a779d2436fecf3f52ef09bd0da0b35c946",
+    "split_roles.json": "11a32085bb00125c7bf5d874807988b2b32e191048278da3917cee865cbdf15f"
+  },
+  "dataset_bytes": 964910,
+  "reproduction": [
+    ".venv/bin/python",
+    "experiments/phase2/prepare_controlled_data.py",
+    "--output",
+    "NEW_EMPTY_OUTPUT",
+    "--seed",
+    "20261020",
+    "--train-pairs",
+    "16",
+    "--eval-pairs",
+    "4"
+  ],
+  "limitations": [
+    "New data are not the teammate's missing original dataset or checkpoints.",
+    "Structural RGB checks do not establish that the frozen encoder/predictor can use the evidence.",
+    "No learned retention scorer or baseline model planning was run.",
+    "Inherited decision/training sections are copied but inactive; they do not create new proposal gates."
+  ]
+}

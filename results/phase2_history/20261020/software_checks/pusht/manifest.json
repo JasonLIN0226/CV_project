@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "status": "interface_trace_only",
+  "seed": 17,
+  "environment": "gym_pusht/PushT-v0",
+  "obs_type": "pixels",
+  "observations": 25,
+  "rgb_shape": [
+    96,
+    96,
+    3
+  ],
+  "rgb_dtype": "uint8",
+  "occlusion": {
+    "start": 8,
+    "stop": 13,
+    "rectangle": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "fill": 0,
+    "enabled": true
+  },
+  "action_semantics": "absolute target XY in [0,512]; NOT displacement",
+  "same_seed_actions_control_verified": true,
+  "pixel_changes": 138240,
+  "later_visible_targets_after_fully_occluded_recent4": [
+    {
+      "query": 11,
+      "horizon": 3,
+      "target": 14
+    },
+    {
+      "query": 11,
+      "horizon": 6,
+      "target": 17
+    },
+    {
+      "query": 12,
+      "horizon": 3,
+      "target": 15
+    },
+    {
+      "query": 12,
+      "horizon": 6,
+      "target": 18
+    }
+  ],
+  "history_necessity_validated": false,
+  "baseline_model_planning_verified": false,
+  "encoder_verified": false,
+  "source_sha256": "285cd9f41e5c89e4266d05947a2e1ad8406f17c5740ef4fd3a5ff0519831dbc6",
+  "dependencies": {
+    "gym-pusht": "0.1.8",
+    "gymnasium": "1.4.0",
+    "pygame": "2.6.1",
+    "pymunk": "6.11.1",
+    "shapely": "2.2.0",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86"
+  },
+  "contact_sheet": {
+    "file": "paired_trace.png",
+    "columns": [
+      0,
+      7,
+      8,
+      11,
+      12,
+      13,
+      17
+    ],
+    "top": "unoccluded control",
+    "bottom": "encoder input"
+  },
+  "files": {
+    "diagnostics_only.json": "002609e7839ef28d6c3c7280fbb85ff1845981181ef04406d93275f783fe4ffa",
+    "paired_trace.npz": "5fa18cd56c646a661c4d97866cb33e6263d2e4bf3c2246b67521183cfa6c2e42",
+    "paired_trace.png": "c83bb59b08646bfee1f9e9954492e1a4fae9c873861849081115f3af18456b33"
+  },
+  "checks_passed": true
+}

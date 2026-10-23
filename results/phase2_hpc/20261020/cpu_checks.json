@@ -1,0 +1,325 @@
+{
+  "schema": "phase2_independent_checks_v1",
+  "started_at_utc": "2026-10-20T04:55:36.032839+00:00",
+  "scope": "CPU software contracts and real PushT environment interface only",
+  "python": "3.11.14 (main, Nov 19 2025, 22:47:14) [Clang 21.1.4 ]",
+  "platform": "Linux-5.14.0-687.24.1.el9_8.x86_64-x86_64-with-glibc2.34",
+  "git_base": "6f8703ca11bf47a996605401ab55e303e403db98",
+  "gpu_allocations_submitted": 0,
+  "gpu_allocation_seconds": 0,
+  "trained_model_evaluation": false,
+  "predictor_training": false,
+  "scientific_deletion_dataset_generated": false,
+  "six_model_bound_baseline_results": false,
+  "baseline_model_planning_verified": false,
+  "phase2_completed": false,
+  "checks": [
+    {
+      "name": "dependencies",
+      "argv": [
+        "<TASK_ROOT>/venv/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.48680667400003585,
+      "log": "dependencies.log",
+      "log_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "name": "published_latest_evidence",
+      "argv": [
+        "<TASK_ROOT>/venv/bin/python",
+        "tools/verify_phase1_latest.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.07334678799998073,
+      "log": "published_latest_evidence.log",
+      "log_sha256": "fa4a082912ce667d20d0494ce9714e7c0848fdb140659f4073fb294d9bcdb37f"
+    },
+    {
+      "name": "published_earlier_evidence",
+      "argv": [
+        "<TASK_ROOT>/venv/bin/python",
+        "tools/verify_results.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.330058077999979,
+      "log": "published_earlier_evidence.log",
+      "log_sha256": "833838bef46abb86c6143b4d808c1a3a56e5866d8729831c7d84f4f46cfe10e0"
+    },
+    {
+      "name": "software_tests",
+      "argv": [
+        "<TASK_ROOT>/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--junitxml",
+        "<TASK_ROOT>/cpu-checks/tests.xml"
+      ],
+      "exit_code": 0,
+      "seconds": 22.272897596999996,
+      "log": "software_tests.log",
+      "log_sha256": "77344ed38c317680a08778f24da50021bf87f8e141c4c280b5d061f821890d08"
+    },
+    {
+      "name": "pusht_interface",
+      "argv": [
+        "<TASK_ROOT>/venv/bin/python",
+        "experiments/phase2/pusht.py",
+        "--output",
+        "<TASK_ROOT>/cpu-checks/pusht",
+        "--seed",
+        "17",
+        "--steps",
+        "24"
+      ],
+      "exit_code": 0,
+      "seconds": 1.0091442300000608,
+      "log": "pusht_interface.log",
+      "log_sha256": "5d1959eff85083a860752f514ecb9658be4b3fb3c32cf7aa17df88ae0a914fc6"
+    }
+  ],
+  "source_sha256": {
+    "experiments/phase2/deletion.py": "6c3d7d34ec6a065f88dcf06f79a3787e509cda26d0fc0b00ec553a398e3de951",
+    "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+    "experiments/phase2/prepare_controlled_data.py": "6be1691285ea76ff15a2299ddd93ee1b3cfb15d0d6335deca0c426b11fec075f",
+    "experiments/phase2/prepare_encoded_samples.py": "2860cefc1770bf70ddc85ea971e81832a80dcd555420679a9b3bdd9dd1956d00",
+    "experiments/phase2/prepare_hpc_environment.py": "799fa96a44bb350cb514b6ae9dd6019d855fe278bff031f07fcdb285f4ef5e35",
+    "experiments/phase2/pusht.py": "285cd9f41e5c89e4266d05947a2e1ad8406f17c5740ef4fd3a5ff0519831dbc6",
+    "experiments/phase2/run_encoder_pilot.py": "806c1c7ab13849ca2c01aebaa65ee549e38cdc586edc03fc2e384448d876aa9c",
+    "experiments/phase2/run_hpc_pipeline.py": "f88d56e1f50fcb2a14562902b4d236d2959970feae009b79ee97aa221c34560e",
+    "experiments/phase2/run_independent.py": "c240ef7f18f3996c25506353ca79afdcce4745a2324f2facf765d6ab1cafda55",
+    "experiments/phase2/run_local_mps_encoder.py": "8673aad7a34084a797d0fa51f13ed81e26944982e24efbff607f6ce3d0dab812",
+    "experiments/phase2/training_samples.py": "a8ca0490308488bff5a560e767093175fb7e76abbab58179570dc447b4310143",
+    "experiments/phase2/verify_assets.py": "104254c5bc2fbd5b774fbbc6416e31c5fc7f2221173cd015a2568f08e04aa960",
+    "tests/test_phase2_assets.py": "056d48b401bc8597d341b701b17f66a29ff9f882f5cae3eedf9f8b45d515b20b",
+    "tests/test_phase2_controlled_data.py": "cbd62129518a39f4fd1bda3f72870667e724f6d205fe4a171f0bf26216634781",
+    "tests/test_phase2_deletion.py": "5258d86e321df01bbfbf088d12c8fd1b60e2a068ec13664274e45e8c21675c61",
+    "tests/test_phase2_encoded_samples.py": "4823c1757c46094458dfed86d744a179167b46493ce0ba70f57246b4989c27a4",
+    "tests/test_phase2_memory.py": "f85eff172f4a615a2f08b75701c608912999e6a3a4e177be11d221e499c3cac2",
+    "tests/test_phase2_pusht.py": "3af0c3a4d243cc52fed74007da992758baea081a0e3486c51893bb45491bd852",
+    "tests/test_phase2_training_samples.py": "4eacb0215c2f468bc15b990441a3f2d524016e1830ccc76b8491332acce8fbc3"
+  },
+  "software_test_counts": {
+    "tests": 138,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pusht_manifest_sha256": "6831fe9cdf4fce5721fde0a47c4a1933543fb9be48ad86c517c2b3386fc901a9",
+  "independent_checks_passed": true,
+  "elapsed_seconds": 25.84875060899992,
+  "finished_at_utc": "2026-10-20T04:56:01.881590+00:00",
+  "evidence_kind": "Executed remote Linux CPU checks at the recorded exact source commit; not GPU encoding or scientific Phase 2 completion.",
+  "portable_provenance": {
+    "original_manifest": "build/hpc-20261020/initial/cpu-checks/manifest.json",
+    "original_manifest_sha256": "9490b3c11cc65937bd2be55d24c31ace9b16f5493636a9d814eb9373b69e2356",
+    "original_tests_xml_sha256": "8368c44545dc2e768143d84067ad174fbfc6e55b3a2dbf5cf3a0bf64898df1a0",
+    "original_export_status_sha256": "cd2c08cea21deaa8697407fb94695b9732548e27bb14b88117e6405893976f09",
+    "exported_file_hashes_verified": true,
+    "exported_file_count": 14,
+    "all_recorded_source_hashes_match_exact_git_commit": true,
+    "verified_source_file_count": 19,
+    "xml_verified_counts": {
+      "tests": 138,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "xml_test_counts_by_class": {
+      "experiments.deletion.test_assay": 9,
+      "experiments.predictor.control.test_centered_transport": 10,
+      "tests.test_phase2_assets": 19,
+      "tests.test_phase2_controlled_data": 5,
+      "tests.test_phase2_deletion": 23,
+      "tests.test_phase2_encoded_samples": 5,
+      "tests.test_phase2_memory": 24,
+      "tests.test_phase2_pusht": 7,
+      "tests.test_phase2_training_samples": 29,
+      "tests.test_signal_diagnostics": 7
+    },
+    "phase2_test_count": 112,
+    "inherited_test_count": 26,
+    "sanitization": "Task-specific absolute path prefixes replaced with <TASK_ROOT>; source/log/result hashes unchanged. Raw XML hostname, scheduler user/group identifiers and private node names are not copied.",
+    "resource_accounting_scope": "The CPU runner submits no GPU jobs. Its zero fields are not total session accounting. Exported scheduler accounting lists CPU preparation job 9280 with no GPU TRES; separate A100 job 9284 has one GPU allocation."
+  },
+  "controlled_data": {
+    "preparation": {
+      "schema_version": 1,
+      "status": "new_cpu_dataset_generated_and_structurally_audited",
+      "created_utc": "2026-10-20T04:56:09.810332+00:00",
+      "scope": "new_development_smoke_data_only",
+      "data_seed": 20261020,
+      "data_config_sha256": "435f21a645ebe0ba4a22b201c6b6af056043e74d381f9cc87a4b62a30134505a",
+      "base_data_seed": 6301,
+      "reserved_confirmation_seed_accessed": false,
+      "base_config": "results/reference/gate/resolved_config.json",
+      "source_commit": "6f8703ca11bf47a996605401ab55e303e403db98",
+      "source_sha256": {
+        "experiments/predictor/control/src/phase1/envs.py": "64b07f972fc5144d5d13c7bd614c1c796d67a73521043efc57073454ac4c12a7",
+        "experiments/predictor/control/src/phase1/data.py": "9e65a464e36dcda9fb6fd542d78d9a71b3a01dcc0109ce30317a09483c4d4467",
+        "experiments/predictor/control/src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+        "experiments/predictor/control/src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14",
+        "experiments/phase2/prepare_controlled_data.py": "6be1691285ea76ff15a2299ddd93ee1b3cfb15d0d6335deca0c426b11fec075f",
+        "results/reference/gate/resolved_config.json": "e2b737cb814f5e09be6c0ceea6e668e0e07c9f43496e951be1d899d0269ef392"
+      },
+      "changes_from_inherited_data_config": {
+        "seed": 20261020,
+        "pairs": {
+          "train": 16,
+          "validation": 4,
+          "test_id": 4,
+          "test_long_gap": 4,
+          "test_distractor_shift": 4
+        }
+      },
+      "unchanged_dynamics": {
+        "image_size": 96,
+        "recent": 4,
+        "budget": 2,
+        "horizons": [
+          3,
+          6
+        ],
+        "gap": [
+          5,
+          10
+        ],
+        "long_gap": [
+          20,
+          32
+        ],
+        "cue_start": [
+          2,
+          7
+        ],
+        "cue_duration": [
+          1,
+          3
+        ],
+        "motion_dt": [
+          3,
+          6
+        ]
+      },
+      "counts": {
+        "episodes": 128,
+        "pairs": 64,
+        "frames": 3616,
+        "unique_environment_seeds": 64
+      },
+      "native_audit_passed": true,
+      "observation_boundary_passed": true,
+      "elapsed_seconds": 5.517823225000029,
+      "device": "cpu",
+      "slurm_job_id": "9280",
+      "gpu_allocation_seconds": null,
+      "resource_accounting_note": "CPU execution inside a Slurm allocation; GPU allocation time is unknown here. Use scheduler accounting for this job, including CPU-only work and idle time.",
+      "encoder_run": false,
+      "normalization_fitted": false,
+      "basis_fitted": false,
+      "predictor_trained": false,
+      "baseline_results_generated": false,
+      "deletion_supervision_generated": false,
+      "inactive_config_sections": [
+        "encoder",
+        "normalization",
+        "probe",
+        "model",
+        "training",
+        "evaluation",
+        "decision"
+      ],
+      "python": "3.11.14",
+      "packages": {
+        "numpy": "1.26.4",
+        "Pillow": "11.3.0",
+        "PyYAML": "6.0.3",
+        "torch": "2.5.1+cu121"
+      },
+      "output_sha256": {
+        "resolved_config.json": "27bb55fdee25bed048ada92d1907586a9b9585bd87dccfeaf74c980dd23c80ef",
+        "dataset/manifest.json": "7188bd6de6b54eaaff75d22c8d3c631a1467f1d6e5b14c19bd1c269c37ee0d05",
+        "dataset/split_audit.json": "9cc90f8ddd70465c644ae40d7be8d1df4c97e13f01fd3519710304138e76e816",
+        "observation_boundary_audit.json": "2d3250e1ac7d303c21d7454b17b27d6d5185e52243ac77dd85bf0d1db2624160",
+        "observation_index.json": "fe7682c0564a7c274b553bd96cfc24a779d2436fecf3f52ef09bd0da0b35c946",
+        "split_roles.json": "11a32085bb00125c7bf5d874807988b2b32e191048278da3917cee865cbdf15f"
+      },
+      "dataset_bytes": 964910,
+      "reproduction": [
+        ".venv/bin/python",
+        "experiments/phase2/prepare_controlled_data.py",
+        "--output",
+        "NEW_EMPTY_OUTPUT",
+        "--seed",
+        "20261020",
+        "--train-pairs",
+        "16",
+        "--eval-pairs",
+        "4"
+      ],
+      "limitations": [
+        "New data are not the teammate's missing original dataset or checkpoints.",
+        "Structural RGB checks do not establish that the frozen encoder/predictor can use the evidence.",
+        "No learned retention scorer or baseline model planning was run.",
+        "Inherited decision/training sections are copied but inactive; they do not create new proposal gates."
+      ]
+    },
+    "validation": {
+      "status": "existing_or_new_data_validated_without_regeneration",
+      "data_seed": 20261020,
+      "train_pairs_per_task": 16,
+      "eval_pairs_per_task_split": 4,
+      "dataset_signature": "1a028b27f6378f319826da8e6116f6028ca9d100111c3f6c3333f0088d0a4aa3",
+      "episodes": 128,
+      "split_roles": {
+        "train": "training",
+        "validation": "validation",
+        "test_id": "development_smoke",
+        "test_long_gap": "development_smoke",
+        "test_distractor_shift": "development_smoke"
+      },
+      "source_proof": {
+        "source_lock_sha256": "0118e9b61f13d6ae0b271f3faa77bf276d6e7af1f6c97992ae0974902e6ba2d0",
+        "files": {
+          "src/phase1/envs.py": "64b07f972fc5144d5d13c7bd614c1c796d67a73521043efc57073454ac4c12a7",
+          "src/phase1/data.py": "9e65a464e36dcda9fb6fd542d78d9a71b3a01dcc0109ce30317a09483c4d4467",
+          "src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+          "src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14",
+          "src/phase1/encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871",
+          "src/phase1/cache.py": "5935e62802ef2bf8a5590f559948eb1c1fa1d3f9c4826780ef4ce188d7a96bc0"
+        }
+      },
+      "preparation_manifest_sha256": "1572efc57f7aa7cef9a00331fa9fb4e16d152565ea7e938d5a773d12e23a4325",
+      "predictor_trained": false
+    },
+    "original_preparation_manifest_sha256": "1572efc57f7aa7cef9a00331fa9fb4e16d152565ea7e938d5a773d12e23a4325",
+    "original_validation_sha256": "53801bc29f500e6d3937d7e277861984ee88b1ec1b07e3b241d9ef28182cf6cf",
+    "original_boundary_audit_sha256": "2d3250e1ac7d303c21d7454b17b27d6d5185e52243ac77dd85bf0d1db2624160",
+    "original_split_audit_sha256": "9cc90f8ddd70465c644ae40d7be8d1df4c97e13f01fd3519710304138e76e816"
+  },
+  "separate_gpu_job_snapshot": {
+    "observed_utc": "2026-10-20T04:57:24.789629+00:00",
+    "source_commit": "6f8703ca11bf47a996605401ab55e303e403db98",
+    "job_id": "9284",
+    "partition": "c12m85-a100-1",
+    "submitted_utc": "2026-10-20T04:56:12.773563+00:00",
+    "scontrol_state": "CONFIGURING",
+    "sacct_state": "RUNNING",
+    "allocated_gpus": 1,
+    "allocated_cpus": 12,
+    "allocated_memory": "24G",
+    "time_limit": "00:45:00",
+    "scheduler_requeue": 1,
+    "scheduler_restarts": 0,
+    "gpu_hardware_identity_verified": false,
+    "cuda_execution_verified": false,
+    "original_submission_sha256": "f17a884b47908eeba6c65df494a0fec83e862ac3084881abe559b3a7d6e397dc",
+    "original_export_status_sha256": "cd2c08cea21deaa8697407fb94695b9732548e27bb14b88117e6405893976f09",
+    "interpretation": "Resources were allocated, but scheduler state and accounting alone do not prove the batch process or CUDA encoder executed. No physical GPU UUID or encoding result is included in this snapshot.",
+    "requeue_note": "The script requested no requeue, but the observed scheduler record remained Requeue=1. Two later scontrol update attempts were reported to return an unspecified error; their command output is not part of this exported archive and no successful update is claimed."
+  }
+}

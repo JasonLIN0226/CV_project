@@ -1,0 +1,803 @@
+[
+  {
+    "episode_id": "21f84a655e94f3fb25aab8a6",
+    "pair": "a7aa885de39499d8c06db1b8",
+    "split": "fresh_development",
+    "policy": "wr",
+    "seed": 17,
+    "query": 19,
+    "kept_times": [
+      14,
+      15
+    ],
+    "feature_mse": [
+      0.20051930929250233,
+      0.20846162804829077
+    ],
+    "mean_mse": 0.20449046867039655,
+    "local_oracle": {
+      "mean_mse": 0.20449046867039655,
+      "kept_times": [
+        14,
+        15
+      ],
+      "subsets_evaluated": 3
+    },
+    "hindsight_oracle": {
+      "mean_mse": 0.09186458097998287,
+      "kept_times": [
+        3,
+        7
+      ],
+      "subsets_evaluated": 120
+    },
+    "local_regret": 0.0,
+    "hindsight_regret": 0.11262588769041368,
+    "recent_only_mse": 0.15821852936465253,
+    "privileged_evidence_mse": 0.1682257385412172,
+    "evidence_times": [
+      3
+    ],
+    "evidence_survived": false,
+    "evidence_timestamp_survived": false,
+    "evidence_equivalent_feature_times": [
+      [
+        3,
+        4,
+        5
+      ]
+    ],
+    "first_evidence_information_loss": [
+      11
+    ],
+    "first_evidence_eviction": {
+      "3": 9
+    },
+    "logical_memory_maxima": {
+      "resident_observations": 6,
+      "birth_prefix_entries": 6,
+      "pending_contexts": 0,
+      "memory_interface_logical_bytes": 123371,
+      "action_prefix_numeric_bytes": 56,
+      "action_prefix_identifier_bytes": 192,
+      "pending_context_numeric_bytes": 0,
+      "pending_origin_time_bytes": 0,
+      "pending_realized_action_bytes": 0,
+      "total_logical_bytes": 124231,
+      "controller_auxiliary_bytes": 612,
+      "transient_birth_prefix_entries": 7,
+      "transient_action_prefix_numeric_bytes": 64
+    },
+    "online_seconds": 0.007468249532394111,
+    "controller_parameter_bytes": 0,
+    "teacher_diagnostic": null,
+    "evidence_usefulness": "not_established",
+    "causal_opportunity": "cue_observed_but_future_action_unknown_to_retention; oracle_gap_not_learnability_proof",
+    "failure_stage": "evidence_evicted_before_query",
+    "condition": "distractor_shift",
+    "selection_rule": "Largest hindsight regret within WR onset-threshold-unavailable cue-loss cases (fallback: other WR losses)",
+    "local_parent": {
+      "candidate_times": [
+        13,
+        14,
+        15
+      ],
+      "alternatives": [
+        {
+          "kept_times": [
+            13,
+            14
+          ],
+          "mean_mse": 0.2049763161967705
+        },
+        {
+          "kept_times": [
+            13,
+            15
+          ],
+          "mean_mse": 0.22022149825501408
+        },
+        {
+          "kept_times": [
+            14,
+            15
+          ],
+          "mean_mse": 0.20449046867039655
+        }
+      ],
+      "cue_oracle": {
+        "selected_keeps_cue": false,
+        "best_with_cue_mse": null,
+        "best_without_cue_mse": 0.20449046867039655,
+        "strictly_prefers_no_cue": false,
+        "requires_no_cue_within_tolerance": false,
+        "strictly_prefers_cue": false,
+        "tie_tolerance": 1e-08
+      }
+    },
+    "wr_classification": {
+      "episode_id": "21f84a655e94f3fb25aab8a6",
+      "pair": "a7aa885de39499d8c06db1b8",
+      "seed": 17,
+      "query": 19,
+      "kept_times": [
+        14,
+        15
+      ],
+      "evidence_times": [
+        3
+      ],
+      "evidence_equivalent_feature_times": [
+        [
+          3,
+          4,
+          5
+        ]
+      ],
+      "evidence_survived": false,
+      "first_evidence_information_loss": [
+        11
+      ],
+      "scalar_records": [
+        {
+          "time": 0,
+          "score": 0.0,
+          "threshold": null,
+          "valid": false,
+          "confirmed_at": null
+        },
+        {
+          "time": 1,
+          "score": 0.0,
+          "threshold": null,
+          "valid": false,
+          "confirmed_at": null
+        },
+        {
+          "time": 2,
+          "score": 0.0,
+          "threshold": null,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 3,
+          "score": 5940.021359375237,
+          "threshold": null,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 4,
+          "score": 1.7315332356757493,
+          "threshold": 7373.3485133924805,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 5,
+          "score": 0.9997758118668572,
+          "threshold": 4.2987044108886145,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 6,
+          "score": 1.7315332356757493,
+          "threshold": 2.649240111377736,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 7,
+          "score": 1.7315332356757493,
+          "threshold": 2.816436792214813,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 8,
+          "score": 0.9997758118668572,
+          "threshold": 2.273985013945281,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 9,
+          "score": 0.57717774522525,
+          "threshold": 2.816436792214813,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 10,
+          "score": 0.0,
+          "threshold": 1.9081063020408353,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 11,
+          "score": 0.0,
+          "threshold": 2.0846793684059204,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 12,
+          "score": 0.0,
+          "threshold": 2.0846793684059204,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 13,
+          "score": 0.0,
+          "threshold": 2.0846793684059204,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 14,
+          "score": 0.0,
+          "threshold": 1.9574724504184327,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 15,
+          "score": 0.0,
+          "threshold": 1.4329014702962057,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 16,
+          "score": 0.0,
+          "threshold": 0.7164507351481029,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 17,
+          "score": 0.0,
+          "threshold": 0.0,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 18,
+          "score": 0.0,
+          "threshold": 0.0,
+          "valid": true,
+          "confirmed_at": null
+        },
+        {
+          "time": 19,
+          "score": 0.0,
+          "threshold": 0.0,
+          "valid": true,
+          "confirmed_at": null
+        }
+      ],
+      "timeline": [
+        {
+          "time": 0,
+          "retained_timestamps": [],
+          "recent_timestamps": [
+            0
+          ],
+          "deleted_timestamp": null
+        },
+        {
+          "time": 1,
+          "retained_timestamps": [],
+          "recent_timestamps": [
+            0,
+            1
+          ],
+          "deleted_timestamp": null
+        },
+        {
+          "time": 2,
+          "retained_timestamps": [],
+          "recent_timestamps": [
+            0,
+            1,
+            2
+          ],
+          "deleted_timestamp": null
+        },
+        {
+          "time": 3,
+          "retained_timestamps": [],
+          "recent_timestamps": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "deleted_timestamp": null
+        },
+        {
+          "time": 4,
+          "retained_timestamps": [
+            0
+          ],
+          "recent_timestamps": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "deleted_timestamp": null
+        },
+        {
+          "time": 5,
+          "retained_timestamps": [
+            0,
+            1
+          ],
+          "recent_timestamps": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "deleted_timestamp": null
+        },
+        {
+          "time": 6,
+          "retained_timestamps": [
+            1,
+            2
+          ],
+          "recent_timestamps": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "deleted_timestamp": 0
+        },
+        {
+          "time": 7,
+          "retained_timestamps": [
+            2,
+            3
+          ],
+          "recent_timestamps": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "deleted_timestamp": 1
+        },
+        {
+          "time": 8,
+          "retained_timestamps": [
+            3,
+            4
+          ],
+          "recent_timestamps": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "deleted_timestamp": 2
+        },
+        {
+          "time": 9,
+          "retained_timestamps": [
+            4,
+            5
+          ],
+          "recent_timestamps": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "deleted_timestamp": 3
+        },
+        {
+          "time": 10,
+          "retained_timestamps": [
+            5,
+            6
+          ],
+          "recent_timestamps": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "deleted_timestamp": 4
+        },
+        {
+          "time": 11,
+          "retained_timestamps": [
+            6,
+            7
+          ],
+          "recent_timestamps": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "deleted_timestamp": 5
+        },
+        {
+          "time": 12,
+          "retained_timestamps": [
+            7,
+            8
+          ],
+          "recent_timestamps": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "deleted_timestamp": 6
+        },
+        {
+          "time": 13,
+          "retained_timestamps": [
+            8,
+            9
+          ],
+          "recent_timestamps": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "deleted_timestamp": 7
+        },
+        {
+          "time": 14,
+          "retained_timestamps": [
+            9,
+            10
+          ],
+          "recent_timestamps": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "deleted_timestamp": 8
+        },
+        {
+          "time": 15,
+          "retained_timestamps": [
+            10,
+            11
+          ],
+          "recent_timestamps": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "deleted_timestamp": 9
+        },
+        {
+          "time": 16,
+          "retained_timestamps": [
+            11,
+            12
+          ],
+          "recent_timestamps": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "deleted_timestamp": 10
+        },
+        {
+          "time": 17,
+          "retained_timestamps": [
+            12,
+            13
+          ],
+          "recent_timestamps": [
+            14,
+            15,
+            16,
+            17
+          ],
+          "deleted_timestamp": 11
+        },
+        {
+          "time": 18,
+          "retained_timestamps": [
+            13,
+            14
+          ],
+          "recent_timestamps": [
+            15,
+            16,
+            17,
+            18
+          ],
+          "deleted_timestamp": 12
+        },
+        {
+          "time": 19,
+          "retained_timestamps": [
+            14,
+            15
+          ],
+          "recent_timestamps": [
+            16,
+            17,
+            18,
+            19
+          ],
+          "deleted_timestamp": 13
+        }
+      ],
+      "condition": "distractor_shift",
+      "onset": 3,
+      "onset_score": 5940.021359375237,
+      "onset_threshold": null,
+      "first_threshold_time": 4,
+      "confirmed_cue_times": [],
+      "classification": "lost_with_onset_threshold_unavailable",
+      "local_regret": 0.0,
+      "hindsight_regret": 0.11262588769041368
+    },
+    "rgb_frames": [
+      {
+        "label": "Cue",
+        "time": 3,
+        "unique_rgb_index": 1081,
+        "rgb_sha256": "f2617446845752a426dc0e4cdab51692e155e9c8c5a78b70ef4db6fc67cef442",
+        "png": "frames/21f84a655e94f3fb25aab8a6_t3.png"
+      },
+      {
+        "label": "Query",
+        "time": 19,
+        "unique_rgb_index": 1080,
+        "rgb_sha256": "f1882ad158437357a4ef4b27519334160d73fe423df8046b3eb841f9c8c1311e",
+        "png": "frames/21f84a655e94f3fb25aab8a6_t19.png"
+      },
+      {
+        "label": "Future h3",
+        "time": 22,
+        "unique_rgb_index": 1084,
+        "rgb_sha256": "77c3ab37d44daea6d6a84abf640f03dc8766cf2cc42c4dbc851fa37238fc5359",
+        "png": "frames/21f84a655e94f3fb25aab8a6_t22.png"
+      },
+      {
+        "label": "Future h6",
+        "time": 25,
+        "unique_rgb_index": 1087,
+        "rgb_sha256": "67699aa0fb9a0431d0dda79587a95a79e17aef153ec112ad0522affc751f6b91",
+        "png": "frames/21f84a655e94f3fb25aab8a6_t25.png"
+      },
+      {
+        "label": "Kept 1",
+        "time": 14,
+        "unique_rgb_index": 1080,
+        "rgb_sha256": "f1882ad158437357a4ef4b27519334160d73fe423df8046b3eb841f9c8c1311e",
+        "png": "frames/21f84a655e94f3fb25aab8a6_t14.png"
+      },
+      {
+        "label": "Kept 2",
+        "time": 15,
+        "unique_rgb_index": 1080,
+        "rgb_sha256": "f1882ad158437357a4ef4b27519334160d73fe423df8046b3eb841f9c8c1311e",
+        "png": "frames/21f84a655e94f3fb25aab8a6_t15.png"
+      },
+      {
+        "label": "Hindsight K2 1",
+        "time": 3,
+        "unique_rgb_index": 1081,
+        "rgb_sha256": "f2617446845752a426dc0e4cdab51692e155e9c8c5a78b70ef4db6fc67cef442",
+        "png": "frames/21f84a655e94f3fb25aab8a6_t3.png"
+      },
+      {
+        "label": "Hindsight K2 2",
+        "time": 7,
+        "unique_rgb_index": 1080,
+        "rgb_sha256": "f1882ad158437357a4ef4b27519334160d73fe423df8046b3eb841f9c8c1311e",
+        "png": "frames/21f84a655e94f3fb25aab8a6_t7.png"
+      }
+    ]
+  },
+  {
+    "episode_id": "1e1034765eacf2913409528e",
+    "pair": "ff2ca048f3d180a84fe52a5c",
+    "split": "fresh_development",
+    "policy": "pafu",
+    "seed": 17,
+    "query": 19,
+    "kept_times": [
+      7,
+      15
+    ],
+    "feature_mse": [
+      0.3834534524056098,
+      0.30505640670198914
+    ],
+    "mean_mse": 0.34425492955379944,
+    "local_oracle": {
+      "mean_mse": 0.13202113867900814,
+      "kept_times": [
+        14,
+        15
+      ],
+      "subsets_evaluated": 3
+    },
+    "hindsight_oracle": {
+      "mean_mse": 0.12837258481895797,
+      "kept_times": [
+        8,
+        10
+      ],
+      "subsets_evaluated": 120
+    },
+    "local_regret": 0.2122337908747913,
+    "hindsight_regret": 0.21588234473484147,
+    "recent_only_mse": 0.13374156566511275,
+    "privileged_evidence_mse": 0.34425492955379944,
+    "evidence_times": [
+      7
+    ],
+    "evidence_survived": true,
+    "evidence_timestamp_survived": true,
+    "evidence_equivalent_feature_times": [
+      [
+        7
+      ]
+    ],
+    "first_evidence_information_loss": [
+      null
+    ],
+    "first_evidence_eviction": {
+      "7": null
+    },
+    "logical_memory_maxima": {
+      "resident_observations": 6,
+      "birth_prefix_entries": 6,
+      "pending_contexts": 0,
+      "memory_interface_logical_bytes": 123371,
+      "action_prefix_numeric_bytes": 56,
+      "action_prefix_identifier_bytes": 192,
+      "pending_context_numeric_bytes": 0,
+      "pending_origin_time_bytes": 0,
+      "pending_realized_action_bytes": 0,
+      "total_logical_bytes": 123619,
+      "transient_birth_prefix_entries": 7,
+      "transient_action_prefix_numeric_bytes": 64
+    },
+    "online_seconds": 0.05333608516957611,
+    "controller_parameter_bytes": 82308,
+    "teacher_diagnostic": {
+      "probabilities": [
+        0.6726830005645752,
+        0.1636584848165512,
+        0.1636584848165512
+      ],
+      "kept_times": [
+        7,
+        15
+      ],
+      "same_deletion_as_student": true,
+      "mean_mse": 0.34425492955379944,
+      "teacher_local_regret": 0.2122337908747913,
+      "student_minus_teacher_mse": 0.0,
+      "future_query_count": 6,
+      "offline_only": true
+    },
+    "evidence_usefulness": "not_established",
+    "causal_opportunity": "cue_observed_but_future_action_unknown_to_retention; oracle_gap_not_learnability_proof",
+    "failure_stage": "retained_evidence",
+    "condition": "id",
+    "selection_rule": "Fixed PaFu seed17; largest local regret among cue-retained episodes (fallback: all seed17 episodes)",
+    "local_parent": {
+      "candidate_times": [
+        7,
+        14,
+        15
+      ],
+      "alternatives": [
+        {
+          "kept_times": [
+            7,
+            14
+          ],
+          "mean_mse": 0.33746859268592055
+        },
+        {
+          "kept_times": [
+            7,
+            15
+          ],
+          "mean_mse": 0.34425492955379944
+        },
+        {
+          "kept_times": [
+            14,
+            15
+          ],
+          "mean_mse": 0.13202113867900814
+        }
+      ],
+      "cue_oracle": {
+        "selected_keeps_cue": false,
+        "best_with_cue_mse": 0.33746859268592055,
+        "best_without_cue_mse": 0.13202113867900814,
+        "strictly_prefers_no_cue": true,
+        "requires_no_cue_within_tolerance": true,
+        "strictly_prefers_cue": false,
+        "tie_tolerance": 1e-08
+      }
+    },
+    "rgb_frames": [
+      {
+        "label": "Cue",
+        "time": 7,
+        "unique_rgb_index": 361,
+        "rgb_sha256": "8df0e0c6c553c68cba0530861ea75ad508752620ea32b589c1b3e79706e15337",
+        "png": "frames/1e1034765eacf2913409528e_t7.png"
+      },
+      {
+        "label": "Query",
+        "time": 19,
+        "unique_rgb_index": 360,
+        "rgb_sha256": "0602d2d1de813e2953939bf74b17ceb96927e14cc3686ab901186efaca1cc284",
+        "png": "frames/1e1034765eacf2913409528e_t19.png"
+      },
+      {
+        "label": "Future h3",
+        "time": 22,
+        "unique_rgb_index": 364,
+        "rgb_sha256": "cc604d220a68dc930607267e9403b305081ff696ddd1b8dc05861eac14fa8db3",
+        "png": "frames/1e1034765eacf2913409528e_t22.png"
+      },
+      {
+        "label": "Future h6",
+        "time": 25,
+        "unique_rgb_index": 367,
+        "rgb_sha256": "d0cc4bbf9e95cc230fa5ab4b7f021befeafaa9519f94ce436859e9057746ae1a",
+        "png": "frames/1e1034765eacf2913409528e_t25.png"
+      },
+      {
+        "label": "Kept 1",
+        "time": 7,
+        "unique_rgb_index": 361,
+        "rgb_sha256": "8df0e0c6c553c68cba0530861ea75ad508752620ea32b589c1b3e79706e15337",
+        "png": "frames/1e1034765eacf2913409528e_t7.png"
+      },
+      {
+        "label": "Kept 2",
+        "time": 15,
+        "unique_rgb_index": 360,
+        "rgb_sha256": "0602d2d1de813e2953939bf74b17ceb96927e14cc3686ab901186efaca1cc284",
+        "png": "frames/1e1034765eacf2913409528e_t15.png"
+      },
+      {
+        "label": "Local oracle 1",
+        "time": 14,
+        "unique_rgb_index": 360,
+        "rgb_sha256": "0602d2d1de813e2953939bf74b17ceb96927e14cc3686ab901186efaca1cc284",
+        "png": "frames/1e1034765eacf2913409528e_t14.png"
+      },
+      {
+        "label": "Local oracle 2",
+        "time": 15,
+        "unique_rgb_index": 360,
+        "rgb_sha256": "0602d2d1de813e2953939bf74b17ceb96927e14cc3686ab901186efaca1cc284",
+        "png": "frames/1e1034765eacf2913409528e_t15.png"
+      }
+    ]
+  }
+]

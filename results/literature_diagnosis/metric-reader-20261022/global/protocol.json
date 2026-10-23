@@ -1,0 +1,31 @@
+{
+  "version": "gate-metric-reader-diagnosis-v1",
+  "created_utc": "2026-10-23T00:44:47.849558+00:00",
+  "scope": "posthoc development diagnosis, no untouched confirmation",
+  "data": "all192 fresh episodes; old32train episodes fit evaluation-only position readout",
+  "source_sha256": "09b69635f30950572e913a39ab675ece954e34dd1f86fd7ee225d5dd70a14e83",
+  "readout": "fixed ridge lambda1 on frozen128D input projection, train-only standardization; all train frames",
+  "arms": [
+    "original",
+    "no_transport",
+    "no_velocity",
+    "no_past_action",
+    "uniform_attention"
+  ],
+  "sets": "original feature-loss best-with-cue and best-without-cue over all historical K2; sets never reoptimized for interventions",
+  "metric_split": "exact sibling-future contrast and orthogonal remainder; remainder is not proven task-irrelevant",
+  "metrics": [
+    "standardized feature MSE",
+    "raw feature MSE",
+    "paired contrast",
+    "train-only decoded normalized XY"
+  ],
+  "predictor_training": false,
+  "retention_training": false,
+  "test_arrays": false,
+  "limitations": [
+    "Reader interventions can be out of training distribution; not repaired model performance.",
+    "Future-pair contrast is evaluator-only; position probe is imperfect.",
+    "Output-basis floor is a representational bound, not deployable prediction."
+  ]
+}
