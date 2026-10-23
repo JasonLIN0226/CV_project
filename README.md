@@ -32,6 +32,10 @@ The CV comparison fixes the predictor, recent buffer R=4 and retained capacity K
 - [Development protocol, per-episode results and provenance](results/literature_baselines/dev-20261022/README.md)
 - [Fresh development evaluation and execution evidence](docs/LITERATURE_BASELINE_FRESH_REPORT.md)
 - [Follow-up: WR startup, cue-deletion errors, causal learnability and prior predictive-memory cases](docs/BASELINE_ORACLE_DIAGNOSIS_20261022.md)
+- [Content/time/action isolation, independent confirmation and visual casebook](docs/GATE_CONFIRMATION_AND_CASEBOOK.md)
+- [Actual RGB cases with failure and success controls](docs/GATE_VISUAL_CASEBOOK.md)
+
+The next locked confirmation uses seed 20261023, 96 independent pairs and 13 frozen arms. Its primary masked deletion-cost probe does not beat the matched shuffled-label control and performs worse than reader-attention and diversity. The criterion was locked before A100 encoding; no refitting or arm selection followed the result. Controlled development interventions also show that some cue penalties persist with age and actions fixed, identifying failures in how the shared reader uses content. See the linked reports for full distributions, limitations and actual RGB examples; these results do not establish a new retention method.
 
 The follow-up isolates WR's early-cue startup loss, audits predictor and metric behavior on identical candidate sets, and runs fixed linear learnability probes with matched attention and shuffled-label controls. These exploratory probes do not establish deletion-utility superiority. Oracle gains include future-dependent selection and, after evidence is lost, conflicting optimal actions for identical bounded states. They are not all recoverable by a causal retention policy.
 
