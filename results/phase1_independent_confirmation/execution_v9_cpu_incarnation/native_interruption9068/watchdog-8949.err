@@ -1,0 +1,26 @@
+[2026-10-19T20:21:02.022] error: *** JOB 8949 ON b-10-16 CANCELLED AT 2026-10-19T20:21:02 DUE to SIGNAL Terminated ***
+Traceback (most recent call last):
+  File "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/watchdog.py", line 163, in main
+    require_cpu_incarnation(root,'primary',int(os.environ['SLURM_JOB_ID']),native_job(int(os.environ['SLURM_JOB_ID'])),source_sha)
+  File "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/cpu_incarnation.py", line 37, in require
+    _cpu(native)
+  File "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/cpu_incarnation.py", line 18, in _cpu
+    raise ValueError('An actual RUNNING course CPU allocation is required')
+ValueError: An actual RUNNING course CPU allocation is required
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/watchdog.py", line 230, in <module>
+    main(sys.argv[1])
+  File "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/watchdog.py", line 220, in main
+    cancel(job)
+  File "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/watchdog.py", line 87, in cancel
+    native = native_job(job)
+             ^^^^^^^^^^^^^^^
+  File "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/watchdog.py", line 77, in native_job
+    raw = subprocess.run(['/opt/slurm/bin/scontrol', 'show', 'job', '-o', str(job)],
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/xl4358/phase1_env/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/opt/slurm/bin/scontrol', 'show', 'job', '-o', '8951']' returned non-zero exit status 1.

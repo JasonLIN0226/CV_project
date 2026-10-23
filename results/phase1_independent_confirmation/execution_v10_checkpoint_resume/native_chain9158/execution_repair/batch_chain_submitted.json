@@ -1,0 +1,310 @@
+{
+  "receipts": [
+    {
+      "stage": "train_gpu",
+      "job": 9158,
+      "parent": null,
+      "source_lock_sha256": "4133e4335f87f0b719376f45c71ac9adb52e05b3e2c45550bcb22863472727d9",
+      "prequeued_batch_chain": true,
+      "stdout": "9158"
+    },
+    {
+      "stage": "lock_cpu",
+      "job": 9159,
+      "parent": 9158,
+      "source_lock_sha256": "4133e4335f87f0b719376f45c71ac9adb52e05b3e2c45550bcb22863472727d9",
+      "prequeued_batch_chain": true,
+      "stdout": "9159"
+    },
+    {
+      "stage": "encode_test",
+      "job": 9160,
+      "parent": 9159,
+      "source_lock_sha256": "4133e4335f87f0b719376f45c71ac9adb52e05b3e2c45550bcb22863472727d9",
+      "prequeued_batch_chain": true,
+      "stdout": "9160"
+    },
+    {
+      "stage": "evaluate_cpu",
+      "job": 9161,
+      "parent": 9160,
+      "source_lock_sha256": "4133e4335f87f0b719376f45c71ac9adb52e05b3e2c45550bcb22863472727d9",
+      "prequeued_batch_chain": true,
+      "stdout": "9161"
+    },
+    {
+      "stage": "audit_cpu",
+      "job": 9162,
+      "parent": 9161,
+      "source_lock_sha256": "4133e4335f87f0b719376f45c71ac9adb52e05b3e2c45550bcb22863472727d9",
+      "prequeued_batch_chain": true,
+      "stdout": "9162"
+    },
+    {
+      "stage": "evidence_cpu",
+      "job": 9163,
+      "parent": 9162,
+      "source_lock_sha256": "4133e4335f87f0b719376f45c71ac9adb52e05b3e2c45550bcb22863472727d9",
+      "prequeued_batch_chain": true,
+      "stdout": "9163"
+    }
+  ],
+  "budget_before": {
+    "status": "COMPLETE_SEQUENCE_COST_FORECAST",
+    "actual_GPU_seconds": 45114,
+    "remaining_cap_seconds": 24185,
+    "projected_cumulative_seconds": 55628.00665673106,
+    "remaining_raw": {
+      "training": 2995.7824235099906,
+      "encoding": 5016.966639833541,
+      "maps": 27.0,
+      "native_preflight": 0.0
+    },
+    "fixed_reserve": 1268.295233886,
+    "safety": 1.15,
+    "fits": true,
+    "native": [
+      {
+        "job": 8951,
+        "state": "COMPLETED",
+        "exitcode": "0:0",
+        "elapsed": 1184,
+        "start": "2026-10-19T19:49:06",
+        "end": "2026-10-19T20:08:50",
+        "account": "csci_ga_2271-2026fa",
+        "tres": {
+          "billing": "12",
+          "cpu": "12",
+          "gres/gpu": "1",
+          "mem": "60G",
+          "node": "1"
+        },
+        "native": "8951|COMPLETED|0:0|1184|2026-10-19T19:49:06|2026-10-19T20:08:50|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1",
+        "current_attempt_elapsed": 1184,
+        "prior_attempt_elapsed": 0,
+        "attempt_count": 1,
+        "attempts": [
+          {
+            "job": 8951,
+            "state": "COMPLETED",
+            "exitcode": "0:0",
+            "elapsed": 1184,
+            "start": "2026-10-19T19:49:06",
+            "end": "2026-10-19T20:08:50",
+            "account": "csci_ga_2271-2026fa",
+            "tres": {
+              "billing": "12",
+              "cpu": "12",
+              "gres/gpu": "1",
+              "mem": "60G",
+              "node": "1"
+            },
+            "native": "8951|COMPLETED|0:0|1184|2026-10-19T19:49:06|2026-10-19T20:08:50|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+          }
+        ]
+      },
+      {
+        "job": 9030,
+        "state": "FAILED",
+        "exitcode": "1:0",
+        "elapsed": 326,
+        "start": "2026-10-19T20:16:07",
+        "end": "2026-10-19T20:21:33",
+        "account": "csci_ga_2271-2026fa",
+        "tres": {
+          "billing": "12",
+          "cpu": "12",
+          "gres/gpu": "1",
+          "mem": "60G",
+          "node": "1"
+        },
+        "native": "9030|FAILED|1:0|326|2026-10-19T20:16:07|2026-10-19T20:21:33|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1",
+        "current_attempt_elapsed": 326,
+        "prior_attempt_elapsed": 0,
+        "attempt_count": 1,
+        "attempts": [
+          {
+            "job": 9030,
+            "state": "FAILED",
+            "exitcode": "1:0",
+            "elapsed": 326,
+            "start": "2026-10-19T20:16:07",
+            "end": "2026-10-19T20:21:33",
+            "account": "csci_ga_2271-2026fa",
+            "tres": {
+              "billing": "12",
+              "cpu": "12",
+              "gres/gpu": "1",
+              "mem": "60G",
+              "node": "1"
+            },
+            "native": "9030|FAILED|1:0|326|2026-10-19T20:16:07|2026-10-19T20:21:33|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+          }
+        ]
+      },
+      {
+        "job": 9086,
+        "state": "CANCELLED",
+        "exitcode": "0:0",
+        "elapsed": 2033,
+        "start": "2026-10-19T22:47:09",
+        "end": "2026-10-19T23:21:02",
+        "account": "csci_ga_2271-2026fa",
+        "tres": {
+          "billing": "12",
+          "cpu": "12",
+          "gres/gpu": "1",
+          "mem": "60G",
+          "node": "1"
+        },
+        "native": "9086|CANCELLED by 3850228|0:0|2033|2026-10-19T22:47:09|2026-10-19T23:21:02|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1",
+        "current_attempt_elapsed": 2033,
+        "prior_attempt_elapsed": 0,
+        "attempt_count": 1,
+        "attempts": [
+          {
+            "job": 9086,
+            "state": "CANCELLED",
+            "exitcode": "0:0",
+            "elapsed": 2033,
+            "start": "2026-10-19T22:47:09",
+            "end": "2026-10-19T23:21:02",
+            "account": "csci_ga_2271-2026fa",
+            "tres": {
+              "billing": "12",
+              "cpu": "12",
+              "gres/gpu": "1",
+              "mem": "60G",
+              "node": "1"
+            },
+            "native": "9086|CANCELLED by 3850228|0:0|2033|2026-10-19T22:47:09|2026-10-19T23:21:02|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+          }
+        ]
+      },
+      {
+        "job": 9115,
+        "state": "FAILED",
+        "exitcode": "1:0",
+        "elapsed": 21,
+        "start": "2026-10-19T23:50:40",
+        "end": "2026-10-19T23:51:01",
+        "account": "csci_ga_2271-2026fa",
+        "tres": {
+          "billing": "12",
+          "cpu": "12",
+          "gres/gpu": "1",
+          "mem": "60G",
+          "node": "1"
+        },
+        "native": "9115|FAILED|1:0|21|2026-10-19T23:50:40|2026-10-19T23:51:01|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1",
+        "current_attempt_elapsed": 21,
+        "prior_attempt_elapsed": 0,
+        "attempt_count": 1,
+        "attempts": [
+          {
+            "job": 9115,
+            "state": "FAILED",
+            "exitcode": "1:0",
+            "elapsed": 21,
+            "start": "2026-10-19T23:50:40",
+            "end": "2026-10-19T23:51:01",
+            "account": "csci_ga_2271-2026fa",
+            "tres": {
+              "billing": "12",
+              "cpu": "12",
+              "gres/gpu": "1",
+              "mem": "60G",
+              "node": "1"
+            },
+            "native": "9115|FAILED|1:0|21|2026-10-19T23:50:40|2026-10-19T23:51:01|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+          }
+        ]
+      },
+      {
+        "job": 9118,
+        "state": "CANCELLED",
+        "exitcode": "0:0",
+        "elapsed": 133,
+        "start": "2026-10-19T23:55:40",
+        "end": "2026-10-19T23:57:53",
+        "account": "csci_ga_2271-2026fa",
+        "tres": {
+          "billing": "12",
+          "cpu": "12",
+          "gres/gpu": "1",
+          "mem": "60G",
+          "node": "1"
+        },
+        "native": "9118|CANCELLED by 3850228|0:0|133|2026-10-19T23:55:40|2026-10-19T23:57:53|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1",
+        "current_attempt_elapsed": 133,
+        "prior_attempt_elapsed": 0,
+        "attempt_count": 1,
+        "attempts": [
+          {
+            "job": 9118,
+            "state": "CANCELLED",
+            "exitcode": "0:0",
+            "elapsed": 133,
+            "start": "2026-10-19T23:55:40",
+            "end": "2026-10-19T23:57:53",
+            "account": "csci_ga_2271-2026fa",
+            "tres": {
+              "billing": "12",
+              "cpu": "12",
+              "gres/gpu": "1",
+              "mem": "60G",
+              "node": "1"
+            },
+            "native": "9118|CANCELLED by 3850228|0:0|133|2026-10-19T23:55:40|2026-10-19T23:57:53|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+          }
+        ]
+      },
+      {
+        "job": 9120,
+        "state": "CANCELLED",
+        "exitcode": "0:0",
+        "elapsed": 565,
+        "start": "2026-10-20T00:01:40",
+        "end": "2026-10-20T00:11:05",
+        "account": "csci_ga_2271-2026fa",
+        "tres": {
+          "billing": "12",
+          "cpu": "12",
+          "gres/gpu": "1",
+          "mem": "60G",
+          "node": "1"
+        },
+        "native": "9120|CANCELLED by 3850228|0:0|565|2026-10-20T00:01:40|2026-10-20T00:11:05|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1",
+        "current_attempt_elapsed": 565,
+        "prior_attempt_elapsed": 0,
+        "attempt_count": 1,
+        "attempts": [
+          {
+            "job": 9120,
+            "state": "CANCELLED",
+            "exitcode": "0:0",
+            "elapsed": 565,
+            "start": "2026-10-20T00:01:40",
+            "end": "2026-10-20T00:11:05",
+            "account": "csci_ga_2271-2026fa",
+            "tres": {
+              "billing": "12",
+              "cpu": "12",
+              "gres/gpu": "1",
+              "mem": "60G",
+              "node": "1"
+            },
+            "native": "9120|CANCELLED by 3850228|0:0|565|2026-10-20T00:01:40|2026-10-20T00:11:05|csci_ga_2271-2026fa|billing=12,cpu=12,gres/gpu=1,mem=60G,node=1"
+          }
+        ]
+      }
+    ],
+    "cap_seconds": 69299,
+    "scientific_pass": false,
+    "UTC": "2026-10-20T00:33:35.893538+00:00"
+  },
+  "independent_of_OOD_and_local_SSH": true,
+  "source_unchanged": true,
+  "starting_epoch": 114,
+  "reencoded_frames": 0
+}

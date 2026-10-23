@@ -1,0 +1,152 @@
+{
+  "UTC": "2026-10-19T20:18:34.733170+00:00",
+  "job": 9030,
+  "native_GPU": {
+    "JobId": "9030",
+    "JobName": "p1-train_gpu-76fd0dd1",
+    "UserId": "xl4358(3850228)",
+    "GroupId": "xl4358(3850228)",
+    "MCS_label": "N/A",
+    "Priority": "14686",
+    "Nice": "0",
+    "Account": "csci_ga_2271-2026fa",
+    "QOS": "normal",
+    "JobState": "RUNNING",
+    "Reason": "None",
+    "Dependency": "(null)",
+    "Requeue": "1",
+    "Restarts": "0",
+    "BatchFlag": "1",
+    "Reboot": "0",
+    "ExitCode": "0:0",
+    "RunTime": "00:02:27",
+    "TimeLimit": "03:00:00",
+    "TimeMin": "N/A",
+    "SubmitTime": "2026-10-19T20:14:17",
+    "EligibleTime": "2026-10-19T20:14:32",
+    "AccrueTime": "Unknown",
+    "StartTime": "2026-10-19T20:16:07",
+    "EndTime": "2026-10-19T23:16:07",
+    "Deadline": "N/A",
+    "SuspendTime": "None",
+    "SecsPreSuspend": "0",
+    "LastSchedEval": "2026-10-19T20:14:32",
+    "Scheduler": "Backfill",
+    "Partition": "c12m85-a100-1",
+    "AllocNode:Sid": "3-gcp-r2:7116",
+    "ReqNodeList": "(null)",
+    "ExcNodeList": "(null)",
+    "NodeList": "b-19-55",
+    "BatchHost": "b-19-55",
+    "NumNodes": "1",
+    "NumCPUs": "12",
+    "NumTasks": "1",
+    "CPUs/Task": "4",
+    "ReqB:S:C:T": "0:0:*:*",
+    "ReqTRES": "cpu=4,mem=60G,node=1,billing=4,gres/gpu=1",
+    "AllocTRES": "cpu=12,mem=60G,node=1,billing=12,gres/gpu=1",
+    "Socks/Node": "*",
+    "NtasksPerN:B:S:C": "1:0:*:*",
+    "CoreSpec": "*",
+    "MinCPUsNode": "4",
+    "MinMemoryNode": "60G",
+    "MinTmpDiskNode": "0",
+    "Features": "(null)",
+    "DelayBoot": "00:00:00",
+    "OverSubscribe": "NO",
+    "Contiguous": "0",
+    "Licenses": "(null)",
+    "LicensesAlloc": "(null)",
+    "Network": "(null)",
+    "Command": "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/stage.sh",
+    "WorkDir": "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation",
+    "StdErr": "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/train_gpu-9030.err",
+    "StdIn": "/dev/null",
+    "StdOut": "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/train_gpu-9030.out",
+    "TresPerNode": "gres/gpu:1",
+    "TresPerTask": "cpu=4"
+  },
+  "parent_CPU": {
+    "job": 9029,
+    "state": "COMPLETED",
+    "exitcode": "0:0",
+    "elapsed": 163,
+    "start": "2026-10-19T20:11:37",
+    "end": "2026-10-19T20:14:20",
+    "account": "csci_ga_2271-2026fa",
+    "tres": {
+      "billing": "24",
+      "cpu": "24",
+      "mem": "16G",
+      "node": "1"
+    },
+    "native": "9029|COMPLETED|0:0|163|2026-10-19T20:11:37|2026-10-19T20:14:20|csci_ga_2271-2026fa|billing=24,cpu=24,mem=16G,node=1",
+    "current_attempt_elapsed": 163,
+    "prior_attempt_elapsed": 0,
+    "attempt_count": 1,
+    "attempts": [
+      {
+        "job": 9029,
+        "state": "COMPLETED",
+        "exitcode": "0:0",
+        "elapsed": 163,
+        "start": "2026-10-19T20:11:37",
+        "end": "2026-10-19T20:14:20",
+        "account": "csci_ga_2271-2026fa",
+        "tres": {
+          "billing": "24",
+          "cpu": "24",
+          "mem": "16G",
+          "node": "1"
+        },
+        "native": "9029|COMPLETED|0:0|163|2026-10-19T20:11:37|2026-10-19T20:14:20|csci_ga_2271-2026fa|billing=24,cpu=24,mem=16G,node=1"
+      }
+    ]
+  },
+  "encoding_complete_frames": 62418,
+  "CPU_feature_audit_passed": true,
+  "model_role": "reference",
+  "task": "gate",
+  "seed": 17,
+  "actual_epoch": 20,
+  "actual_step": 1280,
+  "required_epochs": 120,
+  "completed_models": 0,
+  "required_models": 12,
+  "original_thresholds_unchanged": true,
+  "CPU_compact_files": {
+    "stage_completed/fit_cpu.json": {
+      "bytes": 201,
+      "sha256": "ce1fdb095401f4f9b304d8cf525c2518720ced55e7c640fc6e98613913788de3"
+    },
+    "receipts/train_gpu_submission.json": {
+      "bytes": 234,
+      "sha256": "41dcccc451eb15720e641670a5d68c38599cce1316e5394607a21ee01279fde5"
+    },
+    "fresh/features/train_validation_feature_audit.json": {
+      "bytes": 320,
+      "sha256": "3105766de8bc4bc207eea04ecfdeeba756ed960da3c9b247cb4ebecf04b1bfbf"
+    },
+    "fresh/features/normalization.json": {
+      "bytes": 255,
+      "sha256": "ad71b626cee1ef2978d98a29e9969f27cf71c79c974c36be3cb47489ab5150c9"
+    },
+    "fresh/predictor/gate/basis.json": {
+      "bytes": 270,
+      "sha256": "7d38af4f6c8ed67806c3b953da8838734090e7884ab87d1fc7905b8cf8894da0"
+    },
+    "fresh/predictor/motion/basis.json": {
+      "bytes": 272,
+      "sha256": "fdd1ae905e927232e475f7f0f0d2307d1cfebc2e6c0792ca9c35d99f694dc20e"
+    },
+    "fresh/probes/train_validation_readout_lock.json": {
+      "bytes": 8936,
+      "sha256": "3c9aba17df6dc08d9f62671b7424f8c86e4b5faa4c539cab5c2e87ce08df593d"
+    },
+    "fresh/observation_maps/preparation.json": {
+      "bytes": 735,
+      "sha256": "133cae11e0f2375c43583de3d8ab64ee7107b0cf8ba1948e5b4dfb99dd1aa959"
+    }
+  },
+  "scientific_pass_not_implied": true
+}

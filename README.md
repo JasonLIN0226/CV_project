@@ -1,111 +1,95 @@
 # Bounded Visual Memory
 
-Can the prediction error caused by deleting an observation help decide what a limited visual memory should retain?
+Can the prediction error caused by deleting an observation identify what limited visual memory should retain?
 
-## Predictor diagnosis and independent continuation — 20 October 2026
+## Final independent confirmation — 20 October 2026
 
-The original four-epoch predictors depended on history but did not benefit from it
-on validation. A fixed CPU follow-up now identifies a useful **Gate development
-candidate** after removing input whitening; **Motion still lacks a net history
-benefit**. These are newly trained models, separate from the teammate's missing
-final repaired checkpoints.
+**Phase1 did not pass the registered rule.** Gate passes 155/155 checks; Motion passes 147/155. The independent raw-data audit passed. All 12 fresh models completed 120 epochs and 7,680 steps before the fresh seed 9137 test was opened. No retention policy was trained as part of this formal Phase1 study.
 
-- **Why validation worsened:** the paired training objective can improve while
-  ordinary MSE worsens. In Gate, whitening also amplified directions almost absent
-  from training: 81/128 coordinates contributed 78% of validation projected energy.
-  Training-only masking reduced this harm but did not recover useful history.
-- **Fixed follow-up completed:** three projection arms × two tasks × 40 epochs,
-  with the same architecture, output basis, objective and seed. Checkpoint selection
-  includes epoch zero. Gate's no-whitening arm selected epoch 35 and reduced
-  six-sampler validation MSE from 0.105936 to 0.097827. Correct privileged K=2
-  history scored 0.074275 versus recent-only 0.102571; wrong sibling history scored
-  0.196949. Motion's correct-history condition still did not beat recent-only.
-- **Gate Phase 2 continuation executed:** the new checkpoint was explicitly bound
-  to six online baselines (48 episode/policy rows, 96 horizon losses) and fresh
-  deletion supervision (94 train + 24 validation parents, 354 equal-K forks,
-  708 losses). All losses were independently checked from saved predictions.
-  Diversity and attention are strong baselines on this development split.
-- **Independent PushT corpus prepared:** 48 episodes, split 32/8/8, with 4,656
-  frames per masked/unmasked variant. Absolute XY actions remain ordered, and
-  masking occurs before encoding. This completes data preparation, not baseline
-  model planning or history-necessity validation.
-- **Final checks:** 229 tests passed with zero failures, errors or skips, plus
-  dependency checks, both historical evidence verifiers and the real PushT
-  interface. `python tools/verify_phase2_history.py` verifies the published
-  diagnosis receipts and arithmetic without rerunning models.
-
-The Gate control improvement uses four repeatedly inspected validation pairs and
-privileged evidence. It is **not learned-retention performance or an independent
-generalization result**. The new runs use CPU and existing downloaded I-JEPA
-features; they do not consume another A100 allocation. Original snapshots remain
-unchanged, and no test arrays were opened in predictor diagnosis or follow-up.
-
-[Diagnosis, controls and reproduction](docs/PHASE2_HISTORY_DIAGNOSIS.md) ·
-[Gate baseline and deletion continuation](docs/PHASE2_GATE_FOLLOWUP_CONTINUATION.md) ·
-[PushT preparation and remaining planning work](docs/PHASE2_PUSHT_PLANNING_PREPARATION.md) ·
-[Portable evidence](results/phase2_history/20261020)
-
-## Phase 2 development execution — 20 October 2026
-
-A separate, newly initialized development run now implements the proposal's bounded memory interface, varied-history training with memory dropout, and frozen equal-capacity deletion supervision. It uses the retained source and official frozen I-JEPA, without claiming to reproduce the missing latest repaired Phase 1 models.
-
-- **Actual A100 execution completed:** job 9285, A100-SXM4-40GB with matching physical UUID, 169 allocated GPU seconds. Real PushT interface encoding and 128 new controlled Gate/Motion episodes / 3,616 frames passed interface and sample checks.
-- **New Gate/Motion CPU predictors trained:** four epochs each with parameter updates and exact frozen validation replay. Validation was slightly worse than initialization; no quality improvement is claimed.
-- **Deletion pilot completed:** 238 distinct streaming parents (190 train / 48 validation), 714 equal-K forks and 1,428 finite multi-horizon loss values. This is development supervision, not a trained retention scorer or model-driven planning result.
-- **Six retention baselines executed:** FIFO, reservoir, temporal buckets, visual diversity, prediction surprise and attention produced 96 episode/policy rows and 192 horizon losses on 16 validation episodes (eight independent pairs). This small, reused-validation pilot is not a generalization result; total auxiliary memory bytes differ between policies.
-- **Software checks at that snapshot:** 181 tests passed with no failures, errors or skips. All task compute sessions ended, and full new data/model and baseline-result backups were downloaded and hash-verified.
-
-[Execution evidence](docs/PHASE2_HPC_RUN.md) · [Training contract](docs/PHASE2_PREDICTOR_PILOT.md) · [Deletion pilot](docs/PHASE2_DELETION_PILOT.md) · [Six-policy pilot](docs/PHASE2_RETENTION_BASELINE_PILOT.md) · [Missing original assets](docs/PHASE1_HANDOFF_CHECKLIST_ZH.md)
-
-The older report and GPU ledger below describe the original study and are preserved separately. Its additional `Phase1_GO` criteria are not new prerequisites imposed on the proposal's Phase 2.
-
-## Latest verified status — 19 October 2026
-
-**Development checks are satisfied for both tasks. Full Phase1_GO remains unestablished: fresh independent confirmation did not run. No retention policy has been trained.**
-
-| Registered checks satisfied | Gate | Motion |
+| Registered checks | Gate | Motion |
 |---|---:|---:|
-| Original prediction requirements | 51/51 | 51/51 |
-| Additional fixed-reference requirements | 32/32 | 32/32 |
-| Task-specific deletion diagnostics | 72/72 | 72/72 |
+| Original prediction (includes evidence probes) | 51/51 | 51/51 |
+| Fixed-reference prediction | 32/32 | 32/32 |
+| Deletion reliability | 72/72 | 64/72 |
+| Total | 155/155 | 147/155 |
 
-Counts are correlated registered comparisons, not independent trials or prediction-accuracy percentages. Gate's deletion count measures critical-versus-other deletion contrasts; Motion's measures cross-horizon, future-informed oracle comparisons. Neither establishes a deployable retention policy. Development data have been repeatedly inspected.
+The 302/310 total counts correlated comparisons, not independent trials or accuracy. All eight failures concern long-gap Motion against reject-newest: feature error improves by 9.4–11.1%, but decoded-position gain has a 95% interval containing zero. This supports a task-alignment limitation; it does not identify a unique causal mechanism. Under the unchanged all-checks rule, retention-policy training cannot begin within that registered Phase1 protocol. The separate development diagnostics below do not change this conclusion or claim that its gate has passed.
 
-![Audited development checks](reports/independent_confirmation_boundary/development_counts.png)
+## Verified model handoff
 
-Gate's complete temporal-extrapolation contribution was disabled. Motion uses frozen-reference visual prediction plus guarded position and a fixed equal-weight training-only observation-innovation map. Neural predictors remained frozen during this final repair; two small maps were fitted. All original thresholds were retained. This is a controlled synthetic **I-JEPA** prototype, not a V-JEPA or real-video confirmation.
+[Download the development and independent-confirmation model assets](https://github.com/JasonLIN0226/CV_project/releases/tag/phase1-asset-handoff-20261020-v2) · [Asset mapping, exact versions and verification instructions](handoff/README.md) · [Publication and loading audit](handoff/publication_audit.json).
 
-[Full result explanation and limitations](docs/PHASE1_LATEST.md) · [Illustrated English Word report](reports/independent_confirmation_boundary/Phase1_Confirmation_Review.docx) · [Published evidence manifest](results/phase1_latest/manifest.json)
+The two official model families are separate: the original development family uses data seed 6301; the fresh independent-confirmation family uses data seed 9137. The Release provides model checkpoints, transforms, maps, metadata and frozen source. Large weights live in Release assets, not Git history. Official I-JEPA encoder weights and the large RGB/feature caches are excluded from the handoff; see its asset inventory and loading instructions for the exact scope. Historical scratch paths identify provenance and are not required local paths.
 
-## Independent confirmation and GPU accounting
+## Literature-baseline diagnostics — 22 October 2026
 
-CPU execution equivalence passed, but fresh seed 9137 was never generated or accessed: **0/12 new neural models and 0/2 new maps**. A failed startup job underwent 56 automatic requeues, creating 57 GPU allocation records without entering the experiment script. Cumulative GPU allocation reached **39,651 seconds (11 h 00 m 51 s)** against the approved **28,800 seconds (8 h)**, an excess of **10,851 seconds (3 h 00 m 51 s)**.
+The current development track compares **Worth Remembering-inspired (WR)** and **PaFu-inspired** retention mechanisms with existing policies and offline oracle controls. These are explicitly documented mechanism adaptations, not reproductions of the original papers. They use the **previously frozen, independently trained Gate development predictor** from the 20 October follow-up (no whitening, unit-column projection, epoch 35). They do not load or continue the formal 12-model independent-confirmation family, and their results cannot be attributed to that family.
 
-The agent's execution guard failed to cover configuration and automatic requeue stages. This is an execution-protection failure, not a fresh scientific rejection. All compute tasks are ended, the temporary evidence node was released, and monitoring was deleted. New GPU submissions are stopped under the exhausted budget.
+The CV comparison fixes the predictor, recent buffer R=4 and retained capacity K=2; all retained items enter the same reader. WR uses a causal standardized-L1/Gaussian/MAD event mechanism adapted to the recent buffer. PaFu trains a causal retention student from offline temporal reader-attention labels, including future queries; future observations are unavailable to the deployed student. This trains a literature-baseline student, **not the proposal's own deletion-utility scorer**. Equal K does not imply equal auxiliary bytes or compute. Privileged-evidence, local replacement and all-history hindsight controls have different information access and are reported separately.
 
-[Native accounting](results/phase1_latest/budget_boundary.json) · [57 allocation records](results/phase1_latest/startup_allocations.csv) · [Independent accounting replay](results/phase1_latest/budget_local_audit.json)
+- [Development results, oracle comparisons and bad-case evidence](docs/LITERATURE_BASELINE_DEVELOPMENT_REPORT.md)
+- [Independent code and artifact audit](docs/LITERATURE_BASELINE_AUDIT.md)
+- [Development protocol, per-episode results and provenance](results/literature_baselines/dev-20261022/README.md)
+- [Fresh development evaluation and execution evidence](docs/LITERATURE_BASELINE_FRESH_REPORT.md)
 
-## Verify the published update
+The first development report reuses four previously inspected validation pairs; it is not independent generalization evidence. The fresh diagnostic protocol uses separate seed 20261022 scenes, the old normalization and already frozen predictor/student checkpoints. Its ID, longer-gap and distractor-shift conditions are new **development** data, not the official seed 9137 test and not three established failure mechanisms. The fresh report is the authority for its execution status and results.
 
-```bash
-python tools/verify_phase1_latest.py
-```
+## Historical Phase 2 development — 20 October 2026
 
-This standard-library-only check verifies the evidence hashes, registered comparison counts, allocation durations and final status. It does not run models, use a GPU or replace the original raw-data audits. Detailed per-comparison estimates and confidence intervals are in the [Gate](results/phase1_latest/gate_summary.json) and [Motion](results/phase1_latest/motion_summary.json) evidence.
+This separate implementation track established the proposal's bounded-memory interface, generated independent controlled data, diagnosed validation degradation, and ran equal-capacity deletion forks and retention controls. The follow-up recovered useful history dependence for the independent Gate development predictor; Motion did not show a net history benefit. These experiments predate the formal model handoff and do not reproduce either official model family.
 
-## Existing implementation and earlier study
+- [Predictor diagnosis, history controls and reproduction](docs/PHASE2_HISTORY_DIAGNOSIS.md)
+- [Gate baseline and deletion follow-up](docs/PHASE2_GATE_FOLLOWUP_CONTINUATION.md)
+- [A100 encoding and interface execution evidence](docs/PHASE2_HPC_RUN.md)
+- [Predictor training contract and initial pilot](docs/PHASE2_PREDICTOR_PILOT.md)
+- [Equal-capacity deletion pilot](docs/PHASE2_DELETION_PILOT.md)
+- [Six-policy retention pilot](docs/PHASE2_RETENTION_BASELINE_PILOT.md)
+- [PushT data preparation and remaining planning work](docs/PHASE2_PUSHT_PLANNING_PREPARATION.md)
+- [Portable diagnosis evidence](results/phase2_history/20261020)
 
-The repository also retains the frozen predictor, equal-capacity deletion assay and earlier numerical evidence. The original report and results below describe the earlier baseline; use the dated update above for the current status.
+PushT preparation is not completed model-driven baseline planning or a demonstration that planning requires history. Historical reports describe the assets and checks available when they were written; use the current [model handoff](handoff/README.md) for asset availability. The proposal's deletion-utility scorer and downstream planning results must be evaluated separately from these interface and diagnostic results.
 
-- [Experimental design and test definitions](docs/EXPERIMENTS.md)
-- [Earlier baseline results](docs/RESULTS.md)
-- [Earlier illustrated report](reports/Phase1_Report.pdf)
+## Formal Phase1 reports and data
+
+- [Current detailed experiment walkthrough — Word](reports/phase1_experimental_walkthrough_20261020/Phase1_Experimental_Walkthrough_and_Evaluation_Report.docx)
+- [Current detailed experiment walkthrough — PDF](reports/phase1_experimental_walkthrough_20261020/Phase1_Experimental_Walkthrough_and_Evaluation_Report.pdf)
+- [Independent-confirmation technical report — Word](reports/phase1_independent_confirmation_20261020/Phase1_Independent_Confirmation_Report.docx)
+- [Verified numerical results](results/phase1_independent_confirmation/local_verified_results_20261020.json)
+- [Current result and limitations](docs/PHASE1_LATEST.md)
 - [Reproduction and external assets](docs/REPRODUCIBILITY.md)
+- [Cleanup record](docs/CLEANUP_MANIFEST.json)
+
+The formal Phase1 experiment is a controlled synthetic **I-JEPA** study, with a supervised training-only position readout and observed-RGB guard. It is not V-JEPA or real-video validation. Both tasks use 512 training pairs, 96 validation pairs, and three test conditions with 256 pairs each. Reference and candidate models use seeds 17, 29 and 43. All train-only transforms, two maps and models were locked before test generation. The separate development track above has its own data and model provenance.
+
+## Verify and reproduce
 
 ```bash
 python -m pip install -r requirements.txt
+python tools/verify_independent_confirmation.py
 python tools/verify_results.py
-python -m pytest -q experiments/deletion/test_assay.py
+python tools/verify_phase1_latest.py
+python tools/verify_phase2_history.py
+python -m pytest -q
 ```
 
-Those commands verify the earlier retained evidence and assay software. Model weights, encoded arrays and large raw artifacts remain external HPC assets. No historical Slurm allocation or SSH endpoint is a live connection.
+The first verifier checks the published Phase1 snapshot hashes and final counts without HPC access. The other verifiers check retained historical evidence. Local verification is not a repeat of HPC model inference or its raw-data audit. Literature-baseline protocols and execution receipts are linked in their reports above.
+
+```bash
+python -m pip install -r requirements-report.txt
+python tools/build_phase1_experimental_walkthrough.py
+```
+
+## Repository layout
+
+- `experiments/independent_confirmation/`: fresh Phase1 confirmation methods and statistics.
+- `results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/`: final frozen Phase1 execution source; its dependencies and earlier snapshots are retained for provenance.
+- `handoff/`: official model-family mapping, portable loading interface and asset verification.
+- `experiments/phase2/`: independent development interfaces, predictor diagnostics and literature-baseline implementations.
+- `results/literature_baselines/`: baseline protocols, compact results, figures and provenance.
+- Other `experiments/` and `results/` folders: development methods, controls, negative results and audit evidence; read each dated report for its scope.
+- `tests/`: local software checks; `tools/`: analysis, verification and report generation.
+- `reports/`: the formal Phase1 detailed walkthrough, independent-confirmation technical report, source figures and machine-readable manifests.
+
+Official model assets are downloadable from the handoff Release; encoded arrays and large raw HPC outputs remain external under recorded asset paths. The formal Phase1 closeout recorded 53,544 of the approved 69,299 GPU seconds and ended its HPC jobs. That ledger does not describe the later literature-baseline diagnostics; their execution evidence is recorded separately. Historical connection aliases are not live endpoints.
+
+The formal Phase1 publication removed superseded reports, outdated prose, duplicate renders, deployment ZIPs and caches while preserving failed scientific outcomes and immutable locks. It did not change thresholds or launch retention experiments. The separately documented development work above does not revise that publication's registered result.

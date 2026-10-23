@@ -1,0 +1,102 @@
+{
+  "scope": "Local reanalysis of revealed6301 results and historical64-pair full-history diagnosis; no new inference",
+  "original": {
+    "evidence_probe": {
+      "passed": 3,
+      "total": 3
+    },
+    "privileged_benefit": {
+      "passed": 8,
+      "total": 24
+    },
+    "content_intervention": {
+      "passed": 24,
+      "total": 24
+    }
+  },
+  "fixed_reference": {
+    "candidate_vs_reference_recent": {
+      "passed": 8,
+      "total": 24
+    },
+    "critical_absolute_mse_reduction": {
+      "passed": 0,
+      "total": 8
+    }
+  },
+  "split_components": {
+    "test_id": {
+      "feature": 8,
+      "position": 8
+    },
+    "test_long_gap": {
+      "feature": 0,
+      "position": 8
+    },
+    "test_distractor_shift": {
+      "feature": 0,
+      "position": 7
+    }
+  },
+  "position_component_passed": 23,
+  "feature_component_passed": 8,
+  "critical_seed_mean_failures": [
+    {
+      "kind": "critical_absolute_mse_reduction",
+      "slice": "motion/test_long_gap/h3/seedall_seeds_mean",
+      "passed": false,
+      "absolute_mse_reduction": {
+        "mean": -0.02307144186246054,
+        "low": -0.029151892237132417,
+        "high": -0.017236735486100472,
+        "pairs": 128
+      },
+      "reference_privileged_mse": 0.14279286849099054,
+      "candidate_privileged_mse": 0.1658643103534511
+    },
+    {
+      "kind": "critical_absolute_mse_reduction",
+      "slice": "motion/test_long_gap/h6/seedall_seeds_mean",
+      "passed": false,
+      "absolute_mse_reduction": {
+        "mean": -0.018291375430029195,
+        "low": -0.023745997444711973,
+        "high": -0.012853223681425639,
+        "pairs": 128
+      },
+      "reference_privileged_mse": 0.162075405450499,
+      "candidate_privileged_mse": 0.18036678088052818
+    }
+  ],
+  "diagnostic_scope": "First64 pairs per split, three seeds, full_history only; not full-test acceptance and no fresh evidence",
+  "GPU_budget": {
+    "cap_seconds": 28800,
+    "native_settled_by_job": {
+      "7477": 100,
+      "7480": 126,
+      "7485": 6021,
+      "7524": 164,
+      "7535": 3386,
+      "7574": 2807,
+      "7582": 119
+    },
+    "settled_seconds": 12723,
+    "remaining_seconds": 16077,
+    "new_seconds_this_review": 0
+  },
+  "provisional_confirmation_forecast": {
+    "encoding_seconds": 4910.9994851844385,
+    "reference_training_seconds": 1870.1223400800052,
+    "candidate_training_seconds": 3324.18998483999,
+    "margin": 1.15,
+    "fixed_allowance_seconds": 900,
+    "encoder_setup_twice_seconds": 68.295233886,
+    "total_seconds": 12589.403815506099,
+    "residual_after_reservation_seconds": 3487.596184493901,
+    "qualification": "Unvalidated projection using current architecture; excludes queue and CPU fitting/evaluation wall. Remeasure for any new Motion candidate. Not an executed confirmation or funding guarantee."
+  },
+  "confirmation_eligible": false,
+  "fresh9137_opened_this_review": false,
+  "Phase1_GO": false,
+  "integrity": "Retained raw-digest identity matches independent audit; historical diagnostic SHA matches native triple-SHA receipt. No raw model inference replay this turn."
+}

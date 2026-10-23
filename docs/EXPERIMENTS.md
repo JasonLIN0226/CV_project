@@ -1,3 +1,5 @@
+> Historical development design. For the completed fresh confirmation, use the current report and PHASE1_LATEST.md.
+
 # Experimental design
 
 ## Overall goal and this stage

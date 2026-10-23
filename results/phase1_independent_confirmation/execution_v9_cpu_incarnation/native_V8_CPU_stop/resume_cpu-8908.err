@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/scratch/xl4358/phase1_independent_confirmation_execution_v8_efficiency/orchestrator.py", line 279, in <module>
+    if __name__=='__main__':main(sys.argv[1])
+                            ^^^^^^^^^^^^^^^^^
+  File "/scratch/xl4358/phase1_independent_confirmation_execution_v8_efficiency/orchestrator.py", line 271, in main
+    try:execute(stage)
+        ^^^^^^^^^^^^^^
+  File "/scratch/xl4358/phase1_independent_confirmation_execution_v8_efficiency/orchestrator.py", line 172, in execute
+    startup_ensure(ROOT,protocol,GPU_LIMITS)
+  File "/scratch/xl4358/phase1_independent_confirmation_execution_v8_efficiency/startup_client.py", line 83, in ensure
+    raise TimeoutError('Independent peer not ready; no GPU submitted')
+TimeoutError: Independent peer not ready; no GPU submitted

@@ -1,0 +1,75 @@
+{
+  "created_utc": "2026-10-18T22:02:28.116626+00:00",
+  "scope": "Only original6301 Motion validation, all96pairs/192episodes/3seeds/6clockpools/3deletions/2horizons =20736cached vectors. Reconstruct unchanged observed-guard forecasts without model calls.",
+  "parent": "/scratch/xl4358/phase1_motion_feature_deletion_validation/output/job_8339",
+  "guard": "/scratch/xl4358/phase1_motion_observation_guard_validation/output/job_8347",
+  "data": "/scratch/xl4358/phase1_v3_dev/motion/reference",
+  "parent_summary_sha256": "d445924245e3d986053cf0fe734c282b77699a92d7ae362ecadc25e5aceff77e",
+  "guard_summary_sha256": "5522de82d1eac73323c21cc535f53ca747a850ed94bb13ffc10f2526258f2e6c",
+  "parent_vectors_sha256": "69db8bd2551a8669711cd6f9108f0af4ad79dfc8d246c8ea1e205368265e239b",
+  "parent_raw_sha256": "5cd6ad892b2cd7c1311a811cdf3f23fe04f5cffa5e7abff403af1f9cd026316f",
+  "guard_raw_sha256": "97e7abc7c9a984421e5224a9f2e68a3a46ea43e780647638ac0d6d023d48f42f",
+  "parent_asset_ledger_sha256": "fd5fe77a35003fc1be1bf90850259ec8fe2ca6c0c3e182f48794bd1a5b5aedae",
+  "guard_asset_ledger_sha256": "9a5bbbd2b55385370cf6fddd2d6bfa5b10d51c4b0cf1c953a49b5578c5de0a3f",
+  "decomposition": [
+    "Use normalized5120-space residual e=prediction-target, unchanged train-only normalization and frozen linear position decoder A,b.",
+    "Exact orthogonal split onto column(A): visible=||Proj_A(e)||^2/5120; null=total-visible. Null means invisible only to this fixed position decoder, not semantically irrelevant.",
+    "Secondary orthogonal128-basis split: task-sensitive span(Q_B Q_C), B-null span within basis orthogonal to Q_C, outside-B. Report within-fork spreads; large constant target residual cannot change ranking.",
+    "Task identity: pred_position-truth=(prediction-target)A + (targetA+b-truth); measure readout-consistency, target decoder residual, cross term."
+  ],
+  "scoring_diagnostics": [
+    "original full feature score (stored exact)",
+    "float64 reconstructed full score (precision control)",
+    "exact readout-visible feature energy",
+    "readout-null feature energy",
+    "within-basis task-sensitive energy",
+    "within-basis readout-null energy",
+    "decoded future-feature consistency ||eA||\u00b2/2",
+    "uniform",
+    "task-optimal scoring lower bound"
+  ],
+  "rankings": "All fixed before output inspection. No selecting a method/weight from validation grid. All score choices are future-informed diagnosis only. Preserve ties/flat pools.",
+  "tie_tolerances": {
+    "feature": 1e-08,
+    "position": 1e-12
+  },
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 0,
+    "unit": "96 matched scene pairs; average pools/siblings/seeds inside pair first",
+    "CI": "95percentile descriptive unadjusted, no new pass rule"
+  },
+  "analysis": [
+    "Compare all score choices on task-optimal agreement and task regret.",
+    "On feature/task pair-order conflicts, measure null-overrides-visible and B-null-overrides-B-sensitive signs.",
+    "Compare full original choice vs reconstructed float64 choice to expose precision effects.",
+    "Report residual energy fractions and within-fork range of each component; do not infer rank causality from energy dominance alone.",
+    "Independent QR/SVD reconstruction of every cached vector component and original scalar replay; independent paired CI and ranking replay."
+  ],
+  "boundary": {
+    "new_model_calls": 0,
+    "training": false,
+    "fitting": false,
+    "GPU": 0,
+    "policy": false,
+    "test_split_access": false,
+    "fresh9137": false,
+    "original_gates_changed": false
+  },
+  "numerical_checks": {
+    "parent_scalar_replay_tolerance": 1e-07,
+    "component_reconstruction_absolute": 1e-09,
+    "task_identity_absolute": 1e-09
+  },
+  "CPU": {
+    "threads": 4,
+    "GB": 16,
+    "minutes": 30,
+    "allocations": 1
+  },
+  "limitations": [
+    "Readout-specific subspace is not all task semantics.",
+    "Synthetic RGB guard and frozen decoder; no V-JEPA claim or byte-budget parity.",
+    "Changing a diagnostic score does not repair the full-feature predictor or alter acceptance."
+  ]
+}

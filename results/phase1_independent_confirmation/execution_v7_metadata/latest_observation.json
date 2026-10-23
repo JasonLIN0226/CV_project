@@ -1,0 +1,73 @@
+{
+  "UTC": "2026-10-19T18:42:15.230845+00:00",
+  "route_job": 8883,
+  "native_route_state": "RUNNING",
+  "squeue": "8886|p1-encode_train-a88e1d53|RUNNING|2:09|b-19-16\n8885|p1-cleanup-a88e1d53|RUNNING|4:39|b-10-10\n8883|p1-budget-watch-a88e1d53|RUNNING|6:09|b-10-83\n",
+  "receipts": {
+    "encode_train_submission.json": {
+      "job": 8886,
+      "parent": 8881
+    },
+    "resume_cpu_submission.json": {
+      "job": 8881,
+      "parent": null
+    }
+  },
+  "completed": {
+    "resume_cpu.json": {
+      "job": 8881,
+      "execution_completed": true
+    }
+  },
+  "failures": {
+    "encode_train.json": {
+      "stage": "encode_train",
+      "job": "8886",
+      "error": "Traceback (most recent call last):\n  File \"/scratch/xl4358/phase1_independent_confirmation_execution_v7_metadata/orchestrator.py\", line 271, in main\n    try:execute(stage)\n        ^^^^^^^^^^^^^^\n  File \"/scratch/xl4358/phase1_independent_confirmation_execution_v7_metadata/orchestrator.py\", line 195, in execute\n    encode(c,permit,SequenceGuard(data),allocation_start,training_only=stage=='encode_train')\n  File \"/scratch/xl4358/phase1_independent_confirmation_execution_v7_metadata/guarded_encode.py\", line 85, in encode\n    result=fn(c)\n           ^^^^^\n  File \"/scratch/xl4358/phase1_independent_confirmation_execution_v7_metadata/original_src/phase1/cache.py\", line 71, in encode\n    z = np.concatenate([encoder.encode(rgb[i:i+bs]) for i in range(0, len(rgb), bs)]).astype(np.float32)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/scratch/xl4358/phase1_independent_confirmation_execution_v7_metadata/original_src/phase1/cache.py\", line 71, in <listcomp>\n    z = np.concatenate([encoder.encode(rgb[i:i+bs]) for i in range(0, len(rgb), bs)]).astype(np.float32)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/scratch/xl4358/phase1_independent_confirmation_execution_v7_metadata/guarded_encode.py\", line 46, in encode\n    budget_check()\n  File \"/scratch/xl4358/phase1_independent_confirmation_execution_v7_metadata/guarded_encode.py\", line 37, in budget_check\n    last_report=sequence_guard.check(allocation_start)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/scratch/xl4358/phase1_independent_confirmation_execution_v7_metadata/budget_guard.py\", line 212, in check\n    raise BudgetStop('Full unchanged confirmation no longer fits the authorized cumulative cap')\nbudget_guard.BudgetStop: Full unchanged confirmation no longer fits the authorized cumulative cap\n",
+      "phase1_go": false,
+      "no_automatic_retry": true,
+      "fresh_retuning_forbidden": true
+    }
+  },
+  "guardian": {
+    "watchdog_submission.json": {
+      "job": 8883
+    },
+    "watchdog_cleanup_submission.json": {
+      "job": 8885
+    },
+    "guardian_native_preflight.json": {
+      "status": "PASS_NATIVE_CPU_GUARDIAN_AND_CLEANUP",
+      "guardian": 8883,
+      "cleanup": 8885,
+      "real_paired_heartbeat_cycles": 8
+    },
+    "heartbeat": {
+      "job": 8883,
+      "updated_epoch": 1792435331.798978,
+      "charged_GPU_seconds": 40494,
+      "reason": null
+    }
+  },
+  "progress": {
+    "sequence_budget.json": {
+      "GPU_job_ids": [
+        8886
+      ],
+      "epochs": {},
+      "encoded_frames": 812
+    },
+    "last_budget_forecast.json": {
+      "actual_GPU_seconds": 40494,
+      "remaining_cap_seconds": 13557,
+      "fits": false,
+      "projected_cumulative_seconds": 56145.25432661877
+    },
+    "budget_stop.json": {
+      "actual_GPU_seconds": 40494,
+      "remaining_cap_seconds": 13557,
+      "fits": false,
+      "projected_cumulative_seconds": 56145.25432661877
+    }
+  }
+}

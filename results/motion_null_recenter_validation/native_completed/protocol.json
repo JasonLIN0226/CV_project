@@ -1,0 +1,38 @@
+{
+  "UTC": "2026-10-19T00:47:23.012893+00:00",
+  "formula": "Remove from ALL same legally retained/current model input features the current-minus-frozen-training-mean component inside output-basis AND fixed-position-readout nullspace; shift cached projected inputs consistently; frozen reference forward; restore EXACT subtracted vector; then preserve previous current decoded position with same fixed constraint.",
+  "coefficient": 1,
+  "source_rows": 1152,
+  "validation_pairs": 96,
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "horizons": [
+    3,
+    6
+  ],
+  "parent_summary_sha256": "11c5e3cfeb748cda75010ea37cf95ba30b82ae4fec73b01d3fd9559ccb2c3a49",
+  "candidate_lock_sha256": "eba3dd1ab40ff64860c30bfd4e206d256fba185b0a4e688100390e025e3f392d",
+  "validation_only": true,
+  "GPU": 0,
+  "training": false,
+  "model_forward": "Frozen CPU only; existing current/target/reference vector caches reused",
+  "test_access": false,
+  "fresh9137": false,
+  "original_gates_changed": false,
+  "readiness": "All8original feature+position numeric rules, plus both seed-mean horizons incremental feature paired lowerCI>0 to justify test resources. Incremental screen is NOT an original Phase1 gate. Failure stops before any test.",
+  "bootstrap": 2000,
+  "bootstrap_seed": 0,
+  "missing_model_vectors": "Baseline current/reference/target vectors are cached; the new input-recentered reference requires frozen CPU forward. No encoder or training.",
+  "known_limitation": "Position decoder-specific output adapter, not task-agnostic semantic factorization; long-gap and distractor tests remain unopened in this experiment",
+  "variant_grid": false,
+  "stop_after_failure": true,
+  "conditional_full_review": "Only if registered validation screen passes: lock this exact wrapper, no coefficient search, then original full recheck.",
+  "new_fitting": false,
+  "method_source": "https://github.com/cure-lab/LTSF-Linear : NLinear subtract/add-back principle only; position-null-basis restriction is our task-specific unvalidated adaptation, not a paper reproduction.",
+  "source_evidence": "Frozen reference uses absolute current and memory in score/output even with output skip; earlier residual diagnosis found varying readout-null error mainly within128basis. This motivates a fixed offset-equivariance hypothesis, not an established unique cause.",
+  "history_or_capacity_unchanged": true,
+  "position_null_not_semantically_irrelevant": true
+}

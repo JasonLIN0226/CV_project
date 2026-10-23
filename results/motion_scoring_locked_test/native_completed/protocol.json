@@ -1,0 +1,71 @@
+{
+  "created_utc": "2026-10-18T22:31:38.302588+00:00",
+  "scope": "One prelocked Motion scoring-only regression check on previously revealed6301 test data. No independent-confirmation claim.",
+  "formula": "float64 mean(((unchanged_prediction - normalized_future_feature) @ frozen_position_decoder_A)**2)",
+  "formula_tie": 1e-12,
+  "full_feature_tie": 1e-08,
+  "parent": "/scratch/xl4358/phase1_motion_locked_test/output/job_8349",
+  "parent_summary_sha256": "53c8a3a45b259bc425fa276ee9df80594c9f6aa8beb112b1bf9272bc705b195e",
+  "parent_raw_sha256": "0a37198ceed84eb7290e13c102534e4e2f39d3279f26f433eb20956af8f107a5",
+  "candidate_lock_sha256": "eba3dd1ab40ff64860c30bfd4e206d256fba185b0a4e688100390e025e3f392d",
+  "validation_summary_sha256": "b00589172199112aa009ebc2a582b2e0158d9fdb26d4a26722edcb41d5285ce1",
+  "validation_audit_sha256": "ee3bf85d99b773f4288a9fc0b45c533aa63fc27419539bed6d94b6d8be829a6d",
+  "validation_root": "/scratch/xl4358/phase1_motion_residual_decomposition_precision_replay_fix/output/job_8372",
+  "recommendation_sha256": "2bffac11355cc69d7755a07e91def90667cce54b84dc85d54a2ef1ade93a2f39",
+  "scope_grid": {
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "splits": [
+      "test_id",
+      "test_long_gap",
+      "test_distractor_shift"
+    ],
+    "pairs_per_split": 128,
+    "siblings": 2,
+    "clock_pools": 6,
+    "deletions": 3,
+    "horizons": [
+      3,
+      6
+    ],
+    "raw_rows": 82944,
+    "capacity": "2past+4recent, every fork"
+  },
+  "analyses": [
+    "Full-feature-selected and decoded-consistency-selected deletions at same and other horizon; evaluate BOTH original full-feature MSE and true-position MSE against uniform/FIFO/reject-newest.",
+    "Keep original paired bootstrap10000seed0, individual seeds and seed-mean estimates; the original cross-horizon both-metric positive-CI rule is unchanged.",
+    "Report task-optimal choice agreement/regret and direct decoded-minus-original score-choice differences as descriptive diagnostics; no new pass threshold.",
+    "Reproduce original full-score comparisons from parent and independently audit decoded-score selection/statistics.",
+    "Original full-feature prediction51checks and fixed-reference32checks stay unchanged; re-read actual parent raw/source proofs rather than relabeling favorable position diagnostics as Phase1_GO."
+  ],
+  "no_retuning_after_test": true,
+  "original_prediction_gates_changed": false,
+  "original_metric_replaced": false,
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 0,
+    "unit": "matched pair; average siblings/pools and then seeds within pair"
+  },
+  "inference": {
+    "frozen_model": true,
+    "encoder_calls": 0,
+    "new_training": 0,
+    "GPU": 0,
+    "CPU_threads": 4,
+    "GB": 16,
+    "wall_minutes": 30,
+    "scientific_soft_seconds": 1200
+  },
+  "limitations": [
+    "Previously revealed test regression, not fresh independent confirmation.",
+    "Fixed supervised position readout makes this task-specific, not general task-agnostic JEPA utility.",
+    "Future feature targets are used solely in offline scoring; no deployed policy or past-only learnability claim.",
+    "RGB guard is renderer-specific and auxiliary feature-only byte-budget parity is unestablished."
+  ],
+  "fresh9137_closed": true,
+  "policy_training": false,
+  "Phase1_GO": false
+}

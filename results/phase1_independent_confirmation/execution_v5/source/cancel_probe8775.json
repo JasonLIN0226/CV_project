@@ -1,0 +1,45 @@
+{
+  "watchdog_submission.json": {
+    "job": 8778,
+    "source_lock_sha256": "113816b81c79a68754de9af844a09c9deb482f3851179c65f337c5a401285a49",
+    "stdout": "8778",
+    "CPU_only": true
+  },
+  "watchdog_request.json": {
+    "source_lock_sha256": "113816b81c79a68754de9af844a09c9deb482f3851179c65f337c5a401285a49",
+    "GPU_cap_seconds": 54051,
+    "prior_GPU_charge_seconds": 39651,
+    "startup_limit_seconds": 180,
+    "stage_allocation_limits": {
+      "preflight_gpu": 300,
+      "encode_train": 2700,
+      "train_gpu": 6600,
+      "encode_test": 3900
+    },
+    "GPU_job_names": {
+      "preflight_gpu": "p1-preflight_gpu-113816b8",
+      "encode_train": "p1-encode_train-113816b8",
+      "train_gpu": "p1-train_gpu-113816b8",
+      "encode_test": "p1-encode_test-113816b8"
+    }
+  },
+  "watchdog_submission_attempt.json": {
+    "source_lock_sha256": "113816b81c79a68754de9af844a09c9deb482f3851179c65f337c5a401285a49",
+    "unknown_do_not_retry": true
+  },
+  "receipts/preflight_cpu_submission.json": {
+    "stage": "preflight_cpu",
+    "job": 8775,
+    "parent": null,
+    "stdout": "8775",
+    "source_lock_sha256": "113816b81c79a68754de9af844a09c9deb482f3851179c65f337c5a401285a49",
+    "actual_submission_UTC": "2026-10-19T16:14:31.810908+00:00"
+  },
+  "receipts/preflight_cpu_submission_attempt.json": {
+    "stage": "preflight_cpu",
+    "parent": null,
+    "unknown_do_not_retry": true
+  },
+  "native_8775": "JobId=8775 JobName=p1-preflight_cpu-113816b8 UserId=xl4358(3850228) GroupId=xl4358(3850228) MCS_label=N/A Priority=14670 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=CANCELLED Reason=None Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:15 RunTime=00:00:51 TimeLimit=01:00:00 TimeMin=N/A SubmitTime=2026-10-19T16:14:31 EligibleTime=2026-10-19T16:14:31 AccrueTime=2026-10-19T16:14:31 StartTime=2026-10-19T16:15:36 EndTime=2026-10-19T16:16:27 Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-19T16:14:34 Scheduler=Backfill Partition=n2c48m24 AllocNode:Sid=3-gcp-r2:7889 ReqNodeList=(null) ExcNodeList=(null) NodeList=b-10-115 BatchHost=b-10-115 NumNodes=1 NumCPUs=24 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=4,mem=16G,node=1,billing=4 AllocTRES=cpu=24,mem=16G,node=1,billing=24 Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=4 MinMemoryNode=16G MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/scratch/xl4358/phase1_independent_confirmation_execution_v3/stage.sh WorkDir=/home/xl4358 StdErr=/scratch/xl4358/phase1_independent_confirmation_execution_v3/preflight_cpu-8775.err StdIn=/dev/null StdOut=/scratch/xl4358/phase1_independent_confirmation_execution_v3/preflight_cpu-8775.out TresPerTask=cpu=4 \n",
+  "native_8778": "JobId=8778 JobName=p1-budget-watch-113816b8 UserId=xl4358(3850228) GroupId=xl4358(3850228) MCS_label=N/A Priority=14663 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=CONFIGURING Reason=None Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:00:48 TimeLimit=12:00:00 TimeMin=N/A SubmitTime=2026-10-19T16:16:04 EligibleTime=2026-10-19T16:16:04 AccrueTime=2026-10-19T16:16:04 StartTime=2026-10-19T16:16:04 EndTime=2026-10-20T04:16:04 Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-19T16:16:04 Scheduler=Backfill Partition=n2c48m24 AllocNode:Sid=3-gcp-r2:6594 ReqNodeList=(null) ExcNodeList=(null) NodeList=b-10-146 BatchHost=b-10-146 NumNodes=1 NumCPUs=24 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=1,mem=1500M,node=1,billing=1 AllocTRES=cpu=24,mem=1500M,node=1,billing=24 Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=1 MinMemoryNode=1500M MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/scratch/xl4358/phase1_independent_confirmation_execution_v3/watchdog.sh WorkDir=/scratch/xl4358/phase1_independent_confirmation_execution_v3 StdErr=/scratch/xl4358/phase1_independent_confirmation_execution_v3/watchdog-8778.err StdIn=/dev/null StdOut=/scratch/xl4358/phase1_independent_confirmation_execution_v3/watchdog-8778.out TresPerTask=cpu=1 \n"
+}

@@ -16,7 +16,9 @@ model = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["experiments/predictor/control/src"]
+where = ["experiments/predictor/control/src", "."]
+include = ["phase1", "phase1.*", "handoff", "handoff.*"]
+namespaces = false
 
 [tool.pytest.ini_options]
 pythonpath = ["experiments/predictor/control/src", "experiments/deletion"]

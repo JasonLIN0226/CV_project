@@ -1,0 +1,38 @@
+{
+  "UTC": "2026-10-19T01:44:39.105519+00:00",
+  "formula": "base = cached_current_observation + original_train_only_target_mean + (cached_best_history_prediction - cached_best_recent_prediction); constrain base to unchanged guarded position",
+  "coefficient": 1,
+  "source_rows": 1152,
+  "validation_pairs": 96,
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "horizons": [
+    3,
+    6
+  ],
+  "parent_summary_sha256": "11c5e3cfeb748cda75010ea37cf95ba30b82ae4fec73b01d3fd9559ccb2c3a49",
+  "candidate_lock_sha256": "eba3dd1ab40ff64860c30bfd4e206d256fba185b0a4e688100390e025e3f392d",
+  "validation_only": true,
+  "GPU": 0,
+  "training": false,
+  "model_forward": false,
+  "test_access": false,
+  "fresh9137": false,
+  "original_gates_changed": false,
+  "readiness": "All8 original validation feature and position numeric rules AND all8 paired incremental-feature lower CIs above0 versus prior best explored composite. Additional conservative resource screen only; original51+32+72 gates unchanged.",
+  "bootstrap": 2000,
+  "bootstrap_seed": 0,
+  "missing_model_vectors": "No missing vectors; current features, historical/recent predictions and fixed train mean all cached",
+  "known_limitation": "Static-distractor renderer only; shared-error cancellation is a hypothesis and does not guarantee generic video invariance. No simulator visibility/importance label enters wrapper.",
+  "variant_grid": false,
+  "stop_after_failure": true,
+  "conditional_full_review": "Only if all registered validation requirements hold, freeze exact formula and original weights/transforms before separate full original51+32+72 recheck. No test-based anchor switch.",
+  "hypothesis": "Shared learned recent-anchor appearance error may contaminate the historical feature prediction under distractor shifts. Cancel that anchor, preserve only its SAME-input history increment, and insert directly observed static appearance plus original train mean delta. Hypothesis, not established causal diagnosis.",
+  "history_validation_summary_sha256": "3a221a8dec7eb371efddbbca2fa1777c7d29f247606abeff011b116b2c77870c",
+  "history_validation_audit_sha256": "4581626e99ae9754f47ceb248b46b56356fb9b572c2e8aa724eccfcb96c5b553",
+  "fitting": false,
+  "source_code_basis": "Existing DynamicsPredictor outputs current+train_target_mean+learned_coefficients; fit_basis target_mean uses original training residuals only."
+}

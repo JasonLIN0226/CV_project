@@ -1,0 +1,53 @@
+{
+  "authorization": "User: next step after Gate diagnosis; one bounded validation-only residual calibration, no network training or relaxed gates",
+  "declared_utc": "2026-10-18T15:45:01.346838+00:00",
+  "alphas": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+  ],
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "validation_pairs": 96,
+  "validation_conditions": [
+    "recent_only",
+    "full_history",
+    "privileged_small_budget",
+    "random_small_budget"
+  ],
+  "criterion": "equal seed, condition and horizon full-feature MSE on original validation only",
+  "tie": "largest alpha on exact tie",
+  "one_shared_Gate_alpha": true,
+  "test_splits": [
+    "test_id",
+    "test_long_gap",
+    "test_distractor_shift"
+  ],
+  "test_pairs_per_split": 128,
+  "test_horizons": [
+    3,
+    6
+  ],
+  "test_cue_positions": [
+    "cue_oldest",
+    "cue_middle",
+    "cue_newest"
+  ],
+  "expected_raw": 41472,
+  "parent_summary_sha256": "ed9232c2503b76030eea05ad4b54cf565774f952200f69a85306b873b131e35f",
+  "no_network_training": true,
+  "scalar_parameter_selection": true,
+  "CPU_threads": 4,
+  "GPU": 0,
+  "soft_seconds": 1500,
+  "original_rules": "critical>=1e-8;relative>=0.1;paired bootstrap10000seed0 lower95>0 in both metrics",
+  "original_Phase1_GO": false,
+  "fresh9137_opened": false,
+  "github_updated": false,
+  "stop_after_this_candidate": true
+}

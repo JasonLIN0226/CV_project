@@ -1,0 +1,33 @@
+{
+  "UTC": "2026-10-18T23:57:33.217196+00:00",
+  "formula": "constrain(frozen_v3_reference(same retained history), current_guarded_history_prediction @ fixed_A + fixed_b, fixed_B, fixed_A, fixed_b, fixed_right)",
+  "coefficient": 1,
+  "source_rows": 1152,
+  "validation_pairs": 96,
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "horizons": [
+    3,
+    6
+  ],
+  "parent_summary_sha256": "11c5e3cfeb748cda75010ea37cf95ba30b82ae4fec73b01d3fd9559ccb2c3a49",
+  "candidate_lock_sha256": "eba3dd1ab40ff64860c30bfd4e206d256fba185b0a4e688100390e025e3f392d",
+  "validation_only": true,
+  "GPU": 0,
+  "training": false,
+  "model_forward": "One frozen CPU pass only for missing v3 privileged validation vectors; exact scalar replay required",
+  "test_access": false,
+  "fresh9137": false,
+  "original_gates_changed": false,
+  "readiness": "Original validation numeric feature and position rules must hold for all8cells. Incremental comparison with current candidate is reported, not a new mandatory original gate. Full original prediction/fixed-reference/deletion gates remain unchanged.",
+  "bootstrap": 2000,
+  "bootstrap_seed": 0,
+  "missing_model_vectors": "No new inference needed; nominal cached recent/history/targets already complete",
+  "known_limitation": "Position decoder-specific output adapter, not task-agnostic semantic factorization; long-gap and distractor tests remain unopened in this experiment",
+  "variant_grid": false,
+  "stop_after_failure": true,
+  "conditional_full_review": "If ALL registered validation feature and position numeric rules plus incremental feature lowerCI positive pass, lock EXACT formula and original models. For K=2 use reference same legal set as base and current guarded decoded position as constraint; K!=2 remains current parent identity. Recheck all original test gates and deletion outcomes, no test-based adjustment."
+}

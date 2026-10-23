@@ -1,0 +1,58 @@
+{
+  "UTC": "2026-10-19T16:49:04.911180+00:00",
+  "route_job": 8795,
+  "native_route_state": "RUNNING",
+  "squeue": "8794|p1-preflight_cpu-a5fd31bb|RUNNING|6:58|b-10-50\n8796|p1-cleanup-a5fd31bb|RUNNING|3:58|b-10-46\n8795|p1-budget-watch-a5fd31bb|RUNNING|5:28|b-10-116\n",
+  "receipts": {
+    "preflight_cpu_submission.json": {
+      "stage": "preflight_cpu",
+      "job": 8794,
+      "parent": null,
+      "stdout": "8794",
+      "source_lock_sha256": "a5fd31bbcb5105796e22b31155a13bc5bb5301161e42a0b72d5c5d109e509bca",
+      "actual_submission_UTC": "2026-10-19T16:40:54.350469+00:00"
+    }
+  },
+  "completed": {},
+  "failures": {},
+  "guardian": {
+    "watchdog_submission.json": {
+      "job": 8795,
+      "source_lock_sha256": "a5fd31bbcb5105796e22b31155a13bc5bb5301161e42a0b72d5c5d109e509bca",
+      "stdout": "8795",
+      "CPU_only": true
+    },
+    "watchdog_cleanup_submission.json": {
+      "job": 8796,
+      "source_lock_sha256": "a5fd31bbcb5105796e22b31155a13bc5bb5301161e42a0b72d5c5d109e509bca",
+      "CPU_only": true
+    },
+    "guardian_native_preflight.json": {
+      "status": "PASS_NATIVE_CPU_GUARDIAN_AND_CLEANUP",
+      "guardian": 8795,
+      "cleanup": 8796,
+      "source_lock_sha256": "a5fd31bbcb5105796e22b31155a13bc5bb5301161e42a0b72d5c5d109e509bca",
+      "no_GPU": true,
+      "actual_GPU_startup_cancellation_not_exercised": false,
+      "actual_GPU_cancel_probe": 8792,
+      "real_paired_heartbeat_cycles": 8,
+      "heartbeat_clock_race_fixture_passed": true,
+      "paired_live_guardians": true,
+      "scheduler_forces_Requeue1": true,
+      "native_CPU_cancel_verified": true
+    },
+    "heartbeat": {
+      "job": 8795,
+      "updated_epoch": 1792428544.9339697,
+      "charged_GPU_seconds": 39712,
+      "reason": null
+    }
+  },
+  "progress": {
+    "sequence_budget.json": {
+      "GPU_job_ids": [],
+      "epochs": {},
+      "encoded_frames": 0
+    }
+  }
+}

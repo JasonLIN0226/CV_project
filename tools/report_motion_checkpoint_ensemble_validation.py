@@ -1,0 +1,31 @@
+import csv,json,hashlib
+from pathlib import Path
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+R=Path(__file__).resolve().parents[1];D=R/'results/motion_checkpoint_ensemble_validation';N=D/'native_completed';O=N/'output/job_8472'
+s=json.loads((O/'summary.json').read_text());a=json.loads((O/'independent_audit.json').read_text());proof=json.loads((N/'transfer_integrity.json').read_text());assert proof['native_before_local_native_after_all_match']
+for n,v in proof['files'].items():assert hashlib.sha256((N/n).read_bytes()).hexdigest()==v['sha256']
+assert a['status']=='PASS_INDEPENDENT_QR_AND_SCALAR_AUDIT'
+with (O/'scalar_rows.csv').open() as f:raw=list(csv.DictReader(f))
+ix=np.random.default_rng(0).integers(0,96,(2000,96));diff=[]
+for c in s['cells']:
+ seeds=(17,29,43) if c['seed']=='mean' else (c['seed'],);rr=[r for r in raw if int(r['seed']) in seeds and int(r['horizon'])==c['horizon']];pairs=sorted({r['pair'] for r in rr});assert len(pairs)==96
+ for name,arm,metric,floor,absolute in [('feature_vs_recent','recent','feature_mse',.02,.01),('position_vs_recent','recent','position_mse',1e-5,1e-6),('feature_vs_current','current','feature_mse',.02,.01),('position_vs_current','current','position_mse',1e-5,1e-6)]:
+  def vec(arm):return np.array([np.mean([float(r[metric]) for r in rr if r['arm']==arm and r['pair']==p]) for p in pairs])
+  b,z=vec(arm),vec('candidate');useabs=b.mean()<floor
+  effect=lambda x,y:(x-y if useabs else (x-y)/np.maximum(x,floor))
+  v=float(effect(b.mean(),z.mean()));lo,hi=np.quantile(effect(b[ix].mean(1),z[ix].mean(1)),[.025,.975]);d=max(abs(v-c[name]['mean']),abs(lo-c[name]['low']),abs(hi-c[name]['high']));assert d<1e-11;diff.append(d)
+(D/'local_review.json').write_text(json.dumps(dict(status='PASS',intervals=32,max_difference=max(diff)),indent=2)+'\n')
+cs=[c for c in s['cells'] if c['seed']=='mean'];fig,ax=plt.subplots(figsize=(6,3.4),layout='constrained');vals=[100*c['feature_vs_current']['mean'] for c in cs];ax.bar(['3 steps','6 steps'],vals,color='.4',edgecolor='black');ax.axhline(0,color='black',ls='--');ax.set(ylabel='Feature-error reduction (%)',title='Fixed best/final ensemble: validation')
+for i,v in enumerate(vals):ax.annotate(f'{v:.2f}%',(i,v),ha='center',va='bottom' if v>=0 else 'top')
+fig.savefig(D/'validation_result.png',dpi=160);plt.close(fig)
+lines=['# Motion: fixed best/final checkpoint ensemble validation','','## Fixed candidate','','Average the predictions of the existing validation-best and epoch120final historical-reference checkpoints within each original seed with weights0.5/0.5. Apply exactly the previous fixed current-position constraint. Keep Gate and all original acceptance rules unchanged. No cross-seed averaging, retraining, fitting, newencoder pass, epoch search, weight search, policy or independent-test access.','','This borrows the existing-checkpoint averaging principle from[SnapshotEnsembles](https://arxiv.org/abs/1704.00109). That method uses cyclic training; this small fixed two-endpoint check does not reproduce it. The best and final snapshots are correlated. Final-alone privileged validation loss is worse than best for all3seeds, so any benefit must come from prediction diversity rather than a better final model.','','All96original validation pairs,3seeds and horizons3/6 are retained (1,152 prediction vectors). Prior cached targets/recent outputs and frozen transforms are reused. The0.5/0.5 rule and all6checkpoint hashes were fixed before the new forward pass.','','![Validation result](../results/motion_checkpoint_ensemble_validation/validation_result.png)','','| Check | Met / total |','|---|---:|',f"|Original feature numeric rule|{s['feature_checks']}/8|",f"|Original position numeric rule|{s['position_checks']}/8|",f"|Incremental feature lowerCI above0|{s['incremental_feature_positive']}/8|",'','To justify a new full recheck, both seed-mean horizons must also improve over the previous locked composite with positive paired lowerCI. This predeclared resource screen does not replace any original Phase1gate. The seed mean reuses the same pairs and is not an independent experiment.','','| Horizon | Feature error change vs previous composite | Paired gain95%CI |','|---|---:|---|']
+for c in cs:
+ v=c['feature_vs_current'];lines.append(f"|{c['horizon']}|{-100*v['mean']:+.3f}%|[{100*v['low']:.3f}%,{100*v['high']:.3f}%]|")
+lines+=['','## Numerical and provenance audit','',f"Independent QR constraint maxdifference {a['vector_max_difference']:.3g}; affine mean identity {a['affine_mean_max_difference']:.3g}; squared-error diversity identity {a['mse_diversity_identity_max_difference']:.3g}. All5,760scalar rows and32paired intervals independently rebuilt; local32interval replay and compact native-before/local/native-after SHA match.",'',f"Mean validation full-feature MSE: best composite {a['mean_best_mse']:.8f}, final composite {a['mean_latest_mse']:.8f}, average {a['mean_ensemble_mse']:.8f}. The diversity subtraction term is {a['mean_diversity_gain']:.8f}; it is a mathematical identity, not evidence of independent models.",'','## Decision','',f"**{s['status']}**.",'']
+if s['validation_eligible']:lines+=['This exact formula qualifies for one separately frozen complete original recheck. This validation is not acceptance.']
+else:lines+=['Reject and stop this bounded repair sequence before any new test. No weight or epoch grid follows this result. The best explored previous composite remains48/51original,29/32fixed-reference,8/8critical long-gap and69/72cross-horizon deletion; it is not adopted as complete Phase1support.']
+lines+=['','The preceding readout-null centering candidate also failed its incremental screen, increasing validation feature error41.10%/38.75%. Preserve both negative results. These failures do not prove every possible frozen repair impossible.','','NewGPU0seconds; cumulative12,723/28,800seconds, remaining16,077seconds. No model or retention-policy training, fresh9137access or GitHub update.']
+(R/'docs/MOTION_CHECKPOINT_ENSEMBLE_VALIDATION.md').write_text('\n'.join(lines)+'\n');print(json.dumps(dict(status=s['status'],feature=s['feature_checks'],position=s['position_checks'],incremental=s['incremental_feature_positive'],local_intervals=32)))

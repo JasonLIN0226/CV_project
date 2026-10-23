@@ -1,0 +1,240 @@
+{
+  "status": "FROZEN_COMPLETE_FRESH_CONFIRMATION_PROTOCOL",
+  "frozen_UTC": "2026-10-19T04:45:17.143448+00:00",
+  "user_authorized_conditional_fresh_confirmation": true,
+  "GPU_cap_seconds": 28800,
+  "prior_settled_seconds": 13131,
+  "prior_native_GPU_jobs": {
+    "7477": 100,
+    "7480": 126,
+    "7485": 6021,
+    "7524": 164,
+    "7535": 3386,
+    "7574": 2807,
+    "7582": 119,
+    "8496": 42,
+    "8511": 312,
+    "8512": 27,
+    "8518": 27
+  },
+  "expected_GPU": "NVIDIA A100-SXM4-40GB",
+  "expected_torch": "2.12.1+cu126",
+  "encoder_metadata": {
+    "name": "facebook/ijepa_vith14_1k",
+    "resolved_revision": "f157467ea509bc356ff9f61fd3c0d840eec5e04e",
+    "processor": {
+      "do_normalize": true,
+      "do_rescale": true,
+      "do_resize": true,
+      "image_mean": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "image_processor_type": "ViTImageProcessor",
+      "image_std": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "resample": 2,
+      "rescale_factor": 0.00392156862745098,
+      "size": {
+        "height": 224,
+        "width": 224
+      }
+    },
+    "pooling": "grid2",
+    "dtype": "float32",
+    "special_tokens": 0,
+    "model_config": {
+      "transformers_version": "5.5.4",
+      "architectures": [
+        "IJepaModel"
+      ],
+      "output_hidden_states": false,
+      "return_dict": true,
+      "dtype": "float32",
+      "chunk_size_feed_forward": 0,
+      "is_encoder_decoder": false,
+      "id2label": {
+        "0": "LABEL_0",
+        "1": "LABEL_1"
+      },
+      "label2id": {
+        "LABEL_0": 0,
+        "LABEL_1": 1
+      },
+      "problem_type": null,
+      "hidden_size": 1280,
+      "num_hidden_layers": 32,
+      "num_attention_heads": 16,
+      "intermediate_size": 5120,
+      "hidden_act": "gelu",
+      "hidden_dropout_prob": 0.0,
+      "attention_probs_dropout_prob": 0.0,
+      "initializer_range": 0.02,
+      "layer_norm_eps": 1e-06,
+      "image_size": 224,
+      "patch_size": 14,
+      "num_channels": 3,
+      "qkv_bias": true,
+      "pooler_output_size": 1280,
+      "pooler_act": "tanh",
+      "_name_or_path": "facebook/ijepa_vith14_1k",
+      "mlp_ratio": 4,
+      "model_type": "ijepa",
+      "output_attentions": false
+    },
+    "parameter_bytes": 2523048960
+  },
+  "native_rate_proof_sha256": "d38f7bc8d947ab0e16dc8e8c07f38dfd2b3e692656355456933199197e06bfe4",
+  "development_evidence": {
+    "/scratch/xl4358/phase1_gate_locked_test/source_lock.json": "ed742dd96059c12fa4d5f0d74a4f76d086c4432f3dc6c295ce1b18637cc201d1",
+    "/scratch/xl4358/phase1_gate_locked_test/candidate_lock.json": "8fa6287a8186c3d8f27a9eb3ac3fa7ba7822c9fed8e79dd99f35a564d20e6c61",
+    "/scratch/xl4358/phase1_gate_locked_test/output/job_8332/summary.json": "d5fb70abf200cd17f82352fe8c308f0fb9152192ad0816c7ce3eac99dc2b417c",
+    "/scratch/xl4358/phase1_gate_locked_test/output/job_8332/independent_audit.json": "60700893a23fcb926323c6225af430f91d4aba00753389712ac313c5125dc35f",
+    "/scratch/xl4358/phase1_motion_observation_mix_locked_test/source_lock.json": "1df92952ea33474859a57b9cbc165ffa873be47ee16fb9bbf1e8d10a862f4326",
+    "/scratch/xl4358/phase1_motion_observation_mix_locked_test/candidate_lock.json": "69d5e66087d71aa6c6785446a3898cc2a77d03bbaf7e17951aad07b2151a4da2",
+    "/scratch/xl4358/phase1_motion_observation_mix_locked_test/output/job_8522/summary.json": "8e16b11b10cff8c3af37b1ed27b2ed2b1751cdcd978924cd1a1612c8ce44417c",
+    "/scratch/xl4358/phase1_motion_observation_mix_locked_test/output/job_8522/independent_audit.json": "de271c1e9d450f0e4037a7c070ee99aea760150931ab120ccdcb05de6c59ff87",
+    "/scratch/xl4358/phase1_v3_dev/gate/reference/resolved_config.json": "e2b737cb814f5e09be6c0ceea6e668e0e07c9f43496e951be1d899d0269ef392",
+    "/scratch/xl4358/phase1_v3_dev/motion/reference/resolved_config.json": "3ce7db93aa98f4fab7586d1a85bbb456bef5a49c97c2e80b47525cbcfb154b90",
+    "/scratch/xl4358/phase1_predictor_repair_v2/execution/training/job_7574/native_resource_probe.json": "d38f7bc8d947ab0e16dc8e8c07f38dfd2b3e692656355456933199197e06bfe4",
+    "/scratch/xl4358/phase1_predictor_repair_v2/execution/training/job_7574/actual_gpu.json": "39106b73fadf387bb7f66f99c6c890c60c222cb50c4350ea9f63afb3a55cafcc"
+  },
+  "fresh_seed": 9137,
+  "tasks": [
+    "gate",
+    "motion"
+  ],
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "reference_models": 6,
+  "candidate_models": 6,
+  "epochs_each": 120,
+  "steps_each": 7680,
+  "original_data_config_preserved_except_fresh_seed_and_test_pairs": true,
+  "pairs_per_task": {
+    "train": 512,
+    "validation": 96,
+    "test_id": 256,
+    "test_long_gap": 256,
+    "test_distractor_shift": 256
+  },
+  "normalization": "Original shared all-training-episode float64 sum/squared-sum order",
+  "basis_readout": "Original training-only128basis plus8readouts, unchanged originalvalidation selection",
+  "conditions": [
+    "recent_only",
+    "full_history",
+    "privileged_small_budget",
+    "random_small_budget",
+    "wrong_evidence",
+    "persistence"
+  ],
+  "candidate_training": "Exact CenteredTransport: Gate anchor1/Motion0, originalMSE+2pair+.5rank, AdamW.0003/wd.0001/clip1/warmup5cosine120",
+  "reference_training": "Original DynamicsPredictor, AdamW.001/wd.0001/clip1/StepLR40gamma.5, MSE+2pair+.5rank",
+  "checkpoint_selection": "Earliest equal-four-condition/two-horizon validation MSE minimum",
+  "gate_inference": "Whole time-extrapolation projection OFF for all contexts; no per-test switching",
+  "motion_inference": "Same-history fresh reference visual output, current fresh candidate guarded position, fixed.5 observed-geometry innovation map",
+  "motion_maps": {
+    "heads": 2,
+    "shared_across_three_neural_seeds": true,
+    "fit_split": "train",
+    "pairs": 512,
+    "inputs": "2Dfuture-position from actual two retained observed latent positions +known actions",
+    "target": "126D readout-null projection oftraining future-minus-current features",
+    "recipe": "Gaussian KRR; train-only mean/std+median-distance; input-onlydf<=32;condition<=1e6;CUDAfit",
+    "pair_grouped_crossfit_folds": 2,
+    "fold_seed": 0,
+    "crossfit_repeats": 2000,
+    "crossfit_requirement": "Positive95%pair-gain lowerbound versus matched train-mean innovation",
+    "coefficient": 0.5,
+    "coefficient_search": false,
+    "hyperparameter_or_target_based_regularizer_search": false
+  },
+  "test_access": "No generation/opening/encoding of any heldout9137 tests until all12 full neural models plus2maps/alltransforms/source are current-SHA locked",
+  "acceptance": {
+    "original_prediction_checks_per_task": 51,
+    "fixed_reference_checks_per_task": 32,
+    "gate_deletion": "All72 critical-vs-other cue-rank cells: bothmetric effect>=10% andpaired95%lower>0; originalrules unchanged",
+    "motion_deletion": "All72 cross-horizon future-feature-selected oracle versus uniform/FIFO/reject cells:bothfeature+position paired95%gainlower>0",
+    "all_original_structural_readout_full_history_requirements": true,
+    "failed_seed_or_slice_removed": false
+  },
+  "statistics": {
+    "core_and_fixed_bootstrap": 2000,
+    "deletion_bootstrap": 10000,
+    "seed": 0,
+    "clustering": "Average siblings/pools within pair; average3seeds only for mean cells; bootstrap basepairs, retain eachseed"
+  },
+  "raw_prediction_rows_per_task_per_role": 62208,
+  "total_prediction_rows_all_roles": 248832,
+  "raw_deletion_rows": 248832,
+  "paired_deletion_rows": 18432,
+  "static_pool_diagnostic_not_a_policy": true,
+  "resource_guard": {
+    "full_RGB_frame_upper_bound": 198656,
+    "encoder_batch": 2,
+    "RGB_deduplication": false,
+    "reference_and_candidate_rate_proof": "native7574",
+    "full_training_raw_seconds": 5194.312324919995,
+    "full_encoding_raw_seconds": 4910.9994851844385,
+    "map_fit_raw_seconds": 27,
+    "native_equivalence_reserved_seconds": 300,
+    "safety": 1.15,
+    "fixed_remaining_reserve_seconds": 968.295233886,
+    "preflight_GPU_hard_limit": 300,
+    "encoding_train_GPU_hard_limit": 2700,
+    "full_training_GPU_hard_limit": 6600,
+    "encoding_tests_GPU_hard_limit": 3900,
+    "all_actual_allocated_seconds_charged": true,
+    "no_scope_shrink_to_fit": true
+  },
+  "no_retuning_after_fresh_failure": true,
+  "no_retention_policy_training": true,
+  "no_GitHub_update": true,
+  "scope": "Controlled synthetic I-JEPA;fixed supervised readout andrenderer-specific observed-RGB guard;notV-JEPA/notrealvideo",
+  "software_preflight": {
+    "status": "PASS_SOFTWARE_ONLY",
+    "pytest_passed": 12,
+    "proof_sha256": "05be867210ed45e601381bdd4b2d1ef3d6bd5bf13ee291ab4b92937f423d1102"
+  },
+  "predeployment_execution_amendment": {
+    "status": "DECLARED_EXECUTION_ONLY_PREDEPLOYMENT_AMENDMENT",
+    "UTC": "2026-10-19T04:42:32.868969+00:00",
+    "prior_source_lock_sha256": "9cb9c12f94992526029dd34933b4df8864e7a45e66ae98ec2cded73e8e533164",
+    "prior_archive_sha256": "d3badd394ebc6efddf2d904e8018c78ec01be18faa78ae35a98770b1cdd0db4c",
+    "reason": "Keep an actual empty AllocTRES final field when parsing8columnPENDING sacct rows. No numerical/scientific change.",
+    "scientific_submission_exists": false,
+    "fresh9137_accessed": false,
+    "GPU_added": 0,
+    "previous_source_preserved_in_zip": "deployment_predeployment_v0.zip"
+  },
+  "execution_path_amendment": {
+    "native_failed_job": 8530,
+    "actual_state": "FAILED2:0",
+    "actual_CPU_seconds": 4,
+    "new_GPU_seconds": 0,
+    "fresh9137_generated": false,
+    "cause": "sbatch copies script to slurmd; dirname($0) resolved job spool instead of frozen execution root",
+    "change": "Explicit immutable TASK_ROOT; separate new execution directory/output namespace only",
+    "previous_source_lock_sha256": "0f0fd1811b288a6aad8584a2389d69269151b1e69759921bcb4ac7cf84e62f16",
+    "previous_root": "/scratch/xl4358/phase1_independent_confirmation",
+    "new_root": "/scratch/xl4358/phase1_independent_confirmation_execution_v1",
+    "all_model_data_loss_statistics_threshold_code_unchanged": true
+  },
+  "environment_export_amendment": {
+    "previous_job": 8532,
+    "cause": "user_env_retrieval_failed_requeued_held before scientific entrypoint",
+    "change": "--export=NIL avoids implicit get-user-env, while stage.sh defines approved explicit runtime environment",
+    "official_source": "https://slurm.schedmd.com/sbatch.html",
+    "new_root": "/scratch/xl4358/phase1_independent_confirmation_execution_v2",
+    "all_scientific_functions_unchanged": true,
+    "new_GPU_seconds": 0,
+    "no_fresh_data": true
+  }
+}

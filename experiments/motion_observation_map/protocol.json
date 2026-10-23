@@ -1,0 +1,20 @@
+{
+  "UTC": "2026-10-19T03:30:27.890015+00:00",
+  "round": 2,
+  "motivation": "Round1calibration validation8/8incrementalbutcomplete49/51+26/32+70/72: critical longgap h3regression. Scene-centre omitsvelocity/time-dependentfuturegeometry. In-samplepredictorresiduals differfromvalidation1.43\u20131.81x whiletargetvariance ratios.968\u2013.974.",
+  "method": "Factorfrozen causalgeometry fromlearned observation innovation. Use the already approved two-retained-frame forecastxy and known actions; GaussianKRR maps2Dpredictedfuturexy to126position-null coordinates of futurefeature-minus-currentfeature. Currentfeatureskip preservesnovelappearance.",
+  "deployment_formula": "old_best + ((current_feature - old_best) @ N + map_h(legal_observed_forecast_xy)) @ N.T; onlyunderexistingRGBvalidityguard andK=2. Othercardinalitiesidentity.",
+  "different_from_round1": "Predictor-residualtarget replaced by future-minus-observed-current target independentofbase-fitting errors; time-dependent signedfuturepose replacespairmean scenecentre. No hiddenstate/futureimages asinputs. No test-driven switch.",
+  "fitting": "Exactlyoriginal1024trainingepisodes/512pairs;2shared deterministicheadsh3/h6, not6independentrandomheads. All3existingbaseseeds retainedfororiginalevaluation.",
+  "kernel": "Gaussian; train-fold-onlymean/std andmedianpairdist bandwidth. Input-only effective df<=32 plus unpenalizedintercept, numericalcondition<=1e6. Singleprespecifiedrecipe, no outcomegrid.",
+  "software_preflight": "Initial2DsyntheticKRR fixture exposed illconditioning; input-onlyconditioncap added before anyscientificfit. No originalscientifictolerance/gate changed.",
+  "screen": "Fixedoriginalpairgrouped2fold0/1. Compareprojectedinnovation MSE againstmatched-foldtrainmeaninnovation. Bothhorizonpairedbootstrap2000seed0lower95CI>0 tocontinue; this isresourcefeasibility,notoriginalacceptance. Do notcomparehonestcrossfitwithbaseinsampleasacceptance.",
+  "validation": "Original96pairs, all8feature and8position numericrules+all8incrementalfeaturelower95CIpositive vspriorbest48/51composite. Full1152vectorindependentkernelreplay, local32CIrawCSVreplay beforetest. Contrastpreservationnotassumed;originalcontentinterventiontestretained.",
+  "conditional_test": "Onlyifvalidationpasses: lock2headSHAandfullsource, completeall51+32+72originalchecks+independentaudit. No fresh9137untilbothtaskscompleteandalloriginalgatesSUPPORTED. Failedfreshconfirmationneverretuned.",
+  "resources": "OneA1004threads60G600s hard/540ssoft;prior13104, total28800. Reserve14490provisionalconfirmationestimate beforeallocation. CPUreview1thread1500M0GPU;noCPUscientificfitting/noencoder/baseforwardinthisround.",
+  "sources": [
+    "https://scikit-learn.org/stable/modules/kernel_ridge.html",
+    "https://papers.nips.cc/paper/2783-gaussian-process-dynamical-models"
+  ],
+  "interpretation": "Exploratoryrevealed6301development. No claim ofindependentconfirmation, VJEPAorrealvideo validation."
+}

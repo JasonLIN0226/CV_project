@@ -1,0 +1,17 @@
+{
+  "status": "VALIDATION_ONLY_REPAIR_HYPOTHESIS_NOT_ADOPTED",
+  "formula": "mean(((prediction-future_normalized_feature) @ frozen_position_decoder_A)**2)",
+  "scope": "Motion task-specific offline deletion-utility scoring",
+  "new_fit_parameters": 0,
+  "predictor_frozen": true,
+  "decoder_frozen": true,
+  "normalization_frozen": true,
+  "source_complete_feature_scores_and_original_acceptance_unchanged": true,
+  "next": "Separately lock this one scoring formula and original comparisons before any test scoring; do not choose another variant based on test outputs.",
+  "boundaries": [
+    "Future features are labels for offline diagnosis only, never deployed inputs.",
+    "Not a task-agnostic semantic utility or proof of causal/past-only learnability.",
+    "Does not repair original full-feature prediction acceptance.",
+    "No retention-policy training or fresh9137 confirmation."
+  ]
+}
