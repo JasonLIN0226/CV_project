@@ -14,6 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT = ROOT / "results/phase2_history/20261020"
+SOURCE_SNAPSHOTS = ROOT / "results/phase2_history/source_snapshots"
 
 
 def sha(path):
@@ -30,11 +31,32 @@ def close(actual, expected, message, tolerance=1e-12):
             and abs(actual - expected) <= tolerance * max(1., abs(actual), abs(expected)), message)
 
 
+def verify_source(relative, expected, archived_sources):
+    """Verify the source used by the historical receipt, not a later revision."""
+    path = (ROOT / relative).resolve()
+    require(path.is_relative_to(ROOT), "Source path escapes repository: " + relative)
+    if path.is_file() and sha(path) == expected:
+        return
+    require(len(expected) == 64 and all(c in "0123456789abcdef" for c in expected),
+            "Invalid source digest: " + relative)
+    snapshot = (SOURCE_SNAPSHOTS / (expected + ".py")).resolve()
+    require(snapshot.is_relative_to(SOURCE_SNAPSHOTS.resolve()) and snapshot.is_relative_to(ROOT),
+            "Source snapshot escapes archive: " + relative)
+    require(snapshot.is_file() and sha(snapshot) == expected,
+            "Historical source missing or changed: " + relative)
+    archived_sources[relative] = {
+        "sha256": expected, "snapshot": str(snapshot.relative_to(ROOT)),
+        "current_working_sha256": sha(path) if path.is_file() else None,
+        "current_working_source_matches_historical_receipt": False,
+    }
+
+
 def verify(root=DEFAULT):
     root = Path(root).resolve()
     manifest = json.loads((root / "manifest.json").read_text())
     require(manifest["schema_version"] == 1, "Unknown receipt schema")
     files = manifest["published_files"]
+    archived_sources = {}
     for relative, record in files.items():
         path = (root / relative).resolve()
         require(path.is_relative_to(root), "Published path escapes receipt directory")
@@ -43,8 +65,7 @@ def verify(root=DEFAULT):
         require(record["raw_sources"] and all(len(s["sha256"]) == 64 for s in record["raw_sources"]),
                 "Raw-source provenance missing: " + relative)
     for relative, expected in manifest["source_file_sha256"].items():
-        path = (ROOT / relative).resolve()
-        require(path.is_relative_to(ROOT) and sha(path) == expected, "Published verifier/source changed: " + relative)
+        verify_source(relative, expected, archived_sources)
     for relative, expected in manifest.get("related_repository_artifact_sha256", {}).items():
         path = (ROOT / relative).resolve()
         require(path.is_relative_to(ROOT) and sha(path) == expected, "Related figure changed: " + relative)
@@ -73,8 +94,7 @@ def verify(root=DEFAULT):
             require(sha(artifact) == record["sha256"] and artifact.stat().st_size == record["bytes"],
                     "PushT published artifact changed: " + relative)
         for relative, expected in receipt["current_source_sha256"].items():
-            source = (ROOT / relative).resolve()
-            require(source.is_relative_to(ROOT) and sha(source) == expected, "PushT source changed: " + relative)
+            verify_source(relative, expected, archived_sources)
         subordinate_counts["pusht_preparation"] = len(receipt["copied_raw_json"])
 
     software_path = root / "software_checks/run_manifest.json"
@@ -84,8 +104,7 @@ def verify(root=DEFAULT):
                 software["software_test_counts"] == {"tests": 229, "failures": 0, "errors": 0, "skipped": 0},
                 "Final software check result differs")
         for relative, expected in software["source_sha256"].items():
-            source = (ROOT / relative).resolve()
-            require(source.is_relative_to(ROOT) and sha(source) == expected, "Tested source changed: " + relative)
+            verify_source(relative, expected, archived_sources)
 
     def read(name):
         require(name in files, "Required receipt missing from published manifest: " + name)
@@ -174,8 +193,9 @@ def verify(root=DEFAULT):
     return {"status": "passed_published_receipts_and_arithmetic", "published_files_verified": len(files),
             "source_files_verified": len(manifest["source_file_sha256"]), "history_episode_horizon_rows": 2400,
             "standalone_child_receipt_file_counts": subordinate_counts,
+            "historical_source_snapshots_verified": archived_sources,
             "followup_arms": 6, "model_inference_rerun": False, "raw_binary_hashes_reverified": False,
-            "scope": "Published bytes, provenance labels, paired means, contrasts and epoch-zero-inclusive selection only."}
+            "scope": "Published bytes, historical source, paired means, contrasts and epoch-zero-inclusive selection only; archived source does not validate later working revisions."}
 
 
 def main():

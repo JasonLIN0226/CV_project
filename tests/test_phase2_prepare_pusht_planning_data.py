@@ -176,16 +176,23 @@ def test_audit_rejects_action_order_and_hidden_archive_path(saved_episode):
         p.audit_dataset(root, protocol, index)
 
 
-def test_protocol_written_before_first_simulator_and_existing_output_preserved(tmp_path):
+def test_protocol_written_before_first_simulator_and_existing_output_preserved(tmp_path, monkeypatch):
+    # PixelEnv replaces the optional simulator; its package/source metadata must
+    # also be replaced so this data-boundary test does not require gym_pusht.
+    provenance = {"git_base": None, "source_sha256": {}, "python": "test-runtime",
+                  "packages": {"gym-pusht": "test-double"}}
+    monkeypatch.setattr(p, "_runtime_provenance", lambda: provenance)
     calls = []
     def factory(mask):
         assert (tmp_path/"protocol.json").is_file()
         receipt = json.loads((tmp_path/"protocol_frozen_before_collection.json").read_text())
         assert receipt["before_environment_creation"]
         assert receipt["protocol_sha256"] == p.sha256(tmp_path/"protocol.json")
+        assert {key: receipt[key] for key in provenance} == provenance
         calls.append(mask.enabled)
         return p.PushTVisualAdapter(PixelEnv(steps=1), mask)
     result = p.run(tmp_path, factory=factory)
+    assert {key: result[key] for key in provenance} == provenance
     assert len(calls) == 96 and result["frames_per_variant"] == 96
     assert not result["encoder_run"] and not result["baseline_model_planning_verified"]
     assert result["goal_image_status"] == "pending_not_rendered"
