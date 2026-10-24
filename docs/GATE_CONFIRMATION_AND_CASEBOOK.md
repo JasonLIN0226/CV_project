@@ -28,10 +28,10 @@
 
 ## 先看这些案例，再读论文
 
-- [CV真实RGB互动图册](../results/literature_diagnosis/visual-casebook-20261022/index.html)：三个预选案例，可播放两条配对轨迹、跳转cue/query/未来。下载HTML后可离线打开。
+- [CV分组案例图册](../results/literature_diagnosis/visual-casebook-20261024/index.html)：内容失败＋成功为一组，WR启动为另一环节，时间戳作为辅助消融。下载仓库后可离线打开；新版未完成浏览器渲染验收。
 - [CV中文看图说明](GATE_VISUAL_CASEBOOK.md)：内容读错、年龄参与、正确cue成功对照。图片均为缓存的真实输入和真实未来；特征预测只用数值图展示，没有伪造解码视频。
 - [PM已有四个案例](https://github.com/XintongYang1010/predictive-memory-lab/blob/experiments/bank-reference-20261022/docs/PM_CASE_GALLERY_ZH.md)：有害旧值、噪声主导、成功对照、旧A2小效应。仅重画已有结果；缺失原始RGB的部分明确画成残差/时间/attention图。
-- [论文阅读顺序与问题](https://github.com/XintongYang1010/predictive-memory-lab/blob/experiments/bank-reference-20261022/docs/PAPER_READING_GUIDE_ZH.md)：PaFu-KV → Worth Remembering → Gated DeltaNet。
+- [配套论文阅读顺序与问题](CASE_STUDY_READING_GUIDE_ZH.md)：Worth Remembering → PaFu-KV → Gated DeltaNet；每篇对应具体案例、三个分析问题及原机制／适配边界。
 
 ## 与两个proposal结合后的下一步
 
