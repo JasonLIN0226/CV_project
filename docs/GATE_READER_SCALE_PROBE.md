@@ -1,9 +1,23 @@
 # Gate reader sample-size pilot: protocol and prior-result audit
 
-This document records the prepared 24 October pilot, not a completed GPU result.
-Check the run's `completion.json`, hardware receipt, `readers_locked.json`, and
-`evaluation_summary.json` before reporting execution or a scientific outcome.
-The execution source is `experiments/phase2/run_reader_scale_probe.py`.
+The 24 October single-seed pilot **completed encoding, CUDA reader training and
+evaluation** in A100 job 11026. Increasing training scenes substantially reduced
+the retained-cue prediction failure on 48 new scene pairs. This is a reader
+diagnostic, not a demonstrated retention-policy improvement or a formal Phase1
+confirmation. The execution source is
+`experiments/phase2/run_reader_scale_probe.py`.
+
+Local run evidence is under `build/reader-scale-a100-20261024/run/`; portable
+paired summaries and figures are under
+[`results/literature_diagnosis/reader-scale-pilot-20261024/analysis/`](../results/literature_diagnosis/reader-scale-pilot-20261024/analysis/paired_summary.json).
+The saved rows, aggregate summary, checkpoint hashes and validation selections
+were independently reconciled. A subsequent hash-bound target export enabled
+[independent NumPy arithmetic verification](../results/literature_diagnosis/reader-scale-pilot-20261024/analysis/arithmetic_verification.json)
+of all 1,920 saved predictions against 96 episode targets: maximum MSE error
+was 1.11e-16, and the 80 aggregate values agreed within 5.55e-17. Raw-feature
+MSE, alpha and its direction fraction also matched. This verifies saved-result
+arithmetic and artifact binding; it does not independently rerun the encoder or
+model, or turn the feature-direction proxy into a physical-lane metric.
 
 ## Why this pilot
 
@@ -31,6 +45,85 @@ normalization. It must not pass the old normalized feature arrays directly into
 the official model or mix its basis with the development checkpoint. The
 official Release excludes its large RGB/feature caches and encoder weights.
 No official checkpoint is used by this sample-size pilot.
+
+## Completed A100 results
+
+All metrics below use the same 96 episodes / 48 scene pairs and the same
+cue-plus-filler K=2 control. Direction fraction is the mean of `alpha_h > 0`
+over 192 episode-horizon outcomes; it is not decoded physical lane accuracy.
+The episode counts are paired observations, not independent trials.
+
+| Reader | Cue MSE | Correct cue worse than matched wrong cue | At least one negative alpha | Both alphas negative | Direction fraction |
+|---|---:|---:|---:|---:|---:|
+| Old epoch-35, 16-pair reference | 0.108929 | 24/96 | 34/96 | 16/96 | 73.96% |
+| Retrained 16 pairs | 0.104284 | 19/96 | 33/96 | 12/96 | 76.56% |
+| Retrained 64 pairs | 0.073858 | 2/96 | 10/96 | 5/96 | 92.19% |
+| Retrained 512 pairs | 0.057564 | 2/96 | 4/96 | 2/96 | 96.88% |
+
+The 512-pair reader reduces cue MSE by about **44.8%** relative to the retrained
+16-pair reader. This is not simply uniform improvement in every input condition:
+no-cue K=2 MSE changes from 0.123436 to 0.112789, while cue K=2 changes from
+0.104284 to 0.057564. The correct-cue advantage over no-cue therefore grows from
+0.019153 to 0.055226. Of the 0.046720 cue-MSE decrease, 0.040712 (about 87.1%)
+is in the paired-future contrast component; 0.006007 is orthogonal to that axis.
+
+The trend holds in the aggregate of each of the three conditions, each with
+only 16 independent scene pairs:
+
+| Condition | Cue MSE, 16 pairs | Cue MSE, 64 pairs | Cue MSE, 512 pairs | 512-pair episodes with at least one negative alpha |
+|---|---:|---:|---:|---:|
+| ID | 0.102725 | 0.070206 | 0.054868 | 3/32 |
+| Long gap | 0.098199 | 0.062073 | 0.052016 | 1/32 |
+| Distractor shift | 0.111927 | 0.089296 | 0.065806 | 0/32 |
+
+The remaining two 512-pair episodes where correct cue is worse than wrong cue
+are **one sibling scene pair**, `dfada2d1a6aa90938540b005`, with first query action
+`+0.0664757714`. Both siblings have negative alpha at both horizons. The other
+two episodes with any negative alpha are much closer to the contrast boundary:
+one ID episode has alpha at h=3 of -0.006685, and one long-gap episode has alpha
+at h=6 of -0.011323. These remaining cases are legitimate diagnosis targets, but
+neither their frequency nor their proximity to an action boundary establishes
+the causal mechanism.
+
+All three initial state hashes match. All arms completed 512 updates and saw
+all their available training pairs. Validation selected steps **128, 448, 448**
+for the 16/64/512 arms respectively, with equal-mode validation MSE
+0.110589, 0.101926, 0.094816. Thus maximum optimization budget was controlled;
+the selected models do not have equal optimizer ages. The interpretation is a
+fixed training-and-selection protocol with different available scene sets,
+not a pure causal estimate that holds every selected checkpoint's update count
+fixed. The saved paired bootstrap describes scenario uncertainty conditional
+on this one seed; it does not measure variation across training seeds.
+
+The hardware receipt identifies `NVIDIA A100-SXM4-40GB`, job 11026, host
+`b-19-53`, UUID `GPU-32696669-0cff-0b88-1315-809240c3f81b`. The run records
+273.111 seconds of encoding and approximately 47.38 / 43.41 / 42.41 seconds of
+training for the three arms. Slurm `sacct` records `COMPLETED`, exit `0:0`,
+539 elapsed seconds and one allocated GPU (approximately 0.150 GPU hours).
+The component timings exclude some preparation and evaluation overhead and
+must not be substituted for that total allocation duration. The accounting
+receipt is retained under the run's `execution-evidence/sacct-11026.txt`.
+
+**What this changes:** the retained-cue failure pattern exhibited by the old
+reader on these new 48 pairs is substantially less frequent with expanded
+training under the same architecture and fixed feature transforms. The original
+casebook episodes were not replayed by this pilot, so this does not establish
+that each previously displayed case has been repaired. These failures should
+not be promoted directly into a new retention-method claim. The next retention comparison must first freeze a
+reader that demonstrably benefits from the evidence, then compare all policies
+with that same reader. This pilot did not rerun WR, PaFu, attention or a learned
+retention scorer, did not establish usable oracle regret, and did not fix the
+early-time local-cost labels or their horizon mismatch. It also did not identify
+whether action-sign composition, irrelevant action summaries, or another aspect
+of coverage explains the remaining failures.
+
+A subsequent scaled-student feasibility test is **pending**: fix the 512-pair
+reader and compare local-cost, use-time, future-attention and shuffled-label
+students trained on 512 pairs. The reader outcomes of the current 48 evaluation
+pairs have already been inspected; any subsequent student comparison on them is
+development analysis, not a new independent confirmation. No completed result
+from that test is claimed here. The earlier small-data CPU use-time student's
+negative development result remains unchanged.
 
 ## Corrections to the existing confirmation analysis
 
@@ -92,7 +185,7 @@ and episode IDs are checked against the old dataset and both previous fresh
 datasets. The actual portable input export contains 512 excluded metadata rows
 (128 old, 192 fresh development, 192 previous confirmation).
 
-The intended invocation fixes **512 optimizer updates per arm**, 16 pairs per
+The completed invocation used **512 optimizer updates per arm**, 16 pairs per
 update, and validates every 64 updates, including initialization and the terminal
 step. It selects the earliest minimum of equal-weight validation MSE over the
 same six history sampling modes. Thus 16/64/512 arms have respectively
@@ -129,7 +222,7 @@ basis, normalization, old-reader checkpoint, model config, excluded identities,
 and manifest. The obsolete first export lacks the complete output basis and must
 not be used. The v2 package passed SHA checks, strict old-reader loading, and an
 actual finite CPU forward with shape `[1, 2, 5120]`; this is an interface check,
-not an A100 experiment.
+not by itself an A100 experiment. The completed A100 evidence is reported above.
 
 Rebuild the inputs from the verified local assets if needed:
 

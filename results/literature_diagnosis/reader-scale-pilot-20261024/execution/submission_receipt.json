@@ -1,0 +1,27 @@
+{
+  "status": "submitted",
+  "created_utc": "2026-10-25T03:13:55.504585+00:00",
+  "archive_sha256": "d4578ff0a7dac21ab9020aa7a2887a8efa02b3523d112b8595f621c868bb0995",
+  "gpu_execution_verified": false,
+  "command": [
+    "/opt/slurm/bin/sbatch",
+    "--parsable",
+    "--export=ALL",
+    "--no-requeue",
+    "--job-name=cv-reader-scale-20261024",
+    "--account=csci_ga_2271-2026fa",
+    "--partition=c12m85-a100-1",
+    "--gres=gpu:1",
+    "--cpus-per-task=4",
+    "--mem=32G",
+    "--time=00:45:00",
+    "--chdir=/scratch/xy3257/cv-phase2-20261020/reader-scale-probe-20261024",
+    "--output=/scratch/xy3257/cv-phase2-20261020/reader-scale-probe-20261024/slurm-%j.log",
+    "/scratch/xy3257/cv-phase2-20261020/reader-scale-probe-20261024/run.sbatch"
+  ],
+  "bundle_manifest_sha256": "5c138b499746c2bb51cd43863f183bc8c93bcdeaee4ab87a4ab26e6c0a4a7e4f",
+  "returncode": 0,
+  "stdout": "11026\n",
+  "stderr": "",
+  "job_id": "11026"
+}
