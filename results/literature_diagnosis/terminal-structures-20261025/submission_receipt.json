@@ -1,0 +1,28 @@
+{
+  "status": "submitted",
+  "archive_sha256": "f41497a439f39895055e396beb0bc458e20cc746d5c71391eb986fde945fe806",
+  "created_utc": "2026-10-25T19:59:34.763791+00:00",
+  "gpu_execution_verified": false,
+  "confirmation_requires_k2_gate_and_frozen_students": true,
+  "command": [
+    "/opt/slurm/bin/sbatch",
+    "--parsable",
+    "--export=ALL",
+    "--no-requeue",
+    "--job-name=cv-terminal-structures-20261025",
+    "--account=csci_ga_2271-2026fa",
+    "--partition=c12m85-a100-1",
+    "--gres=gpu:1",
+    "--cpus-per-task=4",
+    "--mem=32G",
+    "--time=01:00:00",
+    "--chdir=/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025",
+    "--output=/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/slurm-%j.log",
+    "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/run.sbatch"
+  ],
+  "bundle_manifest_sha256": "7d424e5a32510c7a3f14f4abeecbc3d208928c9a1d5127ed263804317d062ede",
+  "returncode": 0,
+  "stdout": "11441\n",
+  "stderr": "",
+  "job_id": "11441"
+}

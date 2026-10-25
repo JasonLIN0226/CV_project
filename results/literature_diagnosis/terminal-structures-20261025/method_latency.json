@@ -1,0 +1,76 @@
+{
+  "warmup_parent": "c352904cd1ad35f86e6d57e4",
+  "measured_parent_ids": [
+    "338d1362da6769afbcf03015",
+    "2a4a479d7bad5dd015e0ed0a",
+    "b24eb3620e823c89a6d697fa",
+    "ba779cfe7f1a19175d8e867a",
+    "df15aa00da1a18a3f520f9f4",
+    "0ee8d734cd729ae687cf7ad0",
+    "865248ea12dc73a42a19f6e4",
+    "50e78747605df9ba952cb820",
+    "44d4974804667d5d3ba9f7d0",
+    "05690081622c08ce2e2b7dc6",
+    "45378b87ab94b7bf410b2298",
+    "bfa811c60abfba7c72713621",
+    "0eaadfbf58dadd580fff0a30",
+    "b2202b1300ed2528b748715c",
+    "ac6bba3490ad10c323a5d1f0",
+    "78d80f148890442ed16a20b2"
+  ],
+  "outcome_based_selection": false,
+  "device": "cuda",
+  "reference_plan_count": 16,
+  "costs": {
+    "medoid": {
+      "forecasts_per_decision": 48,
+      "seconds": [
+        0.04307344300013938,
+        0.04309421100015243,
+        0.04322016099990833,
+        0.04318714200007889,
+        0.04314146499996241,
+        0.04265044599992507,
+        0.042673607000097036,
+        0.04288210600020648,
+        0.042715045000022656,
+        0.0433277370000269,
+        0.043283095000106186,
+        0.043151929000032396,
+        0.04322749399989334,
+        0.04299980700011474,
+        0.0425062980000348,
+        0.04332931399994777
+      ],
+      "median_seconds": 0.04311783800005742,
+      "p95_seconds": 0.04332813125000712
+    },
+    "full_sensitivity": {
+      "forecasts_per_decision": 64,
+      "seconds": [
+        0.0545607280000695,
+        0.05455035799991492,
+        0.05488828799980183,
+        0.05503377500008355,
+        0.05506288299989137,
+        0.054363145000024815,
+        0.05485240799998792,
+        0.05443907600010789,
+        0.05505335199995898,
+        0.05515745100001368,
+        0.055277922999948714,
+        0.055144815999938146,
+        0.05536181899992698,
+        0.05431290000001354,
+        0.05469915100002254,
+        0.055554110000002765
+      ],
+      "median_seconds": 0.05496103149994269,
+      "p95_seconds": 0.05540989174994593
+    }
+  },
+  "extra_forecast_examples_including_warmup": 1904,
+  "includes": "projection, input construction, batched reader, CPU transfer, coefficient-capture/reconstruction audit and selection kernel",
+  "excludes": "checkpoint loading, encoder, feature disk access, target generation and evaluation",
+  "limitation": "instrumented current implementation, not optimized deployment latency; first deterministic parents, no hardware-wide claim"
+}

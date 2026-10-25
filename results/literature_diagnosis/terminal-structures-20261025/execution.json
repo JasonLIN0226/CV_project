@@ -1,0 +1,314 @@
+{
+  "status": "completed_reader_gate_failed_no_students_no_confirmation",
+  "hardware": {
+    "utc": "2026-10-25T20:01:32.207917+00:00",
+    "slurm_job_id": "11441",
+    "torch_version": "2.5.1+cu121",
+    "cuda_device": "NVIDIA A100-SXM4-40GB",
+    "nvidia_smi": "NVIDIA A100-SXM4-40GB, GPU-06882f24-c288-940d-8058-38101ad5349f, 40960 MiB\n"
+  },
+  "stages": [
+    {
+      "arguments": [
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/bundle/experiments/phase2/run_terminal_structures.py",
+        "freeze",
+        "--output",
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/run",
+        "--config",
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/bundle/experiments/phase2/configs/terminal_structures_20261025.json"
+      ],
+      "returncode": 0,
+      "seconds": 0.321244478225708
+    },
+    {
+      "arguments": [
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/bundle/experiments/phase2/run_terminal_structures.py",
+        "prepare",
+        "--output",
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/run"
+      ],
+      "returncode": 0,
+      "seconds": 109.03697514533997
+    },
+    {
+      "arguments": [
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/bundle/experiments/phase2/run_terminal_structures.py",
+        "encode",
+        "--output",
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/run",
+        "--device",
+        "cuda",
+        "--cache-dir",
+        "/scratch/xy3257/cv-phase2-20261020/cache/ijepa"
+      ],
+      "returncode": 0,
+      "seconds": 456.6414270401001
+    },
+    {
+      "arguments": [
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/bundle/experiments/phase2/run_terminal_structures.py",
+        "train",
+        "--output",
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/run",
+        "--device",
+        "cuda"
+      ],
+      "returncode": 0,
+      "seconds": 339.5789351463318
+    },
+    {
+      "arguments": [
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/bundle/experiments/phase2/run_terminal_structures.py",
+        "evaluate",
+        "--output",
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/run",
+        "--split",
+        "development",
+        "--device",
+        "cuda"
+      ],
+      "returncode": 0,
+      "seconds": 389.4186532497406
+    },
+    {
+      "arguments": [
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/bundle/experiments/phase2/summarize_terminal_students.py",
+        "--run",
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/run",
+        "--split",
+        "development",
+        "--audit",
+        "--baseline-only"
+      ],
+      "returncode": 0,
+      "seconds": 5.169443607330322
+    }
+  ],
+  "confirmation_opened": false,
+  "development_gates": {
+    "summary": {
+      "R": {
+        "K2_complete_accuracy": 0.7560763888888888,
+        "flip_accuracy": 0.7638888888888888,
+        "K3_accuracy": 0.7326388888888888,
+        "fixed_complete_mse": 0.05935941819460217,
+        "fixed_missing_mse": 0.10271469799389142,
+        "single_mse": 0.12075111909702746,
+        "missing_tie_credit_accuracy": 0.4826388888888889,
+        "missing_midpoint_mse": 0.07454283328881049,
+        "missing_equal_distance_fraction": 0.0
+      },
+      "D": {
+        "K2_complete_accuracy": 0.8524305555555556,
+        "flip_accuracy": 0.8611111111111112,
+        "K3_accuracy": 0.84375,
+        "fixed_complete_mse": 0.06525412812517935,
+        "fixed_missing_mse": 0.10819568869294513,
+        "single_mse": 0.12945179130883055,
+        "missing_tie_credit_accuracy": 0.4965277777777778,
+        "missing_midpoint_mse": 0.07699851683188116,
+        "missing_equal_distance_fraction": 0.0
+      },
+      "S": {
+        "K2_complete_accuracy": 0.9375,
+        "flip_accuracy": 0.9375,
+        "K3_accuracy": 0.7248263888888888,
+        "fixed_complete_mse": 0.08571230487379228,
+        "fixed_missing_mse": 0.13776888398499235,
+        "single_mse": 0.1621860120461186,
+        "missing_tie_credit_accuracy": 0.5,
+        "missing_midpoint_mse": 0.03497123368770892,
+        "missing_equal_distance_fraction": 0.0
+      }
+    },
+    "by_condition": {
+      "R/neutral": {
+        "fixed_complete_mse_by_deleted_role": {
+          "A": 0.051000969867438024,
+          "Aprime": 0.05070429819776573
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "A": 1.0,
+          "Aprime": 1.0
+        },
+        "missing_mse_by_deleted_role": [
+          0.10213397825840946
+        ],
+        "flip_accuracy": 1.0,
+        "native_complete_accuracy": 0.9791666666666666,
+        "full_accuracy": 0.9479166666666666
+      },
+      "R/salient_redundant": {
+        "fixed_complete_mse_by_deleted_role": {
+          "A": 0.05918684068086033,
+          "Aprime": 0.059995440447826474
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "A": 0.7604166666666666,
+          "Aprime": 0.7604166666666666
+        },
+        "missing_mse_by_deleted_role": [
+          0.10387613746485534
+        ],
+        "flip_accuracy": 0.7604166666666666,
+        "native_complete_accuracy": 0.7447916666666666,
+        "full_accuracy": 0.7291666666666666
+      },
+      "R/salient_unique": {
+        "fixed_complete_mse_by_deleted_role": {
+          "A": 0.06765826404599319,
+          "Aprime": 0.06761069592772923
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "A": 0.53125,
+          "Aprime": 0.53125
+        },
+        "missing_mse_by_deleted_role": [
+          0.10213397825840946
+        ],
+        "flip_accuracy": 0.53125,
+        "native_complete_accuracy": 0.5208333333333334,
+        "full_accuracy": 0.5208333333333334
+      },
+      "D/neutral": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.059398065895396396
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.9895833333333334
+        },
+        "missing_mse_by_deleted_role": [
+          0.1396563406191281,
+          0.0763277235330023
+        ],
+        "flip_accuracy": 0.9895833333333334,
+        "native_complete_accuracy": 0.96875,
+        "full_accuracy": 0.96875
+      },
+      "D/salient_decoy": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.059398065895396396
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.9895833333333334
+        },
+        "missing_mse_by_deleted_role": [
+          0.13963668477909552,
+          0.0763322435091291
+        ],
+        "flip_accuracy": 0.9895833333333334,
+        "native_complete_accuracy": 0.96875,
+        "full_accuracy": 0.96875
+      },
+      "D/salient_useful": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.07696625258474526
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.6041666666666666
+        },
+        "missing_mse_by_deleted_role": [
+          0.13992853629601035,
+          0.07729260342130544
+        ],
+        "flip_accuracy": 0.6041666666666666,
+        "native_complete_accuracy": 0.59375,
+        "full_accuracy": 0.59375
+      },
+      "S/neutral": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.09446551849321011
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.8958333333333334
+        },
+        "missing_mse_by_deleted_role": [
+          0.13701283085241103,
+          0.13701283085241103
+        ],
+        "flip_accuracy": 0.8958333333333334,
+        "native_complete_accuracy": 0.8958333333333334,
+        "full_accuracy": 0.7083333333333334
+      },
+      "S/salient_slot_0": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.08436444722814002
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.9652777777777778
+        },
+        "missing_mse_by_deleted_role": [
+          0.14061015222711307,
+          0.1401423191285462
+        ],
+        "flip_accuracy": 0.9652777777777778,
+        "native_complete_accuracy": 0.9652777777777778,
+        "full_accuracy": 0.7395833333333334
+      },
+      "S/salient_slot_1": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.08770018835271359
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.9791666666666666
+        },
+        "missing_mse_by_deleted_role": [
+          0.1363649568391031,
+          0.13564860327706105
+        ],
+        "flip_accuracy": 0.9791666666666666,
+        "native_complete_accuracy": 0.9791666666666666,
+        "full_accuracy": 0.7395833333333334
+      },
+      "S/salient_slot_2": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.07631906542110542
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.9097222222222222
+        },
+        "missing_mse_by_deleted_role": [
+          0.13867575700546586,
+          0.1366836216978277
+        ],
+        "flip_accuracy": 0.9097222222222222,
+        "native_complete_accuracy": 0.9097222222222222,
+        "full_accuracy": 0.7118055555555556
+      }
+    },
+    "gates": {
+      "R/K2_content": false,
+      "R/K3_content": false,
+      "R/neutral/K2_content": true,
+      "R/neutral/K3_content": true,
+      "R/salient_redundant/K2_content": false,
+      "R/salient_redundant/K3_content": false,
+      "R/salient_unique/K2_content": false,
+      "R/salient_unique/K3_content": false,
+      "D/K2_content": false,
+      "D/K3_content": false,
+      "D/neutral/K2_content": true,
+      "D/neutral/K3_content": true,
+      "D/salient_decoy/K2_content": true,
+      "D/salient_decoy/K3_content": true,
+      "D/salient_useful/K2_content": false,
+      "D/salient_useful/K3_content": false,
+      "S/K2_content": true,
+      "S/K3_content": false,
+      "S/neutral/K2_content": true,
+      "S/neutral/K3_content": false,
+      "S/salient_slot_0/K2_content": true,
+      "S/salient_slot_0/K3_content": false,
+      "S/salient_slot_1/K2_content": true,
+      "S/salient_slot_1/K3_content": false,
+      "S/salient_slot_2/K2_content": true,
+      "S/salient_slot_2/K3_content": false
+    },
+    "all_task_k2_qualified": false,
+    "all_task_k3_qualified": false,
+    "missing_information_chance_is_generator_property_not_reader_gate": true,
+    "S_prototype_classes": 2,
+    "R_D_prototype_classes": 4,
+    "rows": 21312
+  }
+}
