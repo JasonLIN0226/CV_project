@@ -1,0 +1,28 @@
+{
+  "status": "submitted",
+  "created_utc": "2026-10-25T17:37:35.114672+00:00",
+  "archive_sha256": "69d87175099b06c886f811c5dca28e1ce3e1af4db5bcc850f9e3959845a0051b",
+  "gpu_execution_verified": false,
+  "student_training": false,
+  "command": [
+    "/opt/slurm/bin/sbatch",
+    "--parsable",
+    "--export=ALL",
+    "--no-requeue",
+    "--job-name=cv-gate2-terminal-20261025",
+    "--account=csci_ga_2271-2026fa",
+    "--partition=c12m85-a100-1",
+    "--gres=gpu:1",
+    "--cpus-per-task=4",
+    "--mem=32G",
+    "--time=00:20:00",
+    "--chdir=/scratch/xy3257/cv-phase2-20261020/gate2-terminal-pilot-20261025",
+    "--output=/scratch/xy3257/cv-phase2-20261020/gate2-terminal-pilot-20261025/slurm-%j.log",
+    "/scratch/xy3257/cv-phase2-20261020/gate2-terminal-pilot-20261025/run.sbatch"
+  ],
+  "bundle_manifest_sha256": "74014c4c7a3a8f34700662f5475f15ff233356114b8766297dcea64096ca8f32",
+  "returncode": 0,
+  "stdout": "11310\n",
+  "stderr": "",
+  "job_id": "11310"
+}

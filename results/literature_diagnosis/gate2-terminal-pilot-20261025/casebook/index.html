@@ -1,0 +1,22 @@
+<!doctype html><html lang="zh"><meta charset="utf-8"><title>Gate2：重复外观与互补信息</title>
+<style>body{font-family:system-ui,sans-serif;margin:32px auto;max-width:1250px;padding:0 22px;color:#172333;line-height:1.7}h1{font-size:30px}h2{margin-top:34px;font-size:23px}img{width:100%;height:auto}.note{background:#f1f5f8;border-left:4px solid #58718b;padding:13px 18px}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:9px;border-bottom:1px solid #dce2e8;text-align:left}code{font-size:12px}.small{font-size:13px;color:#506070}</style>
+<h1>这次确实丢掉了有用信息：重复外观挤掉互补线索</h1>
+<p>Gate2 把两个独立方向分别藏在历史 cue 中：一个决定左右，一个决定上下。K=2 足以各留一条；候选有三张，其中两张讲的是同一个方向。A 与 A′ 是重复信息，B 是另一条独有信息。角色 A 不固定代表横向。</p>
+<div class="note">全部 24 项 reader 检查通过；互补 AB 的特征分类为 192/192，A′B 为 191/192，分别翻转两个 cue 后预测也都转向对应 sibling（192/192）。因此这个终端任务里的保留差距，已有“预测器能利用正确证据”的支持。这里没有训练新保留方法，也没有独立确认方法收益。</div>
+<img src="figures/population.png" alt="全部开发场景的reader与保留策略结果">
+<p>普通副本时，diversity 保住两条不同信息的比例为 96/96；改变副本外观后降到 48/96。对应特征分类从 96/96 降到 72/96。注意：这 48 次信息丢失全部集中在<strong>重复的是纵向 cue</strong>的48条 episode；重复横向 cue 的48条没有该失败。这是明确但很窄的受控现象，不能概括成所有外观变化都会击败 diversity。</p>
+<h2>一组配对案例：只有 A′ 的画法变了</h2>
+<p>这对样本的真实答案都是“向左、向上”。三张 cue 的时间依次是 t=9、10、11；query 为15。上下文、动作、cue 含义与未来完全相同，只有第一张 A′ 从普通样式换成彩色大卡片。绿框表示 diversity 保留，红框表示删除。</p>
+<img src="figures/paired_case.png" alt="失败与配对成功对照的实际观测、未来和三种删除损失">
+<p>普通样式下，diversity 删除一张重复的“向上”，保住“向左＋向上”；改样式后，它保住外观差别大的两张“向上”，反而删除唯一的“向左”。这对样本的 MSE 从 <strong>0.066324</strong> 变为 <strong>0.235177</strong>；同一候选集合里另删一张重复 cue，MSE 可以回到 <strong>0.066324</strong>。</p>
+<p>Attention 的表现正好提醒我们不能据单例选赢家：它在普通样式中删 B、MSE 0.209666；改样式后删 A′、MSE 0.066324。两类 proxy 在不同外观下会犯不同错误。</p>
+<p>普通样式的 diversity 虽然保住两条互补信息、分类也正确，仍不是精确 MSE 最优：保存较早或较晚的同内容副本，reader 的数值输出会有差别。因此要把“丢了独有信息”和“语义正确但读出误差略有不同”分开。</p>
+<div class="note"><strong>图中的“最近 GT 候选”不是模型生成的视频帧。</strong>它展示预测特征最接近哪一个真实 sibling 未来，用于解释四分类标签。模型实际输出是特征向量。</div>
+<h2>同一 family 的全部四种答案</h2>
+<p>不能只看失败视频。下面保留这组所有四个 sibling：如果 B 被删掉，左右不同的两个样本会向 reader 提供相同剩余信息。归档预测核查显示，两个 y 分组内删除 B 后的预测逐元素完全相同，最大差异都是0；猜对其中一个并不表示恢复了丢失的方向。</p>
+<table><tr><th>真实 bits（x,y）</th><th>样式</th><th>diversity 保留的信息</th><th>最近未来类别</th><th>MSE</th><th>局部 oracle MSE</th></tr><tr><td>(0, 0)</td><td>普通副本</td><td>互补两条</td><td>[0, 0]</td><td>0.066324</td><td>0.055182</td></tr><tr><td>(0, 0)</td><td>改外观副本</td><td>重复同一条</td><td>[1, 0]</td><td>0.235177</td><td>0.066324</td></tr><tr><td>(0, 1)</td><td>普通副本</td><td>互补两条</td><td>[0, 1]</td><td>0.068424</td><td>0.064794</td></tr><tr><td>(0, 1)</td><td>改外观副本</td><td>重复同一条</td><td>[0, 1]</td><td>0.169574</td><td>0.068424</td></tr><tr><td>(1, 0)</td><td>普通副本</td><td>互补两条</td><td>[1, 0]</td><td>0.084419</td><td>0.077194</td></tr><tr><td>(1, 0)</td><td>改外观副本</td><td>重复同一条</td><td>[1, 0]</td><td>0.186644</td><td>0.084419</td></tr><tr><td>(1, 1)</td><td>普通副本</td><td>互补两条</td><td>[1, 1]</td><td>0.067955</td><td>0.046910</td></tr><tr><td>(1, 1)</td><td>改外观副本</td><td>重复同一条</td><td>[0, 1]</td><td>0.197601</td><td>0.051304</td></tr></table>
+<h2>这组例子支持什么，还没支持什么</h2>
+<p>它支持“视觉差异最大”与“信息互补”不等价：有限槽位可能被同一事实的不同外观占据。它也支持在这个固定 reader、固定终端候选集合中存在实际预测损失，而不仅是 cue 标签被删。它尚未证明我们的 scorer 能学会解决，更没有证明这个任务覆盖真实视频的困难。</p>
+<p>另外，早期 q−6 的静止预测仍不可靠：MSE 为 0.342578，复用上一帧的因果参照是0。当前证据限定在 query 时的终端选择，不能顺势宣称整个 early-time reader 或长轨迹标签已经校准。</p>
+<h2>选择与来源</h2><p class="small">按明确失败类型筛出 24/96 个配对 episode（12 个 family），再按 family ID、bits 字典序选第一组；没有按最大损失或最大 regret 选。完整总体为24个配对style family、48个quartet、192条episode，一个训练seed。该图册只重绘归档观测和计算结果，未调用模型。</p>
+<p class="small">Family：<code>0c7aa4c661fd4f3952f48311</code>。<a href="case_selection.json">选择规则、具体ID、距离、attention、源文件哈希</a>。数据来自 A100 Gate2 开发 pilot；数值属于新任务自己的归一化特征空间，不与旧 Gate 的 MSE 绝对值横向比较。</p></html>

@@ -1,0 +1,105 @@
+{
+  "name": "gate2-terminal-pilot-v1",
+  "status": "pre_execution",
+  "splits": [
+    {
+      "split": "train",
+      "seed": 20261028,
+      "quartets": 240,
+      "paired_style_families": 120
+    },
+    {
+      "split": "validation",
+      "seed": 20261029,
+      "quartets": 48,
+      "paired_style_families": 24
+    },
+    {
+      "split": "geometry",
+      "seed": 20261030,
+      "quartets": 24,
+      "paired_style_families": 12
+    },
+    {
+      "split": "development",
+      "seed": 20261031,
+      "quartets": 48,
+      "paired_style_families": 24
+    }
+  ],
+  "styles": [
+    "benign_duplicate",
+    "distant_style_duplicate"
+  ],
+  "model": {
+    "hidden": 128,
+    "heads": 4,
+    "layers": 2,
+    "dropout": 0.0,
+    "rank": 128
+  },
+  "horizons": [
+    3,
+    6
+  ],
+  "steps": 1024,
+  "validation_every": 128,
+  "quartets_per_update": 8,
+  "model_seed": 17,
+  "memory_dropout": 0.15,
+  "history_modes": [
+    "randomK",
+    "latestK",
+    "latest3",
+    "random_size"
+  ],
+  "origin_training": "query, preuse, and uniform all origins 3..q",
+  "selection": "earliest minimum equal-origin/equal-history validation MSE",
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_norm_clip": 1.0
+  },
+  "scheduler": {
+    "name": "MultiStepLR",
+    "milestones": [
+      341,
+      682
+    ],
+    "gamma": 0.5
+  },
+  "training_loss": "feature MSE + 2*mean all-six quartet pair-difference MSE + .5*mean ordered-pair softplus(-4*(other_error-own_error)/target_separation); rank only where separation>1e-6",
+  "normalization": "TRAIN prefix frames only, episode-frame multiplicity, std floor .05",
+  "basis": "TRAIN only; all prefix origins and all six quartet future contrasts",
+  "content_slots": "fixed ages [6,4], all actions and current/recent identical",
+  "content_roles": "A and Aprime are duplicate views of the scene's duplicated physical axis; B is the other axis, not always y",
+  "terminal_candidates": "common FIFO until q-1; q-6,q-5,q-4; compare one deletion at q",
+  "terminal_uniform": "uniform one-of-three deletion; NumPy default_rng seeded from SHA256 JSON [17,family] first16hex; shared styles and siblings, not full-stream Algorithm R",
+  "geometry_gate": "at least one GEOMETRY quartet has a diversity redundant-pair selection",
+  "oracle_tolerance": 1e-06,
+  "feature_classification": "nearest four actual sibling future features, joint h3/h6 MSE",
+  "reader_gate": {
+    "applied_to": "all and each style separately",
+    "classification_ties": "within1e-6; ties fail accuracy",
+    "AB_accuracy_min": 0.8,
+    "AprimeB_accuracy_min": 0.8,
+    "wrongA_counterfactual_accuracy_min": 0.8,
+    "wrongB_counterfactual_accuracy_min": 0.8,
+    "each_complementary_arm_mse_below_each_single_by": 1e-06
+  },
+  "no_student_training": true,
+  "development_only": true,
+  "source_sha256": {
+    "experiments/phase2/run_gate2_pilot.py": "a5552c90bd353c6fb473eac86e3a946b7347ec28dab386ac4da1c2d727b87a67",
+    "experiments/phase2/gate2_scene.py": "926469949e69d22cf11f4235a84cb70146eacb0989424024f513d97000574f75",
+    "docs/GATE2_TERMINAL_PILOT_PROTOCOL.md": "44b78d5803726b8ee98b234da47b6dba63d62e5647db4488328be59072d47660",
+    "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+    "experiments/phase2/run_reader_scale_probe.py": "84331b3aafbdc5d7350fdf7d091f75958863dc443bdb757333f27bc0a5ec423c",
+    "experiments/phase2/encode_fresh_gate_diagnostic.py": "c3d1de26efcaf60873abdd026fd5e50dce4a5da50179eb0544cf81e2ada83a33",
+    "experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+    "experiments/predictor/control/src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+    "experiments/predictor/control/src/phase1/encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871",
+    "experiments/predictor/control/src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14"
+  }
+}
