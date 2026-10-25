@@ -1,0 +1,65 @@
+{
+  "name": "gate2-causal-consensus-v1",
+  "created_utc": "2026-10-25T19:11:07.175856+00:00",
+  "scope": "post-hoc development no-fit diagnostic on already inspected DEV; not independent confirmation",
+  "run": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/gate2-terminal-pilot-20261025/extracted/run",
+  "artifacts": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/gate2-causal-consensus-20261025",
+  "reference_count": 16,
+  "seed": 20261025,
+  "horizons": [
+    3,
+    6
+  ],
+  "reported_set_tolerance": 1e-06,
+  "selection_rule": "exact float64 argmin, earliest index for exact ties;1e-6 set is report-only",
+  "forecast_rule": "E_a[MSE(pred_d(a),pred_e(a))], then medoid argmin_d sum_e; never MSE of mean predictions",
+  "observational_input_boundary": [
+    "z",
+    "age",
+    "past_actions",
+    "current"
+  ],
+  "actual_future_plan_in_selector": false,
+  "reference_bank_persistent_bytes": 768,
+  "fits": 0,
+  "encoder_calls": 0,
+  "models": {
+    "hidden": 128,
+    "heads": 4,
+    "layers": 2,
+    "dropout": 0.0,
+    "rank": 128
+  },
+  "training_steps_added": 0,
+  "expected_forecast_examples_per_parent": 48,
+  "source_sha256": {
+    "runner": "6465c3a1425f62662006d8f3890570b91e649bf0a4479a783fcb2a041f108bab",
+    "model": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66"
+  },
+  "archive_hashes": {
+    "reader_selected.pt": "cf897e00b228576bccf4b2a6b8b7a5a67e4eb90d95e723fb3401df2a428cd127",
+    "basis.npz": "4f53686e72942f65d71a9d3948a2b25a329bc4040a1be70c224940219293138f",
+    "basis_provenance.json": "272e063f59b7583a62b0c8dbf26552552f4695c11fb5a9d892a2c0048047b6d9",
+    "data/normalization.npz": "af6300df751e0a10b8b88673b2ad248abb4f40e42efc474063482c24e6ecd06f",
+    "data/unique_features.npz": "d9f68b81221cecf5ab90b77161d1138f5cde8aabef14be6139a1152ce32b8292",
+    "data/actions.npz": "9bddc111658ac02c9cee6a5d0adbd6e713185fd6fb6413976a5d5254836e34ed",
+    "data/records.json": "4f4ce5ef3851464e138a743c2c28a6eff67604b956b2d1bad5423302ab5cb885",
+    "data/encoding.json": "1b1a7ad784bf1a50c2fcf22e4bfaaf42ee2fff3c87bb36136277c60d06ac91ee",
+    "evaluation_predictions.npz": "c3da1b1b3a948058c95226b5525b52c04b1dcd238bc3c83dff4d3f324600e93a",
+    "evaluation_rows.json": "d5af000c362d6948bfff82a0c1c3f3d4bd1b749fb2ba5f7f317ccabbe713352e",
+    "terminal_decisions.json": "bee597c4d8980bc2e2a4de295b4ff0d50e6c507e9b3e6f565af56add36e83c99"
+  },
+  "bank_sha256": "d803e6ab722c78c5688d4f603560d755b5c2c2420aa205e372d041a14ec8bb5f",
+  "causal_inputs_sha256": "39577116749de071f6141d13f5a14d1b91d19ea95310976d4b96e1a63bdea303",
+  "parent_ids_sha256": "ae8d42afeaac5d10540f61839a38084e5af86c33b70ddf0f5a8fcc4d75e51463",
+  "synthetic_checks": {
+    "status": "passed",
+    "checks": [
+      "medoid",
+      "permutation",
+      "anti_cancellation",
+      "action_draw_order",
+      "reject_future_action_field"
+    ]
+  }
+}

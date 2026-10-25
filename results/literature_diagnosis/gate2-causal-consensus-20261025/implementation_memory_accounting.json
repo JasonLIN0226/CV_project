@@ -1,0 +1,64 @@
+{
+  "status": "actual_array_accounting",
+  "numpy_basis": {
+    "input_mean": {
+      "shape": [
+        5120
+      ],
+      "dtype": "float32",
+      "bytes": 20480
+    },
+    "projection": {
+      "shape": [
+        5120,
+        128
+      ],
+      "dtype": "float32",
+      "bytes": 2621440
+    },
+    "target_mean": {
+      "shape": [
+        5120
+      ],
+      "dtype": "float32",
+      "bytes": 20480
+    },
+    "output_basis": {
+      "shape": [
+        5120,
+        128
+      ],
+      "dtype": "float32",
+      "bytes": 2621440
+    }
+  },
+  "numpy_normalization": {
+    "mean": {
+      "shape": [
+        5120
+      ],
+      "dtype": "float32",
+      "bytes": 20480
+    },
+    "std": {
+      "shape": [
+        5120
+      ],
+      "dtype": "float32",
+      "bytes": 20480
+    }
+  },
+  "numpy_basis_bytes": 5283840,
+  "numpy_normalization_bytes": 40960,
+  "torch_parameter_bytes": 861188,
+  "torch_buffer_bytes": 5283840,
+  "reference_bank_bytes": 768,
+  "logical_persistent_numeric_array_bytes_total": 11470596,
+  "reference_bank_is_not_total_policy_RAM": true,
+  "limits": [
+    "NumPy basis and normalization are retained implementation copies, separate from model buffers.",
+    "Python metadata, allocator caches and BLAS workspaces are not counted here.",
+    "Archived192-parent inputs/outputs and result logging are offline harness storage, not an online observation budget.",
+    "Peak RSS includes harness and allocator memory; inference timings exclude artifact I/O and setup."
+  ]
+}

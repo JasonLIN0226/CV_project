@@ -1,0 +1,2392 @@
+{
+  "status": "completed_posthoc_no_new_models",
+  "rule_lock_sha256": "a845c0e651ba5d391fc7977c36ad8245107a4f192b2bbfa5db7a217321ba3840",
+  "script_sha256": "5bf9ac5c01dcc3ffec4bea4a9c17cb28a369d58c4472f0834e5e0e7ac85fb06f",
+  "input_sha256": {
+    "evaluation_predictions.npz": "c3da1b1b3a948058c95226b5525b52c04b1dcd238bc3c83dff4d3f324600e93a",
+    "evaluation_rows.json": "d5af000c362d6948bfff82a0c1c3f3d4bd1b749fb2ba5f7f317ccabbe713352e",
+    "terminal_decisions.json": "bee597c4d8980bc2e2a4de295b4ff0d50e6c507e9b3e6f565af56add36e83c99",
+    "data/records.json": "4f4ce5ef3851464e138a743c2c28a6eff67604b956b2d1bad5423302ab5cb885",
+    "data/actions.npz": "9bddc111658ac02c9cee6a5d0adbd6e713185fd6fb6413976a5d5254836e34ed",
+    "summary.json": "d14e0b16ec1a2e1ac03990c373ac087ea6cfb631c60e972e17b78845ab2b599c"
+  },
+  "summary": {
+    "all": {
+      "episodes": 192,
+      "families": 24,
+      "policies": {
+        "fifo": {
+          "semantic_loss_count": 64,
+          "feature_class_correct_count": 160,
+          "mean_mse": 0.12727047756816626,
+          "semantic_loss": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.16666666666666666,
+              0.501041666666661
+            ]
+          },
+          "regret": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.026727943724245595,
+            "equal_family_mean": 0.026727943724245584,
+            "family_cluster_percentile95": [
+              0.013212925326688852,
+              0.041756428037352494
+            ]
+          },
+          "positive_regret_count_over1e-6": 110,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.005875066165097219,
+            0.11681087599911803,
+            0.14591238603978424
+          ]
+        },
+        "terminal_uniform": {
+          "semantic_loss_count": 56,
+          "feature_class_correct_count": 164,
+          "mean_mse": 0.13288432596961877,
+          "semantic_loss": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.2916666666666667,
+            "equal_family_mean": 0.2916666666666667,
+            "family_cluster_percentile95": [
+              0.125,
+              0.4583333333333333
+            ]
+          },
+          "regret": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.03234179212569812,
+            "equal_family_mean": 0.03234179212569812,
+            "family_cluster_percentile95": [
+              0.017025519854784302,
+              0.05019994226412014
+            ]
+          },
+          "positive_regret_count_over1e-6": 117,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.005797414867847225,
+            0.14184793016578057,
+            0.1759238416857179
+          ]
+        },
+        "visual_diversity": {
+          "semantic_loss_count": 48,
+          "feature_class_correct_count": 168,
+          "mean_mse": 0.13943825498678222,
+          "semantic_loss": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.25,
+            "equal_family_mean": 0.25,
+            "family_cluster_percentile95": [
+              0.14583333333333334,
+              0.3541666666666667
+            ]
+          },
+          "regret": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.03889572114286154,
+            "equal_family_mean": 0.03889572114286154,
+            "family_cluster_percentile95": [
+              0.028249402659342795,
+              0.049899617085330306
+            ]
+          },
+          "positive_regret_count_over1e-6": 138,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.010668880280319475,
+            0.14608529795228423,
+            0.2011369134115575
+          ]
+        },
+        "reader_attention": {
+          "semantic_loss_count": 101,
+          "feature_class_correct_count": 139,
+          "mean_mse": 0.1379948719309499,
+          "semantic_loss": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.5260416666666666,
+            "equal_family_mean": 0.5260416666666666,
+            "family_cluster_percentile95": [
+              0.3802083333333333,
+              0.6666666666666666
+            ]
+          },
+          "regret": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.03745233808702924,
+            "equal_family_mean": 0.03745233808702924,
+            "family_cluster_percentile95": [
+              0.028448779540599697,
+              0.04700995316184924
+            ]
+          },
+          "positive_regret_count_over1e-6": 132,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.018207606886237987,
+            0.13172638373976187,
+            0.21637608643202363
+          ]
+        },
+        "full_prediction_medoid": {
+          "semantic_loss_count": 2,
+          "feature_class_correct_count": 192,
+          "mean_mse": 0.10696596674210285,
+          "semantic_loss": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.010416666666666666,
+            "equal_family_mean": 0.010416666666666666,
+            "family_cluster_percentile95": [
+              0.0,
+              0.026041666666666668
+            ]
+          },
+          "regret": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.006423432898182181,
+            "equal_family_mean": 0.006423432898182181,
+            "family_cluster_percentile95": [
+              0.0038851661472733643,
+              0.009266829123954995
+            ]
+          },
+          "positive_regret_count_over1e-6": 69,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.038177437114420176,
+            0.06553383417511363
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 190,
+          "tolerant_min_set_all_semantic_count": 190
+        },
+        "future_prototype_distance_medoid": {
+          "semantic_loss_count": 12,
+          "feature_class_correct_count": 185,
+          "mean_mse": 0.10818997607720511,
+          "semantic_loss": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.0625,
+            "equal_family_mean": 0.0625,
+            "family_cluster_percentile95": [
+              0.020833333333333332,
+              0.10416666666666667
+            ]
+          },
+          "regret": {
+            "episodes": 192,
+            "families": 24,
+            "mean": 0.0076474422332844585,
+            "equal_family_mean": 0.007647442233284458,
+            "family_cluster_percentile95": [
+              0.004614058299712553,
+              0.01114647516441084
+            ]
+          },
+          "positive_regret_count_over1e-6": 65,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.045891579371081175,
+            0.09277276934000268
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 180,
+          "tolerant_min_set_all_semantic_count": 180
+        }
+      },
+      "attention_any_strict_unique_minimum_count": 157,
+      "attention_singleton_strictly_unique_minimum_count": 101,
+      "full_and_proxy_same_action_count": 161,
+      "paired_comparisons": {
+        "full_prediction_medoid_minus_fifo_mse": {
+          "episodes": 192,
+          "families": 24,
+          "mean": -0.02030451082606341,
+          "equal_family_mean": -0.020304510826063406,
+          "family_cluster_percentile95": [
+            -0.03646962692291186,
+            -0.006310964401369996
+          ]
+        },
+        "full_prediction_medoid_minus_terminal_uniform_mse": {
+          "episodes": 192,
+          "families": 24,
+          "mean": -0.02591835922751594,
+          "equal_family_mean": -0.02591835922751594,
+          "family_cluster_percentile95": [
+            -0.043247811786127056,
+            -0.010884732817464961
+          ]
+        },
+        "full_prediction_medoid_minus_visual_diversity_mse": {
+          "episodes": 192,
+          "families": 24,
+          "mean": -0.03247228824467937,
+          "equal_family_mean": -0.03247228824467937,
+          "family_cluster_percentile95": [
+            -0.043280019979162684,
+            -0.021726023798830846
+          ]
+        },
+        "full_prediction_medoid_minus_reader_attention_mse": {
+          "episodes": 192,
+          "families": 24,
+          "mean": -0.031028905188847055,
+          "equal_family_mean": -0.031028905188847055,
+          "family_cluster_percentile95": [
+            -0.03978873637092367,
+            -0.022670443007611986
+          ]
+        },
+        "full_prediction_medoid_minus_future_prototype_distance_medoid_mse": {
+          "episodes": 192,
+          "families": 24,
+          "mean": -0.0012240093351022763,
+          "equal_family_mean": -0.0012240093351022765,
+          "family_cluster_percentile95": [
+            -0.003943001000219524,
+            0.0011549580927716436
+          ]
+        }
+      }
+    },
+    "benign_duplicate": {
+      "episodes": 96,
+      "families": 24,
+      "policies": {
+        "fifo": {
+          "semantic_loss_count": 32,
+          "feature_class_correct_count": 80,
+          "mean_mse": 0.12363472282720601,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.16666666666666666,
+              0.501041666666661
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.025035084526654705,
+            "equal_family_mean": 0.025035084526654705,
+            "family_cluster_percentile95": [
+              0.01156273412901177,
+              0.04074691100724492
+            ]
+          },
+          "positive_regret_count_over1e-6": 55,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.005405100156626749,
+            0.10954130977392465,
+            0.13428734137948745
+          ]
+        },
+        "terminal_uniform": {
+          "semantic_loss_count": 28,
+          "feature_class_correct_count": 82,
+          "mean_mse": 0.12383442754344808,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.2916666666666667,
+            "equal_family_mean": 0.2916666666666667,
+            "family_cluster_percentile95": [
+              0.125,
+              0.4583333333333333
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.025234789242896738,
+            "equal_family_mean": 0.025234789242896738,
+            "family_cluster_percentile95": [
+              0.011196188778040267,
+              0.042362191257630265
+            ]
+          },
+          "positive_regret_count_over1e-6": 57,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.004600396746993876,
+            0.11518409096294076,
+            0.15448475356568175
+          ]
+        },
+        "visual_diversity": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 96,
+          "mean_mse": 0.10401343522616972,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.0054137969256183955,
+            "equal_family_mean": 0.0054137969256183955,
+            "family_cluster_percentile95": [
+              0.00307102046848318,
+              0.008164134017844469
+            ]
+          },
+          "positive_regret_count_over1e-6": 53,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0016735119531390633,
+            0.02054626773500899,
+            0.04547069279161667
+          ]
+        },
+        "reader_attention": {
+          "semantic_loss_count": 61,
+          "feature_class_correct_count": 64,
+          "mean_mse": 0.13917326114499737,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.6354166666666666,
+            "equal_family_mean": 0.6354166666666666,
+            "family_cluster_percentile95": [
+              0.4895833333333333,
+              0.78125
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.040573622844446065,
+            "equal_family_mean": 0.040573622844446065,
+            "family_cluster_percentile95": [
+              0.027543866866546553,
+              0.055749679847565896
+            ]
+          },
+          "positive_regret_count_over1e-6": 74,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.022849679446198666,
+            0.11950078074223255,
+            0.15448475356568175
+          ]
+        },
+        "full_prediction_medoid": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 96,
+          "mean_mse": 0.09999649717536852,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.0013968588748172073,
+            "equal_family_mean": 0.0013968588748172073,
+            "family_cluster_percentile95": [
+              0.0005589669663726477,
+              0.002366273005800536
+            ]
+          },
+          "positive_regret_count_over1e-6": 19,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.01094686200830678,
+            0.01773457837646289
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 96,
+          "tolerant_min_set_all_semantic_count": 96
+        },
+        "future_prototype_distance_medoid": {
+          "semantic_loss_count": 1,
+          "feature_class_correct_count": 95,
+          "mean_mse": 0.10035841680507245,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.010416666666666666,
+            "equal_family_mean": 0.010416666666666666,
+            "family_cluster_percentile95": [
+              0.0,
+              0.03125
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.0017587785045211294,
+            "equal_family_mean": 0.0017587785045211294,
+            "family_cluster_percentile95": [
+              0.0006487641034260064,
+              0.0032364722169611715
+            ]
+          },
+          "positive_regret_count_over1e-6": 16,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.010969127716507734,
+            0.04547069279161667
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 95,
+          "tolerant_min_set_all_semantic_count": 95
+        }
+      },
+      "attention_any_strict_unique_minimum_count": 61,
+      "attention_singleton_strictly_unique_minimum_count": 61,
+      "full_and_proxy_same_action_count": 90,
+      "paired_comparisons": {
+        "full_prediction_medoid_minus_fifo_mse": {
+          "episodes": 96,
+          "families": 24,
+          "mean": -0.0236382256518375,
+          "equal_family_mean": -0.023638225651837496,
+          "family_cluster_percentile95": [
+            -0.03976388628952927,
+            -0.010017367551688434
+          ]
+        },
+        "full_prediction_medoid_minus_terminal_uniform_mse": {
+          "episodes": 96,
+          "families": 24,
+          "mean": -0.02383793036807953,
+          "equal_family_mean": -0.02383793036807953,
+          "family_cluster_percentile95": [
+            -0.0406322948458182,
+            -0.009982895812901493
+          ]
+        },
+        "full_prediction_medoid_minus_visual_diversity_mse": {
+          "episodes": 96,
+          "families": 24,
+          "mean": -0.004016938050801188,
+          "equal_family_mean": -0.004016938050801188,
+          "family_cluster_percentile95": [
+            -0.006820179129648173,
+            -0.0017533284571301622
+          ]
+        },
+        "full_prediction_medoid_minus_reader_attention_mse": {
+          "episodes": 96,
+          "families": 24,
+          "mean": -0.03917676396962885,
+          "equal_family_mean": -0.03917676396962885,
+          "family_cluster_percentile95": [
+            -0.054510450158802716,
+            -0.02615860851012822
+          ]
+        },
+        "full_prediction_medoid_minus_future_prototype_distance_medoid_mse": {
+          "episodes": 96,
+          "families": 24,
+          "mean": -0.0003619196297039217,
+          "equal_family_mean": -0.0003619196297039217,
+          "family_cluster_percentile95": [
+            -0.001628751072953428,
+            0.0005624309480839576
+          ]
+        }
+      }
+    },
+    "distant_style_duplicate": {
+      "episodes": 96,
+      "families": 24,
+      "policies": {
+        "fifo": {
+          "semantic_loss_count": 32,
+          "feature_class_correct_count": 80,
+          "mean_mse": 0.13090623230912649,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.16666666666666666,
+              0.501041666666661
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.028420802921836467,
+            "equal_family_mean": 0.028420802921836474,
+            "family_cluster_percentile95": [
+              0.014674248233320137,
+              0.04360909705452859
+            ]
+          },
+          "positive_regret_count_over1e-6": 55,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.006032172442281068,
+            0.1214659457899825,
+            0.14591238603978424
+          ]
+        },
+        "terminal_uniform": {
+          "semantic_loss_count": 28,
+          "feature_class_correct_count": 82,
+          "mean_mse": 0.1419342243957895,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.2916666666666667,
+            "equal_family_mean": 0.2916666666666667,
+            "family_cluster_percentile95": [
+              0.125,
+              0.4583333333333333
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.0394487950084995,
+            "equal_family_mean": 0.0394487950084995,
+            "family_cluster_percentile95": [
+              0.021648239623837662,
+              0.05925229916768978
+            ]
+          },
+          "positive_regret_count_over1e-6": 60,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.014532610745848204,
+            0.14732973691689674,
+            0.1759238416857179
+          ]
+        },
+        "visual_diversity": {
+          "semantic_loss_count": 48,
+          "feature_class_correct_count": 72,
+          "mean_mse": 0.1748630747473947,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.5,
+            "equal_family_mean": 0.5,
+            "family_cluster_percentile95": [
+              0.2916666666666667,
+              0.7083333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.0723776453601047,
+            "equal_family_mean": 0.0723776453601047,
+            "family_cluster_percentile95": [
+              0.05201648406599698,
+              0.09299611048061611
+            ]
+          },
+          "positive_regret_count_over1e-6": 85,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.07369529482243514,
+            0.1642841940384868,
+            0.2011369134115575
+          ]
+        },
+        "reader_attention": {
+          "semantic_loss_count": 40,
+          "feature_class_correct_count": 75,
+          "mean_mse": 0.13681648271690242,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.4166666666666667,
+            "equal_family_mean": 0.4166666666666667,
+            "family_cluster_percentile95": [
+              0.25,
+              0.5833333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.034331053329612414,
+            "equal_family_mean": 0.034331053329612414,
+            "family_cluster_percentile95": [
+              0.02062786079877484,
+              0.04905275467773389
+            ]
+          },
+          "positive_regret_count_over1e-6": 58,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.012332519048496936,
+            0.14093994501392887,
+            0.21637608643202363
+          ]
+        },
+        "full_prediction_medoid": {
+          "semantic_loss_count": 2,
+          "feature_class_correct_count": 96,
+          "mean_mse": 0.11393543630883717,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.020833333333333332,
+            "equal_family_mean": 0.020833333333333332,
+            "family_cluster_percentile95": [
+              0.0,
+              0.052083333333333336
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.011450006921547157,
+            "equal_family_mean": 0.011450006921547157,
+            "family_cluster_percentile95": [
+              0.0069400365401831405,
+              0.01664839114767435
+            ]
+          },
+          "positive_regret_count_over1e-6": 50,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.002623187932725861,
+            0.0505194314442093,
+            0.06553383417511363
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 94,
+          "tolerant_min_set_all_semantic_count": 94
+        },
+        "future_prototype_distance_medoid": {
+          "semantic_loss_count": 11,
+          "feature_class_correct_count": 90,
+          "mean_mse": 0.11602153534933779,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.11458333333333333,
+            "equal_family_mean": 0.11458333333333333,
+            "family_cluster_percentile95": [
+              0.041666666666666664,
+              0.19791666666666666
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 24,
+            "mean": 0.013536105962047787,
+            "equal_family_mean": 0.013536105962047787,
+            "family_cluster_percentile95": [
+              0.008324262267333838,
+              0.01965453068276313
+            ]
+          },
+          "positive_regret_count_over1e-6": 49,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0012168265466889691,
+            0.0615077284313402,
+            0.09277276934000268
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 85,
+          "tolerant_min_set_all_semantic_count": 85
+        }
+      },
+      "attention_any_strict_unique_minimum_count": 96,
+      "attention_singleton_strictly_unique_minimum_count": 40,
+      "full_and_proxy_same_action_count": 71,
+      "paired_comparisons": {
+        "full_prediction_medoid_minus_fifo_mse": {
+          "episodes": 96,
+          "families": 24,
+          "mean": -0.016970796000289317,
+          "equal_family_mean": -0.016970796000289317,
+          "family_cluster_percentile95": [
+            -0.03362265428035581,
+            -0.002087384414396472
+          ]
+        },
+        "full_prediction_medoid_minus_terminal_uniform_mse": {
+          "episodes": 96,
+          "families": 24,
+          "mean": -0.027998788086952348,
+          "equal_family_mean": -0.027998788086952348,
+          "family_cluster_percentile95": [
+            -0.04673159087609045,
+            -0.010864378710141091
+          ]
+        },
+        "full_prediction_medoid_minus_visual_diversity_mse": {
+          "episodes": 96,
+          "families": 24,
+          "mean": -0.06092763843855755,
+          "equal_family_mean": -0.06092763843855755,
+          "family_cluster_percentile95": [
+            -0.08127755656637248,
+            -0.04062550236606164
+          ]
+        },
+        "full_prediction_medoid_minus_reader_attention_mse": {
+          "episodes": 96,
+          "families": 24,
+          "mean": -0.02288104640806526,
+          "equal_family_mean": -0.02288104640806526,
+          "family_cluster_percentile95": [
+            -0.036102400399233424,
+            -0.009939413155957276
+          ]
+        },
+        "full_prediction_medoid_minus_future_prototype_distance_medoid_mse": {
+          "episodes": 96,
+          "families": 24,
+          "mean": -0.002086099040500631,
+          "equal_family_mean": -0.0020860990405006303,
+          "family_cluster_percentile95": [
+            -0.007270268215112858,
+            0.0025654831298712846
+          ]
+        }
+      }
+    },
+    "axis/a": {
+      "episodes": 96,
+      "families": 12,
+      "policies": {
+        "fifo": {
+          "semantic_loss_count": 32,
+          "feature_class_correct_count": 80,
+          "mean_mse": 0.11375391176714385,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.08333333333333333,
+              0.5833333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.012888713540708118,
+            "equal_family_mean": 0.012888713540708118,
+            "family_cluster_percentile95": [
+              0.004462334972335147,
+              0.022674685028175528
+            ]
+          },
+          "positive_regret_count_over1e-6": 47,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.05967876369844441,
+            0.0809204044120882
+          ]
+        },
+        "terminal_uniform": {
+          "semantic_loss_count": 24,
+          "feature_class_correct_count": 84,
+          "mean_mse": 0.12354494640157587,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.25,
+            "equal_family_mean": 0.25,
+            "family_cluster_percentile95": [
+              0.0,
+              0.5
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.02267974817514014,
+            "equal_family_mean": 0.02267974817514014,
+            "family_cluster_percentile95": [
+              0.010593591944173454,
+              0.03641067963681516
+            ]
+          },
+          "positive_regret_count_over1e-6": 57,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.004765565673448921,
+            0.08211633995351833,
+            0.15252785662807766
+          ]
+        },
+        "visual_diversity": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 96,
+          "mean_mse": 0.11573020788988138,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.01486500966344565,
+            "equal_family_mean": 0.014865009663445651,
+            "family_cluster_percentile95": [
+              0.0076662290485493756,
+              0.02258311999319089
+            ]
+          },
+          "positive_regret_count_over1e-6": 57,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.004561275801791914,
+            0.06356000389806346,
+            0.13882124758835812
+          ]
+        },
+        "reader_attention": {
+          "semantic_loss_count": 74,
+          "feature_class_correct_count": 57,
+          "mean_mse": 0.1428729573334051,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.7708333333333334,
+            "equal_family_mean": 0.7708333333333334,
+            "family_cluster_percentile95": [
+              0.625,
+              0.9166666666666666
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.042007759106969376,
+            "equal_family_mean": 0.04200775910696936,
+            "family_cluster_percentile95": [
+              0.03390426995309175,
+              0.04993420642453587
+            ]
+          },
+          "positive_regret_count_over1e-6": 87,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0330055641119186,
+            0.11043691200586835,
+            0.21637608643202363
+          ]
+        },
+        "full_prediction_medoid": {
+          "semantic_loss_count": 2,
+          "feature_class_correct_count": 96,
+          "mean_mse": 0.10812171577107228,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.020833333333333332,
+            "equal_family_mean": 0.020833333333333332,
+            "family_cluster_percentile95": [
+              0.0,
+              0.052083333333333336
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.00725651754463654,
+            "equal_family_mean": 0.007256517544636538,
+            "family_cluster_percentile95": [
+              0.0033462050453304374,
+              0.011853950270737785
+            ]
+          },
+          "positive_regret_count_over1e-6": 40,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.04045803054161047,
+            0.0646308563704002
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 94,
+          "tolerant_min_set_all_semantic_count": 94
+        },
+        "future_prototype_distance_medoid": {
+          "semantic_loss_count": 12,
+          "feature_class_correct_count": 89,
+          "mean_mse": 0.11078296071199482,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.125,
+            "equal_family_mean": 0.125,
+            "family_cluster_percentile95": [
+              0.0625,
+              0.1875
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.009917762485559095,
+            "equal_family_mean": 0.009917762485559097,
+            "family_cluster_percentile95": [
+              0.005133466583247407,
+              0.015430827153799018
+            ]
+          },
+          "positive_regret_count_over1e-6": 36,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.05965854749912568,
+            0.09277276934000268
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 84,
+          "tolerant_min_set_all_semantic_count": 84
+        }
+      },
+      "attention_any_strict_unique_minimum_count": 85,
+      "attention_singleton_strictly_unique_minimum_count": 74,
+      "full_and_proxy_same_action_count": 71,
+      "paired_comparisons": {
+        "full_prediction_medoid_minus_fifo_mse": {
+          "episodes": 96,
+          "families": 12,
+          "mean": -0.005632195996071579,
+          "equal_family_mean": -0.005632195996071579,
+          "family_cluster_percentile95": [
+            -0.016314956689429505,
+            0.003737457685252297
+          ]
+        },
+        "full_prediction_medoid_minus_terminal_uniform_mse": {
+          "episodes": 96,
+          "families": 12,
+          "mean": -0.015423230630503609,
+          "equal_family_mean": -0.015423230630503606,
+          "family_cluster_percentile95": [
+            -0.02829291584426026,
+            -0.004031080300258341
+          ]
+        },
+        "full_prediction_medoid_minus_visual_diversity_mse": {
+          "episodes": 96,
+          "families": 12,
+          "mean": -0.007608492118809111,
+          "equal_family_mean": -0.007608492118809111,
+          "family_cluster_percentile95": [
+            -0.015348388716521999,
+            -0.0010823111296479528
+          ]
+        },
+        "full_prediction_medoid_minus_reader_attention_mse": {
+          "episodes": 96,
+          "families": 12,
+          "mean": -0.034751241562332835,
+          "equal_family_mean": -0.034751241562332835,
+          "family_cluster_percentile95": [
+            -0.042649536802626856,
+            -0.0260271870442299
+          ]
+        },
+        "full_prediction_medoid_minus_future_prototype_distance_medoid_mse": {
+          "episodes": 96,
+          "families": 12,
+          "mean": -0.0026612449409225566,
+          "equal_family_mean": -0.0026612449409225557,
+          "family_cluster_percentile95": [
+            -0.007597640036555739,
+            0.001817687198276202
+          ]
+        }
+      }
+    },
+    "axis/b": {
+      "episodes": 96,
+      "families": 12,
+      "policies": {
+        "fifo": {
+          "semantic_loss_count": 32,
+          "feature_class_correct_count": 80,
+          "mean_mse": 0.14078704336918865,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.08333333333333333,
+              0.5833333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.040567173907783055,
+            "equal_family_mean": 0.04056717390778306,
+            "family_cluster_percentile95": [
+              0.016480145176612702,
+              0.06792913861484952
+            ]
+          },
+          "positive_regret_count_over1e-6": 63,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.01675428647207889,
+            0.13061340909593194,
+            0.14591238603978424
+          ]
+        },
+        "terminal_uniform": {
+          "semantic_loss_count": 32,
+          "feature_class_correct_count": 80,
+          "mean_mse": 0.1422237055376617,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.08333333333333333,
+              0.5833333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.042003836076256094,
+            "equal_family_mean": 0.0420038360762561,
+            "family_cluster_percentile95": [
+              0.013308933227982258,
+              0.07090357259074605
+            ]
+          },
+          "positive_regret_count_over1e-6": 60,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.00869784065285107,
+            0.146840008189823,
+            0.1759238416857179
+          ]
+        },
+        "visual_diversity": {
+          "semantic_loss_count": 48,
+          "feature_class_correct_count": 72,
+          "mean_mse": 0.16314630208368305,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.5,
+            "equal_family_mean": 0.5,
+            "family_cluster_percentile95": [
+              0.5,
+              0.5
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.06292643262227744,
+            "equal_family_mean": 0.06292643262227744,
+            "family_cluster_percentile95": [
+              0.05657435508302597,
+              0.0700953654438626
+            ]
+          },
+          "positive_regret_count_over1e-6": 81,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.049152227676748275,
+            0.1642841940384868,
+            0.2011369134115575
+          ]
+        },
+        "reader_attention": {
+          "semantic_loss_count": 27,
+          "feature_class_correct_count": 82,
+          "mean_mse": 0.13311678652849468,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.28125,
+            "equal_family_mean": 0.28125,
+            "family_cluster_percentile95": [
+              0.14583333333333334,
+              0.4270833333333333
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.032896917067089096,
+            "equal_family_mean": 0.03289691706708909,
+            "family_cluster_percentile95": [
+              0.017577457787776755,
+              0.0485185033719773
+            ]
+          },
+          "positive_regret_count_over1e-6": 45,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.1316593165354865,
+            0.15448475356568175
+          ]
+        },
+        "full_prediction_medoid": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 96,
+          "mean_mse": 0.10581021771313341,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.005590348251727824,
+            "equal_family_mean": 0.005590348251727824,
+            "family_cluster_percentile95": [
+              0.0025927544129730144,
+              0.008905324924154447
+            ]
+          },
+          "positive_regret_count_over1e-6": 29,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.031623225858795144,
+            0.06553383417511363
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 96,
+          "tolerant_min_set_all_semantic_count": 96
+        },
+        "future_prototype_distance_medoid": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 96,
+          "mean_mse": 0.10559699144241541,
+          "semantic_loss": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 96,
+            "families": 12,
+            "mean": 0.00537712198100982,
+            "equal_family_mean": 0.005377121981009821,
+            "family_cluster_percentile95": [
+              0.0023854489888578594,
+              0.00887225213189737
+            ]
+          },
+          "positive_regret_count_over1e-6": 29,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.03814445305611161,
+            0.06553383417511363
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 96,
+          "tolerant_min_set_all_semantic_count": 96
+        }
+      },
+      "attention_any_strict_unique_minimum_count": 72,
+      "attention_singleton_strictly_unique_minimum_count": 27,
+      "full_and_proxy_same_action_count": 90,
+      "paired_comparisons": {
+        "full_prediction_medoid_minus_fifo_mse": {
+          "episodes": 96,
+          "families": 12,
+          "mean": -0.034976825656055234,
+          "equal_family_mean": -0.034976825656055234,
+          "family_cluster_percentile95": [
+            -0.0632092340114536,
+            -0.009957694663379103
+          ]
+        },
+        "full_prediction_medoid_minus_terminal_uniform_mse": {
+          "episodes": 96,
+          "families": 12,
+          "mean": -0.03641348782452827,
+          "equal_family_mean": -0.036413487824528266,
+          "family_cluster_percentile95": [
+            -0.06466033453297473,
+            -0.008224389625088134
+          ]
+        },
+        "full_prediction_medoid_minus_visual_diversity_mse": {
+          "episodes": 96,
+          "families": 12,
+          "mean": -0.05733608437054963,
+          "equal_family_mean": -0.05733608437054962,
+          "family_cluster_percentile95": [
+            -0.06257422400369975,
+            -0.05238802970237744
+          ]
+        },
+        "full_prediction_medoid_minus_reader_attention_mse": {
+          "episodes": 96,
+          "families": 12,
+          "mean": -0.02730656881536127,
+          "equal_family_mean": -0.02730656881536128,
+          "family_cluster_percentile95": [
+            -0.042093732379150615,
+            -0.012662511295228765
+          ]
+        },
+        "full_prediction_medoid_minus_future_prototype_distance_medoid_mse": {
+          "episodes": 96,
+          "families": 12,
+          "mean": 0.00021322627071800382,
+          "equal_family_mean": 0.00021322627071800382,
+          "family_cluster_percentile95": [
+            -0.0012467413030695608,
+            0.0021297402152775182
+          ]
+        }
+      }
+    },
+    "benign_duplicate/a": {
+      "episodes": 48,
+      "families": 12,
+      "policies": {
+        "fifo": {
+          "semantic_loss_count": 16,
+          "feature_class_correct_count": 40,
+          "mean_mse": 0.1082394280075959,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.08333333333333333,
+              0.5833333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.009510551097455869,
+            "equal_family_mean": 0.009510551097455869,
+            "family_cluster_percentile95": [
+              0.0027617842736630312,
+              0.017718359061295666
+            ]
+          },
+          "positive_regret_count_over1e-6": 22,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.03832161917069312,
+            0.05891180972283748
+          ]
+        },
+        "terminal_uniform": {
+          "semantic_loss_count": 12,
+          "feature_class_correct_count": 42,
+          "mean_mse": 0.10959963138587552,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.25,
+            "equal_family_mean": 0.25,
+            "family_cluster_percentile95": [
+              0.0,
+              0.5
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.010870754475735475,
+            "equal_family_mean": 0.010870754475735473,
+            "family_cluster_percentile95": [
+              0.002955805456100544,
+              0.020398886655403608
+            ]
+          },
+          "positive_regret_count_over1e-6": 25,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0014437481765792945,
+            0.04083609457167466,
+            0.07211957317736048
+          ]
+        },
+        "visual_diversity": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 48,
+          "mean_mse": 0.10157271223430715,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.0028438353241671253,
+            "equal_family_mean": 0.0028438353241671253,
+            "family_cluster_percentile95": [
+              0.0012534935116705224,
+              0.004835100165180288
+            ]
+          },
+          "positive_regret_count_over1e-6": 20,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.01095653189680328,
+            0.020802956882209483
+          ]
+        },
+        "reader_attention": {
+          "semantic_loss_count": 37,
+          "feature_class_correct_count": 28,
+          "mean_mse": 0.12353782964955758,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.7708333333333334,
+            "equal_family_mean": 0.7708333333333334,
+            "family_cluster_percentile95": [
+              0.625,
+              0.9166666666666666
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.02480895273941754,
+            "equal_family_mean": 0.02480895273941754,
+            "family_cluster_percentile95": [
+              0.019988770938012202,
+              0.029992744711060105
+            ]
+          },
+          "positive_regret_count_over1e-6": 39,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.022849679446198666,
+            0.06749685596827741,
+            0.09618919100632203
+          ]
+        },
+        "full_prediction_medoid": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 48,
+          "mean_mse": 0.10021229023568762,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.001483413325547584,
+            "equal_family_mean": 0.001483413325547584,
+            "family_cluster_percentile95": [
+              0.00043415836857538075,
+              0.0028385949371017064
+            ]
+          },
+          "positive_regret_count_over1e-6": 12,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.009231788800196223,
+            0.010964993049237717
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 48,
+          "tolerant_min_set_all_semantic_count": 48
+        },
+        "future_prototype_distance_medoid": {
+          "semantic_loss_count": 1,
+          "feature_class_correct_count": 47,
+          "mean_mse": 0.1003582937781131,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.020833333333333332,
+            "equal_family_mean": 0.020833333333333332,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0625
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.001629416867973057,
+            "equal_family_mean": 0.001629416867973057,
+            "family_cluster_percentile95": [
+              0.0003146654875232557,
+              0.003628368350299809
+            ]
+          },
+          "positive_regret_count_over1e-6": 9,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.010250760657419249,
+            0.03208973542266429
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 47,
+          "tolerant_min_set_all_semantic_count": 47
+        }
+      },
+      "attention_any_strict_unique_minimum_count": 37,
+      "attention_singleton_strictly_unique_minimum_count": 37,
+      "full_and_proxy_same_action_count": 44,
+      "paired_comparisons": {
+        "full_prediction_medoid_minus_fifo_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.008027137771908286,
+          "equal_family_mean": -0.008027137771908284,
+          "family_cluster_percentile95": [
+            -0.016686726994255316,
+            -0.0008708545600633128
+          ]
+        },
+        "full_prediction_medoid_minus_terminal_uniform_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.009387341150187889,
+          "equal_family_mean": -0.00938734115018789,
+          "family_cluster_percentile95": [
+            -0.01911811285545909,
+            -0.001650023154001675
+          ]
+        },
+        "full_prediction_medoid_minus_visual_diversity_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.0013604219986195418,
+          "equal_family_mean": -0.0013604219986195418,
+          "family_cluster_percentile95": [
+            -0.0037114950062722665,
+            0.0006523581359619884
+          ]
+        },
+        "full_prediction_medoid_minus_reader_attention_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.02332553941386996,
+          "equal_family_mean": -0.02332553941386996,
+          "family_cluster_percentile95": [
+            -0.02908832673573979,
+            -0.018000812549278742
+          ]
+        },
+        "full_prediction_medoid_minus_future_prototype_distance_medoid_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.00014600354242547305,
+          "equal_family_mean": -0.00014600354242547305,
+          "family_cluster_percentile95": [
+            -0.0010553941689355063,
+            0.0005522213912915545
+          ]
+        }
+      }
+    },
+    "benign_duplicate/b": {
+      "episodes": 48,
+      "families": 12,
+      "policies": {
+        "fifo": {
+          "semantic_loss_count": 16,
+          "feature_class_correct_count": 40,
+          "mean_mse": 0.13903001764681616,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.08333333333333333,
+              0.5833333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.04055961795585355,
+            "equal_family_mean": 0.04055961795585355,
+            "family_cluster_percentile95": [
+              0.01621852925678574,
+              0.0676237270883613
+            ]
+          },
+          "positive_regret_count_over1e-6": 33,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.017747478290533497,
+            0.1184647111493343,
+            0.13428734137948745
+          ]
+        },
+        "terminal_uniform": {
+          "semantic_loss_count": 16,
+          "feature_class_correct_count": 40,
+          "mean_mse": 0.13806922370102062,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.08333333333333333,
+              0.5833333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.039598824010058,
+            "equal_family_mean": 0.03959882401005801,
+            "family_cluster_percentile95": [
+              0.012425608944394933,
+              0.067106520616679
+            ]
+          },
+          "positive_regret_count_over1e-6": 32,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.009119648540074458,
+            0.12888057177189882,
+            0.15448475356568175
+          ]
+        },
+        "visual_diversity": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 48,
+          "mean_mse": 0.10645415821803228,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.007983758527069664,
+            "equal_family_mean": 0.007983758527069666,
+            "family_cluster_percentile95": [
+              0.004097386643081872,
+              0.0121680668999758
+            ]
+          },
+          "positive_regret_count_over1e-6": 33,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.005551586256940015,
+            0.02139269737594966,
+            0.04547069279161667
+          ]
+        },
+        "reader_attention": {
+          "semantic_loss_count": 24,
+          "feature_class_correct_count": 36,
+          "mean_mse": 0.1548086926404372,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.5,
+            "equal_family_mean": 0.5,
+            "family_cluster_percentile95": [
+              0.2708333333333333,
+              0.7291666666666666
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.056338292949474574,
+            "equal_family_mean": 0.05633829294947459,
+            "family_cluster_percentile95": [
+              0.03160312661668427,
+              0.08040535343606339
+            ]
+          },
+          "positive_regret_count_over1e-6": 35,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.05168654549700914,
+            0.13817852791708948,
+            0.15448475356568175
+          ]
+        },
+        "full_prediction_medoid": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 48,
+          "mean_mse": 0.09978070411504943,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.001310304424086831,
+            "equal_family_mean": 0.001310304424086831,
+            "family_cluster_percentile95": [
+              0.0002283091840347462,
+              0.0027973575946279535
+            ]
+          },
+          "positive_regret_count_over1e-6": 7,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.011086183765999735,
+            0.01773457837646289
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 48,
+          "tolerant_min_set_all_semantic_count": 48
+        },
+        "future_prototype_distance_medoid": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 48,
+          "mean_mse": 0.1003585398320318,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.0018881401410692016,
+            "equal_family_mean": 0.0018881401410692014,
+            "family_cluster_percentile95": [
+              0.0002590488753761836,
+              0.003812799629496568
+            ]
+          },
+          "positive_regret_count_over1e-6": 7,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.011086183765999735,
+            0.04547069279161667
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 48,
+          "tolerant_min_set_all_semantic_count": 48
+        }
+      },
+      "attention_any_strict_unique_minimum_count": 24,
+      "attention_singleton_strictly_unique_minimum_count": 24,
+      "full_and_proxy_same_action_count": 46,
+      "paired_comparisons": {
+        "full_prediction_medoid_minus_fifo_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.039249313531766715,
+          "equal_family_mean": -0.039249313531766715,
+          "family_cluster_percentile95": [
+            -0.06658514893277258,
+            -0.01417950476816761
+          ]
+        },
+        "full_prediction_medoid_minus_terminal_uniform_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.03828851958597117,
+          "equal_family_mean": -0.03828851958597117,
+          "family_cluster_percentile95": [
+            -0.0652453943408587,
+            -0.011592896585107397
+          ]
+        },
+        "full_prediction_medoid_minus_visual_diversity_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.0066734541029828355,
+          "equal_family_mean": -0.0066734541029828355,
+          "family_cluster_percentile95": [
+            -0.010687544468187338,
+            -0.003216985057952965
+          ]
+        },
+        "full_prediction_medoid_minus_reader_attention_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.055027988525387754,
+          "equal_family_mean": -0.05502798852538774,
+          "family_cluster_percentile95": [
+            -0.07897062989748559,
+            -0.0305962021319591
+          ]
+        },
+        "full_prediction_medoid_minus_future_prototype_distance_medoid_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.0005778357169823704,
+          "equal_family_mean": -0.0005778357169823704,
+          "family_cluster_percentile95": [
+            -0.0028419182994760418,
+            0.0011084111485289306
+          ]
+        }
+      }
+    },
+    "distant_style_duplicate/a": {
+      "episodes": 48,
+      "families": 12,
+      "policies": {
+        "fifo": {
+          "semantic_loss_count": 16,
+          "feature_class_correct_count": 40,
+          "mean_mse": 0.11926839552669179,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.08333333333333333,
+              0.5833333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.016266875983960368,
+            "equal_family_mean": 0.016266875983960368,
+            "family_cluster_percentile95": [
+              0.005717137596617547,
+              0.028536987328633783
+            ]
+          },
+          "positive_regret_count_over1e-6": 25,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.003240458699874167,
+            0.0695417320348375,
+            0.0809204044120882
+          ]
+        },
+        "terminal_uniform": {
+          "semantic_loss_count": 12,
+          "feature_class_correct_count": 42,
+          "mean_mse": 0.13749026141727624,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.25,
+            "equal_family_mean": 0.25,
+            "family_cluster_percentile95": [
+              0.0,
+              0.5
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.034488741874544815,
+            "equal_family_mean": 0.03448874187454482,
+            "family_cluster_percentile95": [
+              0.0165742682240826,
+              0.05557560672160162
+            ]
+          },
+          "positive_regret_count_over1e-6": 32,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.021287922040068977,
+            0.12077611397135299,
+            0.15252785662807766
+          ]
+        },
+        "visual_diversity": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 48,
+          "mean_mse": 0.12988770354545556,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.026886184002724172,
+            "equal_family_mean": 0.026886184002724176,
+            "family_cluster_percentile95": [
+              0.012512996979165924,
+              0.04312841984928697
+            ]
+          },
+          "positive_regret_count_over1e-6": 37,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.01588754775821863,
+            0.08349371438525752,
+            0.13882124758835812
+          ]
+        },
+        "reader_attention": {
+          "semantic_loss_count": 37,
+          "feature_class_correct_count": 29,
+          "mean_mse": 0.16220808501725262,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.7708333333333334,
+            "equal_family_mean": 0.7708333333333334,
+            "family_cluster_percentile95": [
+              0.625,
+              0.9166666666666666
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.059206565474521196,
+            "equal_family_mean": 0.059206565474521196,
+            "family_cluster_percentile95": [
+              0.04423134738935245,
+              0.07504586493279679
+            ]
+          },
+          "positive_regret_count_over1e-6": 48,
+          "regret_quantiles_0_50_95_100": [
+            0.0027734511872006956,
+            0.0499356416909933,
+            0.15069671985997488,
+            0.21637608643202363
+          ]
+        },
+        "full_prediction_medoid": {
+          "semantic_loss_count": 2,
+          "feature_class_correct_count": 48,
+          "mean_mse": 0.1160311413064569,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.041666666666666664,
+            "equal_family_mean": 0.041666666666666664,
+            "family_cluster_percentile95": [
+              0.0,
+              0.10416666666666667
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.013029621763725492,
+            "equal_family_mean": 0.013029621763725492,
+            "family_cluster_percentile95": [
+              0.006179492939165751,
+              0.021548874095083475
+            ]
+          },
+          "positive_regret_count_over1e-6": 28,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.005273234844203049,
+            0.0530242446903552,
+            0.0646308563704002
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 46,
+          "tolerant_min_set_all_semantic_count": 46
+        },
+        "future_prototype_distance_medoid": {
+          "semantic_loss_count": 11,
+          "feature_class_correct_count": 42,
+          "mean_mse": 0.12120762764587656,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.22916666666666666,
+            "equal_family_mean": 0.22916666666666666,
+            "family_cluster_percentile95": [
+              0.10416666666666667,
+              0.3541666666666667
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.018206108103145133,
+            "equal_family_mean": 0.018206108103145133,
+            "family_cluster_percentile95": [
+              0.009608775225837973,
+              0.028394095479882635
+            ]
+          },
+          "positive_regret_count_over1e-6": 27,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.004453510042903147,
+            0.06690926065485513,
+            0.09277276934000268
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 37,
+          "tolerant_min_set_all_semantic_count": 37
+        }
+      },
+      "attention_any_strict_unique_minimum_count": 48,
+      "attention_singleton_strictly_unique_minimum_count": 37,
+      "full_and_proxy_same_action_count": 27,
+      "paired_comparisons": {
+        "full_prediction_medoid_minus_fifo_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.003237254220234874,
+          "equal_family_mean": -0.003237254220234875,
+          "family_cluster_percentile95": [
+            -0.01699939387606695,
+            0.009505220803373588
+          ]
+        },
+        "full_prediction_medoid_minus_terminal_uniform_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.021459120110819324,
+          "equal_family_mean": -0.021459120110819324,
+          "family_cluster_percentile95": [
+            -0.039634493946864885,
+            -0.005813833156280645
+          ]
+        },
+        "full_prediction_medoid_minus_visual_diversity_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.01385656223899868,
+          "equal_family_mean": -0.01385656223899868,
+          "family_cluster_percentile95": [
+            -0.029075343628711517,
+            0.0
+          ]
+        },
+        "full_prediction_medoid_minus_reader_attention_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.046176943710795705,
+          "equal_family_mean": -0.04617694371079572,
+          "family_cluster_percentile95": [
+            -0.061443204831012656,
+            -0.0301900137684826
+          ]
+        },
+        "full_prediction_medoid_minus_future_prototype_distance_medoid_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.00517648633941964,
+          "equal_family_mean": -0.005176486339419638,
+          "family_cluster_percentile95": [
+            -0.015030682931674564,
+            0.0036632377173746703
+          ]
+        }
+      }
+    },
+    "distant_style_duplicate/b": {
+      "episodes": 48,
+      "families": 12,
+      "policies": {
+        "fifo": {
+          "semantic_loss_count": 16,
+          "feature_class_correct_count": 40,
+          "mean_mse": 0.14254406909156114,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.08333333333333333,
+              0.5833333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.040574729859712576,
+            "equal_family_mean": 0.040574729859712576,
+            "family_cluster_percentile95": [
+              0.016494746066755855,
+              0.0681208016040063
+            ]
+          },
+          "positive_regret_count_over1e-6": 30,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.014770909139189402,
+            0.1311265149275108,
+            0.14591238603978424
+          ]
+        },
+        "terminal_uniform": {
+          "semantic_loss_count": 16,
+          "feature_class_correct_count": 40,
+          "mean_mse": 0.14637818737430278,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.3333333333333333,
+            "equal_family_mean": 0.3333333333333333,
+            "family_cluster_percentile95": [
+              0.08333333333333333,
+              0.5833333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.04440884814245419,
+            "equal_family_mean": 0.04440884814245419,
+            "family_cluster_percentile95": [
+              0.013523543048832977,
+              0.07510169739134073
+            ]
+          },
+          "positive_regret_count_over1e-6": 28,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.007096271267436616,
+            0.16135529101819088,
+            0.1759238416857179
+          ]
+        },
+        "visual_diversity": {
+          "semantic_loss_count": 48,
+          "feature_class_correct_count": 24,
+          "mean_mse": 0.2198384459493338,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 1.0,
+            "equal_family_mean": 1.0,
+            "family_cluster_percentile95": [
+              1.0,
+              1.0
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.11786910671748523,
+            "equal_family_mean": 0.11786910671748523,
+            "family_cluster_percentile95": [
+              0.10719972397706815,
+              0.13000573563507611
+            ]
+          },
+          "positive_regret_count_over1e-6": 48,
+          "regret_quantiles_0_50_95_100": [
+            0.05283376256187988,
+            0.11632562733061325,
+            0.17477100928677725,
+            0.2011369134115575
+          ]
+        },
+        "reader_attention": {
+          "semantic_loss_count": 3,
+          "feature_class_correct_count": 46,
+          "mean_mse": 0.1114248804165522,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.0625,
+            "equal_family_mean": 0.0625,
+            "family_cluster_percentile95": [
+              0.0,
+              0.14583333333333334
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.009455541184703618,
+            "equal_family_mean": 0.009455541184703618,
+            "family_cluster_percentile95": [
+              0.0008580730404506175,
+              0.021025335884671544
+            ]
+          },
+          "positive_regret_count_over1e-6": 10,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.08179159018378243,
+            0.14743083579566366
+          ]
+        },
+        "full_prediction_medoid": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 48,
+          "mean_mse": 0.1118397313112174,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.009870392079368817,
+            "equal_family_mean": 0.009870392079368817,
+            "family_cluster_percentile95": [
+              0.004589237455173818,
+              0.015582599443018687
+            ]
+          },
+          "positive_regret_count_over1e-6": 22,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.041435962597747,
+            0.06553383417511363
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 48,
+          "tolerant_min_set_all_semantic_count": 48
+        },
+        "future_prototype_distance_medoid": {
+          "semantic_loss_count": 0,
+          "feature_class_correct_count": 48,
+          "mean_mse": 0.11083544305279902,
+          "semantic_loss": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.0,
+            "equal_family_mean": 0.0,
+            "family_cluster_percentile95": [
+              0.0,
+              0.0
+            ]
+          },
+          "regret": {
+            "episodes": 48,
+            "families": 12,
+            "mean": 0.008866103820950438,
+            "equal_family_mean": 0.008866103820950438,
+            "family_cluster_percentile95": [
+              0.0041377772663789125,
+              0.013991000009322286
+            ]
+          },
+          "positive_regret_count_over1e-6": 22,
+          "regret_quantiles_0_50_95_100": [
+            0.0,
+            0.0,
+            0.041435962597747,
+            0.06553383417511363
+          ],
+          "exact_tie_count": 0,
+          "tolerant_tie_count": 0,
+          "exact_min_set_all_semantic_count": 48,
+          "tolerant_min_set_all_semantic_count": 48
+        }
+      },
+      "attention_any_strict_unique_minimum_count": 48,
+      "attention_singleton_strictly_unique_minimum_count": 3,
+      "full_and_proxy_same_action_count": 44,
+      "paired_comparisons": {
+        "full_prediction_medoid_minus_fifo_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.03070433778034376,
+          "equal_family_mean": -0.030704337780343757,
+          "family_cluster_percentile95": [
+            -0.05974275556239573,
+            -0.0062046307703681495
+          ]
+        },
+        "full_prediction_medoid_minus_terminal_uniform_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.03453845606308537,
+          "equal_family_mean": -0.03453845606308537,
+          "family_cluster_percentile95": [
+            -0.06538828790844183,
+            -0.004560825308318355
+          ]
+        },
+        "full_prediction_medoid_minus_visual_diversity_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": -0.1079987146381164,
+          "equal_family_mean": -0.1079987146381164,
+          "family_cluster_percentile95": [
+            -0.11901310168185748,
+            -0.09730511416833147
+          ]
+        },
+        "full_prediction_medoid_minus_reader_attention_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": 0.000414850894665198,
+          "equal_family_mean": 0.000414850894665198,
+          "family_cluster_percentile95": [
+            -0.01005794112572181,
+            0.009577116774459033
+          ]
+        },
+        "full_prediction_medoid_minus_future_prototype_distance_medoid_mse": {
+          "episodes": 48,
+          "families": 12,
+          "mean": 0.001004288258418378,
+          "equal_family_mean": 0.001004288258418378,
+          "family_cluster_percentile95": [
+            -0.0002025308786163995,
+            0.003218579574898238
+          ]
+        }
+      }
+    }
+  },
+  "uniform_reference": {
+    "independent_reference_unit": "family; eight episodes share each draw",
+    "family_count": 24,
+    "observed_semantic_loss_families": 7,
+    "observed_semantic_loss_episodes": 56,
+    "observed_fraction": 0.2916666666666667,
+    "theoretical_fraction": 0.3333333333333333,
+    "expected_semantic_loss_families": 8.0,
+    "expected_semantic_loss_episodes": 64.0,
+    "reference_binomial_central95_count": [
+      4,
+      13
+    ],
+    "reference_probability_count_at_most_observed": 0.42380464837838283,
+    "interpretation": "Descriptive calibration against uniformly random deletion; fixed hash draws are not192 independent Bernoulli trials"
+  },
+  "model_calls": 0,
+  "training": false,
+  "independent_confirmation": false,
+  "deployment_causality_implemented": false,
+  "limitations": [
+    "All192episodes belong to previously inspected DEV; this is a new posthoc diagnostic.",
+    "The future-prototype coordinate proxy uses actual outcome features and is privileged.",
+    "Full-vector selection uses only archived predictions, but those predictions already use actual recorded planned future controls.",
+    "Three-native-prediction online compute and causal action-plan access have not been implemented or timed.",
+    "Family bootstrap is exploratory; no multiplicity-adjusted confirmatory claim is made.",
+    "Agreement among prediction variants is not proof that their shared prediction is correct."
+  ]
+}
