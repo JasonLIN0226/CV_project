@@ -1,6 +1,6 @@
 # Reader 聚合诊断：旧数据能说明什么
 
-**状态快照：2026-10-25，CPU 探针和旧 checkpoint 的 uniform 干预已完成。** 本轮源码已冻结为 `82e31a0ecc555d9a9a7ffa6b13282dad00b9bef5`。作业 **11544 已在 NVIDIA A100-SXM4-40GB 上实际运行**，CUDA 已确认；作业已开始训练，五臂尚无完整结果。新诊断和原 CONF 均未打开。此为本文更新时的运行快照，不是五臂实验完成或新 reader 改善的结论。
+**状态：2026-10-25，CPU 诊断和五臂 A100 比较均已完成。** 冻结源码为 `82e31a0ecc555d9a9a7ffa6b13282dad00b9bef5`；A100 作业 11544 `COMPLETED 0:0`，耗时 2010 秒（0.5583 分配 GPUh）。新诊断 seed20261120 已按锁定协议评价；原 CONF20261104 仍未生成/打开，没有训练保留学生。四头读取与条目 self-attention 在新旧两组诊断中均通过全部 K2/K3 门槛，完整结构对比见[已完成结果报告](READER_AGGREGATION_RESULTS_ZH.md)。下面保留 CPU 审计及其解释边界。
 完整 CPU 数据可从[本轮 Release](https://github.com/JasonLIN0226/CV_project/releases/tag/reader-aggregation-20261025)下载 `reader-aggregation-cpu-results.zip`（SHA256 `2732b5bb6c7bff0acc9d38cfc2501cf80477211e0a81d1f824ea6838c464f06e`）。包含逐条干预预测系数、重建 basis/current、36 个 probe 模型、TRAIN/VAL/旧 DEV 的冻结输入切片，以及全部指标与校验清单；可以直接交给其他审阅者分析。[仓库内的紧凑证据](../results/literature_diagnosis/reader-aggregation-20261025/)保留审计表与摘要。
 
 
@@ -13,6 +13,10 @@ S 的 K3 候选中，tag=1 单条目的平均 attention 为 **0.658079**，tag=0
 当正确 pair 的 tag=0 时，它们在 K3 中的合计权重平均只有 **0.020663**；正确 pair 为 tag=1 时则为 **0.994899**。读取错误也明显不对称：实际 episode 计划下，256 个“K2 完整 pair 读对、加入第三项后 K3 读错”的样本，253 个的正确 pair 是 tag=0，只有 3 个是 tag=1。
 
 这支持“当前 reader 的读取分配值得检查”，却没有单独证明 softmax 造成全部错误。加入第三项同时改变了 memory、时间均值、velocity、动作交互等输入；现有结果是集合内容干预，不是只改 attention 权重的因果实验。K2 与 K3 的资格仍应分开：S 的 K2 通过、K3 未通过，不能概括成整个 S reader 都不合格。
+
+**事后 logit 分解：S 的 tag 偏向主要来自 learned scorer。**
+
+原 logit 是学习到的内容分数，加上固定的 `log1p(mean((p-current)^2))` 差异项。在每个 S parent 内比较 tag1 与 tag0 的平均 logit，learned 项贡献为 +4.92841，固定差异项为 −0.00105，总差为 +4.92735；1152/1152 个 parent 都由 learned 项主导。保存的 1728 个 K3 attention 均复现，最大误差约 `9.54e-7`。因此不能把这次红色 tag 偏向归因于固定 novelty 项，也不能说 softmax 结构必然偏红。这里分解的是加性 logit，不是 MSE 的因果贡献比例；没有重新拟合或预测未来。[分解汇总与完整数据索引](../results/literature_diagnosis/reader-aggregation-20261025/attention_logit_decomposition.json)保留完整审计。
 
 **K2 的两个权重并非总是各 0.5。**
 
@@ -80,12 +84,20 @@ S 的 K3 分层进一步说明这一点：正确 pair 为 tag=0 时，正确率 
 
 这个干预证明**改变已有权重及其下游统计，会改变此 checkpoint 的行为**；它没有重新学习输出头来适应新的聚合分布。uniform 变差不能证明单 softmax 最优，局部改善也不能证明所有失败都来自 softmax。距离到真实特征与原型分类的分歧，以及固定读出面对输入分布变化的适应性，仍需分别解释。逐条结果和配对汇总保存在 `build/reader-aggregation-20261025/archived-intervention/`，独立复核为同层目录的 `archived_intervention_analysis.json`。
 
+**事后 MSE 几何分解：R/D 与 S 不是同一种退化。**
+
+把保存的预测误差分解到该场景真实未来原型张成的仿射子空间及其正交方向，R 的完整 native K2 总 MSE 增加约 0.01914，其中原型方向误差下降 0.00388、正交误差增加 0.02302；D 分别为总增加 0.01827、原型方向下降 0.00362、正交增加 0.02189。也就是说，R/D 更能区分未来类别，却在对当前原型分类没有影响的方向上偏离目标特征更多。各外观条件均呈现这一方向，不只是总体平均。
+
+S 的 K3 则不同：MSE 增幅约 73.5% 来自原型方向，分类和语义区分都在恶化。不能把它解释成纯粹的评价指标问题。正交误差也是真实的 feature prediction error，不能事后删除这部分损失。
+
+这是明确的 posthoc 解释，使用了真实未来原型，不是因果可部署策略。两臂各 3744 条完整 native K2/K3 预测均重建核验，分量相加误差最多约 `4.20e-15`；不会据此修改已冻结门槛或向 selector 提供未来信息。[分解汇总与完整数据索引](../results/literature_diagnosis/reader-aggregation-20261025/metric_geometry_analysis.json)另行保留，不覆盖原 CPU 发布包。
+
 **S 的原有 medoid 保留失败仍然成立。** 旧模型的 S K2 资格本来就通过；medoid 丢必要证据 1103/1152，且实际计划下完整 pair 读对的 1080 条里仍有 1039 条被 medoid 删错。这里“读对”是实际计划诊断，不是宣称 32 个评价计划全部读对。新的探针和 K3 干预没有撤销这个结果，也不支持“所有保留失败其实都是 reader 问题”。保留失败和完整参照读取失败是可以同时存在的两个问题。
 
-**正在 A100 执行的五臂实验，才会检验重新训练能否改善读出。**
+**五臂 A100 实验已完成，结构比较另列于结果报告。**
 
 五个臂是原模型、attention＋uniform 双通道、四头读取、条目 self-attention 后聚合、仅加宽原输出 MLP 的容量控制。参数量分别为 215297、313857、511364、347905、510927；容量控制与最大变体相差约 0.0855%，但未控制全部计算量和优化难度。训练日程、纯 MSE、配对初始化 seed17 相同，各自只按 VAL 选择 checkpoint。已经完成的旧 checkpoint 干预，不是这些新 reader 的结果。
 
-新诊断 seed 20261120 只有在五个 checkpoint 与探针全部锁定后才能生成并查看；原 CONF 20261104 仍关闭。即使替代架构成功，这一轮也只是单个配对 seed 的读取诊断，没有证明新记忆方法、学生收益或独立最终确认。
+新诊断 seed 20261120 在五个 checkpoint 与探针全部锁定后生成并评价；原 CONF 20261104 仍关闭。替代架构这轮通过门槛，但这仍只是单个配对 seed 的读取诊断，没有证明新记忆方法、学生收益或独立最终确认。
 
 与 PM 的联系仅限于 **readout adequacy**：让世界模型的输出指导记忆决定之前，要先验证该输出能使用相关证据。本轮没有运行 PM 的 S0–S2、CHANGE 或 BF-Delta，也没有新增 PM 结果。

@@ -1,0 +1,104 @@
+{
+  "status": "runner_completed_read_study_status",
+  "started_utc": "2026-10-25T21:25:22.754174+00:00",
+  "commands": [
+    {
+      "arguments": [
+        "/scratch/xy3257/cv-phase2-20261020/venv/bin/python",
+        "/scratch/xy3257/cv-phase2-20261020/reader-aggregation-20261025/bundle/experiments/phase2/run_reader_aggregation.py",
+        "--config",
+        "/scratch/xy3257/cv-phase2-20261020/reader-aggregation-20261025/bundle/experiments/phase2/configs/reader_aggregation_20261025.json",
+        "--source",
+        "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/run",
+        "--output",
+        "/scratch/xy3257/cv-phase2-20261020/reader-aggregation-20261025/run",
+        "--device",
+        "cuda",
+        "--cache-dir",
+        "/scratch/xy3257/cv-phase2-20261020/cache/ijepa"
+      ],
+      "started_utc": "2026-10-25T21:25:32.714777+00:00",
+      "returncode": 0,
+      "seconds": 1982.9282335399998
+    }
+  ],
+  "source_run": "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/run",
+  "confirmation_opened": false,
+  "confirmation_policy": "No confirmation or student stage in this ablation wrapper",
+  "hardware": {
+    "utc": "2026-10-25T21:25:32.457877+00:00",
+    "slurm_job_id": "11544",
+    "torch_version": "2.5.1+cu121",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA A100-SXM4-40GB",
+    "nvidia_smi": "NVIDIA A100-SXM4-40GB, GPU-f51ee76f-664d-676c-e74b-a5a849742ab4, 40960 MiB\n"
+  },
+  "gpu_execution_verified": true,
+  "runner_returncode": 0,
+  "study_status": {
+    "status": "completed_locked_reader_diagnostic_no_students_no_original_confirmation",
+    "stages": [
+      {
+        "stage": "probe_fit_train_validation",
+        "seconds": 3.9021504530000044
+      },
+      {
+        "stage": "train_original",
+        "seconds": 188.593382895
+      },
+      {
+        "stage": "train_attention_mean",
+        "seconds": 200.72513466200002
+      },
+      {
+        "stage": "train_multihead",
+        "seconds": 230.81900332399994
+      },
+      {
+        "stage": "train_item_attention",
+        "seconds": 227.26276402999997
+      },
+      {
+        "stage": "train_wide_control",
+        "seconds": 175.61756308700012
+      },
+      {
+        "stage": "qualify_existing_development",
+        "seconds": 394.7378802149999
+      },
+      {
+        "stage": "reverify_parent_before_diagnostic",
+        "seconds": 3.359637123999846
+      },
+      {
+        "stage": "generate_fresh_diagnostic",
+        "seconds": 31.996816771000113
+      },
+      {
+        "stage": "encode_fresh_diagnostic",
+        "seconds": 145.4465367109999
+      },
+      {
+        "stage": "qualify_fresh_diagnostic",
+        "seconds": 355.752003888
+      },
+      {
+        "stage": "probe_existing_development",
+        "seconds": 2.6501127609999457
+      },
+      {
+        "stage": "probe_fresh_diagnostic",
+        "seconds": 2.712197280000055
+      },
+      {
+        "stage": "summarize",
+        "seconds": 4.145547921000116
+      }
+    ],
+    "original_confirmation_opened": false,
+    "retention_students_trained": false,
+    "seconds": 1969.7120685900002
+  },
+  "study_status_sha256": "5c7983deb056ce5ab682d0e6c9a43ea2d2430f11ccfda6613b304896042a819c",
+  "finished_utc": "2026-10-25T21:58:35.645440+00:00"
+}
