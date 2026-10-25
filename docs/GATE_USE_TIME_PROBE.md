@@ -84,3 +84,5 @@ python3 -m pytest tests/test_use_time_probe.py -q
 - `summary.json`：分组统计、结果哈希、时长、限制和输入数值复现检查。
 
 最初的严格 bitwise 输入重建检查未通过，失败目录保存在 `build/use-time-probe-20261024/failed-exact-input-check/`。最终训练仍复用原存档输入，没有替换；14 个抽查 parent 的本地投影重建差异通过 rtol=1e−5、atol=1e−3，逐项最大差异写入 summary。运行中的 NumPy matmul 发出浮点警告，但已保存预测、参数和标签均有限；输出没有把这些警告当成成功验证的替代品。需要完整复算时仍依赖本地 `build/` 的原模型和特征缓存。
+
+后续导出补齐了[原 1,282 个 TRAIN parent 的精确输入与标签](../results/literature_diagnosis/use-time-label-audit-20261024/training_inputs_labels.npz)，哈希与本实验 protocol 一致。它与本目录的 use-time 标签、参数及 parent 记录可以支持无需 GPU 的标签／拟合复查；完整在线重放仍需要相应轨迹缓存。

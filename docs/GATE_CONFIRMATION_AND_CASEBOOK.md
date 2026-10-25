@@ -1,6 +1,6 @@
 # 从线索诊断到独立确认：目前能支持什么
 
-**后续更新（2026-10-24）：** 已完成 TRAIN 标签审计、use-time CPU 学生试验及 A100 reader 规模试验，见[延迟信用可行性报告](GATE_DELAYED_CREDIT_FEASIBILITY_ZH.md)。下文保留旧 reader 的受控诊断与 seed-20261023 冻结确认，不用新 reader 的结果覆盖它；新 48 对评估场景在 reader 检查后也已成为开发数据。
+**后续更新（2026-10-24）：** 已完成 TRAIN 标签审计、原 use-time CPU 学生试验、A100 reader 规模试验和 512 对扩样学生比较。扩样 use-time 保 cue 96/96、MSE 0.058482，超过 local/shuffled，但未超过 attention，且仍落后 diversity；见[延迟信用可行性报告](GATE_DELAYED_CREDIT_FEASIBILITY_ZH.md)。下文保留旧 reader 的受控诊断与 seed-20261023 冻结确认，不用新 reader 的结果覆盖它；新 48 对评估场景在 reader 检查后也已成为开发数据。
 
 本轮先在已观察的开发场景中拆开内容、时间和动作，再把已有保留探针原样放到新 seed 的96组配对场景上。**结论是：预测器确实会错误利用某些正确线索，但当前删除价值探针没有在新场景上建立保留优势。** 这两件事需要分开报告。
 

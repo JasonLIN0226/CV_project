@@ -10,6 +10,13 @@ confirmation. The execution source is
 Local run evidence is under `build/reader-scale-a100-20261024/run/`; portable
 paired summaries and figures are under
 [`results/literature_diagnosis/reader-scale-pilot-20261024/analysis/`](../results/literature_diagnosis/reader-scale-pilot-20261024/analysis/paired_summary.json).
+The [research prerelease](https://github.com/JasonLIN0226/CV_project/releases/tag/gate-use-time-reader-pilot-20261024)
+provides the exact input/source bundle, three trained checkpoints, saved
+predictions, exported evaluation targets and execution receipts. All three
+uploaded asset SHA256 digests were checked against the local archives. Full
+newly encoded per-frame feature/RGB caches remain on HPC; the release supports
+saved-result verification, not an assertion that every online rerun dependency
+is in Git.
 The saved rows, aggregate summary, checkpoint hashes and validation selections
 were independently reconciled. A subsequent hash-bound target export enabled
 [independent NumPy arithmetic verification](../results/literature_diagnosis/reader-scale-pilot-20261024/analysis/arithmetic_verification.json)
@@ -117,13 +124,14 @@ early-time local-cost labels or their horizon mismatch. It also did not identify
 whether action-sign composition, irrelevant action summaries, or another aspect
 of coverage explains the remaining failures.
 
-A subsequent scaled-student feasibility test is **pending**: fix the 512-pair
-reader and compare local-cost, use-time, future-attention and shuffled-label
-students trained on 512 pairs. The reader outcomes of the current 48 evaluation
-pairs have already been inspected; any subsequent student comparison on them is
-development analysis, not a new independent confirmation. No completed result
-from that test is claimed here. The earlier small-data CPU use-time student's
-negative development result remains unchanged.
+The subsequent [scaled-student feasibility test](GATE_SCALED_USE_TIME_PROBE.md)
+is now complete with the fixed 512-pair reader: use-time cue retention 96/96,
+MSE .058482 versus local-cost 0/96, .113421 and shuffled-use-time 27/96, .096232.
+It does not exceed attention and remains worse than diversity. The same 48
+reader-evaluation pairs had already been inspected, so this is development
+analysis, not a new independent confirmation. The earlier small-data CPU
+student's negative result is preserved. Reader origin and label horizon remain
+confounded; the student experiment does not resolve that limitation.
 
 ## Corrections to the existing confirmation analysis
 
@@ -261,3 +269,7 @@ evaluates them. It writes model locks, curves, individual metric rows, saved
 prediction vectors, hardware identity and file hashes. A scheduler allocation or
 encoding completion alone is not evidence that reader training or evaluation
 finished. The final `completion.json` is written only after all stages succeed.
+
+## 后续保留学生结果
+
+512 对 reader 的固定特征已用于完成 [扩样 use-time 学生 pilot](GATE_SCALED_USE_TIME_PROBE.md)：use-time MSE 0.058482、cue 96/96；local-cost 为 0.113421、0/96，但 use-time 未超过 attention，仍落后 diversity。它是本报告评价集上的开发复用，不是另一份独立确认。

@@ -19,6 +19,14 @@ cause of the learned scorer's confirmation failures or a useful new method.
 - Population: 1,282 K+1 parents from 32 episodes / 16 scene pairs. Multiple
   parents from an episode are correlated; percentages here are descriptive
   parent counts, not independent-sample estimates.
+
+The previously local-only input/label file is now exported byte-for-byte as
+[`training_inputs_labels.npz`](../results/literature_diagnosis/use-time-label-audit-20261024/training_inputs_labels.npz)
+(1,184,698 bytes; SHA256 `a5df502b955f03a2184c48b383758f3e2b13e4657b171e8fa8070f655a468976`).
+It contains float64 inputs of shape `(1282,3,903)` and the original cost,
+attention and shuffled-cost labels; this matches the pre-existing source hash.
+Parent metadata and regenerated cue annotations remain in the adjacent audit
+files. Exporting it does not change any fitted result.
 - Saved cost column j is mean h3/h6 feature MSE after deleting sorted candidate j.
   The training code anchors the two horizons at each overflow decision time t,
   not just at the episode's final query q.
