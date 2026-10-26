@@ -1,0 +1,44 @@
+{
+  "status": "stopped_before_confirmation_due_to_failed_dev_reproduction",
+  "date": "2026-10-26",
+  "confirmation_seed": 20261104,
+  "confirmation_families": 48,
+  "confirmation_generated": false,
+  "confirmation_encoded": false,
+  "confirmation_evaluated": false,
+  "a100_submitted": false,
+  "a100_job_id": null,
+  "conf_zip_sha256": null,
+  "training_or_tuning_performed": false,
+  "files_deleted": false,
+  "frozen_experiments_source_modified": false,
+  "stop_rule": "Any DEV numerical or prediction mismatch: stop and report; do not open CONF",
+  "dev_gate": {
+    "reader": "multihead",
+    "parents": 256,
+    "failed_array": "sensitivity",
+    "comparison": "abs(new-old)/abs(old), elementwise; no additional absolute tolerance",
+    "relative_tolerance": 0.0001,
+    "max_relative_error": 0.002483151026204096,
+    "failing_cells": 16,
+    "checked_cells": 768,
+    "argmin_mismatches": 0,
+    "remaining_reader_and_student_checks_executed": false
+  },
+  "hpc_preparation": {
+    "ood_authenticated": true,
+    "default_login_shell": "connection terminated before any command",
+    "auxiliary_cpu_job_id": 12305,
+    "auxiliary_cpu_node": "b-10-12",
+    "auxiliary_cpu_final_ui_status": "Completed after scancel 12305",
+    "uploaded_directory": "/scratch/xy3257/cv-phase2-20261020/qualified-reader-conf-job",
+    "uploaded_files_visible": ["conf_encode_project.py", "conf.sbatch", "inspect_remote.py"],
+    "remote_signature_or_sha_inspection_executed": false,
+    "reason": "Stopped immediately after local DEV gate failure, before remote inspect or A100 submission"
+  },
+  "deviations": [
+    "DEV preflight was performed concurrently with HPC preparation and failed before A100 submission; all CONF work stopped.",
+    "Requested Completed README and CONF numeric tables were not produced because no CONF experiment ran; documentation records not evaluated instead."
+  ],
+  "evidence": "preflight/dev_reproduction.json"
+}

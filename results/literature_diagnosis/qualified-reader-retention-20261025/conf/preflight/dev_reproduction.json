@@ -1,0 +1,113 @@
+{
+  "status": "failed",
+  "started_utc": "2026-10-26T17:49:47.073865+00:00",
+  "scope": "DEV only; no fitting or confirmation access",
+  "paths": {
+    "REPO": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project",
+    "RUN": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/terminal-download-20261025/extracted/run",
+    "XFER": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/_claude_transfer_20261025",
+    "AGG": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/reader-aggregation-20261025/hpc/extracted/run",
+    "RECORDS": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/terminal-download-20261025/extracted/run/data/records.json",
+    "ACTIONS": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/terminal-download-20261025/extracted/run/data/actions.npz"
+  },
+  "versions": {
+    "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "numpy": "1.26.4",
+    "torch": "2.14.1"
+  },
+  "source_sha256": {
+    "run_main.py": "c530b95c7b4d0603161cc7c6125ebe0f962d0b1b084595017eebba1844e77352",
+    "path_config.py": "95d3a914409e69aceab60ec0e50a37c93117799668f74bbcdb6099fffd0fa76b",
+    "evaluate_dev.py": "5254f403cfc3e509fef94d52bf8322cdf275dfe708bddf8260eb8b8e86e98320",
+    "diagnose_failures.py": "bfb742c3d1972c37c89a32597cc3879b1ca86bc4d277ca837ec1d717d4587a2d",
+    "score_qualified_rules.py": "289f321cd83242fe271e9db826eae3e82a2ebe63d0adfa22f3b9e484217c86a1",
+    "verify_dev_reproduction.py": "8f8a35cfcc8703d7ca1729cc8d3e9053e70a6cf07dfb704504ed3630cea39a20",
+    "pipe.py": "bb2093d2a69b8f18648b0f9711d95080b74bcf031f8092714ce40ad5a0eb821b",
+    "run_students.py": "c64947b220da5f1b6311d1378df751b303b3e721e63296fdbb26cb164bccdfb9",
+    "appearance.py": "93a3d7401a2341750e90752bad1eb61b9d9c133a0dcb4abeedf31a8800a75f78"
+  },
+  "frozen_student_source_sha256": "08021072e0dd9b3a74dc6d397ba6d8a3f90c7db1c36fbfed6589a6a27221bcd7",
+  "numerical_function_ast_matches": {
+    "pipe.py": true,
+    "run_main.py": true,
+    "evaluate_dev.py": true
+  },
+  "records": 1728,
+  "families": 24,
+  "readers": {
+    "multihead": {
+      "stageA": {
+        "medoid_sum": {
+          "max_abs_error": 3.582581218353198e-07,
+          "max_relative_error": 3.3898163934767667e-06,
+          "relative_tolerance": 0.0001,
+          "argmin_mismatches": 0,
+          "tie_exemptions": 0,
+          "non_tie_mismatch_indices": [],
+          "passed": true
+        },
+        "sensitivity": {
+          "max_abs_error": 1.5554472948542397e-07,
+          "max_relative_error": 0.002483151026204096,
+          "relative_tolerance": 0.0001,
+          "argmin_mismatches": 0,
+          "tie_exemptions": 0,
+          "non_tie_mismatch_indices": [],
+          "passed": false
+        },
+        "attention": {
+          "max_abs_error": 1.7881393432617188e-07,
+          "max_relative_error": 2.2824966548381168e-06,
+          "relative_tolerance": 0.0001,
+          "argmin_mismatches": 0,
+          "tie_exemptions": 0,
+          "non_tie_mismatch_indices": [],
+          "passed": true
+        },
+        "eval_cost": {
+          "max_abs_error": 6.728321116922231e-08,
+          "max_relative_error": 7.290261030635519e-07,
+          "relative_tolerance": 0.0001,
+          "argmin_mismatches": 0,
+          "tie_exemptions": 0,
+          "non_tie_mismatch_indices": [],
+          "passed": true
+        }
+      },
+      "recomputed_sha256": "959a2fc409fa6628da021bf35f7ae267a813f653981512a09ce23ebec2dd8393",
+      "archived_sha256": "d52d33d873737f8106bbf4886ab63a12f486df5a2de6275af8b177e1ca38c63f",
+      "students": {}
+    }
+  },
+  "error": "ValueError('Stage A numerical or argmin mismatch for multihead')",
+  "ended_utc": "2026-10-26T17:49:51.567695+00:00",
+  "not_executed": {
+    "item_attention_stageA_first256": true,
+    "all_four_student_DEV_prediction_checks": true,
+    "CONF_generation": true,
+    "CONF_encoding": true,
+    "CONF_evaluation": true
+  },
+  "stopped_at": "multihead first256 stageA sensitivity strict relative-error gate",
+  "appearance": {
+    "saved": 6912,
+    "unique_frames": 2208,
+    "hash_mismatches": 0,
+    "sec": 6.9
+  },
+  "path_and_appearance_audit": {
+    "status": "passed",
+    "Store_AST_exact_after_two_path_expression_substitutions": true,
+    "appearance_receipt": {
+      "saved": 6912,
+      "unique_frames": 2208,
+      "hash_mismatches": 0,
+      "sec": 6.9
+    }
+  },
+  "raw_report_preserved_as": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/qualified-reader-conf-20261026/dev-preflight/dev_reproduction.raw.json",
+  "raw_report_sha256": "8f4dad702c8e47f3f455d871e202871278e8a794c5678e87458de4f0e25b416f",
+  "original_source_archive": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/qualified-reader-conf-20261026/dev-preflight/original_code",
+  "adaptation_diff": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/qualified-reader-conf-20261026/dev-preflight/path_adaptation.diff",
+  "initial_code_and_zip_manifest_verification": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/qualified-reader-conf-20261026/dev-preflight/initial_manifest_verification.json"
+}

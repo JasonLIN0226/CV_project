@@ -1,0 +1,2146 @@
+{
+ "rules_lock": "qualified_reader_rules_lock.md",
+ "note": "actual-plan approximation, first pass before 16-plan run",
+ "splits": {
+  "existing_development": {
+   "multihead": {
+    "summary": {
+     "R": {
+      "n": 288,
+      "fifo": {
+       "lost": 96,
+       "lost_ci": {
+        "mean": 0.3333333333333333,
+        "family_mean": 0.3333333333333333,
+        "low": 0.16666666666666666,
+        "high": 0.5416666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.01940173939650915,
+        "family_mean": 0.019401739396509153,
+        "low": 0.007879129932259414,
+        "high": 0.03321629588991668,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 114,
+       "lost_ci": {
+        "mean": 0.3958333333333333,
+        "family_mean": 0.3958333333333333,
+        "low": 0.23958333333333334,
+        "high": 0.5590277777777777,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.010554720041460214,
+        "family_mean": 0.010554720041460214,
+        "low": 0.006527717505186242,
+        "high": 0.014534158960805017,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 2,
+       "lost_ci": {
+        "mean": 0.006944444444444444,
+        "family_mean": 0.006944444444444444,
+        "low": 0.0,
+        "high": 0.01736111111111111,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0011771259250670883,
+        "family_mean": 0.0011771259250670883,
+        "low": 0.0009068366595487082,
+        "high": 0.0014837659359969403,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 28,
+       "lost_ci": {
+        "mean": 0.09722222222222222,
+        "family_mean": 0.09722222222222221,
+        "low": 0.05555555555555555,
+        "high": 0.1423611111111111,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0031427022092792825,
+        "family_mean": 0.0031427022092792825,
+        "low": 0.0021321569926975687,
+        "high": 0.004202233576121018,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 3,
+       "lost_ci": {
+        "mean": 0.010416666666666666,
+        "family_mean": 0.010416666666666666,
+        "low": 0.0,
+        "high": 0.027777777777777776,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.3333333333333334,
+      "full_K3_correct": 281,
+      "by_condition": {
+       "neutral": {
+        "fifo": "32/96",
+        "attention": "38/96",
+        "medoid": "0/96",
+        "full_sensitivity": "1/96",
+        "oracle": "1/96"
+       },
+       "salient_redundant": {
+        "fifo": "32/96",
+        "attention": "28/96",
+        "medoid": "2/96",
+        "full_sensitivity": "27/96",
+        "oracle": "0/96"
+       },
+       "salient_unique": {
+        "fifo": "32/96",
+        "attention": "48/96",
+        "medoid": "0/96",
+        "full_sensitivity": "0/96",
+        "oracle": "2/96"
+       }
+      }
+     },
+     "D": {
+      "n": 288,
+      "fifo": {
+       "lost": 192,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.4583333333333333,
+        "high": 0.8333333333333334,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.040030248376027804,
+        "family_mean": 0.040030248376027804,
+        "low": 0.024600334545226095,
+        "high": 0.055366622860373166,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 211,
+       "lost_ci": {
+        "mean": 0.7326388888888888,
+        "family_mean": 0.7326388888888888,
+        "low": 0.6701388888888888,
+        "high": 0.7951388888888888,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.018717137816139016,
+        "family_mean": 0.018717137816139016,
+        "low": 0.01635348600391808,
+        "high": 0.02109845031816244,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 129,
+       "lost_ci": {
+        "mean": 0.4479166666666667,
+        "family_mean": 0.4479166666666667,
+        "low": 0.40277777777777785,
+        "high": 0.49305555555555564,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.009504901125794182,
+        "family_mean": 0.009504901125794179,
+        "low": 0.00801438572524638,
+        "high": 0.011252624235440458,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 25,
+       "lost_ci": {
+        "mean": 0.08680555555555555,
+        "family_mean": 0.08680555555555554,
+        "low": 0.052083333333333336,
+        "high": 0.125,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0022186554543794233,
+        "family_mean": 0.0022186554543794233,
+        "low": 0.0012451283372612258,
+        "high": 0.003353817341881775,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 17,
+       "lost_ci": {
+        "mean": 0.059027777777777776,
+        "family_mean": 0.05902777777777778,
+        "low": 0.020833333333333332,
+        "high": 0.10772569444444398,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 284,
+      "incomplete_pair_closer": 0,
+      "by_condition": {
+       "neutral": {
+        "fifo": "64/96",
+        "attention": "85/96",
+        "medoid": "40/96",
+        "full_sensitivity": "1/96",
+        "oracle": "4/96"
+       },
+       "salient_decoy": {
+        "fifo": "64/96",
+        "attention": "93/96",
+        "medoid": "45/96",
+        "full_sensitivity": "19/96",
+        "oracle": "7/96"
+       },
+       "salient_useful": {
+        "fifo": "64/96",
+        "attention": "33/96",
+        "medoid": "44/96",
+        "full_sensitivity": "5/96",
+        "oracle": "6/96"
+       }
+      }
+     },
+     "S": {
+      "n": 1152,
+      "fifo": {
+       "lost": 768,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.6666666666666666,
+        "high": 0.6666666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.044857640616369,
+        "family_mean": 0.044857640616368995,
+        "low": 0.04041095585104423,
+        "high": 0.04930910677022409,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 826,
+       "lost_ci": {
+        "mean": 0.7170138888888888,
+        "family_mean": 0.717013888888889,
+        "low": 0.6527777777777778,
+        "high": 0.7777777777777777,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.05325321342981986,
+        "family_mean": 0.05325321342981987,
+        "low": 0.046113261252081886,
+        "high": 0.059830884274865666,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 1135,
+       "lost_ci": {
+        "mean": 0.9852430555555556,
+        "family_mean": 0.9852430555555555,
+        "low": 0.9739583333333334,
+        "high": 0.9956597222222222,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.061049949197606264,
+        "family_mean": 0.06104994919760626,
+        "low": 0.05433013331394026,
+        "high": 0.06775939928419053,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 369,
+       "lost_ci": {
+        "mean": 0.3203125,
+        "family_mean": 0.32031249999999994,
+        "low": 0.2638888888888889,
+        "high": 0.3802083333333333,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.005003462055302201,
+        "family_mean": 0.005003462055302201,
+        "low": 0.0026279319560459226,
+        "high": 0.007914916278070653,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 278,
+       "lost_ci": {
+        "mean": 0.24131944444444445,
+        "family_mean": 0.24131944444444445,
+        "low": 0.1935546875,
+        "high": 0.2951388888888889,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 1109,
+      "incomplete_pair_closer": 1112,
+      "by_condition": {
+       "neutral": {
+        "fifo": "192/288",
+        "attention": "192/288",
+        "medoid": "288/288",
+        "full_sensitivity": "144/288",
+        "oracle": "130/288"
+       },
+       "salient_slot_0": {
+        "fifo": "192/288",
+        "attention": "207/288",
+        "medoid": "285/288",
+        "full_sensitivity": "78/288",
+        "oracle": "52/288"
+       },
+       "salient_slot_1": {
+        "fifo": "192/288",
+        "attention": "223/288",
+        "medoid": "274/288",
+        "full_sensitivity": "69/288",
+        "oracle": "50/288"
+       },
+       "salient_slot_2": {
+        "fifo": "192/288",
+        "attention": "204/288",
+        "medoid": "288/288",
+        "full_sensitivity": "78/288",
+        "oracle": "46/288"
+       }
+      }
+     }
+    },
+    "basis_shape": [
+     5120,
+     128
+    ]
+   },
+   "item_attention": {
+    "summary": {
+     "R": {
+      "n": 288,
+      "fifo": {
+       "lost": 96,
+       "lost_ci": {
+        "mean": 0.3333333333333333,
+        "family_mean": 0.3333333333333333,
+        "low": 0.16666666666666666,
+        "high": 0.5416666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.01890068911121401,
+        "family_mean": 0.018900689111214012,
+        "low": 0.007211052758894366,
+        "high": 0.03310859892648087,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 144,
+       "lost_ci": {
+        "mean": 0.5,
+        "family_mean": 0.5,
+        "low": 0.2916666666666667,
+        "high": 0.7083333333333334,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.014501369136233523,
+        "family_mean": 0.014501369136233525,
+        "low": 0.00825349077312228,
+        "high": 0.020820226694748412,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 0,
+       "lost_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0005671678353105602,
+        "family_mean": 0.0005671678353105603,
+        "low": 0.00035594620106935555,
+        "high": 0.0008480581844489966,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 5,
+       "lost_ci": {
+        "mean": 0.017361111111111112,
+        "family_mean": 0.01736111111111111,
+        "low": 0.0,
+        "high": 0.03819444444444444,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0008751844407915142,
+        "family_mean": 0.0008751844407915142,
+        "low": 0.0003536476918995681,
+        "high": 0.0018129426900599026,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 5,
+       "lost_ci": {
+        "mean": 0.017361111111111112,
+        "family_mean": 0.01736111111111111,
+        "low": 0.0,
+        "high": 0.048611111111111105,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.3333333333333334,
+      "full_K3_correct": 288,
+      "by_condition": {
+       "neutral": {
+        "fifo": "32/96",
+        "attention": "48/96",
+        "medoid": "0/96",
+        "full_sensitivity": "2/96",
+        "oracle": "3/96"
+       },
+       "salient_redundant": {
+        "fifo": "32/96",
+        "attention": "48/96",
+        "medoid": "0/96",
+        "full_sensitivity": "1/96",
+        "oracle": "0/96"
+       },
+       "salient_unique": {
+        "fifo": "32/96",
+        "attention": "48/96",
+        "medoid": "0/96",
+        "full_sensitivity": "2/96",
+        "oracle": "2/96"
+       }
+      }
+     },
+     "D": {
+      "n": 288,
+      "fifo": {
+       "lost": 192,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.4583333333333333,
+        "high": 0.8333333333333334,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.039979194689018456,
+        "family_mean": 0.039979194689018456,
+        "low": 0.02497126858810126,
+        "high": 0.05503678500786337,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 6,
+       "lost_ci": {
+        "mean": 0.020833333333333332,
+        "family_mean": 0.020833333333333332,
+        "low": 0.0,
+        "high": 0.052083333333333336,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0016981221174943181,
+        "family_mean": 0.001698122117494318,
+        "low": 0.0005288680359025885,
+        "high": 0.0030776694190582377,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 117,
+       "lost_ci": {
+        "mean": 0.40625,
+        "family_mean": 0.40625,
+        "low": 0.3611111111111111,
+        "high": 0.4513888888888889,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.010968548135938502,
+        "family_mean": 0.0109685481359385,
+        "low": 0.008728643177849674,
+        "high": 0.013205960253270638,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 0,
+       "lost_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0011219964903728956,
+        "family_mean": 0.0011219964903728954,
+        "low": 0.0001928070597602297,
+        "high": 0.00234732212359485,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 13,
+       "lost_ci": {
+        "mean": 0.04513888888888889,
+        "family_mean": 0.04513888888888889,
+        "low": 0.01736111111111111,
+        "high": 0.0798611111111111,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 287,
+      "incomplete_pair_closer": 1,
+      "by_condition": {
+       "neutral": {
+        "fifo": "64/96",
+        "attention": "0/96",
+        "medoid": "38/96",
+        "full_sensitivity": "0/96",
+        "oracle": "3/96"
+       },
+       "salient_decoy": {
+        "fifo": "64/96",
+        "attention": "6/96",
+        "medoid": "36/96",
+        "full_sensitivity": "0/96",
+        "oracle": "2/96"
+       },
+       "salient_useful": {
+        "fifo": "64/96",
+        "attention": "0/96",
+        "medoid": "43/96",
+        "full_sensitivity": "0/96",
+        "oracle": "8/96"
+       }
+      }
+     },
+     "S": {
+      "n": 1152,
+      "fifo": {
+       "lost": 768,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.6666666666666666,
+        "high": 0.6666666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.050151483836333485,
+        "family_mean": 0.05015148383633348,
+        "low": 0.045334448812700344,
+        "high": 0.055124562653361166,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 645,
+       "lost_ci": {
+        "mean": 0.5598958333333334,
+        "family_mean": 0.5598958333333334,
+        "low": 0.5347222222222222,
+        "high": 0.5885416666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.04425538266537239,
+        "family_mean": 0.044255382665372385,
+        "low": 0.03844638254721672,
+        "high": 0.05072246802968884,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 1089,
+       "lost_ci": {
+        "mean": 0.9453125,
+        "family_mean": 0.9453125,
+        "low": 0.9184027777777777,
+        "high": 0.9696180555555557,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.058187977727900665,
+        "family_mean": 0.058187977727900665,
+        "low": 0.052134953410310686,
+        "high": 0.06409660312796202,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 449,
+       "lost_ci": {
+        "mean": 0.3897569444444444,
+        "family_mean": 0.3897569444444445,
+        "low": 0.3524305555555556,
+        "high": 0.4314236111111111,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.01893372243021129,
+        "family_mean": 0.01893372243021129,
+        "low": 0.01636642765238999,
+        "high": 0.021590925192676504,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 151,
+       "lost_ci": {
+        "mean": 0.1310763888888889,
+        "family_mean": 0.13107638888888887,
+        "low": 0.09027777777777779,
+        "high": 0.1762152777777778,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 1029,
+      "incomplete_pair_closer": 964,
+      "by_condition": {
+       "neutral": {
+        "fifo": "192/288",
+        "attention": "144/288",
+        "medoid": "288/288",
+        "full_sensitivity": "94/288",
+        "oracle": "11/288"
+       },
+       "salient_slot_0": {
+        "fifo": "192/288",
+        "attention": "172/288",
+        "medoid": "280/288",
+        "full_sensitivity": "106/288",
+        "oracle": "28/288"
+       },
+       "salient_slot_1": {
+        "fifo": "192/288",
+        "attention": "159/288",
+        "medoid": "263/288",
+        "full_sensitivity": "126/288",
+        "oracle": "52/288"
+       },
+       "salient_slot_2": {
+        "fifo": "192/288",
+        "attention": "170/288",
+        "medoid": "258/288",
+        "full_sensitivity": "123/288",
+        "oracle": "60/288"
+       }
+      }
+     }
+    },
+    "basis_shape": [
+     5120,
+     128
+    ]
+   },
+   "original": {
+    "summary": {
+     "R": {
+      "n": 288,
+      "fifo": {
+       "lost": 96,
+       "lost_ci": {
+        "mean": 0.3333333333333333,
+        "family_mean": 0.3333333333333333,
+        "low": 0.16666666666666666,
+        "high": 0.5416666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.01671834545199051,
+        "family_mean": 0.016718345451990514,
+        "low": 0.007376361240371026,
+        "high": 0.0279608996315687,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 144,
+       "lost_ci": {
+        "mean": 0.5,
+        "family_mean": 0.5,
+        "low": 0.3020833333333333,
+        "high": 0.6979166666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.007566958660714155,
+        "family_mean": 0.007566958660714156,
+        "low": 0.005128429844801605,
+        "high": 0.010014704329468875,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 40,
+       "lost_ci": {
+        "mean": 0.1388888888888889,
+        "family_mean": 0.13888888888888887,
+        "low": 0.05902777777777777,
+        "high": 0.22916666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.004331650220684413,
+        "family_mean": 0.004331650220684414,
+        "low": 0.0029546870209759294,
+        "high": 0.005719643534995566,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 85,
+       "lost_ci": {
+        "mean": 0.2951388888888889,
+        "family_mean": 0.2951388888888889,
+        "low": 0.15972222222222224,
+        "high": 0.4444444444444445,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.005561144226903339,
+        "family_mean": 0.0055611442269033395,
+        "low": 0.003445032736231997,
+        "high": 0.0077696223398627095,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 18,
+       "lost_ci": {
+        "mean": 0.0625,
+        "family_mean": 0.0625,
+        "low": 0.01736111111111111,
+        "high": 0.11805555555555557,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.3333333333333334,
+      "full_K3_correct": 211,
+      "by_condition": {
+       "neutral": {
+        "fifo": "32/96",
+        "attention": "49/96",
+        "medoid": "4/96",
+        "full_sensitivity": "17/96",
+        "oracle": "3/96"
+       },
+       "salient_redundant": {
+        "fifo": "32/96",
+        "attention": "47/96",
+        "medoid": "17/96",
+        "full_sensitivity": "44/96",
+        "oracle": "3/96"
+       },
+       "salient_unique": {
+        "fifo": "32/96",
+        "attention": "48/96",
+        "medoid": "19/96",
+        "full_sensitivity": "24/96",
+        "oracle": "12/96"
+       }
+      }
+     },
+     "D": {
+      "n": 288,
+      "fifo": {
+       "lost": 192,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.4583333333333333,
+        "high": 0.8333333333333334,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.02979501929443807,
+        "family_mean": 0.029795019294438074,
+        "low": 0.016065263331303724,
+        "high": 0.04365762258115732,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 0,
+       "lost_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0006349376432143775,
+        "family_mean": 0.0006349376432143775,
+        "low": 0.00017949935888071747,
+        "high": 0.0012826979666422415,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 35,
+       "lost_ci": {
+        "mean": 0.12152777777777778,
+        "family_mean": 0.12152777777777775,
+        "low": 0.06597222222222222,
+        "high": 0.1909722222222222,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.000907379231790279,
+        "family_mean": 0.000907379231790279,
+        "low": 0.0003364604608849195,
+        "high": 0.0016392709651127761,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 0,
+       "lost_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0006349376432143775,
+        "family_mean": 0.0006349376432143775,
+        "low": 0.00017949935888071747,
+        "high": 0.0012826979666422415,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 58,
+       "lost_ci": {
+        "mean": 0.2013888888888889,
+        "family_mean": 0.20138888888888887,
+        "low": 0.13888888888888887,
+        "high": 0.2743055555555555,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 243,
+      "incomplete_pair_closer": 1,
+      "by_condition": {
+       "neutral": {
+        "fifo": "64/96",
+        "attention": "0/96",
+        "medoid": "7/96",
+        "full_sensitivity": "0/96",
+        "oracle": "7/96"
+       },
+       "salient_decoy": {
+        "fifo": "64/96",
+        "attention": "0/96",
+        "medoid": "7/96",
+        "full_sensitivity": "0/96",
+        "oracle": "7/96"
+       },
+       "salient_useful": {
+        "fifo": "64/96",
+        "attention": "0/96",
+        "medoid": "21/96",
+        "full_sensitivity": "0/96",
+        "oracle": "44/96"
+       }
+      }
+     },
+     "S": {
+      "n": 1152,
+      "fifo": {
+       "lost": 768,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.6666666666666666,
+        "high": 0.6666666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.03692820341108359,
+        "family_mean": 0.036928203411083584,
+        "low": 0.032843571516206684,
+        "high": 0.04067355867561178,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 576,
+       "lost_ci": {
+        "mean": 0.5,
+        "family_mean": 0.5,
+        "low": 0.5,
+        "high": 0.5,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.025581778689563968,
+        "family_mean": 0.02558177868956397,
+        "low": 0.023358829916146066,
+        "high": 0.02773272115106148,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 1103,
+       "lost_ci": {
+        "mean": 0.9574652777777778,
+        "family_mean": 0.9574652777777777,
+        "low": 0.9401041666666666,
+        "high": 0.9748263888888888,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.05096016858789485,
+        "family_mean": 0.05096016858789485,
+        "low": 0.04552590628772945,
+        "high": 0.05601881550454045,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 672,
+       "lost_ci": {
+        "mean": 0.5833333333333334,
+        "family_mean": 0.5833333333333334,
+        "low": 0.5590277777777778,
+        "high": 0.6076388888888888,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.02566479693169736,
+        "family_mean": 0.02566479693169736,
+        "low": 0.02340982492893085,
+        "high": 0.027829727046357278,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 156,
+       "lost_ci": {
+        "mean": 0.13541666666666666,
+        "family_mean": 0.13541666666666666,
+        "low": 0.10329861111111112,
+        "high": 0.17274305555555555,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 835,
+      "incomplete_pair_closer": 1030,
+      "by_condition": {
+       "neutral": {
+        "fifo": "192/288",
+        "attention": "144/288",
+        "medoid": "263/288",
+        "full_sensitivity": "192/288",
+        "oracle": "73/288"
+       },
+       "salient_slot_0": {
+        "fifo": "192/288",
+        "attention": "144/288",
+        "medoid": "288/288",
+        "full_sensitivity": "168/288",
+        "oracle": "25/288"
+       },
+       "salient_slot_1": {
+        "fifo": "192/288",
+        "attention": "144/288",
+        "medoid": "264/288",
+        "full_sensitivity": "144/288",
+        "oracle": "38/288"
+       },
+       "salient_slot_2": {
+        "fifo": "192/288",
+        "attention": "144/288",
+        "medoid": "288/288",
+        "full_sensitivity": "168/288",
+        "oracle": "20/288"
+       }
+      }
+     }
+    },
+    "basis_shape": [
+     5120,
+     128
+    ]
+   }
+  },
+  "fresh_diagnostic": {
+   "multihead": {
+    "summary": {
+     "R": {
+      "n": 288,
+      "fifo": {
+       "lost": 96,
+       "lost_ci": {
+        "mean": 0.3333333333333333,
+        "family_mean": 0.3333333333333333,
+        "low": 0.16666666666666666,
+        "high": 0.5416666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.02237210204316696,
+        "family_mean": 0.02237210204316696,
+        "low": 0.00954067230464958,
+        "high": 0.03771933040146952,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 113,
+       "lost_ci": {
+        "mean": 0.3923611111111111,
+        "family_mean": 0.39236111111111116,
+        "low": 0.23263888888888892,
+        "high": 0.5486979166666662,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.012002414985042722,
+        "family_mean": 0.012002414985042722,
+        "low": 0.007652834645693368,
+        "high": 0.01670543183765139,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 4,
+       "lost_ci": {
+        "mean": 0.013888888888888888,
+        "family_mean": 0.013888888888888888,
+        "low": 0.003472222222222222,
+        "high": 0.027777777777777776,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.001341607415631382,
+        "family_mean": 0.0013416074156313818,
+        "low": 0.0009746980505762514,
+        "high": 0.0017653522342205863,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 30,
+       "lost_ci": {
+        "mean": 0.10416666666666667,
+        "family_mean": 0.10416666666666664,
+        "low": 0.05902777777777777,
+        "high": 0.14939236111111062,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.003572229097363046,
+        "family_mean": 0.0035722290973630466,
+        "low": 0.0024620161752247956,
+        "high": 0.00470167474670111,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 1,
+       "lost_ci": {
+        "mean": 0.003472222222222222,
+        "family_mean": 0.003472222222222222,
+        "low": 0.0,
+        "high": 0.010416666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.3333333333333334,
+      "full_K3_correct": 280,
+      "by_condition": {
+       "neutral": {
+        "fifo": "32/96",
+        "attention": "37/96",
+        "medoid": "0/96",
+        "full_sensitivity": "2/96",
+        "oracle": "0/96"
+       },
+       "salient_redundant": {
+        "fifo": "32/96",
+        "attention": "28/96",
+        "medoid": "4/96",
+        "full_sensitivity": "28/96",
+        "oracle": "1/96"
+       },
+       "salient_unique": {
+        "fifo": "32/96",
+        "attention": "48/96",
+        "medoid": "0/96",
+        "full_sensitivity": "0/96",
+        "oracle": "0/96"
+       }
+      }
+     },
+     "D": {
+      "n": 288,
+      "fifo": {
+       "lost": 192,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.4583333333333333,
+        "high": 0.8333333333333334,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.04073252385901717,
+        "family_mean": 0.040732523859017176,
+        "low": 0.024908278876751413,
+        "high": 0.055934919297643625,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 222,
+       "lost_ci": {
+        "mean": 0.7708333333333334,
+        "family_mean": 0.7708333333333334,
+        "low": 0.704861111111111,
+        "high": 0.8402777777777777,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.022536685832399136,
+        "family_mean": 0.022536685832399136,
+        "low": 0.019810235537325083,
+        "high": 0.025243005202863718,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 120,
+       "lost_ci": {
+        "mean": 0.4166666666666667,
+        "family_mean": 0.4166666666666667,
+        "low": 0.3680555555555555,
+        "high": 0.46527777777777785,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.008860313743233796,
+        "family_mean": 0.008860313743233796,
+        "low": 0.007286372827710675,
+        "high": 0.010460112419506487,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 24,
+       "lost_ci": {
+        "mean": 0.08333333333333333,
+        "family_mean": 0.08333333333333333,
+        "low": 0.04513888888888889,
+        "high": 0.12152777777777775,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0021994764397532045,
+        "family_mean": 0.0021994764397532045,
+        "low": 0.001119501281622015,
+        "high": 0.003463459149245416,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 7,
+       "lost_ci": {
+        "mean": 0.024305555555555556,
+        "family_mean": 0.024305555555555552,
+        "low": 0.010416666666666666,
+        "high": 0.041666666666666664,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 284,
+      "incomplete_pair_closer": 1,
+      "by_condition": {
+       "neutral": {
+        "fifo": "64/96",
+        "attention": "86/96",
+        "medoid": "38/96",
+        "full_sensitivity": "2/96",
+        "oracle": "2/96"
+       },
+       "salient_decoy": {
+        "fifo": "64/96",
+        "attention": "95/96",
+        "medoid": "39/96",
+        "full_sensitivity": "17/96",
+        "oracle": "1/96"
+       },
+       "salient_useful": {
+        "fifo": "64/96",
+        "attention": "41/96",
+        "medoid": "43/96",
+        "full_sensitivity": "5/96",
+        "oracle": "4/96"
+       }
+      }
+     },
+     "S": {
+      "n": 1152,
+      "fifo": {
+       "lost": 768,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.6666666666666666,
+        "high": 0.6666666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.047781393888906995,
+        "family_mean": 0.047781393888907,
+        "low": 0.044454385791934385,
+        "high": 0.05109569048628311,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 770,
+       "lost_ci": {
+        "mean": 0.6684027777777778,
+        "family_mean": 0.6684027777777777,
+        "low": 0.6076171874999999,
+        "high": 0.7291666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.050328141722153136,
+        "family_mean": 0.050328141722153136,
+        "low": 0.04562003673181852,
+        "high": 0.0554462142405058,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 1125,
+       "lost_ci": {
+        "mean": 0.9765625,
+        "family_mean": 0.9765625,
+        "low": 0.9635416666666666,
+        "high": 0.9895833333333334,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.06412824054018847,
+        "family_mean": 0.06412824054018847,
+        "low": 0.05969500229010583,
+        "high": 0.06859409862419168,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 406,
+       "lost_ci": {
+        "mean": 0.3524305555555556,
+        "family_mean": 0.3524305555555556,
+        "low": 0.3046875,
+        "high": 0.4010416666666667,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.008596028220239717,
+        "family_mean": 0.00859602822023972,
+        "low": 0.005400902132322945,
+        "high": 0.011792844274481932,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 281,
+       "lost_ci": {
+        "mean": 0.2439236111111111,
+        "family_mean": 0.24392361111111108,
+        "low": 0.19270833333333334,
+        "high": 0.3020833333333333,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 1117,
+      "incomplete_pair_closer": 1089,
+      "by_condition": {
+       "neutral": {
+        "fifo": "192/288",
+        "attention": "156/288",
+        "medoid": "288/288",
+        "full_sensitivity": "144/288",
+        "oracle": "127/288"
+       },
+       "salient_slot_0": {
+        "fifo": "192/288",
+        "attention": "218/288",
+        "medoid": "285/288",
+        "full_sensitivity": "84/288",
+        "oracle": "47/288"
+       },
+       "salient_slot_1": {
+        "fifo": "192/288",
+        "attention": "227/288",
+        "medoid": "268/288",
+        "full_sensitivity": "82/288",
+        "oracle": "46/288"
+       },
+       "salient_slot_2": {
+        "fifo": "192/288",
+        "attention": "169/288",
+        "medoid": "284/288",
+        "full_sensitivity": "96/288",
+        "oracle": "61/288"
+       }
+      }
+     }
+    },
+    "basis_shape": [
+     5120,
+     128
+    ]
+   },
+   "item_attention": {
+    "summary": {
+     "R": {
+      "n": 288,
+      "fifo": {
+       "lost": 96,
+       "lost_ci": {
+        "mean": 0.3333333333333333,
+        "family_mean": 0.3333333333333333,
+        "low": 0.16666666666666666,
+        "high": 0.5416666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.02220381309787799,
+        "family_mean": 0.02220381309787799,
+        "low": 0.009328591643677206,
+        "high": 0.03769776138633607,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 140,
+       "lost_ci": {
+        "mean": 0.4861111111111111,
+        "family_mean": 0.4861111111111111,
+        "low": 0.2916666666666667,
+        "high": 0.6806423611111105,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.01747369203249921,
+        "family_mean": 0.017473692032499214,
+        "low": 0.0108179086751182,
+        "high": 0.024587265797732908,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 0,
+       "lost_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0005102466022413754,
+        "family_mean": 0.0005102466022413755,
+        "low": 0.00038606167040833664,
+        "high": 0.0006519257767815237,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 2,
+       "lost_ci": {
+        "mean": 0.006944444444444444,
+        "family_mean": 0.006944444444444444,
+        "low": 0.0,
+        "high": 0.01736111111111111,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0007347416372899567,
+        "family_mean": 0.0007347416372899566,
+        "low": 0.00043820318082440663,
+        "high": 0.0011273324077348509,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 0,
+       "lost_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.3333333333333334,
+      "full_K3_correct": 288,
+      "by_condition": {
+       "neutral": {
+        "fifo": "32/96",
+        "attention": "48/96",
+        "medoid": "0/96",
+        "full_sensitivity": "0/96",
+        "oracle": "0/96"
+       },
+       "salient_redundant": {
+        "fifo": "32/96",
+        "attention": "44/96",
+        "medoid": "0/96",
+        "full_sensitivity": "2/96",
+        "oracle": "0/96"
+       },
+       "salient_unique": {
+        "fifo": "32/96",
+        "attention": "48/96",
+        "medoid": "0/96",
+        "full_sensitivity": "0/96",
+        "oracle": "0/96"
+       }
+      }
+     },
+     "D": {
+      "n": 288,
+      "fifo": {
+       "lost": 192,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.4583333333333333,
+        "high": 0.8333333333333334,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0399957513129062,
+        "family_mean": 0.03999575131290622,
+        "low": 0.024685724180242792,
+        "high": 0.05476287364302783,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 8,
+       "lost_ci": {
+        "mean": 0.027777777777777776,
+        "family_mean": 0.027777777777777776,
+        "low": 0.0,
+        "high": 0.06944444444444443,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0013755660855897618,
+        "family_mean": 0.0013755660855897618,
+        "low": 2.7979867799560585e-05,
+        "high": 0.0030423321279798524,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 111,
+       "lost_ci": {
+        "mean": 0.3854166666666667,
+        "family_mean": 0.3854166666666667,
+        "low": 0.34722222222222215,
+        "high": 0.42361111111111116,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.010034964882633257,
+        "family_mean": 0.010034964882633257,
+        "low": 0.008178532873995321,
+        "high": 0.011997141598655869,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 3,
+       "lost_ci": {
+        "mean": 0.010416666666666666,
+        "family_mean": 0.010416666666666666,
+        "low": 0.0,
+        "high": 0.027777777777777776,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.00011402053956838481,
+        "family_mean": 0.00011402053956838481,
+        "low": 0.0,
+        "high": 0.00030299533796469884,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 4,
+       "lost_ci": {
+        "mean": 0.013888888888888888,
+        "family_mean": 0.013888888888888888,
+        "low": 0.0,
+        "high": 0.03125,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 288,
+      "incomplete_pair_closer": 0,
+      "by_condition": {
+       "neutral": {
+        "fifo": "64/96",
+        "attention": "0/96",
+        "medoid": "36/96",
+        "full_sensitivity": "0/96",
+        "oracle": "0/96"
+       },
+       "salient_decoy": {
+        "fifo": "64/96",
+        "attention": "8/96",
+        "medoid": "37/96",
+        "full_sensitivity": "0/96",
+        "oracle": "0/96"
+       },
+       "salient_useful": {
+        "fifo": "64/96",
+        "attention": "0/96",
+        "medoid": "38/96",
+        "full_sensitivity": "3/96",
+        "oracle": "4/96"
+       }
+      }
+     },
+     "S": {
+      "n": 1152,
+      "fifo": {
+       "lost": 768,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.6666666666666666,
+        "high": 0.6666666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.05240492319586784,
+        "family_mean": 0.05240492319586785,
+        "low": 0.04846673764536814,
+        "high": 0.05657175423151133,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 641,
+       "lost_ci": {
+        "mean": 0.5564236111111112,
+        "family_mean": 0.556423611111111,
+        "low": 0.5329861111111112,
+        "high": 0.5824652777777778,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.04448909148943018,
+        "family_mean": 0.04448909148943018,
+        "low": 0.03959416698929272,
+        "high": 0.04954861066270057,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 1093,
+       "lost_ci": {
+        "mean": 0.9487847222222222,
+        "family_mean": 0.9487847222222222,
+        "low": 0.9270833333333334,
+        "high": 0.9678819444444445,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.06158497494581013,
+        "family_mean": 0.06158497494581012,
+        "low": 0.05582129750343962,
+        "high": 0.06741224753913978,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 453,
+       "lost_ci": {
+        "mean": 0.3932291666666667,
+        "family_mean": 0.3932291666666667,
+        "low": 0.3506944444444445,
+        "high": 0.43576388888888884,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.017277395515476062,
+        "family_mean": 0.017277395515476062,
+        "low": 0.014377780520984566,
+        "high": 0.02062325072532054,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 116,
+       "lost_ci": {
+        "mean": 0.10069444444444445,
+        "family_mean": 0.10069444444444443,
+        "low": 0.07378472222222222,
+        "high": 0.1267578124999999,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 1075,
+      "incomplete_pair_closer": 963,
+      "by_condition": {
+       "neutral": {
+        "fifo": "192/288",
+        "attention": "144/288",
+        "medoid": "283/288",
+        "full_sensitivity": "83/288",
+        "oracle": "11/288"
+       },
+       "salient_slot_0": {
+        "fifo": "192/288",
+        "attention": "164/288",
+        "medoid": "269/288",
+        "full_sensitivity": "121/288",
+        "oracle": "29/288"
+       },
+       "salient_slot_1": {
+        "fifo": "192/288",
+        "attention": "163/288",
+        "medoid": "275/288",
+        "full_sensitivity": "106/288",
+        "oracle": "36/288"
+       },
+       "salient_slot_2": {
+        "fifo": "192/288",
+        "attention": "170/288",
+        "medoid": "266/288",
+        "full_sensitivity": "143/288",
+        "oracle": "40/288"
+       }
+      }
+     }
+    },
+    "basis_shape": [
+     5120,
+     128
+    ]
+   },
+   "original": {
+    "summary": {
+     "R": {
+      "n": 288,
+      "fifo": {
+       "lost": 96,
+       "lost_ci": {
+        "mean": 0.3333333333333333,
+        "family_mean": 0.3333333333333333,
+        "low": 0.16666666666666666,
+        "high": 0.5416666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.018766087462870056,
+        "family_mean": 0.018766087462870056,
+        "low": 0.008664934743381168,
+        "high": 0.03144979559912698,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 144,
+       "lost_ci": {
+        "mean": 0.5,
+        "family_mean": 0.5,
+        "low": 0.3055555555555555,
+        "high": 0.6979166666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.008468508101535887,
+        "family_mean": 0.008468508101535889,
+        "low": 0.0055066049323099185,
+        "high": 0.011491853996011565,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 36,
+       "lost_ci": {
+        "mean": 0.125,
+        "family_mean": 0.125,
+        "low": 0.05199652777777779,
+        "high": 0.20494791666666623,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0049254441766446826,
+        "family_mean": 0.0049254441766446826,
+        "low": 0.003442389176840715,
+        "high": 0.006358936213780666,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 77,
+       "lost_ci": {
+        "mean": 0.2673611111111111,
+        "family_mean": 0.2673611111111111,
+        "low": 0.13541666666666666,
+        "high": 0.40972222222222215,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.006519868268721049,
+        "family_mean": 0.00651986826872105,
+        "low": 0.004318432224795359,
+        "high": 0.00876307404507345,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 15,
+       "lost_ci": {
+        "mean": 0.052083333333333336,
+        "family_mean": 0.052083333333333336,
+        "low": 0.01736111111111111,
+        "high": 0.09027777777777778,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.3333333333333334,
+      "full_K3_correct": 217,
+      "by_condition": {
+       "neutral": {
+        "fifo": "32/96",
+        "attention": "49/96",
+        "medoid": "3/96",
+        "full_sensitivity": "19/96",
+        "oracle": "0/96"
+       },
+       "salient_redundant": {
+        "fifo": "32/96",
+        "attention": "47/96",
+        "medoid": "17/96",
+        "full_sensitivity": "42/96",
+        "oracle": "1/96"
+       },
+       "salient_unique": {
+        "fifo": "32/96",
+        "attention": "48/96",
+        "medoid": "16/96",
+        "full_sensitivity": "16/96",
+        "oracle": "14/96"
+       }
+      }
+     },
+     "D": {
+      "n": 288,
+      "fifo": {
+       "lost": 192,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.4583333333333333,
+        "high": 0.8333333333333334,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.029363989018084093,
+        "family_mean": 0.029363989018084086,
+        "low": 0.01662868922827686,
+        "high": 0.04203268972092229,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 0,
+       "lost_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0005940673931541054,
+        "family_mean": 0.0005940673931541054,
+        "low": 0.00027029109458234345,
+        "high": 0.000995628253341536,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 40,
+       "lost_ci": {
+        "mean": 0.1388888888888889,
+        "family_mean": 0.13888888888888887,
+        "low": 0.07638888888888888,
+        "high": 0.20833333333333334,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0017853588813910195,
+        "family_mean": 0.00178535888139102,
+        "low": 0.0007665230758936396,
+        "high": 0.002936247687365144,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 0,
+       "lost_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0005940673931541054,
+        "family_mean": 0.0005940673931541054,
+        "low": 0.00027029109458234345,
+        "high": 0.000995628253341536,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 51,
+       "lost_ci": {
+        "mean": 0.17708333333333334,
+        "family_mean": 0.17708333333333334,
+        "low": 0.13194444444444445,
+        "high": 0.21875,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 244,
+      "incomplete_pair_closer": 0,
+      "by_condition": {
+       "neutral": {
+        "fifo": "64/96",
+        "attention": "0/96",
+        "medoid": "10/96",
+        "full_sensitivity": "0/96",
+        "oracle": "5/96"
+       },
+       "salient_decoy": {
+        "fifo": "64/96",
+        "attention": "0/96",
+        "medoid": "10/96",
+        "full_sensitivity": "0/96",
+        "oracle": "5/96"
+       },
+       "salient_useful": {
+        "fifo": "64/96",
+        "attention": "0/96",
+        "medoid": "20/96",
+        "full_sensitivity": "0/96",
+        "oracle": "41/96"
+       }
+      }
+     },
+     "S": {
+      "n": 1152,
+      "fifo": {
+       "lost": 768,
+       "lost_ci": {
+        "mean": 0.6666666666666666,
+        "family_mean": 0.6666666666666666,
+        "low": 0.6666666666666666,
+        "high": 0.6666666666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.03927507468327077,
+        "family_mean": 0.03927507468327077,
+        "low": 0.03609569630023871,
+        "high": 0.04236865675236922,
+        "families": 24
+       }
+      },
+      "attention": {
+       "lost": 576,
+       "lost_ci": {
+        "mean": 0.5,
+        "family_mean": 0.5,
+        "low": 0.5,
+        "high": 0.5,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.028120791173256263,
+        "family_mean": 0.028120791173256266,
+        "low": 0.02620440355601281,
+        "high": 0.03018061345613453,
+        "families": 24
+       }
+      },
+      "medoid": {
+       "lost": 1103,
+       "lost_ci": {
+        "mean": 0.9574652777777778,
+        "family_mean": 0.9574652777777777,
+        "low": 0.9418402777777777,
+        "high": 0.9739583333333334,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.05415748529277537,
+        "family_mean": 0.05415748529277537,
+        "low": 0.04948953569227751,
+        "high": 0.05915187069935741,
+        "families": 24
+       }
+      },
+      "full_sensitivity": {
+       "lost": 672,
+       "lost_ci": {
+        "mean": 0.5833333333333334,
+        "family_mean": 0.5833333333333334,
+        "low": 0.5590277777777778,
+        "high": 0.6076388888888888,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.028230095572732608,
+        "family_mean": 0.02823009557273261,
+        "low": 0.02637547856637678,
+        "high": 0.030258162526215392,
+        "families": 24
+       }
+      },
+      "oracle": {
+       "lost": 175,
+       "lost_ci": {
+        "mean": 0.1519097222222222,
+        "family_mean": 0.1519097222222222,
+        "low": 0.12065972222222222,
+        "high": 0.18229166666666666,
+        "families": 24
+       },
+       "regret_ci": {
+        "mean": 0.0,
+        "family_mean": 0.0,
+        "low": 0.0,
+        "high": 0.0,
+        "families": 24
+       }
+      },
+      "uniform_expected_lost_fraction": 0.6666666666666669,
+      "full_K3_correct": 846,
+      "incomplete_pair_closer": 1019,
+      "by_condition": {
+       "neutral": {
+        "fifo": "192/288",
+        "attention": "144/288",
+        "medoid": "264/288",
+        "full_sensitivity": "192/288",
+        "oracle": "63/288"
+       },
+       "salient_slot_0": {
+        "fifo": "192/288",
+        "attention": "144/288",
+        "medoid": "285/288",
+        "full_sensitivity": "168/288",
+        "oracle": "48/288"
+       },
+       "salient_slot_1": {
+        "fifo": "192/288",
+        "attention": "144/288",
+        "medoid": "266/288",
+        "full_sensitivity": "144/288",
+        "oracle": "41/288"
+       },
+       "salient_slot_2": {
+        "fifo": "192/288",
+        "attention": "144/288",
+        "medoid": "288/288",
+        "full_sensitivity": "168/288",
+        "oracle": "23/288"
+       }
+      }
+     }
+    },
+    "basis_shape": [
+     5120,
+     128
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,703 @@
+{
+  "status": "completed_confirmation_claims",
+  "split": "confirmation",
+  "seed": 20261104,
+  "families": 48,
+  "task_counts": {
+    "R": 576,
+    "D": 576,
+    "S": 2304
+  },
+  "student_seeds": [
+    17,
+    29,
+    43
+  ],
+  "units": "loss rates and CI endpoints are fractions; multiply by 100 for percentage points",
+  "bootstrap": {
+    "seed": 20261107,
+    "repetitions": 2000,
+    "unit": "family",
+    "paired": true,
+    "role": "descriptive only; not a pass criterion"
+  },
+  "claims": {
+    "claim_1_synergy": {
+      "rule": "On S, mean-of-three-seed set_cost loss is strictly lower than each comparator, for both readers",
+      "readers": {
+        "multihead": {
+          "passes": true,
+          "comparisons": {
+            "full_sensitivity": {
+              "student_lost_rate": 0.04586226851851852,
+              "comparator_lost_rate": 0.3589409722222222,
+              "student_minus_comparator_family_bootstrap_95_ci": [
+                -0.3130787037037037,
+                -0.3483796296296296,
+                -0.2787905092592593
+              ],
+              "passes": true
+            },
+            "attention": {
+              "student_lost_rate": 0.04586226851851852,
+              "comparator_lost_rate": 0.7026909722222222,
+              "student_minus_comparator_family_bootstrap_95_ci": [
+                -0.6568287037037037,
+                -0.6976273148148148,
+                -0.6111038773148149
+              ],
+              "passes": true
+            },
+            "student_set_future_attention": {
+              "student_lost_rate": 0.04586226851851852,
+              "comparator_lost_rate": 0.673755787037037,
+              "student_minus_comparator_family_bootstrap_95_ci": [
+                -0.6278935185185185,
+                -0.6643590856481482,
+                -0.5898401331018519
+              ],
+              "passes": true
+            }
+          }
+        },
+        "item_attention": {
+          "passes": true,
+          "comparisons": {
+            "full_sensitivity": {
+              "student_lost_rate": 0.006510416666666667,
+              "comparator_lost_rate": 0.3780381944444444,
+              "student_minus_comparator_family_bootstrap_95_ci": [
+                -0.37152777777777785,
+                -0.39597800925925924,
+                -0.347800925925926
+              ],
+              "passes": true
+            },
+            "attention": {
+              "student_lost_rate": 0.006510416666666667,
+              "comparator_lost_rate": 0.5512152777777778,
+              "student_minus_comparator_family_bootstrap_95_ci": [
+                -0.5447048611111112,
+                -0.5635163483796296,
+                -0.5266167534722223
+              ],
+              "passes": true
+            },
+            "student_set_future_attention": {
+              "student_lost_rate": 0.006510416666666667,
+              "comparator_lost_rate": 0.5629340277777778,
+              "student_minus_comparator_family_bootstrap_95_ci": [
+                -0.556423611111111,
+                -0.5771122685185185,
+                -0.5371744791666666
+              ],
+              "passes": true
+            }
+          }
+        }
+      },
+      "passes": true,
+      "conclusion": "通过",
+      "tie_average_passes": true,
+      "truth_flips_under_tie_average": false,
+      "tie_robustness": "真值不变"
+    },
+    "claim_2_rd_oracle_gap": {
+      "rule": "For item_attention, absolute full_sensitivity minus oracle loss-rate difference is at most 0.10 separately in R and D",
+      "reader": "item_attention",
+      "tasks": {
+        "R": {
+          "full_sensitivity_lost_rate": 0.0,
+          "oracle_lost_rate": 0.0,
+          "absolute_difference": 0.0,
+          "passes": true
+        },
+        "D": {
+          "full_sensitivity_lost_rate": 0.001736111111111111,
+          "oracle_lost_rate": 0.015625,
+          "absolute_difference": 0.013888888888888888,
+          "passes": true
+        }
+      },
+      "passes": true,
+      "conclusion": "通过",
+      "tie_average_passes": true,
+      "truth_flips_under_tie_average": false,
+      "tie_robustness": "真值不变"
+    },
+    "claim_3_medoid": {
+      "rule": "For both readers, medoid loss rate is strictly higher than full_sensitivity separately in D and S",
+      "readers": {
+        "multihead": {
+          "passes": true,
+          "tasks": {
+            "D": {
+              "medoid_lost_rate": 0.4496527777777778,
+              "full_sensitivity_lost_rate": 0.11284722222222222,
+              "difference": 0.3368055555555556,
+              "passes": true
+            },
+            "S": {
+              "medoid_lost_rate": 0.9752604166666666,
+              "full_sensitivity_lost_rate": 0.3589409722222222,
+              "difference": 0.6163194444444444,
+              "passes": true
+            }
+          }
+        },
+        "item_attention": {
+          "passes": true,
+          "tasks": {
+            "D": {
+              "medoid_lost_rate": 0.3697916666666667,
+              "full_sensitivity_lost_rate": 0.001736111111111111,
+              "difference": 0.3680555555555556,
+              "passes": true
+            },
+            "S": {
+              "medoid_lost_rate": 0.9605034722222222,
+              "full_sensitivity_lost_rate": 0.3780381944444444,
+              "difference": 0.5824652777777778,
+              "passes": true
+            }
+          }
+        }
+      },
+      "passes": true,
+      "conclusion": "通过",
+      "tie_average_passes": true,
+      "truth_flips_under_tie_average": false,
+      "tie_robustness": "真值不变"
+    }
+  },
+  "tie_robustness": {
+    "rule": "value - min(value) <= 1e-4 * max(value) per row",
+    "formal_decisions_unchanged": true,
+    "rows": [
+      {
+        "reader": "multihead",
+        "task": "R",
+        "method": "full_sensitivity",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 133,
+        "tie_set_sizes": {
+          "1": 443,
+          "2": 133,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.10590277777777778,
+          0.07638888888888888,
+          0.13715277777777776
+        ],
+        "tie_average_lost_rate_ci": [
+          0.10590277777777778,
+          0.07638888888888888,
+          0.13715277777777776
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "multihead",
+        "task": "D",
+        "method": "full_sensitivity",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 0,
+        "tie_set_sizes": {
+          "1": 576,
+          "2": 0,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.11284722222222221,
+          0.08506944444444443,
+          0.14062499999999997
+        ],
+        "tie_average_lost_rate_ci": [
+          0.11284722222222221,
+          0.08506944444444443,
+          0.14062499999999997
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "multihead",
+        "task": "S",
+        "method": "full_sensitivity",
+        "parents": 2304,
+        "families": 48,
+        "tie_parents": 51,
+        "tie_set_sizes": {
+          "1": 2253,
+          "2": 51,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.35894097222222227,
+          0.32421875,
+          0.39409722222222227
+        ],
+        "tie_average_lost_rate_ci": [
+          0.35894097222222227,
+          0.32421875,
+          0.39409722222222227
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "multihead",
+        "task": "R",
+        "method": "medoid",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 7,
+        "tie_set_sizes": {
+          "1": 569,
+          "2": 7,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.008680555555555554,
+          0.001736111111111111,
+          0.01736111111111111
+        ],
+        "tie_average_lost_rate_ci": [
+          0.008680555555555554,
+          0.001736111111111111,
+          0.01736111111111111
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "multihead",
+        "task": "D",
+        "method": "medoid",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 0,
+        "tie_set_sizes": {
+          "1": 576,
+          "2": 0,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.44965277777777773,
+          0.4114583333333333,
+          0.4895833333333333
+        ],
+        "tie_average_lost_rate_ci": [
+          0.44965277777777773,
+          0.4114583333333333,
+          0.4895833333333333
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "multihead",
+        "task": "S",
+        "method": "medoid",
+        "parents": 2304,
+        "families": 48,
+        "tie_parents": 3,
+        "tie_set_sizes": {
+          "1": 2301,
+          "2": 3,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.9752604166666666,
+          0.9652777777777777,
+          0.9848090277777777
+        ],
+        "tie_average_lost_rate_ci": [
+          0.9752604166666666,
+          0.9652777777777777,
+          0.9848090277777777
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "multihead",
+        "task": "R",
+        "method": "oracle",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 19,
+        "tie_set_sizes": {
+          "1": 557,
+          "2": 19,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.003472222222222222,
+          0.0,
+          0.008680555555555554
+        ],
+        "tie_average_lost_rate_ci": [
+          0.003472222222222222,
+          0.0,
+          0.008680555555555554
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "multihead",
+        "task": "D",
+        "method": "oracle",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 0,
+        "tie_set_sizes": {
+          "1": 576,
+          "2": 0,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.034722222222222224,
+          0.012152777777777776,
+          0.06423611111111112
+        ],
+        "tie_average_lost_rate_ci": [
+          0.034722222222222224,
+          0.012152777777777776,
+          0.06423611111111112
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "multihead",
+        "task": "S",
+        "method": "oracle",
+        "parents": 2304,
+        "families": 48,
+        "tie_parents": 5,
+        "tie_set_sizes": {
+          "1": 2299,
+          "2": 5,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.22916666666666666,
+          0.1957356770833333,
+          0.2673828124999999
+        ],
+        "tie_average_lost_rate_ci": [
+          0.22916666666666666,
+          0.1957356770833333,
+          0.2673828124999999
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "item_attention",
+        "task": "R",
+        "method": "full_sensitivity",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 92,
+        "tie_set_sizes": {
+          "1": 484,
+          "2": 92,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tie_average_lost_rate_ci": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "item_attention",
+        "task": "D",
+        "method": "full_sensitivity",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 0,
+        "tie_set_sizes": {
+          "1": 576,
+          "2": 0,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.001736111111111111,
+          0.0,
+          0.005208333333333333
+        ],
+        "tie_average_lost_rate_ci": [
+          0.001736111111111111,
+          0.0,
+          0.005208333333333333
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "item_attention",
+        "task": "S",
+        "method": "full_sensitivity",
+        "parents": 2304,
+        "families": 48,
+        "tie_parents": 4,
+        "tie_set_sizes": {
+          "1": 2300,
+          "2": 4,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.3780381944444444,
+          0.3546006944444445,
+          0.4010525173611111
+        ],
+        "tie_average_lost_rate_ci": [
+          0.3780381944444444,
+          0.3546006944444445,
+          0.4010525173611111
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "item_attention",
+        "task": "R",
+        "method": "medoid",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 4,
+        "tie_set_sizes": {
+          "1": 572,
+          "2": 4,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tie_average_lost_rate_ci": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "item_attention",
+        "task": "D",
+        "method": "medoid",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 1,
+        "tie_set_sizes": {
+          "1": 575,
+          "2": 1,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.3697916666666667,
+          0.3298611111111111,
+          0.40972222222222215
+        ],
+        "tie_average_lost_rate_ci": [
+          0.37065972222222227,
+          0.3298611111111111,
+          0.41059027777777785
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0008680555555555555,
+          0.0,
+          0.0026041666666666665
+        ]
+      },
+      {
+        "reader": "item_attention",
+        "task": "S",
+        "method": "medoid",
+        "parents": 2304,
+        "families": 48,
+        "tie_parents": 1,
+        "tie_set_sizes": {
+          "1": 2303,
+          "2": 1,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.9605034722222223,
+          0.9483506944444445,
+          0.9722222222222223
+        ],
+        "tie_average_lost_rate_ci": [
+          0.9605034722222223,
+          0.9483506944444445,
+          0.9722222222222223
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "item_attention",
+        "task": "R",
+        "method": "oracle",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 22,
+        "tie_set_sizes": {
+          "1": 554,
+          "2": 22,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tie_average_lost_rate_ci": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "item_attention",
+        "task": "D",
+        "method": "oracle",
+        "parents": 576,
+        "families": 48,
+        "tie_parents": 0,
+        "tie_set_sizes": {
+          "1": 576,
+          "2": 0,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.015624999999999998,
+          0.005208333333333333,
+          0.027777777777777773
+        ],
+        "tie_average_lost_rate_ci": [
+          0.015624999999999998,
+          0.005208333333333333,
+          0.027777777777777773
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "reader": "item_attention",
+        "task": "S",
+        "method": "oracle",
+        "parents": 2304,
+        "families": 48,
+        "tie_parents": 3,
+        "tie_set_sizes": {
+          "1": 2301,
+          "2": 3,
+          "3": 0
+        },
+        "argmin_lost_rate_ci": [
+          0.10199652777777779,
+          0.08116319444444445,
+          0.12326388888888888
+        ],
+        "tie_average_lost_rate_ci": [
+          0.10221354166666667,
+          0.08116319444444446,
+          0.12326388888888888
+        ],
+        "tie_minus_argmin_family_bootstrap_95_ci": [
+          0.00021701388888888888,
+          0.0,
+          0.0006510416666666666
+        ]
+      }
+    ],
+    "replaced_methods_only": [
+      "full_sensitivity",
+      "medoid",
+      "oracle"
+    ],
+    "student_and_attention_decisions_unchanged": true
+  },
+  "input_bindings": {
+    "records_sha256": "393b4a2b1e58bb54cf70216405213ee8e586774c990b3f47dda7b00ae6b3616f",
+    "multihead": {
+      "stage_a_sha256": "76b39b211f87d41c7b47a594506a24f00bbd16b40d7a0d27eb65ae069d4c1fc9",
+      "standard_predictions_sha256": "008dbc976954932f48a03cd4b203c2357add4bff563c65c57be04c048f589f0a",
+      "evaluation_sha256": "ffe9aadd95fc8eac9aaac1acd40aa1512fceae896d8fe3b6e7b5c337cfbe59db"
+    },
+    "item_attention": {
+      "stage_a_sha256": "ac88a00b3ee8ef50a01f232fbe18039fbb84d32b19d6331b3807d7b3f85ea76f",
+      "standard_predictions_sha256": "d7682c367f0e1a1fa5d5c3f93f4016c81d85f762e65c4a850018e01578289fa9",
+      "evaluation_sha256": "67a55f13d6d92de97f505754c87d1c7037d6c7df0af930fb6269153636902aa0"
+    }
+  },
+  "claims_source_sha256": "a7ea14401efe80d497add7bc0240c9599fd42e9ba0c6c0654329e8b10dcba8dd"
+}
