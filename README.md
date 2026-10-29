@@ -58,6 +58,8 @@ The links below follow the experiment flow. The original course-HPC batch launch
 
 ### 2. Encode frames and train the future predictor
 
+The October 22 clean-future run uses its [frozen predictor-source snapshot](experiments/gate_clean_future/frozen_control/README.md). The older Phase 1 control source is retained separately for its historical results and source lock. Run `python tools/verify_gate_clean_future_source.py` to check the 53 recorded source files.
+
 - [Feature encoding and train-only transforms](experiments/gate_clean_future/fit_features.py) · [encoder cache implementation](experiments/predictor/control/src/phase1/cache.py).
 - [Predictor architecture and projection](experiments/predictor/control/src/phase1/model.py) · [training and checkpointing](experiments/predictor/control/src/phase1/training.py) · [three-seed training entry point](experiments/retention_structured_noise_audit/train_reference.py).
 - [Original train/validation batch launcher](experiments/gate_clean_future/run_trainval.sbatch) · [predictor validation](experiments/gate_clean_future/evaluate_validation.py). The recorded validation used this [per-sibling bookkeeping repair](results/retention_structured_noise_audit/clean_future_evaluation_repair_20261022/evaluate_each_sibling.py); preserve its behavior when reproducing that validation. It is an HPC-specific execution snapshot.
