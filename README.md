@@ -39,13 +39,37 @@ The retired task-trained attention method is excluded from the current table. Hi
 
 [Full result and fairness details](docs/GATE_RETENTION_COMPARISON_LATEST.md) · [Chinese result summary](results/gate_retention_comparison_20261029/RESULTS_ZH.md) · [Machine-readable results](results/gate_retention_comparison_20261029/summary.json)
 
-## Model and code
+## Code map: reproduce the Gate study
 
-- Frozen encoder and predictor: reused across the comparison; no predictor retraining for the policy comparison.
-- New scorers: matched 45,633-parameter models, trained for 1,000 updates per arm and seed using seeds 17, 29 and 43.
-- [Scorer implementation and protocol](experiments/gate_supervision_comparison_design_v2/README.md) · [Data generator](experiments/gate_clean_future/materialize.py) · [Teacher signals](experiments/gate_supervision_comparison_design_v2/teachers.py)
+The links below follow the experiment flow. **These are the recorded research implementations, not a turnkey reproduction package**: several launchers contain the original NYU HPC paths. The new scorer checkpoints, frozen predictor checkpoints, encoded cache and raw validation output are not included in this repository. Exact reproduction requires obtaining and verifying those assets, or generating the data and retraining the predictor with the recorded setup. The `/scratch/xl4358/...` paths identify provenance; they are not teammate-accessible download links. Do not simply run the original batch scripts unchanged on another account.
 
-These are **validation-set** results, not a new independent test. The new scorer weights, encoded features and complete raw validation output are not included in this repository; the saved HPC paths are provenance and are not public download links. The exact historical runner still contains HPC-specific paths. See the full result document for audit details and reproducibility limits.
+### 1. Generate and check the data
+
+- [Clean-future dataset generator](experiments/gate_clean_future/materialize.py): builds paired Gate episodes with noisy input frames and clean future targets.
+- [Structured scene and distraction design](experiments/retention_structured_noise_audit/structured_design.py) · [cue-position/noise utilities](experiments/retention_position_noise_audit/design.py): scene and augmentation rules used by the generator.
+- [Dataset configuration template](results/gate_retention_comparison_20261029/dataset_config_template.json) · [train/validation protocol](experiments/gate_clean_future/protocol.json) · [preflight checks](experiments/retention_structured_noise_audit/clean_future_preflight.py) · [recorded preflight results](results/gate_retention_comparison_20261029/data_preflight.json). The configuration is a readable path-adjusted template, not a byte-identical copy of the HPC resolved configuration.
+
+### 2. Encode frames and train the future predictor
+
+- [Feature encoding and train-only transforms](experiments/gate_clean_future/fit_features.py) · [encoder cache implementation](experiments/predictor/control/src/phase1/cache.py).
+- [Predictor architecture and projection](experiments/predictor/control/src/phase1/model.py) · [training and checkpointing](experiments/predictor/control/src/phase1/training.py) · [three-seed training entry point](experiments/retention_structured_noise_audit/train_reference.py).
+- [Original train/validation batch launcher](experiments/gate_clean_future/run_trainval.sbatch) · [predictor validation](experiments/gate_clean_future/evaluate_validation.py). The recorded validation used this [per-sibling bookkeeping repair](results/retention_structured_noise_audit/clean_future_evaluation_repair_20261022/evaluate_each_sibling.py); preserve its behavior when reproducing that validation. It is an HPC-specific execution snapshot.
+- [Frozen clean-future source checksums](experiments/retention_structured_noise_audit/clean_future_source_lock.json) · [clean-future protocol](experiments/gate_clean_future/protocol.json).
+
+### 3. Train the two new retention scorers
+
+- [Scorer architecture and matched initialization](experiments/gate_supervision_comparison_design_v2/core.py).
+- [Teacher definitions](experiments/gate_supervision_comparison_design_v2/teachers.py) · [teacher-label preparation](experiments/gate_supervision_comparison_design_v2/teacher_stage.py) · [matched checkpointed training](experiments/gate_supervision_comparison_design_v2/checkpoint_fit.py).
+- [Train/validation runner](experiments/gate_supervision_comparison_design_v2/run_trainval.py) · [original training batch script](experiments/gate_supervision_comparison_design_v2/train.sbatch) · [experiment protocol](experiments/gate_supervision_comparison_design_v2/PROTOCOL.md) · [execution amendment](experiments/gate_supervision_comparison_design_v2/EXECUTION_AMENDMENT_20261029.md). The protocol contains its original pre-run wording; the [package README](experiments/gate_supervision_comparison_design_v2/README.md) explains the completed run.
+
+### 4. Run and inspect the policy comparison
+
+- [Online B=2 update rules](experiments/gate_retention_comparison_v1/online.py) · [baseline policy implementations](experiments/retention_online_matrix/policies.py).
+- [Policy validation and trace checks](experiments/gate_supervision_comparison_design_v2/validation.py) · [original validation batch script](experiments/gate_supervision_comparison_design_v2/validate.sbatch) · [independent validation-audit snapshot](results/gate_retention_comparison_20261029/audit_validation_hpc_snapshot.py).
+- [Results and fairness details](docs/GATE_RETENTION_COMPARISON_LATEST.md) · [Chinese result summary](results/gate_retention_comparison_20261029/RESULTS_ZH.md) · [machine-readable summary](results/gate_retention_comparison_20261029/summary.json).
+- [Scorer software tests](experiments/gate_supervision_comparison_design_v2/test_v2.py) · [data-protocol tests](experiments/gate_clean_future/test_protocol.py). These are software checks, not new scientific results.
+
+The historical validation code also computed the retired task-trained attention comparator. It is preserved for provenance and omitted from the latest results table. The reported comparison is on the existing validation set, not a new independent test.
 
 ## Next stage
 
