@@ -41,7 +41,14 @@ The retired task-trained attention method is excluded from the current table. Hi
 
 ## Code map: reproduce the Gate study
 
-The links below follow the experiment flow. **These are the recorded research implementations, not a turnkey reproduction package**: several launchers contain the original NYU HPC paths. The new scorer checkpoints, frozen predictor checkpoints, encoded cache and raw validation output are not included in this repository. Exact reproduction requires obtaining and verifying those assets, or generating the data and retraining the predictor with the recorded setup. The `/scratch/xl4358/...` paths identify provenance; they are not teammate-accessible download links. Do not simply run the original batch scripts unchanged on another account.
+### Team model and data downloads
+
+- [Private Gate model bundle](https://huggingface.co/cv-project-team5guys/gate-retention-models-v1) — three frozen predictors, both new scorers for seeds 17/29/43, transforms, probes, checksums and portable loading examples.
+- [Private Gate train/validation dataset](https://huggingface.co/datasets/cv-project-team5guys/gate-clean-future-trainval-v1) — the 1,216 episodes, matching feature cache, original validation output and per-file checksums.
+
+An organization member must grant your Hugging Face account access before either private link works. The bundles were downloaded again and their checksums verified; a real validation-episode loading and inference example ran successfully. These are validation artifacts, not a fresh independent test. Official I-JEPA pretrained encoder weights are not redistributed.
+
+The links below follow the experiment flow. The original course-HPC batch launchers retain their historical paths and are **not portable launchers**; use the download and loading instructions in the model and dataset repositories. `/scratch/xl4358/...` paths in historical records are provenance, not required teammate paths.
 
 ### 1. Generate and check the data
 
