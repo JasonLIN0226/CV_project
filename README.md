@@ -1,67 +1,52 @@
-# Bounded Visual Memory
+# Bounded Visual Memory: Gate Retention Study
 
-## Latest Gate retention comparison — 29 October 2026
+This project studies how a model with limited visual memory can preserve observations that matter for predicting the future. The current stage uses a controlled, synthetic **Gate** task to examine two questions:
 
-[Current validation results, data generation and model design](docs/GATE_RETENTION_COMPARISON_LATEST.md) · [Chinese result summary](results/gate_retention_comparison_20261029/RESULTS_ZH.md)
+1. Does retaining a key visual cue help the frozen model predict what happens next?
+2. How do online memory-retention policies compare on the same task and memory budget?
 
-This Gate-only study compares online retention methods on the existing validation set. The current presentation retains the two new scorers and omits the retired task-trained attention method. It is an exploratory comparison; no fresh independent test is claimed.
+The current study is an exploratory comparison on a simple task. Its results do not depend on passing the earlier Phase 1 gate, and they do not change the historical evaluation.
 
-Can the prediction error caused by deleting an observation identify what limited visual memory should retain?
+## The Gate task and data
 
-## Final independent confirmation — 20 October 2026
+An episode contains a direction cue represented by pale-gray arrows, a sequence of frames with randomly distributed vertical-line distractions, and a future route or state to predict. The cue can occur at different positions in the history. Input frames contain the distractions; future prediction targets are rendered without them. Paired scenes share actions and nuisance patterns while varying the cue and corresponding future.
 
-**Phase1 did not pass the registered rule.** Gate passes 155/155 checks; Motion passes 147/155. The independent raw-data audit passed. All 12 fresh models completed 120 epochs and 7,680 steps before the fresh seed 9137 test was opened. At that milestone, no retention policy had been trained.
+The latest comparison reuses the existing encoded train/validation data: **1,024 training episodes and 192 validation episodes**. Each policy has two history slots (B = 2) and receives the same four recent frames, with the same frozen encoder and predictor. On arrival, a policy can retain only two of its two stored history frames and the new frame; a discarded frame cannot return.
 
-| Registered checks | Gate | Motion |
-|---|---:|---:|
-| Original prediction (includes evidence probes) | 51/51 | 51/51 |
-| Fixed-reference prediction | 32/32 | 32/32 |
-| Deletion reliability | 72/72 | 64/72 |
-| Total | 155/155 | 147/155 |
+![An example Gate sequence](results/gate_retention_comparison_20261029/data_preview.png)
 
-The 302/310 total counts correlated comparisons, not independent trials or accuracy. All eight failures concern long-gap Motion against reject-newest: feature error improves by 9.4–11.1%, but decoded-position gain has a 95% interval containing zero. This supports a task-alignment limitation; it does not identify a unique causal mechanism. That registered all-checks result remains historical; the later Gate-only study is an exploratory comparison and does not claim the original gate passed.
+[Data generation and configuration](docs/GATE_RETENTION_COMPARISON_LATEST.md#data-design) · [Dataset preflight](results/gate_retention_comparison_20261029/data_preflight.json)
 
-## Verified model handoff
+## Current validation comparison
 
-[Download the development and independent-confirmation model assets](https://github.com/JasonLIN0226/CV_project/releases/tag/phase1-asset-handoff-20261020-v2) · [Asset mapping, exact versions and verification instructions](handoff/README.md). [Publication and loading audit](handoff/publication_audit.json). The two model families are separate; large weights live in Release assets, not Git history.
+The table aggregates the 192 validation episodes across three predictor seeds and two horizons. These repeated measurements are not independent examples. Cue hit means at least one retained history frame is in the cue interval; it is separate from route/state prediction accuracy.
 
-## Report and data
+| Retention method | Route/state accuracy | Cue hit | Normalized latent MSE ↓ |
+|---|---:|---:|---:|
+| Manual keyframe reference* | 95.57% | 100.00% | 0.09783 |
+| Deletion-cost scorer | 94.53% | 100.00% | 0.09934 |
+| Visual diversity | 71.79% | 47.40% | 0.11385 |
+| Prediction surprise | 66.15% | 34.55% | 0.11765 |
+| Reservoir | 57.38% | 16.84% | 0.12362 |
+| Temporal buckets | 56.60% | 15.62% | 0.12256 |
+| FIFO | 56.51% | 13.54% | 0.12423 |
+| Feature-attention-proxy scorer | 56.08% | 13.72% | 0.12332 |
+| Recent frames only | 50.00% | 0.00% | 0.12497 |
 
-- [Current detailed experiment walkthrough — Word](reports/phase1_experimental_walkthrough_20261020/Phase1_Experimental_Walkthrough_and_Evaluation_Report.docx)
-- [Current detailed experiment walkthrough — PDF](reports/phase1_experimental_walkthrough_20261020/Phase1_Experimental_Walkthrough_and_Evaluation_Report.pdf)
-- [Independent-confirmation technical report — Word](reports/phase1_independent_confirmation_20261020/Phase1_Independent_Confirmation_Report.docx)
-- [Verified numerical results](results/phase1_independent_confirmation/local_verified_results_20261020.json)
-- [Current result and limitations](docs/PHASE1_LATEST.md)
-- [Reproduction and external assets](docs/REPRODUCIBILITY.md)
-- [Cleanup record](docs/CLEANUP_MANIFEST.json)
+\* Manual keyframe selection is a privileged diagnostic reference: it knows the cue position. Its advantage over the recent-only control supports the usefulness of cue-containing history **in this setting**, but is not by itself a general causal or independent-test guarantee. The two learned scorers have the same architecture and student training budget, but their teacher signals and preparation costs differ. The deletion-cost teacher uses the frozen predictor and future targets during training; it is therefore predictor-aligned. No future information or cue labels are used by the learned students during online selection.
 
-This is a controlled synthetic **I-JEPA** study, with a supervised training-only position readout and observed-RGB guard. It is not V-JEPA or real-video validation. Both tasks use 512 training pairs, 96 validation pairs, and three test conditions with 256 pairs each. Reference and candidate models use seeds 17, 29 and 43. All train-only transforms, two maps and models were locked before test generation.
+The retired task-trained attention method is excluded from the current table. Historical code and records remain available for provenance.
 
-## Verify and reproduce
+[Full result and fairness details](docs/GATE_RETENTION_COMPARISON_LATEST.md) · [Chinese result summary](results/gate_retention_comparison_20261029/RESULTS_ZH.md) · [Machine-readable results](results/gate_retention_comparison_20261029/summary.json)
 
-```bash
-python -m pip install -r requirements.txt
-python tools/verify_independent_confirmation.py
-python tools/verify_results.py
-python tools/verify_phase1_latest.py
-python -m pytest -q
-```
+## Model and code
 
-The first verifier checks the published snapshot hashes and final counts without HPC access. The other verifiers check earlier retained evidence. Local verification is not a repeat of HPC model inference or its raw-data audit.
+- Frozen encoder and predictor: reused across the comparison; no predictor retraining for the policy comparison.
+- New scorers: matched 45,633-parameter models, trained for 1,000 updates per arm and seed using seeds 17, 29 and 43.
+- [Scorer implementation and protocol](experiments/gate_supervision_comparison_design_v2/README.md) · [Data generator](experiments/gate_clean_future/materialize.py) · [Teacher signals](experiments/gate_supervision_comparison_design_v2/teachers.py)
 
-```bash
-python -m pip install -r requirements-report.txt
-python tools/build_phase1_experimental_walkthrough.py
-```
+These are **validation-set** results, not a new independent test. The new scorer weights, encoded features and complete raw validation output are not included in this repository; the saved HPC paths are provenance and are not public download links. The exact historical runner still contains HPC-specific paths. See the full result document for audit details and reproducibility limits.
 
-## Repository layout
+## Next stage
 
-- `experiments/independent_confirmation/`: fresh confirmation methods and statistics.
-- `results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/`: final frozen execution source; its dependencies and earlier snapshots are retained for provenance.
-- Other `experiments/` and `results/` folders: required development methods, controls, negative results and audit evidence. These are historical evidence, not additional current conclusions.
-- `tests/`: local software checks; `tools/`: analysis, verification and report generation.
-- `reports/`: the current detailed walkthrough, the independent-confirmation technical report, source figures and machine-readable manifests.
-
-The earlier Phase 1 handoff weights are downloadable from the model handoff Release. The newer Gate-comparison student weights, encoded arrays, and raw validation output are not included there or in this Git update; see the current comparison for provenance and limitations. The earlier independent-confirmation GPU settlement was 53,544 of the approved 69,299 seconds. Historical connection aliases are not live endpoints.
-
-Superseded reports, outdated prose, duplicate renders, deployment ZIPs and generated caches were removed. Failed scientific evidence and immutable source locks were preserved. That historical publication did not include retention-policy training or threshold changes; see the current comparison for subsequent work.
+The next research stage can extend this comparison to **Motion and more complex simulated scenes**, where relevant information may unfold over time and require multiple observations. This is a future direction, not a completed result of the current Gate study.
