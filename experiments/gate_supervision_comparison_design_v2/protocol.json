@@ -1,0 +1,25 @@
+{
+  "status": "DESIGN_ONLY_NOT_IMPLEMENTED_NOT_TRAINED",
+  "date_local": "2026-10-29",
+  "supersedes": "gate_supervision_comparison_design_v1",
+  "arms": [
+    "feature_attention_proxy_distillation_from_scratch",
+    "deletion_cost_distillation_from_scratch"
+  ],
+  "student_parameters": 45633,
+  "behavior_policies": [
+    "fifo",
+    "reservoir",
+    "temporal_buckets",
+    "visual_diversity"
+  ],
+  "teacher_A": "mean_h softmax_i(cosine(p_i,p_future_h)); no learned scorer or novelty",
+  "teacher_D": "equal-B frozen predictor deletion normalized latent MSE",
+  "student_training_matched": true,
+  "teacher_preparation_cost_matched": false,
+  "training_authorized_now": false,
+  "gpu_jobs_submitted": [],
+  "protocol_sha256": "5e4725c495aee7b26b11d93072554e1b36c83f50344095543ce9cce861ebd8c3",
+  "asset_provenance_v1_sha256": "008406f539ee5a820c0f9a9297664af3c87e2d121c013590c74a50b54d38e3ab",
+  "checks_status": "REQUIRED_NOT_EXECUTED"
+}

@@ -1,0 +1,43 @@
+{
+  "status": "FROZEN_CLEAN_FUTURE_TRAINVAL_V1",
+  "question": "Does removing the random nuisance-line stream from future targets make the cue-action-future mapping learnable while history remains noisy?",
+  "scope": {
+    "train_pairs": 512,
+    "validation_pairs": 96,
+    "test_pairs": 0,
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "epochs_per_model": 120,
+    "horizons": [
+      3,
+      6
+    ],
+    "recent_frames": 4,
+    "memory_budget_b": 2
+  },
+  "intervention": {
+    "input": "history and query frames retain deterministic full-image vertical lines",
+    "target": "future target frames after query are clean",
+    "test_access": false,
+    "thresholds_changed": false,
+    "encoder_cache_reuse": false,
+    "reason_encoder_required": "The mixed RGB sequence is a new target definition and must be encoded once as an internally consistent sequence."
+  },
+  "validation_promotion_rule": {
+    "pass_status": "VALIDATION_PASS_FOR_LOCKED_TEST",
+    "requires": [
+      "all three fixed seeds complete 120 epochs",
+      "cue and recent probes pass unchanged thresholds",
+      "state decoder passes unchanged accuracy and position thresholds",
+      "privileged B=2 beats recent-only on unchanged latent and state thresholds for each seed",
+      "wrong-evidence intervention shifts toward the wrong sibling future",
+      "full history is not worse than recent-only beyond the unchanged tolerance",
+      "recent-only pair accuracy remains chance",
+      "future sibling targets remain distinguishable"
+    ]
+  },
+  "claim_boundary": "A validation pass is only authorization for a later sealed test. It is not a Phase 1 GO."
+}

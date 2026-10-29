@@ -1,10 +1,16 @@
 # Bounded Visual Memory
 
+## Latest Gate retention comparison — 29 October 2026
+
+[Current validation results, data generation and model design](docs/GATE_RETENTION_COMPARISON_LATEST.md) · [Chinese result summary](results/gate_retention_comparison_20261029/RESULTS_ZH.md)
+
+This Gate-only study compares online retention methods on the existing validation set. The current presentation retains the two new scorers and omits the retired task-trained attention method. It is an exploratory comparison; no fresh independent test is claimed.
+
 Can the prediction error caused by deleting an observation identify what limited visual memory should retain?
 
 ## Final independent confirmation — 20 October 2026
 
-**Phase1 did not pass the registered rule.** Gate passes 155/155 checks; Motion passes 147/155. The independent raw-data audit passed. All 12 fresh models completed 120 epochs and 7,680 steps before the fresh seed 9137 test was opened. No retention policy was trained.
+**Phase1 did not pass the registered rule.** Gate passes 155/155 checks; Motion passes 147/155. The independent raw-data audit passed. All 12 fresh models completed 120 epochs and 7,680 steps before the fresh seed 9137 test was opened. At that milestone, no retention policy had been trained.
 
 | Registered checks | Gate | Motion |
 |---|---:|---:|
@@ -13,7 +19,7 @@ Can the prediction error caused by deleting an observation identify what limited
 | Deletion reliability | 72/72 | 64/72 |
 | Total | 155/155 | 147/155 |
 
-The 302/310 total counts correlated comparisons, not independent trials or accuracy. All eight failures concern long-gap Motion against reject-newest: feature error improves by 9.4–11.1%, but decoded-position gain has a 95% interval containing zero. This supports a task-alignment limitation; it does not identify a unique causal mechanism. Under the unchanged all-checks rule, retention-policy training cannot begin.
+The 302/310 total counts correlated comparisons, not independent trials or accuracy. All eight failures concern long-gap Motion against reject-newest: feature error improves by 9.4–11.1%, but decoded-position gain has a 95% interval containing zero. This supports a task-alignment limitation; it does not identify a unique causal mechanism. That registered all-checks result remains historical; the later Gate-only study is an exploratory comparison and does not claim the original gate passed.
 
 ## Verified model handoff
 
@@ -56,6 +62,6 @@ python tools/build_phase1_experimental_walkthrough.py
 - `tests/`: local software checks; `tools/`: analysis, verification and report generation.
 - `reports/`: the current detailed walkthrough, the independent-confirmation technical report, source figures and machine-readable manifests.
 
-Weights, encoded arrays and large raw HPC outputs remain external under the recorded asset paths. They are downloadable from the model handoff Release; they are not stored in Git history. GPU settlement was 53,544 of the approved 69,299 seconds; all HPC jobs have ended. Historical connection aliases are not live endpoints.
+The earlier Phase 1 handoff weights are downloadable from the model handoff Release. The newer Gate-comparison student weights, encoded arrays, and raw validation output are not included there or in this Git update; see the current comparison for provenance and limitations. The earlier independent-confirmation GPU settlement was 53,544 of the approved 69,299 seconds. Historical connection aliases are not live endpoints.
 
-Superseded reports, outdated prose, duplicate renders, deployment ZIPs and generated caches were removed. Failed scientific evidence and immutable source locks were preserved. No new training, threshold changes or retention-policy experiment is part of this publication.
+Superseded reports, outdated prose, duplicate renders, deployment ZIPs and generated caches were removed. Failed scientific evidence and immutable source locks were preserved. That historical publication did not include retention-policy training or threshold changes; see the current comparison for subsequent work.

@@ -77,9 +77,18 @@ def probe_inputs(store, rec, variant, basis):
     return z[ev[-1] if variant == "motion_single_end" else ev[0]].copy()
 
 
-def probe(c):
+def probe(c, splits=None):
     from .training import experiment_tasks
     tasks = experiment_tasks(c)
+    splits = tuple(SPLITS if splits is None else splits)
+    if (
+        not splits
+        or len(set(splits)) != len(splits)
+        or not set(splits).issubset(SPLITS)
+        or "train" not in splits
+        or "validation" not in splits
+    ):
+        raise ValueError("Probe splits must include train and validation and be unique")
     fit_normalization(c)
     store = FeatureStore(c)
     root = Path(c["output"])/"probes"
@@ -89,7 +98,7 @@ def probe(c):
         variants = ["gate_cue", "recent_only"] if task == "gate" else ["motion_two_frame", "motion_single_start", "motion_single_end", "recent_only"]
         for variant in variants:
             sets = {}
-            for split in SPLITS:
+            for split in splits:
                 rows = [r for r in store.manifest["records"] if r["task"] == task and r["split"] == split]
                 x = np.stack([probe_inputs(store, r, variant, basis) for r in rows])
                 y = np.array([[2*int(load_episode(c, r, True)["label"])-1] for r in rows], np.float64)
@@ -98,7 +107,7 @@ def probe(c):
             path = root/f"{task}_{variant}.npz"
             model.save(path)
             checkpoint_meta[path.name] = file_hash(path)
-            for split in SPLITS:
+            for split in splits:
                 x, y, groups = sets[split]
                 correct = (model.predict(x)[:, 0] > 0) == (y[:, 0] > 0)
                 ci = clustered_interval(correct, groups, c["evaluation"]["bootstrap"])
@@ -107,7 +116,7 @@ def probe(c):
                                 "ridge_selected_on": "validation", "ridge": float(model.ridge)})
         # Independent decoder, trained ONLY on real visible train target features.
         sets = {}
-        for split in SPLITS:
+        for split in splits:
             x, y, groups, horizons = [], [], [], []
             for rec in store.manifest["records"]:
                 if rec["task"] != task or rec["split"] != split:
@@ -125,7 +134,7 @@ def probe(c):
         path = root/f"{task}_state_decoder.npz"
         decoder.save(path)
         checkpoint_meta[path.name] = file_hash(path)
-        for split in SPLITS:
+        for split in splits:
             x, y, groups, hs = sets[split]
             p = decoder.predict(x)
             for h in c["data"]["horizons"]:
@@ -137,7 +146,8 @@ def probe(c):
                                 "horizon": h, "accuracy": acc, "position_mse": err,
                                 "chance": float(max(np.mean(y[keep, 0]>0), np.mean(y[keep, 0]<=0))),
                                 "chance_definition": "empirical majority visible-state class", "ridge": float(decoder.ridge)})
-    output = {"mode": c["mode"], "tasks": tasks, "cache_signature": store.ix["signature"], "results": results,
+    output = {"mode": c["mode"], "tasks": tasks, "splits": list(splits),
+              "cache_signature": store.ix["signature"], "results": results,
               "checkpoints": checkpoint_meta, "code_hash": code_hash("probes.py"),
               "input_basis_sha256": {task: file_hash(Path(c['output'])/'predictor'/task/'basis.npz') for task in tasks},
               "normalization_sha256": file_hash(Path(c["output"])/"features/normalization.npz")}
