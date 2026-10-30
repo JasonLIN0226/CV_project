@@ -1,0 +1,39 @@
+{
+  "observed_on_utc_date": "2026-10-20",
+  "scope": "Operator-observed completion, resource release and downloaded backup identity",
+  "a100_job": {
+    "job_id": "9285",
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed_seconds": 169,
+    "evidence": "scheduler_after_encoding.json"
+  },
+  "cpu_job": {
+    "job_id": "9280",
+    "release_action": "scancel 9280",
+    "before_release_queue_observation": "Only job 9280 appeared in the account queue; displayed elapsed 42:34.",
+    "after_release_observation": "A fresh Open OnDemand My Interactive Sessions reload displayed (9280) Completed.",
+    "verification_source": "live portal UI, not a final exported sacct record",
+    "final_allocation_seconds": null
+  },
+  "task_jobs_remaining_running_after_release": 0,
+  "downloaded_backups": [
+    {
+      "name": "phase2-development-assets.zip",
+      "bytes": 85255501,
+      "sha256": "10ff336733ac5c5985b0fbc8dde7596d93936fa6384f9da8fbd01c4ea3d97fd6",
+      "verified_files": 472,
+      "local_extracted_copy": "build/hpc-20261020/development-assets"
+    },
+    {
+      "name": "phase2-six-policy-results.zip",
+      "bytes": 3711546,
+      "sha256": "2aaf1a9fa88b727742878307abe6333f1b2087ca592ecbc93e48a9ed9e672d1e",
+      "verified_files": 9,
+      "local_extracted_copy": "build/hpc-20261020/six-policy"
+    }
+  ],
+  "baseline_model_planning_verified": false,
+  "learned_retention_scorer_trained": false,
+  "scientific_phase2_completed": false
+}

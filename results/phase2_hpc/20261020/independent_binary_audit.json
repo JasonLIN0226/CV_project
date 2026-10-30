@@ -1,0 +1,147 @@
+{
+  "original_output_transcript_sha256": "b0acd3274ede99552d7b7cea02b1ca5a38364e67acf3217b628c09a4238868e3",
+  "audit_output_transcript": {
+    "capture_kind": "transcription_of_observed_inline_audit_stdout",
+    "audit_status": "passed",
+    "script_saved": false,
+    "script_execution": "Inline Python here-document via .venv/bin/python -B -",
+    "working_directory": "<REPOSITORY_ROOT>",
+    "exec_session_id": 39094,
+    "exit_code": 0,
+    "rerun_for_capture": false,
+    "source_files_or_original_artifacts_modified": false,
+    "observed_output": [
+      {
+        "record": "TRANSFER",
+        "files": 472,
+        "sha256_and_size_pass": true
+      },
+      {
+        "record": "FEATURES",
+        "episodes": 128,
+        "frames": 3616,
+        "frames_by_split": {
+          "train": 1696,
+          "validation": 386,
+          "test_id": 392,
+          "test_long_gap": 720,
+          "test_distractor_shift": 422
+        },
+        "feature_dimension": 5120,
+        "finite_float32": true,
+        "normalization_train_only_recomputed_bit_exact": true,
+        "train_episodes": 64
+      },
+      {
+        "record": "FROZEN_CHECKPOINTS",
+        "weights_only_load": true,
+        "basis_cache_normalization_split_bindings_pass": true,
+        "state_hashes_match_remote": true,
+        "checkpoint_sha256": {
+          "gate": "a95bd252e10bafcf44cd156df446514eba9da3e57ad59da7ed9ccf8a5ac58c99",
+          "motion": "9b3ea6d76cdb903a34852200f42284b1569b49a2caf52fa88da930f2b00afa94"
+        },
+        "source_files_matched": 5,
+        "source_commit": "4ff9529d892f6ae6a255647493704d5d8e23e55c"
+      },
+      {
+        "record": "PUSHT_BINARY",
+        "rgb_shape": [
+          25,
+          96,
+          96,
+          3
+        ],
+        "encoded_shape": [
+          25,
+          5120
+        ],
+        "masked_times": [
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "visible_features_bit_exact": true,
+        "masked_features_differ": true,
+        "absolute_action_bounds_and_normalization_pass": true
+      },
+      {
+        "record": "DELETION_FULL_LOCAL_RECOMPUTATION",
+        "shards": [
+          {
+            "task": "gate",
+            "split": "train",
+            "parents": 94,
+            "loss_values": 564,
+            "max_abs_recompute_error": 3.858988907590177e-08
+          },
+          {
+            "task": "gate",
+            "split": "validation",
+            "parents": 24,
+            "loss_values": 144,
+            "max_abs_recompute_error": 4.7858438295689254e-08
+          },
+          {
+            "task": "motion",
+            "split": "train",
+            "parents": 96,
+            "loss_values": 576,
+            "max_abs_recompute_error": 1.4822083421739407e-08
+          },
+          {
+            "task": "motion",
+            "split": "validation",
+            "parents": 24,
+            "loss_values": 144,
+            "max_abs_recompute_error": 7.567567850141899e-09
+          }
+        ],
+        "unique_parents": 238,
+        "four_policy_origins": 320,
+        "loss_values": 1428,
+        "original_remote_recompute_rule_count": 30,
+        "local_recomputed_parents": 238,
+        "local_recomputed_losses": 1428,
+        "local_torch": "2.14.1",
+        "remote_torch": "2.5.1+cu121",
+        "max_absolute_loss_difference": 4.7858438295689254e-08,
+        "all_losses_within_1e-6": true,
+        "train_validation_group_seed_disjoint": true,
+        "scorer_representations_and_past_actions_exactly_match_causal_cache": true,
+        "frozen_state_unchanged": true,
+        "elapsed_seconds": 28.691068332991563
+      }
+    ],
+    "separate_followup_identity_audit": {
+      "execution": "A second inline .venv/bin/python -B - command; exit_code 0; no predictor loss recomputation",
+      "shard_checksums": 12,
+      "metadata_group_seed_membership_pass": true,
+      "episodes": {
+        "train": 64,
+        "validation": 16
+      },
+      "independent_pairs": {
+        "train": 32,
+        "validation": 8
+      },
+      "parent_origins_by_policy": {
+        "fifo": 80,
+        "reservoir": 80,
+        "temporal_buckets": 80,
+        "visual_diversity": 80
+      },
+      "bounded_resident_metadata_verified": true,
+      "all_loaded_ids_match_declared_train_validation": true
+    },
+    "scope_limits": [
+      "Cross-environment deletion losses are numerically consistent within the predeclared absolute tolerance 1e-6, not bit-exact.",
+      "The audit loaded original backup paths through a read-only mapping and did not rewrite manifests or bypass the production loader by changing recorded provenance.",
+      "The audit recomputed predictor deletion losses from the downloaded feature cache; it did not re-run I-JEPA RGB encoding.",
+      "238 parent states are not 238 independent trajectories: the source has 64 train episodes in 32 pairs and 16 validation episodes in 8 pairs.",
+      "This verifies the new development equal-K deletion pilot, not all six retention baseline results, baseline planning, old Phase 1 reproduction, or full Phase 2 completion."
+    ]
+  }
+}

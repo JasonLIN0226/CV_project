@@ -1,0 +1,53 @@
+{
+  "created_utc": "2026-10-25T19:05:39.873910+00:00",
+  "declaration": {
+    "name": "gate2-prediction-consensus-posthoc-v1",
+    "status": "posthoc_rule_lock_on_already_inspected_development_data",
+    "primary_rule": "D_ij=mean over both horizons and all features of (native_prediction_i-native_prediction_j)^2; choose argmin_i sum_j D_ij",
+    "privileged_proxy_rule": "Apply identical squared-distance medoid to each prediction's four archived joint future-prototype MSE coordinates",
+    "primary_selection_inputs": "Only the three archived native prediction vectors; no targets, bits, roles, loss or metadata in the medoid function",
+    "proxy_selection_inputs": "Four REAL future-target distance coordinates; privileged diagnostic, not deployable",
+    "candidate_order": "native_drop_0,native_drop_1,native_drop_2, chronological q-6,q-5,q-4",
+    "tie_break": "Exact float64 np.argmin, first candidate on exact ties",
+    "reported_tie_sets": {
+      "exact": "score == min(score)",
+      "tolerant": "score <= min(score)+1e-6",
+      "tolerance_changes_choice": false
+    },
+    "baseline_arms": [
+      "fifo",
+      "terminal_uniform",
+      "visual_diversity",
+      "reader_attention"
+    ],
+    "horizons": [
+      3,
+      6
+    ],
+    "evaluation": "same native joint-horizon losses and semantic mask as frozen Gate2; no per-horizon action mixing",
+    "attention_review_check": "Report all exact-unique attention minima separately from singleton B uniquely below both duplicate cues",
+    "uniform_reference": "One uniformly random deletion per family, shared by both styles and four siblings; semantic-loss probability1/3; independent reference n=24 families, not192 episodes",
+    "subgroups": "all, each style, each duplicated physical axis, each style-by-axis; no subgroup filtering",
+    "bootstrap": {
+      "cluster": "family",
+      "draws": 2000,
+      "seed": 20261025,
+      "interval": "percentile95; descriptive exploratory"
+    },
+    "no_variant_sweep": true,
+    "new_model_calls": 0,
+    "new_training": false,
+    "forecast_actions": "Archived predictions use actual recorded future planned controls; no deployed causal-policy implementation or action-plan intervention is tested",
+    "scope": "Existing DEV only, no independent confirmation, no model changes"
+  },
+  "script_sha256": "5bf9ac5c01dcc3ffec4bea4a9c17cb28a369d58c4472f0834e5e0e7ac85fb06f",
+  "input_sha256": {
+    "evaluation_predictions.npz": "c3da1b1b3a948058c95226b5525b52c04b1dcd238bc3c83dff4d3f324600e93a",
+    "evaluation_rows.json": "d5af000c362d6948bfff82a0c1c3f3d4bd1b749fb2ba5f7f317ccabbe713352e",
+    "terminal_decisions.json": "bee597c4d8980bc2e2a4de295b4ff0d50e6c507e9b3e6f565af56add36e83c99",
+    "data/records.json": "4f4ce5ef3851464e138a743c2c28a6eff67604b956b2d1bad5423302ab5cb885",
+    "data/actions.npz": "9bddc111658ac02c9cee6a5d0adbd6e713185fd6fb6413976a5d5254836e34ed",
+    "summary.json": "d14e0b16ec1a2e1ac03990c373ac087ea6cfb631c60e972e17b78845ab2b599c"
+  },
+  "outcomes_loaded_during_freeze": false
+}

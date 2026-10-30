@@ -1,0 +1,24 @@
+{
+  "version": "actual-attention-parent-reader-diagnosis-v1",
+  "created_utc": "2026-10-23T00:49:00.451924+00:00",
+  "scope": "second targeted diagnostic after global oracle analysis; exploratory development",
+  "source_sha256": "d7cd2e308a87fc95abf7e675ec9da5b552d4fd1079c5a84dcf55fe6a5bd4c914",
+  "helper_sha256": "09b69635f30950572e913a39ab675ece954e34dd1f86fd7ee225d5dd70a14e83",
+  "parents": "all192 actual attention query K+1 states; compare best-with-cue to best-without-cue where both exist; report parents where duplicate cue copies make one-step complete cue deletion impossible",
+  "reader_arms": [
+    "original",
+    "no_transport",
+    "no_velocity",
+    "no_past_action",
+    "uniform_attention"
+  ],
+  "set_selection": "original loss only, same sets for each reader intervention",
+  "cue_probe": "fixedlambda1 linear ridge, old32train episodes only; privileged known cue vs cue-minus-current, binarylabel only in evaluation probe",
+  "position_probe_sha256": "dcb16a27ae669ba208436db1fb1e8f204c160f4864010d64d1c0d3b18b1a0146",
+  "not_claimed": [
+    "new trained world model",
+    "new retention strategy",
+    "untouched confirmation",
+    "hindsight choice is causal"
+  ]
+}

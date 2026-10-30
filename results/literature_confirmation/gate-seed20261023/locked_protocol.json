@@ -1,0 +1,132 @@
+{
+  "version": "frozen-gate-confirmation-v1",
+  "locked_utc": "2026-10-23T03:14:30.795334+00:00",
+  "scope": "literature_confirmation",
+  "seed": 20261023,
+  "independent_pairs": 96,
+  "episodes": 192,
+  "conditions": [
+    "id",
+    "long_gap",
+    "distractor_shift"
+  ],
+  "pairs_per_condition": 32,
+  "encoder_path": "experiments/phase2/encode_gate_confirmation.py",
+  "encoder_sha256": "44ee1fc4139aafe57cd1cf3333909557dccaf9f85b88b96e51cb991788ec120e",
+  "source_sha256": {
+    "experiments/phase2/run_gate_confirmation.py": "e3186b2b39fe9b60721a97dd1e991e8df675eb21ef7c9eab3a176dda77fbda22",
+    "experiments/phase2/encode_gate_confirmation.py": "44ee1fc4139aafe57cd1cf3333909557dccaf9f85b88b96e51cb991788ec120e",
+    "experiments/phase2/gate_confirmation_data.py": "d7c0cbaf327e5400441af1c1bd3744674cfc01e31e677961e926b297a8ee11bb",
+    "experiments/phase2/diagnose_oracle_learnability.py": "bb2c6b923b9cd862e4983fe658ef8036a9000965ab7ba4db87b8b6eb099cb895",
+    "experiments/phase2/diagnose_gate_oracle_metric.py": "09b69635f30950572e913a39ab675ece954e34dd1f86fd7ee225d5dd70a14e83",
+    "experiments/phase2/run_fresh_literature_diagnostic.py": "82b284fca38ba8478d80e44a74bfcac76e94ca5d4f32882d66228408eafe3885",
+    "experiments/phase2/encode_fresh_gate_diagnostic.py": "c3d1de26efcaf60873abdd026fd5e50dce4a5da50179eb0544cf81e2ada83a33",
+    "experiments/phase2/run_literature_baselines.py": "c2de98fca247f72792be0d3cad7c32ec69f8e2c391dc92c8377d14371770a818",
+    "experiments/phase2/run_retention_baseline_pilot.py": "d359c65074341e34fcf50857c850aadf275a100969259a1d66e205ba4bb8876d",
+    "experiments/phase2/run_gate_followup_phase2.py": "492e9577f4c4e4bb809e8e9a70f5e19565dc9f350a2e4c6ee187fdb7132e83f0",
+    "experiments/phase2/causal_model_scores.py": "5b24102d58821d53c8ad32bc2b5765530d00b1c91927ca2de420af824a8fbcbd",
+    "experiments/phase2/literature_baselines.py": "e83a4a46eb661601f37d2aca02e2ccad7c6d7179bb0f5675fb3914852f8ccc0d",
+    "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+    "experiments/phase2/portable_snapshot.py": "ca3b29ced972df802ca5eecdde70fc21b8d8cba80c531d23ad8ff22a3a3e64c9",
+    "experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+    "experiments/predictor/control/src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd"
+  },
+  "input_sha256": {
+    "results/literature_diagnosis/learnability-20261022/probe_parameters.json": "a89bed58f19978c37162f2b55c7c97691f777069c2c67f5b3870477d293052f4",
+    "build/literature-baselines-20261022/fresh-data/records.json": "59b2de60df645277f2131299ca423f4a5bbb5aef12ce60ef1e2cf8f5e2efe8e0",
+    "build/literature-baselines-20261022/dev-v3/protocol.json": "4bc1c9898a0d8876b35a5ad3c9135ba6fbdf2e9c4b82040b5c8de6b86c65e797",
+    "build/literature-baselines-20261022/dev-v3/summary.json": "686d38a2a5dd8b20873f6793389f6c4b8156f79b473bcc42c4b5f018b47c3ffb",
+    "build/literature-baselines-20261022/dev-v3/pafu_seed_17.pt": "da0cea830e4d3c1a7563c61b722466cd16b65dfb701fa5f572664f801bc1fc5a",
+    "build/literature-baselines-20261022/dev-v3/pafu_seed_23.pt": "9d8fbd63fad2f5eb575493af39a70f42b0b2bb751e5a583d7f9a7e968d691095",
+    "build/literature-baselines-20261022/dev-v3/pafu_seed_41.pt": "6bd8c5a5d5baa4f7e8c58a45039a1d675ec022495f5db721978003d8cf101fc7",
+    "build/history-diagnosis-20261020/followup-blas1/summary.json": "b3596657074f4532f4c606080874947289c52ba988cb2be94a07414a6fc4a8b2",
+    "build/history-diagnosis-20261020/followup-blas1/predeclared_protocol.json": "10306756e360abc1ebbdad6393d7482f435523a4b9abb57632a79e75efd6fba7",
+    "build/history-diagnosis-20261020/followup-blas1/gate/unit_columns/initial.pt": "5366793a65a5e5bff498f624b449b380ea6ae4235d4bf5a433363dc27be0f4b8",
+    "build/history-diagnosis-20261020/followup-blas1/gate/unit_columns/learning_curve.json": "f695e02c3a23b28f3daf559c7708c262dd54ff13fade5c96f822da0230776b9a",
+    "build/history-diagnosis-20261020/followup-blas1/gate/unit_columns/selected.pt": "302221849cb424a1d846c3af2932d0ce1f7bdc22965ab23d330c36a827c174d1",
+    "build/history-diagnosis-20261020/followup-blas1/gate/unit_columns/diagnostics.json": "1b05b44c61777c676b408607e22d85901012015cabbbc46d6fb558b3e539e8d9",
+    "build/history-diagnosis-20261020/followup-blas1/gate/unit_columns/projection_transform.json": "22a3c1d98ae46773269df47a81c8135e1a834561e68a21ad6313d0bd535f0351",
+    "build/history-diagnosis-20261020/followup-blas1/gate/unit_columns/selected_control_vectors.npz": "eb21860250ab7f9adfb68a6be3bd69af808c0066d73b85e4167a5f3a2ac592f1",
+    "build/history-diagnosis-20261020/followup-blas1/gate/unit_columns/terminal.pt": "26395e3465fe606bc1770c8c423c2e316118bff442d2122a154eeb8c7cf344d9",
+    "build/history-diagnosis-20261020/followup-blas1/gate/unit_columns/terminal_control_vectors.npz": "bf26b3acc06b9136b78545da157c63dc04cdafcfb9b07084f154b0a4d3d8d969",
+    "build/history-diagnosis-20261020/followup-blas1/gate/unit_columns/basis.npz": "9c77bf393000d6911f8cf16c3856d0999a1c9d00f9fbed4e0e5ed3b13aedd320",
+    "experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+    "experiments/predictor/control/src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+    "experiments/predictor/control/src/phase1/training.py": "0e30f8c45e84a4dc966d3020066c0686b8c4b951a6447c52ecc85d309a14a235",
+    "build/hpc-20261020/development-assets/data/features/index.json": "a25354d475dfe9e4e50da2aa0823602be0d106a1b48bd94d9f83696c388c3287",
+    "build/hpc-20261020/development-assets/data/features/normalization.npz": "2ecbe84ae1555e2e8f5fae49e49bab02fd5475f31ff7b4e4694e19791c61a690",
+    "build/hpc-20261020/development-assets/data/dataset/manifest.json": "7188bd6de6b54eaaff75d22c8d3c631a1467f1d6e5b14c19bd1c269c37ee0d05",
+    "build/hpc-20261020/development-assets/runs/cpu-predictor-pilot/predictor/gate/basis.npz": "e0901075908b15f886cfce3c6c965920c9262c15c201dc6da5a87cb486f652bd"
+  },
+  "predictor_binding": {
+    "followup_protocol_sha256": "10306756e360abc1ebbdad6393d7482f435523a4b9abb57632a79e75efd6fba7",
+    "selected_epoch": 35,
+    "arm": "unit_columns",
+    "basis_sha256": "9c77bf393000d6911f8cf16c3856d0999a1c9d00f9fbed4e0e5ed3b13aedd320",
+    "cache_signature": "587298e3c4ec416e430fd19f0817e61f12df65d1915fa93ac0dd9e03484c8e4c",
+    "normalization_sha256": "2ecbe84ae1555e2e8f5fae49e49bab02fd5475f31ff7b4e4694e19791c61a690"
+  },
+  "paths": {
+    "snapshot": "build/hpc-20261020/development-assets",
+    "followup": "build/history-diagnosis-20261020/followup-blas1",
+    "students": "build/literature-baselines-20261022/dev-v3",
+    "parameters": "results/literature_diagnosis/learnability-20261022/probe_parameters.json",
+    "prior_records": "build/literature-baselines-20261022/fresh-data/records.json"
+  },
+  "recent": 4,
+  "capacity": 2,
+  "horizons": [
+    3,
+    6
+  ],
+  "objective": "equal mean h3/h6 feature MSE; one common deletion action",
+  "primary_arm": "masked_cost_ridge",
+  "primary_controls": [
+    "masked_shuffled_cost_ridge",
+    "attention",
+    "visual_diversity"
+  ],
+  "primary_rule": "All three paired online-MSE differences must have two-sided bootstrap95% upper bound strictly below zero, over all96 independent pairs. No arm/condition selection.",
+  "secondary": [
+    "task sibling-contrast/orthogonal error and branch correctness (evaluator only)",
+    "evidence first complete information loss and query survival",
+    "same-parent local regret and optimum-action rate",
+    "R4/K2 numeric/controller bytes and latency"
+  ],
+  "probes": [
+    "original_cost_ridge",
+    "original_attention_ridge",
+    "original_shuffled_cost_ridge",
+    "masked_cost_ridge",
+    "masked_attention_ridge",
+    "masked_shuffled_cost_ridge"
+  ],
+  "mask": "Original coefficients set to zero iff existing TRAIN RMS <=1e-6; 710/903 columns; no refit",
+  "baseline_arms": [
+    "fifo",
+    "visual_diversity",
+    "attention",
+    "wr",
+    "pafu_seed_17",
+    "pafu_seed_23",
+    "pafu_seed_41"
+  ],
+  "common_parents": "Deduplicated union of actual FIFO, diversity, reader-attention final-query K+1 states; independent of fitted probe outputs. WR is stateful and evaluated only on its own online trajectory.",
+  "oracles": "Local deletion at query; no exhaustive archive-selection oracle in this confirmation",
+  "bootstrap": {
+    "unit": "episode means then sibling pair means",
+    "replicates": 5000,
+    "seed": 20261022
+  },
+  "fitting_calls": 0,
+  "support_or_hyperparameter_tuning": false,
+  "new_reader_or_normalization": false,
+  "test_arrays": false,
+  "prior_development_metadata_sha256": "59b2de60df645277f2131299ca423f4a5bbb5aef12ce60ef1e2cf8f5e2efe8e0",
+  "limitations": [
+    "Same generator family; independent seeds do not establish new-task generalization.",
+    "Fixed feature-MSE criterion can reward reader/timing effects; task contrast is descriptive, not physical success.",
+    "One frozen shuffled-label seed is a negative control, not a full permutation test.",
+    "Same K and paired probe capacity; different baseline total bytes/compute reported separately."
+  ]
+}

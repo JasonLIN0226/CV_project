@@ -1,0 +1,650 @@
+{
+  "status": "passed",
+  "scope": "saved evaluation arithmetic, structural metadata and family uncertainty",
+  "experiment_decision": "candidate_terminal_gap_requires_independent_confirmation",
+  "check_count": 68328,
+  "failure_count": 0,
+  "failures": [],
+  "warnings": [],
+  "max_abs_errors": {
+    "normalization": 0.0,
+    "features": 0.0,
+    "geometry": 1.2212453270876722e-15,
+    "evaluation": 0.0,
+    "preuse": 0.0,
+    "decisions": 0.0,
+    "summary": 0.0
+  },
+  "provenance": {
+    "manifest_sha256": "60e4a7587060a536a730e30221855af51c90999beef644d1db0337210430ce2f",
+    "files_checked": 21,
+    "source_files_checked": 10,
+    "source_verification": "checked local snapshot"
+  },
+  "geometry": {
+    "feasibility_pass": true,
+    "by_condition": {
+      "benign_duplicate": {
+        "episodes": 48,
+        "redundant_episodes": 0,
+        "redundant_quartets": 0
+      },
+      "distant_style_duplicate": {
+        "episodes": 48,
+        "redundant_episodes": 24,
+        "redundant_quartets": 6
+      }
+    }
+  },
+  "evaluation": {
+    "prediction_rows": 2112,
+    "episodes": 192,
+    "quartets": 48,
+    "families": 24,
+    "joint_horizon_objective": "mean of h3 and h6 feature MSE, one deletion for both",
+    "oracle_tied_episodes": 0,
+    "oracle_all_semantic_episodes": 192,
+    "oracle_any_semantic_episodes": 192,
+    "quartets_with_common_optimal_action": 29,
+    "family_cluster_uncertainty": {
+      "all": {
+        "fifo_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 0.026727943724245595,
+          "equal_family_mean": 0.026727943724245584,
+          "family_cluster_percentile_95": [
+            0.013212925326688852,
+            0.041756428037352494
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "fifo_semantic_error": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 0.3333333333333333,
+          "equal_family_mean": 0.3333333333333333,
+          "family_cluster_percentile_95": [
+            0.16666666666666666,
+            0.501041666666661
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "terminal_uniform_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 0.03234179212569812,
+          "equal_family_mean": 0.03234179212569812,
+          "family_cluster_percentile_95": [
+            0.017025519854784302,
+            0.05019994226412014
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "terminal_uniform_semantic_error": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 0.2916666666666667,
+          "equal_family_mean": 0.2916666666666667,
+          "family_cluster_percentile_95": [
+            0.125,
+            0.4583333333333333
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "visual_diversity_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 0.03889572114286154,
+          "equal_family_mean": 0.03889572114286154,
+          "family_cluster_percentile_95": [
+            0.028249402659342795,
+            0.049899617085330306
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "visual_diversity_semantic_error": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 0.25,
+          "equal_family_mean": 0.25,
+          "family_cluster_percentile_95": [
+            0.14583333333333334,
+            0.3541666666666667
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "reader_attention_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 0.03745233808702924,
+          "equal_family_mean": 0.03745233808702924,
+          "family_cluster_percentile_95": [
+            0.028448779540599697,
+            0.04700995316184924
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "reader_attention_semantic_error": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 0.5260416666666666,
+          "equal_family_mean": 0.5260416666666666,
+          "family_cluster_percentile_95": [
+            0.3802083333333333,
+            0.6666666666666666
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_minus_AAprime_mse": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": -0.07828835202805132,
+          "equal_family_mean": -0.07828835202805133,
+          "family_cluster_percentile_95": [
+            -0.0935189414149205,
+            -0.0641575884679158
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AprimeB_minus_AAprime_mse": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": -0.06290527548016998,
+          "equal_family_mean": -0.06290527548016998,
+          "family_cluster_percentile_95": [
+            -0.07887867037676509,
+            -0.048127163737298695
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_minus_Ablank_mse": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": -0.09464159242190424,
+          "equal_family_mean": -0.09464159242190427,
+          "family_cluster_percentile_95": [
+            -0.11328987043366465,
+            -0.07643296893984947
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_minus_Bblank_mse": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": -0.06982274059632676,
+          "equal_family_mean": -0.06982274059632676,
+          "family_cluster_percentile_95": [
+            -0.08507984309962126,
+            -0.05434228111821046
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_feature_class_correct": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 1.0,
+          "equal_family_mean": 1.0,
+          "family_cluster_percentile_95": [
+            1.0,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AprimeB_feature_class_correct": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 0.9947916666666666,
+          "equal_family_mean": 0.9947916666666666,
+          "family_cluster_percentile_95": [
+            0.984375,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "wrongA_counterfactual_class_correct": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 1.0,
+          "equal_family_mean": 1.0,
+          "family_cluster_percentile_95": [
+            1.0,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "wrongB_counterfactual_class_correct": {
+          "family_count": 24,
+          "episode_count": 192,
+          "episode_mean": 1.0,
+          "equal_family_mean": 1.0,
+          "family_cluster_percentile_95": [
+            1.0,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        }
+      },
+      "benign_duplicate": {
+        "fifo_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.025035084526654705,
+          "equal_family_mean": 0.025035084526654705,
+          "family_cluster_percentile_95": [
+            0.01156273412901177,
+            0.04074691100724492
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "fifo_semantic_error": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.3333333333333333,
+          "equal_family_mean": 0.3333333333333333,
+          "family_cluster_percentile_95": [
+            0.16666666666666666,
+            0.501041666666661
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "terminal_uniform_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.025234789242896738,
+          "equal_family_mean": 0.025234789242896738,
+          "family_cluster_percentile_95": [
+            0.011196188778040267,
+            0.042362191257630265
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "terminal_uniform_semantic_error": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.2916666666666667,
+          "equal_family_mean": 0.2916666666666667,
+          "family_cluster_percentile_95": [
+            0.125,
+            0.4583333333333333
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "visual_diversity_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.0054137969256183955,
+          "equal_family_mean": 0.0054137969256183955,
+          "family_cluster_percentile_95": [
+            0.00307102046848318,
+            0.008164134017844469
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "visual_diversity_semantic_error": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.0,
+          "equal_family_mean": 0.0,
+          "family_cluster_percentile_95": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "reader_attention_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.040573622844446065,
+          "equal_family_mean": 0.040573622844446065,
+          "family_cluster_percentile_95": [
+            0.027543866866546553,
+            0.055749679847565896
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "reader_attention_semantic_error": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.6354166666666666,
+          "equal_family_mean": 0.6354166666666666,
+          "family_cluster_percentile_95": [
+            0.4895833333333333,
+            0.78125
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_minus_AAprime_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": -0.060798678687434084,
+          "equal_family_mean": -0.0607986786874341,
+          "family_cluster_percentile_95": [
+            -0.07837684318545146,
+            -0.043483109386235085
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AprimeB_minus_AAprime_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": -0.060798678687434084,
+          "equal_family_mean": -0.0607986786874341,
+          "family_cluster_percentile_95": [
+            -0.07837684318545146,
+            -0.043483109386235085
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_minus_Ablank_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": -0.09464159242190427,
+          "equal_family_mean": -0.09464159242190427,
+          "family_cluster_percentile_95": [
+            -0.11328987043366465,
+            -0.07643296893984948
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_minus_Bblank_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": -0.06982274059632677,
+          "equal_family_mean": -0.06982274059632676,
+          "family_cluster_percentile_95": [
+            -0.08507984309962126,
+            -0.05434228111821046
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_feature_class_correct": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 1.0,
+          "equal_family_mean": 1.0,
+          "family_cluster_percentile_95": [
+            1.0,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AprimeB_feature_class_correct": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 1.0,
+          "equal_family_mean": 1.0,
+          "family_cluster_percentile_95": [
+            1.0,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "wrongA_counterfactual_class_correct": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 1.0,
+          "equal_family_mean": 1.0,
+          "family_cluster_percentile_95": [
+            1.0,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "wrongB_counterfactual_class_correct": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 1.0,
+          "equal_family_mean": 1.0,
+          "family_cluster_percentile_95": [
+            1.0,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        }
+      },
+      "distant_style_duplicate": {
+        "fifo_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.028420802921836467,
+          "equal_family_mean": 0.028420802921836474,
+          "family_cluster_percentile_95": [
+            0.014674248233320137,
+            0.04360909705452859
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "fifo_semantic_error": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.3333333333333333,
+          "equal_family_mean": 0.3333333333333333,
+          "family_cluster_percentile_95": [
+            0.16666666666666666,
+            0.501041666666661
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "terminal_uniform_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.0394487950084995,
+          "equal_family_mean": 0.0394487950084995,
+          "family_cluster_percentile_95": [
+            0.021648239623837662,
+            0.05925229916768978
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "terminal_uniform_semantic_error": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.2916666666666667,
+          "equal_family_mean": 0.2916666666666667,
+          "family_cluster_percentile_95": [
+            0.125,
+            0.4583333333333333
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "visual_diversity_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.0723776453601047,
+          "equal_family_mean": 0.0723776453601047,
+          "family_cluster_percentile_95": [
+            0.05201648406599698,
+            0.09299611048061611
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "visual_diversity_semantic_error": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.5,
+          "equal_family_mean": 0.5,
+          "family_cluster_percentile_95": [
+            0.2916666666666667,
+            0.7083333333333334
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "reader_attention_minus_oracle_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.034331053329612414,
+          "equal_family_mean": 0.034331053329612414,
+          "family_cluster_percentile_95": [
+            0.02062786079877484,
+            0.04905275467773389
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "reader_attention_semantic_error": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.4166666666666667,
+          "equal_family_mean": 0.4166666666666667,
+          "family_cluster_percentile_95": [
+            0.25,
+            0.5833333333333334
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_minus_AAprime_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": -0.09577802536866853,
+          "equal_family_mean": -0.09577802536866853,
+          "family_cluster_percentile_95": [
+            -0.11059713030521286,
+            -0.08102366592153275
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AprimeB_minus_AAprime_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": -0.06501187227290588,
+          "equal_family_mean": -0.06501187227290588,
+          "family_cluster_percentile_95": [
+            -0.08139071328261374,
+            -0.047190563449895716
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_minus_Ablank_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": -0.09464159242190427,
+          "equal_family_mean": -0.09464159242190427,
+          "family_cluster_percentile_95": [
+            -0.11328987043366465,
+            -0.07643296893984948
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_minus_Bblank_mse": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": -0.06982274059632677,
+          "equal_family_mean": -0.06982274059632676,
+          "family_cluster_percentile_95": [
+            -0.08507984309962126,
+            -0.05434228111821046
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AB_feature_class_correct": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 1.0,
+          "equal_family_mean": 1.0,
+          "family_cluster_percentile_95": [
+            1.0,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "AprimeB_feature_class_correct": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 0.9895833333333334,
+          "equal_family_mean": 0.9895833333333334,
+          "family_cluster_percentile_95": [
+            0.96875,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "wrongA_counterfactual_class_correct": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 1.0,
+          "equal_family_mean": 1.0,
+          "family_cluster_percentile_95": [
+            1.0,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        },
+        "wrongB_counterfactual_class_correct": {
+          "family_count": 24,
+          "episode_count": 96,
+          "episode_mean": 1.0,
+          "equal_family_mean": 1.0,
+          "family_cluster_percentile_95": [
+            1.0,
+            1.0
+          ],
+          "bootstrap_repetitions": 2000,
+          "bootstrap_seed": 20261025
+        }
+      }
+    }
+  },
+  "audit_source_sha256": "8e4b93a6a1a58fddca1c1eb9c0dd01ea65a7edfa40e60569fa8babf597a04174",
+  "numpy_version": "2.0.2",
+  "uncertainty_protocol": {
+    "cluster_unit": "family",
+    "bootstrap_repetitions": 2000,
+    "bootstrap_seed": 20261025
+  },
+  "model_calls": 0,
+  "new_training": false,
+  "limits": [
+    "Archived prediction arithmetic is checked; model inference is not replayed.",
+    "An oracle common action across siblings does not establish causal learnability.",
+    "Four siblings and two styles share one independent family; intervals cluster by family.",
+    "Development-only uncertainty is descriptive, not independent confirmation.",
+    "Feature nearest-sibling classification is not a physical decoder."
+  ]
+}

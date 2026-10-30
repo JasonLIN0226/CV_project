@@ -1,0 +1,78 @@
+{
+  "version": "scaled-use-time-pilot-v1",
+  "started_utc": "2026-10-25T03:49:08.296716+00:00",
+  "scope": "Pilot on already-inspected reader evaluation scenes; not untouched confirmation",
+  "source_sha256": {
+    "experiments/phase2/run_scaled_use_time_probe.py": "94442ad37315dc1832459fffcefc09adf7a27a3b374a54e4d8a087cab90d2f3f",
+    "experiments/phase2/run_use_time_probe.py": "1a01f714696f976fd5304d46ed37a7174147148a65ccd71738f1a15f74213fc1",
+    "experiments/phase2/diagnose_oracle_learnability.py": "bb2c6b923b9cd862e4983fe658ef8036a9000965ab7ba4db87b8b6eb099cb895",
+    "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+    "experiments/phase2/run_literature_baselines.py": "c2de98fca247f72792be0d3cad7c32ec69f8e2c391dc92c8377d14371770a818",
+    "experiments/phase2/literature_baselines.py": "e83a4a46eb661601f37d2aca02e2ccad7c6d7179bb0f5675fb3914852f8ccc0d",
+    "experiments/phase2/causal_model_scores.py": "5b24102d58821d53c8ad32bc2b5765530d00b1c91927ca2de420af824a8fbcbd",
+    "experiments/phase2/run_retention_baseline_pilot.py": "d359c65074341e34fcf50857c850aadf275a100969259a1d66e205ba4bb8876d"
+  },
+  "reader_completion_sha256": "aaa21c78aa1e1b3b9db33540f77f48ae13e2b162fd688fcf5a5cc93f3a1401e1",
+  "reader": {
+    "passed": true,
+    "task": "gate",
+    "seed": 17,
+    "device": "cpu",
+    "checkpoint_sha256": "35e98a47dea2fd44263e672985e5a5fbdd06e18839104daf16dadaccc9792040",
+    "state_sha256": "124f42eb7c9ef0175476abbe885f2b6d62b42bfe466c38c21a5c3cc30ac2d576",
+    "parameter_buffer_identity_unchanged": true,
+    "all_modules_eval": true,
+    "trainable_parameters": 0,
+    "model_calls": 0,
+    "feature_dimension": 5120,
+    "horizons": [
+      3,
+      6
+    ],
+    "artifact_sha256": {
+      "/scratch/xy3257/cv-phase2-20261020/reader-scale-probe-20261024/run/pairs-512/selected.pt": "35e98a47dea2fd44263e672985e5a5fbdd06e18839104daf16dadaccc9792040",
+      "/scratch/xy3257/cv-phase2-20261020/reader-scale-probe-20261024/bundle/inputs/basis.npz": "9c77bf393000d6911f8cf16c3856d0999a1c9d00f9fbed4e0e5ed3b13aedd320",
+      "/scratch/xy3257/cv-phase2-20261020/reader-scale-probe-20261024/bundle/inputs/normalization.npz": "2733d1d89f9cd369fba417bed79e5ca36e48739c37029805d3b91d3754b8db95",
+      "/scratch/xy3257/cv-phase2-20261020/reader-scale-probe-20261024/bundle/inputs/model_config.json": "cb1f7d7a1d48624fe10c850c57a082514213b2b7da3104c9aa54778676805d17",
+      "/scratch/xy3257/cv-phase2-20261020/reader-scale-probe-20261024/run/protocol.json": "10c49c6f7f4faab807d1d3400ac462ec0fe097441e4a327b941954af88bcd17a",
+      "/scratch/xy3257/cv-phase2-20261020/reader-scale-probe-20261024/run/readers_locked.json": "65943e2b5c7d299fe884b8f0a903a1d1b2261de80043208ba073fa3ba8dc4bb6"
+    }
+  },
+  "train_pairs": 512,
+  "evaluation_pairs": 48,
+  "parent_policies": [
+    "fifo",
+    "reservoir",
+    "visual_diversity",
+    "attention",
+    "wr"
+  ],
+  "parents": "All unique episode/time/three-timestamp parents reached by the five fixed policies",
+  "teacher": "one deletion followed by fixed attention continuation to recorded query; mean q+3/q+6",
+  "student": "same 903 causal features, float32 storage, parent-centered ridge lambda=1; TRAIN RMS support mask<=1e-6",
+  "input_numerics": "Causal features are computed in float64 then stored float32; ridge fitting casts back to float64. All new arms share these exact inputs. Earlier 16-pair probe retained float64 features, so cross-experiment numerical identity is not claimed.",
+  "arms": [
+    "local_cost",
+    "use_time_cost",
+    "future_attention",
+    "shuffled_use_time_cost"
+  ],
+  "controls": [
+    "attention",
+    "visual_diversity"
+  ],
+  "permutation_seed": 17,
+  "R": 4,
+  "K": 2,
+  "horizons": [
+    3,
+    6
+  ],
+  "hyperparameter_selection": false,
+  "new_gpu_seconds": 0,
+  "confounds": [
+    "Reader and scorer training populations both expand versus the 16-pair experiment",
+    "Reader was trained at query; local labels at other times remain outside that origin distribution",
+    "Frozen old-16-pair fitted feature transforms remain unchanged"
+  ]
+}

@@ -80,6 +80,16 @@ The October 22 clean-future run uses its [frozen predictor-source snapshot](expe
 
 The historical validation code also computed the retired task-trained attention comparator. It is preserved for provenance and omitted from the latest results table. The reported comparison is on the existing validation set, not a new independent test.
 
+## Set-structure retention, reader diagnostics and PushT preparation (20–26 October 2026)
+
+This separate development track (merged from PR #1) tests the proposal's set-conditioned claim: whether deletion-cost supervision helps when evidence is redundant, decoyed, or only useful jointly. It uses its own synthetic data, readers and students; its results are not part of the Gate table above and do not change the formal Phase 1 decision.
+
+- **Locked confirmation (26 October, seed 20261104, 48 families).** On the synergy task, a set-conditioned deletion-cost student lost necessary evidence in 4.59% (multihead reader) and 0.65% (item-attention reader) of cases, versus 35.89% / 37.80% for full-set sensitivity, 70.27% / 55.12% for head-averaged attention, and 67.38% / 56.29% for a matched future-attention student. All three preregistered claims passed. Limits: the redundancy-task student does not generalize, the decoy task admits an appearance shortcut, each reader has one training seed, and uniform/diversity baselines were not computed on this confirmation set. [Confirmation record](results/literature_diagnosis/qualified-reader-retention-20261025/conf/README.md) · [development report](docs/QUALIFIED_READER_RETENTION_DEV_ZH.md)
+- **Reader qualification.** The original reader failed preregistered redundancy/decoy checks; multihead and item-attention readers passed all K2/K3 gates. [Three-structure report](docs/TERMINAL_THREE_STRUCTURES_REPORT_ZH.md) · [reader aggregation results](docs/READER_AGGREGATION_RESULTS_ZH.md)
+- **Negative and diagnostic results.** On the 23 October locked Gate confirmation, a masked deletion-cost linear probe did not beat its shuffled-label control. Some oracles delete the cue to lower feature MSE, and use-time labels fix that ranking without improving the student. [Literature-baseline fresh report](docs/LITERATURE_BASELINE_FRESH_REPORT.md) · [oracle diagnosis](docs/BASELINE_ORACLE_DIAGNOSIS_20261022.md) · [Gate confirmation and casebook](docs/GATE_CONFIRMATION_AND_CASEBOOK.md) · [use-time probe](docs/GATE_USE_TIME_PROBE.md)
+- **Predictor history use.** [History diagnosis](docs/PHASE2_HISTORY_DIAGNOSIS.md): Gate gains useful history dependence without input whitening; Motion shows no net history benefit.
+- **PushT.** [Interface](docs/PHASE2_PUSHT.md) and [48-episode occluded/unoccluded corpus](docs/PHASE2_PUSHT_PLANNING_PREPARATION.md). Not yet encoded; no PushT predictor or MPC planning result exists.
+
 ## Next stage
 
 The next research stage can extend this comparison to **Motion and more complex simulated scenes**, where relevant information may unfold over time and require multiple observations. This is a future direction, not a completed result of the current Gate study.

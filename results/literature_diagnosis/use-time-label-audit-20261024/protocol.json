@@ -1,0 +1,21 @@
+{
+  "version": "use-time-saved-label-audit-v1",
+  "created_utc": "2026-10-25T03:07:24.716354+00:00",
+  "absolute_tie_tolerance": 1e-08,
+  "relative_tie_tolerance": 0.0,
+  "input_shape": [
+    1282,
+    3,
+    903
+  ],
+  "teacher_column_alignment": "all 1282 saved attention rows exactly equal original teacher labels after candidate sorting",
+  "source_labels": "saved per-decision mean h3/h6 deletion MSE and saved future-attention salience",
+  "delete_preference": "minimum cost / minimum attention; all actions within absolute tolerance included",
+  "cue_definition": "exact normalized-feature equality to the one privileged Gate evidence frame",
+  "complete_loss": "deleting the only cue-equivalent candidate with no cue in recent R=4",
+  "timing_boundary": "query frame is pre-outcome; first outcome class is query+1, checked for all TRAIN episodes",
+  "target_equality": "exact observed feature equality; never implies equal reader losses",
+  "unit": "parent rows are correlated within 32 episodes / 16 scene pairs; descriptive counts, no independent-sample inference",
+  "scope": "old TRAIN saved label audit only; no model calls, training, confirmation data, test arrays, or causal claim",
+  "source_labels_directory": "build/literature-diagnosis-20261022/learnability-v2"
+}

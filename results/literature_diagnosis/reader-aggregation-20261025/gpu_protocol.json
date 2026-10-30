@@ -1,0 +1,334 @@
+{
+  "config": {
+    "name": "reader-aggregation-diagnostic-v1",
+    "status": "ready-for-source-freeze-not-yet-executed",
+    "scope": "paired_single_seed_reader_and_linear_feature_diagnosis_no_students_no_original_confirmation",
+    "parent_release": "terminal-structures-20261025",
+    "parent_source_commit": "4e279fc4b57bbb333cf82f2bac6cde865aa47ad9",
+    "parent_config": "experiments/phase2/configs/terminal_structures_20261025.json",
+    "source_data_policy": "readonly_parent_arrays_normalization_basis_action_banks_SHA256_bound",
+    "splits": {
+      "train": {
+        "seed": 20261101,
+        "families": 48
+      },
+      "validation": {
+        "seed": 20261102,
+        "families": 24
+      },
+      "development": {
+        "seed": 20261103,
+        "families": 24
+      }
+    },
+    "fresh_diagnostic": {
+      "seed": 20261120,
+      "families": 24,
+      "records_per_family": 72,
+      "generator_split": "development",
+      "analysis_role": "fresh_diagnostic",
+      "open_after": "all_five_reader_and_probe_checkpoints_and_source_locked",
+      "once_only": true,
+      "status": "selected_before_outcomes_no_prior_match_in_repo_receipts_local_search"
+    },
+    "original_confirmation": {
+      "seed": 20261104,
+      "families": 48,
+      "enabled": false,
+      "must_remain_unopened": true
+    },
+    "reference_plans": 16,
+    "evaluation_plans": 32,
+    "action_banks": "reuse_parent_exact_arrays",
+    "reader": {
+      "hidden": 128,
+      "heads": 4,
+      "layers": 2,
+      "dropout": 0.0,
+      "rank": 128
+    },
+    "reader_seed": 17,
+    "steps": 1024,
+    "validate_every": 128,
+    "groups_per_task": 2,
+    "history_sizes": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "training_loss": "pure_feature_mse_all_history_sizes",
+    "origin": "terminal_query_only",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "scheduler": {
+      "milestones": [
+        341,
+        682
+      ],
+      "gamma": 0.5
+    },
+    "checkpoint_rule": "strict_earliest_minimum_equal_task_equal_history_size_validation_mse_including_step0",
+    "paired_training": {
+      "same_group_subset_schedule": true,
+      "copy_identically_shaped_shared_initial_parameters": true,
+      "trainable_parameters_equal": false,
+      "capacity_matched_fifth_arm": true,
+      "initialization": "seed17_after_loading_frozen_basis_not_bitexact_old_PCA_RNG_history",
+      "wide_control": "nearest_integer_output_hidden_width_to_largest_variant_total_parameters"
+    },
+    "aggregation_arms": [
+      {
+        "name": "original",
+        "kind": "archived_exact_DynamicsPredictor",
+        "forward_equivalence_required": true
+      },
+      {
+        "name": "attention_mean",
+        "kind": "learned_and_uniform_full_temporal_summary_channels",
+        "channels": 2
+      },
+      {
+        "name": "multihead",
+        "kind": "shared_first_score_layer_four_logits_full_temporal_summary_channels",
+        "heads": 4,
+        "channels": 4
+      },
+      {
+        "name": "item_attention",
+        "kind": "pre_layernorm_history_self_attention_and_2d_FFN_residual_then_original_single_pool",
+        "heads": 4,
+        "layers": 1,
+        "token": "projected_content_plus_past_action_plus_learned_age_over8"
+      },
+      {
+        "name": "wide_control",
+        "kind": "original_pool_widen_output_MLP_only",
+        "width_rule": "nearest_integer_total_parameters_to_largest_noncontrol_arm"
+      }
+    ],
+    "probes": {
+      "device": "cpu",
+      "representations": [
+        "raw_5120",
+        "parent_projected_128"
+      ],
+      "targets": [
+        "R_a",
+        "R_b",
+        "D_a",
+        "D_b",
+        "S_payload",
+        "S_tag"
+      ],
+      "learner": "linear_ridge_binary_classifier",
+      "solver_status": "verified_weighted_primal_or_dual_spectral_solve_selected_equation_residual_and_finite_checks",
+      "regularization_grid": [
+        0.001,
+        0.01,
+        0.1,
+        1.0,
+        10.0,
+        100.0
+      ],
+      "selection": "validation_balanced_accuracy_largest_lambda_tie_per_head_representation",
+      "normalization_fit_split": "train",
+      "deduplicate_key": [
+        "family",
+        "rgb_sha256",
+        "probe_head"
+      ],
+      "metadata_in_forward": false,
+      "negative_controls": [
+        "matched_current_blank_features",
+        "train_only_label_permutation"
+      ],
+      "permutation_seed": 20261121,
+      "permutation_unit": "individual_unique_observations_within_TRAIN_probe_head_by_salience_strata",
+      "cpu_threads": 4,
+      "normalization_audit": "parent_normalized_5120_affine_equivalence_not_additional_fit",
+      "unpenalized_intercept": true,
+      "weighting": "equal_family_within_each_probe_head_unique_observations",
+      "D_decoy_payload": "excluded_outside_task_relevant_payload_probe_scope_arrow_is_visible",
+      "regularization_objective": "normalized_mean_weighted_square_loss_plus_lambda_weight_norm"
+    },
+    "qualification_accuracy": 0.8,
+    "qualification_mse_margin": 1e-06,
+    "tolerance": 1e-06,
+    "horizons": [
+      3,
+      6
+    ],
+    "persistent_K": 2,
+    "candidate_count": 3,
+    "synergy_output_axis": "x",
+    "qualification": "reuse_parent_executable_gates_per_task_and_each_appearance_condition",
+    "baseline_recheck": {
+      "enabled_after_reader_lock": false,
+      "qualified_claims_only": true,
+      "full_sensitivity_requires": [
+        "K2_content",
+        "K3_content"
+      ],
+      "selector_kernel": "unchanged_prediction_retention",
+      "scope": "separate_followup_protocol_not_this_reader_pilot"
+    },
+    "students_enabled": false,
+    "original_confirm_open_enabled": false,
+    "bootstrap": {
+      "unit": "base_family",
+      "paired": true,
+      "resamples": 2000,
+      "seed": 20261122
+    },
+    "reporting": {
+      "all_arms_and_conditions": true,
+      "parameter_and_optimizer_bytes": true,
+      "measured_training_and_K2_K3_latency": true,
+      "single_seed_exploratory_only": true,
+      "all_five_fresh_diagnostic_arms_regardless_old_DEV_gates": true
+    },
+    "output_policy": "empty_directory_only_immutable_hash_bound_no_overwrite",
+    "must_resolve_before_freeze": [],
+    "compute_estimate": {
+      "gpu_hours_range": [
+        0.6,
+        1.2
+      ],
+      "measured": false,
+      "user_budget_cap": false
+    },
+    "no_fit_intervention": {
+      "name": "uniform_intervention",
+      "checkpoint": "selected_retrained_original",
+      "replace": "valid_history_softmax_weights_with_uniform_1_over_n",
+      "recompute": "all_weighted_temporal_statistics",
+      "empty_history": "zero",
+      "trainable": false,
+      "temperature_tuning": false,
+      "required_checks": [
+        "K0_equality",
+        "K1_equality",
+        "same_parameters"
+      ],
+      "evaluation": [
+        "existing_development",
+        "fresh_diagnostic"
+      ]
+    },
+    "source_run_protocol_sha256": "4151304e8fee257284d9ba71608ac87a2b642d96b82a92a49624567f4c39a3f5",
+    "variants": [
+      "original",
+      "attention_mean",
+      "multihead",
+      "item_attention",
+      "wide_control"
+    ],
+    "seed": 17,
+    "heads": 4,
+    "diagnostic": {
+      "split": "diagnostic",
+      "seed": 20261120,
+      "families": 24
+    },
+    "probe": {
+      "lambdas": [
+        0.001,
+        0.01,
+        0.1,
+        1.0,
+        10.0,
+        100.0
+      ],
+      "shuffle_seed": 20261121,
+      "standard_deviation_floor": 0.0001
+    },
+    "parent_source_files_sha256": {
+      "experiments/phase2/run_terminal_structures.py": "d485f502cd22dfe036043ac04786237e76c1f9c28d45c1b0003f93b3c41a1f89",
+      "experiments/phase2/terminal_structures.py": "3a3c380a0077707007fd689253b274322582be6fc7e8b7a62595d41bb9d8aa5f",
+      "experiments/phase2/prediction_retention.py": "ed7de88aa47586273dd91416ee26a737e6d3b3b2eaeca65938edc1b323572b37",
+      "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+      "experiments/phase2/encode_fresh_gate_diagnostic.py": "c3d1de26efcaf60873abdd026fd5e50dce4a5da50179eb0544cf81e2ada83a33",
+      "experiments/phase2/run_gate2_pilot.py": "a5552c90bd353c6fb473eac86e3a946b7347ec28dab386ac4da1c2d727b87a67",
+      "experiments/phase2/run_reader_scale_probe.py": "84331b3aafbdc5d7350fdf7d091f75958863dc443bdb757333f27bc0a5ec423c",
+      "experiments/phase2/fit_terminal_students.py": "08021072e0dd9b3a74dc6d397ba6d8a3f90c7db1c36fbfed6589a6a27221bcd7",
+      "experiments/phase2/summarize_terminal_students.py": "83356f9a0559c8b4aa158d024d0d466f96f1c09913236c9b715e9aa0bf383e7d",
+      "experiments/phase2/submit_terminal_structures.py": "c982f8b6a8e9d7e7b8d53404400a438cc0d6ea771cda751a63819bcbec91129a",
+      "docs/TERMINAL_STRUCTURES_PREREGISTRATION_20261025.md": "2283943f07efebb6370330b44476963a7e61d3e926362de7e328fbb2390cee6c",
+      "experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+      "experiments/predictor/control/src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+      "experiments/predictor/control/src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14",
+      "experiments/predictor/control/src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+      "experiments/predictor/control/src/phase1/encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871"
+    },
+    "runtime_source_validation": {
+      "copy_parent_scientific_settings": true,
+      "required_artifact_bindings": [
+        "features_raw.npy",
+        "features.npy",
+        "basis.npz",
+        "records.json",
+        "normalization.npz",
+        "actions.npz",
+        "action_banks.npz",
+        "reader_selected.pt"
+      ],
+      "allow_missing_hashes": false,
+      "new_source_all_bytefiles_hashed": true
+    },
+    "expected_architecture_parameters": {
+      "original": 215297,
+      "attention_mean": 313857,
+      "multihead": 511364,
+      "item_attention": 347905,
+      "wide_control": 510927
+    },
+    "expected_wide_control_output_hidden": 313,
+    "parent_archive_sha256": "d6b700cd17fedf0423be026654ac84bf48ac7953bfd31f973230ef958a05217c",
+    "archived_no_fit_intervention": {
+      "enabled": true,
+      "scope": "existing_development_only_no_training_no_new_data",
+      "arms": [
+        "original",
+        "uniform_intervention"
+      ],
+      "checkpoint": "parent_released_reader_selected.pt",
+      "not_in_fresh_diagnostic": true
+    },
+    "source_preflight": {
+      "parent_files_sha256_verified": 10,
+      "parent_raw_and_normalized_recovered_exact_bytes": true,
+      "fresh_seed_not_previously_generated": true,
+      "original_confirmation_unopened": true
+    }
+  },
+  "config_file_sha256": "04f9a67a3766c748089e096e3ec9d30e0e8b38f7c00cb1547da34d653b13ffde",
+  "source_sha256": {
+    "experiments/phase2/run_terminal_structures.py": "d485f502cd22dfe036043ac04786237e76c1f9c28d45c1b0003f93b3c41a1f89",
+    "experiments/phase2/terminal_structures.py": "3a3c380a0077707007fd689253b274322582be6fc7e8b7a62595d41bb9d8aa5f",
+    "experiments/phase2/prediction_retention.py": "ed7de88aa47586273dd91416ee26a737e6d3b3b2eaeca65938edc1b323572b37",
+    "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+    "experiments/phase2/encode_fresh_gate_diagnostic.py": "c3d1de26efcaf60873abdd026fd5e50dce4a5da50179eb0544cf81e2ada83a33",
+    "experiments/phase2/run_gate2_pilot.py": "a5552c90bd353c6fb473eac86e3a946b7347ec28dab386ac4da1c2d727b87a67",
+    "experiments/phase2/run_reader_scale_probe.py": "84331b3aafbdc5d7350fdf7d091f75958863dc443bdb757333f27bc0a5ec423c",
+    "experiments/phase2/fit_terminal_students.py": "08021072e0dd9b3a74dc6d397ba6d8a3f90c7db1c36fbfed6589a6a27221bcd7",
+    "experiments/phase2/summarize_terminal_students.py": "83356f9a0559c8b4aa158d024d0d466f96f1c09913236c9b715e9aa0bf383e7d",
+    "experiments/phase2/submit_terminal_structures.py": "c982f8b6a8e9d7e7b8d53404400a438cc0d6ea771cda751a63819bcbec91129a",
+    "docs/TERMINAL_STRUCTURES_PREREGISTRATION_20261025.md": "2283943f07efebb6370330b44476963a7e61d3e926362de7e328fbb2390cee6c",
+    "experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+    "experiments/predictor/control/src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+    "experiments/predictor/control/src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14",
+    "experiments/predictor/control/src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+    "experiments/predictor/control/src/phase1/encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871",
+    "experiments/phase2/run_reader_aggregation.py": "b9bd894c60be70acd439ed88f5d4d17451e7f536ab52f15897aec6afcac161e7",
+    "experiments/phase2/reader_aggregation.py": "c8c42d3e21c2ed875414af2e0f76cf54253c20e9a13d2fc3c7a611a48701ae53",
+    "experiments/phase2/probe_reader_features.py": "425178b51e28b901b23ceeee18efffe552befb2b0f0756d784bddcea03481e5e",
+    "experiments/phase2/submit_reader_aggregation.py": "00afb91322464dd2f04bc84d51fc023fb3615ae3692cd06d38e71affa275ed45",
+    "docs/READER_AGGREGATION_PREREGISTRATION_20261025.md": "cea0f4cb663e2cd26d50d0ae6b861d98e27b1452cdcf0893260452f455bc3aa5"
+  },
+  "parent_binding_sha256": "2186bc21cb052937f61276708363a2bc1dde64ff881c9c81c4a454268181f022",
+  "frozen_unix": 1792963544.0635464,
+  "original_confirmation_opened": false,
+  "fresh_diagnostic_generated": false
+}

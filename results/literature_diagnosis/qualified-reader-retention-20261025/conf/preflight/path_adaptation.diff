@@ -1,0 +1,144 @@
+--- original/appearance.py
++++ adapted/appearance.py
+@@ -9,13 +9,13 @@
+ 
+ import numpy as np
+ 
+-REPO = "/home/claude/jasonlin0226/cv_project"
+-sys.path[:0] = [REPO, REPO + "/experiments/predictor/control/src"]
++sys.path.insert(0, str(Path(__file__).resolve().parent))
++from path_config import REPO, RECORDS, RGB_INDEX, APPEARANCE_OUTPUT
++sys.path[:0] = [str(REPO), str(REPO / "experiments/predictor/control/src")]
+ from experiments.phase2 import terminal_structures as env  # noqa: E402
+ 
+-SCR = Path("/tmp/claude-0/-home-claude/06037020-a31e-5c32-adf2-8caefd7f49f7/scratchpad")
+-recs = json.load(open(SCR / "dl_terminal/run/data/records.json"))
+-lookup = json.load(open("/mnt/user-data/uploads/CV_project/build/terminal-download-20261025/extracted/run/data/rgb_index.json"))
++recs = json.load(open(RECORDS))
++lookup = json.load(open(RGB_INDEX))
+ feat_by_frame, mism, t0 = {}, 0, time.time()
+ out = {}
+ for n, r in enumerate(recs):
+@@ -33,5 +33,5 @@
+     if n % 1000 == 0:
+         print(json.dumps({"done": n, "total": len(recs), "sec": round(time.time() - t0, 1), "mismatch": mism}), flush=True)
+ ids = [r["id"] for r in recs]
+-np.savez_compressed(SCR / "qr/appearance_all.npz", ids=np.array(ids), items=np.stack([out[i] for i in ids]))
++np.savez_compressed(APPEARANCE_OUTPUT, ids=np.array(ids), items=np.stack([out[i] for i in ids]))
+ print(json.dumps({"saved": len(ids), "unique_frames": len(feat_by_frame), "hash_mismatches": mism, "sec": round(time.time() - t0, 1)}))
+--- original/evaluate_dev.py
++++ adapted/evaluate_dev.py
+@@ -11,28 +11,30 @@
+ 
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ import pipe  # noqa: E402
++from path_config import SPLIT, BASELINE_DECISIONS
+ 
+ reader, A, S, OUT = sys.argv[1], Path(sys.argv[2]), Path(sys.argv[3]), Path(sys.argv[4])
+ st = pipe.Store()
+-recs = [r for r in st.records if r["split"] == "development"]
+-a = np.load(A / f"{reader}_development.npz")
++recs = [r for r in st.records if r["split"] == SPLIT]
++a = np.load(A / f"{reader}_{SPLIT}.npz")
+ assert a["ids"].tolist() == [r["id"] for r in recs]
+ cost = a["eval_cost"]                       # [N,3] expected in-span loss over 32 evaluation plans
+ TOL = 1e-6
+-term = {d["id"]: d for d in json.load(open(pipe.SCR / "dl_terminal/run/development/baseline_decisions.json"))}
++term = {d["id"]: d for d in json.load(open(BASELINE_DECISIONS))} if SPLIT == "development" else None
+ 
+ choices = {
+     "fifo": np.zeros(len(recs), int),
+-    "uniform": np.array([term[r["id"]]["policies"]["terminal_uniform"]["drop"] for r in recs]),
+-    "visual_diversity": np.array([term[r["id"]]["policies"]["visual_diversity"]["drop"] for r in recs]),
+     "attention": a["attention"].argmin(1),
+     "medoid": a["medoid_sum"].argmin(1),
+     "full_sensitivity": a["sensitivity"].argmin(1),
+     "oracle": cost.argmin(1),
+ }
++if term is not None:
++    choices["uniform"] = np.array([term[r["id"]]["policies"]["terminal_uniform"]["drop"] for r in recs])
++    choices["visual_diversity"] = np.array([term[r["id"]]["policies"]["visual_diversity"]["drop"] for r in recs])
+ student_arms = defaultdict(list)            # arm -> list of per-seed drop arrays
+ for mode in ("standard", "distilled"):
+-    p = S / f"{reader}_{mode}" / "dev_predictions.npz"
++    p = S / f"{reader}_{mode}" / ("dev_predictions.npz" if SPLIT == "development" else f"{SPLIT}_predictions.npz")
+     if not p.exists():
+         continue
+     z = np.load(p)
+@@ -84,9 +86,10 @@
+ table.update({m: metrics(ds) for m, ds in sorted(student_arms.items())})
+ expected_uniform = {t: float(np.mean([1 - len(correct[i]) / 3 for i, r in enumerate(recs) if r["task_family"] == t])) for t in "RDS"}
+ json.dump({"reader": reader, "methods": table, "uniform_expected_lost_rate": expected_uniform,
++           "not_computed": [] if term is not None else ["uniform", "visual_diversity"],
+            "student_seeds": {k: len(v) for k, v in student_arms.items()},
+            "oracle_tie_parents": int(sum((cost[i] <= cost[i].min() + TOL).sum() > 1 for i in range(len(recs))))},
+           open(OUT, "w"), indent=1)
+-print(f"## DEV / {reader}   (lost necessary evidence: count / n ; regret mean)")
++print(f"## {SPLIT} / {reader}   (lost necessary evidence: count / n ; regret mean)")
+ for m, t in table.items():
+     print(f"{m:42s} " + "  ".join(f"{task}: {t[task]['lost_count']:6.1f}/{t[task]['n']:<4d} reg {t[task]['regret_ci'][0]:.4f}" for task in "RDS"))
+--- original/pipe.py
++++ adapted/pipe.py
+@@ -15,24 +15,19 @@
+ import numpy as np
+ import torch
+ 
+-REPO = Path("/home/claude/jasonlin0226/cv_project")
++from path_config import REPO, RUN, XFER, AGG, RECORDS, ACTIONS
+ sys.path[:0] = [str(REPO), str(REPO / "experiments/predictor/control/src")]
+ from experiments.phase2.reader_aggregation import build_reader  # noqa: E402
+ 
+-SCR = Path("/tmp/claude-0/-home-claude/06037020-a31e-5c32-adf2-8caefd7f49f7/scratchpad")
+-UP = Path("/mnt/user-data/uploads/CV_project/build")
+-RUN = UP / "terminal-download-20261025/extracted/run"
+-XFER = UP / "_claude_transfer_20261025"
+-AGG = SCR / "dl_agg/run"
+ H = (3, 6)
+ DIM = 5120
+ 
+ 
+ class Store:
+     def __init__(self):
+-        self.records = json.load(open(SCR / "dl_terminal/run/data/records.json"))
++        self.records = json.load(open(RECORDS))
+         self.by_id = {r["id"]: r for r in self.records}
+-        self.actions = np.load(RUN / "data/actions.npz")
++        self.actions = np.load(ACTIONS)
+         self.banks = {k: v for k, v in np.load(RUN / "data/action_banks.npz").items()}
+         b = np.load(RUN / "basis.npz")
+         self.basis = {k: b[k] for k in b.files}
+--- original/run_main.py
++++ adapted/run_main.py
+@@ -12,6 +12,7 @@
+ 
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ import pipe  # noqa: E402
++from path_config import SPLITS
+ 
+ reader, out = sys.argv[1], Path(sys.argv[2])
+ out.mkdir(parents=True, exist_ok=True)
+@@ -48,7 +49,7 @@
+     return pipe.qform(C[:, :, :3] - resid[:, :, None], G)
+ 
+ 
+-for split in ("train", "validation", "development"):
++for split in SPLITS:
+     started = time.time()
+     recs = [r for r in st.records if r["split"] == split]
+     ids = [r["id"] for r in recs]
+--- original/run_students.py
++++ adapted/run_students.py
+@@ -14,11 +14,12 @@
+ 
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ import pipe  # noqa: E402
++from path_config import APPEARANCE_OUTPUT
+ from experiments.phase2 import fit_terminal_students as fts  # noqa: E402
+ 
+ reader, A, OUT = sys.argv[1], Path(sys.argv[2]), Path(sys.argv[3])
+ st = pipe.Store()
+-app = np.load(pipe.SCR / "qr/appearance_all.npz")
++app = np.load(APPEARANCE_OUTPUT)
+ app_by_id = dict(zip(app["ids"].tolist(), app["items"]))
+ cfg = json.load(open(pipe.REPO / "experiments/phase2/configs/terminal_structures_20261025.json"))["students"]
+ config = fts.StudentConfig(**{**cfg, "seeds": tuple(cfg["seeds"]), "cpu_threads": 2})

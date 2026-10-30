@@ -1,0 +1,4404 @@
+{
+  "status": "completed_analysis_of_frozen_baselines",
+  "split": "development",
+  "scope": "Development analysis; not confirmation",
+  "parents": 1728,
+  "base_families": 24,
+  "no_new_models_or_training": true,
+  "no_checkpoint_or_seed_selection": true,
+  "baseline_only": true,
+  "endpoints": [
+    "necessary evidence loss",
+    "expected feature MSE",
+    "regret = mean-plan selected loss minus minimum mean-plan deletion loss"
+  ],
+  "statistical_protocol": {
+    "training_seeds": [
+      17,
+      29,
+      43
+    ],
+    "bootstrap_seed": 20261107,
+    "bootstrap_draws": 2000,
+    "unit": "base family",
+    "aggregation": "three fixed model seed performances averaged within parent before family means",
+    "conditions": "R,D,S and each condition reported separately; no pooled primary result",
+    "interval_scope": "percentile95 paired family bootstrap, conditional on fitted seeds",
+    "multiplicity": "Intervals are unadjusted descriptive intervals; this script makes no multiplicity-adjusted superiority declaration"
+  },
+  "reader_qualification": {
+    "summary": {
+      "R": {
+        "K2_complete_accuracy": 0.7560763888888888,
+        "flip_accuracy": 0.7638888888888888,
+        "K3_accuracy": 0.7326388888888888,
+        "fixed_complete_mse": 0.05935941819460217,
+        "fixed_missing_mse": 0.10271469799389142,
+        "single_mse": 0.12075111909702746,
+        "missing_tie_credit_accuracy": 0.4826388888888889,
+        "missing_midpoint_mse": 0.07454283328881049,
+        "missing_equal_distance_fraction": 0.0
+      },
+      "D": {
+        "K2_complete_accuracy": 0.8524305555555556,
+        "flip_accuracy": 0.8611111111111112,
+        "K3_accuracy": 0.84375,
+        "fixed_complete_mse": 0.06525412812517935,
+        "fixed_missing_mse": 0.10819568869294513,
+        "single_mse": 0.12945179130883055,
+        "missing_tie_credit_accuracy": 0.4965277777777778,
+        "missing_midpoint_mse": 0.07699851683188116,
+        "missing_equal_distance_fraction": 0.0
+      },
+      "S": {
+        "K2_complete_accuracy": 0.9375,
+        "flip_accuracy": 0.9375,
+        "K3_accuracy": 0.7248263888888888,
+        "fixed_complete_mse": 0.08571230487379228,
+        "fixed_missing_mse": 0.13776888398499235,
+        "single_mse": 0.1621860120461186,
+        "missing_tie_credit_accuracy": 0.5,
+        "missing_midpoint_mse": 0.03497123368770892,
+        "missing_equal_distance_fraction": 0.0
+      }
+    },
+    "by_condition": {
+      "R/neutral": {
+        "fixed_complete_mse_by_deleted_role": {
+          "A": 0.051000969867438024,
+          "Aprime": 0.05070429819776573
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "A": 1.0,
+          "Aprime": 1.0
+        },
+        "missing_mse_by_deleted_role": [
+          0.10213397825840946
+        ],
+        "flip_accuracy": 1.0,
+        "native_complete_accuracy": 0.9791666666666666,
+        "full_accuracy": 0.9479166666666666
+      },
+      "R/salient_redundant": {
+        "fixed_complete_mse_by_deleted_role": {
+          "A": 0.05918684068086033,
+          "Aprime": 0.059995440447826474
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "A": 0.7604166666666666,
+          "Aprime": 0.7604166666666666
+        },
+        "missing_mse_by_deleted_role": [
+          0.10387613746485534
+        ],
+        "flip_accuracy": 0.7604166666666666,
+        "native_complete_accuracy": 0.7447916666666666,
+        "full_accuracy": 0.7291666666666666
+      },
+      "R/salient_unique": {
+        "fixed_complete_mse_by_deleted_role": {
+          "A": 0.06765826404599319,
+          "Aprime": 0.06761069592772923
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "A": 0.53125,
+          "Aprime": 0.53125
+        },
+        "missing_mse_by_deleted_role": [
+          0.10213397825840946
+        ],
+        "flip_accuracy": 0.53125,
+        "native_complete_accuracy": 0.5208333333333334,
+        "full_accuracy": 0.5208333333333334
+      },
+      "D/neutral": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.059398065895396396
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.9895833333333334
+        },
+        "missing_mse_by_deleted_role": [
+          0.1396563406191281,
+          0.0763277235330023
+        ],
+        "flip_accuracy": 0.9895833333333334,
+        "native_complete_accuracy": 0.96875,
+        "full_accuracy": 0.96875
+      },
+      "D/salient_decoy": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.059398065895396396
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.9895833333333334
+        },
+        "missing_mse_by_deleted_role": [
+          0.13963668477909552,
+          0.0763322435091291
+        ],
+        "flip_accuracy": 0.9895833333333334,
+        "native_complete_accuracy": 0.96875,
+        "full_accuracy": 0.96875
+      },
+      "D/salient_useful": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.07696625258474526
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.6041666666666666
+        },
+        "missing_mse_by_deleted_role": [
+          0.13992853629601035,
+          0.07729260342130544
+        ],
+        "flip_accuracy": 0.6041666666666666,
+        "native_complete_accuracy": 0.59375,
+        "full_accuracy": 0.59375
+      },
+      "S/neutral": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.09446551849321011
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.8958333333333334
+        },
+        "missing_mse_by_deleted_role": [
+          0.13701283085241103,
+          0.13701283085241103
+        ],
+        "flip_accuracy": 0.8958333333333334,
+        "native_complete_accuracy": 0.8958333333333334,
+        "full_accuracy": 0.7083333333333334
+      },
+      "S/salient_slot_0": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.08436444722814002
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.9652777777777778
+        },
+        "missing_mse_by_deleted_role": [
+          0.14061015222711307,
+          0.1401423191285462
+        ],
+        "flip_accuracy": 0.9652777777777778,
+        "native_complete_accuracy": 0.9652777777777778,
+        "full_accuracy": 0.7395833333333334
+      },
+      "S/salient_slot_1": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.08770018835271359
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.9791666666666666
+        },
+        "missing_mse_by_deleted_role": [
+          0.1363649568391031,
+          0.13564860327706105
+        ],
+        "flip_accuracy": 0.9791666666666666,
+        "native_complete_accuracy": 0.9791666666666666,
+        "full_accuracy": 0.7395833333333334
+      },
+      "S/salient_slot_2": {
+        "fixed_complete_mse_by_deleted_role": {
+          "D": 0.07631906542110542
+        },
+        "fixed_complete_accuracy_by_deleted_role": {
+          "D": 0.9097222222222222
+        },
+        "missing_mse_by_deleted_role": [
+          0.13867575700546586,
+          0.1366836216978277
+        ],
+        "flip_accuracy": 0.9097222222222222,
+        "native_complete_accuracy": 0.9097222222222222,
+        "full_accuracy": 0.7118055555555556
+      }
+    },
+    "gates": {
+      "R/K2_content": false,
+      "R/K3_content": false,
+      "R/neutral/K2_content": true,
+      "R/neutral/K3_content": true,
+      "R/salient_redundant/K2_content": false,
+      "R/salient_redundant/K3_content": false,
+      "R/salient_unique/K2_content": false,
+      "R/salient_unique/K3_content": false,
+      "D/K2_content": false,
+      "D/K3_content": false,
+      "D/neutral/K2_content": true,
+      "D/neutral/K3_content": true,
+      "D/salient_decoy/K2_content": true,
+      "D/salient_decoy/K3_content": true,
+      "D/salient_useful/K2_content": false,
+      "D/salient_useful/K3_content": false,
+      "S/K2_content": true,
+      "S/K3_content": false,
+      "S/neutral/K2_content": true,
+      "S/neutral/K3_content": false,
+      "S/salient_slot_0/K2_content": true,
+      "S/salient_slot_0/K3_content": false,
+      "S/salient_slot_1/K2_content": true,
+      "S/salient_slot_1/K3_content": false,
+      "S/salient_slot_2/K2_content": true,
+      "S/salient_slot_2/K3_content": false
+    },
+    "all_task_k2_qualified": false,
+    "all_task_k3_qualified": false,
+    "missing_information_chance_is_generator_property_not_reader_gate": true,
+    "S_prototype_classes": 2,
+    "R_D_prototype_classes": 4,
+    "rows": 21312
+  },
+  "full_sensitivity_requires_qualified_K3_reader": true,
+  "retention_method_interpretation_requires_passed_K2_reader_gates": true,
+  "method_definitions": {
+    "baseline/fifo": {
+      "type": "fixed_baseline",
+      "seed_aggregation": "not applicable"
+    },
+    "baseline/full_sensitivity": {
+      "type": "fixed_baseline",
+      "seed_aggregation": "not applicable"
+    },
+    "baseline/medoid": {
+      "type": "fixed_baseline",
+      "seed_aggregation": "not applicable"
+    },
+    "baseline/reader_attention": {
+      "type": "fixed_baseline",
+      "seed_aggregation": "not applicable"
+    },
+    "baseline/terminal_uniform": {
+      "type": "fixed_baseline",
+      "seed_aggregation": "not applicable"
+    },
+    "baseline/visual_diversity": {
+      "type": "fixed_baseline",
+      "seed_aggregation": "not applicable"
+    },
+    "diagnostic/expected_loss_oracle": {
+      "type": "privileged_diagnostic",
+      "scope": "Evaluator-only minimum after averaging the fixed independent action bank"
+    },
+    "diagnostic/future_attention_label_oracle": {
+      "type": "privileged_diagnostic",
+      "scope": "Privileged future-query attention label argmin; not a deployable causal baseline"
+    }
+  },
+  "groups": {
+    "R/all_conditions": {
+      "task_family": "R",
+      "condition": null,
+      "methods": {
+        "baseline/fifo": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.3333333333333333,
+              "raw_parent_mean": 0.3333333333333333,
+              "family_percentile95": [
+                0.16666666666666666,
+                0.5416666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07252528937214814,
+              "raw_parent_mean": 0.07252528937214814,
+              "family_percentile95": [
+                0.0629991952543587,
+                0.08355170956117572
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.017669557126669542,
+              "raw_parent_mean": 0.017669557126669542,
+              "family_percentile95": [
+                0.007749201189759804,
+                0.029374394419814164
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.2951388888888889,
+              "raw_parent_mean": 0.2951388888888889,
+              "family_percentile95": [
+                0.15625,
+                0.43749999999999994
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06030503116761793,
+              "raw_parent_mean": 0.06030503116761792,
+              "family_percentile95": [
+                0.05566029167642118,
+                0.06492173689367844
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.005449298922139324,
+              "raw_parent_mean": 0.005449298922139324,
+              "family_percentile95": [
+                0.0032701956202449375,
+                0.007766131601488215
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.13194444444444445,
+              "raw_parent_mean": 0.13194444444444445,
+              "family_percentile95": [
+                0.05555555555555555,
+                0.21875
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.05915829960240382,
+              "raw_parent_mean": 0.05915829960240382,
+              "family_percentile95": [
+                0.055041273183146194,
+                0.0632734624224962
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0043025673569252205,
+              "raw_parent_mean": 0.004302567356925221,
+              "family_percentile95": [
+                0.002834764758860494,
+                0.005751521094505846
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.2986111111111111,
+                0.701388888888889
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06227734500141944,
+              "raw_parent_mean": 0.06227734500141943,
+              "family_percentile95": [
+                0.05743973244455621,
+                0.06698638898163575
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.007421612755940831,
+              "raw_parent_mean": 0.007421612755940832,
+              "family_percentile95": [
+                0.0047894752673414065,
+                0.010037142532959837
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4583333333333333,
+              "raw_parent_mean": 0.4583333333333333,
+              "family_percentile95": [
+                0.25,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07397126224123413,
+              "raw_parent_mean": 0.07397126224123413,
+              "family_percentile95": [
+                0.06337810423291113,
+                0.08572957016193383
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.019115529995755515,
+              "raw_parent_mean": 0.019115529995755515,
+              "family_percentile95": [
+                0.008492947011511374,
+                0.03144966323544849
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.16666666666666666,
+              "raw_parent_mean": 0.16666666666666666,
+              "family_percentile95": [
+                0.09722222222222221,
+                0.23611111111111105
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07321963468971926,
+              "raw_parent_mean": 0.07321963468971926,
+              "family_percentile95": [
+                0.06832741806174537,
+                0.07796272770217205
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.01836390244424066,
+              "raw_parent_mean": 0.018363902444240663,
+              "family_percentile95": [
+                0.013831986680154193,
+                0.022990240177995377
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.05555555555555556,
+              "raw_parent_mean": 0.05555555555555555,
+              "family_percentile95": [
+                0.01736111111111111,
+                0.10416666666666667
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0548557322454786,
+              "raw_parent_mean": 0.0548557322454786,
+              "family_percentile95": [
+                0.051320340522577224,
+                0.05862575493812421
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.2986111111111111,
+                0.6979166666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06228991846543878,
+              "raw_parent_mean": 0.06228991846543878,
+              "family_percentile95": [
+                0.057400971703258905,
+                0.06708221966473771
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0074341862199601766,
+              "raw_parent_mean": 0.0074341862199601766,
+              "family_percentile95": [
+                0.004782445106233057,
+                0.010125751955335199
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": -0.16319444444444445,
+              "raw_parent_mean": -0.16319444444444445,
+              "family_percentile95": [
+                -0.23967013888888894,
+                -0.09027777777777778
+              ]
+            },
+            "mse": {
+              "equal_family_mean": -0.0011467315652141034,
+              "raw_parent_mean": -0.0011467315652141034,
+              "family_percentile95": [
+                -0.002407422919310094,
+                -2.3334287305032382e-05
+              ]
+            },
+            "regret": {
+              "equal_family_mean": -0.0011467315652141034,
+              "raw_parent_mean": -0.0011467315652141034,
+              "family_percentile95": [
+                -0.002407422919310094,
+                -2.3334287305032382e-05
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": -0.3680555555555556,
+              "raw_parent_mean": -0.3680555555555556,
+              "family_percentile95": [
+                -0.5313368055555556,
+                -0.21180555555555558
+              ]
+            },
+            "mse": {
+              "equal_family_mean": -0.003119045399015611,
+              "raw_parent_mean": -0.003119045399015611,
+              "family_percentile95": [
+                -0.004593381725099175,
+                -0.0016628717401770655
+              ]
+            },
+            "regret": {
+              "equal_family_mean": -0.003119045399015611,
+              "raw_parent_mean": -0.003119045399015611,
+              "family_percentile95": [
+                -0.004593381725099175,
+                -0.0016628717401770655
+              ]
+            }
+          }
+        }
+      }
+    },
+    "D/all_conditions": {
+      "task_family": "D",
+      "condition": null,
+      "methods": {
+        "baseline/fifo": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.4583333333333333,
+                0.8333333333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0952657009276933,
+              "raw_parent_mean": 0.0952657009276933,
+              "family_percentile95": [
+                0.08255405384345105,
+                0.10848478346760984
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.03078834286132977,
+              "raw_parent_mean": 0.03078834286132977,
+              "family_percentile95": [
+                0.01696018113414813,
+                0.045231606153157064
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06502463622122362,
+              "raw_parent_mean": 0.06502463622122362,
+              "family_percentile95": [
+                0.060044931969285495,
+                0.07038008587220546
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0005472781548601079,
+              "raw_parent_mean": 0.0005472781548601079,
+              "family_percentile95": [
+                0.00011312233922231048,
+                0.0012048668328254698
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.13194444444444445,
+              "raw_parent_mean": 0.13194444444444445,
+              "family_percentile95": [
+                0.06944444444444443,
+                0.2083333333333333
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06565700208160564,
+              "raw_parent_mean": 0.06565700208160563,
+              "family_percentile95": [
+                0.06076499587642288,
+                0.07093267273616434
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.001179644015242116,
+              "raw_parent_mean": 0.001179644015242116,
+              "family_percentile95": [
+                0.00041141014393915483,
+                0.002134656325082178
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06502463622122362,
+              "raw_parent_mean": 0.06502463622122362,
+              "family_percentile95": [
+                0.060044931969285495,
+                0.07038008587220546
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0005472781548601079,
+              "raw_parent_mean": 0.0005472781548601079,
+              "family_percentile95": [
+                0.00011312233922231048,
+                0.0012048668328254698
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5416666666666666,
+              "raw_parent_mean": 0.5416666666666666,
+              "family_percentile95": [
+                0.3333333333333333,
+                0.75
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.08038764689131113,
+              "raw_parent_mean": 0.08038764689131113,
+              "family_percentile95": [
+                0.07123701440936436,
+                0.0906085080755826
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.015910288824947615,
+              "raw_parent_mean": 0.01591028882494762,
+              "family_percentile95": [
+                0.007182766249300636,
+                0.02670673373598296
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.875,
+              "raw_parent_mean": 0.875,
+              "family_percentile95": [
+                0.8229166666666666,
+                0.9270833333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.11997238684704943,
+              "raw_parent_mean": 0.11997238684704944,
+              "family_percentile95": [
+                0.11363749554110504,
+                0.12596271237172676
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.05549502878068591,
+              "raw_parent_mean": 0.05549502878068592,
+              "family_percentile95": [
+                0.04998874593019177,
+                0.06109986961986576
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.19097222222222224,
+              "raw_parent_mean": 0.1909722222222222,
+              "family_percentile95": [
+                0.12847222222222224,
+                0.25694444444444436
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06447735806636352,
+              "raw_parent_mean": 0.06447735806636351,
+              "family_percentile95": [
+                0.05944363558332612,
+                0.06994198420209818
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06502463622122362,
+              "raw_parent_mean": 0.06502463622122362,
+              "family_percentile95": [
+                0.060044931969285495,
+                0.07038008587220546
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0005472781548601079,
+              "raw_parent_mean": 0.0005472781548601079,
+              "family_percentile95": [
+                0.00011312233922231048,
+                0.0012048668328254698
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.13194444444444445,
+              "raw_parent_mean": 0.13194444444444445,
+              "family_percentile95": [
+                0.06944444444444443,
+                0.2083333333333333
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0006323658603820081,
+              "raw_parent_mean": 0.0006323658603820082,
+              "family_percentile95": [
+                -6.967398365813674e-05,
+                0.001473181913444982
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0006323658603820081,
+              "raw_parent_mean": 0.0006323658603820082,
+              "family_percentile95": [
+                -6.967398365813674e-05,
+                0.001473181913444982
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.13194444444444445,
+              "raw_parent_mean": 0.13194444444444445,
+              "family_percentile95": [
+                0.06944444444444443,
+                0.2083333333333333
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0006323658603820081,
+              "raw_parent_mean": 0.0006323658603820082,
+              "family_percentile95": [
+                -6.967398365813674e-05,
+                0.001473181913444982
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0006323658603820081,
+              "raw_parent_mean": 0.0006323658603820082,
+              "family_percentile95": [
+                -6.967398365813674e-05,
+                0.001473181913444982
+              ]
+            }
+          }
+        }
+      }
+    },
+    "S/all_conditions": {
+      "task_family": "S",
+      "condition": null,
+      "methods": {
+        "baseline/fifo": {
+          "parents": 1152,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.6666666666666664,
+                0.6666666666666664
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.11944492428230787,
+              "raw_parent_mean": 0.11944492428230788,
+              "family_percentile95": [
+                0.11464503266343477,
+                0.1253581147973227
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.037737237774811985,
+              "raw_parent_mean": 0.037737237774811985,
+              "family_percentile95": [
+                0.034470240651068684,
+                0.040701849491472944
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 1152,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5833333333333334,
+              "raw_parent_mean": 0.5833333333333334,
+              "family_percentile95": [
+                0.5625,
+                0.6076388888888888
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10795254736640802,
+              "raw_parent_mean": 0.10795254736640802,
+              "family_percentile95": [
+                0.10274688331265164,
+                0.11472858792669742
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.026244860858912134,
+              "raw_parent_mean": 0.02624486085891213,
+              "family_percentile95": [
+                0.02429127457390147,
+                0.02821839551925476
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 1152,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.9574652777777777,
+              "raw_parent_mean": 0.9574652777777778,
+              "family_percentile95": [
+                0.9401041666666669,
+                0.9756944444444445
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.13412667203835138,
+              "raw_parent_mean": 0.13412667203835135,
+              "family_percentile95": [
+                0.12960968848733379,
+                0.13935049664504023
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.05241898553085548,
+              "raw_parent_mean": 0.05241898553085548,
+              "family_percentile95": [
+                0.04790606497367191,
+                0.056601636275112374
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 1152,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10789002021996626,
+              "raw_parent_mean": 0.10789002021996626,
+              "family_percentile95": [
+                0.1026602643671839,
+                0.11468872336279251
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.02618233371247036,
+              "raw_parent_mean": 0.026182333712470356,
+              "family_percentile95": [
+                0.024249927174523418,
+                0.028131691975562798
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 1152,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.6666666666666664,
+                0.6666666666666664
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.11925542733551765,
+              "raw_parent_mean": 0.11925542733551762,
+              "family_percentile95": [
+                0.11431457951453734,
+                0.12532464795384912
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.03754774082802176,
+              "raw_parent_mean": 0.03754774082802176,
+              "family_percentile95": [
+                0.03421851203079406,
+                0.0407497022979307
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 1152,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 1.0,
+              "raw_parent_mean": 1.0,
+              "family_percentile95": [
+                1.0,
+                1.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.1376478470988188,
+              "raw_parent_mean": 0.1376478470988188,
+              "family_percentile95": [
+                0.13298292997022623,
+                0.14299788080807646
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0559401605913229,
+              "raw_parent_mean": 0.05594016059132291,
+              "family_percentile95": [
+                0.051201521235847765,
+                0.06048048919691216
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 1152,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.13802083333333334,
+              "raw_parent_mean": 0.13802083333333334,
+              "family_percentile95": [
+                0.10156250000000001,
+                0.17881944444444442
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0817076865074959,
+              "raw_parent_mean": 0.0817076865074959,
+              "family_percentile95": [
+                0.07547360779757288,
+                0.08966820846219699
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 1152,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10792660473259308,
+              "raw_parent_mean": 0.10792660473259308,
+              "family_percentile95": [
+                0.10272457364951411,
+                0.11471951547905235
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.02621891822509718,
+              "raw_parent_mean": 0.026218918225097178,
+              "family_percentile95": [
+                0.024294264656126066,
+                0.028176385158026448
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 1152,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.3741319444444445,
+              "raw_parent_mean": 0.3741319444444444,
+              "family_percentile95": [
+                0.34461805555555564,
+                0.40190972222222227
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.026174124671943345,
+              "raw_parent_mean": 0.026174124671943345,
+              "family_percentile95": [
+                0.02344868597124471,
+                0.028672058667442577
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.026174124671943345,
+              "raw_parent_mean": 0.026174124671943345,
+              "family_percentile95": [
+                0.02344868597124471,
+                0.028672058667442577
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 1152,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.45746527777777785,
+              "raw_parent_mean": 0.4574652777777778,
+              "family_percentile95": [
+                0.4401041666666667,
+                0.47569444444444436
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.026236651818385127,
+              "raw_parent_mean": 0.026236651818385123,
+              "family_percentile95": [
+                0.023477224314808462,
+                0.02873886250972187
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.026236651818385127,
+              "raw_parent_mean": 0.026236651818385123,
+              "family_percentile95": [
+                0.023477224314808462,
+                0.02873886250972187
+              ]
+            }
+          }
+        }
+      }
+    },
+    "R/neutral": {
+      "task_family": "R",
+      "condition": "neutral",
+      "methods": {
+        "baseline/fifo": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.3333333333333333,
+              "raw_parent_mean": 0.3333333333333333,
+              "family_percentile95": [
+                0.16666666666666666,
+                0.5416666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06630182683969717,
+              "raw_parent_mean": 0.06630182683969717,
+              "family_percentile95": [
+                0.055198401065710605,
+                0.07913044145273032
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.018615683102298487,
+              "raw_parent_mean": 0.018615683102298487,
+              "family_percentile95": [
+                0.007109117566982579,
+                0.03194142210767207
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.17708333333333334,
+              "raw_parent_mean": 0.17708333333333334,
+              "family_percentile95": [
+                0.041666666666666664,
+                0.3333333333333333
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.053979831326180894,
+              "raw_parent_mean": 0.0539798313261809,
+              "family_percentile95": [
+                0.048516526911416745,
+                0.05946589804164576
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.006293687588782212,
+              "raw_parent_mean": 0.0062936875887822106,
+              "family_percentile95": [
+                0.0031250242353234757,
+                0.009871188333286247
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.041666666666666664,
+              "raw_parent_mean": 0.041666666666666664,
+              "family_percentile95": [
+                0.0,
+                0.09375
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.05015106989084969,
+              "raw_parent_mean": 0.0501510698908497,
+              "family_percentile95": [
+                0.04635723835894375,
+                0.05404739178026669
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0024649261534510046,
+              "raw_parent_mean": 0.0024649261534510046,
+              "family_percentile95": [
+                0.0018509879304504317,
+                0.0031657296347706357
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5104166666666666,
+              "raw_parent_mean": 0.5104166666666666,
+              "family_percentile95": [
+                0.3125,
+                0.6981770833333318
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.05965584902619673,
+              "raw_parent_mean": 0.05965584902619672,
+              "family_percentile95": [
+                0.053924675207493306,
+                0.06527756242271925
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.011969705288798038,
+              "raw_parent_mean": 0.011969705288798038,
+              "family_percentile95": [
+                0.008144706953041463,
+                0.015798307896126556
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4583333333333333,
+              "raw_parent_mean": 0.4583333333333333,
+              "family_percentile95": [
+                0.25,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06959617569135189,
+              "raw_parent_mean": 0.06959617569135189,
+              "family_percentile95": [
+                0.05817887044214049,
+                0.08234403897629773
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.021910031953953205,
+              "raw_parent_mean": 0.0219100319539532,
+              "family_percentile95": [
+                0.010196336650436295,
+                0.0350773433239733
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.049803883788395044,
+              "raw_parent_mean": 0.049803883788395044,
+              "family_percentile95": [
+                0.04610914028233404,
+                0.05380832778117421
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0021177400509963637,
+              "raw_parent_mean": 0.0021177400509963637,
+              "family_percentile95": [
+                0.0013988606043272719,
+                0.002902809355661834
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.020833333333333332,
+              "raw_parent_mean": 0.020833333333333332,
+              "family_percentile95": [
+                0.0,
+                0.052083333333333336
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.04768614373739868,
+              "raw_parent_mean": 0.04768614373739869,
+              "family_percentile95": [
+                0.04396736231377277,
+                0.05166179313706335
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5104166666666666,
+              "raw_parent_mean": 0.5104166666666666,
+              "family_percentile95": [
+                0.32265625000000003,
+                0.6979166666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0597010980609479,
+              "raw_parent_mean": 0.0597010980609479,
+              "family_percentile95": [
+                0.053999216742536923,
+                0.06532238403931677
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.012014954323549218,
+              "raw_parent_mean": 0.012014954323549218,
+              "family_percentile95": [
+                0.007927237332849599,
+                0.016162602459648005
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": -0.13541666666666666,
+              "raw_parent_mean": -0.13541666666666666,
+              "family_percentile95": [
+                -0.2604166666666667,
+                -0.03125
+              ]
+            },
+            "mse": {
+              "equal_family_mean": -0.003828761435331207,
+              "raw_parent_mean": -0.003828761435331207,
+              "family_percentile95": [
+                -0.007202771334174296,
+                -0.0008055099061818417
+              ]
+            },
+            "regret": {
+              "equal_family_mean": -0.003828761435331207,
+              "raw_parent_mean": -0.003828761435331207,
+              "family_percentile95": [
+                -0.007202771334174296,
+                -0.0008055099061818417
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": -0.46875,
+              "raw_parent_mean": -0.46875,
+              "family_percentile95": [
+                -0.65625,
+                -0.2916666666666667
+              ]
+            },
+            "mse": {
+              "equal_family_mean": -0.009504779135347032,
+              "raw_parent_mean": -0.009504779135347032,
+              "family_percentile95": [
+                -0.013246339763474968,
+                -0.005723056740452952
+              ]
+            },
+            "regret": {
+              "equal_family_mean": -0.009504779135347032,
+              "raw_parent_mean": -0.009504779135347032,
+              "family_percentile95": [
+                -0.013246339763474968,
+                -0.005723056740452952
+              ]
+            }
+          }
+        }
+      }
+    },
+    "R/salient_redundant": {
+      "task_family": "R",
+      "condition": "salient_redundant",
+      "methods": {
+        "baseline/fifo": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.3333333333333333,
+              "raw_parent_mean": 0.3333333333333333,
+              "family_percentile95": [
+                0.16666666666666666,
+                0.5416666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07259373844101262,
+              "raw_parent_mean": 0.07259373844101262,
+              "family_percentile95": [
+                0.06246370955592261,
+                0.08407060581905205
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.02350665967706007,
+              "raw_parent_mean": 0.02350665967706007,
+              "family_percentile95": [
+                0.013174608079080498,
+                0.035510556932402314
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4583333333333333,
+              "raw_parent_mean": 0.4583333333333333,
+              "family_percentile95": [
+                0.2708333333333333,
+                0.6458333333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.058935295779453174,
+              "raw_parent_mean": 0.05893529577945317,
+              "family_percentile95": [
+                0.0527857651982233,
+                0.06505434494004847
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.00984821701550062,
+              "raw_parent_mean": 0.00984821701550062,
+              "family_percentile95": [
+                0.005423961074291425,
+                0.01417677535381622
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.15625,
+              "raw_parent_mean": 0.15625,
+              "family_percentile95": [
+                0.07291666666666667,
+                0.25
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.05937033183485407,
+              "raw_parent_mean": 0.05937033183485407,
+              "family_percentile95": [
+                0.05343976952431898,
+                0.06500407042800892
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.010283253070901523,
+              "raw_parent_mean": 0.010283253070901523,
+              "family_percentile95": [
+                0.006122841122084473,
+                0.014242385991825996
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4895833333333333,
+              "raw_parent_mean": 0.4895833333333333,
+              "family_percentile95": [
+                0.2916666666666667,
+                0.6979166666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.05907745214664097,
+              "raw_parent_mean": 0.05907745214664097,
+              "family_percentile95": [
+                0.05290612459966486,
+                0.06524685809734762
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.00999037338268842,
+              "raw_parent_mean": 0.009990373382688421,
+              "family_percentile95": [
+                0.005536577842974042,
+                0.014356998109250556
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4583333333333333,
+              "raw_parent_mean": 0.4583333333333333,
+              "family_percentile95": [
+                0.25,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07287200761839989,
+              "raw_parent_mean": 0.07287200761839989,
+              "family_percentile95": [
+                0.06165210084663081,
+                0.08530797950633838
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.02378492885444733,
+              "raw_parent_mean": 0.023784928854447333,
+              "family_percentile95": [
+                0.012080831225751027,
+                0.03646797301868553
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.2916666666666667,
+                0.7083333333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10166582887803215,
+              "raw_parent_mean": 0.10166582887803215,
+              "family_percentile95": [
+                0.08849227063420792,
+                0.11484698910078743
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.05257875011407959,
+              "raw_parent_mean": 0.05257875011407959,
+              "family_percentile95": [
+                0.038709037335978615,
+                0.06676064318611379
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.010416666666666666,
+              "raw_parent_mean": 0.010416666666666666,
+              "family_percentile95": [
+                0.0,
+                0.03125
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.04908707876395255,
+              "raw_parent_mean": 0.04908707876395255,
+              "family_percentile95": [
+                0.0453965640475733,
+                0.052977273564937914
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4895833333333333,
+              "raw_parent_mean": 0.4895833333333333,
+              "family_percentile95": [
+                0.2916666666666667,
+                0.6875
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.05906992350394783,
+              "raw_parent_mean": 0.059069923503947824,
+              "family_percentile95": [
+                0.05289859595697171,
+                0.06523615118004272
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.009982844739995276,
+              "raw_parent_mean": 0.009982844739995276,
+              "family_percentile95": [
+                0.005522939177370282,
+                0.014360822584003893
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": -0.3020833333333333,
+              "raw_parent_mean": -0.3020833333333333,
+              "family_percentile95": [
+                -0.4375,
+                -0.16666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.00043503605540090427,
+              "raw_parent_mean": 0.00043503605540090427,
+              "family_percentile95": [
+                -0.000673406484012946,
+                0.0016945081089468138
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.00043503605540090427,
+              "raw_parent_mean": 0.00043503605540090427,
+              "family_percentile95": [
+                -0.000673406484012946,
+                0.0016945081089468138
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": -0.3333333333333333,
+              "raw_parent_mean": -0.3333333333333333,
+              "family_percentile95": [
+                -0.4895833333333333,
+                -0.18723958333333476
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.000292879688213104,
+              "raw_parent_mean": 0.000292879688213104,
+              "family_percentile95": [
+                -0.000842751724610984,
+                0.0015794450290612199
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.000292879688213104,
+              "raw_parent_mean": 0.000292879688213104,
+              "family_percentile95": [
+                -0.000842751724610984,
+                0.0015794450290612199
+              ]
+            }
+          }
+        }
+      }
+    },
+    "R/salient_unique": {
+      "task_family": "R",
+      "condition": "salient_unique",
+      "methods": {
+        "baseline/fifo": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.3333333333333333,
+              "raw_parent_mean": 0.3333333333333333,
+              "family_percentile95": [
+                0.16666666666666666,
+                0.5416666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07868030283573463,
+              "raw_parent_mean": 0.07868030283573464,
+              "family_percentile95": [
+                0.07037297524222372,
+                0.08819512998939238
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.010886328600650072,
+              "raw_parent_mean": 0.010886328600650072,
+              "family_percentile95": [
+                0.0020883362443925475,
+                0.021067250821563344
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.25,
+              "raw_parent_mean": 0.25,
+              "family_percentile95": [
+                0.10416666666666667,
+                0.3958333333333333
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06799996639721971,
+              "raw_parent_mean": 0.06799996639721971,
+              "family_percentile95": [
+                0.06451182037436794,
+                0.07163396194845813
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.00020599216213514085,
+              "raw_parent_mean": 0.00020599216213514085,
+              "family_percentile95": [
+                8.02871173188822e-05,
+                0.00036462111377014806
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.19791666666666666,
+              "raw_parent_mean": 0.19791666666666666,
+              "family_percentile95": [
+                0.0625,
+                0.3541666666666667
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0679534970815077,
+              "raw_parent_mean": 0.0679534970815077,
+              "family_percentile95": [
+                0.06446907136341265,
+                0.07157796139591602
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.00015952284642313332,
+              "raw_parent_mean": 0.00015952284642313332,
+              "family_percentile95": [
+                5.202061154132314e-05,
+                0.00031574554436829234
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.2916666666666667,
+                0.7083333333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06809873383142061,
+              "raw_parent_mean": 0.06809873383142061,
+              "family_percentile95": [
+                0.06470135470838248,
+                0.07169731322066274
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0003047595963360362,
+              "raw_parent_mean": 0.0003047595963360362,
+              "family_percentile95": [
+                0.00013183923140587105,
+                0.0005215328857880879
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4583333333333333,
+              "raw_parent_mean": 0.4583333333333333,
+              "family_percentile95": [
+                0.25,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07944560341395059,
+              "raw_parent_mean": 0.07944560341395059,
+              "family_percentile95": [
+                0.06982674245833076,
+                0.08996804617887119
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.011651629178866018,
+              "raw_parent_mean": 0.011651629178866016,
+              "family_percentile95": [
+                0.002945752500412968,
+                0.02284024589920359
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0681891914027306,
+              "raw_parent_mean": 0.0681891914027306,
+              "family_percentile95": [
+                0.06471219259547217,
+                0.07186780852323434
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.00039521716764602473,
+              "raw_parent_mean": 0.00039521716764602473,
+              "family_percentile95": [
+                0.00017454579389311893,
+                0.0006732810156617522
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.13541666666666666,
+              "raw_parent_mean": 0.13541666666666666,
+              "family_percentile95": [
+                0.041666666666666664,
+                0.2708333333333333
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06779397423508457,
+              "raw_parent_mean": 0.06779397423508457,
+              "family_percentile95": [
+                0.06439118247085636,
+                0.0713919747363342
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.2916666666666667,
+                0.7083333333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.06809873383142061,
+              "raw_parent_mean": 0.06809873383142061,
+              "family_percentile95": [
+                0.06470135470838248,
+                0.07169731322066274
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0003047595963360362,
+              "raw_parent_mean": 0.0003047595963360362,
+              "family_percentile95": [
+                0.00013183923140587105,
+                0.0005215328857880879
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": -0.052083333333333336,
+              "raw_parent_mean": -0.052083333333333336,
+              "family_percentile95": [
+                -0.11458333333333333,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": -4.646931571200755e-05,
+              "raw_parent_mean": -4.646931571200755e-05,
+              "family_percentile95": [
+                -0.00012375867747035408,
+                -2.259158946297733e-06
+              ]
+            },
+            "regret": {
+              "equal_family_mean": -4.646931571200755e-05,
+              "raw_parent_mean": -4.646931571200755e-05,
+              "family_percentile95": [
+                -0.00012375867747035408,
+                -2.259158946297733e-06
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": -0.3020833333333333,
+              "raw_parent_mean": -0.3020833333333333,
+              "family_percentile95": [
+                -0.4895833333333333,
+                -0.14583333333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": -0.00014523674991290288,
+              "raw_parent_mean": -0.00014523674991290288,
+              "family_percentile95": [
+                -0.00036172615236851227,
+                4.2476734022173126e-05
+              ]
+            },
+            "regret": {
+              "equal_family_mean": -0.00014523674991290288,
+              "raw_parent_mean": -0.00014523674991290288,
+              "family_percentile95": [
+                -0.00036172615236851227,
+                4.2476734022173126e-05
+              ]
+            }
+          }
+        }
+      }
+    },
+    "D/neutral": {
+      "task_family": "D",
+      "condition": "neutral",
+      "methods": {
+        "baseline/fifo": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.4583333333333333,
+                0.8333333333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0930191923987886,
+              "raw_parent_mean": 0.0930191923987886,
+              "family_percentile95": [
+                0.07932206736431825,
+                0.10706796153367831
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.034639149742542834,
+              "raw_parent_mean": 0.034639149742542834,
+              "family_percentile95": [
+                0.020336066632483822,
+                0.049557183213138456
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.058464685460634234,
+              "raw_parent_mean": 0.058464685460634234,
+              "family_percentile95": [
+                0.05318819211191277,
+                0.06400584462401132
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 8.464280438847439e-05,
+              "raw_parent_mean": 8.464280438847439e-05,
+              "family_percentile95": [
+                1.4807672890072726e-05,
+                0.00017063083135847039
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.08333333333333333,
+              "raw_parent_mean": 0.08333333333333333,
+              "family_percentile95": [
+                0.020833333333333332,
+                0.15625
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0598301103566213,
+              "raw_parent_mean": 0.05983011035662131,
+              "family_percentile95": [
+                0.054592000342297796,
+                0.0652588363113696
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0014500677003755384,
+              "raw_parent_mean": 0.0014500677003755384,
+              "family_percentile95": [
+                0.00044513953778953767,
+                0.002708022633886739
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.058464685460634234,
+              "raw_parent_mean": 0.058464685460634234,
+              "family_percentile95": [
+                0.05318819211191277,
+                0.06400584462401132
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 8.464280438847439e-05,
+              "raw_parent_mean": 8.464280438847439e-05,
+              "family_percentile95": [
+                1.4807672890072726e-05,
+                0.00017063083135847039
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5416666666666666,
+              "raw_parent_mean": 0.5416666666666666,
+              "family_percentile95": [
+                0.3333333333333333,
+                0.75
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0777124236562212,
+              "raw_parent_mean": 0.0777124236562212,
+              "family_percentile95": [
+                0.06771715275450091,
+                0.08865617000156477
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.019332380999975435,
+              "raw_parent_mean": 0.019332380999975435,
+              "family_percentile95": [
+                0.009834685821968963,
+                0.030709691378622648
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 1.0,
+              "raw_parent_mean": 1.0,
+              "family_percentile95": [
+                1.0,
+                1.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.11134830606976735,
+              "raw_parent_mean": 0.11134830606976735,
+              "family_percentile95": [
+                0.10016514033321153,
+                0.1222616648063575
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.05296826341352159,
+              "raw_parent_mean": 0.05296826341352159,
+              "family_percentile95": [
+                0.04251976013615603,
+                0.06393335546035311
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.052083333333333336,
+              "raw_parent_mean": 0.052083333333333336,
+              "family_percentile95": [
+                0.010416666666666666,
+                0.09375
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.058380042656245766,
+              "raw_parent_mean": 0.058380042656245766,
+              "family_percentile95": [
+                0.053095334596567054,
+                0.06388269335204512
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.058464685460634234,
+              "raw_parent_mean": 0.058464685460634234,
+              "family_percentile95": [
+                0.05318819211191277,
+                0.06400584462401132
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 8.464280438847439e-05,
+              "raw_parent_mean": 8.464280438847439e-05,
+              "family_percentile95": [
+                1.4807672890072726e-05,
+                0.00017063083135847039
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.08333333333333333,
+              "raw_parent_mean": 0.08333333333333333,
+              "family_percentile95": [
+                0.020833333333333332,
+                0.15625
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.001365424895987064,
+              "raw_parent_mean": 0.001365424895987064,
+              "family_percentile95": [
+                0.0003613982720595291,
+                0.002639149152594819
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.001365424895987064,
+              "raw_parent_mean": 0.001365424895987064,
+              "family_percentile95": [
+                0.0003613982720595291,
+                0.002639149152594819
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.08333333333333333,
+              "raw_parent_mean": 0.08333333333333333,
+              "family_percentile95": [
+                0.020833333333333332,
+                0.15625
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.001365424895987064,
+              "raw_parent_mean": 0.001365424895987064,
+              "family_percentile95": [
+                0.0003613982720595291,
+                0.002639149152594819
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.001365424895987064,
+              "raw_parent_mean": 0.001365424895987064,
+              "family_percentile95": [
+                0.0003613982720595291,
+                0.002639149152594819
+              ]
+            }
+          }
+        }
+      }
+    },
+    "D/salient_decoy": {
+      "task_family": "D",
+      "condition": "salient_decoy",
+      "methods": {
+        "baseline/fifo": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.4583333333333333,
+                0.8333333333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.09302042544631617,
+              "raw_parent_mean": 0.09302042544631617,
+              "family_percentile95": [
+                0.07932269267821188,
+                0.10706972971747704
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.034640375556710366,
+              "raw_parent_mean": 0.034640375556710366,
+              "family_percentile95": [
+                0.020334514928920865,
+                0.04955717750129432
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.058464685460634234,
+              "raw_parent_mean": 0.058464685460634234,
+              "family_percentile95": [
+                0.05318819211191277,
+                0.06400584462401132
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 8.463557102844697e-05,
+              "raw_parent_mean": 8.463557102844697e-05,
+              "family_percentile95": [
+                1.4807519999879889e-05,
+                0.0001706159179420685
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.08333333333333333,
+              "raw_parent_mean": 0.08333333333333333,
+              "family_percentile95": [
+                0.020833333333333332,
+                0.15625
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.05982991844327284,
+              "raw_parent_mean": 0.05982991844327284,
+              "family_percentile95": [
+                0.054591170275352215,
+                0.06525901506501897
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0014498685536670402,
+              "raw_parent_mean": 0.0014498685536670404,
+              "family_percentile95": [
+                0.0004450882721535654,
+                0.002707537909948116
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.058464685460634234,
+              "raw_parent_mean": 0.058464685460634234,
+              "family_percentile95": [
+                0.05318819211191277,
+                0.06400584462401132
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 8.463557102844697e-05,
+              "raw_parent_mean": 8.463557102844697e-05,
+              "family_percentile95": [
+                1.4807519999879889e-05,
+                0.0001706159179420685
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5416666666666666,
+              "raw_parent_mean": 0.5416666666666666,
+              "family_percentile95": [
+                0.3333333333333333,
+                0.75
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.077711555619472,
+              "raw_parent_mean": 0.077711555619472,
+              "family_percentile95": [
+                0.06771656438891868,
+                0.08865555002666409
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.019331505729866208,
+              "raw_parent_mean": 0.01933150572986621,
+              "family_percentile95": [
+                0.00983382057230741,
+                0.030708972305130647
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 1.0,
+              "raw_parent_mean": 1.0,
+              "family_percentile95": [
+                1.0,
+                1.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.14148617491290805,
+              "raw_parent_mean": 0.14148617491290805,
+              "family_percentile95": [
+                0.13731137739241298,
+                0.14615291499129765
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.08310612502330227,
+              "raw_parent_mean": 0.08310612502330227,
+              "family_percentile95": [
+                0.07933828499076175,
+                0.08670482027996522
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.052083333333333336,
+              "raw_parent_mean": 0.052083333333333336,
+              "family_percentile95": [
+                0.010416666666666666,
+                0.09375
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.05838004988960579,
+              "raw_parent_mean": 0.05838004988960579,
+              "family_percentile95": [
+                0.05309533495976871,
+                0.06388270057825826
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.058464685460634234,
+              "raw_parent_mean": 0.058464685460634234,
+              "family_percentile95": [
+                0.05318819211191277,
+                0.06400584462401132
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 8.463557102844697e-05,
+              "raw_parent_mean": 8.463557102844697e-05,
+              "family_percentile95": [
+                1.4807519999879889e-05,
+                0.0001706159179420685
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.08333333333333333,
+              "raw_parent_mean": 0.08333333333333333,
+              "family_percentile95": [
+                0.020833333333333332,
+                0.15625
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0013652329826385932,
+              "raw_parent_mean": 0.0013652329826385932,
+              "family_percentile95": [
+                0.00036154076867670485,
+                0.0026389093779953924
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0013652329826385932,
+              "raw_parent_mean": 0.0013652329826385932,
+              "family_percentile95": [
+                0.00036154076867670485,
+                0.0026389093779953924
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.08333333333333333,
+              "raw_parent_mean": 0.08333333333333333,
+              "family_percentile95": [
+                0.020833333333333332,
+                0.15625
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.0013652329826385932,
+              "raw_parent_mean": 0.0013652329826385932,
+              "family_percentile95": [
+                0.00036154076867670485,
+                0.0026389093779953924
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0013652329826385932,
+              "raw_parent_mean": 0.0013652329826385932,
+              "family_percentile95": [
+                0.00036154076867670485,
+                0.0026389093779953924
+              ]
+            }
+          }
+        }
+      }
+    },
+    "D/salient_useful": {
+      "task_family": "D",
+      "condition": "salient_useful",
+      "methods": {
+        "baseline/fifo": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.4583333333333333,
+                0.8333333333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.09975748493797514,
+              "raw_parent_mean": 0.09975748493797514,
+              "family_percentile95": [
+                0.08879848524750736,
+                0.11185424059244782
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.023085503284736117,
+              "raw_parent_mean": 0.023085503284736117,
+              "family_percentile95": [
+                0.011117424421868246,
+                0.03683527688577218
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07814453774240242,
+              "raw_parent_mean": 0.07814453774240242,
+              "family_percentile95": [
+                0.07314404993973957,
+                0.0835686265324081
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0014725560891634024,
+              "raw_parent_mean": 0.0014725560891634022,
+              "family_percentile95": [
+                0.00021818322652916418,
+                0.003458691312788862
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.22916666666666666,
+              "raw_parent_mean": 0.22916666666666666,
+              "family_percentile95": [
+                0.13541666666666666,
+                0.34375
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07731097744492278,
+              "raw_parent_mean": 0.07731097744492278,
+              "family_percentile95": [
+                0.07258560517617323,
+                0.08264073928907545
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0006389957916837695,
+              "raw_parent_mean": 0.0006389957916837695,
+              "family_percentile95": [
+                0.0001465775179795253,
+                0.001485014507698402
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07814453774240242,
+              "raw_parent_mean": 0.07814453774240242,
+              "family_percentile95": [
+                0.07314404993973957,
+                0.0835686265324081
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0014725560891634024,
+              "raw_parent_mean": 0.0014725560891634022,
+              "family_percentile95": [
+                0.00021818322652916418,
+                0.003458691312788862
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5416666666666666,
+              "raw_parent_mean": 0.5416666666666666,
+              "family_percentile95": [
+                0.3333333333333333,
+                0.75
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.08573896139824022,
+              "raw_parent_mean": 0.08573896139824022,
+              "family_percentile95": [
+                0.07766165783053983,
+                0.09487646285006918
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.009066979745001197,
+              "raw_parent_mean": 0.009066979745001197,
+              "family_percentile95": [
+                0.0009585235801211703,
+                0.017851363145223866
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.625,
+              "raw_parent_mean": 0.625,
+              "family_percentile95": [
+                0.46875,
+                0.78125
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10708267955847289,
+              "raw_parent_mean": 0.10708267955847289,
+              "family_percentile95": [
+                0.09493742107960709,
+                0.11936955604014958
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.030410697905233892,
+              "raw_parent_mean": 0.030410697905233892,
+              "family_percentile95": [
+                0.01844412231771591,
+                0.04276451132033703
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.46875,
+              "raw_parent_mean": 0.46875,
+              "family_percentile95": [
+                0.3333333333333333,
+                0.6145833333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.076671981653239,
+              "raw_parent_mean": 0.07667198165323902,
+              "family_percentile95": [
+                0.07179624562868794,
+                0.08206888040893068
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07814453774240242,
+              "raw_parent_mean": 0.07814453774240242,
+              "family_percentile95": [
+                0.07314404993973957,
+                0.0835686265324081
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0014725560891634024,
+              "raw_parent_mean": 0.0014725560891634022,
+              "family_percentile95": [
+                0.00021818322652916418,
+                0.003458691312788862
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.22916666666666666,
+              "raw_parent_mean": 0.22916666666666666,
+              "family_percentile95": [
+                0.13541666666666666,
+                0.34375
+              ]
+            },
+            "mse": {
+              "equal_family_mean": -0.000833560297479633,
+              "raw_parent_mean": -0.000833560297479633,
+              "family_percentile95": [
+                -0.0025283019711645725,
+                8.048498531327681e-05
+              ]
+            },
+            "regret": {
+              "equal_family_mean": -0.000833560297479633,
+              "raw_parent_mean": -0.000833560297479633,
+              "family_percentile95": [
+                -0.0025283019711645725,
+                8.048498531327681e-05
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 96,
+          "families": 24,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.22916666666666666,
+              "raw_parent_mean": 0.22916666666666666,
+              "family_percentile95": [
+                0.13541666666666666,
+                0.34375
+              ]
+            },
+            "mse": {
+              "equal_family_mean": -0.000833560297479633,
+              "raw_parent_mean": -0.000833560297479633,
+              "family_percentile95": [
+                -0.0025283019711645725,
+                8.048498531327681e-05
+              ]
+            },
+            "regret": {
+              "equal_family_mean": -0.000833560297479633,
+              "raw_parent_mean": -0.000833560297479633,
+              "family_percentile95": [
+                -0.0025283019711645725,
+                8.048498531327681e-05
+              ]
+            }
+          }
+        }
+      }
+    },
+    "S/neutral": {
+      "task_family": "S",
+      "condition": "neutral",
+      "methods": {
+        "baseline/fifo": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.6666666666666666,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.1231321183446964,
+              "raw_parent_mean": 0.12313211834469638,
+              "family_percentile95": [
+                0.11141648694058165,
+                0.139293486492187
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.030663937955545655,
+              "raw_parent_mean": 0.03066393795554566,
+              "family_percentile95": [
+                0.025227504742545155,
+                0.0366996361311588
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.6666666666666666,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.11531920535170698,
+              "raw_parent_mean": 0.11531920535170695,
+              "family_percentile95": [
+                0.10187683885260179,
+                0.13313574284214363
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.022851024962556227,
+              "raw_parent_mean": 0.022851024962556234,
+              "family_percentile95": [
+                0.01926634310041664,
+                0.027324630955919915
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.9131944444444445,
+              "raw_parent_mean": 0.9131944444444444,
+              "family_percentile95": [
+                0.90625,
+                0.9166666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.13516844934682695,
+              "raw_parent_mean": 0.13516844934682692,
+              "family_percentile95": [
+                0.12598217539347437,
+                0.14890425998848167
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.04270026895767623,
+              "raw_parent_mean": 0.04270026895767623,
+              "family_percentile95": [
+                0.034756670743367496,
+                0.051794929122059165
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.11529672714502136,
+              "raw_parent_mean": 0.11529672714502134,
+              "family_percentile95": [
+                0.10191163300738935,
+                0.13333478983243588
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.022828546755870625,
+              "raw_parent_mean": 0.022828546755870628,
+              "family_percentile95": [
+                0.01938665308018419,
+                0.02712041024430105
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.6666666666666666,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.12314541527148709,
+              "raw_parent_mean": 0.12314541527148709,
+              "family_percentile95": [
+                0.11135820148388788,
+                0.13938866889700602
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.030677234882336354,
+              "raw_parent_mean": 0.03067723488233636,
+              "family_percentile95": [
+                0.025321900889156798,
+                0.03666754195453119
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 1.0,
+              "raw_parent_mean": 1.0,
+              "family_percentile95": [
+                1.0,
+                1.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.13672355978961906,
+              "raw_parent_mean": 0.13672355978961903,
+              "family_percentile95": [
+                0.127524108678522,
+                0.15103292059876106
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.044255379400468316,
+              "raw_parent_mean": 0.04425537940046832,
+              "family_percentile95": [
+                0.03645346279091748,
+                0.053410469728333874
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.28472222222222227,
+              "raw_parent_mean": 0.2847222222222222,
+              "family_percentile95": [
+                0.2291666666666667,
+                0.3229166666666667
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.09246818038915072,
+              "raw_parent_mean": 0.09246818038915072,
+              "family_percentile95": [
+                0.07585310187229137,
+                0.11348965727249564
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.11541105835580695,
+              "raw_parent_mean": 0.11541105835580694,
+              "family_percentile95": [
+                0.10205878826085724,
+                0.13337554341648752
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.02294287796665621,
+              "raw_parent_mean": 0.022942877966656207,
+              "family_percentile95": [
+                0.019498170829771407,
+                0.02740850698291931
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.24652777777777776,
+              "raw_parent_mean": 0.2465277777777778,
+              "family_percentile95": [
+                0.23958333333333334,
+                0.25
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.019849243995119992,
+              "raw_parent_mean": 0.01984924399511999,
+              "family_percentile95": [
+                0.015158031824874218,
+                0.024705697820214294
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.019849243995119992,
+              "raw_parent_mean": 0.01984924399511999,
+              "family_percentile95": [
+                0.015158031824874218,
+                0.024705697820214294
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4131944444444444,
+              "raw_parent_mean": 0.4131944444444444,
+              "family_percentile95": [
+                0.40625,
+                0.4166666666666667
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.019871722201805598,
+              "raw_parent_mean": 0.019871722201805594,
+              "family_percentile95": [
+                0.015098564062893423,
+                0.024862250040774032
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.019871722201805598,
+              "raw_parent_mean": 0.019871722201805594,
+              "family_percentile95": [
+                0.015098564062893423,
+                0.024862250040774032
+              ]
+            }
+          }
+        }
+      }
+    },
+    "S/salient_slot_0": {
+      "task_family": "S",
+      "condition": "salient_slot_0",
+      "methods": {
+        "baseline/fifo": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.6666666666666666,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.11861861159816932,
+              "raw_parent_mean": 0.1186186115981693,
+              "family_percentile95": [
+                0.1126989572977369,
+                0.1252969165317101
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.04257020764057362,
+              "raw_parent_mean": 0.04257020764057361,
+              "family_percentile95": [
+                0.03827193678866864,
+                0.046795016119685846
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5833333333333334,
+              "raw_parent_mean": 0.5833333333333334,
+              "family_percentile95": [
+                0.5833333333333334,
+                0.5833333333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.1038460206677994,
+              "raw_parent_mean": 0.10384602066779941,
+              "family_percentile95": [
+                0.09891384260537,
+                0.10870891331280447
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.027797616710203716,
+              "raw_parent_mean": 0.027797616710203716,
+              "family_percentile95": [
+                0.0254924081888468,
+                0.029737599762111794
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 1.0,
+              "raw_parent_mean": 1.0,
+              "family_percentile95": [
+                1.0,
+                1.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.13170355169717105,
+              "raw_parent_mean": 0.13170355169717107,
+              "family_percentile95": [
+                0.12495521424221796,
+                0.13964544178047059
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.055655147739575354,
+              "raw_parent_mean": 0.05565514773957535,
+              "family_percentile95": [
+                0.051290544685602124,
+                0.06081554141521513
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10378273759396313,
+              "raw_parent_mean": 0.10378273759396316,
+              "family_percentile95": [
+                0.09878060083545898,
+                0.10867698748618615
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.02773433363636746,
+              "raw_parent_mean": 0.027734333636367455,
+              "family_percentile95": [
+                0.02539668244077529,
+                0.029697575217278078
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.6666666666666666,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.11827315652123983,
+              "raw_parent_mean": 0.11827315652123985,
+              "family_percentile95": [
+                0.11199559927906132,
+                0.12522273410739995
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.042224752563644156,
+              "raw_parent_mean": 0.04222475256364414,
+              "family_percentile95": [
+                0.037377078752379646,
+                0.046890916427397435
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 1.0,
+              "raw_parent_mean": 1.0,
+              "family_percentile95": [
+                1.0,
+                1.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.13604393145409616,
+              "raw_parent_mean": 0.13604393145409616,
+              "family_percentile95": [
+                0.12981129734356783,
+                0.14377285569284556
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.059995527496500466,
+              "raw_parent_mean": 0.05999552749650045,
+              "family_percentile95": [
+                0.055455476505192884,
+                0.06500579904653069
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0798611111111111,
+              "raw_parent_mean": 0.0798611111111111,
+              "family_percentile95": [
+                0.048611111111111105,
+                0.1111111111111111
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07604840395759571,
+              "raw_parent_mean": 0.07604840395759568,
+              "family_percentile95": [
+                0.07230228639564798,
+                0.07966406152458204
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10383111889962694,
+              "raw_parent_mean": 0.10383111889962697,
+              "family_percentile95": [
+                0.09878060083545898,
+                0.10873249762626572
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.027782714942031272,
+              "raw_parent_mean": 0.027782714942031266,
+              "family_percentile95": [
+                0.02539668244077529,
+                0.02978567971299957
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4166666666666667,
+              "raw_parent_mean": 0.4166666666666667,
+              "family_percentile95": [
+                0.4166666666666667,
+                0.4166666666666667
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.027857531029371635,
+              "raw_parent_mean": 0.02785753102937163,
+              "family_percentile95": [
+                0.024695711141195988,
+                0.03135705108897943
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.027857531029371635,
+              "raw_parent_mean": 0.02785753102937163,
+              "family_percentile95": [
+                0.024695711141195988,
+                0.03135705108897943
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.027920814103207892,
+              "raw_parent_mean": 0.027920814103207896,
+              "family_percentile95": [
+                0.024781427567192912,
+                0.03142672382928131
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.027920814103207892,
+              "raw_parent_mean": 0.027920814103207896,
+              "family_percentile95": [
+                0.024781427567192912,
+                0.03142672382928131
+              ]
+            }
+          }
+        }
+      }
+    },
+    "S/salient_slot_1": {
+      "task_family": "S",
+      "condition": "salient_slot_1",
+      "methods": {
+        "baseline/fifo": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.6666666666666666,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.1195579688805059,
+              "raw_parent_mean": 0.11955796888050589,
+              "family_percentile95": [
+                0.10915304782286019,
+                0.13390345357988784
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.036659487276807186,
+              "raw_parent_mean": 0.03665948727680719,
+              "family_percentile95": [
+                0.030561538265995915,
+                0.043184727701270936
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10767710630816053,
+              "raw_parent_mean": 0.10767710630816053,
+              "family_percentile95": [
+                0.09717470365309844,
+                0.12462178606592739
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.02477862470446183,
+              "raw_parent_mean": 0.02477862470446183,
+              "family_percentile95": [
+                0.02094899885201909,
+                0.02843369216743814
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.9166666666666666,
+              "raw_parent_mean": 0.9166666666666666,
+              "family_percentile95": [
+                0.9166666666666666,
+                0.9166666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.1344231561855379,
+              "raw_parent_mean": 0.1344231561855379,
+              "family_percentile95": [
+                0.12397246999930872,
+                0.14763767640713577
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0515246745818392,
+              "raw_parent_mean": 0.05152467458183921,
+              "family_percentile95": [
+                0.042825530795045474,
+                0.06033460445814066
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10772769977749173,
+              "raw_parent_mean": 0.10772769977749173,
+              "family_percentile95": [
+                0.09719758987629445,
+                0.12466900109477475
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.024829218173793036,
+              "raw_parent_mean": 0.02482921817379303,
+              "family_percentile95": [
+                0.02097360951703172,
+                0.02852323130516032
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.6666666666666666,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.11835744760079193,
+              "raw_parent_mean": 0.11835744760079193,
+              "family_percentile95": [
+                0.10776967377552604,
+                0.13303784665497012
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.03545896599709322,
+              "raw_parent_mean": 0.03545896599709322,
+              "family_percentile95": [
+                0.02962007020784188,
+                0.04191376742562222
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 1.0,
+              "raw_parent_mean": 1.0,
+              "family_percentile95": [
+                1.0,
+                1.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.13794702631131137,
+              "raw_parent_mean": 0.13794702631131134,
+              "family_percentile95": [
+                0.1272275564942766,
+                0.15144586089818438
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.05504854470761264,
+              "raw_parent_mean": 0.05504854470761265,
+              "family_percentile95": [
+                0.04613368732926603,
+                0.06395361752993355
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.125,
+              "raw_parent_mean": 0.125,
+              "family_percentile95": [
+                0.09722222222222222,
+                0.14930555555555555
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.08289848160369871,
+              "raw_parent_mean": 0.08289848160369871,
+              "family_percentile95": [
+                0.07023454952867021,
+                0.10137488838195197
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10772769977749173,
+              "raw_parent_mean": 0.10772769977749173,
+              "family_percentile95": [
+                0.09719758987629445,
+                0.12466900109477475
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.024829218173793036,
+              "raw_parent_mean": 0.02482921817379303,
+              "family_percentile95": [
+                0.02097360951703172,
+                0.02852323130516032
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4166666666666667,
+              "raw_parent_mean": 0.4166666666666667,
+              "family_percentile95": [
+                0.4166666666666667,
+                0.4166666666666667
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.02674604987737737,
+              "raw_parent_mean": 0.026746049877377373,
+              "family_percentile95": [
+                0.021268410122111697,
+                0.03200397433679952
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.02674604987737737,
+              "raw_parent_mean": 0.026746049877377373,
+              "family_percentile95": [
+                0.021268410122111697,
+                0.03200397433679952
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4166666666666667,
+              "raw_parent_mean": 0.4166666666666667,
+              "family_percentile95": [
+                0.4166666666666667,
+                0.4166666666666667
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.02669545640804617,
+              "raw_parent_mean": 0.02669545640804617,
+              "family_percentile95": [
+                0.021239410087526528,
+                0.031917628974678924
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.02669545640804617,
+              "raw_parent_mean": 0.02669545640804617,
+              "family_percentile95": [
+                0.021239410087526528,
+                0.031917628974678924
+              ]
+            }
+          }
+        }
+      }
+    },
+    "S/salient_slot_2": {
+      "task_family": "S",
+      "condition": "salient_slot_2",
+      "methods": {
+        "baseline/fifo": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.6666666666666666,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.1164709983058599,
+              "raw_parent_mean": 0.1164709983058599,
+              "family_percentile95": [
+                0.11088630251538657,
+                0.12256965263701508
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.04105531822632147,
+              "raw_parent_mean": 0.04105531822632147,
+              "family_percentile95": [
+                0.0387290362493898,
+                0.04300137514225052
+              ]
+            }
+          }
+        },
+        "baseline/full_sensitivity": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5833333333333334,
+              "raw_parent_mean": 0.5833333333333334,
+              "family_percentile95": [
+                0.5833333333333334,
+                0.5833333333333334
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10496785713796519,
+              "raw_parent_mean": 0.10496785713796519,
+              "family_percentile95": [
+                0.09992610777278439,
+                0.11045998450156436
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.029552177058426752,
+              "raw_parent_mean": 0.029552177058426752,
+              "family_percentile95": [
+                0.02685126751111441,
+                0.032253758840764764
+              ]
+            }
+          }
+        },
+        "baseline/medoid": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 1.0,
+              "raw_parent_mean": 1.0,
+              "family_percentile95": [
+                1.0,
+                1.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.13521153092386956,
+              "raw_parent_mean": 0.1352115309238696,
+              "family_percentile95": [
+                0.12989867224555124,
+                0.14087417882184075
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.059795850844331144,
+              "raw_parent_mean": 0.059795850844331144,
+              "family_percentile95": [
+                0.05736192331416348,
+                0.062147807479385475
+              ]
+            }
+          }
+        },
+        "baseline/reader_attention": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10475291636338875,
+              "raw_parent_mean": 0.10475291636338875,
+              "family_percentile95": [
+                0.09978189135297821,
+                0.11016866945238962
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.029337236283850317,
+              "raw_parent_mean": 0.02933723628385032,
+              "family_percentile95": [
+                0.02672562629246916,
+                0.031952748206573414
+              ]
+            }
+          }
+        },
+        "baseline/terminal_uniform": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.6666666666666666,
+              "raw_parent_mean": 0.6666666666666666,
+              "family_percentile95": [
+                0.6666666666666666,
+                0.6666666666666666
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.11724568994855177,
+              "raw_parent_mean": 0.11724568994855174,
+              "family_percentile95": [
+                0.11109170475335663,
+                0.12342108633534893
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.041830009869013314,
+              "raw_parent_mean": 0.04183000986901331,
+              "family_percentile95": [
+                0.038372026109476896,
+                0.0460740557068037
+              ]
+            }
+          }
+        },
+        "baseline/visual_diversity": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 1.0,
+              "raw_parent_mean": 1.0,
+              "family_percentile95": [
+                1.0,
+                1.0
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.13987687084024863,
+              "raw_parent_mean": 0.1398768708402486,
+              "family_percentile95": [
+                0.1344676186999255,
+                0.14575573773314204
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0644611907607102,
+              "raw_parent_mean": 0.06446119076071018,
+              "family_percentile95": [
+                0.06164987093245262,
+                0.06728391096298804
+              ]
+            }
+          }
+        },
+        "diagnostic/expected_loss_oracle": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.0625,
+              "raw_parent_mean": 0.0625,
+              "family_percentile95": [
+                0.048611111111111105,
+                0.07986111111111112
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.07541568007953843,
+              "raw_parent_mean": 0.07541568007953844,
+              "family_percentile95": [
+                0.06948630109761177,
+                0.08179493797001937
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.0,
+              "raw_parent_mean": 0.0,
+              "family_percentile95": [
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "diagnostic/future_attention_label_oracle": {
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.10473654189744667,
+              "raw_parent_mean": 0.10473654189744665,
+              "family_percentile95": [
+                0.09978148199132966,
+                0.1101522949864475
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.029320861817908207,
+              "raw_parent_mean": 0.029320861817908203,
+              "family_percentile95": [
+                0.02672562629246916,
+                0.03191620072633442
+              ]
+            }
+          }
+        }
+      },
+      "paired_comparisons": {
+        "medoid_minus_full_sensitivity": {
+          "left": "baseline/medoid",
+          "right": "baseline/full_sensitivity",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.4166666666666667,
+              "raw_parent_mean": 0.4166666666666667,
+              "family_percentile95": [
+                0.4166666666666667,
+                0.4166666666666667
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.030243673785904392,
+              "raw_parent_mean": 0.030243673785904385,
+              "family_percentile95": [
+                0.028654385671295666,
+                0.03185616239395949
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.030243673785904392,
+              "raw_parent_mean": 0.030243673785904385,
+              "family_percentile95": [
+                0.028654385671295666,
+                0.03185616239395949
+              ]
+            }
+          }
+        },
+        "medoid_minus_reader_attention": {
+          "left": "baseline/medoid",
+          "right": "baseline/reader_attention",
+          "negative_favors_left": true,
+          "parents": 288,
+          "families": 6,
+          "metrics": {
+            "necessary_evidence_loss_rate": {
+              "equal_family_mean": 0.5,
+              "raw_parent_mean": 0.5,
+              "family_percentile95": [
+                0.5,
+                0.5
+              ]
+            },
+            "mse": {
+              "equal_family_mean": 0.030458614560480827,
+              "raw_parent_mean": 0.030458614560480823,
+              "family_percentile95": [
+                0.028936760474630507,
+                0.0320781211412608
+              ]
+            },
+            "regret": {
+              "equal_family_mean": 0.030458614560480827,
+              "raw_parent_mean": 0.030458614560480823,
+              "family_percentile95": [
+                0.028936760474630507,
+                0.0320781211412608
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "coefficient_audit": {
+    "status": "passed_independent_coefficient_distance_audit",
+    "parents": 1728,
+    "maximum_score_difference": {
+      "medoid": 2.821395284069439e-09,
+      "full_sensitivity": 2.5118203073049017e-09,
+      "pairwise_mse": 1.7481140701658404e-09
+    },
+    "exact_choice_matches": {
+      "medoid": 1728,
+      "full_sensitivity": 1728
+    },
+    "floating_order_disagreements": []
+  },
+  "hashes": {
+    "source": "83356f9a0559c8b4aa158d024d0d466f96f1c09913236c9b715e9aa0bf383e7d",
+    "decisions": "27e81903e1fe27b50ba10c4458afae9a06a3cfd2220716ab4f3730098cd751de",
+    "student_manifest": null,
+    "student_predictions": null,
+    "prediction_receipt": null,
+    "export_labels": "a48c9c1705125c949ddeab600552c882bd8aaa36c731e795760f6f83aab4912d",
+    "export_ids": "bd20f6183ab8d69d48242e8d1f7a45ada00835b5284bbca44ac52b3e81e7e0b7"
+  },
+  "limits": [
+    "An oracle with low expected loss is not a deployable strategy.",
+    "Full-reference sensitivity is not qualified if K3 content gates fail.",
+    "Seed-average performance is not a model ensemble and does not treat seeds or siblings as independent samples.",
+    "No empirical bound on independent scorers is inferred without the separately checked generator conditions."
+  ]
+}

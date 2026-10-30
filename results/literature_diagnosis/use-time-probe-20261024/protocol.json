@@ -1,0 +1,58 @@
+{
+  "version": "use-time-probe-v1",
+  "started_utc": "2026-10-25T03:10:33.381108+00:00",
+  "scope": "Exploratory development experiment; not untouched confirmation or a new method claim",
+  "source_sha256": {
+    "experiments/phase2/run_use_time_probe.py": "1a01f714696f976fd5304d46ed37a7174147148a65ccd71738f1a15f74213fc1",
+    "experiments/phase2/diagnose_oracle_learnability.py": "bb2c6b923b9cd862e4983fe658ef8036a9000965ab7ba4db87b8b6eb099cb895",
+    "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+    "experiments/phase2/run_literature_baselines.py": "c2de98fca247f72792be0d3cad7c32ec69f8e2c391dc92c8377d14371770a818",
+    "experiments/phase2/run_retention_baseline_pilot.py": "d359c65074341e34fcf50857c850aadf275a100969259a1d66e205ba4bb8876d",
+    "experiments/phase2/causal_model_scores.py": "5b24102d58821d53c8ad32bc2b5765530d00b1c91927ca2de420af824a8fbcbd",
+    "experiments/phase2/run_gate_followup_phase2.py": "492e9577f4c4e4bb809e8e9a70f5e19565dc9f350a2e4c6ee187fdb7132e83f0",
+    "experiments/phase2/train_predictor_followup.py": "fcde4fb0e91ddcea8e21ec9acb55c815d6f3c11a8e34e21b837af8398d9aefa5"
+  },
+  "input_sha256": {
+    "build/literature-diagnosis-20261022/learnability-v2/training_inputs_labels.npz": "a5df502b955f03a2184c48b383758f3e2b13e4657b171e8fa8070f655a468976",
+    "build/literature-diagnosis-20261022/learnability-v2/training_metadata.json": "7e713fc636775fd9558610f265d12f351af8e1dc9d623300c28449f686222b1e"
+  },
+  "predictor_binding": {
+    "followup_protocol_sha256": "10306756e360abc1ebbdad6393d7482f435523a4b9abb57632a79e75efd6fba7",
+    "selected_epoch": 35,
+    "arm": "unit_columns",
+    "basis_sha256": "9c77bf393000d6911f8cf16c3856d0999a1c9d00f9fbed4e0e5ed3b13aedd320",
+    "cache_signature": "587298e3c4ec416e430fd19f0817e61f12df65d1915fa93ac0dd9e03484c8e4c",
+    "normalization_sha256": "2ecbe84ae1555e2e8f5fae49e49bab02fd5475f31ff7b4e4694e19791c61a690"
+  },
+  "fresh_manifest_sha256": "07ecc6ce6d425d2a706e97178c61b964c2380691837a0ce7da8a1a23279b5e0d",
+  "teacher": "Enumerate one deletion; irreversible frozen attention continuation; average losses at query+3 and query+6",
+  "reader_domain_confound": "Reader was trained only at rec.query. Local labels at earlier overflow times can be outside its training-time origin distribution. Use-time simultaneously changes target horizon and restores query-origin evaluation; these effects are not isolated.",
+  "training": {
+    "pairs": 16,
+    "parents": 1282,
+    "arms": [
+      "local_cost",
+      "use_time_cost",
+      "future_attention",
+      "shuffled_local_cost",
+      "shuffled_use_time_cost"
+    ],
+    "lambda": 1.0,
+    "fixed_support_mask": "zero weights for TRAIN RMS<=1e-6",
+    "permutation_seed": 17,
+    "model_selection": false,
+    "future_inputs_to_student": false
+  },
+  "evaluation": {
+    "seed": 20261022,
+    "pairs": 96,
+    "horizons": [
+      3,
+      6
+    ],
+    "R": 4,
+    "K": 2
+  },
+  "confirmation_case": "Previously inspected selected case only; excluded from fit and aggregate evaluation",
+  "TD": "Not implemented; item survival is not a complete Markov value state or specified Bellman target"
+}

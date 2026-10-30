@@ -1,0 +1,663 @@
+{
+  "scope": "Exact analytic design preflight, not a visual experiment, trained-reader result or independent confirmation.",
+  "computation": {
+    "arithmetic": "fractions.Fraction for distances and selection",
+    "trained_models": 0,
+    "reader_model_calls": 0,
+    "GPU_jobs": 0,
+    "data_seeds": null
+  },
+  "assumptions": [
+    "Independent fair payload bits.",
+    "Analytically correct conditional-mean reader when qualified.",
+    "K=2 retained items, three observed terminal candidates, one irreversible deletion.",
+    "No action variation in these symbolic cases; action-bank result is an algebraic extension only.",
+    "Squared feature distance and earliest-slot exact-tie rule."
+  ],
+  "ideal_tasks": {
+    "redundancy": {
+      "equally_weighted_cases": 24,
+      "target_dimension": 2,
+      "unique_targets": 4,
+      "methods": {
+        "medoid": {
+          "preserves_necessary_evidence_count": 24,
+          "mean_regret": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "exact_tie_count": 24
+        },
+        "sensitivity": {
+          "preserves_necessary_evidence_count": 24,
+          "mean_regret": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "exact_tie_count": 24
+        }
+      }
+    },
+    "additive_decoy": {
+      "equally_weighted_cases": 48,
+      "target_dimension": 2,
+      "unique_targets": 4,
+      "methods": {
+        "medoid": {
+          "preserves_necessary_evidence_count": 48,
+          "mean_regret": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "exact_tie_count": 0
+        },
+        "sensitivity": {
+          "preserves_necessary_evidence_count": 48,
+          "mean_regret": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "exact_tie_count": 0
+        }
+      }
+    },
+    "xor_visible_roles": {
+      "equally_weighted_cases": 48,
+      "target_dimension": 1,
+      "unique_targets": 2,
+      "methods": {
+        "medoid": {
+          "preserves_necessary_evidence_count": 0,
+          "mean_regret": {
+            "numerator": 1,
+            "denominator": 4,
+            "value": 0.25
+          },
+          "exact_tie_count": 48
+        },
+        "sensitivity": {
+          "preserves_necessary_evidence_count": 48,
+          "mean_regret": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          "exact_tie_count": 0
+        }
+      },
+      "independent_visible_role_scorer_preserves_count": 48
+    }
+  },
+  "relational_xor": {
+    "equally_weighted_cases": 96,
+    "type_order": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "independent_weak_orders_exhaustively_enumerated": 75,
+    "independent_exact_tie_rule": "earliest chronological slot",
+    "best_independent_correct_count": 48,
+    "best_independent_correct_rate": {
+      "numerator": 1,
+      "denominator": 2,
+      "value": 0.5
+    },
+    "worst_independent_correct_count": 32,
+    "best_weak_order_count": 18,
+    "all_equal_scores_correct_count": 32,
+    "bound_scope": "Only fixed scalar g(tag,payload) over four discrete visible types, no age, arbitrary context, continuous features or additional state.",
+    "no_claim": "Marginal role balance does not imply every independent ranker is random; argmin compares scalar scores.",
+    "medoid_correct_count": 0,
+    "qualified_full_sensitivity_correct_count": 96,
+    "past_only_set_rule_correct_count": 96,
+    "local_role_marginals": [
+      {
+        "tag": 0,
+        "payload": 0,
+        "singleton_occurrences": 24,
+        "all_occurrences": 72,
+        "probability_singleton_given_type": {
+          "numerator": 1,
+          "denominator": 3,
+          "value": 0.3333333333333333
+        }
+      },
+      {
+        "tag": 0,
+        "payload": 1,
+        "singleton_occurrences": 24,
+        "all_occurrences": 72,
+        "probability_singleton_given_type": {
+          "numerator": 1,
+          "denominator": 3,
+          "value": 0.3333333333333333
+        }
+      },
+      {
+        "tag": 1,
+        "payload": 0,
+        "singleton_occurrences": 24,
+        "all_occurrences": 72,
+        "probability_singleton_given_type": {
+          "numerator": 1,
+          "denominator": 3,
+          "value": 0.3333333333333333
+        }
+      },
+      {
+        "tag": 1,
+        "payload": 1,
+        "singleton_occurrences": 24,
+        "all_occurrences": 72,
+        "probability_singleton_given_type": {
+          "numerator": 1,
+          "denominator": 3,
+          "value": 0.3333333333333333
+        }
+      }
+    ],
+    "single_observation_information_about_target_bits": 0,
+    "complete_pair_information_about_target_bits": 1,
+    "note_information_values": "Fair independent payload bits and deterministic XOR; analytic distribution facts, not estimated PID of learned features."
+  },
+  "conditional_position_aware_independent_bound": {
+    "score_variables": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "equal_weight_tag_patterns": [
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        0
+      ]
+    ],
+    "total_score_orders_enumerated": 720,
+    "histogram_successful_patterns_per_ranking": {
+      "1": 96,
+      "2": 528,
+      "3": 96
+    },
+    "maximum_correct_patterns": 3,
+    "patterns_per_condition": 6,
+    "maximum_correct_fraction": {
+      "numerator": 1,
+      "denominator": 2,
+      "value": 0.5
+    },
+    "example_maximizing_order_variable_indices": [
+      [
+        0,
+        2,
+        4,
+        1,
+        3,
+        5
+      ],
+      [
+        0,
+        2,
+        4,
+        1,
+        5,
+        3
+      ],
+      [
+        0,
+        2,
+        4,
+        3,
+        1,
+        5
+      ]
+    ],
+    "payload_conditions_checked": 8,
+    "each_condition_pattern_multiplicity": 2,
+    "ties": "Any numerical tie refined by earliest chronological slot induces a total order included among720; values within one slot never co-occur.",
+    "covered": "Arbitrary independent scalar g(common_context, local_observation, age, executed-action summary), conditional on fixed slot payloads, nuisance, ages and common context; no other-candidate information.",
+    "required_balance": "All six nonconstant tag patterns remain equiprobable given that fixed context/payload/nuisance condition; common context and auxiliary state must not reveal the repeated tag or singleton.",
+    "not_covered": "Pool-conditioned scores, recurrent/controller state encoding other tags, correlated styling or scene metadata revealing roles, or an unbalanced conditional tag distribution.",
+    "interpretation": "Conditional upper bound3/6 applies to each payload/context condition, hence at most50% overall; it is not a measured neural-network score."
+  },
+  "algebra": {
+    "general_decoy_condition": "With eA=p_dropA-p_dropD, eB=p_dropB-p_dropD, dropD is a medoid minimizer iff 2<eA,eB> <= min(||eA||^2,||eB||^2). Strict inequalities give uniqueness.",
+    "exact_two_dimensional_vector_pairs_checked": 81,
+    "action_marginalization": "For a fixed action bank, apply the condition to expectations of the squared norms and inner product, with one deletion after averaging.",
+    "orthogonal_example": {
+      "forecast_order": [
+        "dropD",
+        "dropA",
+        "dropB"
+      ],
+      "predictions": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "medoid_drop": 0,
+      "sensitivity_drop": 0,
+      "medoid_scores": [
+        {
+          "numerator": 5,
+          "denominator": 2,
+          "value": 2.5
+        },
+        {
+          "numerator": 3,
+          "denominator": 1,
+          "value": 3.0
+        },
+        {
+          "numerator": 9,
+          "denominator": 2,
+          "value": 4.5
+        }
+      ],
+      "sensitivity_scores": [
+        {
+          "numerator": 0,
+          "denominator": 1,
+          "value": 0.0
+        },
+        {
+          "numerator": 1,
+          "denominator": 2,
+          "value": 0.5
+        },
+        {
+          "numerator": 2,
+          "denominator": 1,
+          "value": 2.0
+        }
+      ],
+      "pairwise_mse": [
+        [
+          {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          {
+            "numerator": 1,
+            "denominator": 2,
+            "value": 0.5
+          },
+          {
+            "numerator": 2,
+            "denominator": 1,
+            "value": 2.0
+          }
+        ],
+        [
+          {
+            "numerator": 1,
+            "denominator": 2,
+            "value": 0.5
+          },
+          {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          {
+            "numerator": 5,
+            "denominator": 2,
+            "value": 2.5
+          }
+        ],
+        [
+          {
+            "numerator": 2,
+            "denominator": 1,
+            "value": 2.0
+          },
+          {
+            "numerator": 5,
+            "denominator": 2,
+            "value": 2.5
+          },
+          {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          }
+        ]
+      ],
+      "medoid_min_set": [
+        0
+      ],
+      "sensitivity_min_set": [
+        0
+      ]
+    },
+    "aligned_error_counterexample": {
+      "forecast_order": [
+        "dropD",
+        "dropA",
+        "dropB"
+      ],
+      "predictions": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "medoid_drop": 1,
+      "sensitivity_drop": 0,
+      "medoid_scores": [
+        {
+          "numerator": 5,
+          "denominator": 2,
+          "value": 2.5
+        },
+        {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        {
+          "numerator": 5,
+          "denominator": 2,
+          "value": 2.5
+        }
+      ],
+      "sensitivity_scores": [
+        {
+          "numerator": 0,
+          "denominator": 1,
+          "value": 0.0
+        },
+        {
+          "numerator": 1,
+          "denominator": 2,
+          "value": 0.5
+        },
+        {
+          "numerator": 2,
+          "denominator": 1,
+          "value": 2.0
+        }
+      ],
+      "pairwise_mse": [
+        [
+          {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          {
+            "numerator": 1,
+            "denominator": 2,
+            "value": 0.5
+          },
+          {
+            "numerator": 2,
+            "denominator": 1,
+            "value": 2.0
+          }
+        ],
+        [
+          {
+            "numerator": 1,
+            "denominator": 2,
+            "value": 0.5
+          },
+          {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          {
+            "numerator": 1,
+            "denominator": 2,
+            "value": 0.5
+          }
+        ],
+        [
+          {
+            "numerator": 2,
+            "denominator": 1,
+            "value": 2.0
+          },
+          {
+            "numerator": 1,
+            "denominator": 2,
+            "value": 0.5
+          },
+          {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          }
+        ]
+      ],
+      "medoid_min_set": [
+        1
+      ],
+      "sensitivity_min_set": [
+        0
+      ],
+      "scope": "Algebraic forecast geometry; not a claim these are the conditional means of the fair two-axis toy."
+    },
+    "wrong_full_reference_counterexample": {
+      "forecast_order": [
+        "dropD",
+        "dropA",
+        "dropB"
+      ],
+      "true_target": 0,
+      "incorrect_full_reference": {
+        "numerator": 1,
+        "denominator": 2,
+        "value": 0.5
+      },
+      "predictions": [
+        [
+          0
+        ],
+        [
+          {
+            "numerator": 1,
+            "denominator": 2,
+            "value": 0.5
+          }
+        ],
+        [
+          {
+            "numerator": 1,
+            "denominator": 2,
+            "value": 0.5
+          }
+        ]
+      ],
+      "medoid_drop": 1,
+      "sensitivity_drop": 1,
+      "medoid_scores": [
+        {
+          "numerator": 1,
+          "denominator": 2,
+          "value": 0.5
+        },
+        {
+          "numerator": 1,
+          "denominator": 4,
+          "value": 0.25
+        },
+        {
+          "numerator": 1,
+          "denominator": 4,
+          "value": 0.25
+        }
+      ],
+      "sensitivity_scores": [
+        {
+          "numerator": 1,
+          "denominator": 4,
+          "value": 0.25
+        },
+        {
+          "numerator": 0,
+          "denominator": 1,
+          "value": 0.0
+        },
+        {
+          "numerator": 0,
+          "denominator": 1,
+          "value": 0.0
+        }
+      ],
+      "pairwise_mse": [
+        [
+          {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          {
+            "numerator": 1,
+            "denominator": 4,
+            "value": 0.25
+          },
+          {
+            "numerator": 1,
+            "denominator": 4,
+            "value": 0.25
+          }
+        ],
+        [
+          {
+            "numerator": 1,
+            "denominator": 4,
+            "value": 0.25
+          },
+          {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          }
+        ],
+        [
+          {
+            "numerator": 1,
+            "denominator": 4,
+            "value": 0.25
+          },
+          {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          },
+          {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          }
+        ]
+      ],
+      "medoid_min_set": [
+        1,
+        2
+      ],
+      "sensitivity_min_set": [
+        1,
+        2
+      ],
+      "scope": "Demonstrates need to qualify full K+1 reader; sensitivity can preserve a wrong reference."
+    }
+  },
+  "source_sha256": "81e06cb842607a2308f73df318a5a47906ea0dc2445295d0a5e0644750da67b2",
+  "limitations": [
+    "The visual reader must separately qualify both K and K+1 histories and its uncertainty geometry.",
+    "XOR has two target classes despite four input-bit combinations; four-way future classification would be invalid.",
+    "Relational tags make roles past-observable but do not establish any neural scorer training result.",
+    "The conditional50% bound covers age/context-dependent independent scores only under its explicit conditional exchangeability and no-other-candidate-information assumptions; the visual generator must check those assumptions.",
+    "Do not pool MSE across symbolic tasks with different target dimension or claim a complete PID estimator."
+  ]
+}

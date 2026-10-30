@@ -1,0 +1,46 @@
+{
+  "status": "independent_gate_phase2_artifact_audit_passed",
+  "source_files_verified": 10,
+  "result_artifact_hashes_verified": 13,
+  "checkpoint_sha256": "302221849cb424a1d846c3af2932d0ce1f7bdc22965ab23d330c36a827c174d1",
+  "model_state_sha256": "ba47a1478ae48d24504658f8c3dbaf3ecf7bda6125a2b84a799dff6967c9ecf8",
+  "baseline_rows": 48,
+  "baseline_losses_recomputed_exactly": 96,
+  "aggregate_means_and_pair_std_exact": true,
+  "independent_baseline_pairs": 4,
+  "online_trace_events_verified": 1068,
+  "bounded_online_trace_no_resurrection": true,
+  "causal_boundary_review": "Online observe receives one current feature and last executed action only; query prediction is captured before later observations. Recorded future actions are provided only to isolated offline prediction scoring; deletion future targets are labels only.",
+  "deletion_unique_parents": 118,
+  "deletion_forks": 354,
+  "deletion_losses_recomputed_exactly_from_saved_vectors": 708,
+  "deletion_shards": [
+    {
+      "split": "train",
+      "unique_parents": 94,
+      "forks": 282,
+      "losses": 564,
+      "source_feature_action_bindings_exact": true,
+      "losses_from_saved_predictions_and_original_targets_exact": true,
+      "independent_episode_pairs": 16
+    },
+    {
+      "split": "validation",
+      "unique_parents": 24,
+      "forks": 72,
+      "losses": 144,
+      "source_feature_action_bindings_exact": true,
+      "losses_from_saved_predictions_and_original_targets_exact": true,
+      "independent_episode_pairs": 4
+    }
+  ],
+  "runner_frozen_model_recomputation_of_all_deletion_forks_recorded": true,
+  "independent_audit_repeated_model_inference": false,
+  "test_arrays_opened": 0,
+  "no_training_rerun": true,
+  "limitations": [
+    "Independent check verifies saved predictions against original targets and source bounds, not a second inference execution.",
+    "Validation was reused for checkpoint inspection; no new held-out method advantage claimed.",
+    "No learned retention scorer or PushT model-based planning result."
+  ]
+}

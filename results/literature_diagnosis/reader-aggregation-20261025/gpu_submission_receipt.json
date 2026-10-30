@@ -1,0 +1,29 @@
+{
+  "status": "submitted",
+  "archive_sha256": "8d8e61352593b044fbf9495d17009dd29380b4c7778bb64818f64a529dee0c09",
+  "created_utc": "2026-10-25T21:23:17.767175+00:00",
+  "gpu_execution_verified": false,
+  "source_run": "/scratch/xy3257/cv-phase2-20261020/terminal-structures-20261025/run",
+  "confirmation_opened": false,
+  "command": [
+    "/opt/slurm/bin/sbatch",
+    "--parsable",
+    "--export=ALL",
+    "--no-requeue",
+    "--job-name=cv-reader-aggregation-20261025",
+    "--account=csci_ga_2271-2026fa",
+    "--partition=c12m85-a100-1",
+    "--gres=gpu:1",
+    "--cpus-per-task=4",
+    "--mem=32G",
+    "--time=02:00:00",
+    "--chdir=/scratch/xy3257/cv-phase2-20261020/reader-aggregation-20261025",
+    "--output=/scratch/xy3257/cv-phase2-20261020/reader-aggregation-20261025/slurm-%j.log",
+    "/scratch/xy3257/cv-phase2-20261020/reader-aggregation-20261025/run.sbatch"
+  ],
+  "bundle_manifest_sha256": "6727cb66b1bdc22464254eaa52f406a8fd00e7fd951383a0d5930547e75395ba",
+  "returncode": 0,
+  "stdout": "11544\n",
+  "stderr": "",
+  "job_id": "11544"
+}

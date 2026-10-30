@@ -1,0 +1,398 @@
+{
+  "readers": {
+    "original": {
+      "variant": "original",
+      "checkpoint": "readers/original/reader_selected.pt",
+      "checkpoint_sha256": "fd912c53a802ef4b8cddabfd8ec1299b1d270c503d07cfca50303f6631e7737e",
+      "basis_sha256": "922bc4a676893d0ba5974cd20dbcac09c461bc908549966f197dfbbe38f4f05d",
+      "selected_step": 1024,
+      "validation": {
+        "equal_task_size_mse": 0.10705663473560924,
+        "cells": {
+          "R/0": 0.14806498318082756,
+          "R/1": 0.09166482308258612,
+          "R/2": 0.06869971389985746,
+          "R/3": 0.056440583844151765,
+          "D/0": 0.15579277773698172,
+          "D/1": 0.12227939545280403,
+          "D/2": 0.0867809182446864,
+          "D/3": 0.05728506938450866,
+          "S/0": 0.14069402745614448,
+          "S/1": 0.1364039808201293,
+          "S/2": 0.11641649265463154,
+          "S/3": 0.10415685107000172
+        }
+      },
+      "training_schedule_sha256": "4c493598cdbe66e72991d3b177bf746bc6eea11780b00f7257a0fd601551d86e",
+      "seconds": 172.37288275,
+      "architecture": {
+        "variant": "original",
+        "trainable_parameters": 215297,
+        "pooling_paths": 1,
+        "output_input_width": 1027,
+        "output_hidden_width": 128,
+        "item_self_attention_heads": 0,
+        "horizons": [
+          3,
+          6
+        ],
+        "shared_initial_state_keys": [
+          "input_mean",
+          "projection",
+          "target_mean",
+          "output_basis",
+          "score.0.weight",
+          "score.0.bias",
+          "score.2.weight",
+          "score.2.bias",
+          "action.0.weight",
+          "action.0.bias",
+          "action.2.weight",
+          "action.2.bias",
+          "past_action.weight",
+          "output.0.weight",
+          "output.0.bias",
+          "output.3.weight",
+          "output.3.bias",
+          "output.5.weight",
+          "output.5.bias"
+        ],
+        "parameter_bytes_float32": 861188,
+        "adam_moment_bytes_float32": 1722376
+      },
+      "selection_splits": [
+        "validation"
+      ],
+      "seed": 17
+    },
+    "attention_mean": {
+      "variant": "attention_mean",
+      "checkpoint": "readers/attention_mean/reader_selected.pt",
+      "checkpoint_sha256": "f7884dcf2e52ea80016bcc848bd92fa5c9277d8c64a4442bc500f6e865cd5008",
+      "basis_sha256": "922bc4a676893d0ba5974cd20dbcac09c461bc908549966f197dfbbe38f4f05d",
+      "selected_step": 1024,
+      "validation": {
+        "equal_task_size_mse": 0.10593744963450634,
+        "cells": {
+          "R/0": 0.15083174055649173,
+          "R/1": 0.09271210359616412,
+          "R/2": 0.06048950938404434,
+          "R/3": 0.042287351925753884,
+          "D/0": 0.15934879291388723,
+          "D/1": 0.12399510749512249,
+          "D/2": 0.08750439580116007,
+          "D/3": 0.05520986677664849,
+          "S/0": 0.14636973519292143,
+          "S/1": 0.1389715114297966,
+          "S/2": 0.11493386035888559,
+          "S/3": 0.09859542018319997
+        }
+      },
+      "training_schedule_sha256": "4c493598cdbe66e72991d3b177bf746bc6eea11780b00f7257a0fd601551d86e",
+      "seconds": 192.33251612600003,
+      "architecture": {
+        "variant": "attention_mean",
+        "trainable_parameters": 313857,
+        "pooling_paths": 2,
+        "output_input_width": 1797,
+        "output_hidden_width": 128,
+        "item_self_attention_heads": 0,
+        "horizons": [
+          3,
+          6
+        ],
+        "shared_initial_state_keys": [
+          "input_mean",
+          "projection",
+          "target_mean",
+          "output_basis",
+          "score.0.weight",
+          "score.0.bias",
+          "score.2.weight",
+          "score.2.bias",
+          "action.0.weight",
+          "action.0.bias",
+          "action.2.weight",
+          "action.2.bias",
+          "past_action.weight",
+          "output.0.bias",
+          "output.3.weight",
+          "output.3.bias",
+          "output.5.weight",
+          "output.5.bias"
+        ],
+        "parameter_bytes_float32": 1255428,
+        "adam_moment_bytes_float32": 2510856
+      },
+      "selection_splits": [
+        "validation"
+      ],
+      "seed": 17
+    },
+    "multihead": {
+      "variant": "multihead",
+      "checkpoint": "readers/multihead/reader_selected.pt",
+      "checkpoint_sha256": "fb0ea31b20e5aa53c4f3adbaa1b261d82826cda068ad23fa5d1a9edd56221543",
+      "basis_sha256": "922bc4a676893d0ba5974cd20dbcac09c461bc908549966f197dfbbe38f4f05d",
+      "selected_step": 1024,
+      "validation": {
+        "equal_task_size_mse": 0.1028943558512428,
+        "cells": {
+          "R/0": 0.1515667335026794,
+          "R/1": 0.09372815370766653,
+          "R/2": 0.06058294364872078,
+          "R/3": 0.04064031824883488,
+          "D/0": 0.16031081229448318,
+          "D/1": 0.12361988492517008,
+          "D/2": 0.08786282310676244,
+          "D/3": 0.04793322652888795,
+          "S/0": 0.14814349884788194,
+          "S/1": 0.13725397094256347,
+          "S/2": 0.116336366860196,
+          "S/3": 0.06675353760106696
+        }
+      },
+      "training_schedule_sha256": "4c493598cdbe66e72991d3b177bf746bc6eea11780b00f7257a0fd601551d86e",
+      "seconds": 222.26107164799993,
+      "architecture": {
+        "variant": "multihead",
+        "trainable_parameters": 511364,
+        "pooling_paths": 4,
+        "output_input_width": 3337,
+        "output_hidden_width": 128,
+        "item_self_attention_heads": 0,
+        "horizons": [
+          3,
+          6
+        ],
+        "shared_initial_state_keys": [
+          "input_mean",
+          "projection",
+          "target_mean",
+          "output_basis",
+          "score.0.weight",
+          "score.0.bias",
+          "action.0.weight",
+          "action.0.bias",
+          "action.2.weight",
+          "action.2.bias",
+          "past_action.weight",
+          "output.0.bias",
+          "output.3.weight",
+          "output.3.bias",
+          "output.5.weight",
+          "output.5.bias"
+        ],
+        "parameter_bytes_float32": 2045456,
+        "adam_moment_bytes_float32": 4090912
+      },
+      "selection_splits": [
+        "validation"
+      ],
+      "seed": 17
+    },
+    "item_attention": {
+      "variant": "item_attention",
+      "checkpoint": "readers/item_attention/reader_selected.pt",
+      "checkpoint_sha256": "15428e52128c16887238bf4a424691b0785966001c680a0a409f13cf8026a597",
+      "basis_sha256": "922bc4a676893d0ba5974cd20dbcac09c461bc908549966f197dfbbe38f4f05d",
+      "selected_step": 1024,
+      "validation": {
+        "equal_task_size_mse": 0.10155705326124681,
+        "cells": {
+          "R/0": 0.14802875142130587,
+          "R/1": 0.09248881166179974,
+          "R/2": 0.05973374380523132,
+          "R/3": 0.03786138665034539,
+          "D/0": 0.15641105050841966,
+          "D/1": 0.1231356178306871,
+          "D/2": 0.08330073908695744,
+          "D/3": 0.044124667092950806,
+          "S/0": 0.1421431317511532,
+          "S/1": 0.13896819592143098,
+          "S/2": 0.11796278265925746,
+          "S/3": 0.0745257607454227
+        }
+      },
+      "training_schedule_sha256": "4c493598cdbe66e72991d3b177bf746bc6eea11780b00f7257a0fd601551d86e",
+      "seconds": 219.099818023,
+      "architecture": {
+        "variant": "item_attention",
+        "trainable_parameters": 347905,
+        "pooling_paths": 1,
+        "output_input_width": 1027,
+        "output_hidden_width": 128,
+        "item_self_attention_heads": 4,
+        "horizons": [
+          3,
+          6
+        ],
+        "shared_initial_state_keys": [
+          "input_mean",
+          "projection",
+          "target_mean",
+          "output_basis",
+          "score.0.weight",
+          "score.0.bias",
+          "score.2.weight",
+          "score.2.bias",
+          "action.0.weight",
+          "action.0.bias",
+          "action.2.weight",
+          "action.2.bias",
+          "past_action.weight",
+          "output.0.weight",
+          "output.0.bias",
+          "output.3.weight",
+          "output.3.bias",
+          "output.5.weight",
+          "output.5.bias"
+        ],
+        "parameter_bytes_float32": 1391620,
+        "adam_moment_bytes_float32": 2783240
+      },
+      "selection_splits": [
+        "validation"
+      ],
+      "seed": 17
+    },
+    "wide_control": {
+      "variant": "wide_control",
+      "checkpoint": "readers/wide_control/reader_selected.pt",
+      "checkpoint_sha256": "ca86b3bb00b458b13fcd15f48fdc77d97fe172d606eaadfab65130c157bb77fd",
+      "basis_sha256": "922bc4a676893d0ba5974cd20dbcac09c461bc908549966f197dfbbe38f4f05d",
+      "selected_step": 1024,
+      "validation": {
+        "equal_task_size_mse": 0.10347371189898154,
+        "cells": {
+          "R/0": 0.14643401952667368,
+          "R/1": 0.09047458445032437,
+          "R/2": 0.06339175321368708,
+          "R/3": 0.050883249612525105,
+          "D/0": 0.15379213521050084,
+          "D/1": 0.11992883837471406,
+          "D/2": 0.08227692006362809,
+          "D/3": 0.04911123324806491,
+          "S/0": 0.136843869359129,
+          "S/1": 0.13421807567485505,
+          "S/2": 0.1134931201943093,
+          "S/3": 0.10083674385936724
+        }
+      },
+      "training_schedule_sha256": "4c493598cdbe66e72991d3b177bf746bc6eea11780b00f7257a0fd601551d86e",
+      "seconds": 167.24955365899996,
+      "architecture": {
+        "variant": "wide_control",
+        "trainable_parameters": 510927,
+        "pooling_paths": 1,
+        "output_input_width": 1027,
+        "output_hidden_width": 313,
+        "item_self_attention_heads": 0,
+        "horizons": [
+          3,
+          6
+        ],
+        "capacity_target_parameters": 511364,
+        "capacity_relative_difference": -0.0008545771700784569,
+        "shared_initial_state_keys": [
+          "input_mean",
+          "projection",
+          "target_mean",
+          "output_basis",
+          "score.0.weight",
+          "score.0.bias",
+          "score.2.weight",
+          "score.2.bias",
+          "action.0.weight",
+          "action.0.bias",
+          "action.2.weight",
+          "action.2.bias",
+          "past_action.weight",
+          "output.5.bias"
+        ],
+        "parameter_bytes_float32": 2043708,
+        "adam_moment_bytes_float32": 4087416
+      },
+      "selection_splits": [
+        "validation"
+      ],
+      "seed": 17
+    }
+  },
+  "probe_files": {
+    "basis.npz": "f8cdc48d4b631ae497788e3c4dcf1736f182fec1cb9d22e0479f23ebcda586dd",
+    "manifest.json": "c955f68033ebd88ba34abbeb9620eb7b3e36d84d4baca9765b228317a96dbf1c",
+    "models/projected__D_a__blank.npz": "0dab3a197d7bf0b7e897f63cba474b7b7511f03855bd24c6f38a0750e86379ec",
+    "models/projected__D_a__real.npz": "998875d5392dbca7eef171b0f1bdf5627835250a66fc28b106a1f4413aee44dd",
+    "models/projected__D_a__shuffle.npz": "051d1fa76b33d328070729fefae6c26b024072463134588b63f4aceae35d2558",
+    "models/projected__D_b__blank.npz": "988ed56736ac2dd1899c4736b88d8ee0ab0d20f8c6899c14a331f6a3bb66cbc8",
+    "models/projected__D_b__real.npz": "b9c586356e84dd9c8d836de694bee695e6c0bccf92d9d8c7159351bf12b6eef0",
+    "models/projected__D_b__shuffle.npz": "168af84294d9eea50c078b0d9910662fb07f5812dcd61f092e8aaad7c27799b4",
+    "models/projected__R_a__blank.npz": "1c614d828fe7996b1649f576b67c314178ba420f26fd58e30948c7363e59b1db",
+    "models/projected__R_a__real.npz": "6069667bbc4bf87a54c0e0b4f75f6097dd409e414222707295fcc452d4670a07",
+    "models/projected__R_a__shuffle.npz": "c65bc766a169fdba5df12cf3c5ed7e083b2bd536dc1521bae7b847e8117ede1e",
+    "models/projected__R_b__blank.npz": "22ce22a6ef5c56b8555f590405c1087cc4ab876f4cd9585fd25958543096e4a4",
+    "models/projected__R_b__real.npz": "d4534f29e16e171d3920cdaa4fb6010208eb63ce24fe3fe2af584c9a1add1b2f",
+    "models/projected__R_b__shuffle.npz": "8b9f0dbfccabed7fff39dcd188257933ffb4d00e4a0af79709b70e45aed168ba",
+    "models/projected__S_payload__blank.npz": "0ef7899c794ae5e7bf8e2bdb853ccde39aa91a42c112100a9e14204bed95ac56",
+    "models/projected__S_payload__real.npz": "605ec7658fcfcc0b5ba26da879bfad62cc4c6ad1629d23de580128f5ee2d55e4",
+    "models/projected__S_payload__shuffle.npz": "1678e4bf1350d6b1ae38974f8b2e0005d2d4701c04178ea59dd658fbf49afe55",
+    "models/projected__S_tag__blank.npz": "9a6c77cbe3596e0212197ee8eec0ba4f8d3baf188f06bf80b29172117ae0e2f8",
+    "models/projected__S_tag__real.npz": "12eb8ecb23b18fbd47f0db2c2f1dc3b233bbf4d63f5eb377181309411c054ef5",
+    "models/projected__S_tag__shuffle.npz": "7b9953a40713f5d452dffaaa5f58939fe436608c9abbf546dddd5c396acfc20d",
+    "models/raw__D_a__blank.npz": "46e8f7cc538a2e1a5bbe0afbae82ba1cc820a136746fccbe361c6532f4047a01",
+    "models/raw__D_a__real.npz": "8b0b1252c797029a51c09a25fda25e21b4caa491fe9482688cf1ca1fcd6dbe0d",
+    "models/raw__D_a__shuffle.npz": "25d03c0553c8bd2672695709d409fe98966c9a3e7a7e81fb36cd8d2441e84ce4",
+    "models/raw__D_b__blank.npz": "499699cea9b50a0e0194b972885f75028929545a75e72cd51cbd32d3b3235be2",
+    "models/raw__D_b__real.npz": "0391e27a824b0dfebb91c170f5616686a237d878f9eb4157e94f7f5bf1745748",
+    "models/raw__D_b__shuffle.npz": "b0417b6fce93c79e4a34313db1e1d1f764ec879ccc708d2d2559a3ea1627d60a",
+    "models/raw__R_a__blank.npz": "0a55c62ffbcb16d3318cb78e90852b9ee46dfbedeb88639acf024fb8eb31501e",
+    "models/raw__R_a__real.npz": "93fbb79262895548fb4a7f22cd4e73b7f36090f85c9999aa2f593e5e80bf1328",
+    "models/raw__R_a__shuffle.npz": "62dbccf308a7726ffc1e6b0d5c6f298fa1bbdfeb3fad3e7d0ef87ae7b56a1506",
+    "models/raw__R_b__blank.npz": "02ba75bd354bc4abc2652b65363a19bd2f5e7b66c6030aa8dce4299ff4e267d4",
+    "models/raw__R_b__real.npz": "56c842dfcd54d93b7a339561372f0b910ab1970b31d880239c0f605504ca1f7e",
+    "models/raw__R_b__shuffle.npz": "ca29c9a94fc74e2df263d0b0948ab2c2d68668fed2105e87e618b54796ddac65",
+    "models/raw__S_payload__blank.npz": "02eae2645c599869af6a1bf3010d10d7c11da3fe1ddb18609b192047b150abd0",
+    "models/raw__S_payload__real.npz": "f3e0cefc3bfbcec97d01a264ff39f7ae6442ee81f4e29826077320bc1286f410",
+    "models/raw__S_payload__shuffle.npz": "03b690279cd6930c854ea49dee859f53ed1adcf80dac22eb654a51663aace0a6",
+    "models/raw__S_tag__blank.npz": "4285f1da8a02385469147132184a71b543b3c9c29b4a00b554e47a0fb13d98ac",
+    "models/raw__S_tag__real.npz": "ce409b5f3811a8195d5c1f0dc6958acd5c3746d6f2b235da03e4405949ea58f2",
+    "models/raw__S_tag__shuffle.npz": "7f2d1bbb2f544e8d60b7c6e681316c18024efc626412ad83412a65446ccd9ce2",
+    "normalization.npz": "ad04423af6111b75c904246eca1edc6da11e40677f02543eaee8b290b37a7241",
+    "prefit.json": "9e4d727d95ef57f859a47e6c317e0ce7a8221f0287f6b8c35fc8df0c7ed54c69",
+    "shuffle_permutation.npy": "d85e4406134c773139fb3edea2879ff97317139bae049db5cab6ff9535a1e7d9",
+    "train_rows.json": "b1e58b798ba8afbac2ed8df383ba5436598f2be3679d09ea313b1d5f7fd5c63e",
+    "validation_rows.json": "15d1a9251cfaad6fc4dc7fefa4ae946d4df2ef02616273c922cda0d68fb5a5d1"
+  },
+  "basis_sha256": "922bc4a676893d0ba5974cd20dbcac09c461bc908549966f197dfbbe38f4f05d",
+  "shared_initial_state_sha256": "b6218312d6c8dfee7b15815bc9ea3847de70912441926f3b5ece4b66aa10b932",
+  "protocol_sha256": "9d8f83591811b297120b2e13f50359fd2acf2de5498cfaa01479e29742bf8918",
+  "config_file_path": "/scratch/xy3257/cv-phase2-20261020/reader-aggregation-20261025/bundle/experiments/phase2/configs/reader_aggregation_20261025.json",
+  "config_file_sha256": "04f9a67a3766c748089e096e3ec9d30e0e8b38f7c00cb1547da34d653b13ffde",
+  "source_sha256": {
+    "experiments/phase2/run_terminal_structures.py": "d485f502cd22dfe036043ac04786237e76c1f9c28d45c1b0003f93b3c41a1f89",
+    "experiments/phase2/terminal_structures.py": "3a3c380a0077707007fd689253b274322582be6fc7e8b7a62595d41bb9d8aa5f",
+    "experiments/phase2/prediction_retention.py": "ed7de88aa47586273dd91416ee26a737e6d3b3b2eaeca65938edc1b323572b37",
+    "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+    "experiments/phase2/encode_fresh_gate_diagnostic.py": "c3d1de26efcaf60873abdd026fd5e50dce4a5da50179eb0544cf81e2ada83a33",
+    "experiments/phase2/run_gate2_pilot.py": "a5552c90bd353c6fb473eac86e3a946b7347ec28dab386ac4da1c2d727b87a67",
+    "experiments/phase2/run_reader_scale_probe.py": "84331b3aafbdc5d7350fdf7d091f75958863dc443bdb757333f27bc0a5ec423c",
+    "experiments/phase2/fit_terminal_students.py": "08021072e0dd9b3a74dc6d397ba6d8a3f90c7db1c36fbfed6589a6a27221bcd7",
+    "experiments/phase2/summarize_terminal_students.py": "83356f9a0559c8b4aa158d024d0d466f96f1c09913236c9b715e9aa0bf383e7d",
+    "experiments/phase2/submit_terminal_structures.py": "c982f8b6a8e9d7e7b8d53404400a438cc0d6ea771cda751a63819bcbec91129a",
+    "docs/TERMINAL_STRUCTURES_PREREGISTRATION_20261025.md": "2283943f07efebb6370330b44476963a7e61d3e926362de7e328fbb2390cee6c",
+    "experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+    "experiments/predictor/control/src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+    "experiments/predictor/control/src/phase1/utils.py": "03b0c1fb7f52fc822523125e5fe813cf48883459d48a038ffb22aa7ff87aef14",
+    "experiments/predictor/control/src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084",
+    "experiments/predictor/control/src/phase1/encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871",
+    "experiments/phase2/run_reader_aggregation.py": "b9bd894c60be70acd439ed88f5d4d17451e7f536ab52f15897aec6afcac161e7",
+    "experiments/phase2/reader_aggregation.py": "c8c42d3e21c2ed875414af2e0f76cf54253c20e9a13d2fc3c7a611a48701ae53",
+    "experiments/phase2/probe_reader_features.py": "425178b51e28b901b23ceeee18efffe552befb2b0f0756d784bddcea03481e5e",
+    "experiments/phase2/submit_reader_aggregation.py": "00afb91322464dd2f04bc84d51fc023fb3615ae3692cd06d38e71affa275ed45",
+    "docs/READER_AGGREGATION_PREREGISTRATION_20261025.md": "cea0f4cb663e2cd26d50d0ae6b861d98e27b1452cdcf0893260452f455bc3aa5"
+  },
+  "locked_unix": 1792964571.4682376,
+  "fresh_diagnostic_generated": false,
+  "original_confirmation_opened": false
+}

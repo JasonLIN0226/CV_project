@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "episode_id": "1eb3ccff25424834a0780a10",
+  "selection": {
+    "posthoc": true,
+    "eligible_episodes": 41,
+    "rule": "Among rescued fresh WR episodes with strict MSE improvement, sort by original cue onset then episode_id and take first.",
+    "purpose": "Illustrate an already-measured storage-stage failure; not a prevalence or held-out performance estimate."
+  },
+  "population": {
+    "fresh_episodes": 192,
+    "early_cue_episodes": 62,
+    "rescued": 62,
+    "mse_improved": 41,
+    "mse_worsened": 21,
+    "mse_tied": 0,
+    "later_cue_episodes": 130,
+    "later_unchanged": 130
+  },
+  "costs": {
+    "recent_R": 4,
+    "retained_K": 2,
+    "extra_executed_steps": 4,
+    "same_information": "Repeat first already-observed frame; zero executed actions in added prefix.",
+    "dataset_max_logical_bytes": {
+      "0": 124431,
+      "4": 124463
+    },
+    "dataset_max_extra_bytes": 32,
+    "case_extra_peak_bytes": 40,
+    "equal_total_cost": false,
+    "shift_only_checks": 896,
+    "shift_only_prediction_max_abs_error": 0.0
+  },
+  "limitations": [
+    "Same Gate visual task, different failure stage; not a new visual environment.",
+    "Observed early-cue startup failure is not a demonstrated high-surprise distractor failure.",
+    "Retaining evidence does not guarantee lower feature MSE: 21 of 62 rescues worsen.",
+    "Feature MSE is not a physical-coordinate or planning-success measurement.",
+    "This diagnostic changes input processing and scalar-state cost; it is not equal-total-cost superiority.",
+    "No new held-out test, oracle search, alpha computation, prediction, or policy evaluation was run."
+  ]
+}

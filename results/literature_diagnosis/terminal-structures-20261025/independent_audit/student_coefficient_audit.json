@@ -1,0 +1,29 @@
+{
+  "status": "passed_independent_coefficient_distance_audit",
+  "parents": 1728,
+  "formula": "G=output_basis.T@output_basis / feature_dimension; mean over plans/horizons of delta_coeff.T G delta_coeff",
+  "cancellation": "current feature and common horizon target_mean are identical for all four subsets, so cancel from deletion-vs-deletion and deletion-vs-full differences",
+  "maximum_score_difference": {
+    "medoid": 2.821395284069439e-09,
+    "full_sensitivity": 2.5118203073049017e-09,
+    "pairwise_mse": 1.7481140701658404e-09
+  },
+  "exact_choice_matches": {
+    "medoid": 1728,
+    "full_sensitivity": 1728
+  },
+  "floating_order_disagreements": [],
+  "numerical_comparison": {
+    "absolute_tolerance": 1e-05,
+    "relative_tolerance": 1e-05,
+    "choice_rule_not_changed": "Original saved exact-argmin choices remain evaluation actions"
+  },
+  "reader_recorded_reconstruction_max_abs_difference": 5.7220458984375e-06,
+  "reader_reconstruction_field_is_source_evidence_not_independent_inference": true,
+  "reader_calls": 0,
+  "target_losses_recomputed_from_features": false,
+  "hashes": {
+    "coefficients": "fe10c738b9fc6a75d7d747b615f10c495d3d00ebd1d2242d3e18911c314f2014",
+    "basis": "922bc4a676893d0ba5974cd20dbcac09c461bc908549966f197dfbbe38f4f05d"
+  }
+}

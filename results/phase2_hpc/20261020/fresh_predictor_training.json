@@ -1,0 +1,264 @@
+{
+  "original_files_sha256": {
+    "runs/cpu-predictor-pilot/run_manifest.json": "a667b0da6b0c0a80e40b79b4f37fece19bfd00f41b0653327fb0881fca70f7db",
+    "runs/cpu-predictor-pilot/training_result.json": "fd3670b2b142b111a75a3c6374b0d2a240b0035fec4ed585e0e60e404bcab9ec"
+  },
+  "export_index_sha256": "8a946652a61e8b2877ea6c5d34a967bf9cf6f690c87bd937db953772e8f1ee61",
+  "export_observed_utc": "2026-10-20T05:10:20.372538+00:00",
+  "all_exported_file_hashes_verified": 43,
+  "portable_transform": "Task paths and compute hostnames replaced; original file hashes retained.",
+  "run": {
+    "status": "completed",
+    "started_utc": "2026-10-20T05:08:53.020924+00:00",
+    "scope": "new_cpu_predictor_path_pilot_not_repaired_phase1_reproduction",
+    "timeout_seconds": 1200,
+    "source_sha256": {
+      "experiments/phase2/train_predictor_pilot.py": "60c3c64330640171baa9d5d73c913081b03bd21ad326e13a0651af81aa886ff8",
+      "experiments/phase2/training_samples.py": "a8ca0490308488bff5a560e767093175fb7e76abbab58179570dc447b4310143",
+      "experiments/phase2/memory.py": "9f5dfe5aaa3052a2af4a9c79a2f8c5558be258feff1459ea82f2d86e66da073c",
+      "experiments/phase2/prepare_encoded_samples.py": "2860cefc1770bf70ddc85ea971e81832a80dcd555420679a9b3bdd9dd1956d00",
+      "experiments/predictor/control/src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+      "experiments/predictor/control/src/phase1/training.py": "0e30f8c45e84a4dc966d3020066c0686b8c4b951a6447c52ecc85d309a14a235",
+      "experiments/predictor/control/src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+      "experiments/predictor/control/src/phase1/cache.py": "5935e62802ef2bf8a5590f559948eb1c1fa1d3f9c4826780ef4ce188d7a96bc0",
+      "experiments/predictor/control/src/phase1/config.py": "67b38fea253659bea37cd5b3726674bc2ad9cfb659b712ae05c0eb53d9034084"
+    },
+    "device": "cpu",
+    "gpu_allocation_requested": false,
+    "scientific_phase2_completed": false,
+    "settings": {
+      "data_root": "<TASK_ROOT>/data",
+      "encoded_report": "<TASK_ROOT>/runs/9285/encoded",
+      "output": "<TASK_ROOT>/runs/cpu-predictor-pilot",
+      "epochs": 4,
+      "seed": 17,
+      "dropout": 0.15,
+      "batch_size": 32,
+      "threads": 4,
+      "timeout_seconds": 1200,
+      "worker": false
+    },
+    "git_head": "1d18e93a6fe8f8e23a358407a0d5ec399f8ede23",
+    "command": [
+      "<TASK_ROOT>/venv/bin/python",
+      "<TASK_ROOT>/repo/experiments/phase2/train_predictor_pilot.py",
+      "--worker",
+      "--data-root",
+      "<TASK_ROOT>/data",
+      "--encoded-report",
+      "<TASK_ROOT>/runs/9285/encoded",
+      "--output",
+      "<TASK_ROOT>/runs/cpu-predictor-pilot",
+      "--epochs",
+      "4",
+      "--seed",
+      "17",
+      "--dropout",
+      "0.15",
+      "--batch-size",
+      "32",
+      "--threads",
+      "4",
+      "--timeout-seconds",
+      "1200"
+    ],
+    "worker_exit_code": 0,
+    "predictor_trained": true,
+    "training_result_sha256": "fd3670b2b142b111a75a3c6374b0d2a240b0035fec4ed585e0e60e404bcab9ec",
+    "ended_utc": "2026-10-20T05:09:08.336100+00:00",
+    "wall_seconds": 15.315254016999916,
+    "worker_log_sha256": "3040e63b8045df817a6369a7888fd36ef699fa96583d8290d4c6827b51da0179"
+  },
+  "training": {
+    "status": "new_cpu_predictor_pilot_completed",
+    "device": "cpu",
+    "new_initialization": true,
+    "source_data_root": "<TASK_ROOT>/data",
+    "encoded_report": "<TASK_ROOT>/runs/9285/encoded",
+    "cache_signature": "587298e3c4ec416e430fd19f0817e61f12df65d1915fa93ac0dd9e03484c8e4c",
+    "tasks": [
+      {
+        "task": "gate",
+        "seed": 17,
+        "epochs": 4,
+        "optimizer_steps": 24,
+        "parameter_count": 211040,
+        "parameters_changed": true,
+        "input_rank": 128,
+        "output_rank": 95,
+        "best_epoch": 1,
+        "best_validation_mse": 0.10793113211790721,
+        "frozen_validation_replay_exact": true,
+        "retained_predictor_contract": {
+          "source_lock_sha256": "0118e9b61f13d6ae0b271f3faa77bf276d6e7af1f6c97992ae0974902e6ba2d0",
+          "files": {
+            "src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+            "src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+            "src/phase1/training.py": "0e30f8c45e84a4dc966d3020066c0686b8c4b951a6447c52ecc85d309a14a235"
+          },
+          "recent": 4,
+          "budget": 2,
+          "horizons": [
+            3,
+            6
+          ]
+        },
+        "basis_train_only": true,
+        "sampling_counts": {
+          "random_fixed": {
+            "examples": 128,
+            "dropout_events": 14,
+            "removed_entries": 28
+          },
+          "random_subset": {
+            "examples": 128,
+            "dropout_events": 14,
+            "removed_entries": 16
+          },
+          "fifo": {
+            "examples": 128,
+            "dropout_events": 14,
+            "removed_entries": 28
+          },
+          "reservoir": {
+            "examples": 128,
+            "dropout_events": 14,
+            "removed_entries": 28
+          },
+          "temporal_buckets": {
+            "examples": 128,
+            "dropout_events": 14,
+            "removed_entries": 28
+          },
+          "visual_diversity": {
+            "examples": 128,
+            "dropout_events": 14,
+            "removed_entries": 28
+          }
+        },
+        "test_examples_or_metrics": 0,
+        "frozen_checkpoint": "<TASK_ROOT>/runs/cpu-predictor-pilot/predictor/gate/seed_17/frozen.pt",
+        "frozen_checkpoint_sha256": "a95bd252e10bafcf44cd156df446514eba9da3e57ad59da7ed9ccf8a5ac58c99"
+      },
+      {
+        "task": "motion",
+        "seed": 17,
+        "epochs": 4,
+        "optimizer_steps": 24,
+        "parameter_count": 211040,
+        "parameters_changed": true,
+        "input_rank": 128,
+        "output_rank": 95,
+        "best_epoch": 1,
+        "best_validation_mse": 0.15475597977638245,
+        "frozen_validation_replay_exact": true,
+        "retained_predictor_contract": {
+          "source_lock_sha256": "0118e9b61f13d6ae0b271f3faa77bf276d6e7af1f6c97992ae0974902e6ba2d0",
+          "files": {
+            "src/phase1/model.py": "dca27f514900f90950b1536a49b9610b779ddbc312579814c022ac4160bece66",
+            "src/phase1/inputs.py": "b4766e845c10400929fd0f84f8b6f447182008ba8c21e0404fddfd3ea6cbffbd",
+            "src/phase1/training.py": "0e30f8c45e84a4dc966d3020066c0686b8c4b951a6447c52ecc85d309a14a235"
+          },
+          "recent": 4,
+          "budget": 2,
+          "horizons": [
+            3,
+            6
+          ]
+        },
+        "basis_train_only": true,
+        "sampling_counts": {
+          "random_fixed": {
+            "examples": 128,
+            "dropout_events": 10,
+            "removed_entries": 20
+          },
+          "random_subset": {
+            "examples": 128,
+            "dropout_events": 10,
+            "removed_entries": 14
+          },
+          "fifo": {
+            "examples": 128,
+            "dropout_events": 10,
+            "removed_entries": 20
+          },
+          "reservoir": {
+            "examples": 128,
+            "dropout_events": 10,
+            "removed_entries": 20
+          },
+          "temporal_buckets": {
+            "examples": 128,
+            "dropout_events": 10,
+            "removed_entries": 20
+          },
+          "visual_diversity": {
+            "examples": 128,
+            "dropout_events": 10,
+            "removed_entries": 20
+          }
+        },
+        "test_examples_or_metrics": 0,
+        "frozen_checkpoint": "<TASK_ROOT>/runs/cpu-predictor-pilot/predictor/motion/seed_17/frozen.pt",
+        "frozen_checkpoint_sha256": "9b3ea6d76cdb903a34852200f42284b1569b49a2caf52fa88da930f2b00afa94"
+      }
+    ],
+    "test_metrics_generated": false,
+    "latest_repaired_phase1_reproduced": false,
+    "scientific_phase2_completed": false,
+    "deletion_supervision_generated": false,
+    "baseline_model_planning_verified": false,
+    "originals_preserved": true,
+    "original_artifact_sha256": {
+      "<TASK_ROOT>/data/resolved_config.json": "27bb55fdee25bed048ada92d1907586a9b9585bd87dccfeaf74c980dd23c80ef",
+      "<TASK_ROOT>/data/dataset/manifest.json": "7188bd6de6b54eaaff75d22c8d3c631a1467f1d6e5b14c19bd1c269c37ee0d05",
+      "<TASK_ROOT>/data/features/index.json": "a25354d475dfe9e4e50da2aa0823602be0d106a1b48bd94d9f83696c388c3287",
+      "<TASK_ROOT>/data/features/normalization.npz": "2ecbe84ae1555e2e8f5fae49e49bab02fd5475f31ff7b4e4694e19791c61a690"
+    },
+    "predictor_trained": true,
+    "trained_retention_baseline_results": false,
+    "learned_retention_scorer_trained": false
+  },
+  "development_quality_comparison": {
+    "gate": {
+      "initial_validation_mse": 0.10755177835623424,
+      "best_trained_validation_mse": 0.10793113211790721,
+      "training_log_sha256": "8f586e16072abfed41d49ae1013a2d0a51e79f0e9c1e35c9c2abd1cbe6ac9c6a",
+      "validation_mse_by_completed_epoch": [
+        0.10793113211790721,
+        0.10848100110888481,
+        0.10958607122302055,
+        0.11117095376054446
+      ],
+      "initial_validation_by_mode": {
+        "random_fixed": 0.10628142207860947,
+        "random_subset": 0.10575211048126221,
+        "fifo": 0.10594639927148819,
+        "reservoir": 0.11431087553501129,
+        "temporal_buckets": 0.10594639927148819,
+        "visual_diversity": 0.10707346349954605
+      }
+    },
+    "motion": {
+      "initial_validation_mse": 0.1542912075916926,
+      "best_trained_validation_mse": 0.15475597977638245,
+      "training_log_sha256": "67b94109299a0f08edd1a1e3be4d098637a661ccb5d7388492dae65576a414ec",
+      "validation_mse_by_completed_epoch": [
+        0.15475597977638245,
+        0.1562045911947886,
+        0.1594966252644857,
+        0.16632460554440817
+      ],
+      "initial_validation_by_mode": {
+        "random_fixed": 0.155558243393898,
+        "random_subset": 0.1540360152721405,
+        "fifo": 0.15362437069416046,
+        "reservoir": 0.1548008918762207,
+        "temporal_buckets": 0.15362437069416046,
+        "visual_diversity": 0.1541033536195755
+      }
+    },
+    "interpretation": "Both selected trained checkpoints are slightly worse than initialization. No improvement or generalization claim."
+  }
+}

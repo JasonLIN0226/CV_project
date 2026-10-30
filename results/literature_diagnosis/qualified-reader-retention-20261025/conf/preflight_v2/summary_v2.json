@@ -1,0 +1,135 @@
+{
+  "status": "passed",
+  "times": [
+    "2026-10-26T19:45:52.062645+00:00",
+    "2026-10-26T19:45:57.536212+00:00"
+  ],
+  "execution": {
+    "requested_torch_threads": 2,
+    "deterministic_algorithms": true,
+    "environment": {
+      "OMP_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": null,
+      "MKL_NUM_THREADS": null
+    },
+    "actual_torch_threads": 2,
+    "actual_threads_after_multihead_standard": 2,
+    "actual_threads_after_multihead_distilled": 2,
+    "actual_threads_after_item_attention_standard": 2,
+    "actual_threads_after_item_attention_distilled": 2
+  },
+  "stageA": {
+    "multihead": {
+      "medoid_sum": {
+        "max_absolute_error": 3.582581218353198e-07,
+        "max_error_over_allowed_tol": 0.02988739356627018,
+        "eligible_tie_parents": 0,
+        "actual_choice_mismatches": 0,
+        "actual_tie_exemptions": 0,
+        "unexempted_mismatches": 0
+      },
+      "sensitivity": {
+        "max_absolute_error": 1.5554472948542397e-07,
+        "max_error_over_allowed_tol": 0.043216213118627604,
+        "eligible_tie_parents": 18,
+        "actual_choice_mismatches": 0,
+        "actual_tie_exemptions": 0,
+        "unexempted_mismatches": 0
+      },
+      "attention": {
+        "max_absolute_error": 1.7881393432617188e-07,
+        "max_error_over_allowed_tol": 0.0036333237994916833,
+        "eligible_tie_parents": 44,
+        "actual_choice_mismatches": 0,
+        "actual_tie_exemptions": 0,
+        "unexempted_mismatches": 0
+      },
+      "eval_cost": {
+        "max_absolute_error": 6.728321116922231e-08,
+        "max_error_over_allowed_tol": 0.006222897162345936,
+        "eligible_tie_parents": 4,
+        "actual_choice_mismatches": 0,
+        "actual_tie_exemptions": 0,
+        "unexempted_mismatches": 0
+      }
+    },
+    "item_attention": {
+      "medoid_sum": {
+        "max_absolute_error": 7.414340856271018e-07,
+        "max_error_over_allowed_tol": 0.07784968894734945,
+        "eligible_tie_parents": 0,
+        "actual_choice_mismatches": 0,
+        "actual_tie_exemptions": 0,
+        "unexempted_mismatches": 0
+      },
+      "sensitivity": {
+        "max_absolute_error": 6.577000464247362e-07,
+        "max_error_over_allowed_tol": 0.06378955784574013,
+        "eligible_tie_parents": 6,
+        "actual_choice_mismatches": 0,
+        "actual_tie_exemptions": 0,
+        "unexempted_mismatches": 0
+      },
+      "attention": {
+        "max_absolute_error": 1.9669532775878906e-06,
+        "max_error_over_allowed_tol": 0.03865464499398334,
+        "eligible_tie_parents": 0,
+        "actual_choice_mismatches": 0,
+        "actual_tie_exemptions": 0,
+        "unexempted_mismatches": 0
+      },
+      "eval_cost": {
+        "max_absolute_error": 2.256585455578941e-07,
+        "max_error_over_allowed_tol": 0.013170848806230285,
+        "eligible_tie_parents": 1,
+        "actual_choice_mismatches": 0,
+        "actual_tie_exemptions": 0,
+        "unexempted_mismatches": 0
+      }
+    }
+  },
+  "students": {
+    "multihead_standard": {
+      "arms": 21,
+      "eligible_ties": 1724,
+      "choice_mismatches": 24,
+      "actual_tie_exemptions": 24,
+      "unexempted_mismatches": 0,
+      "max_absolute_error": 2.6226043701171875e-06,
+      "max_error_over_allowed_tol": 0.017881393432617188
+    },
+    "multihead_distilled": {
+      "arms": 18,
+      "eligible_ties": 127,
+      "choice_mismatches": 0,
+      "actual_tie_exemptions": 0,
+      "unexempted_mismatches": 0,
+      "max_absolute_error": 2.7418136596679688e-06,
+      "max_error_over_allowed_tol": 0.024139881134033203
+    },
+    "item_attention_standard": {
+      "arms": 21,
+      "eligible_ties": 1043,
+      "choice_mismatches": 10,
+      "actual_tie_exemptions": 10,
+      "unexempted_mismatches": 0,
+      "max_absolute_error": 2.9802322387695312e-06,
+      "max_error_over_allowed_tol": 0.029802322387695312
+    },
+    "item_attention_distilled": {
+      "arms": 18,
+      "eligible_ties": 86,
+      "choice_mismatches": 0,
+      "actual_tie_exemptions": 0,
+      "unexempted_mismatches": 0,
+      "max_absolute_error": 3.2186508178710938e-06,
+      "max_error_over_allowed_tol": 0.02709878422319889
+    }
+  },
+  "tie_reference": {
+    "path": "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/build/qualified-reader-conf-20261026/dev-preflight-v2/dev_tie_robustness.json",
+    "sha256": "a3b3dc071ad6dd64a34fdda5f9f12b8bafc7b354ba28c205eb9604b6f1baa291",
+    "all_18_rates_unchanged": true
+  },
+  "report_sha256": "58de63b2c039d8db1ed84fab92dcbb115e45a2af22d85470d0d333159c3f748c"
+}

@@ -1,0 +1,46 @@
+{
+  "version": "reader-scale-pilot-v1",
+  "hardware": {
+    "hostname": "b-19-53",
+    "slurm_job_id": "11026",
+    "pid": 3299,
+    "torch": "2.5.1+cu121",
+    "cuda": "12.1",
+    "torch_device_name": "NVIDIA A100-SXM4-40GB",
+    "actual_gpu_uuid": "GPU-32696669-0cff-0b88-1315-809240c3f81b",
+    "uuid_source": "torch.cuda.get_device_properties(0).uuid",
+    "matched_nvidia_smi_device": {
+      "index": "0",
+      "name": "NVIDIA A100-SXM4-40GB",
+      "uuid": "GPU-32696669-0cff-0b88-1315-809240c3f81b",
+      "memory.total": "40960",
+      "driver_version": "610.43.02"
+    },
+    "visible_devices": 1
+  },
+  "train_pairs": [
+    16,
+    64,
+    512
+  ],
+  "train_expansion_seed": 20261025,
+  "validation_seed": 20261026,
+  "evaluation_seed": 20261027,
+  "validation_pairs": 32,
+  "evaluation_pairs": 48,
+  "model_seed": 17,
+  "steps_per_arm": 512,
+  "pairs_per_update": 16,
+  "validation_every": 64,
+  "selection": "earliest minimum new-validation equal-six-mode feature MSE including step zero",
+  "inputs_manifest_sha256": "95999d507b3bbebc33063906b2f4b4a9ad80d628fa8fb87d78778c22ac2f0e24",
+  "source_sha256": "84331b3aafbdc5d7350fdf7d091f75958863dc443bdb757333f27bc0a5ec423c",
+  "fixed_transforms": "old train-only normalization and Gate unit-column basis; no refit",
+  "limitations": [
+    "single training seed pilot",
+    "same old limited transform subspace",
+    "sample-size and coverage improve together; not an architecture comparison",
+    "evaluations are diagnostic controls, not new online-policy results",
+    "full_history is over budget; wrong cue is evaluator-only"
+  ]
+}

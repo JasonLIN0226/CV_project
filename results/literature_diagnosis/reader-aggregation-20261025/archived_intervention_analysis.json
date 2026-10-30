@@ -1,0 +1,4172 @@
+{
+  "schema": "archived-reader-intervention-independent-analysis-v1",
+  "frozen_source_commit": "82e31a0",
+  "scope": "CPU read-only analysis of same published checkpoint on already-observed DEV; no training, no fresh diagnostic, no confirmation",
+  "inputs_sha256": {
+    "execution_summary": "44757baa8730c5ea34569a8c888d8910af652a98dda5bd8ed7181a917e2b1c7c",
+    "source_records": "8b5b2e984a0cda4064f2f8376f9c9ac1ce2f638ad0646d0557ac25f4e1e288dd",
+    "published_qualification": "c0c2d5369b47273dc1840951a072335bb4cba71224f1e8ccc1209cd22cec5c08",
+    "published_rows": "82ae343eabdaa04f9e82e92ca537d74974bbabf446fd99c99052ed11d384ed20",
+    "published_coefficients": "ca723c84780bc98797d03ecb18d8876c20d17c10ffaf2cb0684c9f03c358d278",
+    "original_rows": "18df253882683faa0f80fb8bf15ce58a27860d943b7a75d786c66878ecefbff0",
+    "uniform_intervention_rows": "f52dad5e4321858495cab2fb2f715e29e7b536b1638896576ff08c406a471136"
+  },
+  "reproduction": {
+    "rows": 21312,
+    "ordered_row_keys_identical": true,
+    "class_mismatches": 0,
+    "min_set_mismatches": 0,
+    "strict_correct_mismatches": 0,
+    "qualification_gates_equal": true,
+    "max_abs_numeric_row_error": {
+      "mse": 5.467955187521412e-07,
+      "mse_to_original_target": 1.0320066810010076e-06,
+      "midpoint_mse": 5.806910373384877e-07
+    },
+    "max_abs_prototype_distance_error": 1.0320066810010076e-06,
+    "coefficient_shape": [
+      21312,
+      2,
+      128
+    ],
+    "coefficient_max_abs_difference": 6.866455078125e-05,
+    "coefficient_allclose_atol_1e_5_rtol_1e_5": false,
+    "coefficient_allclose_atol_1e_4_rtol_1e_5": true,
+    "interpretation": "All discrete classifications and gates reproduce. The primary per-row mse field differs by at most 5.47e-7; the largest difference among alternate-target/prototype distances is 1.033e-6. CPU/GPU coefficient arrays are not bit identical and do not satisfy 1e-5 allclose; do not misreport exact numerical replay."
+  },
+  "qualification": {
+    "original": {
+      "summary": {
+        "R": {
+          "K2_complete_accuracy": 0.7560763888888888,
+          "flip_accuracy": 0.7638888888888888,
+          "K3_accuracy": 0.7326388888888888,
+          "fixed_complete_mse": 0.05935942106483653,
+          "fixed_missing_mse": 0.10271469864015054,
+          "single_mse": 0.12075112095435024,
+          "missing_tie_credit_accuracy": 0.4826388888888889,
+          "missing_midpoint_mse": 0.07454283558714077,
+          "missing_equal_distance_fraction": 0.0
+        },
+        "D": {
+          "K2_complete_accuracy": 0.8524305555555556,
+          "flip_accuracy": 0.8611111111111112,
+          "K3_accuracy": 0.84375,
+          "fixed_complete_mse": 0.06525412676897276,
+          "fixed_missing_mse": 0.10819568445026781,
+          "single_mse": 0.12945178684193123,
+          "missing_tie_credit_accuracy": 0.4965277777777778,
+          "missing_midpoint_mse": 0.07699851296750432,
+          "missing_equal_distance_fraction": 0.0
+        },
+        "S": {
+          "K2_complete_accuracy": 0.9375,
+          "flip_accuracy": 0.9375,
+          "K3_accuracy": 0.7248263888888888,
+          "fixed_complete_mse": 0.0857122990524261,
+          "fixed_missing_mse": 0.1377688776626846,
+          "single_mse": 0.1621860080431942,
+          "missing_tie_credit_accuracy": 0.5,
+          "missing_midpoint_mse": 0.034971227365401175,
+          "missing_equal_distance_fraction": 0.0
+        }
+      },
+      "gates": {
+        "R/K2_content": false,
+        "R/K3_content": false,
+        "R/neutral/K2_content": true,
+        "R/neutral/K3_content": true,
+        "R/salient_redundant/K2_content": false,
+        "R/salient_redundant/K3_content": false,
+        "R/salient_unique/K2_content": false,
+        "R/salient_unique/K3_content": false,
+        "D/K2_content": false,
+        "D/K3_content": false,
+        "D/neutral/K2_content": true,
+        "D/neutral/K3_content": true,
+        "D/salient_decoy/K2_content": true,
+        "D/salient_decoy/K3_content": true,
+        "D/salient_useful/K2_content": false,
+        "D/salient_useful/K3_content": false,
+        "S/K2_content": true,
+        "S/K3_content": false,
+        "S/neutral/K2_content": true,
+        "S/neutral/K3_content": false,
+        "S/salient_slot_0/K2_content": true,
+        "S/salient_slot_0/K3_content": false,
+        "S/salient_slot_1/K2_content": true,
+        "S/salient_slot_1/K3_content": false,
+        "S/salient_slot_2/K2_content": true,
+        "S/salient_slot_2/K3_content": false
+      },
+      "all_task_k2_qualified": false,
+      "all_task_k3_qualified": false
+    },
+    "uniform_intervention": {
+      "summary": {
+        "R": {
+          "K2_complete_accuracy": 0.9739583333333334,
+          "flip_accuracy": 0.9739583333333334,
+          "K3_accuracy": 0.9409722222222222,
+          "fixed_complete_mse": 0.08521617372872353,
+          "fixed_missing_mse": 0.11945661119587471,
+          "single_mse": 0.15078273188329167,
+          "missing_tie_credit_accuracy": 0.4791666666666667,
+          "missing_midpoint_mse": 0.09442711315529333,
+          "missing_equal_distance_fraction": 0.0
+        },
+        "D": {
+          "K2_complete_accuracy": 0.9826388888888888,
+          "flip_accuracy": 0.9826388888888888,
+          "K3_accuracy": 0.6875,
+          "fixed_complete_mse": 0.08958968908100141,
+          "fixed_missing_mse": 0.1963208233771817,
+          "single_mse": 0.18451516201890433,
+          "missing_tie_credit_accuracy": 0.4548611111111111,
+          "missing_midpoint_mse": 0.1397262585798932,
+          "missing_equal_distance_fraction": 0.0
+        },
+        "S": {
+          "K2_complete_accuracy": 0.9375,
+          "flip_accuracy": 0.9375,
+          "K3_accuracy": 0.6510416666666666,
+          "fixed_complete_mse": 0.08552066680717403,
+          "fixed_missing_mse": 0.21576167688676526,
+          "single_mse": 0.20113931144894076,
+          "missing_tie_credit_accuracy": 0.5,
+          "missing_midpoint_mse": 0.11296402659745992,
+          "missing_equal_distance_fraction": 0.0
+        }
+      },
+      "gates": {
+        "R/K2_content": false,
+        "R/K3_content": true,
+        "R/neutral/K2_content": true,
+        "R/neutral/K3_content": true,
+        "R/salient_redundant/K2_content": true,
+        "R/salient_redundant/K3_content": true,
+        "R/salient_unique/K2_content": false,
+        "R/salient_unique/K3_content": true,
+        "D/K2_content": true,
+        "D/K3_content": false,
+        "D/neutral/K2_content": true,
+        "D/neutral/K3_content": false,
+        "D/salient_decoy/K2_content": true,
+        "D/salient_decoy/K3_content": false,
+        "D/salient_useful/K2_content": true,
+        "D/salient_useful/K3_content": false,
+        "S/K2_content": true,
+        "S/K3_content": false,
+        "S/neutral/K2_content": true,
+        "S/neutral/K3_content": false,
+        "S/salient_slot_0/K2_content": true,
+        "S/salient_slot_0/K3_content": false,
+        "S/salient_slot_1/K2_content": true,
+        "S/salient_slot_1/K3_content": false,
+        "S/salient_slot_2/K2_content": true,
+        "S/salient_slot_2/K3_content": false
+      },
+      "all_task_k2_qualified": false,
+      "all_task_k3_qualified": false
+    }
+  },
+  "matched_task_condition_metrics": {
+    "D/content_flip": {
+      "rows": 576,
+      "families": 24,
+      "original": {
+        "correct": 496,
+        "accuracy_record_mean": 0.8611111111111112,
+        "accuracy_equal_family": 0.861111111111111,
+        "mse_record_mean": 0.06525412676897274,
+        "mse_equal_family": 0.06525412676897276
+      },
+      "uniform": {
+        "correct": 566,
+        "accuracy_record_mean": 0.9826388888888888,
+        "accuracy_equal_family": 0.9826388888888888,
+        "mse_record_mean": 0.08958968908100141,
+        "mse_equal_family": 0.0895896890810014
+      },
+      "transitions": {
+        "1_to_1": 494,
+        "0_to_1": 72,
+        "0_to_0": 8,
+        "1_to_0": 2
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.12152777777777775,
+        "mse": 0.024335562312028658,
+        "accuracy_descriptive95": [
+          0.09374999999999996,
+          0.1458333333333333
+        ],
+        "mse_descriptive95": [
+          0.01859467149793476,
+          0.03106352378838453
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/fixed_complete_K2": {
+      "rows": 288,
+      "families": 24,
+      "original": {
+        "correct": 248,
+        "accuracy_record_mean": 0.8611111111111112,
+        "accuracy_equal_family": 0.861111111111111,
+        "mse_record_mean": 0.06525412676897276,
+        "mse_equal_family": 0.06525412676897276
+      },
+      "uniform": {
+        "correct": 283,
+        "accuracy_record_mean": 0.9826388888888888,
+        "accuracy_equal_family": 0.9826388888888888,
+        "mse_record_mean": 0.08958968908100141,
+        "mse_equal_family": 0.0895896890810014
+      },
+      "transitions": {
+        "1_to_1": 247,
+        "0_to_1": 36,
+        "0_to_0": 4,
+        "1_to_0": 1
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.12152777777777775,
+        "mse": 0.024335562312028648,
+        "accuracy_descriptive95": [
+          0.09374999999999996,
+          0.1458333333333333
+        ],
+        "mse_descriptive95": [
+          0.018594671497934756,
+          0.03106352378838452
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/fixed_missing_K2": {
+      "rows": 576,
+      "families": 24,
+      "original": {
+        "correct": 286,
+        "accuracy_record_mean": 0.4965277777777778,
+        "accuracy_equal_family": 0.49652777777777785,
+        "mse_record_mean": 0.10819568445026781,
+        "mse_equal_family": 0.10819568445026782
+      },
+      "uniform": {
+        "correct": 262,
+        "accuracy_record_mean": 0.4548611111111111,
+        "accuracy_equal_family": 0.45486111111111116,
+        "mse_record_mean": 0.1963208233771817,
+        "mse_equal_family": 0.19632082337718174
+      },
+      "transitions": {
+        "0_to_0": 170,
+        "0_to_1": 120,
+        "1_to_0": 144,
+        "1_to_1": 142
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.041666666666666664,
+        "mse": 0.08812513892691391,
+        "accuracy_descriptive95": [
+          -0.05555555555555555,
+          -0.02777777777777778
+        ],
+        "mse_descriptive95": [
+          0.07967807226372733,
+          0.09657741419919617
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/full_K3": {
+      "rows": 288,
+      "families": 24,
+      "original": {
+        "correct": 243,
+        "accuracy_record_mean": 0.84375,
+        "accuracy_equal_family": 0.84375,
+        "mse_record_mean": 0.06476383156015017,
+        "mse_equal_family": 0.06476383156015018
+      },
+      "uniform": {
+        "correct": 198,
+        "accuracy_record_mean": 0.6875,
+        "accuracy_equal_family": 0.6875,
+        "mse_record_mean": 0.1529846755944826,
+        "mse_equal_family": 0.1529846755944826
+      },
+      "transitions": {
+        "1_to_1": 175,
+        "1_to_0": 68,
+        "0_to_0": 22,
+        "0_to_1": 23
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.15625,
+        "mse": 0.08822084403433239,
+        "accuracy_descriptive95": [
+          -0.2465277777777778,
+          -0.06944444444444446
+        ],
+        "mse_descriptive95": [
+          0.06953965417307088,
+          0.10766008362589541
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/native_complete_K2": {
+      "rows": 288,
+      "families": 24,
+      "original": {
+        "correct": 243,
+        "accuracy_record_mean": 0.84375,
+        "accuracy_equal_family": 0.84375,
+        "mse_record_mean": 0.06476288262883732,
+        "mse_equal_family": 0.06476288262883734
+      },
+      "uniform": {
+        "correct": 283,
+        "accuracy_record_mean": 0.9826388888888888,
+        "accuracy_equal_family": 0.9826388888888888,
+        "mse_record_mean": 0.08302874936987202,
+        "mse_equal_family": 0.08302874936987202
+      },
+      "transitions": {
+        "1_to_1": 241,
+        "0_to_1": 42,
+        "1_to_0": 2,
+        "0_to_0": 3
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.13888888888888887,
+        "mse": 0.018265866741034694,
+        "accuracy_descriptive95": [
+          0.10416666666666663,
+          0.17361111111111108
+        ],
+        "mse_descriptive95": [
+          0.013586531881362985,
+          0.023367820316752413
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/neutral/content_flip": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 190,
+        "accuracy_record_mean": 0.9895833333333334,
+        "accuracy_equal_family": 0.9895833333333334,
+        "mse_record_mean": 0.05939806650920293,
+        "mse_equal_family": 0.05939806650920293
+      },
+      "uniform": {
+        "correct": 192,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.06926354436829457,
+        "mse_equal_family": 0.06926354436829457
+      },
+      "transitions": {
+        "1_to_1": 190,
+        "0_to_1": 2
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.010416666666666666,
+        "mse": 0.009865477859091636,
+        "accuracy_descriptive95": [
+          0.0,
+          0.03125
+        ],
+        "mse_descriptive95": [
+          0.0076823520311449485,
+          0.01215687965384113
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/neutral/fixed_complete_K2": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 95,
+        "accuracy_record_mean": 0.9895833333333334,
+        "accuracy_equal_family": 0.9895833333333334,
+        "mse_record_mean": 0.059398066509202936,
+        "mse_equal_family": 0.059398066509202936
+      },
+      "uniform": {
+        "correct": 96,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.06926354436829457,
+        "mse_equal_family": 0.06926354436829457
+      },
+      "transitions": {
+        "1_to_1": 95,
+        "0_to_1": 1
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.010416666666666666,
+        "mse": 0.009865477859091637,
+        "accuracy_descriptive95": [
+          0.0,
+          0.03125
+        ],
+        "mse_descriptive95": [
+          0.00768235203114495,
+          0.012156879653841128
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/neutral/fixed_missing_K2": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 95,
+        "accuracy_record_mean": 0.4947916666666667,
+        "accuracy_equal_family": 0.4947916666666667,
+        "mse_record_mean": 0.10799202801142072,
+        "mse_equal_family": 0.10799202801142072
+      },
+      "uniform": {
+        "correct": 93,
+        "accuracy_record_mean": 0.484375,
+        "accuracy_equal_family": 0.484375,
+        "mse_record_mean": 0.1820589675097158,
+        "mse_equal_family": 0.18205896750971584
+      },
+      "transitions": {
+        "0_to_0": 52,
+        "0_to_1": 45,
+        "1_to_0": 47,
+        "1_to_1": 48
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.010416666666666666,
+        "mse": 0.07406693949829511,
+        "accuracy_descriptive95": [
+          -0.026041666666666668,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.061484881809881015,
+          0.08735275465920923
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/neutral/full_K3": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 93,
+        "accuracy_record_mean": 0.96875,
+        "accuracy_equal_family": 0.96875,
+        "mse_record_mean": 0.05861300922743606,
+        "mse_equal_family": 0.05861300922743604
+      },
+      "uniform": {
+        "correct": 67,
+        "accuracy_record_mean": 0.6979166666666666,
+        "accuracy_equal_family": 0.6979166666666666,
+        "mse_record_mean": 0.13427618514346387,
+        "mse_equal_family": 0.13427618514346387
+      },
+      "transitions": {
+        "1_to_1": 66,
+        "1_to_0": 27,
+        "0_to_1": 1,
+        "0_to_0": 2
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.2708333333333333,
+        "mse": 0.07566317591602784,
+        "accuracy_descriptive95": [
+          -0.3854166666666667,
+          -0.16666666666666666
+        ],
+        "mse_descriptive95": [
+          0.05552124600278993,
+          0.09741118937794836
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/neutral/native_complete_K2": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 93,
+        "accuracy_record_mean": 0.96875,
+        "accuracy_equal_family": 0.96875,
+        "mse_record_mean": 0.05861290526716103,
+        "mse_equal_family": 0.05861290526716103
+      },
+      "uniform": {
+        "correct": 96,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.06594549509927224,
+        "mse_equal_family": 0.06594549509927224
+      },
+      "transitions": {
+        "1_to_1": 93,
+        "0_to_1": 3
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.03125,
+        "mse": 0.007332589832111214,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0625
+        ],
+        "mse_descriptive95": [
+          0.005261999954068976,
+          0.009590394552678959
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/salient_decoy/content_flip": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 190,
+        "accuracy_record_mean": 0.9895833333333334,
+        "accuracy_equal_family": 0.9895833333333334,
+        "mse_record_mean": 0.05939806650920293,
+        "mse_equal_family": 0.05939806650920293
+      },
+      "uniform": {
+        "correct": 192,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.06926354436829457,
+        "mse_equal_family": 0.06926354436829457
+      },
+      "transitions": {
+        "1_to_1": 190,
+        "0_to_1": 2
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.010416666666666666,
+        "mse": 0.009865477859091636,
+        "accuracy_descriptive95": [
+          0.0,
+          0.03125
+        ],
+        "mse_descriptive95": [
+          0.0076823520311449485,
+          0.01215687965384113
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/salient_decoy/fixed_complete_K2": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 95,
+        "accuracy_record_mean": 0.9895833333333334,
+        "accuracy_equal_family": 0.9895833333333334,
+        "mse_record_mean": 0.059398066509202936,
+        "mse_equal_family": 0.059398066509202936
+      },
+      "uniform": {
+        "correct": 96,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.06926354436829457,
+        "mse_equal_family": 0.06926354436829457
+      },
+      "transitions": {
+        "1_to_1": 95,
+        "0_to_1": 1
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.010416666666666666,
+        "mse": 0.009865477859091637,
+        "accuracy_descriptive95": [
+          0.0,
+          0.03125
+        ],
+        "mse_descriptive95": [
+          0.00768235203114495,
+          0.012156879653841128
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/salient_decoy/fixed_missing_K2": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 95,
+        "accuracy_record_mean": 0.4947916666666667,
+        "accuracy_equal_family": 0.4947916666666667,
+        "mse_record_mean": 0.10798445916538123,
+        "mse_equal_family": 0.1079844591653812
+      },
+      "uniform": {
+        "correct": 83,
+        "accuracy_record_mean": 0.4322916666666667,
+        "accuracy_equal_family": 0.4322916666666667,
+        "mse_record_mean": 0.20711951930622496,
+        "mse_equal_family": 0.20711951930622496
+      },
+      "transitions": {
+        "0_to_1": 37,
+        "0_to_0": 60,
+        "1_to_0": 49,
+        "1_to_1": 46
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.0625,
+        "mse": 0.09913506014084372,
+        "accuracy_descriptive95": [
+          -0.08854166666666667,
+          -0.036458333333333336
+        ],
+        "mse_descriptive95": [
+          0.07990930919646903,
+          0.12121122439485657
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/salient_decoy/full_K3": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 93,
+        "accuracy_record_mean": 0.96875,
+        "accuracy_equal_family": 0.96875,
+        "mse_record_mean": 0.05861423033657356,
+        "mse_equal_family": 0.05861423033657356
+      },
+      "uniform": {
+        "correct": 66,
+        "accuracy_record_mean": 0.6875,
+        "accuracy_equal_family": 0.6875,
+        "mse_record_mean": 0.15297364261100022,
+        "mse_equal_family": 0.15297364261100024
+      },
+      "transitions": {
+        "1_to_1": 66,
+        "1_to_0": 27,
+        "0_to_0": 3
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.28125,
+        "mse": 0.09435941227442668,
+        "accuracy_descriptive95": [
+          -0.375,
+          -0.17708333333333334
+        ],
+        "mse_descriptive95": [
+          0.06338977003627805,
+          0.12890146138641448
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/salient_decoy/native_complete_K2": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 93,
+        "accuracy_record_mean": 0.96875,
+        "accuracy_equal_family": 0.96875,
+        "mse_record_mean": 0.05861290526716103,
+        "mse_equal_family": 0.05861290526716103
+      },
+      "uniform": {
+        "correct": 96,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.06594549509927224,
+        "mse_equal_family": 0.06594549509927224
+      },
+      "transitions": {
+        "1_to_1": 93,
+        "0_to_1": 3
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.03125,
+        "mse": 0.007332589832111214,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0625
+        ],
+        "mse_descriptive95": [
+          0.005261999954068976,
+          0.009590394552678959
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/salient_useful/content_flip": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 116,
+        "accuracy_record_mean": 0.6041666666666666,
+        "accuracy_equal_family": 0.6041666666666666,
+        "mse_record_mean": 0.07696624728851238,
+        "mse_equal_family": 0.07696624728851238
+      },
+      "uniform": {
+        "correct": 182,
+        "accuracy_record_mean": 0.9479166666666666,
+        "accuracy_equal_family": 0.9479166666666666,
+        "mse_record_mean": 0.13024197850641506,
+        "mse_equal_family": 0.13024197850641508
+      },
+      "transitions": {
+        "1_to_1": 114,
+        "0_to_1": 68,
+        "0_to_0": 8,
+        "1_to_0": 2
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.34375,
+        "mse": 0.05327573121790267,
+        "accuracy_descriptive95": [
+          0.2708333333333333,
+          0.4166666666666667
+        ],
+        "mse_descriptive95": [
+          0.03873708749522298,
+          0.07126513987953112
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/salient_useful/fixed_complete_K2": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 58,
+        "accuracy_record_mean": 0.6041666666666666,
+        "accuracy_equal_family": 0.6041666666666666,
+        "mse_record_mean": 0.07696624728851238,
+        "mse_equal_family": 0.07696624728851238
+      },
+      "uniform": {
+        "correct": 91,
+        "accuracy_record_mean": 0.9479166666666666,
+        "accuracy_equal_family": 0.9479166666666666,
+        "mse_record_mean": 0.13024197850641506,
+        "mse_equal_family": 0.13024197850641508
+      },
+      "transitions": {
+        "1_to_1": 57,
+        "0_to_1": 34,
+        "0_to_0": 4,
+        "1_to_0": 1
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.34375,
+        "mse": 0.05327573121790267,
+        "accuracy_descriptive95": [
+          0.2708333333333333,
+          0.4166666666666667
+        ],
+        "mse_descriptive95": [
+          0.038737087495222984,
+          0.0712651398795311
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/salient_useful/fixed_missing_K2": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 96,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.10861056617400151,
+        "mse_equal_family": 0.10861056617400151
+      },
+      "uniform": {
+        "correct": 86,
+        "accuracy_record_mean": 0.4479166666666667,
+        "accuracy_equal_family": 0.4479166666666667,
+        "mse_record_mean": 0.19978398331560443,
+        "mse_equal_family": 0.19978398331560443
+      },
+      "transitions": {
+        "0_to_0": 58,
+        "1_to_0": 48,
+        "1_to_1": 48,
+        "0_to_1": 38
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.052083333333333336,
+        "mse": 0.09117341714160292,
+        "accuracy_descriptive95": [
+          -0.078125,
+          -0.026041666666666668
+        ],
+        "mse_descriptive95": [
+          0.07667723184711639,
+          0.10683236392695777
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/salient_useful/full_K3": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 57,
+        "accuracy_record_mean": 0.59375,
+        "accuracy_equal_family": 0.59375,
+        "mse_record_mean": 0.07706425511644094,
+        "mse_equal_family": 0.07706425511644094
+      },
+      "uniform": {
+        "correct": 65,
+        "accuracy_record_mean": 0.6770833333333334,
+        "accuracy_equal_family": 0.6770833333333334,
+        "mse_record_mean": 0.17170419902898362,
+        "mse_equal_family": 0.17170419902898368
+      },
+      "transitions": {
+        "1_to_0": 14,
+        "0_to_0": 17,
+        "1_to_1": 43,
+        "0_to_1": 22
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.08333333333333333,
+        "mse": 0.09463994391254271,
+        "accuracy_descriptive95": [
+          -0.03125,
+          0.19791666666666666
+        ],
+        "mse_descriptive95": [
+          0.07205204005038357,
+          0.11988688094357834
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "D/salient_useful/native_complete_K2": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 57,
+        "accuracy_record_mean": 0.59375,
+        "accuracy_equal_family": 0.59375,
+        "mse_record_mean": 0.07706283735218995,
+        "mse_equal_family": 0.07706283735218995
+      },
+      "uniform": {
+        "correct": 91,
+        "accuracy_record_mean": 0.9479166666666666,
+        "accuracy_equal_family": 0.9479166666666666,
+        "mse_record_mean": 0.11719525791107162,
+        "mse_equal_family": 0.1171952579110716
+      },
+      "transitions": {
+        "1_to_1": 55,
+        "0_to_1": 36,
+        "1_to_0": 2,
+        "0_to_0": 3
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.3541666666666667,
+        "mse": 0.04013242055888166,
+        "accuracy_descriptive95": [
+          0.28125,
+          0.4270833333333333
+        ],
+        "mse_descriptive95": [
+          0.0286704543491033,
+          0.05379490844658619
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/content_flip": {
+      "rows": 1152,
+      "families": 24,
+      "original": {
+        "correct": 880,
+        "accuracy_record_mean": 0.7638888888888888,
+        "accuracy_equal_family": 0.763888888888889,
+        "mse_record_mean": 0.05935942106483653,
+        "mse_equal_family": 0.05935942106483653
+      },
+      "uniform": {
+        "correct": 1122,
+        "accuracy_record_mean": 0.9739583333333334,
+        "accuracy_equal_family": 0.9739583333333334,
+        "mse_record_mean": 0.08521617372872353,
+        "mse_equal_family": 0.08521617372872353
+      },
+      "transitions": {
+        "1_to_1": 866,
+        "0_to_1": 256,
+        "1_to_0": 14,
+        "0_to_0": 16
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.21006944444444445,
+        "mse": 0.025856752663886994,
+        "accuracy_descriptive95": [
+          0.19444444444444445,
+          0.22569444444444445
+        ],
+        "mse_descriptive95": [
+          0.021425170013931728,
+          0.030653705412690777
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/fixed_complete_K2": {
+      "rows": 576,
+      "families": 24,
+      "original": {
+        "correct": 440,
+        "accuracy_record_mean": 0.7638888888888888,
+        "accuracy_equal_family": 0.763888888888889,
+        "mse_record_mean": 0.05935942106483653,
+        "mse_equal_family": 0.05935942106483653
+      },
+      "uniform": {
+        "correct": 561,
+        "accuracy_record_mean": 0.9739583333333334,
+        "accuracy_equal_family": 0.9739583333333334,
+        "mse_record_mean": 0.08521617372872353,
+        "mse_equal_family": 0.08521617372872353
+      },
+      "transitions": {
+        "1_to_1": 433,
+        "0_to_1": 128,
+        "1_to_0": 7,
+        "0_to_0": 8
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.21006944444444445,
+        "mse": 0.025856752663887,
+        "accuracy_descriptive95": [
+          0.19444444444444445,
+          0.22569444444444445
+        ],
+        "mse_descriptive95": [
+          0.02142517001393172,
+          0.03065370541269079
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/fixed_missing_K2": {
+      "rows": 288,
+      "families": 24,
+      "original": {
+        "correct": 139,
+        "accuracy_record_mean": 0.4826388888888889,
+        "accuracy_equal_family": 0.48263888888888884,
+        "mse_record_mean": 0.10271469864015054,
+        "mse_equal_family": 0.10271469864015052
+      },
+      "uniform": {
+        "correct": 138,
+        "accuracy_record_mean": 0.4791666666666667,
+        "accuracy_equal_family": 0.4791666666666667,
+        "mse_record_mean": 0.11945661119587471,
+        "mse_equal_family": 0.11945661119587474
+      },
+      "transitions": {
+        "0_to_0": 135,
+        "1_to_1": 124,
+        "0_to_1": 14,
+        "1_to_0": 15
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.0034722222222222216,
+        "mse": 0.016741912555724197,
+        "accuracy_descriptive95": [
+          -0.010416666666666664,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.01432699672705036,
+          0.019183657336037878
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/full_K3": {
+      "rows": 288,
+      "families": 24,
+      "original": {
+        "correct": 211,
+        "accuracy_record_mean": 0.7326388888888888,
+        "accuracy_equal_family": 0.7326388888888888,
+        "mse_record_mean": 0.06139355651832509,
+        "mse_equal_family": 0.06139355651832509
+      },
+      "uniform": {
+        "correct": 271,
+        "accuracy_record_mean": 0.9409722222222222,
+        "accuracy_equal_family": 0.9409722222222222,
+        "mse_record_mean": 0.09124004500426343,
+        "mse_equal_family": 0.09124004500426341
+      },
+      "transitions": {
+        "1_to_1": 203,
+        "0_to_1": 68,
+        "0_to_0": 9,
+        "1_to_0": 8
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.20833333333333334,
+        "mse": 0.029846488485938336,
+        "accuracy_descriptive95": [
+          0.15972222222222218,
+          0.25694444444444436
+        ],
+        "mse_descriptive95": [
+          0.023116847867480778,
+          0.03675726761307304
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/native_complete_K2": {
+      "rows": 576,
+      "families": 24,
+      "original": {
+        "correct": 431,
+        "accuracy_record_mean": 0.7482638888888888,
+        "accuracy_equal_family": 0.748263888888889,
+        "mse_record_mean": 0.05940642924968634,
+        "mse_equal_family": 0.05940642924968633
+      },
+      "uniform": {
+        "correct": 561,
+        "accuracy_record_mean": 0.9739583333333334,
+        "accuracy_equal_family": 0.9739583333333334,
+        "mse_record_mean": 0.07854153845740343,
+        "mse_equal_family": 0.07854153845740343
+      },
+      "transitions": {
+        "1_to_1": 424,
+        "0_to_1": 137,
+        "1_to_0": 7,
+        "0_to_0": 8
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.22569444444444445,
+        "mse": 0.019135109207717105,
+        "accuracy_descriptive95": [
+          0.21180555555555555,
+          0.23958333333333334
+        ],
+        "mse_descriptive95": [
+          0.015031277046718148,
+          0.023546784176337255
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/neutral/content_flip": {
+      "rows": 384,
+      "families": 24,
+      "original": {
+        "correct": 384,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.050852637384111526,
+        "mse_equal_family": 0.05085263738411152
+      },
+      "uniform": {
+        "correct": 384,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.0603323401394558,
+        "mse_equal_family": 0.06033234013945581
+      },
+      "transitions": {
+        "1_to_1": 384
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 0.009479702755344287,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.007619463617660844,
+          0.01133100771193194
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/neutral/fixed_complete_K2": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 192,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.050852637384111526,
+        "mse_equal_family": 0.050852637384111526
+      },
+      "uniform": {
+        "correct": 192,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.06033234013945582,
+        "mse_equal_family": 0.06033234013945581
+      },
+      "transitions": {
+        "1_to_1": 192
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 0.009479702755344283,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.007619463617660841,
+          0.011331007711931934
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/neutral/fixed_missing_K2": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 46,
+        "accuracy_record_mean": 0.4791666666666667,
+        "accuracy_equal_family": 0.4791666666666667,
+        "mse_record_mean": 0.10213397902615533,
+        "mse_equal_family": 0.10213397902615534
+      },
+      "uniform": {
+        "correct": 46,
+        "accuracy_record_mean": 0.4791666666666667,
+        "accuracy_equal_family": 0.4791666666666667,
+        "mse_record_mean": 0.10213397902615533,
+        "mse_equal_family": 0.10213397902615534
+      },
+      "transitions": {
+        "0_to_0": 50,
+        "1_to_1": 46
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 0.0,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.0,
+          0.0
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/neutral/full_K3": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 91,
+        "accuracy_record_mean": 0.9479166666666666,
+        "accuracy_equal_family": 0.9479166666666666,
+        "mse_record_mean": 0.056905875724252514,
+        "mse_equal_family": 0.05690587572425252
+      },
+      "uniform": {
+        "correct": 95,
+        "accuracy_record_mean": 0.9895833333333334,
+        "accuracy_equal_family": 0.9895833333333334,
+        "mse_record_mean": 0.06678845008679989,
+        "mse_equal_family": 0.06678845008679989
+      },
+      "transitions": {
+        "1_to_1": 91,
+        "0_to_1": 4,
+        "0_to_0": 1
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.041666666666666664,
+        "mse": 0.009882574362547369,
+        "accuracy_descriptive95": [
+          0.0,
+          0.09375
+        ],
+        "mse_descriptive95": [
+          0.006253931330359518,
+          0.013814625292145326
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/neutral/native_complete_K2": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 188,
+        "accuracy_record_mean": 0.9791666666666666,
+        "accuracy_equal_family": 0.9791666666666666,
+        "mse_record_mean": 0.050805834143908796,
+        "mse_equal_family": 0.050805834143908796
+      },
+      "uniform": {
+        "correct": 192,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.05717722290462215,
+        "mse_equal_family": 0.05717722290462215
+      },
+      "transitions": {
+        "1_to_1": 188,
+        "0_to_1": 4
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.020833333333333332,
+        "mse": 0.006371388760713345,
+        "accuracy_descriptive95": [
+          0.0,
+          0.046875
+        ],
+        "mse_descriptive95": [
+          0.004745732743925544,
+          0.007966670673689943
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/salient_redundant/content_flip": {
+      "rows": 384,
+      "families": 24,
+      "original": {
+        "correct": 292,
+        "accuracy_record_mean": 0.7604166666666666,
+        "accuracy_equal_family": 0.7604166666666666,
+        "mse_record_mean": 0.05959114344873138,
+        "mse_equal_family": 0.05959114344873137
+      },
+      "uniform": {
+        "correct": 368,
+        "accuracy_record_mean": 0.9583333333333334,
+        "accuracy_equal_family": 0.9583333333333334,
+        "mse_record_mean": 0.0866891762293518,
+        "mse_equal_family": 0.0866891762293518
+      },
+      "transitions": {
+        "1_to_1": 288,
+        "0_to_1": 80,
+        "0_to_0": 12,
+        "1_to_0": 4
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.19791666666666666,
+        "mse": 0.027098032780620413,
+        "accuracy_descriptive95": [
+          0.16666666666666666,
+          0.22395833333333334
+        ],
+        "mse_descriptive95": [
+          0.02240617584688403,
+          0.032213760383052466
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/salient_redundant/fixed_complete_K2": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 146,
+        "accuracy_record_mean": 0.7604166666666666,
+        "accuracy_equal_family": 0.7604166666666666,
+        "mse_record_mean": 0.05959114344873138,
+        "mse_equal_family": 0.05959114344873138
+      },
+      "uniform": {
+        "correct": 184,
+        "accuracy_record_mean": 0.9583333333333334,
+        "accuracy_equal_family": 0.9583333333333334,
+        "mse_record_mean": 0.0866891762293518,
+        "mse_equal_family": 0.0866891762293518
+      },
+      "transitions": {
+        "1_to_1": 144,
+        "0_to_1": 40,
+        "0_to_0": 6,
+        "1_to_0": 2
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.19791666666666666,
+        "mse": 0.02709803278062042,
+        "accuracy_descriptive95": [
+          0.16666666666666666,
+          0.22395833333333334
+        ],
+        "mse_descriptive95": [
+          0.022406175846884036,
+          0.032213760383052466
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/salient_redundant/fixed_missing_K2": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 47,
+        "accuracy_record_mean": 0.4895833333333333,
+        "accuracy_equal_family": 0.4895833333333333,
+        "mse_record_mean": 0.10387613786814093,
+        "mse_equal_family": 0.10387613786814093
+      },
+      "uniform": {
+        "correct": 46,
+        "accuracy_record_mean": 0.4791666666666667,
+        "accuracy_equal_family": 0.4791666666666667,
+        "mse_record_mean": 0.15410187553531354,
+        "mse_equal_family": 0.15410187553531352
+      },
+      "transitions": {
+        "0_to_0": 35,
+        "1_to_1": 32,
+        "0_to_1": 14,
+        "1_to_0": 15
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.010416666666666666,
+        "mse": 0.05022573766717258,
+        "accuracy_descriptive95": [
+          -0.03125,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.04298099018115108,
+          0.05755097200811365
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/salient_redundant/full_K3": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 70,
+        "accuracy_record_mean": 0.7291666666666666,
+        "accuracy_equal_family": 0.7291666666666666,
+        "mse_record_mean": 0.059644303307003606,
+        "mse_equal_family": 0.0596443033070036
+      },
+      "uniform": {
+        "correct": 83,
+        "accuracy_record_mean": 0.8645833333333334,
+        "accuracy_equal_family": 0.8645833333333334,
+        "mse_record_mean": 0.1051541808964307,
+        "mse_equal_family": 0.1051541808964307
+      },
+      "transitions": {
+        "0_to_1": 20,
+        "1_to_1": 63,
+        "0_to_0": 6,
+        "1_to_0": 7
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.13541666666666666,
+        "mse": 0.04550987758942709,
+        "accuracy_descriptive95": [
+          0.0,
+          0.2604166666666667
+        ],
+        "mse_descriptive95": [
+          0.02941710365600317,
+          0.06167258556139129
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/salient_redundant/native_complete_K2": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 143,
+        "accuracy_record_mean": 0.7447916666666666,
+        "accuracy_equal_family": 0.7447916666666666,
+        "mse_record_mean": 0.05960083226316618,
+        "mse_equal_family": 0.05960083226316618
+      },
+      "uniform": {
+        "correct": 184,
+        "accuracy_record_mean": 0.9583333333333334,
+        "accuracy_equal_family": 0.9583333333333334,
+        "mse_record_mean": 0.07981397457753683,
+        "mse_equal_family": 0.07981397457753683
+      },
+      "transitions": {
+        "1_to_1": 141,
+        "0_to_1": 43,
+        "0_to_0": 6,
+        "1_to_0": 2
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.21354166666666666,
+        "mse": 0.020213142314370647,
+        "accuracy_descriptive95": [
+          0.1875,
+          0.234375
+        ],
+        "mse_descriptive95": [
+          0.01601548878050841,
+          0.024978055465260995
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/salient_unique/content_flip": {
+      "rows": 384,
+      "families": 24,
+      "original": {
+        "correct": 204,
+        "accuracy_record_mean": 0.53125,
+        "accuracy_equal_family": 0.53125,
+        "mse_record_mean": 0.06763448236166669,
+        "mse_equal_family": 0.06763448236166669
+      },
+      "uniform": {
+        "correct": 370,
+        "accuracy_record_mean": 0.9635416666666666,
+        "accuracy_equal_family": 0.9635416666666666,
+        "mse_record_mean": 0.10862700481736298,
+        "mse_equal_family": 0.108627004817363
+      },
+      "transitions": {
+        "0_to_1": 176,
+        "1_to_1": 194,
+        "1_to_0": 10,
+        "0_to_0": 4
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.4322916666666667,
+        "mse": 0.0409925224556963,
+        "accuracy_descriptive95": [
+          0.390625,
+          0.4739583333333333
+        ],
+        "mse_descriptive95": [
+          0.0318016688132055,
+          0.053132821471130146
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/salient_unique/fixed_complete_K2": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 102,
+        "accuracy_record_mean": 0.53125,
+        "accuracy_equal_family": 0.53125,
+        "mse_record_mean": 0.06763448236166669,
+        "mse_equal_family": 0.06763448236166669
+      },
+      "uniform": {
+        "correct": 185,
+        "accuracy_record_mean": 0.9635416666666666,
+        "accuracy_equal_family": 0.9635416666666666,
+        "mse_record_mean": 0.10862700481736298,
+        "mse_equal_family": 0.108627004817363
+      },
+      "transitions": {
+        "0_to_1": 88,
+        "1_to_1": 97,
+        "1_to_0": 5,
+        "0_to_0": 2
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.4322916666666667,
+        "mse": 0.0409925224556963,
+        "accuracy_descriptive95": [
+          0.390625,
+          0.4739583333333333
+        ],
+        "mse_descriptive95": [
+          0.0318016688132055,
+          0.053132821471130146
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/salient_unique/fixed_missing_K2": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 46,
+        "accuracy_record_mean": 0.4791666666666667,
+        "accuracy_equal_family": 0.4791666666666667,
+        "mse_record_mean": 0.10213397902615533,
+        "mse_equal_family": 0.10213397902615534
+      },
+      "uniform": {
+        "correct": 46,
+        "accuracy_record_mean": 0.4791666666666667,
+        "accuracy_equal_family": 0.4791666666666667,
+        "mse_record_mean": 0.10213397902615533,
+        "mse_equal_family": 0.10213397902615534
+      },
+      "transitions": {
+        "0_to_0": 50,
+        "1_to_1": 46
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 0.0,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.0,
+          0.0
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/salient_unique/full_K3": {
+      "rows": 96,
+      "families": 24,
+      "original": {
+        "correct": 50,
+        "accuracy_record_mean": 0.5208333333333334,
+        "accuracy_equal_family": 0.5208333333333334,
+        "mse_record_mean": 0.06763049052371917,
+        "mse_equal_family": 0.06763049052371917
+      },
+      "uniform": {
+        "correct": 93,
+        "accuracy_record_mean": 0.96875,
+        "accuracy_equal_family": 0.96875,
+        "mse_record_mean": 0.10177750402955972,
+        "mse_equal_family": 0.1017775040295597
+      },
+      "transitions": {
+        "0_to_1": 44,
+        "1_to_1": 49,
+        "1_to_0": 1,
+        "0_to_0": 2
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.4479166666666667,
+        "mse": 0.03414701350584055,
+        "accuracy_descriptive95": [
+          0.40625,
+          0.4895833333333333
+        ],
+        "mse_descriptive95": [
+          0.02255320237244568,
+          0.04677988062857198
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "R/salient_unique/native_complete_K2": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 100,
+        "accuracy_record_mean": 0.5208333333333334,
+        "accuracy_equal_family": 0.5208333333333334,
+        "mse_record_mean": 0.067812621341984,
+        "mse_equal_family": 0.067812621341984
+      },
+      "uniform": {
+        "correct": 185,
+        "accuracy_record_mean": 0.9635416666666666,
+        "accuracy_equal_family": 0.9635416666666666,
+        "mse_record_mean": 0.09863341789005131,
+        "mse_equal_family": 0.09863341789005131
+      },
+      "transitions": {
+        "0_to_1": 90,
+        "1_to_1": 95,
+        "1_to_0": 5,
+        "0_to_0": 2
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.4427083333333333,
+        "mse": 0.03082079654806731,
+        "accuracy_descriptive95": [
+          0.40625,
+          0.4791666666666667
+        ],
+        "mse_descriptive95": [
+          0.022354969270242407,
+          0.04188725262443917
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/content_flip": {
+      "rows": 2304,
+      "families": 24,
+      "original": {
+        "correct": 2160,
+        "accuracy_record_mean": 0.9375,
+        "accuracy_equal_family": 0.9375,
+        "mse_record_mean": 0.0857122990524261,
+        "mse_equal_family": 0.0857122990524261
+      },
+      "uniform": {
+        "correct": 2160,
+        "accuracy_record_mean": 0.9375,
+        "accuracy_equal_family": 0.9375,
+        "mse_record_mean": 0.08552066680717403,
+        "mse_equal_family": 0.08552066680717402
+      },
+      "transitions": {
+        "1_to_1": 2160,
+        "0_to_0": 144
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": -0.0001916322452520814,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.00040878858573190015,
+          1.115263851848196e-06
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/fixed_complete_K2": {
+      "rows": 1152,
+      "families": 24,
+      "original": {
+        "correct": 1080,
+        "accuracy_record_mean": 0.9375,
+        "accuracy_equal_family": 0.9375,
+        "mse_record_mean": 0.0857122990524261,
+        "mse_equal_family": 0.0857122990524261
+      },
+      "uniform": {
+        "correct": 1080,
+        "accuracy_record_mean": 0.9375,
+        "accuracy_equal_family": 0.9375,
+        "mse_record_mean": 0.08552066680717403,
+        "mse_equal_family": 0.08552066680717403
+      },
+      "transitions": {
+        "0_to_0": 72,
+        "1_to_1": 1080
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": -0.00019163224525206232,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.00040878858573188405,
+          1.11526385187838e-06
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/fixed_missing_K2": {
+      "rows": 2304,
+      "families": 24,
+      "original": {
+        "correct": 1152,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.1377688776626846,
+        "mse_equal_family": 0.1377688776626846
+      },
+      "uniform": {
+        "correct": 1152,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.21576167688676526,
+        "mse_equal_family": 0.21576167688676517
+      },
+      "transitions": {
+        "1_to_1": 636,
+        "1_to_0": 516,
+        "0_to_0": 636,
+        "0_to_1": 516
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 0.0779927992240806,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.07050077480720573,
+          0.08583086163150096
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/full_K3": {
+      "rows": 1152,
+      "families": 24,
+      "original": {
+        "correct": 835,
+        "accuracy_record_mean": 0.7248263888888888,
+        "accuracy_equal_family": 0.7248263888888888,
+        "mse_record_mean": 0.10928233159290476,
+        "mse_equal_family": 0.10928233159290475
+      },
+      "uniform": {
+        "correct": 750,
+        "accuracy_record_mean": 0.6510416666666666,
+        "accuracy_equal_family": 0.6510416666666666,
+        "mse_record_mean": 0.17167658396484578,
+        "mse_equal_family": 0.17167658396484575
+      },
+      "transitions": {
+        "1_to_1": 574,
+        "0_to_0": 141,
+        "0_to_1": 176,
+        "1_to_0": 261
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.07378472222222222,
+        "mse": 0.062394252371940996,
+        "accuracy_descriptive95": [
+          -0.08940972222222222,
+          -0.057291666666666706
+        ],
+        "mse_descriptive95": [
+          0.055397705177446924,
+          0.06952999094036527
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/native_complete_K2": {
+      "rows": 1152,
+      "families": 24,
+      "original": {
+        "correct": 1080,
+        "accuracy_record_mean": 0.9375,
+        "accuracy_equal_family": 0.9375,
+        "mse_record_mean": 0.08400671810592483,
+        "mse_equal_family": 0.08400671810592482
+      },
+      "uniform": {
+        "correct": 1080,
+        "accuracy_record_mean": 0.9375,
+        "accuracy_equal_family": 0.9375,
+        "mse_record_mean": 0.08274144577234926,
+        "mse_equal_family": 0.08274144577234925
+      },
+      "transitions": {
+        "0_to_0": 72,
+        "1_to_1": 1080
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": -0.0012652723335755704,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.002042903487196854,
+          -0.000615839516986559
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/neutral/content_flip": {
+      "rows": 576,
+      "families": 6,
+      "original": {
+        "correct": 516,
+        "accuracy_record_mean": 0.8958333333333334,
+        "accuracy_equal_family": 0.8958333333333334,
+        "mse_record_mean": 0.09446551819851577,
+        "mse_equal_family": 0.09446551819851579
+      },
+      "uniform": {
+        "correct": 516,
+        "accuracy_record_mean": 0.8958333333333334,
+        "accuracy_equal_family": 0.8958333333333334,
+        "mse_record_mean": 0.09449037112819528,
+        "mse_equal_family": 0.09449037112819524
+      },
+      "transitions": {
+        "1_to_1": 516,
+        "0_to_0": 60
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 2.4852929679450297e-05,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -3.849224212576265e-05,
+          9.4079118340878e-05
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/neutral/fixed_complete_K2": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 258,
+        "accuracy_record_mean": 0.8958333333333334,
+        "accuracy_equal_family": 0.8958333333333334,
+        "mse_record_mean": 0.09446551819851574,
+        "mse_equal_family": 0.09446551819851574
+      },
+      "uniform": {
+        "correct": 258,
+        "accuracy_record_mean": 0.8958333333333334,
+        "accuracy_equal_family": 0.8958333333333334,
+        "mse_record_mean": 0.09449037112819528,
+        "mse_equal_family": 0.09449037112819526
+      },
+      "transitions": {
+        "0_to_0": 30,
+        "1_to_1": 258
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 2.4852929679501184e-05,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -3.849224212566319e-05,
+          9.40791183408803e-05
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/neutral/fixed_missing_K2": {
+      "rows": 576,
+      "families": 6,
+      "original": {
+        "correct": 288,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.13701283578572532,
+        "mse_equal_family": 0.13701283578572535
+      },
+      "uniform": {
+        "correct": 288,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.19257135546113757,
+        "mse_equal_family": 0.19257135546113757
+      },
+      "transitions": {
+        "1_to_1": 168,
+        "1_to_0": 120,
+        "0_to_0": 168,
+        "0_to_1": 120
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 0.055558519675412255,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.04907732006732867,
+          0.06224443412175235
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/neutral/full_K3": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 204,
+        "accuracy_record_mean": 0.7083333333333334,
+        "accuracy_equal_family": 0.7083333333333334,
+        "mse_record_mean": 0.1153849196161235,
+        "mse_equal_family": 0.11538491961612352
+      },
+      "uniform": {
+        "correct": 182,
+        "accuracy_record_mean": 0.6319444444444444,
+        "accuracy_equal_family": 0.6319444444444443,
+        "mse_record_mean": 0.15981846404070263,
+        "mse_equal_family": 0.15981846404070263
+      },
+      "transitions": {
+        "1_to_1": 145,
+        "0_to_0": 47,
+        "0_to_1": 37,
+        "1_to_0": 59
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.07638888888888891,
+        "mse": 0.04443354442457911,
+        "accuracy_descriptive95": [
+          -0.09722222222222222,
+          -0.05208333333333334
+        ],
+        "mse_descriptive95": [
+          0.040293590285255615,
+          0.04936399453788609
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/neutral/native_complete_K2": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 258,
+        "accuracy_record_mean": 0.8958333333333334,
+        "accuracy_equal_family": 0.8958333333333334,
+        "mse_record_mean": 0.09321433284392516,
+        "mse_equal_family": 0.09321433284392516
+      },
+      "uniform": {
+        "correct": 258,
+        "accuracy_record_mean": 0.8958333333333334,
+        "accuracy_equal_family": 0.8958333333333334,
+        "mse_record_mean": 0.09298980748279945,
+        "mse_equal_family": 0.09298980748279943
+      },
+      "transitions": {
+        "0_to_0": 30,
+        "1_to_1": 258
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": -0.0002245253611257205,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.0006344972800364179,
+          7.669072769234583e-06
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_0/content_flip": {
+      "rows": 576,
+      "families": 6,
+      "original": {
+        "correct": 556,
+        "accuracy_record_mean": 0.9652777777777778,
+        "accuracy_equal_family": 0.9652777777777777,
+        "mse_record_mean": 0.084364439896399,
+        "mse_equal_family": 0.08436443989639904
+      },
+      "uniform": {
+        "correct": 556,
+        "accuracy_record_mean": 0.9652777777777778,
+        "accuracy_equal_family": 0.9652777777777777,
+        "mse_record_mean": 0.0839173514166235,
+        "mse_equal_family": 0.0839173514166235
+      },
+      "transitions": {
+        "1_to_1": 556,
+        "0_to_0": 20
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": -0.00044708847977552313,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.0010256211454490298,
+          8.313132770209396e-05
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_0/fixed_complete_K2": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 278,
+        "accuracy_record_mean": 0.9652777777777778,
+        "accuracy_equal_family": 0.9652777777777777,
+        "mse_record_mean": 0.084364439896399,
+        "mse_equal_family": 0.08436443989639901
+      },
+      "uniform": {
+        "correct": 278,
+        "accuracy_record_mean": 0.9652777777777778,
+        "accuracy_equal_family": 0.9652777777777777,
+        "mse_record_mean": 0.08391735141662349,
+        "mse_equal_family": 0.08391735141662349
+      },
+      "transitions": {
+        "1_to_1": 278,
+        "0_to_0": 10
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": -0.0004470884797755208,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.0010256211454490436,
+          8.31313277021282e-05
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_0/fixed_missing_K2": {
+      "rows": 576,
+      "families": 6,
+      "original": {
+        "correct": 288,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.14037622518558418,
+        "mse_equal_family": 0.14037622518558418
+      },
+      "uniform": {
+        "correct": 288,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.22577804335874763,
+        "mse_equal_family": 0.2257780433587476
+      },
+      "transitions": {
+        "1_to_0": 132,
+        "1_to_1": 156,
+        "0_to_0": 156,
+        "0_to_1": 132
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 0.08540181817316345,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.07287138257716909,
+          0.09915856716506073
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_0/full_K3": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 213,
+        "accuracy_record_mean": 0.7395833333333334,
+        "accuracy_equal_family": 0.7395833333333334,
+        "mse_record_mean": 0.10944267841973788,
+        "mse_equal_family": 0.10944267841973787
+      },
+      "uniform": {
+        "correct": 192,
+        "accuracy_record_mean": 0.6666666666666666,
+        "accuracy_equal_family": 0.6666666666666666,
+        "mse_record_mean": 0.18827807095922322,
+        "mse_equal_family": 0.18827807095922325
+      },
+      "transitions": {
+        "1_to_1": 148,
+        "0_to_0": 31,
+        "0_to_1": 44,
+        "1_to_0": 65
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.0729166666666667,
+        "mse": 0.07883539253948536,
+        "accuracy_descriptive95": [
+          -0.09027777777777783,
+          -0.05208333333333335
+        ],
+        "mse_descriptive95": [
+          0.07031991689608748,
+          0.08790779000480843
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_0/native_complete_K2": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 278,
+        "accuracy_record_mean": 0.9652777777777778,
+        "accuracy_equal_family": 0.9652777777777777,
+        "mse_record_mean": 0.08283467559560892,
+        "mse_equal_family": 0.08283467559560893
+      },
+      "uniform": {
+        "correct": 278,
+        "accuracy_record_mean": 0.9652777777777778,
+        "accuracy_equal_family": 0.9652777777777777,
+        "mse_record_mean": 0.08138863066817041,
+        "mse_equal_family": 0.08138863066817041
+      },
+      "transitions": {
+        "1_to_1": 278,
+        "0_to_0": 10
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": -0.0014460449274385073,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.003002078174282404,
+          3.152159095601831e-05
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_1/content_flip": {
+      "rows": 576,
+      "families": 6,
+      "original": {
+        "correct": 564,
+        "accuracy_record_mean": 0.9791666666666666,
+        "accuracy_equal_family": 0.9791666666666666,
+        "mse_record_mean": 0.08770017730060073,
+        "mse_equal_family": 0.08770017730060072
+      },
+      "uniform": {
+        "correct": 564,
+        "accuracy_record_mean": 0.9791666666666666,
+        "accuracy_equal_family": 0.9791666666666666,
+        "mse_record_mean": 0.08772029376329159,
+        "mse_equal_family": 0.08772029376329156
+      },
+      "transitions": {
+        "1_to_1": 564,
+        "0_to_0": 12
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 2.011646269085149e-05,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.00021412028597103157,
+          0.0003060808096270416
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_1/fixed_complete_K2": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 282,
+        "accuracy_record_mean": 0.9791666666666666,
+        "accuracy_equal_family": 0.9791666666666666,
+        "mse_record_mean": 0.08770017730060073,
+        "mse_equal_family": 0.08770017730060074
+      },
+      "uniform": {
+        "correct": 282,
+        "accuracy_record_mean": 0.9791666666666666,
+        "accuracy_equal_family": 0.9791666666666666,
+        "mse_record_mean": 0.0877202937632916,
+        "mse_equal_family": 0.08772029376329162
+      },
+      "transitions": {
+        "1_to_1": 282,
+        "0_to_0": 6
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 2.011646269088387e-05,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.00021412028597094947,
+          0.0003060808096270416
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_1/fixed_missing_K2": {
+      "rows": 576,
+      "families": 6,
+      "original": {
+        "correct": 288,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.13600676651902827,
+        "mse_equal_family": 0.1360067665190283
+      },
+      "uniform": {
+        "correct": 288,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.22404953019126714,
+        "mse_equal_family": 0.22404953019126708
+      },
+      "transitions": {
+        "1_to_1": 146,
+        "1_to_0": 142,
+        "0_to_1": 142,
+        "0_to_0": 146
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 0.0880427636722388,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.07444657655824499,
+          0.10384376105933206
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_1/full_K3": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 213,
+        "accuracy_record_mean": 0.7395833333333334,
+        "accuracy_equal_family": 0.7395833333333334,
+        "mse_record_mean": 0.10779113014810594,
+        "mse_equal_family": 0.10779113014810593
+      },
+      "uniform": {
+        "correct": 184,
+        "accuracy_record_mean": 0.6388888888888888,
+        "accuracy_equal_family": 0.638888888888889,
+        "mse_record_mean": 0.16021744588009043,
+        "mse_equal_family": 0.16021744588009043
+      },
+      "transitions": {
+        "1_to_0": 76,
+        "0_to_1": 47,
+        "0_to_0": 28,
+        "1_to_1": 137
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.10069444444444442,
+        "mse": 0.0524263157319845,
+        "accuracy_descriptive95": [
+          -0.13194444444444442,
+          -0.06944444444444442
+        ],
+        "mse_descriptive95": [
+          0.04271726637126533,
+          0.06185943089431509
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_1/native_complete_K2": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 282,
+        "accuracy_record_mean": 0.9791666666666666,
+        "accuracy_equal_family": 0.9791666666666666,
+        "mse_record_mean": 0.08359538092921279,
+        "mse_equal_family": 0.0835953809292128
+      },
+      "uniform": {
+        "correct": 282,
+        "accuracy_record_mean": 0.9791666666666666,
+        "accuracy_equal_family": 0.9791666666666666,
+        "mse_record_mean": 0.08177489476323949,
+        "mse_equal_family": 0.0817748947632395
+      },
+      "transitions": {
+        "1_to_1": 282,
+        "0_to_0": 6
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": -0.0018204861659733076,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.003673751339570835,
+          -0.0005266779393781779
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_2/content_flip": {
+      "rows": 576,
+      "families": 6,
+      "original": {
+        "correct": 524,
+        "accuracy_record_mean": 0.9097222222222222,
+        "accuracy_equal_family": 0.9097222222222222,
+        "mse_record_mean": 0.07631906081418888,
+        "mse_equal_family": 0.07631906081418886
+      },
+      "uniform": {
+        "correct": 524,
+        "accuracy_record_mean": 0.9097222222222222,
+        "accuracy_equal_family": 0.9097222222222222,
+        "mse_record_mean": 0.07595465092058576,
+        "mse_equal_family": 0.07595465092058577
+      },
+      "transitions": {
+        "1_to_1": 524,
+        "0_to_0": 52
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": -0.0003644098936031043,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.0007368070706166675,
+          4.525584558707357e-05
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_2/fixed_complete_K2": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 262,
+        "accuracy_record_mean": 0.9097222222222222,
+        "accuracy_equal_family": 0.9097222222222222,
+        "mse_record_mean": 0.07631906081418888,
+        "mse_equal_family": 0.07631906081418889
+      },
+      "uniform": {
+        "correct": 262,
+        "accuracy_record_mean": 0.9097222222222222,
+        "accuracy_equal_family": 0.9097222222222222,
+        "mse_record_mean": 0.07595465092058576,
+        "mse_equal_family": 0.07595465092058576
+      },
+      "transitions": {
+        "0_to_0": 26,
+        "1_to_1": 262
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": -0.00036440989360311354,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.000736807070616673,
+          4.5255845587068945e-05
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_2/fixed_missing_K2": {
+      "rows": 576,
+      "families": 6,
+      "original": {
+        "correct": 288,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.1376796831604007,
+        "mse_equal_family": 0.1376796831604007
+      },
+      "uniform": {
+        "correct": 288,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.22064777853590858,
+        "mse_equal_family": 0.22064777853590858
+      },
+      "transitions": {
+        "0_to_1": 122,
+        "0_to_0": 166,
+        "1_to_1": 166,
+        "1_to_0": 122
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": 0.08296809537550791,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          0.07585601062553521,
+          0.0930086116982982
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_2/full_K3": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 205,
+        "accuracy_record_mean": 0.7118055555555556,
+        "accuracy_equal_family": 0.7118055555555555,
+        "mse_record_mean": 0.10451059818765174,
+        "mse_equal_family": 0.10451059818765174
+      },
+      "uniform": {
+        "correct": 192,
+        "accuracy_record_mean": 0.6666666666666666,
+        "accuracy_equal_family": 0.6666666666666666,
+        "mse_record_mean": 0.17839235497936676,
+        "mse_equal_family": 0.17839235497936676
+      },
+      "transitions": {
+        "0_to_1": 48,
+        "0_to_0": 35,
+        "1_to_0": 61,
+        "1_to_1": 144
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.045138888888888916,
+        "mse": 0.073881756791715,
+        "accuracy_descriptive95": [
+          -0.0729166666666667,
+          -0.013888888888888895
+        ],
+        "mse_descriptive95": [
+          0.06703032473470787,
+          0.08109894372876797
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "S/salient_slot_2/native_complete_K2": {
+      "rows": 288,
+      "families": 6,
+      "original": {
+        "correct": 262,
+        "accuracy_record_mean": 0.9097222222222222,
+        "accuracy_equal_family": 0.9097222222222222,
+        "mse_record_mean": 0.07638248305495246,
+        "mse_equal_family": 0.07638248305495245
+      },
+      "uniform": {
+        "correct": 262,
+        "accuracy_record_mean": 0.9097222222222222,
+        "accuracy_equal_family": 0.9097222222222222,
+        "mse_record_mean": 0.07481245017518771,
+        "mse_equal_family": 0.07481245017518771
+      },
+      "transitions": {
+        "0_to_0": 26,
+        "1_to_1": 262
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.0,
+        "mse": -0.0015700328797647461,
+        "accuracy_descriptive95": [
+          0.0,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.0027592385631495867,
+          -0.0005483017465082313
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    }
+  },
+  "S_full_K3_tag_strata": {
+    "all": {
+      "rows": 1152,
+      "families": 24,
+      "original": {
+        "correct": 835,
+        "accuracy_record_mean": 0.7248263888888888,
+        "accuracy_equal_family": 0.7248263888888888,
+        "mse_record_mean": 0.10928233159290476,
+        "mse_equal_family": 0.10928233159290475
+      },
+      "uniform": {
+        "correct": 750,
+        "accuracy_record_mean": 0.6510416666666666,
+        "accuracy_equal_family": 0.6510416666666666,
+        "mse_record_mean": 0.17167658396484578,
+        "mse_equal_family": 0.17167658396484575
+      },
+      "transitions": {
+        "1_to_1": 574,
+        "0_to_0": 141,
+        "0_to_1": 176,
+        "1_to_0": 261
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.07378472222222222,
+        "mse": 0.062394252371940996,
+        "accuracy_descriptive95": [
+          -0.08940972222222222,
+          -0.057291666666666706
+        ],
+        "mse_descriptive95": [
+          0.055397705177446924,
+          0.06952999094036527
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "condition/neutral/majority_tag/0": {
+      "rows": 144,
+      "families": 6,
+      "original": {
+        "correct": 74,
+        "accuracy_record_mean": 0.5138888888888888,
+        "accuracy_equal_family": 0.513888888888889,
+        "mse_record_mean": 0.13733832600332818,
+        "mse_equal_family": 0.13733832600332815
+      },
+      "uniform": {
+        "correct": 92,
+        "accuracy_record_mean": 0.6388888888888888,
+        "accuracy_equal_family": 0.6388888888888888,
+        "mse_record_mean": 0.1595445927746744,
+        "mse_equal_family": 0.1595445927746744
+      },
+      "transitions": {
+        "1_to_1": 55,
+        "0_to_0": 33,
+        "0_to_1": 37,
+        "1_to_0": 19
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.12499999999999999,
+        "mse": 0.0222062667713462,
+        "accuracy_descriptive95": [
+          0.06944444444444442,
+          0.17361111111111108
+        ],
+        "mse_descriptive95": [
+          0.015683733546172415,
+          0.027659410308804613
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "condition/neutral/majority_tag/1": {
+      "rows": 144,
+      "families": 6,
+      "original": {
+        "correct": 130,
+        "accuracy_record_mean": 0.9027777777777778,
+        "accuracy_equal_family": 0.9027777777777778,
+        "mse_record_mean": 0.09343151322891884,
+        "mse_equal_family": 0.09343151322891884
+      },
+      "uniform": {
+        "correct": 90,
+        "accuracy_record_mean": 0.625,
+        "accuracy_equal_family": 0.6249999999999999,
+        "mse_record_mean": 0.16009233530673084,
+        "mse_equal_family": 0.16009233530673087
+      },
+      "transitions": {
+        "1_to_1": 90,
+        "1_to_0": 40,
+        "0_to_0": 14
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.2777777777777778,
+        "mse": 0.06666082207781204,
+        "accuracy_descriptive95": [
+          -0.3333333333333334,
+          -0.1805555555555556
+        ],
+        "mse_descriptive95": [
+          0.061563107621025494,
+          0.07369845494511565
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "condition/salient_slot_0/majority_tag/0": {
+      "rows": 144,
+      "families": 6,
+      "original": {
+        "correct": 72,
+        "accuracy_record_mean": 0.5,
+        "accuracy_equal_family": 0.5,
+        "mse_record_mean": 0.1407707352324444,
+        "mse_equal_family": 0.1407707352324444
+      },
+      "uniform": {
+        "correct": 96,
+        "accuracy_record_mean": 0.6666666666666666,
+        "accuracy_equal_family": 0.6666666666666666,
+        "mse_record_mean": 0.18937646414163525,
+        "mse_equal_family": 0.18937646414163525
+      },
+      "transitions": {
+        "1_to_1": 53,
+        "0_to_0": 29,
+        "0_to_1": 43,
+        "1_to_0": 19
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.16666666666666663,
+        "mse": 0.04860572890919087,
+        "accuracy_descriptive95": [
+          0.14583333333333331,
+          0.18749999999999997
+        ],
+        "mse_descriptive95": [
+          0.035722320930724055,
+          0.06307505526052498
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "condition/salient_slot_0/majority_tag/1": {
+      "rows": 144,
+      "families": 6,
+      "original": {
+        "correct": 141,
+        "accuracy_record_mean": 0.9791666666666666,
+        "accuracy_equal_family": 0.9791666666666666,
+        "mse_record_mean": 0.07811462160703138,
+        "mse_equal_family": 0.07811462160703138
+      },
+      "uniform": {
+        "correct": 96,
+        "accuracy_record_mean": 0.6666666666666666,
+        "accuracy_equal_family": 0.6666666666666666,
+        "mse_record_mean": 0.18717967777681122,
+        "mse_equal_family": 0.1871796777768112
+      },
+      "transitions": {
+        "1_to_1": 95,
+        "1_to_0": 46,
+        "0_to_0": 2,
+        "0_to_1": 1
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.31250000000000006,
+        "mse": 0.10906505616977981,
+        "accuracy_descriptive95": [
+          -0.3333333333333334,
+          -0.2708333333333334
+        ],
+        "mse_descriptive95": [
+          0.10382388978545937,
+          0.11504281339219768
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "condition/salient_slot_1/majority_tag/0": {
+      "rows": 144,
+      "families": 6,
+      "original": {
+        "correct": 73,
+        "accuracy_record_mean": 0.5069444444444444,
+        "accuracy_equal_family": 0.5069444444444444,
+        "mse_record_mean": 0.13605940713887288,
+        "mse_equal_family": 0.13605940713887285
+      },
+      "uniform": {
+        "correct": 92,
+        "accuracy_record_mean": 0.6388888888888888,
+        "accuracy_equal_family": 0.638888888888889,
+        "mse_record_mean": 0.16016343594467225,
+        "mse_equal_family": 0.16016343594467222
+      },
+      "transitions": {
+        "1_to_0": 28,
+        "0_to_1": 47,
+        "0_to_0": 24,
+        "1_to_1": 45
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.13194444444444445,
+        "mse": 0.02410402880579937,
+        "accuracy_descriptive95": [
+          0.0763888888888889,
+          0.18055555555555558
+        ],
+        "mse_descriptive95": [
+          0.0112956442887526,
+          0.0389243243317365
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "condition/salient_slot_1/majority_tag/1": {
+      "rows": 144,
+      "families": 6,
+      "original": {
+        "correct": 140,
+        "accuracy_record_mean": 0.9722222222222222,
+        "accuracy_equal_family": 0.9722222222222222,
+        "mse_record_mean": 0.07952285315733902,
+        "mse_equal_family": 0.079522853157339
+      },
+      "uniform": {
+        "correct": 92,
+        "accuracy_record_mean": 0.6388888888888888,
+        "accuracy_equal_family": 0.638888888888889,
+        "mse_record_mean": 0.1602714558155086,
+        "mse_equal_family": 0.16027145581550867
+      },
+      "transitions": {
+        "1_to_0": 48,
+        "1_to_1": 92,
+        "0_to_0": 4
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.3333333333333333,
+        "mse": 0.08074860265816965,
+        "accuracy_descriptive95": [
+          -0.3611111111111111,
+          -0.3055555555555555
+        ],
+        "mse_descriptive95": [
+          0.07199932000695126,
+          0.08780875610099882
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "condition/salient_slot_2/majority_tag/0": {
+      "rows": 144,
+      "families": 6,
+      "original": {
+        "correct": 71,
+        "accuracy_record_mean": 0.4930555555555556,
+        "accuracy_equal_family": 0.4930555555555555,
+        "mse_record_mean": 0.13790524699746173,
+        "mse_equal_family": 0.13790524699746176
+      },
+      "uniform": {
+        "correct": 96,
+        "accuracy_record_mean": 0.6666666666666666,
+        "accuracy_equal_family": 0.6666666666666666,
+        "mse_record_mean": 0.1794097786847956,
+        "mse_equal_family": 0.1794097786847956
+      },
+      "transitions": {
+        "0_to_1": 43,
+        "0_to_0": 30,
+        "1_to_0": 18,
+        "1_to_1": 53
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.17361111111111108,
+        "mse": 0.04150453168733385,
+        "accuracy_descriptive95": [
+          0.16666666666666663,
+          0.18749999999999997
+        ],
+        "mse_descriptive95": [
+          0.03344074117286477,
+          0.05129554388398886
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "condition/salient_slot_2/majority_tag/1": {
+      "rows": 144,
+      "families": 6,
+      "original": {
+        "correct": 134,
+        "accuracy_record_mean": 0.9305555555555556,
+        "accuracy_equal_family": 0.9305555555555555,
+        "mse_record_mean": 0.07111594937784174,
+        "mse_equal_family": 0.07111594937784173
+      },
+      "uniform": {
+        "correct": 96,
+        "accuracy_record_mean": 0.6666666666666666,
+        "accuracy_equal_family": 0.6666666666666666,
+        "mse_record_mean": 0.17737493127393789,
+        "mse_equal_family": 0.17737493127393789
+      },
+      "transitions": {
+        "1_to_1": 91,
+        "1_to_0": 43,
+        "0_to_1": 5,
+        "0_to_0": 5
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.2638888888888889,
+        "mse": 0.10625898189609616,
+        "accuracy_descriptive95": [
+          -0.3194444444444445,
+          -0.20833333333333337
+        ],
+        "mse_descriptive95": [
+          0.09955309487627394,
+          0.11227498698050088
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "majority_tag/0": {
+      "rows": 576,
+      "families": 24,
+      "original": {
+        "correct": 290,
+        "accuracy_record_mean": 0.5034722222222222,
+        "accuracy_equal_family": 0.5034722222222222,
+        "mse_record_mean": 0.13801842884302679,
+        "mse_equal_family": 0.1380184288430268
+      },
+      "uniform": {
+        "correct": 376,
+        "accuracy_record_mean": 0.6527777777777778,
+        "accuracy_equal_family": 0.6527777777777777,
+        "mse_record_mean": 0.17212356788644437,
+        "mse_equal_family": 0.17212356788644437
+      },
+      "transitions": {
+        "1_to_1": 206,
+        "0_to_0": 116,
+        "0_to_1": 170,
+        "1_to_0": 84
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.14930555555555555,
+        "mse": 0.034105139043417575,
+        "accuracy_descriptive95": [
+          0.12500000000000003,
+          0.16840277777777776
+        ],
+        "mse_descriptive95": [
+          0.027046765017467587,
+          0.04154446028269656
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "majority_tag/0/same_pair_payload/0": {
+      "rows": 288,
+      "families": 24,
+      "original": {
+        "correct": 101,
+        "accuracy_record_mean": 0.3506944444444444,
+        "accuracy_equal_family": 0.3506944444444444,
+        "mse_record_mean": 0.14615396270908856,
+        "mse_equal_family": 0.14615396270908856
+      },
+      "uniform": {
+        "correct": 225,
+        "accuracy_record_mean": 0.78125,
+        "accuracy_equal_family": 0.78125,
+        "mse_record_mean": 0.1216210200224224,
+        "mse_equal_family": 0.12162102002242241
+      },
+      "transitions": {
+        "0_to_0": 47,
+        "0_to_1": 140,
+        "1_to_1": 85,
+        "1_to_0": 16
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.4305555555555555,
+        "mse": -0.02453294268666618,
+        "accuracy_descriptive95": [
+          0.29166666666666663,
+          0.5555555555555556
+        ],
+        "mse_descriptive95": [
+          -0.03918601819503954,
+          -0.00820794167644161
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "majority_tag/0/same_pair_payload/1": {
+      "rows": 288,
+      "families": 24,
+      "original": {
+        "correct": 189,
+        "accuracy_record_mean": 0.65625,
+        "accuracy_equal_family": 0.65625,
+        "mse_record_mean": 0.129882894976965,
+        "mse_equal_family": 0.12988289497696504
+      },
+      "uniform": {
+        "correct": 151,
+        "accuracy_record_mean": 0.5243055555555556,
+        "accuracy_equal_family": 0.5243055555555555,
+        "mse_record_mean": 0.22262611575046634,
+        "mse_equal_family": 0.2226261157504664
+      },
+      "transitions": {
+        "1_to_1": 121,
+        "0_to_0": 69,
+        "1_to_0": 68,
+        "0_to_1": 30
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.13194444444444445,
+        "mse": 0.09274322077350132,
+        "accuracy_descriptive95": [
+          -0.25000000000000006,
+          0.006944444444444429
+        ],
+        "mse_descriptive95": [
+          0.08269462787956801,
+          0.1019050924925251
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "majority_tag/1": {
+      "rows": 576,
+      "families": 24,
+      "original": {
+        "correct": 545,
+        "accuracy_record_mean": 0.9461805555555556,
+        "accuracy_equal_family": 0.9461805555555557,
+        "mse_record_mean": 0.08054623434278274,
+        "mse_equal_family": 0.08054623434278274
+      },
+      "uniform": {
+        "correct": 374,
+        "accuracy_record_mean": 0.6493055555555556,
+        "accuracy_equal_family": 0.6493055555555555,
+        "mse_record_mean": 0.17122960004324714,
+        "mse_equal_family": 0.17122960004324714
+      },
+      "transitions": {
+        "1_to_1": 368,
+        "1_to_0": 177,
+        "0_to_0": 25,
+        "0_to_1": 6
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.29687500000000006,
+        "mse": 0.09068336570046442,
+        "accuracy_descriptive95": [
+          -0.32465277777777773,
+          -0.2621527777777778
+        ],
+        "mse_descriptive95": [
+          0.0827579936400008,
+          0.09859214504961003
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "majority_tag/1/same_pair_payload/0": {
+      "rows": 288,
+      "families": 24,
+      "original": {
+        "correct": 288,
+        "accuracy_record_mean": 1.0,
+        "accuracy_equal_family": 1.0,
+        "mse_record_mean": 0.06360890266866814,
+        "mse_equal_family": 0.06360890266866814
+      },
+      "uniform": {
+        "correct": 223,
+        "accuracy_record_mean": 0.7743055555555556,
+        "accuracy_equal_family": 0.7743055555555555,
+        "mse_record_mean": 0.12295730296008747,
+        "mse_equal_family": 0.1229573029600875
+      },
+      "transitions": {
+        "1_to_1": 223,
+        "1_to_0": 65
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.2256944444444445,
+        "mse": 0.059348400291419356,
+        "accuracy_descriptive95": [
+          -0.2743055555555555,
+          -0.17708333333333337
+        ],
+        "mse_descriptive95": [
+          0.04423500135924503,
+          0.07466124097447019
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "majority_tag/1/same_pair_payload/1": {
+      "rows": 288,
+      "families": 24,
+      "original": {
+        "correct": 257,
+        "accuracy_record_mean": 0.8923611111111112,
+        "accuracy_equal_family": 0.892361111111111,
+        "mse_record_mean": 0.09748356601689731,
+        "mse_equal_family": 0.09748356601689734
+      },
+      "uniform": {
+        "correct": 151,
+        "accuracy_record_mean": 0.5243055555555556,
+        "accuracy_equal_family": 0.5243055555555555,
+        "mse_record_mean": 0.21950189712640678,
+        "mse_equal_family": 0.21950189712640678
+      },
+      "transitions": {
+        "1_to_1": 145,
+        "1_to_0": 112,
+        "0_to_0": 25,
+        "0_to_1": 6
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.3680555555555555,
+        "mse": 0.12201833110950948,
+        "accuracy_descriptive95": [
+          -0.4444444444444444,
+          -0.2915798611111115
+        ],
+        "mse_descriptive95": [
+          0.11262143150461897,
+          0.13223925361036992
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "tag_pattern/001": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 92,
+        "accuracy_record_mean": 0.4791666666666667,
+        "accuracy_equal_family": 0.4791666666666667,
+        "mse_record_mean": 0.13907595967897343,
+        "mse_equal_family": 0.13907595967897346
+      },
+      "uniform": {
+        "correct": 95,
+        "accuracy_record_mean": 0.4947916666666667,
+        "accuracy_equal_family": 0.4947916666666667,
+        "mse_record_mean": 0.21318657604626753,
+        "mse_equal_family": 0.21318657604626753
+      },
+      "transitions": {
+        "1_to_1": 52,
+        "0_to_0": 57,
+        "0_to_1": 43,
+        "1_to_0": 40
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.015625,
+        "mse": 0.07411061636729406,
+        "accuracy_descriptive95": [
+          -0.015625,
+          0.046875
+        ],
+        "mse_descriptive95": [
+          0.06126446645829596,
+          0.08775568575415275
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "tag_pattern/010": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 99,
+        "accuracy_record_mean": 0.515625,
+        "accuracy_equal_family": 0.515625,
+        "mse_record_mean": 0.13688833835153721,
+        "mse_equal_family": 0.13688833835153721
+      },
+      "uniform": {
+        "correct": 183,
+        "accuracy_record_mean": 0.953125,
+        "accuracy_equal_family": 0.953125,
+        "mse_record_mean": 0.08543046786094373,
+        "mse_equal_family": 0.08543046786094373
+      },
+      "transitions": {
+        "1_to_0": 1,
+        "1_to_1": 98,
+        "0_to_1": 85,
+        "0_to_0": 8
+      },
+      "paired_equal_family_difference": {
+        "accuracy": 0.4375,
+        "mse": -0.05145787049059347,
+        "accuracy_descriptive95": [
+          0.375,
+          0.484375
+        ],
+        "mse_descriptive95": [
+          -0.05816832098463718,
+          -0.04510075390259332
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "tag_pattern/011": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 184,
+        "accuracy_record_mean": 0.9583333333333334,
+        "accuracy_equal_family": 0.9583333333333334,
+        "mse_record_mean": 0.080101713657687,
+        "mse_equal_family": 0.080101713657687
+      },
+      "uniform": {
+        "correct": 93,
+        "accuracy_record_mean": 0.484375,
+        "accuracy_equal_family": 0.484375,
+        "mse_record_mean": 0.21476195018152722,
+        "mse_equal_family": 0.21476195018152722
+      },
+      "transitions": {
+        "1_to_1": 92,
+        "1_to_0": 92,
+        "0_to_0": 7,
+        "0_to_1": 1
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.4739583333333333,
+        "mse": 0.1346602365238402,
+        "accuracy_descriptive95": [
+          -0.515625,
+          -0.421875
+        ],
+        "mse_descriptive95": [
+          0.12136684030652062,
+          0.1480463020821237
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "tag_pattern/100": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 99,
+        "accuracy_record_mean": 0.515625,
+        "accuracy_equal_family": 0.515625,
+        "mse_record_mean": 0.13809098849856974,
+        "mse_equal_family": 0.13809098849856974
+      },
+      "uniform": {
+        "correct": 98,
+        "accuracy_record_mean": 0.5104166666666666,
+        "accuracy_equal_family": 0.5104166666666666,
+        "mse_record_mean": 0.2177536597521219,
+        "mse_equal_family": 0.21775365975212188
+      },
+      "transitions": {
+        "0_to_0": 51,
+        "1_to_1": 56,
+        "1_to_0": 43,
+        "0_to_1": 42
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.005208333333333333,
+        "mse": 0.07966267125355213,
+        "accuracy_descriptive95": [
+          -0.026041666666666668,
+          0.015625
+        ],
+        "mse_descriptive95": [
+          0.06792596639992086,
+          0.091698135808577
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "tag_pattern/101": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 184,
+        "accuracy_record_mean": 0.9583333333333334,
+        "accuracy_equal_family": 0.9583333333333334,
+        "mse_record_mean": 0.08345535302150107,
+        "mse_equal_family": 0.08345535302150107
+      },
+      "uniform": {
+        "correct": 183,
+        "accuracy_record_mean": 0.953125,
+        "accuracy_equal_family": 0.953125,
+        "mse_record_mean": 0.0832078804325546,
+        "mse_equal_family": 0.0832078804325546
+      },
+      "transitions": {
+        "1_to_0": 1,
+        "1_to_1": 183,
+        "0_to_0": 8
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.005208333333333333,
+        "mse": -0.00024747258894646803,
+        "accuracy_descriptive95": [
+          -0.015625,
+          0.0
+        ],
+        "mse_descriptive95": [
+          -0.0007154363780282953,
+          0.00025893253102741867
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    },
+    "tag_pattern/110": {
+      "rows": 192,
+      "families": 24,
+      "original": {
+        "correct": 177,
+        "accuracy_record_mean": 0.921875,
+        "accuracy_equal_family": 0.921875,
+        "mse_record_mean": 0.07808163634916016,
+        "mse_equal_family": 0.07808163634916014
+      },
+      "uniform": {
+        "correct": 98,
+        "accuracy_record_mean": 0.5104166666666666,
+        "accuracy_equal_family": 0.5104166666666666,
+        "mse_record_mean": 0.2157189695156596,
+        "mse_equal_family": 0.2157189695156596
+      },
+      "transitions": {
+        "1_to_0": 84,
+        "0_to_0": 10,
+        "1_to_1": 93,
+        "0_to_1": 5
+      },
+      "paired_equal_family_difference": {
+        "accuracy": -0.4114583333333333,
+        "mse": 0.13763733316649948,
+        "accuracy_descriptive95": [
+          -0.4688802083333333,
+          -0.3385416666666667
+        ],
+        "mse_descriptive95": [
+          0.12502370258311093,
+          0.15035688626786464
+        ]
+      },
+      "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+    }
+  },
+  "single_cue_known_bit": {
+    "definition": "One cue plus blank at fixed ages. Decode its known a/b bit from the nearest full-outcome feature prototype; not joint future accuracy or raw encoder decoding. D decoys excluded because their payload is irrelevant to task future, not because an arrow is absent.",
+    "metrics": {
+      "D": {
+        "rows": 576,
+        "families": 24,
+        "original": {
+          "correct": 558,
+          "accuracy_record_mean": 0.96875,
+          "accuracy_equal_family": 0.96875,
+          "mse_record_mean": 0.11357429956121326,
+          "mse_equal_family": 0.11357429956121327
+        },
+        "uniform": {
+          "correct": 546,
+          "accuracy_record_mean": 0.9479166666666666,
+          "accuracy_equal_family": 0.9479166666666666,
+          "mse_record_mean": 0.15219565462283147,
+          "mse_equal_family": 0.15219565462283147
+        },
+        "transitions": {
+          "1_to_1": 546,
+          "1_to_0": 12,
+          "0_to_0": 18
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.02083333333333334,
+          "mse": 0.038621355061618186,
+          "accuracy_descriptive95": [
+            -0.045138888888888895,
+            -0.0034722222222222238
+          ],
+          "mse_descriptive95": [
+            0.031183827428225497,
+            0.046613165595454156
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "D/axis/a": {
+        "rows": 288,
+        "families": 24,
+        "original": {
+          "correct": 288,
+          "accuracy_record_mean": 1.0,
+          "accuracy_equal_family": 1.0,
+          "mse_record_mean": 0.07632165596795878,
+          "mse_equal_family": 0.0763216559679588
+        },
+        "uniform": {
+          "correct": 288,
+          "accuracy_record_mean": 1.0,
+          "accuracy_equal_family": 1.0,
+          "mse_record_mean": 0.11922363883618707,
+          "mse_equal_family": 0.11922363883618707
+        },
+        "transitions": {
+          "1_to_1": 288
+        },
+        "paired_equal_family_difference": {
+          "accuracy": 0.0,
+          "mse": 0.04290198286822828,
+          "accuracy_descriptive95": [
+            0.0,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.033746820941881125,
+            0.05165089602764604
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "D/axis/a/salient/0": {
+        "rows": 240,
+        "families": 24,
+        "original": {
+          "correct": 240,
+          "accuracy_record_mean": 1.0,
+          "accuracy_equal_family": 1.0,
+          "mse_record_mean": 0.07542449681446042,
+          "mse_equal_family": 0.07585768477601722
+        },
+        "uniform": {
+          "correct": 240,
+          "accuracy_record_mean": 1.0,
+          "accuracy_equal_family": 1.0,
+          "mse_record_mean": 0.11127682283398203,
+          "mse_equal_family": 0.11216955748248471
+        },
+        "transitions": {
+          "1_to_1": 240
+        },
+        "paired_equal_family_difference": {
+          "accuracy": 0.0,
+          "mse": 0.03631187270646749,
+          "accuracy_descriptive95": [
+            0.0,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.028025000752435105,
+            0.04486194096111418
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "D/axis/a/salient/1": {
+        "rows": 48,
+        "families": 12,
+        "original": {
+          "correct": 48,
+          "accuracy_record_mean": 1.0,
+          "accuracy_equal_family": 1.0,
+          "mse_record_mean": 0.08080745173545063,
+          "mse_equal_family": 0.08080745173545063
+        },
+        "uniform": {
+          "correct": 48,
+          "accuracy_record_mean": 1.0,
+          "accuracy_equal_family": 1.0,
+          "mse_record_mean": 0.15895771884721233,
+          "mse_equal_family": 0.15895771884721233
+        },
+        "transitions": {
+          "1_to_1": 48
+        },
+        "paired_equal_family_difference": {
+          "accuracy": 0.0,
+          "mse": 0.0781502671117617,
+          "accuracy_descriptive95": [
+            0.0,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.06510097269472011,
+            0.09423939234609778
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "D/axis/b": {
+        "rows": 288,
+        "families": 24,
+        "original": {
+          "correct": 270,
+          "accuracy_record_mean": 0.9375,
+          "accuracy_equal_family": 0.9375,
+          "mse_record_mean": 0.15082694315446776,
+          "mse_equal_family": 0.15082694315446776
+        },
+        "uniform": {
+          "correct": 258,
+          "accuracy_record_mean": 0.8958333333333334,
+          "accuracy_equal_family": 0.8958333333333334,
+          "mse_record_mean": 0.18516767040947582,
+          "mse_equal_family": 0.18516767040947582
+        },
+        "transitions": {
+          "1_to_1": 258,
+          "1_to_0": 12,
+          "0_to_0": 18
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.041666666666666664,
+          "mse": 0.03434072725500808,
+          "accuracy_descriptive95": [
+            -0.09027777777777775,
+            -0.006944444444444443
+          ],
+          "mse_descriptive95": [
+            0.026705459198238732,
+            0.04314399152586911
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "D/axis/b/salient/0": {
+        "rows": 240,
+        "families": 24,
+        "original": {
+          "correct": 236,
+          "accuracy_record_mean": 0.9833333333333333,
+          "accuracy_equal_family": 0.9791666666666666,
+          "mse_record_mean": 0.14209260823204625,
+          "mse_equal_family": 0.141518629209714
+        },
+        "uniform": {
+          "correct": 230,
+          "accuracy_record_mean": 0.9583333333333334,
+          "accuracy_equal_family": 0.9583333333333334,
+          "mse_record_mean": 0.17892575999335117,
+          "mse_equal_family": 0.17892204512652424
+        },
+        "transitions": {
+          "1_to_1": 230,
+          "1_to_0": 6,
+          "0_to_0": 4
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.020833333333333332,
+          "mse": 0.03740341591681026,
+          "accuracy_descriptive95": [
+            -0.0625,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.028630098352200758,
+            0.047322247809065736
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "D/axis/b/salient/1": {
+        "rows": 48,
+        "families": 12,
+        "original": {
+          "correct": 34,
+          "accuracy_record_mean": 0.7083333333333334,
+          "accuracy_equal_family": 0.7083333333333334,
+          "mse_record_mean": 0.1944986177665752,
+          "mse_equal_family": 0.1944986177665752
+        },
+        "uniform": {
+          "correct": 28,
+          "accuracy_record_mean": 0.5833333333333334,
+          "accuracy_equal_family": 0.5833333333333334,
+          "mse_record_mean": 0.21637722249009925,
+          "mse_equal_family": 0.21637722249009925
+        },
+        "transitions": {
+          "1_to_1": 28,
+          "0_to_0": 14,
+          "1_to_0": 6
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.125,
+          "mse": 0.021878604723524025,
+          "accuracy_descriptive95": [
+            -0.25,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.010805842142732032,
+            0.03412534490943258
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "D/condition/neutral": {
+        "rows": 192,
+        "families": 24,
+        "original": {
+          "correct": 190,
+          "accuracy_record_mean": 0.9895833333333334,
+          "accuracy_equal_family": 0.9895833333333334,
+          "mse_record_mean": 0.10868815699286562,
+          "mse_equal_family": 0.1086881569928656
+        },
+        "uniform": {
+          "correct": 188,
+          "accuracy_record_mean": 0.9791666666666666,
+          "accuracy_equal_family": 0.9791666666666666,
+          "mse_record_mean": 0.14554580130450448,
+          "mse_equal_family": 0.14554580130450448
+        },
+        "transitions": {
+          "1_to_1": 188,
+          "1_to_0": 2,
+          "0_to_0": 2
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.010416666666666666,
+          "mse": 0.036857644311638876,
+          "accuracy_descriptive95": [
+            -0.03125,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.02895406991180249,
+            0.045515760506829095
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "D/condition/salient_decoy": {
+        "rows": 192,
+        "families": 24,
+        "original": {
+          "correct": 190,
+          "accuracy_record_mean": 0.9895833333333334,
+          "accuracy_equal_family": 0.9895833333333334,
+          "mse_record_mean": 0.10868815699286562,
+          "mse_equal_family": 0.1086881569928656
+        },
+        "uniform": {
+          "correct": 188,
+          "accuracy_record_mean": 0.9791666666666666,
+          "accuracy_equal_family": 0.9791666666666666,
+          "mse_record_mean": 0.14554580130450448,
+          "mse_equal_family": 0.14554580130450448
+        },
+        "transitions": {
+          "1_to_1": 188,
+          "1_to_0": 2,
+          "0_to_0": 2
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.010416666666666666,
+          "mse": 0.036857644311638876,
+          "accuracy_descriptive95": [
+            -0.03125,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.02895406991180249,
+            0.045515760506829095
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "D/condition/salient_useful": {
+        "rows": 192,
+        "families": 24,
+        "original": {
+          "correct": 178,
+          "accuracy_record_mean": 0.9270833333333334,
+          "accuracy_equal_family": 0.9270833333333334,
+          "mse_record_mean": 0.12334658469790859,
+          "mse_equal_family": 0.12334658469790856
+        },
+        "uniform": {
+          "correct": 170,
+          "accuracy_record_mean": 0.8854166666666666,
+          "accuracy_equal_family": 0.8854166666666666,
+          "mse_record_mean": 0.16549536125948536,
+          "mse_equal_family": 0.16549536125948539
+        },
+        "transitions": {
+          "1_to_1": 170,
+          "1_to_0": 8,
+          "0_to_0": 14
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.041666666666666664,
+          "mse": 0.04214877656157679,
+          "accuracy_descriptive95": [
+            -0.08333333333333333,
+            -0.010416666666666666
+          ],
+          "mse_descriptive95": [
+            0.03368238903909029,
+            0.05152642261735412
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "D/salient/0": {
+        "rows": 480,
+        "families": 24,
+        "original": {
+          "correct": 476,
+          "accuracy_record_mean": 0.9916666666666667,
+          "accuracy_equal_family": 0.9916666666666667,
+          "mse_record_mean": 0.10875855252325334,
+          "mse_equal_family": 0.10875855252325335
+        },
+        "uniform": {
+          "correct": 470,
+          "accuracy_record_mean": 0.9791666666666666,
+          "accuracy_equal_family": 0.9791666666666666,
+          "mse_record_mean": 0.1451012914136666,
+          "mse_equal_family": 0.1451012914136666
+        },
+        "transitions": {
+          "1_to_1": 470,
+          "1_to_0": 6,
+          "0_to_0": 4
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.012500000000000002,
+          "mse": 0.03634273889041325,
+          "accuracy_descriptive95": [
+            -0.037500000000000006,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.028605415281225368,
+            0.044653014590897766
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "D/salient/1": {
+        "rows": 96,
+        "families": 24,
+        "original": {
+          "correct": 82,
+          "accuracy_record_mean": 0.8541666666666666,
+          "accuracy_equal_family": 0.8541666666666666,
+          "mse_record_mean": 0.13765303475101295,
+          "mse_equal_family": 0.1376530347510129
+        },
+        "uniform": {
+          "correct": 76,
+          "accuracy_record_mean": 0.7916666666666666,
+          "accuracy_equal_family": 0.7916666666666666,
+          "mse_record_mean": 0.18766747066865577,
+          "mse_equal_family": 0.18766747066865577
+        },
+        "transitions": {
+          "1_to_1": 76,
+          "0_to_0": 14,
+          "1_to_0": 6
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.0625,
+          "mse": 0.05001443591764287,
+          "accuracy_descriptive95": [
+            -0.14583333333333334,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.03573917117565704,
+            0.06539152882748159
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R": {
+        "rows": 864,
+        "families": 24,
+        "original": {
+          "correct": 794,
+          "accuracy_record_mean": 0.9189814814814815,
+          "accuracy_equal_family": 0.9189814814814814,
+          "mse_record_mean": 0.12075112095435024,
+          "mse_equal_family": 0.12075112095435024
+        },
+        "uniform": {
+          "correct": 778,
+          "accuracy_record_mean": 0.9004629629629629,
+          "accuracy_equal_family": 0.9004629629629629,
+          "mse_record_mean": 0.15078273188329167,
+          "mse_equal_family": 0.15078273188329167
+        },
+        "transitions": {
+          "1_to_1": 756,
+          "1_to_0": 38,
+          "0_to_0": 48,
+          "0_to_1": 22
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.018518518518518514,
+          "mse": 0.030031610928941428,
+          "accuracy_descriptive95": [
+            -0.048611111111111084,
+            0.004629629629629641
+          ],
+          "mse_descriptive95": [
+            0.024254009563113108,
+            0.03610355510470595
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R/axis/a": {
+        "rows": 432,
+        "families": 24,
+        "original": {
+          "correct": 432,
+          "accuracy_record_mean": 1.0,
+          "accuracy_equal_family": 1.0,
+          "mse_record_mean": 0.07940335718854728,
+          "mse_equal_family": 0.07670800816281244
+        },
+        "uniform": {
+          "correct": 426,
+          "accuracy_record_mean": 0.9861111111111112,
+          "accuracy_equal_family": 0.986111111111111,
+          "mse_record_mean": 0.1234560933562294,
+          "mse_equal_family": 0.12133819430394377
+        },
+        "transitions": {
+          "1_to_1": 426,
+          "1_to_0": 6
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.01388888888888889,
+          "mse": 0.044630186141131345,
+          "accuracy_descriptive95": [
+            -0.03125,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.035783367666998835,
+            0.053923230489524035
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R/axis/a/salient/0": {
+        "rows": 336,
+        "families": 24,
+        "original": {
+          "correct": 336,
+          "accuracy_record_mean": 1.0,
+          "accuracy_equal_family": 1.0,
+          "mse_record_mean": 0.08254396599510014,
+          "mse_equal_family": 0.07892627195462962
+        },
+        "uniform": {
+          "correct": 336,
+          "accuracy_record_mean": 1.0,
+          "accuracy_equal_family": 1.0,
+          "mse_record_mean": 0.1193679554206374,
+          "mse_equal_family": 0.11576982793326562
+        },
+        "transitions": {
+          "1_to_1": 336
+        },
+        "paired_equal_family_difference": {
+          "accuracy": 0.0,
+          "mse": 0.036843555978636,
+          "accuracy_descriptive95": [
+            0.0,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.027878512363290187,
+            0.04619653755998772
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R/axis/a/salient/1": {
+        "rows": 96,
+        "families": 24,
+        "original": {
+          "correct": 96,
+          "accuracy_record_mean": 1.0,
+          "accuracy_equal_family": 1.0,
+          "mse_record_mean": 0.06841122636561224,
+          "mse_equal_family": 0.06841122636561224
+        },
+        "uniform": {
+          "correct": 90,
+          "accuracy_record_mean": 0.9375,
+          "accuracy_equal_family": 0.9375,
+          "mse_record_mean": 0.13776457613080142,
+          "mse_equal_family": 0.13776457613080142
+        },
+        "transitions": {
+          "1_to_0": 6,
+          "1_to_1": 90
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.0625,
+          "mse": 0.06935334976518918,
+          "accuracy_descriptive95": [
+            -0.125,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.05855944130499382,
+            0.0815792313388667
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R/axis/b": {
+        "rows": 432,
+        "families": 24,
+        "original": {
+          "correct": 362,
+          "accuracy_record_mean": 0.8379629629629629,
+          "accuracy_equal_family": 0.8368055555555555,
+          "mse_record_mean": 0.1620988847201532,
+          "mse_equal_family": 0.16393354891376502
+        },
+        "uniform": {
+          "correct": 352,
+          "accuracy_record_mean": 0.8148148148148148,
+          "accuracy_equal_family": 0.8194444444444445,
+          "mse_record_mean": 0.17810937041035396,
+          "mse_equal_family": 0.18079547790075393
+        },
+        "transitions": {
+          "1_to_1": 330,
+          "0_to_0": 48,
+          "1_to_0": 32,
+          "0_to_1": 22
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.01736111111111111,
+          "mse": 0.01686192898698891,
+          "accuracy_descriptive95": [
+            -0.06944444444444446,
+            0.024305555555555556
+          ],
+          "mse_descriptive95": [
+            0.013543730978666799,
+            0.020145215619782865
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R/axis/b/salient/0": {
+        "rows": 336,
+        "families": 24,
+        "original": {
+          "correct": 316,
+          "accuracy_record_mean": 0.9404761904761905,
+          "accuracy_equal_family": 0.9583333333333334,
+          "mse_record_mean": 0.16071158659726908,
+          "mse_equal_family": 0.16318633781285455
+        },
+        "uniform": {
+          "correct": 292,
+          "accuracy_record_mean": 0.8690476190476191,
+          "accuracy_equal_family": 0.8958333333333334,
+          "mse_record_mean": 0.16988109553580252,
+          "mse_equal_family": 0.1717322849075625
+        },
+        "transitions": {
+          "1_to_1": 292,
+          "1_to_0": 24,
+          "0_to_0": 20
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.0625,
+          "mse": 0.008545947094707932,
+          "accuracy_descriptive95": [
+            -0.14583333333333334,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.00591062929347792,
+            0.011145918340468434
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R/axis/b/salient/1": {
+        "rows": 96,
+        "families": 24,
+        "original": {
+          "correct": 46,
+          "accuracy_record_mean": 0.4791666666666667,
+          "accuracy_equal_family": 0.4791666666666667,
+          "mse_record_mean": 0.16695442815024752,
+          "mse_equal_family": 0.16695442815024755
+        },
+        "uniform": {
+          "correct": 60,
+          "accuracy_record_mean": 0.625,
+          "accuracy_equal_family": 0.625,
+          "mse_record_mean": 0.20690833247128393,
+          "mse_equal_family": 0.20690833247128393
+        },
+        "transitions": {
+          "0_to_0": 28,
+          "1_to_1": 38,
+          "0_to_1": 22,
+          "1_to_0": 8
+        },
+        "paired_equal_family_difference": {
+          "accuracy": 0.14583333333333334,
+          "mse": 0.039953904321036376,
+          "accuracy_descriptive95": [
+            0.041666666666666664,
+            0.25
+          ],
+          "mse_descriptive95": [
+            0.0316391101235526,
+            0.04847433554846353
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R/condition/neutral": {
+        "rows": 288,
+        "families": 24,
+        "original": {
+          "correct": 280,
+          "accuracy_record_mean": 0.9722222222222222,
+          "accuracy_equal_family": 0.9722222222222222,
+          "mse_record_mean": 0.12150078264897515,
+          "mse_equal_family": 0.12150078264897517
+        },
+        "uniform": {
+          "correct": 270,
+          "accuracy_record_mean": 0.9375,
+          "accuracy_equal_family": 0.9375,
+          "mse_record_mean": 0.14443042124315197,
+          "mse_equal_family": 0.14443042124315197
+        },
+        "transitions": {
+          "1_to_1": 270,
+          "1_to_0": 10,
+          "0_to_0": 8
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.034722222222222224,
+          "mse": 0.02292963859417681,
+          "accuracy_descriptive95": [
+            -0.0763888888888889,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.01701530031938791,
+            0.029056490934371307
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R/condition/salient_redundant": {
+        "rows": 288,
+        "families": 24,
+        "original": {
+          "correct": 258,
+          "accuracy_record_mean": 0.8958333333333334,
+          "accuracy_equal_family": 0.8958333333333334,
+          "mse_record_mean": 0.11994491786303903,
+          "mse_equal_family": 0.11994491786303903
+        },
+        "uniform": {
+          "correct": 258,
+          "accuracy_record_mean": 0.8958333333333334,
+          "accuracy_equal_family": 0.8958333333333334,
+          "mse_record_mean": 0.15328116635625094,
+          "mse_equal_family": 0.15328116635625097
+        },
+        "transitions": {
+          "1_to_0": 12,
+          "1_to_1": 246,
+          "0_to_0": 18,
+          "0_to_1": 12
+        },
+        "paired_equal_family_difference": {
+          "accuracy": 4.625929269271485e-18,
+          "mse": 0.033336248493211935,
+          "accuracy_descriptive95": [
+            -0.03472222222222221,
+            0.03472222222222222
+          ],
+          "mse_descriptive95": [
+            0.027697394712305087,
+            0.03943671336621894
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R/condition/salient_unique": {
+        "rows": 288,
+        "families": 24,
+        "original": {
+          "correct": 256,
+          "accuracy_record_mean": 0.8888888888888888,
+          "accuracy_equal_family": 0.888888888888889,
+          "mse_record_mean": 0.1208076623510365,
+          "mse_equal_family": 0.1208076623510365
+        },
+        "uniform": {
+          "correct": 250,
+          "accuracy_record_mean": 0.8680555555555556,
+          "accuracy_equal_family": 0.8680555555555557,
+          "mse_record_mean": 0.15463660805047208,
+          "mse_equal_family": 0.15463660805047208
+        },
+        "transitions": {
+          "1_to_1": 240,
+          "0_to_0": 22,
+          "1_to_0": 16,
+          "0_to_1": 10
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.02083333333333334,
+          "mse": 0.03382894569943557,
+          "accuracy_descriptive95": [
+            -0.06944444444444446,
+            0.02083333333333333
+          ],
+          "mse_descriptive95": [
+            0.027406751354906684,
+            0.04036447326480057
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R/salient/0": {
+        "rows": 672,
+        "families": 24,
+        "original": {
+          "correct": 652,
+          "accuracy_record_mean": 0.9702380952380952,
+          "accuracy_equal_family": 0.9702380952380952,
+          "mse_record_mean": 0.12162777629618461,
+          "mse_equal_family": 0.1216277762961846
+        },
+        "uniform": {
+          "correct": 628,
+          "accuracy_record_mean": 0.9345238095238095,
+          "accuracy_equal_family": 0.9345238095238094,
+          "mse_record_mean": 0.14462452547821997,
+          "mse_equal_family": 0.14462452547821997
+        },
+        "transitions": {
+          "1_to_1": 628,
+          "1_to_0": 24,
+          "0_to_0": 20
+        },
+        "paired_equal_family_difference": {
+          "accuracy": -0.03571428571428571,
+          "mse": 0.022996749182035356,
+          "accuracy_descriptive95": [
+            -0.08035714285714285,
+            0.0
+          ],
+          "mse_descriptive95": [
+            0.016734408357349406,
+            0.029369918003925657
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      },
+      "R/salient/1": {
+        "rows": 192,
+        "families": 24,
+        "original": {
+          "correct": 142,
+          "accuracy_record_mean": 0.7395833333333334,
+          "accuracy_equal_family": 0.7395833333333334,
+          "mse_record_mean": 0.11768282725792989,
+          "mse_equal_family": 0.11768282725792989
+        },
+        "uniform": {
+          "correct": 150,
+          "accuracy_record_mean": 0.78125,
+          "accuracy_equal_family": 0.78125,
+          "mse_record_mean": 0.1723364543010427,
+          "mse_equal_family": 0.1723364543010427
+        },
+        "transitions": {
+          "1_to_0": 14,
+          "1_to_1": 128,
+          "0_to_0": 28,
+          "0_to_1": 22
+        },
+        "paired_equal_family_difference": {
+          "accuracy": 0.041666666666666664,
+          "mse": 0.054653627043112774,
+          "accuracy_descriptive95": [
+            -0.020833333333333332,
+            0.11458333333333333
+          ],
+          "mse_descriptive95": [
+            0.04665078468410636,
+            0.06356117981797026
+          ]
+        },
+        "interval_scope": "posthoc descriptive paired family bootstrap, 2000 resamples seed20261122; no multiplicity-adjusted inference"
+      }
+    }
+  },
+  "interpretation_zh": [
+    "\u539fforward\u5168\u90e821312\u6761\u79bb\u6563\u5206\u7c7b\u548c\u5168\u90e8\u95e8\u69db\u590d\u73b0\uff0cMSE\u6700\u5927\u5dee5.47e-7\uff1b\u7cfb\u6570\u6709CPU/GPU\u820d\u5165\u5dee\uff0c\u4e0d\u80fd\u79f0\u4f4d\u7ea7\u4e00\u81f4\u3002",
+    "\u56fa\u5b9a\u6743\u91cd\u4e0b\u6539\u4e3a\u5747\u5300\u5386\u53f2\u6743\u91cd\u4f1a\u56e0\u679c\u5730\u6539\u53d8\u9884\u6d4b\uff0c\u4f46\u540c\u65f6\u6539\u5199memory/mean-age/velocity\u7b49\u6240\u6709\u52a0\u6743\u7edf\u8ba1\uff1b\u5e76\u975e\u53ea\u6539\u53d8softmax\u6570\u5b66\u5f62\u5f0f\u3002",
+    "R/D\u5b8c\u6574K2\u5206\u7c7b\u660e\u663e\u6539\u5584\u800cfeature MSE\u666e\u904d\u53d8\u5dee\u3002R salient_unique\u5b8c\u6574MSE\u4ecd\u9ad8\u4e8e\u7f3a\u8bc1\u636e\uff0c\u6545R K2\u95e8\u69db\u4ecd\u672a\u8fc7\uff1bD K2\u8fc7\u4f46K3\u672a\u8fc7\u3002",
+    "S K3\u591a\u6570tag0\u51c6\u786e\u7387\u6539\u5584\uff0c\u591a\u6570tag1\u660e\u663e\u6076\u5316\uff1b\u603b\u4f5372.48%\u964d\u81f365.10%\uff0cMSE\u4ece.10928\u5347\u81f3.17168\u3002\u62b9\u5e73tag\u4e0d\u5bf9\u79f0\u4e0d\u7b49\u4e8e\u4fee\u597d\u534f\u540c\u8bfb\u53d6\u3002",
+    "R\u5355cue\u5df2\u77e5bit\u603b\u51c6\u786e\u738791.90%\u964d\u81f390.05%\uff1bD 96.875%\u964d\u81f394.79%\u3002\u4e24\u8bc1\u636e\u5206\u7c7b\u6539\u5584\u5e76\u4e0d\u7b49\u4e8e\u6bcf\u6761\u7ebf\u7d22\u7684\u8bfb\u53d6\u90fd\u6062\u590d\u3002",
+    "\u51bb\u7ed3readout\u539f\u672c\u53ea\u5728learned-weight\u7edf\u8ba1\u5206\u5e03\u4e0a\u8bad\u7ec3\uff0c\u5f3a\u5236uniform\u4f1a\u9020\u6210\u8f93\u5165\u5206\u5e03\u53d8\u5316\uff1b\u8d1f\u7ed3\u679c\u4e0d\u80fd\u8bc1\u660euniform\u7ed3\u6784\u672c\u8d28\u65e0\u6548\uff0c\u6b63\u7ed3\u679c\u4e5f\u4e0d\u80fd\u8bc1\u660e\u5168\u90e8\u9519\u8bef\u53ea\u6765\u81easoftmax\u3002",
+    "\u8be5\u5df2\u89c2\u5bdfDEV\u7684\u65e0\u8bad\u7ec3\u5e72\u9884\u662f\u5b9a\u4f4d\u8bc1\u636e\uff0c\u4e0d\u662f\u65b0reader/\u4fdd\u7559\u7b56\u7565\u80dc\u51fa\u6216\u72ec\u7acb\u786e\u8ba4\u3002\u4e94\u81c2\u8bad\u7ec3\u4e0efresh\u8bca\u65ad\u4ecd\u9700\u5404\u81ea\u5b8c\u6210\u3002"
+  ]
+}

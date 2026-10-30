@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-20",
+  "status": "completed",
+  "device": "Apple MPS",
+  "a100_used": false,
+  "scope": "Frozen visual encoder and partially observed PushT interface validation only",
+  "checkpoint": {
+    "repository": "facebook/ijepa_vith14_1k",
+    "revision": "f157467ea509bc356ff9f61fd3c0d840eec5e04e"
+  },
+  "source_sha256": {
+    "experiments/phase2/run_local_mps_encoder.py": "8673aad7a34084a797d0fa51f13ed81e26944982e24efbff607f6ce3d0dab812",
+    "experiments/phase2/pusht.py": "285cd9f41e5c89e4266d05947a2e1ad8406f17c5740ef4fd3a5ff0519831dbc6",
+    "experiments/phase2/run_encoder_pilot.py": "806c1c7ab13849ca2c01aebaa65ee549e38cdc586edc03fc2e384448d876aa9c",
+    "experiments/predictor/control/src/phase1/encoders.py": "7a407ad8f03ecf58bac6dd0bd0fceca0aaabae1201298083fe7ccf3cb5aee871",
+    "results/reference/gate/resolved_config.json": "e2b737cb814f5e09be6c0ceea6e668e0e07c9f43496e951be1d899d0269ef392"
+  },
+  "encoder_config_sha256": "b6dd295cfaca0eebe687b7911401f5e09277c428a46a97f619c2a1b9f5d3e97b",
+  "encoding_check": {
+    "passed": true,
+    "device": "Apple MPS",
+    "a100_used": false,
+    "encoded_shape_per_variant": [
+      25,
+      5120
+    ],
+    "dtype": "float32",
+    "finite": true,
+    "all_modules_eval": true,
+    "trainable_parameters": 0,
+    "unchanged_parameter_versions": true,
+    "visible_control_features_match": true,
+    "masked_features_differ": true,
+    "mps_current_allocated_bytes": 2523053056,
+    "mps_driver_allocated_bytes": 3268100096,
+    "history_necessity_validated": false,
+    "baseline_model_planning_verified": false,
+    "predictor_trained": false
+  },
+  "frozen_encoder": {
+    "all_modules_eval": true,
+    "trainable_parameters": 0,
+    "parameter_dtype": "float32",
+    "parameter_count": 630762240,
+    "parameter_bytes": 2523048960
+  },
+  "official_model_files": {
+    "config.json": {
+      "bytes": 497,
+      "sha256": "4ea10a6c56020bfcdaff768056a3d5763b991c81da9556a79ef1ad0a06d61846",
+      "cache_blob": "21482bdb62359e27a6bca29347812ce2731ac18b"
+    },
+    "model.safetensors": {
+      "bytes": 2523108984,
+      "sha256": "ad6c1f6e318ace5633bea4496bc5c76248f6dc59c9a0d8a010cf31ed9dee2da8",
+      "cache_blob": "ad6c1f6e318ace5633bea4496bc5c76248f6dc59c9a0d8a010cf31ed9dee2da8",
+      "sha256_matches_cache_blob_name": true
+    },
+    "preprocessor_config.json": {
+      "bytes": 325,
+      "sha256": "a34861a24e781942424ad790b82bc99348404a2e64ea882de88c40905851698d",
+      "cache_blob": "273d24924a8bd10227b532d603484f165dcb0b5d"
+    }
+  },
+  "dependencies": {
+    "torch": "2.14.1",
+    "torchvision": "0.29.1",
+    "transformers": "5.5.4",
+    "huggingface-hub": "1.11.0",
+    "safetensors": "0.7.0",
+    "numpy": "1.26.4",
+    "Pillow": "11.3.0",
+    "gym-pusht": "0.1.8",
+    "gymnasium": "1.4.0",
+    "pymunk": "6.11.1",
+    "pygame": "2.6.1",
+    "opencv-python": "4.11.0.86"
+  },
+  "transport": {
+    "HF_HUB_DISABLE_XET": "1",
+    "transport": "official Hugging Face standard HTTP",
+    "reason": "prior Xet attempt had zero downloaded weight bytes after 142.61s",
+    "checkpoint_revision": "f157467ea509bc356ff9f61fd3c0d840eec5e04e"
+  },
+  "final_attempt_elapsed_seconds": 471.69254062499385,
+  "total_attempt_elapsed_seconds": 625.1645577929448,
+  "attempts": [
+    {
+      "output": "phase2-pusht-ijepa-mps-20261020",
+      "result": "missing torchvision",
+      "elapsed_seconds": 10.862866583978757
+    },
+    {
+      "output": "phase2-pusht-ijepa-mps-20261020-retry1",
+      "result": "stopped zero-byte Xet download and terminated child group",
+      "elapsed_seconds": 142.60915058397222
+    },
+    {
+      "output": "phase2-pusht-ijepa-mps-20261020-http",
+      "status": "completed",
+      "transport": "HF_HUB_DISABLE_XET=1 standard HTTP",
+      "timeout_seconds": 1040,
+      "elapsed_seconds": 471.69254062499385,
+      "encoding_verified": true
+    }
+  ],
+  "verification_artifact_sha256": {
+    "dependency_versions.json": "f4164735dfdd7bf64ebfba5d2abb212ab2c30674a8513004e539066923c5e332",
+    "encoder_config.json": "b6dd295cfaca0eebe687b7911401f5e09277c428a46a97f619c2a1b9f5d3e97b",
+    "encoding_check.json": "f06db290e47e8b8482a13412f1fc608fdf9a82dcec77e9b8a47fa14b9bcafa39",
+    "frozen_encoder_audit.json": "1f6986afc6000b35f84bb511b6dbfcae48568c972f561e3b8f8ea078320d133d",
+    "hardware.json": "02d0dd124e6e70d3146a89dd4df1f5f49aeddc80b6ed7e1db234368dd54358da",
+    "pusht/diagnostics_only.json": "002609e7839ef28d6c3c7280fbb85ff1845981181ef04406d93275f783fe4ffa",
+    "pusht/encoded_trace.npz": "0f76e835fa9c06d3a19eb26bfe14e329cf0f559f8f93d5f06c8558aa887dc7db",
+    "pusht/manifest.json": "40f83184181ee265a6fd997accbf151e04ec5487148d7b46c57ba157b43764de",
+    "pusht/paired_trace.npz": "5fa18cd56c646a661c4d97866cb33e6263d2e4bf3c2246b67521183cfa6c2e42",
+    "pusht/paired_trace.png": "c83bb59b08646bfee1f9e9954492e1a4fae9c873861849081115f3af18456b33",
+    "transport.json": "f7dd72f2065148fbc916416a0604ffd8d44b65b2ea46b0821d10006a31e18b86",
+    "worker.log": "8916513ce2ceca23df456acf130a058baccaf23f0c1ad0fe82575b961d873efa",
+    "model_snapshot_manifest.json": "eb258b7831fefaf5278a85183ab43b93e817b4f50e934326f39f28598e0f02fb"
+  },
+  "local_full_evidence": "build/phase2-pusht-ijepa-mps-20261020-http",
+  "retained_pair_trace_sha256": "c83bb59b08646bfee1f9e9954492e1a4fae9c873861849081115f3af18456b33",
+  "limits": [
+    "No A100 execution is claimed by this record.",
+    "No predictor, retention scorer or baseline planning was trained/run.",
+    "This does not validate PushT history necessity or any performance superiority.",
+    "Final runtime includes public weight download; no separate inference timing was recorded."
+  ]
+}

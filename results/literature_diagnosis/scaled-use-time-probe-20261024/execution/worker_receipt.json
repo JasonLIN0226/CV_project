@@ -1,0 +1,79 @@
+{
+  "status": "verified_completed_cpu_recovery",
+  "created_utc": "2026-10-25T04:06:55.255611+00:00",
+  "worker_job_id": "11065",
+  "submission_stdout": "11065\n",
+  "submission_cluster_suffix": null,
+  "worker_accounting": {
+    "jobid": "11065",
+    "state": "COMPLETED",
+    "exitcode": "0:0",
+    "elapsedraw": "786",
+    "timelimit": "00:30:00",
+    "reason": "None",
+    "alloctres": "billing=24,cpu=24,mem=16G,node=1",
+    "nodelist": "b-10-147",
+    "start": "2026-10-25T03:48:52",
+    "end": "2026-10-25T04:01:58"
+  },
+  "interrupted_job_id": "11023",
+  "interrupted_accounting": {
+    "jobid": "11023",
+    "state": "CANCELLED by 0",
+    "exitcode": "0:0",
+    "elapsedraw": "2112",
+    "timelimit": "01:00:00",
+    "reason": "None",
+    "alloctres": "billing=24,cpu=24,mem=23500M,node=1",
+    "nodelist": "b-10-122",
+    "start": "2026-10-25T03:05:50",
+    "end": "2026-10-25T03:41:02"
+  },
+  "control_job_id": "11056",
+  "control_accounting_snapshot": {
+    "jobid": "11056",
+    "state": "RUNNING",
+    "exitcode": "0:0",
+    "elapsedraw": "1323",
+    "timelimit": "01:00:00",
+    "reason": "None",
+    "alloctres": "billing=24,cpu=24,mem=16G,node=1",
+    "nodelist": "b-10-145",
+    "start": "2026-10-25T03:44:51",
+    "end": "Unknown"
+  },
+  "result_zip_sha256": "23e71cee8fce1ba7b12e597278e89c53babdf1952f57aa16f287310a1f14859f",
+  "result_zip_bytes": 32800813,
+  "exporter_sha256": "7a485526833a185f7042fdfae3f28b9e0c6d7fe928c909fe0e466810d5db38a5",
+  "new_model_calls": 0,
+  "new_job_submissions": 0,
+  "gpu_used_by_export": false,
+  "accounting_commands": {
+    "11065": [
+      "/opt/slurm/bin/sacct",
+      "-j",
+      "11065",
+      "--parsable2",
+      "--format=JobID,State,ExitCode,ElapsedRaw,Timelimit,Reason,AllocTRES,NodeList,Start,End"
+    ],
+    "11023": [
+      "/opt/slurm/bin/sacct",
+      "-j",
+      "11023",
+      "--parsable2",
+      "--format=JobID,State,ExitCode,ElapsedRaw,Timelimit,Reason,AllocTRES,NodeList,Start,End"
+    ],
+    "11056": [
+      "/opt/slurm/bin/sacct",
+      "-j",
+      "11056",
+      "--parsable2",
+      "--format=JobID,State,ExitCode,ElapsedRaw,Timelimit,Reason,AllocTRES,NodeList,Start,End"
+    ]
+  },
+  "limits": [
+    "Control-job state is a point-in-time snapshot, not a completion claim",
+    "CANCELLED and Reason are retained verbatim; no cause of cancellation is inferred",
+    "This is execution provenance; scientific results are in the separately verified result ZIP"
+  ]
+}

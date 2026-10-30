@@ -1,0 +1,706 @@
+{
+  "scope": "Posthoc old-DEV scorer audit only; computes content logits and current-query attention without future prediction, training, alternative selector evaluation, or source modification.",
+  "definition": {
+    "logit": "learned_score(concat[p,p-current]) + log1p(mean((p-current)^2))",
+    "p": "Frozen TRAIN projection of normalized I-JEPA image features",
+    "S_contrast": "Within each actual parent, mean tag1 logit minus mean tag0 logit. Averaging within tag avoids the two-versus-one count confound.",
+    "R_D_contrast": "For a styled parent, the salient item logit minus the mean of the two nonsalient items. Roles can differ, so these R/D contrasts alone are not a pure salience causal effect.",
+    "fractions": "Ratios decompose mean additive logits, not softmax attention probability or downstream prediction loss."
+  },
+  "provenance": {
+    "build/terminal-download-20261025/extracted/run/reader_selected.pt": "2c67473262306adabf4efb225e4158f5925484f8fd90eec4b484b0651154ffc4",
+    "build/terminal-download-20261025/extracted/run/basis.npz": "922bc4a676893d0ba5974cd20dbcac09c461bc908549966f197dfbbe38f4f05d",
+    "build/terminal-download-20261025/extracted/run/data/features.npy": "9090806a3e03cedeecc8046a675ba8d35523380f545d021f7fb0a2410234e6b1",
+    "build/terminal-download-20261025/extracted/run/data/records.json": "8b5b2e984a0cda4064f2f8376f9c9ac1ce2f638ad0646d0557ac25f4e1e288dd",
+    "build/terminal-download-20261025/extracted/run/development/baseline_decisions.json": "27e81903e1fe27b50ba10c4458afae9a06a3cfd2220716ab4f3730098cd751de"
+  },
+  "checks": {
+    "parents": 1728,
+    "S_parents": 1152,
+    "max_absolute_attention_difference": 9.5367431640625e-07,
+    "attention_tolerance": 3e-06,
+    "max_additive_logit_difference_error_float32": 7.748603820800781e-07,
+    "checkpoint_basis_binding": true,
+    "future_predictions_called": false
+  },
+  "summary": {
+    "R/all_salient": {
+      "n": 192,
+      "families": 24,
+      "logit_difference": {
+        "learned": {
+          "mean": -0.5675942220259458,
+          "median": -0.953511331230402,
+          "min": -9.45055702328682,
+          "max": 10.553854584693909,
+          "q05": -8.506986403465271,
+          "q95": 8.143895271420478
+        },
+        "fixed_novelty": {
+          "mean": 0.4592795632779598,
+          "median": 0.4646555185317993,
+          "min": 0.10635495185852051,
+          "max": 0.7315034866333008,
+          "q05": 0.30873082876205443,
+          "q95": 0.6259541749954224
+        },
+        "total": {
+          "mean": -0.10831462405622005,
+          "median": -0.5120885074138641,
+          "min": -8.945427060127258,
+          "max": 11.10266125202179,
+          "q05": -8.047813773155212,
+          "q95": 8.672760161757468
+        }
+      },
+      "learned_positive": 96,
+      "fixed_novelty_positive": 192,
+      "total_positive": 96,
+      "learned_absolute_larger_than_fixed": 192,
+      "learned_fraction_of_mean_total_logit_difference": 5.240236274386545
+    },
+    "R/salient_redundant": {
+      "n": 96,
+      "families": 24,
+      "logit_difference": {
+        "learned": {
+          "mean": -0.5868386699197193,
+          "median": -0.8076913133263588,
+          "min": -9.45055702328682,
+          "max": 7.845146901905537,
+          "q05": -7.797519013285637,
+          "q95": 7.275264166295528
+        },
+        "fixed_novelty": {
+          "mean": 0.4617891584833463,
+          "median": 0.4483993649482727,
+          "min": 0.2889971137046814,
+          "max": 0.7043110132217407,
+          "q05": 0.32540085911750793,
+          "q95": 0.6059355586767197
+        },
+        "total": {
+          "mean": -0.1250494954486688,
+          "median": -0.4161438047885895,
+          "min": -8.945427060127258,
+          "max": 8.182428777217865,
+          "q05": -7.3923124969005585,
+          "q95": 7.79134501516819
+        }
+      },
+      "learned_positive": 48,
+      "fixed_novelty_positive": 96,
+      "total_positive": 48,
+      "learned_absolute_larger_than_fixed": 96,
+      "learned_fraction_of_mean_total_logit_difference": 4.692851161167691
+    },
+    "R/salient_redundant/salient_role/A": {
+      "n": 48,
+      "families": 12,
+      "logit_difference": {
+        "learned": {
+          "mean": -0.497299167017142,
+          "median": -0.8076913133263588,
+          "min": -8.081648051738739,
+          "max": 7.845146901905537,
+          "q05": -7.639089376106858,
+          "q95": 7.286456524580717
+        },
+        "fixed_novelty": {
+          "mean": 0.44714685281117755,
+          "median": 0.4509643018245697,
+          "min": 0.3099334239959717,
+          "max": 0.5985488891601562,
+          "q05": 0.32417858242988584,
+          "q95": 0.5791401594877243
+        },
+        "total": {
+          "mean": -0.05015230054656664,
+          "median": -0.4161438047885895,
+          "min": -7.691671967506409,
+          "max": 8.182428777217865,
+          "q05": -7.215639075636863,
+          "q95": 7.843159088492393
+        }
+      },
+      "learned_positive": 24,
+      "fixed_novelty_positive": 48,
+      "total_positive": 24,
+      "learned_absolute_larger_than_fixed": 48,
+      "learned_fraction_of_mean_total_logit_difference": 9.915779766780537
+    },
+    "R/salient_unique": {
+      "n": 96,
+      "families": 24,
+      "logit_difference": {
+        "learned": {
+          "mean": -0.5483497741321722,
+          "median": -1.3697178065776825,
+          "min": -9.375128507614136,
+          "max": 10.553854584693909,
+          "q05": -8.787420388311148,
+          "q95": 8.696218609809875
+        },
+        "fixed_novelty": {
+          "mean": 0.45676996807257336,
+          "median": 0.47562336921691895,
+          "min": 0.10635495185852051,
+          "max": 0.7315034866333008,
+          "q05": 0.2770366072654724,
+          "q95": 0.6256104707717896
+        },
+        "total": {
+          "mean": -0.09157975266377132,
+          "median": -0.9576711058616638,
+          "min": -8.88778042793274,
+          "max": 11.10266125202179,
+          "q05": -8.33803641796112,
+          "q95": 9.145761519670486
+        }
+      },
+      "learned_positive": 48,
+      "fixed_novelty_positive": 96,
+      "total_positive": 48,
+      "learned_absolute_larger_than_fixed": 96,
+      "learned_fraction_of_mean_total_logit_difference": 5.987674766336181
+    },
+    "R/salient_unique/salient_role/B": {
+      "n": 96,
+      "families": 24,
+      "logit_difference": {
+        "learned": {
+          "mean": -0.5483497741321722,
+          "median": -1.3697178065776825,
+          "min": -9.375128507614136,
+          "max": 10.553854584693909,
+          "q05": -8.787420388311148,
+          "q95": 8.696218609809875
+        },
+        "fixed_novelty": {
+          "mean": 0.45676996807257336,
+          "median": 0.47562336921691895,
+          "min": 0.10635495185852051,
+          "max": 0.7315034866333008,
+          "q05": 0.2770366072654724,
+          "q95": 0.6256104707717896
+        },
+        "total": {
+          "mean": -0.09157975266377132,
+          "median": -0.9576711058616638,
+          "min": -8.88778042793274,
+          "max": 11.10266125202179,
+          "q05": -8.33803641796112,
+          "q95": 9.145761519670486
+        }
+      },
+      "learned_positive": 48,
+      "fixed_novelty_positive": 96,
+      "total_positive": 48,
+      "learned_absolute_larger_than_fixed": 96,
+      "learned_fraction_of_mean_total_logit_difference": 5.987674766336181
+    },
+    "D/all_salient": {
+      "n": 192,
+      "families": 24,
+      "logit_difference": {
+        "learned": {
+          "mean": -2.9113948374676206,
+          "median": -2.9803532287478447,
+          "min": -18.431249618530273,
+          "max": 15.20426994562149,
+          "q05": -16.858800154924392,
+          "q95": 13.873710873723029
+        },
+        "fixed_novelty": {
+          "mean": 0.4735318124294281,
+          "median": 0.4717186689376831,
+          "min": 0.04130440950393677,
+          "max": 0.8174769282341003,
+          "q05": 0.1880091041326523,
+          "q95": 0.7490208387374878
+        },
+        "total": {
+          "mean": -2.437863020847241,
+          "median": -2.4763606786727905,
+          "min": -17.851680755615234,
+          "max": 15.454101085662842,
+          "q05": -16.278567254543304,
+          "q95": 14.247510552406307
+        }
+      },
+      "learned_positive": 96,
+      "fixed_novelty_positive": 192,
+      "total_positive": 96,
+      "learned_absolute_larger_than_fixed": 192,
+      "learned_fraction_of_mean_total_logit_difference": 1.1942405346695038
+    },
+    "D/salient_decoy": {
+      "n": 96,
+      "families": 24,
+      "logit_difference": {
+        "learned": {
+          "mean": -13.374540716409683,
+          "median": -14.587635934352875,
+          "min": -18.431249618530273,
+          "max": -6.978957235813141,
+          "q05": -17.192975610494614,
+          "q95": -8.203683197498322
+        },
+        "fixed_novelty": {
+          "mean": 0.6036141390601794,
+          "median": 0.5940899550914764,
+          "min": 0.4070281982421875,
+          "max": 0.8174769282341003,
+          "q05": 0.45078325271606445,
+          "q95": 0.7841559201478958
+        },
+        "total": {
+          "mean": -12.770926594734192,
+          "median": -13.928156733512878,
+          "min": -17.851680755615234,
+          "max": -6.4252989292144775,
+          "q05": -16.59452772140503,
+          "q95": -7.6585604548454285
+        }
+      },
+      "learned_positive": 0,
+      "fixed_novelty_positive": 96,
+      "total_positive": 0,
+      "learned_absolute_larger_than_fixed": 96,
+      "learned_fraction_of_mean_total_logit_difference": 1.0472647084139046
+    },
+    "D/salient_decoy/salient_role/D": {
+      "n": 96,
+      "families": 24,
+      "logit_difference": {
+        "learned": {
+          "mean": -13.374540716409683,
+          "median": -14.587635934352875,
+          "min": -18.431249618530273,
+          "max": -6.978957235813141,
+          "q05": -17.192975610494614,
+          "q95": -8.203683197498322
+        },
+        "fixed_novelty": {
+          "mean": 0.6036141390601794,
+          "median": 0.5940899550914764,
+          "min": 0.4070281982421875,
+          "max": 0.8174769282341003,
+          "q05": 0.45078325271606445,
+          "q95": 0.7841559201478958
+        },
+        "total": {
+          "mean": -12.770926594734192,
+          "median": -13.928156733512878,
+          "min": -17.851680755615234,
+          "max": -6.4252989292144775,
+          "q05": -16.59452772140503,
+          "q95": -7.6585604548454285
+        }
+      },
+      "learned_positive": 0,
+      "fixed_novelty_positive": 96,
+      "total_positive": 0,
+      "learned_absolute_larger_than_fixed": 96,
+      "learned_fraction_of_mean_total_logit_difference": 1.0472647084139046
+    },
+    "D/salient_useful": {
+      "n": 96,
+      "families": 24,
+      "logit_difference": {
+        "learned": {
+          "mean": 7.551751041474442,
+          "median": 6.534897394478321,
+          "min": 1.0182507783174515,
+          "max": 15.20426994562149,
+          "q05": 1.559901561588049,
+          "q95": 14.438455492258072
+        },
+        "fixed_novelty": {
+          "mean": 0.3434494857986768,
+          "median": 0.3423205316066742,
+          "min": 0.04130440950393677,
+          "max": 0.6328727602958679,
+          "q05": 0.14887583255767822,
+          "q95": 0.5156438201665878
+        },
+        "total": {
+          "mean": 7.89520055303971,
+          "median": 6.870009183883667,
+          "min": 1.4725775718688965,
+          "max": 15.454101085662842,
+          "q05": 2.05854469537735,
+          "q95": 14.741425484418869
+        }
+      },
+      "learned_positive": 96,
+      "fixed_novelty_positive": 96,
+      "total_positive": 96,
+      "learned_absolute_larger_than_fixed": 96,
+      "learned_fraction_of_mean_total_logit_difference": 0.9564989503106368
+    },
+    "D/salient_useful/salient_role/A": {
+      "n": 48,
+      "families": 12,
+      "logit_difference": {
+        "learned": {
+          "mean": 12.086550496518612,
+          "median": 11.810596197843552,
+          "min": 7.958621859550476,
+          "max": 15.20426994562149,
+          "q05": 8.866815093159676,
+          "q95": 14.859013402462004
+        },
+        "fixed_novelty": {
+          "mean": 0.3731677606701851,
+          "median": 0.38118112087249756,
+          "min": 0.24203336238861084,
+          "max": 0.5215349793434143,
+          "q05": 0.2520807296037674,
+          "q95": 0.5020219445228576
+        },
+        "total": {
+          "mean": 12.459718316793442,
+          "median": 12.201920628547668,
+          "min": 8.380368709564209,
+          "max": 15.454101085662842,
+          "q05": 9.227107977867126,
+          "q95": 15.152028465270995
+        }
+      },
+      "learned_positive": 48,
+      "fixed_novelty_positive": 48,
+      "total_positive": 48,
+      "learned_absolute_larger_than_fixed": 48,
+      "learned_fraction_of_mean_total_logit_difference": 0.9700500596572984
+    },
+    "S/all": {
+      "n": 1152,
+      "families": 24,
+      "logit_difference": {
+        "learned": {
+          "mean": 4.928405571728945,
+          "median": 4.876344323158264,
+          "min": 2.1728994846343994,
+          "max": 8.428081035614014,
+          "q05": 3.547476649284363,
+          "q95": 6.396628034114838
+        },
+        "fixed_novelty": {
+          "mean": -0.0010534458690219456,
+          "median": -0.006035149097442627,
+          "min": -0.5303710699081421,
+          "max": 0.4636995792388916,
+          "q05": -0.28511691093444824,
+          "q95": 0.29417264461517334
+        },
+        "total": {
+          "mean": 4.9273521395193205,
+          "median": 4.83228325843811,
+          "min": 2.562821626663208,
+          "max": 8.445147514343262,
+          "q05": 3.5440869331359863,
+          "q95": 6.387943410873415
+        }
+      },
+      "learned_positive": 1152,
+      "fixed_novelty_positive": 564,
+      "total_positive": 1152,
+      "learned_absolute_larger_than_fixed": 1152,
+      "learned_fraction_of_mean_total_logit_difference": 1.0002137927592338
+    },
+    "S/neutral": {
+      "n": 288,
+      "families": 6,
+      "logit_difference": {
+        "learned": {
+          "mean": 4.282146657506625,
+          "median": 4.5400848388671875,
+          "min": 3.457551062107086,
+          "max": 5.091710329055786,
+          "q05": 3.533506602048874,
+          "q95": 4.889662027359009
+        },
+        "fixed_novelty": {
+          "mean": 0.006300389766693115,
+          "median": -0.0064694881439208984,
+          "min": -0.1415625810623169,
+          "max": 0.17741942405700684,
+          "q05": -0.11475974321365356,
+          "q95": 0.1372009515762329
+        },
+        "total": {
+          "mean": 4.288447067141533,
+          "median": 4.510906279087067,
+          "min": 3.4457815289497375,
+          "max": 5.191787600517273,
+          "q05": 3.494934231042862,
+          "q95": 4.96856963634491
+        }
+      },
+      "learned_positive": 288,
+      "fixed_novelty_positive": 132,
+      "total_positive": 288,
+      "learned_absolute_larger_than_fixed": 288,
+      "learned_fraction_of_mean_total_logit_difference": 0.9985308412261441
+    },
+    "S/majority_tag/0": {
+      "n": 576,
+      "families": 24,
+      "logit_difference": {
+        "learned": {
+          "mean": 4.928405571728945,
+          "median": 4.876078486442566,
+          "min": 2.1728994846343994,
+          "max": 7.497776031494141,
+          "q05": 3.5871288403868675,
+          "q95": 6.222694903612137
+        },
+        "fixed_novelty": {
+          "mean": -0.0010534458690219456,
+          "median": -0.05309653282165527,
+          "min": -0.3357783555984497,
+          "max": 0.4636995792388916,
+          "q05": -0.227431058883667,
+          "q95": 0.36578667163848877
+        },
+        "total": {
+          "mean": 4.9273521395193205,
+          "median": 4.820073306560516,
+          "min": 2.562821626663208,
+          "max": 7.607944846153259,
+          "q05": 3.5510463565587997,
+          "q95": 6.331552505493164
+        }
+      },
+      "learned_positive": 576,
+      "fixed_novelty_positive": 218,
+      "total_positive": 576,
+      "learned_absolute_larger_than_fixed": 576,
+      "learned_fraction_of_mean_total_logit_difference": 1.0002137927592338
+    },
+    "S/majority_tag/1": {
+      "n": 576,
+      "families": 24,
+      "logit_difference": {
+        "learned": {
+          "mean": 4.928405571728945,
+          "median": 4.876610159873962,
+          "min": 2.6273058652877808,
+          "max": 8.428081035614014,
+          "q05": 3.541899025440216,
+          "q95": 6.5494344830513
+        },
+        "fixed_novelty": {
+          "mean": -0.0010534458690219456,
+          "median": 0.04692766070365906,
+          "min": -0.5303710699081421,
+          "max": 0.2786094546318054,
+          "q05": -0.33054736256599426,
+          "q95": 0.1995493471622467
+        },
+        "total": {
+          "mean": 4.9273521395193205,
+          "median": 4.8384552001953125,
+          "min": 2.8297879695892334,
+          "max": 8.445147514343262,
+          "q05": 3.541441559791565,
+          "q95": 6.439764499664307
+        }
+      },
+      "learned_positive": 576,
+      "fixed_novelty_positive": 346,
+      "total_positive": 576,
+      "learned_absolute_larger_than_fixed": 576,
+      "learned_fraction_of_mean_total_logit_difference": 1.0002137927592338
+    },
+    "S/salient_slot_0": {
+      "n": 288,
+      "families": 6,
+      "logit_difference": {
+        "learned": {
+          "mean": 4.818993237283495,
+          "median": 4.8711159229278564,
+          "min": 2.1728994846343994,
+          "max": 6.72267746925354,
+          "q05": 3.5701665580272675,
+          "q95": 6.0414274573326106
+        },
+        "fixed_novelty": {
+          "mean": -0.006695810291502211,
+          "median": -0.03706979751586914,
+          "min": -0.3927529454231262,
+          "max": 0.41747134923934937,
+          "q05": -0.30383677482604976,
+          "q95": 0.3471044987440109
+        },
+        "total": {
+          "mean": 4.8122974501715765,
+          "median": 4.7604179084300995,
+          "min": 2.562821626663208,
+          "max": 6.544973850250244,
+          "q05": 3.7603657245635986,
+          "q95": 6.0714828133583065
+        }
+      },
+      "learned_positive": 288,
+      "fixed_novelty_positive": 142,
+      "total_positive": 288,
+      "learned_absolute_larger_than_fixed": 288,
+      "learned_fraction_of_mean_total_logit_difference": 1.0013913909481384
+    },
+    "S/salient_slot_1": {
+      "n": 288,
+      "families": 6,
+      "logit_difference": {
+        "learned": {
+          "mean": 5.530125147766537,
+          "median": 5.451022505760193,
+          "min": 3.2434900999069214,
+          "max": 8.428081035614014,
+          "q05": 3.814639437198639,
+          "q95": 7.420275330543518
+        },
+        "fixed_novelty": {
+          "mean": 0.010983195569780137,
+          "median": 0.021023869514465332,
+          "min": -0.38452792167663574,
+          "max": 0.34823012351989746,
+          "q05": -0.2273334264755249,
+          "q95": 0.23238960802555078
+        },
+        "total": {
+          "mean": 5.5411083731386395,
+          "median": 5.470449805259705,
+          "min": 3.4905773401260376,
+          "max": 8.445147514343262,
+          "q05": 4.016939163208008,
+          "q95": 7.3061041831970215
+        }
+      },
+      "learned_positive": 288,
+      "fixed_novelty_positive": 156,
+      "total_positive": 288,
+      "learned_absolute_larger_than_fixed": 288,
+      "learned_fraction_of_mean_total_logit_difference": 0.9980178649049086
+    },
+    "S/salient_slot_2": {
+      "n": 288,
+      "families": 6,
+      "logit_difference": {
+        "learned": {
+          "mean": 5.082357244359122,
+          "median": 5.116272866725922,
+          "min": 3.2619847655296326,
+          "max": 6.983991384506226,
+          "q05": 3.9861456751823425,
+          "q95": 6.159813243150711
+        },
+        "fixed_novelty": {
+          "mean": -0.014801558521058824,
+          "median": -0.07100838422775269,
+          "min": -0.5303710699081421,
+          "max": 0.4636995792388916,
+          "q05": -0.33477874994277956,
+          "q95": 0.3743726611137388
+        },
+        "total": {
+          "mean": 5.067555667625533,
+          "median": 5.091227769851685,
+          "min": 2.911013424396515,
+          "max": 6.6984758377075195,
+          "q05": 3.7174079686403276,
+          "q95": 6.238085865974426
+        }
+      },
+      "learned_positive": 288,
+      "fixed_novelty_positive": 134,
+      "total_positive": 288,
+      "learned_absolute_larger_than_fixed": 288,
+      "learned_fraction_of_mean_total_logit_difference": 1.0029208513343326
+    },
+    "R/salient_redundant/salient_role/Aprime": {
+      "n": 48,
+      "families": 12,
+      "logit_difference": {
+        "learned": {
+          "mean": -0.6763781728222966,
+          "median": -0.7801547944545746,
+          "min": -9.45055702328682,
+          "max": 7.616560518741608,
+          "q05": -8.691216716170311,
+          "q95": 7.219853211939335
+        },
+        "fixed_novelty": {
+          "mean": 0.476431464155515,
+          "median": 0.4483993649482727,
+          "min": 0.2889971137046814,
+          "max": 0.7043110132217407,
+          "q05": 0.3374300390481949,
+          "q95": 0.6586580336093902
+        },
+        "total": {
+          "mean": -0.19994669035077095,
+          "median": -0.25097644329071045,
+          "min": -8.945427060127258,
+          "max": 8.16971892118454,
+          "q05": -8.032558801770211,
+          "q95": 7.724903964996337
+        }
+      },
+      "learned_positive": 24,
+      "fixed_novelty_positive": 48,
+      "total_positive": 24,
+      "learned_absolute_larger_than_fixed": 48,
+      "learned_fraction_of_mean_total_logit_difference": 3.382792541530501
+    },
+    "D/salient_useful/salient_role/B": {
+      "n": 48,
+      "families": 12,
+      "logit_difference": {
+        "learned": {
+          "mean": 3.0169515864302716,
+          "median": 2.9624574780464172,
+          "min": 1.0182507783174515,
+          "max": 5.111172929406166,
+          "q05": 1.3552371501922607,
+          "q95": 4.624339917302131
+        },
+        "fixed_novelty": {
+          "mean": 0.31373121092716855,
+          "median": 0.310112863779068,
+          "min": 0.04130440950393677,
+          "max": 0.6328727602958679,
+          "q05": 0.09595955014228821,
+          "q95": 0.5611433655023574
+        },
+        "total": {
+          "mean": 3.330682789285978,
+          "median": 3.2583999037742615,
+          "min": 1.4725775718688965,
+          "max": 5.359649658203125,
+          "q05": 1.6843068659305573,
+          "q95": 4.764106738567352
+        }
+      },
+      "learned_positive": 48,
+      "fixed_novelty_positive": 48,
+      "total_positive": 48,
+      "learned_absolute_larger_than_fixed": 48,
+      "learned_fraction_of_mean_total_logit_difference": 0.9058057393322158
+    }
+  },
+  "interpretation": [
+    "S red/tag1 bias is overwhelmingly in the learned content-scoring MLP: the within-parent tag1-minus-tag0 mean is +4.9284056 learned logits plus -0.00105345 fixed-novelty logits, yielding +4.9273521 total. Learned logit differences are positive and larger in absolute value than fixed differences in all 1152 S parents.",
+    "The fixed novelty term remains part of the scoring rule and can favor salient items in R/D (mean contrasts roughly +0.46/+0.47), but it is not the main source of this S tag-color preference. Its S aggregate contribution is approximately -0.02% of the total mean logit gap.",
+    "These are additive logit decompositions. A fraction of a logit gap is not an attribution fraction for nonlinear softmax probability, reader MSE, or causality.",
+    "The result locates an observed bias in the trained score network; it does not establish that softmax as a general aggregation architecture necessarily prefers red/tag1, or that this bias alone causes all reading failures.",
+    "R/D within-parent salient-versus-normal contrasts compare items with potentially different roles. They quantify scores in the observed parents and should not be interpreted as isolated effects of rendering a cue salient."
+  ],
+  "full_rows_asset": {
+    "rows": 1728,
+    "url": "https://github.com/JasonLIN0226/CV_project/releases/download/reader-aggregation-20261025/attention_logit_decomposition.json",
+    "sha256": "3b6b56adbad4f65cdb269e3ac5e284188bb7bd7b5e18e1d194ff1fb1796c8138",
+    "note": "Full per-row data preserved in immutable release asset; repository file is a compact summary."
+  }
+}

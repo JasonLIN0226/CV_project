@@ -1,0 +1,71 @@
+{
+  "status": "completed",
+  "scope": "post-hoc development no-fit diagnostic on already inspected DEV; not independent confirmation",
+  "causal_selector_actual_plan_access": false,
+  "actual_plan_evaluation": "Reuses saved native predictions/losses from the same frozen A100 reader; actual plan is evaluator-only",
+  "summary": {
+    "all": {
+      "episodes": 192,
+      "families": 24,
+      "mse": 0.10729503617581482,
+      "mean_regret": 0.006752502331894142,
+      "positive_regret_fraction": 0.375,
+      "semantic_correct_count": 190,
+      "feature_class_correct_count": 192,
+      "medoid_exact_tie_count": 0,
+      "medoid_tolerance_set_ambiguous_count": 0,
+      "tolerance_tiebreak_would_change_count": 0,
+      "minus_baseline_mse": {
+        "fifo": -0.019975441392351443,
+        "terminal_uniform": -0.025589289793803982,
+        "visual_diversity": -0.032143218810967406,
+        "reader_attention": -0.03069983575513509
+      }
+    },
+    "benign_duplicate": {
+      "episodes": 96,
+      "families": 24,
+      "mse": 0.10047903096968856,
+      "mean_regret": 0.0018793926691372297,
+      "positive_regret_fraction": 0.21875,
+      "semantic_correct_count": 96,
+      "feature_class_correct_count": 96,
+      "medoid_exact_tie_count": 0,
+      "medoid_tolerance_set_ambiguous_count": 0,
+      "tolerance_tiebreak_would_change_count": 0,
+      "minus_baseline_mse": {
+        "fifo": -0.02315569185751748,
+        "terminal_uniform": -0.02335539657375951,
+        "visual_diversity": -0.0035344042564811654,
+        "reader_attention": -0.038694230175308826
+      }
+    },
+    "distant_style_duplicate": {
+      "episodes": 96,
+      "families": 24,
+      "mse": 0.11411104138194106,
+      "mean_regret": 0.011625611994651055,
+      "positive_regret_fraction": 0.53125,
+      "semantic_correct_count": 94,
+      "feature_class_correct_count": 96,
+      "medoid_exact_tie_count": 0,
+      "medoid_tolerance_set_ambiguous_count": 0,
+      "tolerance_tiebreak_would_change_count": 0,
+      "minus_baseline_mse": {
+        "fifo": -0.016795190927185413,
+        "terminal_uniform": -0.02782318301384845,
+        "visual_diversity": -0.06075203336545365,
+        "reader_attention": -0.02270544133496136
+      }
+    }
+  },
+  "reference_forecast_examples": 9216,
+  "training_steps": 0,
+  "limitations": [
+    "Reference plans are a TRAIN-only prior, not actual unexecuted DEV actions.",
+    "These DEV outcomes were inspected before this heuristic was proposed; no independent confirmation.",
+    "A medoid of three deletion forecasts is not a deletion-cost oracle or causal proof.",
+    "768 additional persistent bank bytes and48 reader forecast examples per decision must be counted.",
+    "This terminal query diagnostic does not repair the early-reader problem."
+  ]
+}
