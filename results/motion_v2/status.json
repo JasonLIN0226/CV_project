@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "date": "2026-10-30",
+  "branch": "experiments/motion-v2-20261030",
+  "base_main_commit": "9d26be1a85b64548602c17231169d274f70914b8",
+  "status": "stopped_reference_mismatch",
+  "revision": "v2.1",
+  "active_run_status": "results/motion_v2/step0_v2_1/v2_1_reference/status.json",
+  "protocol_commit": "5ee647a7b9234b8a127d80d87f38c1eebcedb30e",
+  "protocol_sha256": "84103cf885a9928453623d1cdeadeb897598949cdcf547bf1d4cae6897c5ba7a",
+  "differences": [
+    {
+      "path": "$.leakage_long_gap.v1.one_post_non_end",
+      "expected": 0.624,
+      "actual": 0.62
+    },
+    {
+      "path": "$.leakage_long_gap.v2.one_post_non_end",
+      "expected": 0.538,
+      "actual": 0.545
+    }
+  ],
+  "original_v2_history": {
+    "commit": "e07333eb299acce4a0df477cd05922fd4c82afa9",
+    "stop_reason": "Reference episode() produces different end positions for opposite final velocities; this contradicts the required shared end position.",
+    "resolved_by_v2_1": true
+  },
+  "step0": {
+    "original_five_files_unchanged": true,
+    "new_three_files_match_supplied_sha256": true,
+    "v2_1_reference_runs": 1,
+    "exit_code": 0,
+    "exact_json_match": false,
+    "reference_pair_audits": "four conditions, each 500/500",
+    "online_values_match": true,
+    "phase1_headroom_reproduction": "not_run_due_to_stop",
+    "manifest_comparison": "not_run_due_to_stop",
+    "local_manifest_metadata_opened": true,
+    "local_manifest_records": 2432,
+    "local_manifest_test_records": 0,
+    "full_hpc_manifest_retrieved": false
+  },
+  "step1": {
+    "status": "not_started",
+    "real_train_generated": false,
+    "generator_pytest": "not_run"
+  },
+  "step2": {
+    "status": "not_started",
+    "gate": "not_evaluated",
+    "a_recent_only": null,
+    "b_privileged_post_change": null,
+    "c_privileged_stale": null,
+    "horizons": [
+      3,
+      6
+    ],
+    "gpu_estimate_hours": null,
+    "gpu_budget_a100_hours": 4
+  },
+  "actual_cpu_wall_seconds": 44.40594816603698,
+  "actual_a100_gpu_seconds": 0,
+  "raw_test_data_opened_or_generated": false,
+  "retention_training_started": false,
+  "existing_main_files_or_hash_locks_modified": false,
+  "registered_runtime_sources_changed_after_registration": false,
+  "reference_results_are_not_all_reproduced": true
+}
