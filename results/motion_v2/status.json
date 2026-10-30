@@ -1,40 +1,49 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "date": "2026-10-30",
   "branch": "experiments/motion-v2-20261030",
   "base_main_commit": "9d26be1a85b64548602c17231169d274f70914b8",
-  "status": "stopped_before_experiments",
-  "stop_reason": "Reference episode() produces different end positions for opposite final velocities; this contradicts the required shared end position.",
-  "evidence_type": "static_source_review_and_algebra_not_runtime_experiment",
-  "attachment": {
-    "name": "motion_v2_for_codex.md",
-    "sha256": "780675a4639262af910be9586932af489373bb51429742e11f3c46592433db42"
-  },
-  "import": {
-    "files": {
-      "docs/MOTION_V2_PROTOCOL_ZH.md": "7c3bd7acff814554a0fd65d4e9c02753893787c05a229163fdfec110ca9c6762",
-      "experiments/motion_v2/analysis/motion_headroom.py": "989afebc5c2fd2ece882442c5dd508b2d2afc0102d2b623033002c0fa8e9cd78",
-      "experiments/motion_v2/analysis/motion_v2_headroom.py": "00d9420a0512682186bda466f08e8a653aa1b9ac3bf06a34206246dd02d26dcf",
-      "results/motion_v2/headroom/motion_v1_pool_headroom.json": "09c9606f98960092b0b1ee8467fe08d453c52884c2df5c7a15afbf31cced16df",
-      "results/motion_v2/headroom/motion_headroom_online.json": "d11f3e62f9b7237b925361e20b601ddc3a2be9bb93d7824138a6f45c2a218ecd"
+  "status": "stopped_reference_mismatch",
+  "revision": "v2.1",
+  "active_run_status": "results/motion_v2/step0_v2_1/v2_1_reference/status.json",
+  "protocol_commit": "5ee647a7b9234b8a127d80d87f38c1eebcedb30e",
+  "protocol_sha256": "84103cf885a9928453623d1cdeadeb897598949cdcf547bf1d4cae6897c5ba7a",
+  "differences": [
+    {
+      "path": "$.leakage_long_gap.v1.one_post_non_end",
+      "expected": 0.624,
+      "actual": 0.62
     },
-    "matches_supplied_sha256": true,
-    "all_five_files_unmodified": true
+    {
+      "path": "$.leakage_long_gap.v2.one_post_non_end",
+      "expected": 0.538,
+      "actual": 0.545
+    }
+  ],
+  "original_v2_history": {
+    "commit": "e07333eb299acce4a0df477cd05922fd4c82afa9",
+    "stop_reason": "Reference episode() produces different end positions for opposite final velocities; this contradicts the required shared end position.",
+    "resolved_by_v2_1": true
   },
   "step0": {
-    "import_and_hash_check": "passed",
-    "cpu_reproduction": "not_run_due_to_stop",
-    "reference_jsons_are_new_measurements": false,
+    "original_five_files_unchanged": true,
+    "new_three_files_match_supplied_sha256": true,
+    "v2_1_reference_runs": 1,
+    "exit_code": 0,
+    "exact_json_match": false,
+    "reference_pair_audits": "four conditions, each 500/500",
+    "online_values_match": true,
+    "phase1_headroom_reproduction": "not_run_due_to_stop",
     "manifest_comparison": "not_run_due_to_stop",
-    "manifest_candidate": "results/phase1_independent_confirmation/execution_v7_metadata/native_v6_evidence/fresh/dataset/manifest.json",
-    "manifest_exists": true,
-    "manifest_size_bytes": 1468996,
-    "manifest_opened": false
+    "local_manifest_metadata_opened": true,
+    "local_manifest_records": 2432,
+    "local_manifest_test_records": 0,
+    "full_hpc_manifest_retrieved": false
   },
   "step1": {
-    "generator": "not_implemented",
-    "pytest_audit": "not_run",
-    "train_validation_generated": false
+    "status": "not_started",
+    "real_train_generated": false,
+    "generator_pytest": "not_run"
   },
   "step2": {
     "status": "not_started",
@@ -47,15 +56,13 @@
       6
     ],
     "gpu_estimate_hours": null,
-    "gpu_estimate_note": "Step 2 was not entered; no GPU job was planned or submitted.",
-    "gpu_budget_a100_hours": 4,
-    "actual_a100_gpu_seconds": 0
+    "gpu_budget_a100_hours": 4
   },
-  "test_data_opened_or_generated": false,
-  "step3_or_retention_training_started": false,
-  "existing_files_or_hash_locks_modified": false,
-  "planned_reproduction_commands_not_executed": [
-    "python -I experiments/motion_v2/analysis/motion_headroom.py results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/original_src/phase1 results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/config.json",
-    "python -I experiments/motion_v2/analysis/motion_v2_headroom.py 1000"
-  ]
+  "actual_cpu_wall_seconds": 44.40594816603698,
+  "actual_a100_gpu_seconds": 0,
+  "raw_test_data_opened_or_generated": false,
+  "retention_training_started": false,
+  "existing_main_files_or_hash_locks_modified": false,
+  "registered_runtime_sources_changed_after_registration": false,
+  "reference_results_are_not_all_reproduced": true
 }

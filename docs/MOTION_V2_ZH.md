@@ -1,4 +1,77 @@
-# Motion v2：附件导入与停止报告（2026-10-30）
+# Motion v2 / v2.1 执行报告（2026-10-30）
+
+**最新状态：v2.1 第 0′ 步原样 CPU 复现完成，但两项数值与附件不同，按已登记规则停止。** 第 1 步生成器和第 2 步预测器均未启动。这不是预测器统计判据失败，也不是新生成的 train 数据审计失败。
+
+## v2.1 本轮执行与登记
+
+v2.1 修订明确允许 `t_c` 处的位置跳变，并以共同 `x_end` 锚定新段，已解决上一轮终点不一致问题。新增三个附件文件原样导入，SHA256 全部与预期一致；此前五个附件文件保持逐字节不变。
+
+运行前已提交并推送 protocol：`5ee647a7b9234b8a127d80d87f38c1eebcedb30e`。登记文件为 [protocol_step0_v2_1.json](../experiments/motion_v2/protocol_step0_v2_1.json)，SHA256 为 `84103cf885a9928453623d1cdeadeb897598949cdcf547bf1d4cae6897c5ba7a`。其中冻结了源文件哈希、依赖版本、参数、运行顺序和“解析后的 JSON 必须完全相同，否则停止，不改参数／版本重跑”。
+
+实际原脚本命令（经一次性 runner 记录输出）：
+
+```sh
+python -I experiments/motion_v2/analysis/motion_v2_1_checks.py 1000
+```
+
+仅执行一次，退出码 0；CPU 墙钟用时 **44.406 秒**，实际 **0 A100-GPU 秒**。环境为 macOS arm64、Python 3.12.14、NumPy 1.26.4、Pillow 11.3.0、scikit-learn 1.7.2、SciPy 1.17.1；完整依赖见 [requirements-cpu.lock](../experiments/motion_v2/requirements-cpu.lock)。所有原始输出、stderr、差异及状态均保留在 [本轮结果目录](../results/motion_v2/step0_v2_1/v2_1_reference)。
+
+## 复现结果与停止原因
+
+| 跨场景分类项目（long gap） | v1 参考 | v1 实际 | v2.1 参考 | v2.1 实际 |
+|---|---:|---:|---:|---:|
+| 只有终点帧 | 50.0% | 50.0% | 50.0% | 50.0% |
+| 一张非终点新段帧 | 62.4% | **62.0%** | 53.8% | **54.5%** |
+| 旧段帧 + 终点帧 | 不适用 | 不适用 | 50.0% | 50.0% |
+| 两张新段帧 | 99.6% | 99.6% | 99.3% | 99.3% |
+
+仅以上两处单帧准确率不同：v1 差 −0.4 个百分点，v2.1 差 +0.7 个百分点。参见 [comparison.json](../results/motion_v2/step0_v2_1/v2_1_reference/comparison.json)。
+
+- 参考脚本的四组配对审计（v1/v2.1 × ordinary/long gap）全部 **500/500**，与附件完全一致。
+- 所有 online B=2 策略数字均完全一致；v2.1 的 FIFO、keep-first 都为 0，充分帧标签上限及结构参照均为 100%。
+- v2.1 的 54.5% 仍低于修订的 58% 单帧阈值，两帧为 99.3%。但这不能替代本步骤要求的严格参考复现，也不能记作尚未生成的真实 train 数据通过第 1 步审计。
+
+**按用户“不一致即停”和事先提交的 protocol，当前停止，不放宽匹配标准，不换依赖或 seed 重跑。** 后续原 Phase 1 headroom 脚本、manifest 逐对核对、第 1 步及第 2 步均未运行。
+
+附件没有提供原始依赖版本；其分类器也没有显式设置 `random_state`。这些是复现时需要记录的条件，**本次没有证据证明它们导致了上述差异**，也没有通过试跑寻找能匹配参考值的环境。
+
+## 原始 seed 9137 manifest 的定位状态
+
+本地候选 `results/phase1_independent_confirmation/execution_v7_metadata/native_v6_evidence/fresh/dataset/manifest.json` 已仅按 JSON 元数据检查：共 2,432 条，Gate/Motion 各 train 1,024 条、validation 192 条，没有三个测试 split。没有打开记录指向的图像、NPZ 或特征文件。该候选不能完成原测试池的 pair id/query/gap 核对。
+
+已检查本地 build/results 中 127 个 manifest JSON 和 19 个 ZIP 内的 33 个 manifest JSON，没有找到完整原始副本。仓库配置与 staged_data.py 指向以下历史 HPC 候选，当前仍未验证文件存在或取得内容：
+
+- `/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/fresh/dataset/manifest.json`
+- `/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/fresh/locked_test_generation/dataset/manifest.json`
+- 完整文件的历史校验回执：`/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/fresh/confirmation_test_generation_complete.json`
+
+Chrome 无痕 Dashboard 当时显示已登录 `xy3257`，但进入 Files 后跳转至 Microsoft 登录流程并停在“Working…”，未进入文件列表；SSH 非交互认证也未成功。因此不能说已完成 HPC 文件核查。CPU 复现随后已触发独立停止条件，本轮不再处理登录或启动任何作业。
+
+## 交付状态与风险
+
+| 用户要求 | 当前结果 |
+|---|---|
+| 附件完整性 | 原五文件与新增三文件均保留原字节，8/8 预期 SHA256 一致 |
+| 第 0′ 步 v2.1 CPU 复现 | 运行一次；两项分类准确率不匹配，停止 |
+| 原第 0 步 Phase 1 headroom / manifest 对照 | 未运行；完整原始 manifest 尚待取得 |
+| 第 1 步真实生成器 / train 审计 | 未实现、未运行；参考脚本的 500/500 不算此步骤通过 |
+| 第 2 步 (a) recent-only | h=3/6 特征 MSE、位置误差及配对 95% CI 均无结果 |
+| 第 2 步 (b) 两张正确帧 | 同上，无结果 |
+| 第 2 步 (c) 两张旧段帧 | 同上，无结果 |
+| 第 2 步是否过关 | 未评估 |
+| GPU | 未进入 Step 2 估时登记；实际 0 A100-GPU 秒 |
+| test / 保留策略 | 未打开或生成实验 test 数据；未训练保留策略 |
+
+最大风险是跨环境参考复现尚不一致，且隐藏状态的高可辨识性尚未证明能传递到真实 RGB/I-JEPA 特征和预测器。当前结果支持修订代理的配对结构和定性 headroom，但不足以给真实生成器或第 2 步判定通过。
+
+当前机器可读总状态见 [status.json](../results/motion_v2/status.json)；本次测量及其 SHA256 见 [本轮 status.json](../results/motion_v2/step0_v2_1/v2_1_reference/status.json) 和 [本轮 SHA256SUMS](../results/motion_v2/step0_v2_1/v2_1_reference/SHA256SUMS)。所有 main 中原有的 Phase 1、Gate、results 文件及既有哈希锁保持不变；本分支新增的运行 protocol 也未在运行后修改。
+
+---
+
+## 历史：原 v2 首次预检（已由 v2.1 修订解决）
+
+以下为 `e07333e` 时的历史停止报告，描述的是当时状态，不是本轮 v2.1 状态。
+
 
 **状态：在运行任何实验前停止。** 参考实现与要求的配对终点约束冲突；没有修改设计、运行两个 headroom 脚本、生成数据或使用 GPU。此停止是用户要求的“不一致就停”，不是第 2 步预测器统计判据失败。
 
