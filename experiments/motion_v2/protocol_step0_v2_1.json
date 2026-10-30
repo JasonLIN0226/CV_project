@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-30",
+  "step": "0-prime and original Step 0 CPU reference reproduction",
+  "status_at_registration": "not_run",
+  "previous_commit": "e07333eb299acce4a0df477cd05922fd4c82afa9",
+  "attachment_sha256": "274ce186acfc1111e8b17a24ad360b39c2faecbc0070cc8fe34eec7e27e3d33a",
+  "scope": "CPU-only, unchanged supplied scripts; no generator/predictor/retention training; no raw test observations or features; Phase1 scene metadata reconstruction explicitly requested by user.",
+  "output_directory": "results/motion_v2/step0_v2_1",
+  "runtime": {
+    "python": "3.12.14",
+    "isolated_mode": true,
+    "dependency_lock": "experiments/motion_v2/requirements-cpu.lock"
+  },
+  "thread_environment": {
+    "OMP_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "BLIS_NUM_THREADS": "1"
+  },
+  "timeout_seconds_per_check": 3600,
+  "source_sha256": {
+    "docs/MOTION_V2_1_AMENDMENT_ZH.md": "8d9daac9bf1b71bb4759798a590abc1e04ef993e161505a43a76e6fe00c2a140",
+    "experiments/motion_v2/analysis/motion_v2_1_checks.py": "c46ea6395a14db6a081cc73813cc9475dbd119dd28fa47e542a713286f387172",
+    "results/motion_v2/headroom/motion_v2_1_checks.json": "a4d735429045d66be5d0fe94f8b58ba0343b90c5dd0be27e6e5e642a38c1d1d8",
+    "experiments/motion_v2/analysis/motion_headroom.py": "989afebc5c2fd2ece882442c5dd508b2d2afc0102d2b623033002c0fa8e9cd78",
+    "results/motion_v2/headroom/motion_v1_pool_headroom.json": "09c9606f98960092b0b1ee8467fe08d453c52884c2df5c7a15afbf31cced16df",
+    "experiments/motion_v2/analysis/run_step0.py": "2393f74b894c4bb2e7183109d6e3d1a666afb7212aa75c1921a0c85f67e35476",
+    "experiments/motion_v2/requirements-cpu.lock": "e404b3cbafa53510341d8ea941cbeeeb001eab07fc1476527ae3bf2f2d13811a",
+    "results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/original_src/phase1/envs.py": "64b07f972fc5144d5d13c7bd614c1c796d67a73521043efc57073454ac4c12a7",
+    "results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/config.json": "e1e646a11be0f22aece29fa05a68c8d558ce3d7f29b7090c105810a14813c0ff"
+  },
+  "checks": {
+    "v2_1_reference": {
+      "arguments": [
+        "experiments/motion_v2/analysis/motion_v2_1_checks.py",
+        "1000"
+      ],
+      "reference_json": "results/motion_v2/headroom/motion_v2_1_checks.json",
+      "parameters": {
+        "scene_seed": 20261030,
+        "versions": [
+          "v1",
+          "v2"
+        ],
+        "gap_conditions": [
+          "ordinary",
+          "long_gap"
+        ],
+        "episodes_per_condition": 1000,
+        "pairs_per_condition": 500,
+        "leakage_scenes_per_version": 2000,
+        "leakage_seed": 7,
+        "leakage_folds": 5,
+        "classifier": "unmodified HistGradientBoostingClassifier(max_iter=200)"
+      }
+    },
+    "phase1_headroom": {
+      "arguments": [
+        "experiments/motion_v2/analysis/motion_headroom.py",
+        "results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/original_src/phase1",
+        "results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/config.json"
+      ],
+      "reference_json": "results/motion_v2/headroom/motion_v1_pool_headroom.json",
+      "parameters": {
+        "data_seed": 9137,
+        "pool_seed": 20261017,
+        "pairs_per_split": 256,
+        "pools_per_pair": 6,
+        "splits": [
+          "test_id",
+          "test_long_gap",
+          "test_distractor_shift"
+        ],
+        "render_episodes": false
+      }
+    }
+  },
+  "execution_order": [
+    "v2_1_reference",
+    "phase1_headroom",
+    "original_manifest_comparison_after_source_retrieval"
+  ],
+  "comparison": "Exact equality of parsed JSON, including reported rounded numbers. Whitespace ignored. No numeric tolerance, seed edits, dependency changes or retries after mismatch.",
+  "manifest_preflight": {
+    "local_candidate": "results/phase1_independent_confirmation/execution_v7_metadata/native_v6_evidence/fresh/dataset/manifest.json",
+    "known_coverage": "train/validation only, 2432 records across Gate and Motion; no test records",
+    "complete_manifest_local_search": "Not found in 127 manifest JSON files and 19 ZIP archives containing 33 manifest JSON files",
+    "hpc_candidate": "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/fresh/dataset/manifest.json",
+    "hpc_receipt": "/scratch/xl4358/phase1_independent_confirmation_execution_v9_cpu_incarnation/fresh/confirmation_test_generation_complete.json",
+    "current_access": "Authentication pending; no claim that file currently exists",
+    "gate": "No Step 1/2 until full original manifest pair_id/query/gap comparison is completed. Do not regenerate a replacement manifest. Independent CPU reference checks may run while authentication is pending; if the original is unavailable, stop and report."
+  },
+  "stop_conditions": [
+    "Any source SHA mismatch, experimental runtime failure, pair-audit failure or reference JSON mismatch stops subsequent checks.",
+    "Missing original manifest or any pair_id/query/gap mismatch prevents Step 1.",
+    "User restrictions and v2.1 real-train leakage thresholds remain unchanged.",
+    "Step 2 requires a separately committed protocol and GPU estimate <=4 A100-GPU hours.",
+    "At Step 2 stop if the paired 95% lower bound for b vs a decoded-position improvement is <=0, or b does not outperform c; do not retune or rerun. Stop after a pass as well."
+  ],
+  "gpu_budget_a100_hours": 4,
+  "gpu_planned_for_this_step": false,
+  "retention_training_authorized": false,
+  "future_steps": "Step 1/2 protocols will be written and committed separately only after prior gates pass."
+}
