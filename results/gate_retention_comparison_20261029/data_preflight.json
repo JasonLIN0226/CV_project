@@ -1,0 +1,39 @@
+{
+  "status": "PASS_ALL_TRAINVAL_RECORDS",
+  "records": {
+    "train": 1024,
+    "validation": 192
+  },
+  "pairs": {
+    "train": 512,
+    "validation": 96
+  },
+  "frames": {
+    "train": 35840,
+    "validation": 6720
+  },
+  "input_frames_with_lines": {
+    "train": 29696,
+    "validation": 5568
+  },
+  "clean_future_frames": {
+    "train": 6144,
+    "validation": 1152
+  },
+  "labels": {
+    "train/0": 512,
+    "train/1": 512,
+    "validation/0": 96,
+    "validation/1": 96
+  },
+  "checks": [
+    "all observation and evaluation SHA-256 values match manifest",
+    "all historical and query frames contain 7-14 nuisance lines",
+    "all post-query target frames contain zero nuisance lines",
+    "all evidence timestamps precede the recent buffer",
+    "all sibling pairs are label-balanced",
+    "all sibling actions and evidence arrays are identical",
+    "no test-named artifact exists"
+  ],
+  "test_access": false
+}
