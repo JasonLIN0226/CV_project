@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-31",
+  "version": "v2.3.1",
+  "status": "REGISTER_BEFORE_DEPLOYMENT_CHECKS_AND_SCIENTIFIC_SUBMISSION",
+  "amendment_commit": "6b4eb2b",
+  "science_protocol_commit": "same registration commit as this deployment protocol, exact SHA recorded after push",
+  "branch": "experiments/motion-v2-20261030",
+  "frozen_scientific_protocol": {
+    "path": "experiments/motion_v2/protocol_step2_v2_3_1.json",
+    "sha256": "b88c85ca78a91b722c48bdd8465ce88b324ac281447c4608d1447f1a6b508c60"
+  },
+  "source_sha256": {
+    "experiments/motion_v2/check_deployment_v2_3_1.py": "2625e5b59027039b03c0251a41d6fa2c7d97d112c5946facc37f9eb052cbbbcb",
+    "experiments/motion_v2/submit_step2_v2_3_1.py": "970533810a79155525474749e4ae41f555a60d0c1abd2bd0554ac958b283075e",
+    "experiments/motion_v2/slurm_records.py": "720ce2094378c148abbb30b0b4cf8493748bfdf2ad177c58a3269fc49aeddddf",
+    "experiments/motion_v2/transfer_dataset.py": "bc3722658b0f1dbba1c850e855303f7a27aaee3c4299da333c807efb7fd07653",
+    "experiments/motion_v2/requirements-gpu.txt": "bd830ef951c1225eae32765a94e4797eb9b3f4fd1cd7402594182ab0bd3929eb",
+    "experiments/motion_v2/run_step2_v2_3_1.sbatch": "7543fd9282b89639daf8054019d01977dda092a1f78c7c052d3e687fd9378b84",
+    "experiments/motion_v2/protocol_auxiliary_v2_3_1.json": "004169a2a1a1fab93114e5658a7e05b849dbd1be839c5081cb536a884676168b",
+    "experiments/motion_v2/amendment_v2_3_1.json": "061f9f9a188427fdae53a0577defc7f93390c9a8fe16b6ef7dd80719741de7a6"
+  },
+  "clone": {
+    "path": "/scratch/xy3257/motion-v2-20261031-deployment3/repo",
+    "mode": "depth1 single branch",
+    "expected_head": "exact 40-character commit containing this registration, recorded after push and passed verbatim to checker and submit helper"
+  },
+  "environment_check": {
+    "deployment_root": "/scratch/xy3257/motion-v2-20261031-deployment3",
+    "read_only_root": "/scratch/xy3257/motion-v2-20261031-deployment1",
+    "venv": "/scratch/xy3257/motion-v2-20261031-deployment1/venv",
+    "python_major_minor": [
+      3,
+      12
+    ],
+    "platform_system": "Linux",
+    "platform_machine": "x86_64",
+    "requirements": "experiments/motion_v2/requirements-gpu.txt",
+    "cuda_build": "12.1",
+    "cuda_local_versions": {
+      "torch": [
+        "cu121"
+      ],
+      "torchvision": [
+        "cu121"
+      ]
+    },
+    "read_only_roots": [
+      "/scratch/xy3257/motion-v2-20261031-deployment1",
+      "/scratch/xy3257/motion-v2-20261031-deployment2"
+    ]
+  },
+  "dataset_transfer": {
+    "manifest_path": "results/motion_v2/v2_2/step1/data/dataset/manifest.json",
+    "manifest_sha256": "9ac43b81eb75456e17f3542e64e8a0ab58282207752ae3712836f6d2ea20032a",
+    "archive": "/scratch/xy3257/motion-v2-20261031-deployment1/data.zip",
+    "archive_sha256": "58f14130ddda659f9c3a11bbbc50d2729cf61b0613da7bbf7522466afa28831d",
+    "artifact_files": 2432,
+    "archive_bytes": 12609763,
+    "new_dataset": "/scratch/xy3257/motion-v2-20261031-deployment3/repo/results/motion_v2/v2_2/step1/data/dataset",
+    "unpack_receipt": "/scratch/xy3257/motion-v2-20261031-deployment3/unpack_receipt.json",
+    "operation": "verify archive then each allowlisted NPZ hash before creating any destination; never overwrite or decode"
+  },
+  "current_cluster_evidence": {
+    "source": "Native scontrol from auxiliary job16545 after amendment push",
+    "partition": "c12m85-a100-1",
+    "allow_accounts": "ALL",
+    "allow_qos": "ALL",
+    "state": "UP",
+    "native_partition_record": "/scratch/xy3257/motion-v2-20261031-deployment3/a100_partition.txt",
+    "auxiliary_job_id": 16545,
+    "auxiliary_session_id": "c8b7b35f-74b7-448b-97e6-04b2fb8c65b4",
+    "auxiliary_node": "b-10-70",
+    "auxiliary_gpu_count": 0,
+    "auxiliary_requeue": 1,
+    "auxiliary_restarts": 0,
+    "auxiliary_time_limit_seconds": 14400,
+    "auxiliary_AllocTRES": "cpu=24,mem=16G,node=1,billing=24",
+    "interpretation": "CPU24 allocated vs requested4 recorded only; no scientific runner in auxiliary job"
+  },
+  "submission": {
+    "wrapper_path": "experiments/motion_v2/run_step2_v2_3_1.sbatch",
+    "wrapper_sha256": "7543fd9282b89639daf8054019d01977dda092a1f78c7c052d3e687fd9378b84",
+    "output_dir": "/scratch/xy3257/motion-v2-20261031-deployment3/submission",
+    "preflight_dir": "/scratch/xy3257/motion-v2-20261031-deployment3/preflight",
+    "unpack_receipt": "/scratch/xy3257/motion-v2-20261031-deployment3/unpack_receipt.json",
+    "bound_dir": "/scratch/xy3257/motion-v2-20261031-deployment3/repo/results/motion_v2/v2_3/direction_bound",
+    "science_output": "/scratch/xy3257/motion-v2-20261031-deployment3/repo/results/motion_v2/v2_3_1/step2_gpu_attempt1",
+    "account": "csci_ga_2271-2026fa",
+    "partition": "c12m85-a100-1",
+    "gpu_request": "gpu:a100:1",
+    "time_limit_seconds": 10800
+  },
+  "scientific_wrapper": {
+    "nodes": 1,
+    "tasks": 1,
+    "cpus_per_task": 4,
+    "memory": "16G",
+    "gpu_count": 1,
+    "gpu_model": "A100",
+    "time": "03:00:00",
+    "no_requeue": true,
+    "open_mode": "append",
+    "TZ": "UTC",
+    "python": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/bin/python",
+    "flags": [
+      "-I",
+      "-B"
+    ],
+    "runner_invocations": 1,
+    "repeated_wrapper_guard": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific_job_started",
+    "output_must_not_exist": true,
+    "cache_and_temp_new_root_only": true,
+    "old_root_read_only": true,
+    "no_retry_resume_or_cleanup": true
+  },
+  "ordered_actions": [
+    "clone exact pushed registration HEAD and record",
+    "run check_deployment_v2_3_1.py once with original venv -I -B",
+    "verify original archive SHA256; unpack once using frozen transfer_dataset.py",
+    "verify existing tracked B artifacts and original preparation provenance; no new B preparation",
+    "submit_step2_v2_3_1.py once: verify all receipts and absent output; one sbatch; immediate scontrol",
+    "monitor read-only native/job logs; Requeue record only, Restarts>0 or scientific blocking condition stops",
+    "settle original receipt via terminal sacct; retain scontrol and account allocated or confirmed never-allocated cases",
+    "export new evidence without deleting any file; release only own auxiliary job"
+  ],
+  "submission_helper_command": [
+    "python",
+    "-I",
+    "-B",
+    "experiments/motion_v2/submit_step2_v2_3_1.py",
+    "--protocol",
+    "experiments/motion_v2/protocol_step2_deployment_v2_3_1.json",
+    "--expected-head",
+    "EXACT_PUSHED_REGISTRATION_SHA",
+    "--output",
+    "/scratch/xy3257/motion-v2-20261031-deployment3/submission"
+  ],
+  "settlement": {
+    "mode": "--settle",
+    "submission_receipt": "/scratch/xy3257/motion-v2-20261031-deployment3/submission/submission.json",
+    "output": "/scratch/xy3257/motion-v2-20261031-deployment3/settlement",
+    "formula": "terminal top-level sacct ElapsedRaw * one allocated A100; generic and typed TRES are not summed",
+    "terminal_record_required": true,
+    "if_not_terminal": "read-only status only, no persisted final results"
+  },
+  "failure": "Record and stop without repinning, reinstalling, resubmitting, changing threshold, or overwriting outputs. If submission outcome unknown, investigate read-only and never retry.",
+  "budget": {
+    "registered_a100_seconds": 10800,
+    "user_total_cap_seconds": 14400,
+    "prior_actual_a100_seconds": 0
+  },
+  "test_open_or_generate": false,
+  "retention_training": false,
+  "delete_files": false,
+  "runtime_replay": {
+    "status": "passed",
+    "source_commit": "7292744ccbb04ef4b5bd251a0518132a678e1fef",
+    "tests": 98,
+    "status_path": "results/motion_v2/v2_3_1/software/attempt1/status.json",
+    "status_sha256": "97bbd78fb58ae01b21bbadb259e070c53c6d56069b8ad99fd5a0cb925ff11c20"
+  },
+  "reuse_bound": "Use exact original tracked results/motion_v2/v2_3/direction_bound bytes and source protocol locked by scientific protocol; do not run prepare helper again"
+}
