@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "version": "v2.3",
+  "date": "2026-10-31",
+  "status": "REGISTERED_AMENDMENT_BEFORE_IMPLEMENTATION_AND_EXECUTION",
+  "baseline_commit": "91a7837d4fed2b39c558291f735bfcb33480f874",
+  "branch": "experiments/motion-v2-20261030",
+  "amendment_path": "docs/MOTION_V2_3_AMENDMENT_ZH.md",
+  "amendment_sha256": "178b993fa2611309cc2e9c90200c6db54269231efb249de0d801c93a3bd16adf",
+  "authority": "Direct user instruction in current turn; supersedes broad any-mismatch stop rule",
+  "blocking": [
+    "scientific_source_protocol_data_hash_mismatch",
+    "model_revision_mismatch",
+    "input_or_pair_audit_failure",
+    "GPU_model_or_count_mismatch",
+    "actual_or_projected_budget_overrun",
+    "NaN_or_missing",
+    "output_exists",
+    "authentication_requiring_user",
+    "scientific_job_Restarts_gt_zero",
+    "reused_environment_import_or_version_failure"
+  ],
+  "nonblocking": [
+    "scheduling_attributes_of_auxiliary_sessions_without_scientific_entrypoints_including_Requeue_and_AllocTRES"
+  ],
+  "prior_stop_preserved": true,
+  "prior_deployment_read_only": "/scratch/xy3257/motion-v2-20261031-deployment1",
+  "new_deployment": "/scratch/xy3257/motion-v2-20261031-deployment2",
+  "lower_bound": {
+    "formula": "mean_sibling(mean_xy((mean_sibling(true_xy)-true_xy)^2))",
+    "split": "validation",
+    "data_source": "evaluation_only target positions",
+    "gpu_required": false,
+    "predictions_siblings_identical_identity": "pair_loss = B + mean_xy((prediction-midpoint)^2)"
+  },
+  "bootstrap": {
+    "pairs": 96,
+    "repeats": 2000,
+    "seed": 901,
+    "quantiles": [
+      0.025,
+      0.975
+    ],
+    "method": "linear",
+    "shared_indices": true,
+    "aggregate": "siblings then three fixed seeds"
+  },
+  "required_gates": {
+    "horizons": [
+      3,
+      6
+    ],
+    "position_contrasts": [
+      "d_minus_b",
+      "c_minus_b",
+      "B_minus_b"
+    ],
+    "criterion": "each CI95 lower strictly >0",
+    "all_six_required": true
+  },
+  "diagnostics": [
+    "d_minus_B_and_CI",
+    "true_validation_feature_decoder_loss_alongside_B",
+    "feature_loss_contrasts",
+    "a_minus_b",
+    "per_seed_tables"
+  ],
+  "implementation_authorized": [
+    "step2_metrics.py",
+    "test_step2_metrics.py",
+    "minimal run_step2.py evaluation and native restart guard integration",
+    "new CPU bound and deployment helpers"
+  ],
+  "old_protocols_JSON_and_hash_locks": "unchanged; old source content retained in baseline Git commit",
+  "sequence": [
+    "commit_and_push_this_amendment",
+    "implement_and_record_new_source_hashes",
+    "pure_array_CPU_software_tests_once",
+    "if_pass_commit_and_push_v2_3_scientific_protocol",
+    "new_deployment_reused_environment_and_data_checks",
+    "CPU_validation_bound_before_training",
+    "single_A100_sbatch_and_immediate_scontrol",
+    "run_step2_once",
+    "native_sacct_and_delivery_then_stop"
+  ],
+  "software_tests": {
+    "output": "results/motion_v2/v2_3/software",
+    "scope": "synthetic coordinate/loss arrays only, zero GPU; no dataset or model access",
+    "checks": [
+      "common_prediction_loss_ge_B",
+      "midpoint_equality",
+      "B_minus_b_and_d_minus_B_signs",
+      "independent_horizon_gates",
+      "shared_bootstrap",
+      "shape_missing_nonfinite_rejection"
+    ],
+    "failure": "stop_without_repair_and_rerun"
+  },
+  "reuse": {
+    "venv": "/scratch/xy3257/motion-v2-20261031-deployment1/venv",
+    "data_zip": "/scratch/xy3257/motion-v2-20261031-deployment1/data.zip",
+    "archive_sha256": "58f14130ddda659f9c3a11bbbc50d2729cf61b0613da7bbf7522466afa28831d",
+    "manifest_sha256": "9ac43b81eb75456e17f3542e64e8a0ab58282207752ae3712836f6d2ea20032a",
+    "old_root_writes": false,
+    "import_and_version_checks_required": true,
+    "install_or_repin_on_failure": false
+  },
+  "scientific_job": {
+    "gpu": "A100",
+    "count": 1,
+    "no_requeue": true,
+    "max_wall_seconds": 7200,
+    "submit_count": 1,
+    "runner_invocations": 1,
+    "record_scontrol_immediately_after_submission": true,
+    "stop_if_restarts_gt": 0,
+    "final_sacct_required": true
+  },
+  "budget": {
+    "registered_A100_seconds": 7200,
+    "user_total_cap_seconds": 14400,
+    "prior_A100_seconds": 0,
+    "scientific_training_budget_changes": false
+  },
+  "prohibitions": [
+    "no_retention_training",
+    "no_step3",
+    "no_test_access_or_generation",
+    "no_delete",
+    "no_deployment1_write",
+    "no_force_push",
+    "no_merge",
+    "no_threshold_change_or_scientific_retry"
+  ]
+}
