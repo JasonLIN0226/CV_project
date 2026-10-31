@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_READ_ONLY_INFRASTRUCTURE_PROBE_PROTOCOL",
+  "registered_before_run": true,
+  "amendment_commit": "b9b8ca3",
+  "source_sha256": {
+    "experiments/motion_v2/inspect_infrastructure_failure_v2_3_1.py": "551c72b5d72d4b5d7f690ff5ee7bde16067c409be1f2f32b10047daf274ae6df"
+  },
+  "initial_job_id": "16550",
+  "initial_node": "b-19-12",
+  "owner": "xy3257",
+  "output": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/diagnosis_16550",
+  "commands": [
+    "sacct --helpformat",
+    "sacct -j 16550 --duplicates --starttime=2026-10-31T00:00:00 --noheader --parsable2 --format=<all fields returned by helpformat; no -X>",
+    "scontrol show job --oneliner 16550",
+    "scontrol show node b-19-12",
+    "scontrol show config",
+    "sinfo -p c12m85-a100-1 -N -o %N %T %E"
+  ],
+  "four_facts": [
+    "no_batch_step",
+    "stdout_stderr_absent",
+    "scientific_marker_absent",
+    "scientific_output_absent"
+  ],
+  "errors_preserved_as_unknown": true,
+  "cause_detail_failure_nonblocking": true,
+  "scientific_imports": false,
+  "a100_gpu_seconds": 0,
+  "test_access": false,
+  "file_deletion": false,
+  "old_evidence_modified": false,
+  "source_delivery": "outside frozen checkout; source SHA256 verified before invoking; protocol pushed first",
+  "command": [
+    "/scratch/xy3257/motion-v2-20261031-deployment1/venv/bin/python",
+    "-I",
+    "-B",
+    "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/source/inspect_infrastructure_failure_v2_3_1.py",
+    "--job-id",
+    "16550",
+    "--node",
+    "b-19-12",
+    "--output",
+    "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/diagnosis_16550"
+  ]
+}
