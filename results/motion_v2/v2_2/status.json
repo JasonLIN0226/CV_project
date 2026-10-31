@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-31",
+  "version": "v2.2",
+  "status": "step0_and_step1_passed_step2_awaiting_user_authentication",
+  "latest_report": "docs/MOTION_V2_2_REPORT_ZH.md",
+  "amendment": "docs/MOTION_V2_2_AMENDMENT_ZH.md",
+  "amendment_commit": "cc923b7",
+  "old_stop_and_protocol_files_preserved": true,
+  "step0_rejudgment": {
+    "status": "passed",
+    "saved_measurements_recomputed": false,
+    "path": "results/motion_v2/v2_2/step0/rejudge/status.json"
+  },
+  "phase1_headroom": {
+    "status": "passed",
+    "exact_json_match": true,
+    "runs": 1,
+    "manifest_pairwise_verified": false,
+    "interpretation": "按公开代码重建，未与原 manifest 逐对核对"
+  },
+  "step1": {
+    "status": "passed",
+    "pairs_checked": 608,
+    "pairs_passed": 608,
+    "pytest_passed": 7,
+    "generator_runs": 1,
+    "audit_runs": 1,
+    "leakage_accuracy": {
+      "end_only": 0.5,
+      "one_post_non_end": 0.5253188654102419,
+      "stale_plus_end": 0.5,
+      "two_post": 0.9756520083761661
+    },
+    "online_train_and_validation": {
+      "fifo": 0.0,
+      "keep_first": 0.0,
+      "hindsight_oracle": 1.0,
+      "latest_visible_reference": 1.0
+    }
+  },
+  "step2": {
+    "status": "awaiting_user_authentication",
+    "protocol_commit": "a36db1ec2c3ae10e2ed44a1c147f0e186886c1d9",
+    "protocol_sha256": "d9cf8576c0473b6838b4be4b2fb7fb0e89b119fbb9976cf060729c06ea99a291",
+    "software_tests": "passed_9",
+    "gpu_runs": 0,
+    "actual_a100_gpu_seconds": 0,
+    "estimate_a100_gpu_seconds": 7200,
+    "user_total_cap_seconds": 14400,
+    "predictor_gate": "not_evaluated",
+    "test_data_opened_or_generated": false,
+    "retention_training_started": false,
+    "original_manifest_blocking": false
+  },
+  "gpu_seconds_total": 0,
+  "test_data_opened_or_generated": false,
+  "retention_training_started": false,
+  "no_files_deleted": true,
+  "versioned_status_reason": "Old status.json and original stop evidence stay unchanged; this is the v2.2 status entry."
+}
