@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-31",
+  "version": "v2.2",
+  "status": "step0_and_step1_passed_step2_stopped_deployment_mismatch",
+  "latest_report": "docs/MOTION_V2_2_DEPLOYMENT_STOP_ZH.md",
+  "amendment": "docs/MOTION_V2_2_AMENDMENT_ZH.md",
+  "amendment_commit": "cc923b7",
+  "old_stop_and_protocol_files_preserved": true,
+  "step0_rejudgment": {
+    "status": "passed",
+    "saved_measurements_recomputed": false,
+    "path": "results/motion_v2/v2_2/step0/rejudge/status.json"
+  },
+  "phase1_headroom": {
+    "status": "passed",
+    "exact_json_match": true,
+    "runs": 1,
+    "manifest_pairwise_verified": false,
+    "interpretation": "按公开代码重建，未与原 manifest 逐对核对"
+  },
+  "step1": {
+    "status": "passed",
+    "pairs_checked": 608,
+    "pairs_passed": 608,
+    "pytest_passed": 7,
+    "generator_runs": 1,
+    "audit_runs": 1,
+    "leakage_accuracy": {
+      "end_only": 0.5,
+      "one_post_non_end": 0.5253188654102419,
+      "stale_plus_end": 0.5,
+      "two_post": 0.9756520083761661
+    },
+    "online_train_and_validation": {
+      "fifo": 0.0,
+      "keep_first": 0.0,
+      "hindsight_oracle": 1.0,
+      "latest_visible_reference": 1.0
+    }
+  },
+  "step2": {
+    "status": "not_run_deployment_stopped",
+    "protocol_commit": "a36db1ec2c3ae10e2ed44a1c147f0e186886c1d9",
+    "protocol_sha256": "d9cf8576c0473b6838b4be4b2fb7fb0e89b119fbb9976cf060729c06ea99a291",
+    "software_tests": "passed_9",
+    "gpu_runs": 0,
+    "actual_a100_gpu_seconds": 0,
+    "estimate_a100_gpu_seconds": 7200,
+    "user_total_cap_seconds": 14400,
+    "predictor_gate": "not_evaluated",
+    "test_data_opened_or_generated": false,
+    "retention_training_started": false,
+    "original_manifest_blocking": false,
+    "authentication_required": false,
+    "deployment_protocol_commit": "e41597506eb3f88b2552595aedaa97b259b9bdf0",
+    "deployment_stop": {
+      "job_id": 16512,
+      "requested_no_requeue": true,
+      "observed_requeue": 1,
+      "observed_restarts": 0,
+      "native_record": "remote_evidence/native_job_at_stop.txt",
+      "cause_of_mismatch": "not_determined",
+      "execution_deviation": "Assistant continued cloning and environment preparation after first seeing the mismatch, before stopping. No scientific entrypoint was run.",
+      "cpu_session_end_observed": true
+    },
+    "result_table": "step2_results_not_run.json"
+  },
+  "gpu_seconds_total": 0,
+  "test_data_opened_or_generated": false,
+  "retention_training_started": false,
+  "no_files_deleted": true,
+  "versioned_status_reason": "Old status.json and original stop evidence stay unchanged; this is the v2.2 status entry.",
+  "supersedes_status": "results/motion_v2/v2_2/status.json",
+  "historical_status_preserved": true,
+  "deployment": {
+    "status": "stopped_not_accepted",
+    "remote_root": "/scratch/xy3257/motion-v2-20261031-deployment1",
+    "git_head_observed": "e41597506eb3f88b2552595aedaa97b259b9bdf0",
+    "cpu_job_id": 16512,
+    "a100_gpu_seconds": 0,
+    "source_protocol_hash_match": true,
+    "dataset_archive_sha256": "58f14130ddda659f9c3a11bbbc50d2729cf61b0613da7bbf7522466afa28831d",
+    "dataset_archive_remote_hash_match": true,
+    "dataset_unpacked": false,
+    "remote_per_npz_verification_done": false,
+    "dependency_install_log": "remote_evidence/dependencies-install.log",
+    "dependency_installation": "Log reports 56 packages installed; import/dependency/runtime checks not performed",
+    "environment_validation": "not_done",
+    "gpu_submission_count": 0,
+    "cpu_submission_count": 1,
+    "no_restart_or_resubmission": true,
+    "evidence_archive_sha256": "6831a01381e4aca975ffb5a59ecf08f6220757042cd3674b9f7c0df76ada0670",
+    "evidence_download_hash_match": true,
+    "all_remote_files_preserved": true
+  }
+}
