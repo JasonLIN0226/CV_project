@@ -167,14 +167,34 @@ def verify_prepared_bound(root, dataset, manifest, protocol_path, metrics):
     status = read_json(root / "status.json")
     protocol = read_json(protocol_path)
     own_relative = Path(__file__).resolve().relative_to(REPO).as_posix()
+    # Runtime-only provenance compatibility: keep the original CPU B bytes and
+    # original preparation receipt, explicitly locked by the new registration.
+    preparation_protocol = protocol
+    preparation_protocol_sha = sha256(protocol_path)
+    reuse = protocol.get("reused_direction_bound")
+    if reuse is not None:
+        original_path = (REPO / reuse["original_protocol_path"]).resolve()
+        original_path.relative_to(REPO)
+        committed_file(original_path)
+        if sha256(original_path) != reuse["original_protocol_sha256"]:
+            raise ValueError("Original B preparation protocol hash mismatch")
+        preparation_protocol = read_json(original_path)
+        preparation_protocol_sha = reuse["original_protocol_sha256"]
+        if (preparation_protocol["dataset_manifest_sha256"] != MANIFEST_SHA256 or
+                preparation_protocol["direction_bound"] != protocol["direction_bound"] or
+                reuse["original_helper_path"] != own_relative or
+                preparation_protocol["source_sha256"][own_relative] != reuse["original_helper_sha256"] or
+                set(reuse["artifact_sha256"]) != expected_files or
+                any(sha256(root / name) != expected for name, expected in reuse["artifact_sha256"].items())):
+            raise ValueError("Reused CPU bound is not the explicitly frozen original preparation")
     if (status.get("status") != "passed" or status.get("actual_a100_gpu_seconds") != 0 or
             status.get("evaluation_split") != "validation" or status.get("pairs") != 96 or
             status.get("episodes") != 192 or status.get("horizons") != [3, 6] or
             status.get("test_opened_or_generated") is not False or
             status.get("training_or_model_imported") is not False or
-            status.get("protocol_sha256") != sha256(protocol_path) or
+            status.get("protocol_sha256") != preparation_protocol_sha or
             status.get("manifest_sha256") != MANIFEST_SHA256 or
-            status.get("source_sha256") != {own_relative: protocol["source_sha256"][own_relative]}):
+            status.get("source_sha256") != {own_relative: preparation_protocol["source_sha256"][own_relative]}):
         raise ValueError("Direction-bound status does not certify the registered CPU-only preparation")
     with np.load(root / "direction_bound.npz", allow_pickle=False) as saved:
         if set(saved.files) != {"true_positions", "B", "pair_ids", "episode_ids", "horizons"}:
@@ -198,6 +218,9 @@ def verify_prepared_bound(root, dataset, manifest, protocol_path, metrics):
                "B_sha256": status["B_sha256"], "pairs": 96, "episodes": 192,
                "prepared_finished_utc": status["finished_utc"],
                "training_or_checkpoint_or_decoder_selection_uses_bound": False}
+    if reuse is not None:
+        receipt["reused_original_preparation"] = reuse
+        receipt["original_receipt_rewritten"] = False
     return arrays["true_positions"], arrays["B"], receipt
 
 

@@ -70,9 +70,9 @@ def canonical_digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
 
-def command(arguments, cwd=None):
+def command(arguments, cwd=None, timeout=30):
     return subprocess.run(arguments, cwd=cwd, check=True, text=True, capture_output=True,
-                          timeout=30).stdout.strip()
+                          timeout=timeout).stdout.strip()
 
 
 def local_module(name):
@@ -113,7 +113,8 @@ def validate_registration(args, config, protocol):
     source_hashes = protocol["source_sha256"]
     required = {Path(__file__).resolve().relative_to(REPO).as_posix(),
                 "experiments/motion_v2/reader_v2.py", "experiments/motion_v2/step2_metrics.py",
-                "experiments/motion_v2/prepare_direction_bound_v2_3.py"}
+                "experiments/motion_v2/prepare_direction_bound_v2_3.py",
+                "experiments/motion_v2/slurm_records.py"}
     required.update(p.relative_to(REPO).as_posix() for p in REFERENCE.glob("*.py"))
     if not required <= set(source_hashes):
         raise ValueError("Protocol does not lock the complete runtime source set")
@@ -169,7 +170,7 @@ def validate_registration(args, config, protocol):
     if config["evaluation"]["bootstrap"] != 2000 or config["evaluation"]["random_seed"] != 901:
         raise ValueError("Unexpected bootstrap settings")
     execution = config["execution"]
-    if (execution["gpu_count"] != 1 or execution["estimated_gpu_seconds"] != 7200 or
+    if (execution["gpu_count"] != 1 or execution["estimated_gpu_seconds"] != 10800 or
             execution["hard_cap_gpu_seconds"] != 14400 or execution["memory_dropout"] != 0.25 or
             execution["encoding_frames_per_second"] != 27.15545 or
             execution["training_seconds_per_epoch"] != 5.72894 or
@@ -196,53 +197,133 @@ def validate_registration(args, config, protocol):
 
 
 def slurm_seconds(value):
-    days, clock = value.split("-", 1) if "-" in value else ("0", value)
-    hours, minutes, seconds = (int(v) for v in clock.split(":"))
-    return int(days) * 86400 + hours * 3600 + minutes * 60 + seconds
+    return local_module("slurm_records").parse_duration(value)
 
 
-def native_allocation():
-    job_id = os.environ.get("SLURM_JOB_ID", "")
+def validate_running_control(text, job_id):
+    """Apply the running-allocation policy to shared-parser string inputs."""
+    records = local_module("slurm_records")
+    fields = records.parse_control(text)
+    if fields.get("JobId") != job_id or records.normalize_state(fields.get("JobState", "")) != "RUNNING":
+        raise RuntimeError("Current native job identity must be confirmed RUNNING")
+    records.require_one_node(fields.get("NumNodes", ""))
+    if fields.get("Restarts") != "0":
+        raise RuntimeError("Scientific job must have native Restarts=0")
+    records.one_gpu(fields.get("AllocTRES", ""))
+    start = fields.get("StartTime", "")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}", start):
+        raise RuntimeError("Native scientific job start identity is unavailable or malformed")
+    datetime.fromisoformat(start)
+    records.parse_duration(fields.get("RunTime", ""))
+    time_limit = records.parse_duration(fields.get("TimeLimit", ""))
+    if not 0 < time_limit <= 10800:
+        raise RuntimeError("Native Slurm time limit must be positive and at most 10800 seconds")
+    return fields
+
+
+def native_allocation(startup_wait_seconds=0, *, job_id=None, command_fn=None,
+                      clock_fn=None, sleep_fn=None, record_probe=None):
+    """Read native allocation; only the initial caller may await sacct for 120 s.
+
+    Injectable commands/clock/sleep support offline replay without issuing a
+    command or waiting. Every poll validates scontrol first; only missing rows
+    or PENDING/CONFIGURING accounting records may consume the startup grace.
+    """
+    if startup_wait_seconds not in (0, 120):
+        raise ValueError("Only the registered initial 120-second accounting grace is allowed")
+    records = local_module("slurm_records")
+    command_fn = command if command_fn is None else command_fn
+    clock_fn = time.monotonic if clock_fn is None else clock_fn
+    sleep_fn = time.sleep if sleep_fn is None else sleep_fn
+    job_id = os.environ.get("SLURM_JOB_ID", "") if job_id is None else job_id
     if not re.fullmatch(r"[0-9]+", job_id):
         raise RuntimeError("A native Slurm allocation is required; no local or login fallback")
-    output = command(["sacct", "-j", job_id, "--noheader", "--parsable2",
-                      "--format=JobIDRaw,State,Start,ElapsedRaw,AllocTRES"])
-    rows = [line.split("|") for line in output.splitlines() if line.split("|", 1)[0] == job_id]
-    if len(rows) != 1 or len(rows[0]) < 5:
-        raise RuntimeError("Cannot establish native current-job allocation accounting")
-    row = rows[0]
-    if row[1] != "RUNNING" or not row[3].isdigit():
-        raise RuntimeError("The current Slurm allocation is not confirmed RUNNING")
-    gpu_tres = {key: int(v) for key, v in
-                (part.split("=", 1) for part in row[4].split(",") if "=" in part)
-                if key == "gres/gpu" or key.startswith("gres/gpu:")}
-    gpu_counts = list(gpu_tres.values())
-    typed_gpu_count = sum(count for key, count in gpu_tres.items() if key.startswith("gres/gpu:"))
-    if (not gpu_counts or any(count != 1 for count in gpu_counts) or
-            typed_gpu_count not in (0, 1)):
-        raise RuntimeError("Native AllocTRES must confirm exactly one allocated GPU")
-    if any("a100" not in key.lower() for key in gpu_tres if key.startswith("gres/gpu:")):
-        raise RuntimeError("Native typed GPU allocation is not an A100")
-    control = command(["scontrol", "show", "job", "--oneliner", job_id])
-    fields = dict(item.split("=", 1) for item in control.split() if "=" in item)
-    if fields.get("JobId") != job_id or fields.get("JobState") != "RUNNING" or fields.get("NumNodes") != "1":
-        raise RuntimeError("Current job must be RUNNING on one node")
-    if fields.get("Restarts") != "0":
-        raise RuntimeError(f"Scientific job must have native Restarts=0; scontrol={control}")
-    if not fields.get("StartTime") or fields["StartTime"] == "Unknown":
-        raise RuntimeError("Native scientific job start identity is unavailable")
-    elapsed = max(int(row[3]), slurm_seconds(fields["RunTime"]))
-    if fields.get("TimeLimit") not in ("UNLIMITED", "Partition_Limit"):
-        time_limit = slurm_seconds(fields["TimeLimit"])
-        if time_limit > 7200:
-            raise RuntimeError("Native Slurm time limit must be no more than the registered 7200 seconds")
-    else:
-        raise RuntimeError("A finite registered native Slurm time limit is required")
-    return {"job_id": job_id, "start": row[2], "elapsed_seconds_at_probe": elapsed,
-            "alloc_tres": row[4], "scontrol": control, "sacct": output,
-            "native_start_time": fields["StartTime"], "restarts": 0,
-            "requeue": fields.get("Requeue"),
-            "native_time_limit_seconds": time_limit, "probe_utc": datetime.now(timezone.utc).isoformat()}
+    started = clock_fn()
+    deadline = started + startup_wait_seconds
+    attempt = 0
+    first_native_elapsed = None
+    first_native_observed_at = None
+    while True:
+        attempt += 1
+        event = {"attempt": attempt, "startup_wait_seconds": startup_wait_seconds,
+                 "probe_utc": datetime.now(timezone.utc).isoformat()}
+        def limited_command(arguments):
+            timeout = 30
+            if startup_wait_seconds:
+                remaining = deadline - clock_fn()
+                if remaining <= 0:
+                    raise RuntimeError("Native accounting startup grace reached 120 seconds")
+                timeout = min(timeout, remaining)
+            value = command_fn(arguments, timeout=timeout)
+            event[arguments[0]] = value
+            if startup_wait_seconds and clock_fn() >= deadline:
+                raise RuntimeError("Native accounting startup grace reached 120 seconds")
+            return value
+        try:
+            control = limited_command(["scontrol", "show", "job", "--oneliner", job_id])
+            control_observed_at = clock_fn()
+            event["scontrol"] = control
+            fields = validate_running_control(control, job_id)
+            event["control_fields"] = fields
+            if first_native_elapsed is None:
+                first_native_elapsed = records.parse_duration(fields["RunTime"])
+                first_native_observed_at = control_observed_at
+            output = limited_command(["sacct", "-j", job_id, "--noheader", "--parsable2",
+                                      "--format=JobIDRaw,State%40,Start,ElapsedRaw,AllocTRES"])
+            event["sacct"] = output
+            row = records.parse_accounting_row(output, job_id, "JobIDRaw,State,Start,ElapsedRaw,AllocTRES")
+            event["accounting_row"] = row
+            if row is None:
+                reason = "missing_top_level_accounting_row"
+            else:
+                state = records.normalize_state(row["State"])
+                if state in records.TERMINAL_STATES:
+                    raise RuntimeError("Current native accounting row is terminal: " + state)
+                if state != "RUNNING" and state not in records.STARTUP_STATES:
+                    raise RuntimeError("Unrecognized or ineligible accounting startup state: " + state)
+                if not row["ElapsedRaw"].isdigit():
+                    raise RuntimeError("Native accounting elapsed seconds are missing or malformed")
+                if row["Start"] not in {"", "None", "Unknown", "(null)"}:
+                    if row["Start"] != fields["StartTime"]:
+                        raise RuntimeError("sacct and scontrol native start identities disagree")
+                elif state == "RUNNING":
+                    raise RuntimeError("RUNNING accounting row must contain its native start identity")
+                if row["AllocTRES"] not in {"", "None", "Unknown", "(null)"}:
+                    records.one_gpu(row["AllocTRES"])
+                elif state == "RUNNING":
+                    raise RuntimeError("RUNNING accounting row must certify its allocated A100")
+                if state == "RUNNING":
+                    raw_elapsed = max(int(row["ElapsedRaw"]), records.parse_duration(fields["RunTime"]))
+                    since_first_native = clock_fn() - first_native_observed_at
+                    elapsed = max(raw_elapsed, first_native_elapsed + math.ceil(since_first_native))
+                    allocation = {"job_id": job_id, "start": row["Start"],
+                                  "elapsed_seconds_at_probe": elapsed, "alloc_tres": row["AllocTRES"],
+                                  "native_elapsed_seconds_raw": raw_elapsed,
+                                  "first_scontrol_elapsed_seconds": first_native_elapsed,
+                                  "monotonic_seconds_since_first_scontrol": since_first_native,
+                                  "elapsed_monotonic_compensation_seconds": elapsed - raw_elapsed,
+                                  "scontrol": control, "sacct": output,
+                                  "native_start_time": fields["StartTime"], "restarts": 0,
+                                  "requeue": fields.get("Requeue"),
+                                  "native_time_limit_seconds": records.parse_duration(fields["TimeLimit"]),
+                                  "probe_utc": datetime.now(timezone.utc).isoformat(),
+                                  "startup_accounting_wait_seconds": clock_fn() - started}
+                    event.update(status="passed", reason="running_accounting_confirmed")
+                    return allocation
+                reason = "accounting_state_" + state.lower()
+            if not startup_wait_seconds:
+                raise RuntimeError("Native accounting is not ready; runtime monitoring has no grace: " + reason)
+            if clock_fn() >= deadline:
+                raise RuntimeError("Native accounting startup grace reached 120 seconds")
+            event.update(status="waiting", reason=reason)
+        except Exception as exc:
+            event.update(status="failed", reason=str(exc), error_type=type(exc).__name__, error=str(exc))
+            raise
+        finally:
+            event["elapsed_startup_seconds"] = clock_fn() - started
+            if record_probe is not None:
+                record_probe(event)
+        sleep_fn(min(5.0, max(0.0, deadline - clock_fn())))
 
 
 class BudgetGuard:
@@ -661,7 +742,13 @@ def execute(args):
              "auto_retry_or_resume": False, "protocol_sha256": provenance["protocol_sha256"]}
     previous_handlers = {}
     try:
-        allocation = native_allocation()
+        startup_evidence = output / "allocation_startup_checks.jsonl"
+        with startup_evidence.open("x", encoding="utf-8"):
+            pass
+        def record_startup_probe(evidence):
+            with startup_evidence.open("a", encoding="utf-8") as handle:
+                handle.write(json.dumps(evidence, allow_nan=False) + "\n")
+        allocation = native_allocation(startup_wait_seconds=120, record_probe=record_startup_probe)
         write_json(output / "allocation_start.json", allocation)
         guard = BudgetGuard(config, allocation, provenance["frames"], output)
         guard.check("allocation_start")
@@ -670,7 +757,7 @@ def execute(args):
             raise BudgetStop(guard.interrupted)
         for signum in (signal.SIGTERM, signal.SIGINT, signal.SIGALRM):
             previous_handlers[signum] = signal.signal(signum, interrupted)
-        remaining = min(7200, allocation["native_time_limit_seconds"]) - guard.elapsed()
+        remaining = min(10800, allocation["native_time_limit_seconds"]) - guard.elapsed()
         signal.setitimer(signal.ITIMER_REAL, max(0.001, remaining))
         os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
         cache_environment = {
