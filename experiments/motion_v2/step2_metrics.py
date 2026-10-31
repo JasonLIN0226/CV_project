@@ -195,7 +195,33 @@ def _interval(values, indices):
     return {"mean": float(values.mean()), "ci95": [float(bounds[0]), float(bounds[1])], "pairs": 96}
 
 
-def _tables(averages, indices):
+def direction_lower_bound(true_positions):
+    """Return the minimum pair position MSE for a shared sibling prediction.
+
+    Input axes are [pair, sibling (2), horizon (3/6), xy (2)]. This CPU-only
+    algebra does not import a model, fit anything, or access a dataset. It also
+    accepts synthetic arrays with any positive pair count for software tests.
+    """
+    _require(true_positions is not None, "True target positions are required for the direction lower bound")
+    positions = np.asarray(true_positions, dtype=np.float64)
+    _require(positions.ndim == 4 and positions.shape[0] > 0 and positions.shape[1:] == (2, 2, 2),
+             "True positions must have shape [pairs, 2 siblings, 2 horizons, 2 xy]")
+    _require(np.isfinite(positions).all(), "Non-finite true target positions")
+    midpoint = positions.mean(axis=1, keepdims=True)
+    bound = np.square(midpoint - positions).mean(axis=(1, 3))
+    _require(bound.shape == (len(positions), 2) and np.isfinite(bound).all() and (bound >= 0).all(),
+             "Invalid/non-finite direction lower bound")
+    return bound
+
+
+def _position_reference_table(bound, decoder_pair_losses, indices):
+    return [{"horizon": horizon,
+             "B": _interval(bound[:, hi], indices),
+             "decoder_true_target_position_mse": _interval(decoder_pair_losses[:, hi], indices)}
+            for hi, horizon in enumerate(HORIZONS)]
+
+
+def _tables(averages, indices, bound, decoder_pair_losses):
     table, contrasts = [], []
     for condition_index, condition in enumerate(CONDITIONS):
         for horizon_index, horizon in enumerate(HORIZONS):
@@ -210,10 +236,19 @@ def _tables(averages, indices):
                 differences = averages[metric][:, condition_index, horizon_index] - averages[metric][:, 1, horizon_index]
                 row[key] = _interval(differences, indices)
             contrasts.append(row)
-    return table, contrasts
+    for hi, horizon in enumerate(HORIZONS):
+        contrasts.append({"comparison": "B_minus_b", "horizon": horizon, "positive_favors": "b",
+                          "position_mse_improvement": _interval(bound[:, hi] - averages["position"][:, 1, hi], indices),
+                          "required_gate": True})
+        contrasts.append({"comparison": "d_minus_B", "horizon": horizon,
+                          "positive_means": "d exceeds the identical-sibling-prediction lower bound",
+                          "position_mse_excess": _interval(averages["position"][:, 3, hi] - bound[:, hi], indices),
+                          "required_gate": False})
+    return table, contrasts, _position_reference_table(bound, decoder_pair_losses, indices)
 
 
-def evaluate_metrics(losses, output_dir=None, seed_values=SEEDS, pair_ids=None):
+def evaluate_metrics(losses, output_dir=None, seed_values=SEEDS, pair_ids=None, *,
+                     true_positions=None, decoder_true_target_losses=None):
     """Summarize fixed-seed losses and pair-bootstrap intervals without refitting.
 
 losses must map 'feature' and 'position' to arrays shaped
@@ -222,6 +257,12 @@ Position values must be mean squared error over x/y coordinates; feature values
 must be mean squared error over the normalized 5120 target features. Both seed
 and sibling axes are averaged before bootstrapping the 96 scene pairs. The same
 2000 index draws are used for all absolute losses, contrasts and per-seed rows.
+
+true_positions is mandatory [96 pairs, 2 siblings, 2 horizons, 2 xy]. The
+direction lower bound B is computed once per pair/horizon, with no seed axis.
+decoder_true_target_losses is mandatory [96 pairs, 2 siblings, 2 horizons]; it
+contains the already-frozen decoder's MSE on true validation target features.
+This readout diagnostic is not used for fitting, selection, or any gate.
 """
     _require(tuple(seed_values) == SEEDS, "Exactly seeds 17, 29 and 43 in registered order are required")
     _require(pair_ids is not None, "Validation pair identities are required")
@@ -233,22 +274,36 @@ and sibling axes are averaged before bootstrapping the 96 scene pairs. The same
     for name, value in arrays.items():
         _require(value.shape == (3, 96, 2, 4, 2), f"Missing/extra seed, pair, sibling, condition or horizon in {name} losses")
         _require(np.isfinite(value).all() and (value >= 0).all(), f"Non-finite or negative {name} MSE")
+    _require(true_positions is not None, "True target positions are required; B cannot be omitted")
+    positions = np.asarray(true_positions, dtype=np.float64)
+    _require(positions.shape == (96, 2, 2, 2), "Validation true positions must have shape [96, 2, 2, 2]")
+    bound = direction_lower_bound(positions)
+    _require(decoder_true_target_losses is not None, "Frozen decoder true-target losses are required")
+    decoder_losses = np.asarray(decoder_true_target_losses, dtype=np.float64)
+    _require(decoder_losses.shape == (96, 2, 2), "Decoder true-target losses must have shape [96, 2, 2]")
+    _require(np.isfinite(decoder_losses).all() and (decoder_losses >= 0).all(),
+             "Non-finite or negative frozen-decoder true-target loss")
+    decoder_pair_losses = decoder_losses.mean(axis=1)
     indices = np.random.default_rng(BOOTSTRAP_SEED).integers(0, 96, size=(BOOTSTRAP_REPEATS, 96))
-    averaged = {name: value.mean(axis=(0, 2)) for name, value in arrays.items()}
-    table, contrasts = _tables(averaged, indices)
+    averaged = {name: value.mean(axis=2).mean(axis=0) for name, value in arrays.items()}
+    table, contrasts, references = _tables(averaged, indices, bound, decoder_pair_losses)
     per_seed = []
     for seed_index, seed in enumerate(seed_values):
         seed_averaged = {name: value[seed_index].mean(axis=1) for name, value in arrays.items()}
-        seed_table, seed_contrasts = _tables(seed_averaged, indices)
-        per_seed.append({"seed": int(seed), "table": seed_table, "contrasts": seed_contrasts})
+        seed_table, seed_contrasts, seed_references = _tables(seed_averaged, indices, bound, decoder_pair_losses)
+        per_seed.append({"seed": int(seed), "table": seed_table, "contrasts": seed_contrasts,
+                         "position_reference_table": seed_references})
     primary_rows = [row for row in contrasts if row["comparison"] == "d_minus_b"]
     secondary_rows = [row for row in contrasts if row["comparison"] == "c_minus_b"]
     primary = {str(row["horizon"]): {"lower95": row["position_mse_improvement"]["ci95"][0],
                                       "passed": row["position_mse_improvement"]["ci95"][0] > 0.0} for row in primary_rows}
     secondary = {str(row["horizon"]): {"lower95": row["position_mse_improvement"]["ci95"][0],
                                         "passed": row["position_mse_improvement"]["ci95"][0] > 0.0} for row in secondary_rows}
-    passed = all(item["passed"] for item in (*primary.values(), *secondary.values()))
-    result = {"schema_version": 1, "status": "passed" if passed else "stopped_predictor_gate_failed",
+    direction_rows = [row for row in contrasts if row["comparison"] == "B_minus_b"]
+    direction = {str(row["horizon"]): {"lower95": row["position_mse_improvement"]["ci95"][0],
+                                      "passed": row["position_mse_improvement"]["ci95"][0] > 0.0} for row in direction_rows}
+    passed = all(item["passed"] for item in (*primary.values(), *secondary.values(), *direction.values()))
+    result = {"schema_version": 2, "status": "passed" if passed else "stopped_predictor_gate_failed",
               "seed_values": list(seed_values), "condition_order": list(CONDITIONS), "horizons": list(HORIZONS),
               "validation_pairs": pair_ids, "raw_loss_shape": [3, 96, 2, 4, 2],
               "loss_definitions": {"feature_mse": "mean squared error across 5120 normalized target feature dimensions",
@@ -257,13 +312,23 @@ and sibling axes are averaged before bootstrapping the 96 scene pairs. The same
                             "percentile_ci": [0.025, 0.975], "quantile_method": "linear",
                             "aggregation": "average two siblings and three fixed predictor seeds before resampling 96 pairs",
                             "shared_resamples_across_conditions_metrics_horizons_and_seed_tables": True,
+                            "shared_resamples_include_B_and_frozen_decoder_true_target_diagnostic": True,
+                            "B_has_no_seed_axis_and_is_not_an_extra_sample": True,
                             "interpretation": "Scene-pair uncertainty conditional on the three fitted seeds; not a population CI over model seeds",
                             "indices_sha256": _array_sha(indices)},
               "input_loss_sha256": {name: _array_sha(value) for name, value in arrays.items()},
-              "table": table, "contrasts": contrasts, "per_seed": per_seed,
+              "input_true_positions_sha256": _array_sha(positions),
+              "input_decoder_true_target_losses_sha256": _array_sha(decoder_losses),
+              "direction_lower_bound": {"formula": "mean_sibling(mean_xy((mean_sibling(true_xy)-true_xy)^2))",
+                                        "common_prediction_identity": "pair_loss = B + mean_xy((prediction-midpoint)^2)",
+                                        "shape": [96, 2], "sha256": _array_sha(bound),
+                                        "fit_required": False, "source_split": "validation"},
+              "table": table, "contrasts": contrasts, "position_reference_table": references, "per_seed": per_seed,
               "gate": {"passed": passed, "primary_d_minus_b": primary, "secondary_c_minus_b": secondary,
-                       "rule": "Decoded position MSE improvement lower 95% bound must be strictly >0 separately at h=3 and h=6 for both d-b and c-b",
+                       "direction_B_minus_b": direction,
+                       "rule": "All six decoded position MSE improvement lower 95% bounds must be strictly >0: d-b, c-b, and B-b, each at h=3 and h=6",
                        "a_minus_b_is_report_only": True, "feature_mse_is_report_only": True,
+                       "d_minus_B_is_report_only": True, "decoder_true_target_loss_is_report_only": True,
                        "stop_after_pass_or_failure": True},
               "test_used": False, "retention_training_started": False}
     # Serializability check also rejects NaN before any results are persisted.
@@ -273,6 +338,7 @@ and sibling axes are averaged before bootstrapping the 96 scene pairs. The same
         pair_path = out / "pair_averaged_losses.npz"
         with pair_path.open("xb") as handle:
             np.savez_compressed(handle, feature=averaged["feature"], position=averaged["position"],
+                                B=bound, decoder_true_target_position_mse=decoder_pair_losses,
                                 pair_ids=np.asarray(pair_ids), conditions=np.asarray(CONDITIONS), horizons=np.asarray(HORIZONS))
         indices_path = out / "bootstrap_indices.npz"
         with indices_path.open("xb") as handle:
