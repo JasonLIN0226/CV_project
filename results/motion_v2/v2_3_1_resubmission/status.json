@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "attempt2_submitted_monitoring",
+  "status": "attempt2_scientific_running",
   "science_frozen_commit": "6dc5ed253dfa305b26be8f19d40edcd6a5878ea7",
   "runtime_registration_commit": "fb48f5ece02a38ee38d7477c065349a086192ba0",
   "attempt1": {
@@ -30,9 +30,19 @@
     "restarts": 0,
     "requeue_observed_not_gate": "1",
     "submission_receipt_sha256": "6f152d0c4ed826ab92f69fe46e3d0912c94d9d42f69fdc303c1e81370bca59dd",
-    "scientific_start_not_yet_observed": true,
+    "scientific_start_not_yet_observed": false,
     "final_accounting_pending": true,
-    "actual_a100_gpu_seconds": null
+    "actual_a100_gpu_seconds": null,
+    "native_state_last_observed": "RUNNING",
+    "allocated_node": "b-19-27",
+    "native_start_utc": "2026-10-31T23:52:04Z",
+    "last_observed_utc": "2026-10-31T23:55:52.159378Z",
+    "allocated_gpu_count": 1,
+    "scientific_marker_present": true,
+    "scientific_output_present": true,
+    "batch_step_present": true,
+    "elapsed_a100_seconds_at_snapshot": 228,
+    "remote_snapshot": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/monitor/20261031T235547Z/native_snapshot.json"
   },
   "admission": {
     "eligible": true,
@@ -55,5 +65,10 @@
   "software_checks": {
     "passed": 158,
     "tests": 158
+  },
+  "retry_forbidden_reason": "scientific_job_started_directory_exists",
+  "attempt3": {
+    "authorized_now": false,
+    "reason": "scientific_job_started_exists; no further retry under any outcome"
   }
 }

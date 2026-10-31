@@ -1,6 +1,6 @@
 # Motion v2.3.1 基础设施核查与有限重提进展
 
-本页为 2026-10-31 的新增证据，保留旧的 [16550 交付记录](MOTION_V2_3_1_EXECUTION_ZH.md) 和全部原始文件。第 0′ 步、Phase 1 headroom 精确比较及第 1 步均已有通过记录；本轮不重跑这些测量。第 2 步正在跟进作业 **16614**，尚无预测器指标或科学门槛结论。
+本页为 2026-10-31 的新增证据，保留旧的 [16550 交付记录](MOTION_V2_3_1_EXECUTION_ZH.md) 和全部原始文件。第 0′ 步、Phase 1 headroom 精确比较及第 1 步均已有通过记录；本轮不重跑这些测量。第 2 步作业 **16614 已在 b-19-27 运行**，科学入口已启动；尚无预测器指标或科学门槛结论。
 
 ## 16550 原因核查
 
@@ -28,10 +28,10 @@
 | 尝试 | Job ID | 已观察状态 | 节点 | 实际 A100 秒 |
 |---|---|---|---|---:|
 | attempt1 | 16550 | CANCELLED；四项入口前失败已证明 | b-19-12 | 769（已结算） |
-| attempt2 | 16614 | 提交时 PENDING，Restarts=0 | 提交时尚未分配 | 待原生终态结算 |
-| attempt3 | 未提交 | 仅在全部登记条件成立时允许 | — | — |
+| attempt2 | 16614 | 23:55:52 UTC 观察为 RUNNING，Restarts=0 | b-19-27 | 待原生终态结算；当次快照 228 秒 |
+| attempt3 | 不再允许 | 科学启动标记已存在，任何结果均不得重提 | — | — |
 
-16614 于 **2026-10-31 23:50:18 UTC** 唯一提交一次，立即保存 scontrol：单节点、单张 A100、03:00:00 wall-time，Requeue=1 记录但不阻塞，Restarts=0。回执 SHA256 为 `6f152d0c4ed826ab92f69fe46e3d0912c94d9d42f69fdc303c1e81370bca59dd`。当前状态是提交时快照，不代表已经运行。
+16614 于 **2026-10-31 23:50:18 UTC** 唯一提交一次，立即保存 scontrol：请求单节点、单张 A100、03:00:00 wall-time，Requeue=1 记录但不阻塞，Restarts=0。回执 SHA256 为 `6f152d0c4ed826ab92f69fe46e3d0912c94d9d42f69fdc303c1e81370bca59dd`。提交时快照随后由首次运行监测更新：23:55:52 UTC 的 squeue/sacct/scontrol 均为 RUNNING，原生 StartTime 为 **23:52:04 UTC**，分配单张 GPU，Restarts=0；.batch/.extern、启动标记目录、科学输出目录和日志均存在。原始快照保存在远端 `runtime_retries_v2_3_1/attempt2/monitor/20261031T235547Z/`，待终态一并导出。23:56:07 UTC 的只读日志快照显示 I-JEPA 权重已加载，特征目录已建立，尚未产生最终 status。228 秒是运行中快照，不能当作最终累计用时。
 
 证据：[提交回执](../results/motion_v2/v2_3_1_resubmission/submission2_evidence/attempt2/submission/submission.json)、[立即 scontrol](../results/motion_v2/v2_3_1_resubmission/submission2_evidence/attempt2/submission/immediate_scontrol.stdout.txt)、[环境复核](../results/motion_v2/v2_3_1_resubmission/submission2_evidence/attempt2/preflight_environment/receipt.json)、[数据复核](../results/motion_v2/v2_3_1_resubmission/submission2_evidence/attempt2/submission/data_reverification.json)。新证据包共 32 个源文件、34150 字节，下载后包哈希及全部内部 SHA256 校验通过；包 SHA256 为 `c49ad84afdd9066fee960d3377e5c81afd7830fadec52603246260233a6c9573`。
 
@@ -39,7 +39,7 @@
 
 a/b/c/d × h=3/6 的 feature/position MSE、配对区间、decoder 诊断和逐 seed 表尚未生成，六项必需门槛均为 **未评估**。已冻结 CPU 方向下界 B 为 h=3：`0.010503079706867778`，h=6：`0.014639254826637952`；这些数值不代表模型表现。
 
-继续每 10 分钟读取原生状态并保留跟进。只有 16614 再次符合全部四项入口前失败条件、Restarts=0、无科学错误，且累计实际秒数加 10800 不超过 14400，才能进行最后一次 attempt3。启动目录存在即禁止重提。终态后先核对 sacct/scontrol 的状态和 GPU 数一致，再执行一次冻结结算并补齐结果。第 2 步无论通过或失败均停止；不打开或生成 test，不训练保留策略，不删除现场，不合并 PR。
+继续每 10 分钟读取原生状态并保留跟进。由于 16614 的启动目录已经存在，**attempt3 已不再允许**；之后任何结果均不重提。终态后先核对 sacct/scontrol 的状态和 GPU 数一致，再执行一次冻结结算并补齐结果。第 2 步无论通过或失败均停止；不打开或生成 test，不训练保留策略，不删除现场，不合并 PR。
 
 当前最大的科学风险仍是冻结 I-JEPA 特征和既定预测器未必能利用方向信息；基础设施和软件检查通过不能回答这一点。节点恢复超时仍可能再次影响执行。
 
