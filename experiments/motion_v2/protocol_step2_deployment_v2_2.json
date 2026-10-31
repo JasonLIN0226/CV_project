@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-31",
+  "status": "REGISTER_BEFORE_CPU_PREPARATION_AND_DATA_PACKING",
+  "scope": "Operational CPU environment and byte-transfer preparation only; no scientific computation or GPU job submission",
+  "prepared_against_commit": "8b80584c923a6434df4f89f69aa26dc32f587a72",
+  "branch": "experiments/motion-v2-20261030",
+  "repository": "JasonLIN0226/CV_project",
+  "frozen_scientific_protocol": {
+    "path": "experiments/motion_v2/protocol_step2_v2_2.json",
+    "sha256": "d9cf8576c0473b6838b4be4b2fb7fb0e89b119fbb9976cf060729c06ea99a291",
+    "unchanged": true,
+    "no_changes_to_scientific_source_config_budget_thresholds_or_seeds": true
+  },
+  "source_sha256": {
+    "experiments/motion_v2/transfer_dataset.py": "bc3722658b0f1dbba1c850e855303f7a27aaee3c4299da333c807efb7fd07653",
+    "experiments/motion_v2/requirements-gpu.txt": "bd830ef951c1225eae32765a94e4797eb9b3f4fd1cd7402594182ab0bd3929eb"
+  },
+  "authentication_correction": {
+    "previous_assessment": "A temporary automatic authentication redirect was incorrectly treated as requiring user intervention",
+    "current_observation": "The existing Chrome Incognito My Interactive Sessions page shows Logged in as xy3257; previous sessions are Completed",
+    "interpretation": "Existing SSO is usable for normal session navigation; no new login is required by this observation",
+    "new_login_or_ssh_attempts": false,
+    "credentials_entered_or_submitted": false,
+    "if_an_actual_new_authentication_challenge_appears": "Stop and let the user complete authentication personally"
+  },
+  "cpu_interactive_session": {
+    "source": "Values observed in the current HPC Jupyter form before submission",
+    "gpu_count": 0,
+    "hours": 1,
+    "slurm_account": "csci_ga_2271-2026fa",
+    "slurm_partition": "n2c48m24",
+    "root_directory_choice": "scratch",
+    "optional_slurm_options": "--time=01:00:00 --mem=16G --cpus-per-task=4 --no-requeue --export=ALL",
+    "requested_cpu_count": 4,
+    "requested_memory": "16G",
+    "submit_once": true,
+    "queued_or_starting": "Wait without duplicate submission",
+    "actual_allocation": "Verify native allocation, identity, cwd and scratch location after connection; form settings alone are not execution proof",
+    "a100_gpu_seconds_requested": 0
+  },
+  "remote_filesystem": {
+    "owner": "Authenticated current user xy3257 only",
+    "concrete_new_root": null,
+    "root_rule": "Choose a previously nonexistent directory beneath the current user's verified scratch location after checking pwd and identity",
+    "no_assumption_that_any_environment_or_cache_already_exists": true,
+    "other_account_directory_access": false,
+    "existing_files_overwritten_or_deleted": false,
+    "insufficient_space_or_quota": "Stop and report; do not delete files"
+  },
+  "git_preparation": {
+    "method": "Shallow single-branch git clone into the new personal scratch directory",
+    "clone_options": ["--depth", "1", "--single-branch", "--branch", "experiments/motion-v2-20261030"],
+    "preserve_real_git_repository_and_head": true,
+    "expected_head": "Record the deployment registration commit after it is committed and pushed, then require the remote checkout HEAD to match that exact commit",
+    "verify_committed_source_and_protocol_bytes": true,
+    "no_scientific_entrypoint_run_during_clone": true,
+    "whole_git_object_bundle_required": false
+  },
+  "dataset_transfer": {
+    "manifest_path": "results/motion_v2/v2_2/step1/data/dataset/manifest.json",
+    "manifest_sha256": "9ac43b81eb75456e17f3542e64e8a0ab58282207752ae3712836f6d2ea20032a",
+    "episodes": {"train": 1024, "validation": 192},
+    "artifact_files": 2432,
+    "content": "Only the already generated observation/evaluation NPZ byte streams named in the frozen manifest",
+    "packing": "ZIP_STORED; verify each NPZ SHA256 without decompressing its arrays",
+    "archive_contains_manifest": false,
+    "remote_manifest_source": "The exact tracked manifest from the verified Git checkout; verify its SHA256 before unpacking",
+    "new_local_output_directory": "results/motion_v2/v2_2/deployment1",
+    "archive": "results/motion_v2/v2_2/deployment1/data.zip",
+    "pack_receipt": "results/motion_v2/v2_2/deployment1/pack_receipt.json",
+    "output_directory_rule": "Create this directory only after committing and pushing this registration; it must not already exist",
+    "helper": "experiments/motion_v2/transfer_dataset.py",
+    "pack_arguments": ["pack", "--dataset", "results/motion_v2/v2_2/step1/data/dataset", "--archive", "results/motion_v2/v2_2/deployment1/data.zip", "--receipt", "results/motion_v2/v2_2/deployment1/pack_receipt.json"],
+    "unpack_rule": "Require archive SHA256 from the local pack receipt, the exact 2432-member allowlist, and all individual SHA256 matches before creating new destination NPZ files",
+    "no_generation_decoding_fitting_or_test_access": true,
+    "no_overwrite_deletion_or_retry_after_error": true
+  },
+  "dependency_preparation": {
+    "target_python": "3.12",
+    "requirements": "experiments/motion_v2/requirements-gpu.txt",
+    "cuda_wheel_source": "Official PyTorch CUDA 12.1 wheel index",
+    "target_torch": "2.5.1, with an official CUDA local-version suffix allowed",
+    "target_torchvision": "0.20.1",
+    "allowed_actions": ["Create a new isolated environment", "Install the registered Python and dependency versions", "Read versions and perform dependency/import availability checks", "Record preparation receipts and installed package versions"],
+    "disallowed_actions": ["Generate or render episodes", "Run classifiers or leakage checks", "Encode RGB", "Fit normalization or basis", "Fit decoder", "Train or evaluate predictor", "Train retention policy", "Open test observations or test features"],
+    "old_phase2_environment_helper": "Do not execute unchanged: it targets Python 3.11 and an unrelated Phase 2 package set",
+    "cache_constraint": "The frozen scientific runner chooses its own new output cache paths; do not precreate its output directory or override its registered cache behavior",
+    "environment_error": "Stop and report the exact error; do not change pins, use another Python version, or alter the scientific protocol to bypass it"
+  },
+  "future_gpu_execution": {
+    "submitted_by_this_registration": false,
+    "only_after_cpu_preparation_and_integrity_verification": true,
+    "governing_protocol": "experiments/motion_v2/protocol_step2_v2_2.json",
+    "gpu_count": 1,
+    "gpu_model": "A100",
+    "registered_allocation_limit_seconds": 7200,
+    "user_total_gpu_cap_seconds": 14400,
+    "native_allocation_accounting_required": true,
+    "submission_parameters": "To be checked and separately registered before any submission; this file does not invent a GPU partition or wrapper"
+  },
+  "stop_conditions": [
+    "An actual authentication challenge requires the user",
+    "Current identity, cwd, scratch ownership or native allocation cannot be verified",
+    "Git HEAD, committed file, source, manifest, archive or NPZ hash mismatch",
+    "Any unexpected split, archive entry, pre-existing output or artifact destination",
+    "Environment installation, package-version or dependency-check error",
+    "Any preparation action would change the frozen scientific protocol or access test data"
+  ]
+}
