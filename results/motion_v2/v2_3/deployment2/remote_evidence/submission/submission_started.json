@@ -1,0 +1,35 @@
+{
+  "created_utc": "2026-10-31T21:37:46.881051+00:00",
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--no-requeue",
+    "/scratch/xy3257/motion-v2-20261031-deployment2/repo/experiments/motion_v2/run_step2_v2_3.sbatch"
+  ],
+  "registration": {
+    "head_commit": "dd9582c317cd6388180868ef175960cc2875321d",
+    "deployment_protocol_sha256": "b952731a4e9ff657662cec44a799ac923249d9e5fe4f88aea0bd2ab33496965b",
+    "scientific_protocol_sha256": "031e37b3f83d3ec5c05242a72069fc8336b32e771c3e2a8a2a3f6f0302e10875",
+    "wrapper_sha256": "3d4d197da391d51881863ee74a7e258f80d25a39c69aa7c96d731b8fdf462997",
+    "wrapper_directives": {
+      "--job-name": "motion-v23",
+      "--account": "csci_ga_2271-2026fa",
+      "--partition": "c12m85-a100-1",
+      "--nodes": "1",
+      "--ntasks": "1",
+      "--cpus-per-task": "4",
+      "--mem": "16G",
+      "--gres": "gpu:a100:1",
+      "--time": "02:00:00",
+      "--no-requeue": true,
+      "--export": "ALL",
+      "--open-mode": "append",
+      "--output": "/scratch/xy3257/motion-v2-20261031-deployment2/scientific-job-%j.stdout.log",
+      "--error": "/scratch/xy3257/motion-v2-20261031-deployment2/scientific-job-%j.stderr.log"
+    },
+    "manifest_sha256": "9ac43b81eb75456e17f3542e64e8a0ab58282207752ae3712836f6d2ea20032a"
+  },
+  "removed_sbatch_environment_keys": [],
+  "sbatch_attempt_limit": 1,
+  "unknown_outcome_requires_manual_read_only_investigation": true
+}
