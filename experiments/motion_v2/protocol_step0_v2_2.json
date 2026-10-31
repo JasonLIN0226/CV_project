@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-31",
+  "amendment_commit": "cc923b7",
+  "status_at_registration": "not_run",
+  "source_sha256": {
+    "docs/MOTION_V2_2_AMENDMENT_ZH.md": "366b4d231d6f8b7b8ab5deab53cbc43e4fdebae2058d2d87128f5e8a3c10694e",
+    "experiments/motion_v2/analysis/step0_v2_2.py": "c27c84224ad97a996d15f9ffe682d90f8e4a2c67db3032f3e60c9729953fee03",
+    "experiments/motion_v2/analysis/motion_headroom.py": "989afebc5c2fd2ece882442c5dd508b2d2afc0102d2b623033002c0fa8e9cd78",
+    "results/motion_v2/headroom/motion_v1_pool_headroom.json": "09c9606f98960092b0b1ee8467fe08d453c52884c2df5c7a15afbf31cced16df",
+    "results/motion_v2/headroom/motion_v2_1_checks.json": "a4d735429045d66be5d0fe94f8b58ba0343b90c5dd0be27e6e5e642a38c1d1d8",
+    "results/motion_v2/step0_v2_1/v2_1_reference/stdout.json": "70055bf15efbfb16fab29689c9726ee40d2e76ae9ab46e58cd03203641dfa6e8",
+    "experiments/motion_v2/requirements-cpu.lock": "e404b3cbafa53510341d8ea941cbeeeb001eab07fc1476527ae3bf2f2d13811a",
+    "results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/original_src/phase1/envs.py": "64b07f972fc5144d5d13c7bd614c1c796d67a73521043efc57073454ac4c12a7",
+    "results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/config.json": "e1e646a11be0f22aece29fa05a68c8d558ce3d7f29b7090c105810a14813c0ff"
+  },
+  "output_root": "results/motion_v2/v2_2/step0",
+  "saved_json": "results/motion_v2/step0_v2_1/v2_1_reference/stdout.json",
+  "reference_json": "results/motion_v2/headroom/motion_v2_1_checks.json",
+  "classifier_absolute_tolerance": 0.02,
+  "exact_fields": [
+    "pair_audit",
+    "online_policies",
+    "end_only",
+    "stale_plus_end"
+  ],
+  "classifier_fields": [
+    "one_post_non_end",
+    "two_post"
+  ],
+  "v2_thresholds": {
+    "one_post_non_end_max": 0.58,
+    "two_post_min": 0.95
+  },
+  "v1_threshold_rule": "Reference-side preservation; v1 single-frame reference is above 0.58.",
+  "execution_order": [
+    "rejudge_saved_output_without_rerun",
+    "phase1_headroom_once"
+  ],
+  "phase1_arguments": [
+    "experiments/motion_v2/analysis/motion_headroom.py",
+    "results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/original_src/phase1",
+    "results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/config.json"
+  ],
+  "phase1_reference_json": "results/motion_v2/headroom/motion_v1_pool_headroom.json",
+  "phase1_comparison": "exact parsed JSON",
+  "phase1_seed": 9137,
+  "phase1_pool_seed": 20261017,
+  "phase1_pair_count_per_split": 256,
+  "phase1_pool_count_per_pair": 6,
+  "thread_environment": {
+    "OMP_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "BLIS_NUM_THREADS": "1"
+  },
+  "manifest_is_blocking": false,
+  "no_ood_or_ssh": true,
+  "raw_test_access_or_generation": false,
+  "phase1_test_scene_metadata_reconstruction_explicitly_authorized": true,
+  "stop_conditions": [
+    "Any hash mismatch, runtime failure or failed registered comparison: stop subsequent stages; no retries or threshold edits."
+  ],
+  "gpu_seconds": 0
+}
