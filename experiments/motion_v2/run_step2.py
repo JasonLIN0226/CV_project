@@ -1,4 +1,4 @@
-"""Frozen, one-shot Motion v2.1 predictor experiment; no test or policy training.
+"""Frozen, one-shot Motion v2.3 evaluation of the v2.1 predictor experiment.
 
 This command requires a committed protocol and an existing single-A100 Slurm
 allocation. It does not log in, submit a job, resume, retry, or delete files.
@@ -112,12 +112,17 @@ def validate_registration(args, config, protocol):
         raise ValueError("Config differs from registered SHA256")
     source_hashes = protocol["source_sha256"]
     required = {Path(__file__).resolve().relative_to(REPO).as_posix(),
-                "experiments/motion_v2/reader_v2.py", "experiments/motion_v2/step2_metrics.py"}
+                "experiments/motion_v2/reader_v2.py", "experiments/motion_v2/step2_metrics.py",
+                "experiments/motion_v2/prepare_direction_bound_v2_3.py"}
     required.update(p.relative_to(REPO).as_posix() for p in REFERENCE.glob("*.py"))
     if not required <= set(source_hashes):
         raise ValueError("Protocol does not lock the complete runtime source set")
     for relative, expected in source_hashes.items():
         checked_repo_file(relative, expected)
+    expected_bound = {"method": "paired_midpoint_position_mse", "split": "validation",
+                      "pairs": 96, "horizons": [3, 6], "prepared_before_gpu": True}
+    if protocol.get("direction_bound") != expected_bound:
+        raise ValueError("The scientific protocol must register CPU preparation of the v2.3 direction bound")
     audit = read_json(checked_repo_file(protocol["step1_audit_path"], protocol["step1_audit_sha256"]))
     status = read_json(checked_repo_file(protocol["step1_status_path"], protocol["step1_status_sha256"]))
     if audit.get("status") != "passed" or status.get("status") != "passed":
@@ -208,14 +213,24 @@ def native_allocation():
     row = rows[0]
     if row[1] != "RUNNING" or not row[3].isdigit():
         raise RuntimeError("The current Slurm allocation is not confirmed RUNNING")
-    gpu_counts = [int(v) for key, v in (part.split("=", 1) for part in row[4].split(",") if "=" in part)
-                  if key == "gres/gpu" or key.startswith("gres/gpu:")]
-    if not gpu_counts or any(count != 1 for count in gpu_counts):
+    gpu_tres = {key: int(v) for key, v in
+                (part.split("=", 1) for part in row[4].split(",") if "=" in part)
+                if key == "gres/gpu" or key.startswith("gres/gpu:")}
+    gpu_counts = list(gpu_tres.values())
+    typed_gpu_count = sum(count for key, count in gpu_tres.items() if key.startswith("gres/gpu:"))
+    if (not gpu_counts or any(count != 1 for count in gpu_counts) or
+            typed_gpu_count not in (0, 1)):
         raise RuntimeError("Native AllocTRES must confirm exactly one allocated GPU")
+    if any("a100" not in key.lower() for key in gpu_tres if key.startswith("gres/gpu:")):
+        raise RuntimeError("Native typed GPU allocation is not an A100")
     control = command(["scontrol", "show", "job", "--oneliner", job_id])
     fields = dict(item.split("=", 1) for item in control.split() if "=" in item)
-    if fields.get("JobState") != "RUNNING" or fields.get("NumNodes") != "1":
+    if fields.get("JobId") != job_id or fields.get("JobState") != "RUNNING" or fields.get("NumNodes") != "1":
         raise RuntimeError("Current job must be RUNNING on one node")
+    if fields.get("Restarts") != "0":
+        raise RuntimeError(f"Scientific job must have native Restarts=0; scontrol={control}")
+    if not fields.get("StartTime") or fields["StartTime"] == "Unknown":
+        raise RuntimeError("Native scientific job start identity is unavailable")
     elapsed = max(int(row[3]), slurm_seconds(fields["RunTime"]))
     if fields.get("TimeLimit") not in ("UNLIMITED", "Partition_Limit"):
         time_limit = slurm_seconds(fields["TimeLimit"])
@@ -225,11 +240,13 @@ def native_allocation():
         raise RuntimeError("A finite registered native Slurm time limit is required")
     return {"job_id": job_id, "start": row[2], "elapsed_seconds_at_probe": elapsed,
             "alloc_tres": row[4], "scontrol": control, "sacct": output,
+            "native_start_time": fields["StartTime"], "restarts": 0,
+            "requeue": fields.get("Requeue"),
             "native_time_limit_seconds": time_limit, "probe_utc": datetime.now(timezone.utc).isoformat()}
 
 
 class BudgetGuard:
-    def __init__(self, config, allocation, frames):
+    def __init__(self, config, allocation, frames, output):
         self.config = config["execution"]
         self.allocation = allocation
         self.started = time.monotonic()
@@ -240,6 +257,34 @@ class BudgetGuard:
         self.total_frames, self.frames = frames, 0
         self.epoch_seconds = []
         self.interrupted = None
+        self.last_native_probe = self.started
+        self.visible_gpu_probe = None
+        self.native_probe_count = 1
+        self.native_probe_path = Path(output) / "native_allocation_checks.jsonl"
+        with self.native_probe_path.open("x", encoding="utf-8") as handle:
+            handle.write(json.dumps({"stage": "allocation_start", "allocation": allocation}, allow_nan=False) + "\n")
+
+    def check_native(self, stage, force=False):
+        if not force and time.monotonic() - self.last_native_probe < 30:
+            return
+        evidence = {"stage": stage, "probe_utc": datetime.now(timezone.utc).isoformat()}
+        try:
+            allocation = native_allocation()
+            evidence["allocation"] = allocation
+            for key in ("job_id", "start", "native_start_time", "alloc_tres", "native_time_limit_seconds"):
+                if allocation[key] != self.allocation[key]:
+                    raise RuntimeError(f"Native scientific allocation identity changed: {key}")
+            if self.visible_gpu_probe is not None:
+                evidence["visible_gpu"] = self.visible_gpu_probe()
+            evidence["status"] = "passed"
+            self.last_native_probe = time.monotonic()
+            self.native_probe_count += 1
+        except Exception as exc:
+            evidence.update(status="failed", error_type=type(exc).__name__, error=str(exc))
+            raise
+        finally:
+            with self.native_probe_path.open("a", encoding="utf-8") as handle:
+                handle.write(json.dumps(evidence, allow_nan=False) + "\n")
 
     def phase_totals(self):
         totals = dict(self.totals)
@@ -263,9 +308,10 @@ class BudgetGuard:
         overhead = max(0.0, self.config["remaining_overhead_seconds"] - totals["overhead"])
         return (self.total_frames - self.frames) / rate + (360 - len(self.epoch_seconds)) * epoch_rate + overhead
 
-    def check(self, stage="unspecified"):
+    def check(self, stage="unspecified", force_native=False):
         if self.interrupted:
             raise BudgetStop(self.interrupted)
+        self.check_native(stage, force=force_native)
         elapsed = self.elapsed()
         limit = min(self.config["estimated_gpu_seconds"], self.config["hard_cap_gpu_seconds"],
                     self.allocation["native_time_limit_seconds"])
@@ -279,6 +325,8 @@ class BudgetGuard:
                 "estimated_remaining_seconds": self.remaining_estimate(),
                 "phase_wall_seconds": self.phase_totals(), "encoded_frames": self.frames,
                 "completed_epochs": len(self.epoch_seconds),
+                "native_allocation_checks": self.native_probe_count,
+                "native_restarts_required": 0, "native_check_interval_seconds": 30,
                 "gpu_count": 1, "estimate_limit_seconds": self.config["estimated_gpu_seconds"],
                 "hard_cap_seconds": self.config["hard_cap_gpu_seconds"]}
 
@@ -536,10 +584,11 @@ def validate_decoder_on_true_targets(store, decoder, output, guard):
     }
     write_json(output / "decoder" / "validation_true_targets.json", report)
     guard.check("decoder_true_validation_targets_complete")
-    return report
+    return losses
 
 
-def evaluate(config, store, basis, selected, decoder, reader, output, guard, metrics):
+def evaluate(config, store, basis, selected, decoder, reader, output, guard, metrics,
+             true_positions, decoder_true_target_losses):
     import numpy as np
     import torch
     pairs = pair_groups(store.manifest["records"], "validation")
@@ -585,7 +634,9 @@ def evaluate(config, store, basis, selected, decoder, reader, output, guard, met
               conditions=np.asarray(EVAL_CONDITIONS), horizons=np.asarray([3, 6]))
     guard.check("before_metrics")
     result = metrics.evaluate_metrics(losses, output_dir=output / "metrics", seed_values=SEEDS,
-                                      pair_ids=[pair[0]["pair"] for pair in pairs])
+                                      pair_ids=[pair[0]["pair"] for pair in pairs],
+                                      true_positions=true_positions,
+                                      decoder_true_target_losses=decoder_true_target_losses)
     guard.check("after_metrics")
     return result
 
@@ -612,7 +663,7 @@ def execute(args):
     try:
         allocation = native_allocation()
         write_json(output / "allocation_start.json", allocation)
-        guard = BudgetGuard(config, allocation, provenance["frames"])
+        guard = BudgetGuard(config, allocation, provenance["frames"], output)
         guard.check("allocation_start")
         def interrupted(signum, frame):
             guard.interrupted = f"Received signal {signum}; stopping without retry/resume"
@@ -648,6 +699,17 @@ def execute(args):
         import torch
         if not torch.cuda.is_available() or torch.cuda.device_count() != 1 or "A100" not in torch.cuda.get_device_name(0):
             raise RuntimeError("Exactly one visible native NVIDIA A100 is required")
+        initial_visible_devices = os.environ.get("CUDA_VISIBLE_DEVICES")
+        def visible_gpu_probe():
+            if (not torch.cuda.is_available() or torch.cuda.device_count() != 1 or
+                    "A100" not in torch.cuda.get_device_name(0) or
+                    os.environ.get("CUDA_VISIBLE_DEVICES") != initial_visible_devices):
+                raise RuntimeError("The scientific job no longer exposes exactly its original single A100")
+            return {"device_count": 1, "gpu_name": torch.cuda.get_device_name(0),
+                    "cuda_visible_devices": initial_visible_devices,
+                    "nvidia_smi": command(["nvidia-smi", "--query-gpu=name,uuid", "--format=csv,noheader"])}
+        guard.visible_gpu_probe = visible_gpu_probe
+        guard.check("before_scientific_work", force_native=True)
         torch.set_num_threads(config["threads"])
         torch.backends.cuda.matmul.allow_tf32 = False
         torch.backends.cudnn.allow_tf32 = False
@@ -665,6 +727,15 @@ def execute(args):
             "cache_environment": cache_environment,
         })
         reader, metrics = local_module("reader_v2"), local_module("step2_metrics")
+        bound_helper = local_module("prepare_direction_bound_v2_3")
+        true_positions, _direction_bound, bound_receipt = bound_helper.verify_prepared_bound(
+            args.direction_bound, args.dataset, manifest, args.protocol, metrics)
+        prepared_at = datetime.fromisoformat(bound_receipt["prepared_finished_utc"])
+        allocation_started_at = datetime.fromisoformat(allocation["native_start_time"]).astimezone(timezone.utc)
+        if prepared_at.tzinfo is None or prepared_at > allocation_started_at:
+            raise ValueError("The validation direction bound must be prepared on CPU before GPU allocation starts")
+        write_json(output / "direction_bound_verification.json", bound_receipt)
+        guard.check("after_direction_bound_verification", force_native=True)
         encode_all(config, manifest, args.dataset, output, reader, guard)
         store = reader.V2FeatureStore(config, args.dataset, output / "features", manifest)
         store.training = False
@@ -694,9 +765,12 @@ def execute(args):
         guard.check("before_train_only_decoder")
         decoder = metrics.fit_train_decoder(store, config, output / "decoder", guard.check)
         guard.check("after_train_only_decoder")
-        validate_decoder_on_true_targets(store, decoder, output, guard)
+        decoder_true_target_losses = validate_decoder_on_true_targets(store, decoder, output, guard)
+        guard.check("before_predictor_training", force_native=True)
         selected = train_predictors(config, store, basis, reader, output, guard, provenance)
-        result = evaluate(config, store, basis, selected, decoder, reader, output, guard, metrics)
+        result = evaluate(config, store, basis, selected, decoder, reader, output, guard, metrics,
+                          true_positions, decoder_true_target_losses)
+        guard.check("scientific_work_complete", force_native=True)
         state.update(status="completed_step2_stop", step2_gate="passed" if result["gate"]["passed"] else "failed",
                      stop_after_step2=True, selected_checkpoints={str(k): str(v.relative_to(output)) for k, v in selected.items()})
     except Exception as exc:
@@ -726,6 +800,8 @@ def main(argv=None):
     parser.add_argument("--config", required=True, type=Path)
     parser.add_argument("--protocol", required=True, type=Path)
     parser.add_argument("--dataset", required=True, type=Path)
+    parser.add_argument("--direction-bound", required=True, type=Path,
+                        help="Fresh CPU preparation directory produced by prepare_direction_bound_v2_3.py")
     parser.add_argument("--output", required=True, type=Path)
     return execute(parser.parse_args(argv))
 
