@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_READ_ONLY_EXPORT_PROTOCOL",
+  "registered_before_run": true,
+  "source_sha256": {
+    "experiments/motion_v2/export_retries_v2_3_1.py": "94946eb8c32244d72bd12176b56477be1f84b4b9685fe6e1da24077fbdd27e22"
+  },
+  "scientific_commit": "6dc5ed253dfa305b26be8f19d40edcd6a5878ea7",
+  "runtime_protocol_sha256": "8af60a3f7dcbdd310c2d26bc3e3e6499a3a5f237f60befe61a91b7946e65125f",
+  "purpose": "Package existing native and scientific evidence only after all known submitted jobs have terminal accounting; no scientific calculation",
+  "static_review": "Two independent read-only reviews and AST syntax inspection; no execution before registration",
+  "allowed_attempts": [
+    2,
+    3
+  ],
+  "output_directory": "/scratch/xy3257/motion-v2-20261031-deployment3/export_retries_attemptN",
+  "refuse_existing_output": true,
+  "old_files_modified": false,
+  "file_deletion": false,
+  "scientific_arrays_decoded": false,
+  "native_commands_executed": 0,
+  "model_imports": 0,
+  "test_access_or_generation": false,
+  "retention_training": false,
+  "science_gate_recomputed": false,
+  "failed_settlement_status_preserved": true,
+  "failed_settlement_export_eligibility": "Unique authorized native terminal sacct allocation row and full receipt hash chain are required; exporter success never changes original failure status",
+  "integrity": [
+    "Verify original receipt and runner artifact hashes",
+    "Fingerprint and SHA256 each selected file before/during packaging",
+    "Hash all scientific files including excluded heavy artifacts without decoding",
+    "Recheck known terminal submission history after packaging"
+  ],
+  "download": [
+    "Archive ZIP",
+    "status.json sidecar generated after archive closure",
+    "SHA256SUMS sidecar",
+    "export_manifest.json",
+    "scientific_file_inventory.json"
+  ],
+  "stop_conditions": [
+    "Any unknown or active submitted job",
+    "Any conflicting native identity or hash",
+    "Existing output directory",
+    "Unsafe path or changing file"
+  ],
+  "maximum_small_file_bytes": 33554432,
+  "command": "python -I -B <independent runtime source>/export_retries_v2_3_1.py --attempt N",
+  "interpretation": "export passed means packaging verified only; scientific results come exclusively from original frozen runner output"
+}
