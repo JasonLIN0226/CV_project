@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "attempt2_submitted_monitoring",
+  "science_frozen_commit": "6dc5ed253dfa305b26be8f19d40edcd6a5878ea7",
+  "runtime_registration_commit": "fb48f5ece02a38ee38d7477c065349a086192ba0",
+  "attempt1": {
+    "job_id": "16550",
+    "native_state": "CANCELLED",
+    "four_fact_states": {
+      "no_batch_step": "proven",
+      "stdout_stderr_absent": "proven",
+      "scientific_marker_absent": "proven",
+      "scientific_output_absent": "proven"
+    },
+    "cause_evidence": {
+      "states": [
+        "DOWN+CLOUD+POWERED_DOWN"
+      ],
+      "reason_lines": [
+        "Reason=16550 finishing : ResumeTimeout reached [slurm@2026-10-31T23:47:14]"
+      ]
+    },
+    "actual_a100_gpu_seconds": 769,
+    "diagnosis_receipt_sha256": "02907f56c354a2042ddd2896cb0ce2e84defe72ad0120af4afa58a17fc17bd06"
+  },
+  "attempt2": {
+    "job_id": "16614",
+    "native_state_at_submission": "PENDING",
+    "observed_utc": "2026-10-31T23:50:18.422079+00:00",
+    "restarts": 0,
+    "requeue_observed_not_gate": "1",
+    "submission_receipt_sha256": "6f152d0c4ed826ab92f69fe46e3d0912c94d9d42f69fdc303c1e81370bca59dd",
+    "scientific_start_not_yet_observed": true,
+    "final_accounting_pending": true,
+    "actual_a100_gpu_seconds": null
+  },
+  "admission": {
+    "eligible": true,
+    "attempt": 2,
+    "cumulative_a100_gpu_seconds": 769,
+    "maximum_additional_a100_gpu_seconds": 10800,
+    "projected_cumulative_a100_gpu_seconds": 11569,
+    "user_total_cap_seconds": 14400,
+    "maximum_total_attempts": 3
+  },
+  "settled_cumulative_a100_gpu_seconds": 769,
+  "final_cumulative_a100_gpu_seconds": null,
+  "step2_gate": "not_evaluated",
+  "all_six_required_gates": "not_evaluated",
+  "test_access_or_generation": false,
+  "retention_training": false,
+  "old_evidence_modified": false,
+  "monitor_automation_id": "motion-v2-3-1-16614",
+  "monitor_minutes": 10,
+  "software_checks": {
+    "passed": 158,
+    "tests": 158
+  }
+}
