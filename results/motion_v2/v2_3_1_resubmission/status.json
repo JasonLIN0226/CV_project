@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "attempt2_scientific_running",
+  "status": "completed_step2_passed_stop",
   "science_frozen_commit": "6dc5ed253dfa305b26be8f19d40edcd6a5878ea7",
   "runtime_registration_commit": "fb48f5ece02a38ee38d7477c065349a086192ba0",
   "attempt1": {
@@ -31,18 +31,23 @@
     "requeue_observed_not_gate": "1",
     "submission_receipt_sha256": "6f152d0c4ed826ab92f69fe46e3d0912c94d9d42f69fdc303c1e81370bca59dd",
     "scientific_start_not_yet_observed": false,
-    "final_accounting_pending": true,
-    "actual_a100_gpu_seconds": null,
-    "native_state_last_observed": "RUNNING",
+    "final_accounting_pending": false,
+    "actual_a100_gpu_seconds": 2936,
+    "native_state_last_observed": "COMPLETED",
     "allocated_node": "b-19-27",
     "native_start_utc": "2026-10-31T23:52:04Z",
-    "last_observed_utc": "2026-10-31T23:55:52.159378Z",
+    "last_observed_utc": "2026-11-01T00:42:25.291575+00:00",
     "allocated_gpu_count": 1,
     "scientific_marker_present": true,
     "scientific_output_present": true,
     "batch_step_present": true,
-    "elapsed_a100_seconds_at_snapshot": 228,
-    "remote_snapshot": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/monitor/20261031T235547Z/native_snapshot.json"
+    "elapsed_a100_seconds_at_snapshot": 2936,
+    "remote_snapshot": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/monitor/20261101T004147Z/native_snapshot.json",
+    "native_end_utc": "2026-11-01T00:41:00Z",
+    "settlement_receipt_sha256": "11bf52b9d2ab3bb407f4520ee48a543701e60c14c36652964dfb67fea7f249d9",
+    "scientific_status": "completed_step2_stop",
+    "settlement_invocations": 1,
+    "native_allocation_checks": 87
   },
   "admission": {
     "eligible": true,
@@ -53,10 +58,48 @@
     "user_total_cap_seconds": 14400,
     "maximum_total_attempts": 3
   },
-  "settled_cumulative_a100_gpu_seconds": 769,
-  "final_cumulative_a100_gpu_seconds": null,
-  "step2_gate": "not_evaluated",
-  "all_six_required_gates": "not_evaluated",
+  "settled_cumulative_a100_gpu_seconds": 3705,
+  "final_cumulative_a100_gpu_seconds": 3705,
+  "step2_gate": "passed",
+  "all_six_required_gates": {
+    "passed": true,
+    "primary_d_minus_b": {
+      "3": {
+        "lower95": 0.008095701229326775,
+        "passed": true
+      },
+      "6": {
+        "lower95": 0.011114347942940797,
+        "passed": true
+      }
+    },
+    "secondary_c_minus_b": {
+      "3": {
+        "lower95": 0.01717542733437362,
+        "passed": true
+      },
+      "6": {
+        "lower95": 0.02001232422829777,
+        "passed": true
+      }
+    },
+    "direction_B_minus_b": {
+      "3": {
+        "lower95": 0.0027086069436192315,
+        "passed": true
+      },
+      "6": {
+        "lower95": 0.0060238234620574,
+        "passed": true
+      }
+    },
+    "rule": "All six decoded position MSE improvement lower 95% bounds must be strictly >0: d-b, c-b, and B-b, each at h=3 and h=6",
+    "a_minus_b_is_report_only": true,
+    "feature_mse_is_report_only": true,
+    "d_minus_B_is_report_only": true,
+    "decoder_true_target_loss_is_report_only": true,
+    "stop_after_pass_or_failure": true
+  },
   "test_access_or_generation": false,
   "retention_training": false,
   "old_evidence_modified": false,
@@ -70,5 +113,32 @@
   "attempt3": {
     "authorized_now": false,
     "reason": "scientific_job_started_exists; no further retry under any outcome"
+  },
+  "updated_utc": "2026-11-01T00:47:13.924437+00:00",
+  "final_cumulative_a100_gpu_hours": 1.0291666666666666,
+  "stop_after_step2": true,
+  "no_further_submissions": true,
+  "no_further_scientific_execution": true,
+  "metrics_path": "results/motion_v2/v2_3_1_resubmission/terminal_evidence/repo/results/motion_v2/v2_3_1/step2_gpu_attempt1/metrics/metrics.json",
+  "selected_checkpoints": {
+    "17": "predictor/motion/seed_17/best_epoch_016.pt",
+    "29": "predictor/motion/seed_29/best_epoch_011.pt",
+    "43": "predictor/motion/seed_43/best_epoch_018.pt"
+  },
+  "export_archive_sha256": "0fcac0a6751afae34c25dd8ddf1902a7458375f00db8dbc30fdeca2313beeb76",
+  "export_verified_source_files": 136,
+  "scientific_output_inventory_files": 1293,
+  "terminal_accounting_path": "results/motion_v2/v2_3_1_resubmission/terminal_evidence/runtime_retries_v2_3_1/attempt2/settlement/accounting.json",
+  "result_audit_path": "results/motion_v2/v2_3_1_resubmission/result_audit.json",
+  "final_report_path": "docs/MOTION_V2_3_1_RESUBMISSION_REPORT_ZH.md",
+  "monitor_automation_action": "pause_after_delivery",
+  "independent_result_audit": {
+    "status": "passed",
+    "checks": 116,
+    "failed_checks": 0,
+    "sha256": "e21bf0d059a0a89b6244c90c72c929b7f32b44c6fe7c2bb58c7a72c5aa300bf5",
+    "scientific_arrays_decoded": false,
+    "bootstrap_recomputed": false,
+    "model_run": false
   }
 }

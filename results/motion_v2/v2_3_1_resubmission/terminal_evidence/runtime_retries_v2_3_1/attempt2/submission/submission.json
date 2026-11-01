@@ -1,0 +1,417 @@
+{
+  "started_utc": "2026-10-31T23:49:17.290862+00:00",
+  "attempt": 2,
+  "owner": "xy3257",
+  "runtime_protocol_sha256": "8af60a3f7dcbdd310c2d26bc3e3e6499a3a5f237f60befe61a91b7946e65125f",
+  "registration": {
+    "head_commit": "6dc5ed253dfa305b26be8f19d40edcd6a5878ea7",
+    "deployment_protocol_sha256": "1c6151d7a6d47833e7baa80389820bcc661ab7dbeeb0a6bfcafb5d181ccb693a",
+    "scientific_protocol_sha256": "b88c85ca78a91b722c48bdd8465ce88b324ac281447c4608d1447f1a6b508c60",
+    "wrapper_sha256": "7543fd9282b89639daf8054019d01977dda092a1f78c7c052d3e687fd9378b84",
+    "wrapper_directives": {
+      "--job-name": "motion-v231",
+      "--account": "csci_ga_2271-2026fa",
+      "--partition": "c12m85-a100-1",
+      "--nodes": "1",
+      "--ntasks": "1",
+      "--cpus-per-task": "4",
+      "--mem": "16G",
+      "--gres": "gpu:a100:1",
+      "--time": "03:00:00",
+      "--no-requeue": true,
+      "--export": "ALL",
+      "--open-mode": "append",
+      "--output": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-%j.stdout.log",
+      "--error": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-%j.stderr.log"
+    },
+    "manifest_sha256": "9ac43b81eb75456e17f3542e64e8a0ab58282207752ae3712836f6d2ea20032a"
+  },
+  "sbatch_attempted": true,
+  "job_id": "16614",
+  "automatic_retry_on_unknown_outcome": false,
+  "diagnosis": {
+    "path": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/diagnosis_16550/receipt.json",
+    "sha256": "02907f56c354a2042ddd2896cb0ce2e84defe72ad0120af4afa58a17fc17bd06",
+    "inventory_sha256": {
+      "01_sacct_helpformat.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "01_sacct_helpformat.stdout.txt": "bb00c911f59a8111f2eadbb3854bc1fe985c520cad7b6fb5d8248f32eebfdb1a",
+      "02_sacct_all_fields_all_steps.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "02_sacct_all_fields_all_steps.stdout.txt": "75f2dde788857d39ef11e8ef097a789d50bed0c0ba7e375920293907af720549",
+      "03_scontrol_job.stderr.txt": "e7cbc19b304ce7fb323ea1ccae489c74fbc1bdf5635781d0999740708566b8df",
+      "03_scontrol_job.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "04_scontrol_node.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "04_scontrol_node.stdout.txt": "74be95c4d5278869b94b6e7aa84d17470fc1fcdb4d85c97541a81f41fd7f510b",
+      "05_scontrol_config.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "05_scontrol_config.stdout.txt": "c7ea92a512b917b14bbcfb449d0e66b43cffe91bea5eb269c62dfd8289fd421e",
+      "06_sinfo_partition_nodes.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "06_sinfo_partition_nodes.stdout.txt": "950d4d539b1fea7f844fe505afbdbd260c5dd5246562cc8aa17b0054ab30ca4e",
+      "receipt.json": "02907f56c354a2042ddd2896cb0ce2e84defe72ad0120af4afa58a17fc17bd06",
+      "status.json": "bee56f89fbc433f20f78cbac947fa449fd3fdf5fe64b82f6c911c24214b4a88a",
+      "SHA256SUMS": "ceed801f84a1988dee6e0045a123110f0a6caa572640ac77245d866e26446665"
+    },
+    "job_id": "16550",
+    "four_facts": {
+      "no_batch_step": {
+        "state": "proven",
+        "reason": "complete successful all-field --duplicates query has a unique authorized terminal allocation and no .batch row"
+      },
+      "stdout_stderr_absent": {
+        "state": "proven",
+        "reason": "all listed paths confirmed absent",
+        "evidence": [
+          {
+            "kind": "stdout",
+            "path": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16550.stdout.log",
+            "checked_utc": "2026-10-31T23:48:50.810105+00:00",
+            "exists": false,
+            "state": "absent",
+            "error": null
+          },
+          {
+            "kind": "stderr",
+            "path": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16550.stderr.log",
+            "checked_utc": "2026-10-31T23:48:50.810717+00:00",
+            "exists": false,
+            "state": "absent",
+            "error": null
+          }
+        ]
+      },
+      "scientific_marker_absent": {
+        "state": "proven",
+        "reason": "all listed paths confirmed absent",
+        "evidence": [
+          {
+            "kind": "scientific_marker",
+            "path": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific_job_started",
+            "checked_utc": "2026-10-31T23:48:50.811184+00:00",
+            "exists": false,
+            "state": "absent",
+            "error": null
+          }
+        ]
+      },
+      "scientific_output_absent": {
+        "state": "proven",
+        "reason": "all listed paths confirmed absent",
+        "evidence": [
+          {
+            "kind": "scientific_output",
+            "path": "/scratch/xy3257/motion-v2-20261031-deployment3/repo/results/motion_v2/v2_3_1/step2_gpu_attempt1",
+            "checked_utc": "2026-10-31T23:48:50.811613+00:00",
+            "exists": false,
+            "state": "absent",
+            "error": null
+          }
+        ]
+      }
+    },
+    "diagnostic_errors": [
+      {
+        "probe": "03_scontrol_job",
+        "returncode": 1,
+        "error": null,
+        "stderr": "slurm_load_jobs error: Invalid job id specified\n"
+      }
+    ],
+    "cause_or_node_diagnostics_used_as_admission_gate": false
+  },
+  "preparation": {
+    "preflight_hashes": {
+      "receipt.json": "b11cf859a23d9bf8f6a3953221737befd70258833d4f44db82c6b0f454b9f774",
+      "status.json": "a474478b6dc069be4f8a5ec3fcb1cfcc76994293111d17cae38fc1eacb493131",
+      "SHA256SUMS": "c2740f9c8e584431e25c273a946199eb0fc59a94376236b3ca292489d36103f0"
+    },
+    "unpack_receipt_sha256": "72284dc504d34f8d10920a03375bf3cbfe9d4a4b9ac767355541ee4a8a464612",
+    "direction_bound_hashes": {
+      "direction_bound.npz": "0a99ba0570ef116a03c24775d311ba25886434e7f1e2c87637bc6e1a800427ea",
+      "status.json": "8b89cd9e23f5d8a057da94693c36dfe184a6f4ae060452f81ab3d43ea4507df4",
+      "artifact_sha256.json": "f6d943e9d67e9ff5b8af2d766eda4124adbe1c4ec678cb74ef47803323cb1a1f"
+    },
+    "direction_bound_reused_without_new_preparation": true,
+    "direction_bound_original_protocol_sha256": "031e37b3f83d3ec5c05242a72069fc8336b32e771c3e2a8a2a3f6f0302e10875",
+    "scientific_output_absent_before_submission": "/scratch/xy3257/motion-v2-20261031-deployment3/repo/results/motion_v2/v2_3_1/step2_gpu_attempt1",
+    "dataset_arrays_decoded": false
+  },
+  "environment_check": {
+    "path": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/receipt.json",
+    "sha256": "c29ff6fd9def0715620a8d7546dc430097bfc86a6563a1884eade39259849046"
+  },
+  "fresh_data_verification": {
+    "path": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/submission/data_reverification.json",
+    "sha256": "b93fd3a7a3d803cbb4388eaa6ed88dffdf586b5e376cd2cf28919fad572f3624",
+    "artifact_files": 2432
+  },
+  "native_commands": [
+    {
+      "argv": [
+        "sacct",
+        "--duplicates",
+        "-j",
+        "16550",
+        "--starttime=2026-10-31T00:00:00",
+        "--noheader",
+        "--parsable2",
+        "--format=JobIDRaw,JobName%40,User,Account,Partition,State%40,ExitCode,Start,End,ElapsedRaw,AllocTRES,ReqTRES"
+      ],
+      "returncode": 0,
+      "stdout": "16550|motion-v231|xy3257|csci_ga_2271-2026fa|c12m85-a100-1|CANCELLED by 0|0:0|2026-10-31T22:07:12|2026-10-31T22:20:01|769|billing=12,cpu=12,gres/gpu=1,mem=16G,node=1|billing=4,cpu=4,gres/gpu=1,mem=16G,node=1\n",
+      "stderr": "",
+      "captured_utc": "2026-10-31T23:50:18.156872+00:00"
+    },
+    {
+      "argv": [
+        "scontrol",
+        "show",
+        "job",
+        "--oneliner",
+        "16550"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "slurm_load_jobs error: Invalid job id specified\n",
+      "captured_utc": "2026-10-31T23:50:18.228949+00:00"
+    },
+    {
+      "argv": [
+        "scontrol",
+        "show",
+        "job",
+        "--oneliner",
+        "16614"
+      ],
+      "returncode": 0,
+      "stdout": "JobId=16614 JobName=motion-v231 UserId=xy3257(4882486) GroupId=xy3257(4882486) MCS_label=N/A Priority=14750 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=PENDING Reason=None Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:00:00 TimeLimit=03:00:00 TimeMin=N/A SubmitTime=2026-10-31T23:50:18 EligibleTime=2026-10-31T23:50:18 AccrueTime=Unknown StartTime=Unknown EndTime=Unknown Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-31T23:50:18 Scheduler=Main Partition=c12m85-a100-1 AllocNode:Sid=3-gcp-r2:7465 ReqNodeList=(null) ExcNodeList=(null) NodeList= NumNodes=1-1 NumCPUs=4 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=4,mem=16G,node=1,billing=4,gres/gpu=1 AllocTRES=(null) Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=4 MinMemoryNode=16G MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/scratch/xy3257/motion-v2-20261031-deployment3/repo/experiments/motion_v2/run_step2_v2_3_1.sbatch WorkDir=/scratch/xy3257/motion-v2-20261031-deployment3/repo StdErr=/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16614.stderr.log StdIn=/dev/null StdOut=/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16614.stdout.log TresPerNode=gres/gpu:a100:1 TresPerTask=cpu=4 \n",
+      "stderr": "",
+      "captured_utc": "2026-10-31T23:50:18.422079+00:00"
+    }
+  ],
+  "verified_native_history": [
+    {
+      "attempt": 1,
+      "job_id": "16550",
+      "submission_path": "/scratch/xy3257/motion-v2-20261031-deployment3/submission/submission.json",
+      "submission_sha256": "33f925568bd6028b9beeb8c6f7a8ec3282c470b55f82fe6a060ebe48f4113eb0",
+      "submission_inventory": {
+        "immediate_scontrol.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "immediate_scontrol.stdout.txt": "d13763e705c4a016c8f6b51fe35e26132467c51a09851e9696e6955cdda75d19",
+        "sbatch.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sbatch.stdout.txt": "39320620a55b5b7dc200bf98515df1c8e77ac39dca830587a37778183dffc57b",
+        "status.json": "72eda9a11dda422a70a93dc6f9290a9b59061c1cc183c4cf95c1a59ad3980357",
+        "submission.json": "33f925568bd6028b9beeb8c6f7a8ec3282c470b55f82fe6a060ebe48f4113eb0",
+        "submission_started.json": "8f9681e29d09a5293e056bb6457659890a487e77518047368de28a96cdc8a71b",
+        "SHA256SUMS": "588d72fd03a7b10e57776cb42cd3827ab5f3cfd33ade505a894126ea7cfb2d9c"
+      },
+      "terminal": true,
+      "native_state": "CANCELLED",
+      "restarts": 0,
+      "actual_a100_gpu_seconds": 769,
+      "no_batch_step": true,
+      "batch_step_ids": [],
+      "stdout_stderr_absent": true,
+      "scientific_marker_absent": true,
+      "scientific_output_absent": true,
+      "path_probes": {
+        "stdout": {
+          "path": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16550.stdout.log",
+          "absent": true
+        },
+        "stderr": {
+          "path": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16550.stderr.log",
+          "absent": true
+        },
+        "marker": {
+          "path": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific_job_started",
+          "absent": true
+        },
+        "science_output": {
+          "path": "/scratch/xy3257/motion-v2-20261031-deployment3/repo/results/motion_v2/v2_3_1/step2_gpu_attempt1",
+          "absent": true
+        }
+      },
+      "native_accounting": {
+        "native_state": "CANCELLED",
+        "allocated_gpu_count": 1,
+        "actual_a100_gpu_seconds": 769,
+        "actual_a100_gpu_hours": 0.2136111111111111,
+        "allocation_case": "allocated_single_a100",
+        "accounting_complete": true,
+        "final_control_available": true,
+        "final_fields": {
+          "JobId": "16550",
+          "JobName": "motion-v231",
+          "UserId": "xy3257(4882486)",
+          "GroupId": "xy3257(4882486)",
+          "MCS_label": "N/A",
+          "Priority": "14750",
+          "Nice": "0",
+          "Account": "csci_ga_2271-2026fa",
+          "QOS": "normal",
+          "JobState": "CANCELLED",
+          "Reason": "None",
+          "Dependency": "(null)",
+          "Requeue": "1",
+          "Restarts": "0",
+          "BatchFlag": "1",
+          "Reboot": "0",
+          "ExitCode": "0:0",
+          "RunTime": "00:12:49",
+          "TimeLimit": "03:00:00",
+          "TimeMin": "N/A",
+          "SubmitTime": "2026-10-31T21:57:39",
+          "EligibleTime": "2026-10-31T21:57:39",
+          "AccrueTime": "2026-10-31T21:57:39",
+          "StartTime": "2026-10-31T22:07:12",
+          "EndTime": "2026-10-31T22:20:01",
+          "Deadline": "N/A",
+          "SuspendTime": "None",
+          "SecsPreSuspend": "0",
+          "LastSchedEval": "2026-10-31T22:07:12",
+          "Scheduler": "Backfill",
+          "Partition": "c12m85-a100-1",
+          "AllocNode:Sid": "3-gcp-r2:8241",
+          "ReqNodeList": "(null)",
+          "ExcNodeList": "(null)",
+          "NodeList": "b-19-12",
+          "BatchHost": "b-19-12",
+          "NumNodes": "1",
+          "NumCPUs": "12",
+          "NumTasks": "1",
+          "CPUs/Task": "4",
+          "ReqB:S:C:T": "0:0:*:*",
+          "ReqTRES": "cpu=4,mem=16G,node=1,billing=4,gres/gpu=1",
+          "AllocTRES": "cpu=12,mem=16G,node=1,billing=12,gres/gpu=1",
+          "Socks/Node": "*",
+          "NtasksPerN:B:S:C": "1:0:*:*",
+          "CoreSpec": "*",
+          "MinCPUsNode": "4",
+          "MinMemoryNode": "16G",
+          "MinTmpDiskNode": "0",
+          "Features": "(null)",
+          "DelayBoot": "00:00:00",
+          "OverSubscribe": "NO",
+          "Contiguous": "0",
+          "Licenses": "(null)",
+          "LicensesAlloc": "(null)",
+          "Network": "(null)",
+          "Command": "/scratch/xy3257/motion-v2-20261031-deployment3/repo/experiments/motion_v2/run_step2_v2_3_1.sbatch",
+          "WorkDir": "/scratch/xy3257/motion-v2-20261031-deployment3/repo",
+          "StdErr": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16550.stderr.log",
+          "StdIn": "/dev/null",
+          "StdOut": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16550.stdout.log",
+          "TresPerNode": "gres/gpu:a100:1",
+          "TresPerTask": "cpu=4"
+        },
+        "scientific_success_inferred": false
+      },
+      "control_evidence": {
+        "control_text": "JobId=16550 JobName=motion-v231 UserId=xy3257(4882486) GroupId=xy3257(4882486) MCS_label=N/A Priority=14750 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=CANCELLED Reason=None Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:12:49 TimeLimit=03:00:00 TimeMin=N/A SubmitTime=2026-10-31T21:57:39 EligibleTime=2026-10-31T21:57:39 AccrueTime=2026-10-31T21:57:39 StartTime=2026-10-31T22:07:12 EndTime=2026-10-31T22:20:01 Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-31T22:07:12 Scheduler=Backfill Partition=c12m85-a100-1 AllocNode:Sid=3-gcp-r2:8241 ReqNodeList=(null) ExcNodeList=(null) NodeList=b-19-12 BatchHost=b-19-12 NumNodes=1 NumCPUs=12 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=4,mem=16G,node=1,billing=4,gres/gpu=1 AllocTRES=cpu=12,mem=16G,node=1,billing=12,gres/gpu=1 Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=4 MinMemoryNode=16G MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/scratch/xy3257/motion-v2-20261031-deployment3/repo/experiments/motion_v2/run_step2_v2_3_1.sbatch WorkDir=/scratch/xy3257/motion-v2-20261031-deployment3/repo StdErr=/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16550.stderr.log StdIn=/dev/null StdOut=/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16550.stdout.log TresPerNode=gres/gpu:a100:1 TresPerTask=cpu=4 \n",
+        "control_sha256": "38ba2a0bfdcb44cd3b94aba51dd1b79912520a82c1ab0acf7fd1fcc3fd89739d",
+        "evidence_kind": "preserved_terminal_scontrol_after_explicit_purge",
+        "source_path": "/scratch/xy3257/motion-v2-20261031-deployment3/settlement/final_scontrol.stdout.txt",
+        "settlement_receipt_sha256": "57d3cd0ebbe345c7cd3e1779d691af87b5b9ebf7d50afecff4d5307b081fe01a"
+      }
+    }
+  ],
+  "admission": {
+    "eligible": true,
+    "attempt": 2,
+    "cumulative_a100_gpu_seconds": 769,
+    "maximum_additional_a100_gpu_seconds": 10800,
+    "projected_cumulative_a100_gpu_seconds": 11569,
+    "user_total_cap_seconds": 14400,
+    "maximum_total_attempts": 3
+  },
+  "sbatch": {
+    "argv": [
+      "sbatch",
+      "--parsable",
+      "--no-requeue",
+      "/scratch/xy3257/motion-v2-20261031-deployment3/repo/experiments/motion_v2/run_step2_v2_3_1.sbatch"
+    ],
+    "returncode": 0,
+    "stdout": "16614\n",
+    "stderr": "",
+    "captured_utc": "2026-10-31T23:50:18.356028+00:00"
+  },
+  "cluster": null,
+  "immediate_scontrol": {
+    "argv": [
+      "scontrol",
+      "show",
+      "job",
+      "--oneliner",
+      "16614"
+    ],
+    "returncode": 0,
+    "stdout": "JobId=16614 JobName=motion-v231 UserId=xy3257(4882486) GroupId=xy3257(4882486) MCS_label=N/A Priority=14750 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=PENDING Reason=None Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:00:00 TimeLimit=03:00:00 TimeMin=N/A SubmitTime=2026-10-31T23:50:18 EligibleTime=2026-10-31T23:50:18 AccrueTime=Unknown StartTime=Unknown EndTime=Unknown Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-31T23:50:18 Scheduler=Main Partition=c12m85-a100-1 AllocNode:Sid=3-gcp-r2:7465 ReqNodeList=(null) ExcNodeList=(null) NodeList= NumNodes=1-1 NumCPUs=4 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=4,mem=16G,node=1,billing=4,gres/gpu=1 AllocTRES=(null) Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=4 MinMemoryNode=16G MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/scratch/xy3257/motion-v2-20261031-deployment3/repo/experiments/motion_v2/run_step2_v2_3_1.sbatch WorkDir=/scratch/xy3257/motion-v2-20261031-deployment3/repo StdErr=/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16614.stderr.log StdIn=/dev/null StdOut=/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16614.stdout.log TresPerNode=gres/gpu:a100:1 TresPerTask=cpu=4 \n",
+    "stderr": "",
+    "captured_utc": "2026-10-31T23:50:18.422079+00:00"
+  },
+  "immediate_fields": {
+    "JobId": "16614",
+    "JobName": "motion-v231",
+    "UserId": "xy3257(4882486)",
+    "GroupId": "xy3257(4882486)",
+    "MCS_label": "N/A",
+    "Priority": "14750",
+    "Nice": "0",
+    "Account": "csci_ga_2271-2026fa",
+    "QOS": "normal",
+    "JobState": "PENDING",
+    "Reason": "None",
+    "Dependency": "(null)",
+    "Requeue": "1",
+    "Restarts": "0",
+    "BatchFlag": "1",
+    "Reboot": "0",
+    "ExitCode": "0:0",
+    "RunTime": "00:00:00",
+    "TimeLimit": "03:00:00",
+    "TimeMin": "N/A",
+    "SubmitTime": "2026-10-31T23:50:18",
+    "EligibleTime": "2026-10-31T23:50:18",
+    "AccrueTime": "Unknown",
+    "StartTime": "Unknown",
+    "EndTime": "Unknown",
+    "Deadline": "N/A",
+    "SuspendTime": "None",
+    "SecsPreSuspend": "0",
+    "LastSchedEval": "2026-10-31T23:50:18",
+    "Scheduler": "Main",
+    "Partition": "c12m85-a100-1",
+    "AllocNode:Sid": "3-gcp-r2:7465",
+    "ReqNodeList": "(null)",
+    "ExcNodeList": "(null)",
+    "NodeList": "",
+    "NumNodes": "1-1",
+    "NumCPUs": "4",
+    "NumTasks": "1",
+    "CPUs/Task": "4",
+    "ReqB:S:C:T": "0:0:*:*",
+    "ReqTRES": "cpu=4,mem=16G,node=1,billing=4,gres/gpu=1",
+    "AllocTRES": "(null)",
+    "Socks/Node": "*",
+    "NtasksPerN:B:S:C": "1:0:*:*",
+    "CoreSpec": "*",
+    "MinCPUsNode": "4",
+    "MinMemoryNode": "16G",
+    "MinTmpDiskNode": "0",
+    "Features": "(null)",
+    "DelayBoot": "00:00:00",
+    "OverSubscribe": "NO",
+    "Contiguous": "0",
+    "Licenses": "(null)",
+    "LicensesAlloc": "(null)",
+    "Network": "(null)",
+    "Command": "/scratch/xy3257/motion-v2-20261031-deployment3/repo/experiments/motion_v2/run_step2_v2_3_1.sbatch",
+    "WorkDir": "/scratch/xy3257/motion-v2-20261031-deployment3/repo",
+    "StdErr": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16614.stderr.log",
+    "StdIn": "/dev/null",
+    "StdOut": "/scratch/xy3257/motion-v2-20261031-deployment3/scientific-job-16614.stdout.log",
+    "TresPerNode": "gres/gpu:a100:1",
+    "TresPerTask": "cpu=4"
+  },
+  "requeue_observed_not_gate": "1",
+  "finished_utc": "2026-10-31T23:50:18.435547+00:00"
+}

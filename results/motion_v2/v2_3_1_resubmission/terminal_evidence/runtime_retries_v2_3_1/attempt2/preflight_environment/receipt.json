@@ -1,0 +1,539 @@
+{
+  "status": "passed",
+  "environment": {
+    "python": "3.12.11 (main, Oct  7 2025, 15:34:39) [Clang 20.1.4 ]",
+    "python_executable": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/bin/python",
+    "sys_prefix": "/scratch/xy3257/motion-v2-20261031-deployment1/venv",
+    "platform": "Linux-5.14.0-687.24.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "machine": "x86_64",
+    "isolated": true,
+    "dont_write_bytecode": true,
+    "pinned_versions": {
+      "numpy": "1.26.4",
+      "torch": "2.5.1+cu121",
+      "torchvision": "0.20.1+cu121",
+      "transformers": "5.5.4",
+      "huggingface-hub": "1.11.0",
+      "safetensors": "0.7.0",
+      "pyyaml": "6.0.3",
+      "pillow": "11.3.0",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.17.1",
+      "pytest": "7.4.4"
+    },
+    "installed_versions": {
+      "annotated-doc": "0.0.5",
+      "anyio": "4.15.1",
+      "certifi": "2026.10.23",
+      "cloudpickle": "3.1.2",
+      "filelock": "4.2.6",
+      "fsspec": "2026.9.0",
+      "h11": "0.16.0",
+      "hf-xet": "1.8.0",
+      "httpcore": "1.0.9",
+      "httpx": "0.28.1",
+      "huggingface-hub": "1.11.0",
+      "idna": "3.20",
+      "iniconfig": "2.3.1",
+      "jinja2": "3.1.6",
+      "joblib": "1.6.0",
+      "markdown-it-py": "4.2.0",
+      "markupsafe": "3.0.4",
+      "mdurl": "0.1.2",
+      "mpmath": "1.3.0",
+      "networkx": "3.7",
+      "numpy": "1.26.4",
+      "nvidia-cublas-cu12": "12.1.3.1",
+      "nvidia-cuda-cupti-cu12": "12.1.105",
+      "nvidia-cuda-nvrtc-cu12": "12.1.105",
+      "nvidia-cuda-runtime-cu12": "12.1.105",
+      "nvidia-cudnn-cu12": "9.1.0.70",
+      "nvidia-cufft-cu12": "11.0.2.54",
+      "nvidia-curand-cu12": "10.3.2.106",
+      "nvidia-cusolver-cu12": "11.4.5.107",
+      "nvidia-cusparse-cu12": "12.1.0.106",
+      "nvidia-nccl-cu12": "2.21.5",
+      "nvidia-nvjitlink-cu12": "12.9.86",
+      "nvidia-nvtx-cu12": "12.1.105",
+      "packaging": "26.3",
+      "pillow": "11.3.0",
+      "pluggy": "1.7.0",
+      "pygments": "2.21.0",
+      "pytest": "7.4.4",
+      "pyyaml": "6.0.3",
+      "regex": "2026.9.29",
+      "rich": "15.0.0",
+      "safetensors": "0.7.0",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.17.1",
+      "setuptools": "84.2.1",
+      "shellingham": "1.5.4",
+      "sympy": "1.13.1",
+      "threadpoolctl": "3.7.0",
+      "tokenizers": "0.22.2",
+      "torch": "2.5.1+cu121",
+      "torchvision": "0.20.1+cu121",
+      "tqdm": "4.70.1",
+      "transformers": "5.5.4",
+      "triton": "3.1.0",
+      "typer": "0.27.3",
+      "typing-extensions": "4.16.0"
+    },
+    "active_dependency_checks": [
+      {
+        "package": "anyio",
+        "requirement": "idna>=2.8",
+        "installed_version": "3.20"
+      },
+      {
+        "package": "anyio",
+        "requirement": "typing_extensions>=4.16.0; python_version < \"3.15\"",
+        "installed_version": "4.16.0"
+      },
+      {
+        "package": "httpcore",
+        "requirement": "certifi",
+        "installed_version": "2026.10.23"
+      },
+      {
+        "package": "httpcore",
+        "requirement": "h11>=0.16",
+        "installed_version": "0.16.0"
+      },
+      {
+        "package": "httpx",
+        "requirement": "anyio",
+        "installed_version": "4.15.1"
+      },
+      {
+        "package": "httpx",
+        "requirement": "certifi",
+        "installed_version": "2026.10.23"
+      },
+      {
+        "package": "httpx",
+        "requirement": "httpcore==1.*",
+        "installed_version": "1.0.9"
+      },
+      {
+        "package": "httpx",
+        "requirement": "idna",
+        "installed_version": "3.20"
+      },
+      {
+        "package": "huggingface-hub",
+        "requirement": "filelock>=3.10.0",
+        "installed_version": "4.2.6"
+      },
+      {
+        "package": "huggingface-hub",
+        "requirement": "fsspec>=2023.5.0",
+        "installed_version": "2026.9.0"
+      },
+      {
+        "package": "huggingface-hub",
+        "requirement": "hf-xet<2.0.0,>=1.4.3; platform_machine == \"x86_64\" or platform_machine == \"amd64\" or platform_machine == \"AMD64\" or platform_machine == \"arm64\" or platform_machine == \"aarch64\"",
+        "installed_version": "1.8.0"
+      },
+      {
+        "package": "huggingface-hub",
+        "requirement": "httpx<1,>=0.23.0",
+        "installed_version": "0.28.1"
+      },
+      {
+        "package": "huggingface-hub",
+        "requirement": "packaging>=20.9",
+        "installed_version": "26.3"
+      },
+      {
+        "package": "huggingface-hub",
+        "requirement": "pyyaml>=5.1",
+        "installed_version": "6.0.3"
+      },
+      {
+        "package": "huggingface-hub",
+        "requirement": "tqdm>=4.42.1",
+        "installed_version": "4.70.1"
+      },
+      {
+        "package": "huggingface-hub",
+        "requirement": "typer",
+        "installed_version": "0.27.3"
+      },
+      {
+        "package": "huggingface-hub",
+        "requirement": "typing-extensions>=4.1.0",
+        "installed_version": "4.16.0"
+      },
+      {
+        "package": "jinja2",
+        "requirement": "MarkupSafe>=2.0",
+        "installed_version": "3.0.4"
+      },
+      {
+        "package": "joblib",
+        "requirement": "cloudpickle>=3.0",
+        "installed_version": "3.1.2"
+      },
+      {
+        "package": "markdown-it-py",
+        "requirement": "mdurl~=0.1",
+        "installed_version": "0.1.2"
+      },
+      {
+        "package": "nvidia-cudnn-cu12",
+        "requirement": "nvidia-cublas-cu12",
+        "installed_version": "12.1.3.1"
+      },
+      {
+        "package": "nvidia-cusolver-cu12",
+        "requirement": "nvidia-cublas-cu12",
+        "installed_version": "12.1.3.1"
+      },
+      {
+        "package": "nvidia-cusolver-cu12",
+        "requirement": "nvidia-nvjitlink-cu12",
+        "installed_version": "12.9.86"
+      },
+      {
+        "package": "nvidia-cusolver-cu12",
+        "requirement": "nvidia-cusparse-cu12",
+        "installed_version": "12.1.0.106"
+      },
+      {
+        "package": "nvidia-cusparse-cu12",
+        "requirement": "nvidia-nvjitlink-cu12",
+        "installed_version": "12.9.86"
+      },
+      {
+        "package": "pytest",
+        "requirement": "iniconfig",
+        "installed_version": "2.3.1"
+      },
+      {
+        "package": "pytest",
+        "requirement": "packaging",
+        "installed_version": "26.3"
+      },
+      {
+        "package": "pytest",
+        "requirement": "pluggy <2.0,>=0.12",
+        "installed_version": "1.7.0"
+      },
+      {
+        "package": "rich",
+        "requirement": "markdown-it-py (>=2.2.0)",
+        "installed_version": "4.2.0"
+      },
+      {
+        "package": "rich",
+        "requirement": "pygments (>=2.13.0,<3.0.0)",
+        "installed_version": "2.21.0"
+      },
+      {
+        "package": "scikit-learn",
+        "requirement": "numpy>=1.22.0",
+        "installed_version": "1.26.4"
+      },
+      {
+        "package": "scikit-learn",
+        "requirement": "scipy>=1.8.0",
+        "installed_version": "1.17.1"
+      },
+      {
+        "package": "scikit-learn",
+        "requirement": "joblib>=1.2.0",
+        "installed_version": "1.6.0"
+      },
+      {
+        "package": "scikit-learn",
+        "requirement": "threadpoolctl>=3.1.0",
+        "installed_version": "3.7.0"
+      },
+      {
+        "package": "scipy",
+        "requirement": "numpy<2.7,>=1.26.4",
+        "installed_version": "1.26.4"
+      },
+      {
+        "package": "sympy",
+        "requirement": "mpmath <1.4,>=1.1.0",
+        "installed_version": "1.3.0"
+      },
+      {
+        "package": "tokenizers",
+        "requirement": "huggingface-hub>=0.16.4,<2.0",
+        "installed_version": "1.11.0"
+      },
+      {
+        "package": "torch",
+        "requirement": "filelock",
+        "installed_version": "4.2.6"
+      },
+      {
+        "package": "torch",
+        "requirement": "typing-extensions (>=4.8.0)",
+        "installed_version": "4.16.0"
+      },
+      {
+        "package": "torch",
+        "requirement": "networkx",
+        "installed_version": "3.7"
+      },
+      {
+        "package": "torch",
+        "requirement": "jinja2",
+        "installed_version": "3.1.6"
+      },
+      {
+        "package": "torch",
+        "requirement": "fsspec",
+        "installed_version": "2026.9.0"
+      },
+      {
+        "package": "torch",
+        "requirement": "nvidia-cuda-nvrtc-cu12 (==12.1.105) ; platform_system == \"Linux\" and platform_machine == \"x86_64\"",
+        "installed_version": "12.1.105"
+      },
+      {
+        "package": "torch",
+        "requirement": "nvidia-cuda-runtime-cu12 (==12.1.105) ; platform_system == \"Linux\" and platform_machine == \"x86_64\"",
+        "installed_version": "12.1.105"
+      },
+      {
+        "package": "torch",
+        "requirement": "nvidia-cuda-cupti-cu12 (==12.1.105) ; platform_system == \"Linux\" and platform_machine == \"x86_64\"",
+        "installed_version": "12.1.105"
+      },
+      {
+        "package": "torch",
+        "requirement": "nvidia-cudnn-cu12 (==9.1.0.70) ; platform_system == \"Linux\" and platform_machine == \"x86_64\"",
+        "installed_version": "9.1.0.70"
+      },
+      {
+        "package": "torch",
+        "requirement": "nvidia-cublas-cu12 (==12.1.3.1) ; platform_system == \"Linux\" and platform_machine == \"x86_64\"",
+        "installed_version": "12.1.3.1"
+      },
+      {
+        "package": "torch",
+        "requirement": "nvidia-cufft-cu12 (==11.0.2.54) ; platform_system == \"Linux\" and platform_machine == \"x86_64\"",
+        "installed_version": "11.0.2.54"
+      },
+      {
+        "package": "torch",
+        "requirement": "nvidia-curand-cu12 (==10.3.2.106) ; platform_system == \"Linux\" and platform_machine == \"x86_64\"",
+        "installed_version": "10.3.2.106"
+      },
+      {
+        "package": "torch",
+        "requirement": "nvidia-cusolver-cu12 (==11.4.5.107) ; platform_system == \"Linux\" and platform_machine == \"x86_64\"",
+        "installed_version": "11.4.5.107"
+      },
+      {
+        "package": "torch",
+        "requirement": "nvidia-cusparse-cu12 (==12.1.0.106) ; platform_system == \"Linux\" and platform_machine == \"x86_64\"",
+        "installed_version": "12.1.0.106"
+      },
+      {
+        "package": "torch",
+        "requirement": "nvidia-nccl-cu12 (==2.21.5) ; platform_system == \"Linux\" and platform_machine == \"x86_64\"",
+        "installed_version": "2.21.5"
+      },
+      {
+        "package": "torch",
+        "requirement": "nvidia-nvtx-cu12 (==12.1.105) ; platform_system == \"Linux\" and platform_machine == \"x86_64\"",
+        "installed_version": "12.1.105"
+      },
+      {
+        "package": "torch",
+        "requirement": "triton (==3.1.0) ; platform_system == \"Linux\" and platform_machine == \"x86_64\" and python_version < \"3.13\"",
+        "installed_version": "3.1.0"
+      },
+      {
+        "package": "torch",
+        "requirement": "setuptools ; python_version >= \"3.12\"",
+        "installed_version": "84.2.1"
+      },
+      {
+        "package": "torch",
+        "requirement": "sympy (==1.13.1) ; python_version >= \"3.9\"",
+        "installed_version": "1.13.1"
+      },
+      {
+        "package": "torchvision",
+        "requirement": "numpy",
+        "installed_version": "1.26.4"
+      },
+      {
+        "package": "torchvision",
+        "requirement": "torch (==2.5.1)",
+        "installed_version": "2.5.1+cu121"
+      },
+      {
+        "package": "torchvision",
+        "requirement": "pillow (!=8.3.*,>=5.3.0)",
+        "installed_version": "11.3.0"
+      },
+      {
+        "package": "transformers",
+        "requirement": "huggingface-hub<2.0,>=1.5.0",
+        "installed_version": "1.11.0"
+      },
+      {
+        "package": "transformers",
+        "requirement": "numpy>=1.17",
+        "installed_version": "1.26.4"
+      },
+      {
+        "package": "transformers",
+        "requirement": "packaging>=20.0",
+        "installed_version": "26.3"
+      },
+      {
+        "package": "transformers",
+        "requirement": "pyyaml>=5.1",
+        "installed_version": "6.0.3"
+      },
+      {
+        "package": "transformers",
+        "requirement": "regex>=2025.10.22",
+        "installed_version": "2026.9.29"
+      },
+      {
+        "package": "transformers",
+        "requirement": "tokenizers<=0.23.0,>=0.22.0",
+        "installed_version": "0.22.2"
+      },
+      {
+        "package": "transformers",
+        "requirement": "typer",
+        "installed_version": "0.27.3"
+      },
+      {
+        "package": "transformers",
+        "requirement": "safetensors>=0.4.3",
+        "installed_version": "0.7.0"
+      },
+      {
+        "package": "transformers",
+        "requirement": "tqdm>=4.27",
+        "installed_version": "4.70.1"
+      },
+      {
+        "package": "triton",
+        "requirement": "filelock",
+        "installed_version": "4.2.6"
+      },
+      {
+        "package": "typer",
+        "requirement": "shellingham>=1.3.0",
+        "installed_version": "1.5.4"
+      },
+      {
+        "package": "typer",
+        "requirement": "rich>=13.8.0",
+        "installed_version": "15.0.0"
+      },
+      {
+        "package": "typer",
+        "requirement": "annotated-doc>=0.0.2",
+        "installed_version": "0.0.5"
+      }
+    ],
+    "inactive_marker_requirements_skipped": 822,
+    "dependency_check_method": "installed Requires-Dist metadata; environment markers with extra=''",
+    "imports": {
+      "numpy": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/numpy/__init__.py",
+        "symbols": []
+      },
+      "torch": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/torch/__init__.py",
+        "symbols": []
+      },
+      "torchvision": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/torchvision/__init__.py",
+        "symbols": []
+      },
+      "transformers": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/transformers/__init__.py",
+        "symbols": [
+          "IJepaModel",
+          "AutoConfig",
+          "AutoImageProcessor"
+        ]
+      },
+      "huggingface_hub": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/huggingface_hub/__init__.py",
+        "symbols": [
+          "HfApi"
+        ]
+      },
+      "safetensors": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/safetensors/__init__.py",
+        "symbols": []
+      },
+      "yaml": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/yaml/__init__.py",
+        "symbols": [
+          "safe_load"
+        ]
+      },
+      "PIL.Image": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/PIL/Image.py",
+        "symbols": [
+          "fromarray"
+        ]
+      },
+      "sklearn.ensemble": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/sklearn/ensemble/__init__.py",
+        "symbols": [
+          "HistGradientBoostingClassifier"
+        ]
+      },
+      "sklearn.model_selection": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/sklearn/model_selection/__init__.py",
+        "symbols": [
+          "GroupKFold"
+        ]
+      },
+      "scipy": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/scipy/__init__.py",
+        "symbols": []
+      },
+      "pytest": {
+        "file": "/scratch/xy3257/motion-v2-20261031-deployment1/venv/lib/python3.12/site-packages/pytest/__init__.py",
+        "symbols": []
+      }
+    },
+    "frozen_encoder_class_imported": true,
+    "torch_cuda_build": "12.1",
+    "cuda_availability_probed": false,
+    "models_constructed": 0,
+    "weights_loaded": 0,
+    "gpu_seconds": 0
+  },
+  "cache_environment": {
+    "TMPDIR": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/temporary",
+    "TMP": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/temporary",
+    "TEMP": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/temporary",
+    "XDG_CACHE_HOME": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/xdg",
+    "HF_HOME": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/huggingface",
+    "HF_HUB_CACHE": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/huggingface/hub",
+    "HUGGINGFACE_HUB_CACHE": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/huggingface/hub",
+    "HF_ASSETS_CACHE": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/huggingface/assets",
+    "TORCH_HOME": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/torch",
+    "TORCH_EXTENSIONS_DIR": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/torch_extensions",
+    "TRITON_CACHE_DIR": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/triton",
+    "NUMBA_CACHE_DIR": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/numba",
+    "MPLCONFIGDIR": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/matplotlib",
+    "CUDA_CACHE_PATH": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/cuda",
+    "PIP_CACHE_DIR": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/pip",
+    "UV_CACHE_DIR": "/scratch/xy3257/motion-v2-20261031-deployment3/runtime_retries_v2_3_1/attempt2/preflight_environment/cache/uv"
+  },
+  "scientific_entrypoint_run": false,
+  "model_instance_created": false,
+  "installs_performed": false,
+  "scientific_source_modified": false
+}
