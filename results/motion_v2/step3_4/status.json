@@ -1,18 +1,18 @@
 {
-  "status": "deployed_waiting_chrome_window_coordination",
+  "status": "submitted_pending",
   "protocol": {
     "path": "experiments/motion_v2/protocol_step34.json",
     "sha256": "3b4fdd6b7888ef0d052d74b2be3a07b4680debccb59406487d054308be3bd91d"
   },
   "all_scientific_outputs": "not_evaluated",
-  "new_a100_seconds": 0,
-  "cumulative_a100_seconds": 3705,
-  "remaining_a100_seconds": 10695,
+  "new_a100_seconds": null,
+  "cumulative_a100_seconds": null,
+  "remaining_a100_seconds": null,
   "estimate_seconds": 8500,
   "wall_seconds": 10500,
   "confirmation_or_test_used": false,
   "created_utc": "2026-11-02T00:59:47.167156+00:00",
-  "updated_utc": "2026-11-02T01:21:10.529899+00:00",
+  "updated_utc": "2026-11-02T01:34:10.981040+00:00",
   "software_tests": {
     "passed": 432,
     "new_tests": 334,
@@ -41,9 +41,9 @@
   },
   "hpc_block": {
     "authentication_resolved": true,
-    "observed": "Native Chrome UI commands interrupted by other Chrome window switching; no authentication prompt currently",
-    "user_handoff_requested": true,
-    "scientific_job_submitted": false
+    "browser_coordination_resolved": true,
+    "user_handoff_requested": false,
+    "scientific_job_submitted": true
   },
   "step3_status": "not_evaluated",
   "step4_status": "not_evaluated",
@@ -58,8 +58,22 @@
     "head": "bfe66f998aa057598d6576fcd9c4deaccb5d5543",
     "cpu_auxiliary_job_id": 17718,
     "zip_uploaded": true,
-    "transfer_hash_verification": "not_run",
-    "gpu_preflight": "not_run",
-    "gpu_submitted": false
-  }
+    "transfer_hash_verification": "passed",
+    "gpu_preflight": "passed",
+    "gpu_submitted": true,
+    "job_id": "17761",
+    "attempt": 1,
+    "native_state_at_submission": "PENDING",
+    "submitted_utc": "2026-11-02T01:33:01Z",
+    "restarts_at_submission": 0
+  },
+  "settled_prior_a100_seconds": 3705,
+  "remaining_at_submission_a100_seconds": 10695,
+  "accounting_status": "job17761_unsettled",
+  "monitor": {
+    "automation_id": "motion-v2-3-4-17761",
+    "status": "ACTIVE",
+    "interval_minutes": 10
+  },
+  "current_evidence": "results/motion_v2/step3_4/deployment_progress2/deployment_state.json"
 }
