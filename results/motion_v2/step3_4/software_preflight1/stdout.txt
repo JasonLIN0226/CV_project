@@ -1,0 +1,151 @@
+........................................................................ [ 16%]
+..F..................................................................... [ 33%]
+...........................F............................................ [ 50%]
+........................................................................ [ 66%]
+........................................................................ [ 83%]
+........................................................................ [100%]
+=================================== FAILURES ===================================
+___________________________ test_real_fixture_replay ___________________________
+
+runtime = (<module 'offline_replay_slurm_records' from '/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project_motion...ers/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project_motion_v2_20261030/experiments/motion_v2/run_step2.py'>)
+
+    def test_real_fixture_replay(runtime):
+        """Use actual shared runtime validators; the JSON retains expected rejections."""
+        records, submit, runner = runtime
+        cases = []
+        pending_text = fixture_text("16542_pending")
+        pending = records.parse_control(pending_text)
+        submission = captured(lambda: submit.validate_submission_control(pending_text, "16542", HISTORICAL_EXPECTED))
+        live_pending = captured(lambda: runner.validate_running_control(pending_text, "16542"))
+        identity_fields = {"JobId": "16542", "Restarts": "0", "Account": HISTORICAL_EXPECTED["account"],
+                           "Partition": HISTORICAL_EXPECTED["partition"], "Command": HISTORICAL_EXPECTED["wrapper_path"],
+                           "WorkDir": HISTORICAL_EXPECTED["workdir"], "UserId": "xy3257(4882486)"}
+        checks = [check_row(key, pending.get(key), "Historical submission identity; shared submission validator",
+                            "submission", "passed" if pending.get(key) == value and submission["status"] == "passed" else "failed")
+                  for key, value in identity_fields.items()]
+        for key, value in (("CPUs/Task", "4"), ("ReqB:S:C:T", "0:0:*:*"), ("NtasksPerN:B:S:C", "1:0:*:*")):
+            checks.append(check_row(key, pending.get(key), "Preserve slash/colon key independently", "parser",
+                                    "passed" if pending.get(key) == value else "failed"))
+        checks.extend([
+            check_row("NumNodes", pending.get("NumNodes"), "One node: both endpoints must equal 1", "submission/runner",
+                      captured(lambda: records.require_one_node(pending["NumNodes"]))["status"]),
+            check_row("TimeLimit", pending.get("TimeLimit"), "Historical request 7200 seconds", "submission",
+                      "passed" if records.parse_duration(pending["TimeLimit"]) == 7200 else "failed"),
+            check_row("ReqTRES", pending.get("ReqTRES"), "Exactly one requested GPU", "submission",
+                      captured(lambda: records.one_gpu(pending["ReqTRES"]))["status"]),
+            check_row("TresPerNode", pending.get("TresPerNode"), "Recorded typed A100 request", "submission",
+                      "passed" if pending.get("TresPerNode") == "gres/gpu:a100:1" else "failed"),
+            check_row("JobState", pending.get("JobState"), "PENDING is legal for submission but is not a running allocation",
+                      "runner", live_pending["status"], "rejected"),
+            check_row("AllocTRES", pending.get("AllocTRES"), "PENDING has no allocation; do not run science",
+                      "runner", captured(lambda: records.one_gpu(pending["AllocTRES"]))["status"], "rejected"),
+            check_row("StartTime", pending.get("StartTime"), "Unknown is legal in the pending submission", "submission",
+                      "passed" if pending.get("StartTime") == "Unknown" and submission["status"] == "passed" else "failed"),
+            check_row("RunTime", pending.get("RunTime"), "Pending job has zero elapsed runtime", "parser/runner field",
+                      "passed" if records.parse_duration(pending["RunTime"]) == 0 else "failed"),
+            check_row("Requeue", pending.get("Requeue"), "Evidence only, not a rejection criterion", "submission/runner",
+                      "passed" if pending.get("Requeue") == "1" else "failed"),
+            check_row("NumCPUs", pending.get("NumCPUs"), "Record actual CPUs; no exact-four allocated-CPU gate", "record_only",
+                      "passed" if pending.get("NumCPUs") == "4" else "failed"),
+        ])
+        cases.append(record_case("16542_pending", "scontrol single-line key=value", pending, checks,
+                                 {"validate_submission_control": submission, "validate_running_control": live_pending}))
+    
+        cpu_text = fixture_text("16512_cpu_running")
+        cpu = records.parse_control(cpu_text)
+        live_cpu = captured(lambda: runner.validate_running_control(cpu_text, "16512"))
+        cpu_gpu = captured(lambda: records.one_gpu(cpu["AllocTRES"]))
+        checks = []
+        for key, value in (("JobId", "16512"), ("JobState", "RUNNING"), ("Restarts", "0"),
+                           ("NumNodes", "1"), ("NumCPUs", "24"), ("CPUs/Task", "4"),
+                           ("ReqB:S:C:T", "0:0:*:*"), ("NtasksPerN:B:S:C", "1:0:*:*"), ("Requeue", "1")):
+            checks.append(check_row(key, cpu.get(key), "Preserve actual auxiliary CPU record; CPUs>4 allowed",
+                                    "parser/auxiliary", "passed" if cpu.get(key) == value else "failed"))
+        checks.extend([
+            check_row("NumNodes", cpu["NumNodes"], "One node", "shared node parser",
+                      captured(lambda: records.require_one_node(cpu["NumNodes"]))["status"]),
+            check_row("ReqTRES", cpu["ReqTRES"], "CPU-only request, no GPU", "auxiliary",
+                      "passed" if records.gpu_count(cpu["ReqTRES"]) == 0 else "failed"),
+            check_row("AllocTRES", cpu["AllocTRES"], "CPU-only allocation must fail a scientific GPU gate", "runner",
+                      cpu_gpu["status"], "rejected"),
+            check_row("TimeLimit", cpu["TimeLimit"], "Auxiliary one-hour request, not the scientific wrapper limit", "auxiliary",
+                      "passed" if records.parse_duration(cpu["TimeLimit"]) == 3600 else "failed"),
+            check_row("StartTime", cpu["StartTime"], "Original running CPU start is retained", "parser",
+                      "passed" if cpu["StartTime"] == "2026-10-31T20:42:02" else "failed"),
+            check_row("RunTime", cpu["RunTime"], "Parse recorded auxiliary elapsed duration", "parser/runner field",
+                      "passed" if records.parse_duration(cpu["RunTime"]) == 501 else "failed"),
+        ])
+        for key in ("Account", "Partition", "UserId", "Command", "WorkDir"):
+            checks.append(check_row(key, cpu.get(key), "Auxiliary context is not a scientific submission identity",
+                                    "submission", "not_applicable_context", "not_applicable_context"))
+        cases.append(record_case("16512_cpu_running", "scontrol multiline key=value", cpu, checks,
+                                 {"validate_running_control": live_cpu, "one_gpu": cpu_gpu}))
+    
+        history = records.parse_accounting_row(fixture_text("12374_completed"), "12374")
+        history_gpu = captured(lambda: records.one_gpu(history["AllocTRES"]))
+        checks = []
+        for key, value in (("JobID", "12374"), ("JobName", "cv-qualified-reader-conf"),
+                           ("Partition", "c12m85-a100-1"), ("State", "COMPLETED"), ("ExitCode", "0:0"),
+                           ("Elapsed", "00:06:02"), ("ElapsedRaw", "362"),
+                           ("Start", "2026-10-26T20:10:28"), ("End", "2026-10-26T20:16:30")):
+            checks.append(check_row(key, history.get(key), "Preserve historical header and exact top-level row",
+                                    "parser/history", "passed" if history.get(key) == value else "failed"))
+        checks.append(check_row("AllocTRES", history["AllocTRES"], "GPU count=1 despite cpu=12; generic TRES allowed",
+                                "shared GPU validator", history_gpu["status"]))
+        checks.append(check_row("State", history["State"], "Historical COMPLETED is not subjected to current RUNNING gate",
+                                "runner live-state", "not_applicable_context", "not_applicable_context"))
+        for key in ("UserId", "Account", "NumNodes", "Restarts", "TimeLimit", "RunTime", "Command", "WorkDir", "ReqTRES"):
+            checks.append(missing_row(key, "submission/runner", "This historical sacct schema contains no such field"))
+        checks.append(missing_row("visible CUDA device count/model", "runner physical GPU gate",
+                                   "Historical text fixture cannot verify the current physical A100 device"))
+        cases.append(record_case("12374_completed", "pipe header with 10 columns; top-level + .batch + .extern",
+                                 history, checks, {"one_gpu": history_gpu}))
+    
+        cancelled = records.parse_accounting_row(fixture_text("16542_cancelled_sacct"), "16542", SETTLEMENT_COLUMNS)
+        final_text = fixture_text("16542_cancelled_control")
+        final_control = records.parse_control(final_text)
+        settled = captured(lambda: submit.validate_settlement_record(cancelled, final_text, HISTORICAL_EXPECTED))
+        checks = [check_row(key, cancelled.get(key), "Unallocated cancellation evidence", "settlement",
+                            "passed" if cancelled.get(key) == value else "failed")
+                  for key, value in (("JobIDRaw", "16542"), ("State", "CANCELLED by 4882486"),
+                                     ("Start", "None"), ("ElapsedRaw", "0"), ("AllocTRES", ""))]
+        checks.append(check_row("Restarts", final_control.get("Restarts"), "Native restart count remains zero", "settlement",
+                                "passed" if final_control.get("Restarts") == "0" else "failed"))
+        checks.append(check_row("StartTime", final_control.get("StartTime"),
+                                "scontrol cancellation timestamp does not override sacct Start=None", "settlement",
+                                "passed" if final_control.get("StartTime") == final_control.get("EndTime") else "failed"))
+        cases.append(record_case("16542_cancelled_sacct", "12 explicit columns, headerless top-level row",
+                                 cancelled, checks, {"validate_settlement_record": settled}))
+        cases.append(record_case("16542_cancelled_control", "scontrol single-line terminal state", final_control,
+                                 [check_row("AllocTRES", final_control.get("AllocTRES"), "Zero allocated GPU at cancellation", "settlement",
+                                            "passed" if records.gpu_count(final_control["AllocTRES"]) == 0 else "failed")],
+                                 {"validate_settlement_record": settled}))
+        successful = (all(check["matches_expected"] for case in cases for check in case["checks"]) and
+                      submission["status"] == "passed" and live_pending["status"] == "rejected" and
+                      live_cpu["status"] == "rejected" and history_gpu["status"] == "passed" and
+                      settled["status"] == "passed" and settled.get("result", {}).get("actual_a100_gpu_seconds") == 0)
+        report = {"schema_version": 1, "version": "v2.3.1", "status": "passed" if successful else "failed",
+                  "fixtures_unmodified": True, "native_commands_executed": 0, "gpu_seconds": 0,
+                  "historical_context": HISTORICAL_EXPECTED, "cases": cases,
+                  "interpretation": "Expected rejection of a CPU or pending record by scientific GPU/RUNNING gates is a passing software test; N/A means absent evidence or inapplicable historical context."}
+        output = os.environ.get("MOTION_SLURM_REPLAY_OUTPUT")
+>       assert output, "Use the registered replay driver so the field report is retained"
+E       AssertionError: Use the registered replay driver so the field report is retained
+E       assert None
+
+experiments/motion_v2/test_slurm_records_v2_3_1.py:213: AssertionError
+____________________ test_no_scientific_dependency_imported ____________________
+
+runtime = (<module 'offline_replay_slurm_records' from '/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project_motion...ers/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project_motion_v2_20261030/experiments/motion_v2/run_step2.py'>)
+
+    def test_no_scientific_dependency_imported(runtime):
+>       assert all(name not in sys.modules for name in ("torch", "numpy", "transformers", "sklearn"))
+E       assert False
+E        +  where False = all(<generator object test_no_scientific_dependency_imported.<locals>.<genexpr> at 0x159a2a5a0>)
+
+experiments/motion_v2/test_slurm_records_v2_3_1.py:487: AssertionError
+- generated xml file: /Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project_motion_v2_20261030/results/motion_v2/step3_4/software_preflight1/junit.xml -
+=========================== short test summary info ============================
+FAILED experiments/motion_v2/test_slurm_records_v2_3_1.py::test_real_fixture_replay
+FAILED experiments/motion_v2/test_slurm_records_v2_3_1.py::test_no_scientific_dependency_imported
+2 failed, 430 passed in 4.03s
