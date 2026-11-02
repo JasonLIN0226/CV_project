@@ -1,0 +1,14 @@
+{
+  "raw_cost": "retained-pair loss; no full-parent forward",
+  "reader_seeds": [
+    17,
+    29,
+    43
+  ],
+  "aggregation": "mean per-reader loss then mean h=3/6",
+  "local": "original retained pair evaluated at actual episode query",
+  "use_time": "force deletion then fixed ensemble current-attention irreversible continuation to query",
+  "future_attention": "mean reader/horizon candidate softmax anchored at true q+h projection",
+  "state_rows": 16384,
+  "no_hidden_fields_in_student_inputs": true
+}

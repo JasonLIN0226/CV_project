@@ -1,30 +1,198 @@
 {
-  "status": "recovery_job_queued",
-  "updated_utc": "2026-11-02T03:26:18.151593+00:00",
+  "status": "completed_step4_stop",
+  "updated_utc": "2026-11-02T05:06:42.843127+00:00",
   "runtime_protocol_commit": "cacaa33c6e3a0a1e84bc32d03e1b05f5a40edf49",
   "old_job": "17761",
   "old_stop_preserved": true,
   "recovery_tests_passed": 94,
   "native_replay_tests_passed": 98,
-  "current_a100_seconds": 3753,
-  "remaining_a100_seconds": 10647,
+  "current_a100_seconds": 5886,
+  "remaining_a100_seconds": 8514,
   "estimated_new_seconds": 8500,
   "allocation_cap_seconds": 10500,
   "new_gpu_job_id": "17925",
   "new_gpu_submissions": 1,
-  "science_results": "not_evaluated",
+  "science_results": "completed_validation_only; primary and secondary joint criteria not passed",
   "test_or_confirmation_used": false,
   "predictors_retrained": false,
   "existing_frames_reencoded": 0,
   "science_parameters_changed": false,
   "execution_head": "0f171090457c21dc966a3da0a00793d4225b8e0f",
-  "native_state": "PENDING",
-  "native_reason": "Resources",
+  "native_state": "COMPLETED",
+  "native_reason": null,
   "restarts": 0,
-  "science_started_confirmed": false,
-  "final_scientific_results": "not_evaluated",
+  "science_started_confirmed": true,
+  "final_scientific_results": "evaluated; stopped_after_step4",
   "monitor_interval_hours": 1,
   "monitor_automation_id": "motion-v2-3-4-17761",
-  "monitor_status": "ACTIVE",
-  "accounting_status": "prior3753 charged; new allocation not yet started at snapshot"
+  "monitor_status": "PAUSED",
+  "accounting_status": "settled; terminal native sacct plus retained startup scontrol",
+  "cumulative_a100_seconds": 5886,
+  "recovery_job_a100_seconds": 2133,
+  "total_cap_a100_seconds": 14400,
+  "native_exit_code": "0:0",
+  "node": "b-19-46",
+  "native_start_utc": "2026-11-02T03:27:50Z",
+  "native_end_utc": "2026-11-02T04:03:23Z",
+  "native_dbindex": "15404147361634295808",
+  "allocated_gpu_count": 1,
+  "fresh_terminal_scontrol_available": false,
+  "terminal_scontrol_fabricated": false,
+  "cpu_long_gap_audit_passed": true,
+  "long_gap_direction_check": {
+    "applies": true,
+    "horizons": {
+      "3": {
+        "lower95": 0.015175387232584513,
+        "passed": true
+      },
+      "6": {
+        "lower95": 0.013288515149825864,
+        "passed": true
+      }
+    },
+    "passed": true,
+    "strict_lower95_required": 0.0
+  },
+  "long_gap_online_evaluated": true,
+  "student_arms": 54,
+  "student_updates_per_arm": 1000,
+  "selected_initialization_arms": 48,
+  "positive_step_checkpoint_arms": 6,
+  "primary_candidate": "student/set/use_time_position",
+  "primary_selected_steps": [
+    0,
+    0,
+    0
+  ],
+  "label_claims": {
+    "ordinary": {
+      "local_feature": {
+        "all_numeric_comparisons_passed": false,
+        "comparators": 8,
+        "confirmation_claim_established": false,
+        "fully_trained_comparison_allowed": false,
+        "per_horizon_all_comparisons_passed": {
+          "3": false,
+          "6": false
+        },
+        "role": "prespecified_secondary",
+        "selection_after_results_allowed": false,
+        "validation_criterion_passed": false
+      },
+      "local_position": {
+        "all_numeric_comparisons_passed": false,
+        "comparators": 8,
+        "confirmation_claim_established": false,
+        "fully_trained_comparison_allowed": false,
+        "per_horizon_all_comparisons_passed": {
+          "3": false,
+          "6": false
+        },
+        "role": "prespecified_secondary",
+        "selection_after_results_allowed": false,
+        "validation_criterion_passed": false
+      },
+      "use_time_feature": {
+        "all_numeric_comparisons_passed": false,
+        "comparators": 8,
+        "confirmation_claim_established": false,
+        "fully_trained_comparison_allowed": false,
+        "per_horizon_all_comparisons_passed": {
+          "3": false,
+          "6": false
+        },
+        "role": "prespecified_secondary",
+        "selection_after_results_allowed": false,
+        "validation_criterion_passed": false
+      },
+      "use_time_position": {
+        "all_numeric_comparisons_passed": false,
+        "comparators": 8,
+        "confirmation_claim_established": false,
+        "fully_trained_comparison_allowed": false,
+        "per_horizon_all_comparisons_passed": {
+          "3": false,
+          "6": false
+        },
+        "role": "prespecified_primary",
+        "selection_after_results_allowed": false,
+        "validation_criterion_passed": false
+      }
+    },
+    "long_gap": {
+      "local_feature": {
+        "all_numeric_comparisons_passed": false,
+        "comparators": 8,
+        "confirmation_claim_established": false,
+        "fully_trained_comparison_allowed": false,
+        "per_horizon_all_comparisons_passed": {
+          "3": false,
+          "6": false
+        },
+        "role": "prespecified_secondary",
+        "selection_after_results_allowed": false,
+        "validation_criterion_passed": false
+      },
+      "local_position": {
+        "all_numeric_comparisons_passed": false,
+        "comparators": 8,
+        "confirmation_claim_established": false,
+        "fully_trained_comparison_allowed": false,
+        "per_horizon_all_comparisons_passed": {
+          "3": false,
+          "6": false
+        },
+        "role": "prespecified_secondary",
+        "selection_after_results_allowed": false,
+        "validation_criterion_passed": false
+      },
+      "use_time_feature": {
+        "all_numeric_comparisons_passed": false,
+        "comparators": 8,
+        "confirmation_claim_established": false,
+        "fully_trained_comparison_allowed": false,
+        "per_horizon_all_comparisons_passed": {
+          "3": false,
+          "6": false
+        },
+        "role": "prespecified_secondary",
+        "selection_after_results_allowed": false,
+        "validation_criterion_passed": false
+      },
+      "use_time_position": {
+        "all_numeric_comparisons_passed": false,
+        "comparators": 8,
+        "confirmation_claim_established": false,
+        "fully_trained_comparison_allowed": false,
+        "per_horizon_all_comparisons_passed": {
+          "3": false,
+          "6": false
+        },
+        "role": "prespecified_primary",
+        "selection_after_results_allowed": false,
+        "validation_criterion_passed": false
+      }
+    }
+  },
+  "set_conditioning_distinguished": false,
+  "recommend_confirmation": false,
+  "step5_authorized": false,
+  "delivery_verification_checks_passed": 991,
+  "exported_files_verified": 422,
+  "scientific_metrics_recomputed_for_delivery": false,
+  "scientific_arrays_decoded_for_delivery": false,
+  "archive_sha256": "819ec05eb632a227d2b1156eee196fa1e53c8c17247c6ceb544ffa01683b2bfc",
+  "original_pr3_state": "MERGED externally; agent did not merge",
+  "report": "docs/MOTION_V2_STEP3_4_RECOVERY1_REPORT_ZH.md",
+  "per_seed_tables": "docs/MOTION_V2_STEP3_4_RECOVERY1_TABLES_ZH.md",
+  "terminal_settlement": "results/motion_v2/step3_4_recovery1/terminal_evidence/runtime/attempt1/settlement/settlement.json",
+  "followup_automation_preserved": true,
+  "delivery_status": "published",
+  "pull_request": "https://github.com/JasonLIN0226/CV_project/pull/4",
+  "pull_request_state_at_delivery": "OPEN_DRAFT",
+  "result_evidence_commit": "6a6f0ff9891d752a235c2d01bdbc684762b98172",
+  "original_pr3_merged_externally_at": "2026-11-02T03:30:04Z",
+  "agent_merged_any_pull_request": false,
+  "further_work_requires_user_authorization": true
 }

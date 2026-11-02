@@ -1,0 +1,5217 @@
+{
+  "metadata": {
+    "architecture": "set",
+    "checkpoint_rule": "own_validation_label_cross_entropy_strict_min_earliest_tie_including_step0",
+    "initial_state": {
+      "sha256": "81dc55527d418b5b859e3436db17881e91c8ceaac8dff88f028532970cb637c2",
+      "tensors": {
+        "head.0.bias": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "c585fc05086a88c3fa28ca08017db621b3526080b6dd799a851d00c028665879",
+          "shape": [
+            60
+          ]
+        },
+        "head.0.weight": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "77deda5ad68769083ae9d5c3ce891b6ec950de55b96779305caa0c889ac6b778",
+          "shape": [
+            60,
+            120
+          ]
+        },
+        "head.2.bias": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "f7daae7a6d8e7ab9fec760c1fe11c886fa71f04360659758f6e4f35ce8f2bb5a",
+          "shape": [
+            1
+          ]
+        },
+        "head.2.weight": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "0bdbffef340c6f82ce891ea37321a4f0e0ebc363cd413f3c11c3bf5fb7c33c7b",
+          "shape": [
+            1,
+            60
+          ]
+        },
+        "phi.0.bias": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "387ee467439a631d4a8c354733f9857a00145acc00d9dc6ff483f10b0e0365ff",
+          "shape": [
+            60
+          ]
+        },
+        "phi.0.weight": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "5617feb8ce66d86eacf59fb3b1ea4456a517fa52a4872d37985d5df860068b27",
+          "shape": [
+            60,
+            783
+          ]
+        }
+      }
+    },
+    "is_trained": true,
+    "label": "future_attention",
+    "minibatch_indices": {
+      "dtype": "<i8",
+      "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+      "sha256": "51ec7c8ba6e8e84ee627950122dacbb737d28e442c171ab166372c1120089d6c",
+      "shape": [
+        1000,
+        128
+      ]
+    },
+    "normalization_file": "normalization.npz",
+    "normalization_sha256": "89d21a17a9badf867bdfdf6d8042946db8700c38284b8ceb91115d8458603441",
+    "parameters": 54361,
+    "provenance_file": "provenance.json",
+    "provenance_sha256": "f517e41ca9aba6950553682cb29209a0218eaa1453796ad1560cb29f1118e47d",
+    "scorer_inputs": [
+      "items",
+      "context"
+    ],
+    "seed": 29,
+    "selected_state": {
+      "sha256": "e638e565a2b11260ce72387e95d78de78c0dd41cf4c105ef0932f7d06f56dc7e",
+      "tensors": {
+        "head.0.bias": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "44d276ceab3d904d00dfe721a8be931ec85337383de79c3d1a597cffdf3c561c",
+          "shape": [
+            60
+          ]
+        },
+        "head.0.weight": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "3dd038753b0a20d35e4dfb42c70f67ca10f0c2efbd0dc122928def8c6fc4a22d",
+          "shape": [
+            60,
+            120
+          ]
+        },
+        "head.2.bias": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "e4f75cef60081200cdce7dc779a9215b23ce1b0d360788fd936dc53983d6d63e",
+          "shape": [
+            1
+          ]
+        },
+        "head.2.weight": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "1abcfd13ec86dc4f79bec05bcf8fc8e96a504cb67de0e98fed7dc0cd199b0b17",
+          "shape": [
+            1,
+            60
+          ]
+        },
+        "phi.0.bias": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "50ba688fb727826e167883e26a4027337cded4d69e713bce43bdf93e9424c69d",
+          "shape": [
+            60
+          ]
+        },
+        "phi.0.weight": {
+          "dtype": "<f4",
+          "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+          "sha256": "be1974fa250418a1b624b68ab11ef688f9f2e239f4b6df6c4398527d5111e427",
+          "shape": [
+            60,
+            783
+          ]
+        }
+      }
+    },
+    "selected_step": 800,
+    "selected_validation_label_cross_entropy": 0.9025651525589637,
+    "source_sha256": "f2262d968962ca2c36e91d3c9933140dc0b610634e2c1025fb6f9fc3b67d5c7f",
+    "step0_in_selection": true,
+    "target_scale": 0.3197295415173143,
+    "targets_enter_forward": false,
+    "training_seconds": 3.6539840400000685,
+    "training_updates_executed": 1000
+  },
+  "training": [
+    {
+      "gradient_norm_before_clip": 0.09544375538825989,
+      "soft_cross_entropy": 1.0998331308364868,
+      "step": 1
+    },
+    {
+      "gradient_norm_before_clip": 0.09290662407875061,
+      "soft_cross_entropy": 1.1003423929214478,
+      "step": 2
+    },
+    {
+      "gradient_norm_before_clip": 0.08549202233552933,
+      "soft_cross_entropy": 1.0963445901870728,
+      "step": 3
+    },
+    {
+      "gradient_norm_before_clip": 0.08683005720376968,
+      "soft_cross_entropy": 1.0951200723648071,
+      "step": 4
+    },
+    {
+      "gradient_norm_before_clip": 0.08851222693920135,
+      "soft_cross_entropy": 1.095484733581543,
+      "step": 5
+    },
+    {
+      "gradient_norm_before_clip": 0.08729192614555359,
+      "soft_cross_entropy": 1.094365119934082,
+      "step": 6
+    },
+    {
+      "gradient_norm_before_clip": 0.08291193097829819,
+      "soft_cross_entropy": 1.0939069986343384,
+      "step": 7
+    },
+    {
+      "gradient_norm_before_clip": 0.0948481410741806,
+      "soft_cross_entropy": 1.0917973518371582,
+      "step": 8
+    },
+    {
+      "gradient_norm_before_clip": 0.09687694162130356,
+      "soft_cross_entropy": 1.0897904634475708,
+      "step": 9
+    },
+    {
+      "gradient_norm_before_clip": 0.10140275210142136,
+      "soft_cross_entropy": 1.0857003927230835,
+      "step": 10
+    },
+    {
+      "gradient_norm_before_clip": 0.1127115935087204,
+      "soft_cross_entropy": 1.0818393230438232,
+      "step": 11
+    },
+    {
+      "gradient_norm_before_clip": 0.10972683876752853,
+      "soft_cross_entropy": 1.0843135118484497,
+      "step": 12
+    },
+    {
+      "gradient_norm_before_clip": 0.1229042112827301,
+      "soft_cross_entropy": 1.0787668228149414,
+      "step": 13
+    },
+    {
+      "gradient_norm_before_clip": 0.13255509734153748,
+      "soft_cross_entropy": 1.0720956325531006,
+      "step": 14
+    },
+    {
+      "gradient_norm_before_clip": 0.13246437907218933,
+      "soft_cross_entropy": 1.0725221633911133,
+      "step": 15
+    },
+    {
+      "gradient_norm_before_clip": 0.14008012413978577,
+      "soft_cross_entropy": 1.068613886833191,
+      "step": 16
+    },
+    {
+      "gradient_norm_before_clip": 0.14960621297359467,
+      "soft_cross_entropy": 1.0643826723098755,
+      "step": 17
+    },
+    {
+      "gradient_norm_before_clip": 0.15662816166877747,
+      "soft_cross_entropy": 1.0656797885894775,
+      "step": 18
+    },
+    {
+      "gradient_norm_before_clip": 0.17902874946594238,
+      "soft_cross_entropy": 1.0526726245880127,
+      "step": 19
+    },
+    {
+      "gradient_norm_before_clip": 0.16644655168056488,
+      "soft_cross_entropy": 1.0596396923065186,
+      "step": 20
+    },
+    {
+      "gradient_norm_before_clip": 0.1756834238767624,
+      "soft_cross_entropy": 1.0561002492904663,
+      "step": 21
+    },
+    {
+      "gradient_norm_before_clip": 0.20089282095432281,
+      "soft_cross_entropy": 1.0322809219360352,
+      "step": 22
+    },
+    {
+      "gradient_norm_before_clip": 0.216714546084404,
+      "soft_cross_entropy": 1.0316152572631836,
+      "step": 23
+    },
+    {
+      "gradient_norm_before_clip": 0.201872318983078,
+      "soft_cross_entropy": 1.0322284698486328,
+      "step": 24
+    },
+    {
+      "gradient_norm_before_clip": 0.20252254605293274,
+      "soft_cross_entropy": 1.0352754592895508,
+      "step": 25
+    },
+    {
+      "gradient_norm_before_clip": 0.2116820365190506,
+      "soft_cross_entropy": 1.0141892433166504,
+      "step": 26
+    },
+    {
+      "gradient_norm_before_clip": 0.22734667360782623,
+      "soft_cross_entropy": 1.0061335563659668,
+      "step": 27
+    },
+    {
+      "gradient_norm_before_clip": 0.21625816822052002,
+      "soft_cross_entropy": 1.011514663696289,
+      "step": 28
+    },
+    {
+      "gradient_norm_before_clip": 0.23403041064739227,
+      "soft_cross_entropy": 0.9972623586654663,
+      "step": 29
+    },
+    {
+      "gradient_norm_before_clip": 0.22446659207344055,
+      "soft_cross_entropy": 1.0069571733474731,
+      "step": 30
+    },
+    {
+      "gradient_norm_before_clip": 0.22832322120666504,
+      "soft_cross_entropy": 1.0028250217437744,
+      "step": 31
+    },
+    {
+      "gradient_norm_before_clip": 0.23213231563568115,
+      "soft_cross_entropy": 0.984894335269928,
+      "step": 32
+    },
+    {
+      "gradient_norm_before_clip": 0.2459414005279541,
+      "soft_cross_entropy": 0.9747650623321533,
+      "step": 33
+    },
+    {
+      "gradient_norm_before_clip": 0.21978230774402618,
+      "soft_cross_entropy": 0.9778749942779541,
+      "step": 34
+    },
+    {
+      "gradient_norm_before_clip": 0.25066831707954407,
+      "soft_cross_entropy": 0.9780104160308838,
+      "step": 35
+    },
+    {
+      "gradient_norm_before_clip": 0.231965109705925,
+      "soft_cross_entropy": 0.9604178667068481,
+      "step": 36
+    },
+    {
+      "gradient_norm_before_clip": 0.2890685498714447,
+      "soft_cross_entropy": 0.9724183082580566,
+      "step": 37
+    },
+    {
+      "gradient_norm_before_clip": 0.24360354244709015,
+      "soft_cross_entropy": 0.9559234380722046,
+      "step": 38
+    },
+    {
+      "gradient_norm_before_clip": 0.2603171765804291,
+      "soft_cross_entropy": 0.9692097306251526,
+      "step": 39
+    },
+    {
+      "gradient_norm_before_clip": 0.2821902334690094,
+      "soft_cross_entropy": 0.9836095571517944,
+      "step": 40
+    },
+    {
+      "gradient_norm_before_clip": 0.2895249128341675,
+      "soft_cross_entropy": 0.9670214056968689,
+      "step": 41
+    },
+    {
+      "gradient_norm_before_clip": 0.25965970754623413,
+      "soft_cross_entropy": 0.9639616012573242,
+      "step": 42
+    },
+    {
+      "gradient_norm_before_clip": 0.2630869150161743,
+      "soft_cross_entropy": 0.9538679122924805,
+      "step": 43
+    },
+    {
+      "gradient_norm_before_clip": 0.26293686032295227,
+      "soft_cross_entropy": 0.9444950222969055,
+      "step": 44
+    },
+    {
+      "gradient_norm_before_clip": 0.22812439501285553,
+      "soft_cross_entropy": 0.94866943359375,
+      "step": 45
+    },
+    {
+      "gradient_norm_before_clip": 0.23692581057548523,
+      "soft_cross_entropy": 0.9537810683250427,
+      "step": 46
+    },
+    {
+      "gradient_norm_before_clip": 0.26175758242607117,
+      "soft_cross_entropy": 0.9431642293930054,
+      "step": 47
+    },
+    {
+      "gradient_norm_before_clip": 0.2802370488643646,
+      "soft_cross_entropy": 0.9548564553260803,
+      "step": 48
+    },
+    {
+      "gradient_norm_before_clip": 0.22597208619117737,
+      "soft_cross_entropy": 0.9375935792922974,
+      "step": 49
+    },
+    {
+      "gradient_norm_before_clip": 0.23600457608699799,
+      "soft_cross_entropy": 0.9473364949226379,
+      "step": 50
+    },
+    {
+      "gradient_norm_before_clip": 0.25099754333496094,
+      "soft_cross_entropy": 0.9352716207504272,
+      "step": 51
+    },
+    {
+      "gradient_norm_before_clip": 0.23617272078990936,
+      "soft_cross_entropy": 0.955213189125061,
+      "step": 52
+    },
+    {
+      "gradient_norm_before_clip": 0.22028093039989471,
+      "soft_cross_entropy": 0.9309808015823364,
+      "step": 53
+    },
+    {
+      "gradient_norm_before_clip": 0.20360328257083893,
+      "soft_cross_entropy": 0.9417660236358643,
+      "step": 54
+    },
+    {
+      "gradient_norm_before_clip": 0.20380662381649017,
+      "soft_cross_entropy": 0.9254854917526245,
+      "step": 55
+    },
+    {
+      "gradient_norm_before_clip": 0.22686536610126495,
+      "soft_cross_entropy": 0.9278327226638794,
+      "step": 56
+    },
+    {
+      "gradient_norm_before_clip": 0.22605980932712555,
+      "soft_cross_entropy": 0.9332921504974365,
+      "step": 57
+    },
+    {
+      "gradient_norm_before_clip": 0.2365054190158844,
+      "soft_cross_entropy": 0.9266045093536377,
+      "step": 58
+    },
+    {
+      "gradient_norm_before_clip": 0.20344337821006775,
+      "soft_cross_entropy": 0.9322167038917542,
+      "step": 59
+    },
+    {
+      "gradient_norm_before_clip": 0.22953756153583527,
+      "soft_cross_entropy": 0.9541895389556885,
+      "step": 60
+    },
+    {
+      "gradient_norm_before_clip": 0.2372526377439499,
+      "soft_cross_entropy": 0.9311254024505615,
+      "step": 61
+    },
+    {
+      "gradient_norm_before_clip": 0.24917452037334442,
+      "soft_cross_entropy": 0.9477396011352539,
+      "step": 62
+    },
+    {
+      "gradient_norm_before_clip": 0.22585372626781464,
+      "soft_cross_entropy": 0.9351420998573303,
+      "step": 63
+    },
+    {
+      "gradient_norm_before_clip": 0.2580389082431793,
+      "soft_cross_entropy": 0.929876446723938,
+      "step": 64
+    },
+    {
+      "gradient_norm_before_clip": 0.22309890389442444,
+      "soft_cross_entropy": 0.9254194498062134,
+      "step": 65
+    },
+    {
+      "gradient_norm_before_clip": 0.19948561489582062,
+      "soft_cross_entropy": 0.9311428070068359,
+      "step": 66
+    },
+    {
+      "gradient_norm_before_clip": 0.22754037380218506,
+      "soft_cross_entropy": 0.9441287517547607,
+      "step": 67
+    },
+    {
+      "gradient_norm_before_clip": 0.1975518763065338,
+      "soft_cross_entropy": 0.945830225944519,
+      "step": 68
+    },
+    {
+      "gradient_norm_before_clip": 0.17882706224918365,
+      "soft_cross_entropy": 0.9160031676292419,
+      "step": 69
+    },
+    {
+      "gradient_norm_before_clip": 0.20388270914554596,
+      "soft_cross_entropy": 0.9218426942825317,
+      "step": 70
+    },
+    {
+      "gradient_norm_before_clip": 0.20406828820705414,
+      "soft_cross_entropy": 0.9157335162162781,
+      "step": 71
+    },
+    {
+      "gradient_norm_before_clip": 0.1842515766620636,
+      "soft_cross_entropy": 0.9277063012123108,
+      "step": 72
+    },
+    {
+      "gradient_norm_before_clip": 0.20698808133602142,
+      "soft_cross_entropy": 0.9243496060371399,
+      "step": 73
+    },
+    {
+      "gradient_norm_before_clip": 0.2074403166770935,
+      "soft_cross_entropy": 0.9221811294555664,
+      "step": 74
+    },
+    {
+      "gradient_norm_before_clip": 0.21334825456142426,
+      "soft_cross_entropy": 0.9192150831222534,
+      "step": 75
+    },
+    {
+      "gradient_norm_before_clip": 0.17839686572551727,
+      "soft_cross_entropy": 0.9158329963684082,
+      "step": 76
+    },
+    {
+      "gradient_norm_before_clip": 0.19667991995811462,
+      "soft_cross_entropy": 0.9249265193939209,
+      "step": 77
+    },
+    {
+      "gradient_norm_before_clip": 0.19215619564056396,
+      "soft_cross_entropy": 0.9156822562217712,
+      "step": 78
+    },
+    {
+      "gradient_norm_before_clip": 0.20596058666706085,
+      "soft_cross_entropy": 0.9312165975570679,
+      "step": 79
+    },
+    {
+      "gradient_norm_before_clip": 0.19875015318393707,
+      "soft_cross_entropy": 0.9013689756393433,
+      "step": 80
+    },
+    {
+      "gradient_norm_before_clip": 0.22714132070541382,
+      "soft_cross_entropy": 0.9434027671813965,
+      "step": 81
+    },
+    {
+      "gradient_norm_before_clip": 0.19213411211967468,
+      "soft_cross_entropy": 0.9256555438041687,
+      "step": 82
+    },
+    {
+      "gradient_norm_before_clip": 0.2027091681957245,
+      "soft_cross_entropy": 0.9186816811561584,
+      "step": 83
+    },
+    {
+      "gradient_norm_before_clip": 0.18492090702056885,
+      "soft_cross_entropy": 0.9186819195747375,
+      "step": 84
+    },
+    {
+      "gradient_norm_before_clip": 0.20560041069984436,
+      "soft_cross_entropy": 0.9281952381134033,
+      "step": 85
+    },
+    {
+      "gradient_norm_before_clip": 0.20182591676712036,
+      "soft_cross_entropy": 0.9163228869438171,
+      "step": 86
+    },
+    {
+      "gradient_norm_before_clip": 0.19290922582149506,
+      "soft_cross_entropy": 0.9265682101249695,
+      "step": 87
+    },
+    {
+      "gradient_norm_before_clip": 0.22341279685497284,
+      "soft_cross_entropy": 0.9217989444732666,
+      "step": 88
+    },
+    {
+      "gradient_norm_before_clip": 0.19329102337360382,
+      "soft_cross_entropy": 0.9108755588531494,
+      "step": 89
+    },
+    {
+      "gradient_norm_before_clip": 0.1776273250579834,
+      "soft_cross_entropy": 0.9240830540657043,
+      "step": 90
+    },
+    {
+      "gradient_norm_before_clip": 0.1782076507806778,
+      "soft_cross_entropy": 0.9254094958305359,
+      "step": 91
+    },
+    {
+      "gradient_norm_before_clip": 0.1953858584165573,
+      "soft_cross_entropy": 0.9197332859039307,
+      "step": 92
+    },
+    {
+      "gradient_norm_before_clip": 0.1891789585351944,
+      "soft_cross_entropy": 0.9091789722442627,
+      "step": 93
+    },
+    {
+      "gradient_norm_before_clip": 0.18594706058502197,
+      "soft_cross_entropy": 0.8876555562019348,
+      "step": 94
+    },
+    {
+      "gradient_norm_before_clip": 0.20433224737644196,
+      "soft_cross_entropy": 0.9243340492248535,
+      "step": 95
+    },
+    {
+      "gradient_norm_before_clip": 0.1860499233007431,
+      "soft_cross_entropy": 0.9205397963523865,
+      "step": 96
+    },
+    {
+      "gradient_norm_before_clip": 0.17748671770095825,
+      "soft_cross_entropy": 0.9144290685653687,
+      "step": 97
+    },
+    {
+      "gradient_norm_before_clip": 0.17527809739112854,
+      "soft_cross_entropy": 0.9195635318756104,
+      "step": 98
+    },
+    {
+      "gradient_norm_before_clip": 0.1885465681552887,
+      "soft_cross_entropy": 0.9335993528366089,
+      "step": 99
+    },
+    {
+      "gradient_norm_before_clip": 0.20323164761066437,
+      "soft_cross_entropy": 0.9265138506889343,
+      "step": 100
+    },
+    {
+      "gradient_norm_before_clip": 0.19025194644927979,
+      "soft_cross_entropy": 0.9343008399009705,
+      "step": 101
+    },
+    {
+      "gradient_norm_before_clip": 0.1937941163778305,
+      "soft_cross_entropy": 0.9230380058288574,
+      "step": 102
+    },
+    {
+      "gradient_norm_before_clip": 0.21006447076797485,
+      "soft_cross_entropy": 0.917495846748352,
+      "step": 103
+    },
+    {
+      "gradient_norm_before_clip": 0.18560975790023804,
+      "soft_cross_entropy": 0.9161267876625061,
+      "step": 104
+    },
+    {
+      "gradient_norm_before_clip": 0.186018168926239,
+      "soft_cross_entropy": 0.9243816137313843,
+      "step": 105
+    },
+    {
+      "gradient_norm_before_clip": 0.20274753868579865,
+      "soft_cross_entropy": 0.9116271734237671,
+      "step": 106
+    },
+    {
+      "gradient_norm_before_clip": 0.18157143890857697,
+      "soft_cross_entropy": 0.9284036159515381,
+      "step": 107
+    },
+    {
+      "gradient_norm_before_clip": 0.16441692411899567,
+      "soft_cross_entropy": 0.9206452965736389,
+      "step": 108
+    },
+    {
+      "gradient_norm_before_clip": 0.16583332419395447,
+      "soft_cross_entropy": 0.9097714424133301,
+      "step": 109
+    },
+    {
+      "gradient_norm_before_clip": 0.18202520906925201,
+      "soft_cross_entropy": 0.910649299621582,
+      "step": 110
+    },
+    {
+      "gradient_norm_before_clip": 0.16661541163921356,
+      "soft_cross_entropy": 0.8994196653366089,
+      "step": 111
+    },
+    {
+      "gradient_norm_before_clip": 0.17695100605487823,
+      "soft_cross_entropy": 0.9175341129302979,
+      "step": 112
+    },
+    {
+      "gradient_norm_before_clip": 0.17009501159191132,
+      "soft_cross_entropy": 0.903677225112915,
+      "step": 113
+    },
+    {
+      "gradient_norm_before_clip": 0.16552650928497314,
+      "soft_cross_entropy": 0.9226436018943787,
+      "step": 114
+    },
+    {
+      "gradient_norm_before_clip": 0.18068823218345642,
+      "soft_cross_entropy": 0.9056187868118286,
+      "step": 115
+    },
+    {
+      "gradient_norm_before_clip": 0.17810958623886108,
+      "soft_cross_entropy": 0.9096734523773193,
+      "step": 116
+    },
+    {
+      "gradient_norm_before_clip": 0.16894546151161194,
+      "soft_cross_entropy": 0.9054799675941467,
+      "step": 117
+    },
+    {
+      "gradient_norm_before_clip": 0.1560593545436859,
+      "soft_cross_entropy": 0.9134693741798401,
+      "step": 118
+    },
+    {
+      "gradient_norm_before_clip": 0.15088403224945068,
+      "soft_cross_entropy": 0.8971891403198242,
+      "step": 119
+    },
+    {
+      "gradient_norm_before_clip": 0.145439013838768,
+      "soft_cross_entropy": 0.8948764801025391,
+      "step": 120
+    },
+    {
+      "gradient_norm_before_clip": 0.17516814172267914,
+      "soft_cross_entropy": 0.9017337560653687,
+      "step": 121
+    },
+    {
+      "gradient_norm_before_clip": 0.1723499894142151,
+      "soft_cross_entropy": 0.9267740249633789,
+      "step": 122
+    },
+    {
+      "gradient_norm_before_clip": 0.16309788823127747,
+      "soft_cross_entropy": 0.9000377655029297,
+      "step": 123
+    },
+    {
+      "gradient_norm_before_clip": 0.16185909509658813,
+      "soft_cross_entropy": 0.9131736755371094,
+      "step": 124
+    },
+    {
+      "gradient_norm_before_clip": 0.1989603489637375,
+      "soft_cross_entropy": 0.9185162782669067,
+      "step": 125
+    },
+    {
+      "gradient_norm_before_clip": 0.18460169434547424,
+      "soft_cross_entropy": 0.9086629748344421,
+      "step": 126
+    },
+    {
+      "gradient_norm_before_clip": 0.15580041706562042,
+      "soft_cross_entropy": 0.9081193208694458,
+      "step": 127
+    },
+    {
+      "gradient_norm_before_clip": 0.167970210313797,
+      "soft_cross_entropy": 0.9139679670333862,
+      "step": 128
+    },
+    {
+      "gradient_norm_before_clip": 0.15586498379707336,
+      "soft_cross_entropy": 0.8908501863479614,
+      "step": 129
+    },
+    {
+      "gradient_norm_before_clip": 0.1732531189918518,
+      "soft_cross_entropy": 0.920122504234314,
+      "step": 130
+    },
+    {
+      "gradient_norm_before_clip": 0.15506866574287415,
+      "soft_cross_entropy": 0.9111615419387817,
+      "step": 131
+    },
+    {
+      "gradient_norm_before_clip": 0.15994171798229218,
+      "soft_cross_entropy": 0.9061073064804077,
+      "step": 132
+    },
+    {
+      "gradient_norm_before_clip": 0.14347033202648163,
+      "soft_cross_entropy": 0.8931026458740234,
+      "step": 133
+    },
+    {
+      "gradient_norm_before_clip": 0.1514280140399933,
+      "soft_cross_entropy": 0.8912249803543091,
+      "step": 134
+    },
+    {
+      "gradient_norm_before_clip": 0.16441597044467926,
+      "soft_cross_entropy": 0.9021258354187012,
+      "step": 135
+    },
+    {
+      "gradient_norm_before_clip": 0.13816659152507782,
+      "soft_cross_entropy": 0.9094066619873047,
+      "step": 136
+    },
+    {
+      "gradient_norm_before_clip": 0.17315393686294556,
+      "soft_cross_entropy": 0.9005814790725708,
+      "step": 137
+    },
+    {
+      "gradient_norm_before_clip": 0.1475532501935959,
+      "soft_cross_entropy": 0.9065557718276978,
+      "step": 138
+    },
+    {
+      "gradient_norm_before_clip": 0.17085206508636475,
+      "soft_cross_entropy": 0.912781834602356,
+      "step": 139
+    },
+    {
+      "gradient_norm_before_clip": 0.15383103489875793,
+      "soft_cross_entropy": 0.9037436246871948,
+      "step": 140
+    },
+    {
+      "gradient_norm_before_clip": 0.15458886325359344,
+      "soft_cross_entropy": 0.9042121171951294,
+      "step": 141
+    },
+    {
+      "gradient_norm_before_clip": 0.14411507546901703,
+      "soft_cross_entropy": 0.9087026119232178,
+      "step": 142
+    },
+    {
+      "gradient_norm_before_clip": 0.15257489681243896,
+      "soft_cross_entropy": 0.9030678272247314,
+      "step": 143
+    },
+    {
+      "gradient_norm_before_clip": 0.16737493872642517,
+      "soft_cross_entropy": 0.9150611162185669,
+      "step": 144
+    },
+    {
+      "gradient_norm_before_clip": 0.15567956864833832,
+      "soft_cross_entropy": 0.9005622863769531,
+      "step": 145
+    },
+    {
+      "gradient_norm_before_clip": 0.17021366953849792,
+      "soft_cross_entropy": 0.8989549875259399,
+      "step": 146
+    },
+    {
+      "gradient_norm_before_clip": 0.15842492878437042,
+      "soft_cross_entropy": 0.9164127707481384,
+      "step": 147
+    },
+    {
+      "gradient_norm_before_clip": 0.1636785864830017,
+      "soft_cross_entropy": 0.899661660194397,
+      "step": 148
+    },
+    {
+      "gradient_norm_before_clip": 0.15169094502925873,
+      "soft_cross_entropy": 0.9000115990638733,
+      "step": 149
+    },
+    {
+      "gradient_norm_before_clip": 0.1596335768699646,
+      "soft_cross_entropy": 0.8941711187362671,
+      "step": 150
+    },
+    {
+      "gradient_norm_before_clip": 0.14298294484615326,
+      "soft_cross_entropy": 0.9052770733833313,
+      "step": 151
+    },
+    {
+      "gradient_norm_before_clip": 0.14360226690769196,
+      "soft_cross_entropy": 0.898196816444397,
+      "step": 152
+    },
+    {
+      "gradient_norm_before_clip": 0.12766814231872559,
+      "soft_cross_entropy": 0.8932952284812927,
+      "step": 153
+    },
+    {
+      "gradient_norm_before_clip": 0.14018507301807404,
+      "soft_cross_entropy": 0.893272340297699,
+      "step": 154
+    },
+    {
+      "gradient_norm_before_clip": 0.15030637383460999,
+      "soft_cross_entropy": 0.9006991982460022,
+      "step": 155
+    },
+    {
+      "gradient_norm_before_clip": 0.12764406204223633,
+      "soft_cross_entropy": 0.8994210362434387,
+      "step": 156
+    },
+    {
+      "gradient_norm_before_clip": 0.12586703896522522,
+      "soft_cross_entropy": 0.8880289793014526,
+      "step": 157
+    },
+    {
+      "gradient_norm_before_clip": 0.15010304749011993,
+      "soft_cross_entropy": 0.912042498588562,
+      "step": 158
+    },
+    {
+      "gradient_norm_before_clip": 0.12583327293395996,
+      "soft_cross_entropy": 0.8955416679382324,
+      "step": 159
+    },
+    {
+      "gradient_norm_before_clip": 0.14577192068099976,
+      "soft_cross_entropy": 0.9016657471656799,
+      "step": 160
+    },
+    {
+      "gradient_norm_before_clip": 0.1498585194349289,
+      "soft_cross_entropy": 0.8935509920120239,
+      "step": 161
+    },
+    {
+      "gradient_norm_before_clip": 0.15063999593257904,
+      "soft_cross_entropy": 0.902572512626648,
+      "step": 162
+    },
+    {
+      "gradient_norm_before_clip": 0.13661885261535645,
+      "soft_cross_entropy": 0.8936914205551147,
+      "step": 163
+    },
+    {
+      "gradient_norm_before_clip": 0.15490934252738953,
+      "soft_cross_entropy": 0.8979093432426453,
+      "step": 164
+    },
+    {
+      "gradient_norm_before_clip": 0.14503760635852814,
+      "soft_cross_entropy": 0.8968584537506104,
+      "step": 165
+    },
+    {
+      "gradient_norm_before_clip": 0.12351561337709427,
+      "soft_cross_entropy": 0.8846453428268433,
+      "step": 166
+    },
+    {
+      "gradient_norm_before_clip": 0.11259796470403671,
+      "soft_cross_entropy": 0.8889632225036621,
+      "step": 167
+    },
+    {
+      "gradient_norm_before_clip": 0.13227218389511108,
+      "soft_cross_entropy": 0.8882195949554443,
+      "step": 168
+    },
+    {
+      "gradient_norm_before_clip": 0.14095042645931244,
+      "soft_cross_entropy": 0.9096039533615112,
+      "step": 169
+    },
+    {
+      "gradient_norm_before_clip": 0.13752205669879913,
+      "soft_cross_entropy": 0.9007786512374878,
+      "step": 170
+    },
+    {
+      "gradient_norm_before_clip": 0.1308593600988388,
+      "soft_cross_entropy": 0.8729648590087891,
+      "step": 171
+    },
+    {
+      "gradient_norm_before_clip": 0.14277832210063934,
+      "soft_cross_entropy": 0.8873425722122192,
+      "step": 172
+    },
+    {
+      "gradient_norm_before_clip": 0.1338479369878769,
+      "soft_cross_entropy": 0.9017717838287354,
+      "step": 173
+    },
+    {
+      "gradient_norm_before_clip": 0.12610124051570892,
+      "soft_cross_entropy": 0.8819950819015503,
+      "step": 174
+    },
+    {
+      "gradient_norm_before_clip": 0.14685839414596558,
+      "soft_cross_entropy": 0.8920255899429321,
+      "step": 175
+    },
+    {
+      "gradient_norm_before_clip": 0.13026680052280426,
+      "soft_cross_entropy": 0.8938210010528564,
+      "step": 176
+    },
+    {
+      "gradient_norm_before_clip": 0.11886541545391083,
+      "soft_cross_entropy": 0.8966470956802368,
+      "step": 177
+    },
+    {
+      "gradient_norm_before_clip": 0.14864397048950195,
+      "soft_cross_entropy": 0.8857116103172302,
+      "step": 178
+    },
+    {
+      "gradient_norm_before_clip": 0.12028247117996216,
+      "soft_cross_entropy": 0.8823660612106323,
+      "step": 179
+    },
+    {
+      "gradient_norm_before_clip": 0.11933302879333496,
+      "soft_cross_entropy": 0.9041593074798584,
+      "step": 180
+    },
+    {
+      "gradient_norm_before_clip": 0.13609635829925537,
+      "soft_cross_entropy": 0.9013313055038452,
+      "step": 181
+    },
+    {
+      "gradient_norm_before_clip": 0.12476334720849991,
+      "soft_cross_entropy": 0.8849037885665894,
+      "step": 182
+    },
+    {
+      "gradient_norm_before_clip": 0.1365496665239334,
+      "soft_cross_entropy": 0.895439863204956,
+      "step": 183
+    },
+    {
+      "gradient_norm_before_clip": 0.11960998922586441,
+      "soft_cross_entropy": 0.9019635319709778,
+      "step": 184
+    },
+    {
+      "gradient_norm_before_clip": 0.12868419289588928,
+      "soft_cross_entropy": 0.8831729888916016,
+      "step": 185
+    },
+    {
+      "gradient_norm_before_clip": 0.1195804625749588,
+      "soft_cross_entropy": 0.8862243294715881,
+      "step": 186
+    },
+    {
+      "gradient_norm_before_clip": 0.13716310262680054,
+      "soft_cross_entropy": 0.8837383985519409,
+      "step": 187
+    },
+    {
+      "gradient_norm_before_clip": 0.13092368841171265,
+      "soft_cross_entropy": 0.8957228064537048,
+      "step": 188
+    },
+    {
+      "gradient_norm_before_clip": 0.10557344555854797,
+      "soft_cross_entropy": 0.8763449192047119,
+      "step": 189
+    },
+    {
+      "gradient_norm_before_clip": 0.13130760192871094,
+      "soft_cross_entropy": 0.897922158241272,
+      "step": 190
+    },
+    {
+      "gradient_norm_before_clip": 0.1464633345603943,
+      "soft_cross_entropy": 0.8957952260971069,
+      "step": 191
+    },
+    {
+      "gradient_norm_before_clip": 0.11035964637994766,
+      "soft_cross_entropy": 0.8925397396087646,
+      "step": 192
+    },
+    {
+      "gradient_norm_before_clip": 0.11442490667104721,
+      "soft_cross_entropy": 0.8995703458786011,
+      "step": 193
+    },
+    {
+      "gradient_norm_before_clip": 0.13793422281742096,
+      "soft_cross_entropy": 0.8911898732185364,
+      "step": 194
+    },
+    {
+      "gradient_norm_before_clip": 0.09687072038650513,
+      "soft_cross_entropy": 0.8953375816345215,
+      "step": 195
+    },
+    {
+      "gradient_norm_before_clip": 0.13099606335163116,
+      "soft_cross_entropy": 0.8933252692222595,
+      "step": 196
+    },
+    {
+      "gradient_norm_before_clip": 0.11161311715841293,
+      "soft_cross_entropy": 0.8947225213050842,
+      "step": 197
+    },
+    {
+      "gradient_norm_before_clip": 0.1057301014661789,
+      "soft_cross_entropy": 0.8871276378631592,
+      "step": 198
+    },
+    {
+      "gradient_norm_before_clip": 0.10981117188930511,
+      "soft_cross_entropy": 0.8972297310829163,
+      "step": 199
+    },
+    {
+      "gradient_norm_before_clip": 0.11447477340698242,
+      "soft_cross_entropy": 0.8988009691238403,
+      "step": 200
+    },
+    {
+      "gradient_norm_before_clip": 0.1406792551279068,
+      "soft_cross_entropy": 0.911668598651886,
+      "step": 201
+    },
+    {
+      "gradient_norm_before_clip": 0.1044141948223114,
+      "soft_cross_entropy": 0.886635422706604,
+      "step": 202
+    },
+    {
+      "gradient_norm_before_clip": 0.09631454944610596,
+      "soft_cross_entropy": 0.8881999254226685,
+      "step": 203
+    },
+    {
+      "gradient_norm_before_clip": 0.1058335080742836,
+      "soft_cross_entropy": 0.886523962020874,
+      "step": 204
+    },
+    {
+      "gradient_norm_before_clip": 0.12255389243364334,
+      "soft_cross_entropy": 0.8895894289016724,
+      "step": 205
+    },
+    {
+      "gradient_norm_before_clip": 0.12904101610183716,
+      "soft_cross_entropy": 0.8935629725456238,
+      "step": 206
+    },
+    {
+      "gradient_norm_before_clip": 0.11329953372478485,
+      "soft_cross_entropy": 0.887943685054779,
+      "step": 207
+    },
+    {
+      "gradient_norm_before_clip": 0.1699957698583603,
+      "soft_cross_entropy": 0.8955809473991394,
+      "step": 208
+    },
+    {
+      "gradient_norm_before_clip": 0.12357015162706375,
+      "soft_cross_entropy": 0.8866987228393555,
+      "step": 209
+    },
+    {
+      "gradient_norm_before_clip": 0.1310129016637802,
+      "soft_cross_entropy": 0.8906538486480713,
+      "step": 210
+    },
+    {
+      "gradient_norm_before_clip": 0.12819765508174896,
+      "soft_cross_entropy": 0.8940286040306091,
+      "step": 211
+    },
+    {
+      "gradient_norm_before_clip": 0.10269520431756973,
+      "soft_cross_entropy": 0.8786368370056152,
+      "step": 212
+    },
+    {
+      "gradient_norm_before_clip": 0.11689091473817825,
+      "soft_cross_entropy": 0.884856104850769,
+      "step": 213
+    },
+    {
+      "gradient_norm_before_clip": 0.11816433072090149,
+      "soft_cross_entropy": 0.8891633749008179,
+      "step": 214
+    },
+    {
+      "gradient_norm_before_clip": 0.10348287224769592,
+      "soft_cross_entropy": 0.9034608602523804,
+      "step": 215
+    },
+    {
+      "gradient_norm_before_clip": 0.12443502247333527,
+      "soft_cross_entropy": 0.8878158330917358,
+      "step": 216
+    },
+    {
+      "gradient_norm_before_clip": 0.11209390312433243,
+      "soft_cross_entropy": 0.9049577713012695,
+      "step": 217
+    },
+    {
+      "gradient_norm_before_clip": 0.10716155916452408,
+      "soft_cross_entropy": 0.8843041658401489,
+      "step": 218
+    },
+    {
+      "gradient_norm_before_clip": 0.09876424074172974,
+      "soft_cross_entropy": 0.882181704044342,
+      "step": 219
+    },
+    {
+      "gradient_norm_before_clip": 0.11952662467956543,
+      "soft_cross_entropy": 0.8890663385391235,
+      "step": 220
+    },
+    {
+      "gradient_norm_before_clip": 0.10664878040552139,
+      "soft_cross_entropy": 0.8731173276901245,
+      "step": 221
+    },
+    {
+      "gradient_norm_before_clip": 0.09361477196216583,
+      "soft_cross_entropy": 0.8857706189155579,
+      "step": 222
+    },
+    {
+      "gradient_norm_before_clip": 0.10559195280075073,
+      "soft_cross_entropy": 0.8959072828292847,
+      "step": 223
+    },
+    {
+      "gradient_norm_before_clip": 0.09851714223623276,
+      "soft_cross_entropy": 0.8906732797622681,
+      "step": 224
+    },
+    {
+      "gradient_norm_before_clip": 0.10826332867145538,
+      "soft_cross_entropy": 0.8971226215362549,
+      "step": 225
+    },
+    {
+      "gradient_norm_before_clip": 0.10498566180467606,
+      "soft_cross_entropy": 0.8814322352409363,
+      "step": 226
+    },
+    {
+      "gradient_norm_before_clip": 0.12682956457138062,
+      "soft_cross_entropy": 0.896986186504364,
+      "step": 227
+    },
+    {
+      "gradient_norm_before_clip": 0.10047522187232971,
+      "soft_cross_entropy": 0.8789641857147217,
+      "step": 228
+    },
+    {
+      "gradient_norm_before_clip": 0.11076793819665909,
+      "soft_cross_entropy": 0.900455117225647,
+      "step": 229
+    },
+    {
+      "gradient_norm_before_clip": 0.09823804348707199,
+      "soft_cross_entropy": 0.864766538143158,
+      "step": 230
+    },
+    {
+      "gradient_norm_before_clip": 0.09003246575593948,
+      "soft_cross_entropy": 0.881476879119873,
+      "step": 231
+    },
+    {
+      "gradient_norm_before_clip": 0.09924495220184326,
+      "soft_cross_entropy": 0.8856534957885742,
+      "step": 232
+    },
+    {
+      "gradient_norm_before_clip": 0.11608582735061646,
+      "soft_cross_entropy": 0.8916110396385193,
+      "step": 233
+    },
+    {
+      "gradient_norm_before_clip": 0.10090135782957077,
+      "soft_cross_entropy": 0.8851280212402344,
+      "step": 234
+    },
+    {
+      "gradient_norm_before_clip": 0.09806548058986664,
+      "soft_cross_entropy": 0.8729436993598938,
+      "step": 235
+    },
+    {
+      "gradient_norm_before_clip": 0.13783696293830872,
+      "soft_cross_entropy": 0.8945189118385315,
+      "step": 236
+    },
+    {
+      "gradient_norm_before_clip": 0.11736015975475311,
+      "soft_cross_entropy": 0.8920631408691406,
+      "step": 237
+    },
+    {
+      "gradient_norm_before_clip": 0.12044082581996918,
+      "soft_cross_entropy": 0.8896512985229492,
+      "step": 238
+    },
+    {
+      "gradient_norm_before_clip": 0.11729258298873901,
+      "soft_cross_entropy": 0.8900268077850342,
+      "step": 239
+    },
+    {
+      "gradient_norm_before_clip": 0.11065986007452011,
+      "soft_cross_entropy": 0.8850010633468628,
+      "step": 240
+    },
+    {
+      "gradient_norm_before_clip": 0.11928413063287735,
+      "soft_cross_entropy": 0.8960138559341431,
+      "step": 241
+    },
+    {
+      "gradient_norm_before_clip": 0.14179974794387817,
+      "soft_cross_entropy": 0.8862749338150024,
+      "step": 242
+    },
+    {
+      "gradient_norm_before_clip": 0.09629955887794495,
+      "soft_cross_entropy": 0.8893755674362183,
+      "step": 243
+    },
+    {
+      "gradient_norm_before_clip": 0.10647822916507721,
+      "soft_cross_entropy": 0.8779457807540894,
+      "step": 244
+    },
+    {
+      "gradient_norm_before_clip": 0.10781670361757278,
+      "soft_cross_entropy": 0.890816330909729,
+      "step": 245
+    },
+    {
+      "gradient_norm_before_clip": 0.10295648872852325,
+      "soft_cross_entropy": 0.874228835105896,
+      "step": 246
+    },
+    {
+      "gradient_norm_before_clip": 0.11534334719181061,
+      "soft_cross_entropy": 0.8900258541107178,
+      "step": 247
+    },
+    {
+      "gradient_norm_before_clip": 0.10233194380998611,
+      "soft_cross_entropy": 0.8881197571754456,
+      "step": 248
+    },
+    {
+      "gradient_norm_before_clip": 0.09167985618114471,
+      "soft_cross_entropy": 0.9030143022537231,
+      "step": 249
+    },
+    {
+      "gradient_norm_before_clip": 0.10802410542964935,
+      "soft_cross_entropy": 0.8915924429893494,
+      "step": 250
+    },
+    {
+      "gradient_norm_before_clip": 0.1080644279718399,
+      "soft_cross_entropy": 0.8907152414321899,
+      "step": 251
+    },
+    {
+      "gradient_norm_before_clip": 0.11281738430261612,
+      "soft_cross_entropy": 0.8913544416427612,
+      "step": 252
+    },
+    {
+      "gradient_norm_before_clip": 0.09805388748645782,
+      "soft_cross_entropy": 0.8731563687324524,
+      "step": 253
+    },
+    {
+      "gradient_norm_before_clip": 0.11716526746749878,
+      "soft_cross_entropy": 0.8886609077453613,
+      "step": 254
+    },
+    {
+      "gradient_norm_before_clip": 0.10464315861463547,
+      "soft_cross_entropy": 0.877259373664856,
+      "step": 255
+    },
+    {
+      "gradient_norm_before_clip": 0.10201150178909302,
+      "soft_cross_entropy": 0.8963048458099365,
+      "step": 256
+    },
+    {
+      "gradient_norm_before_clip": 0.10381131619215012,
+      "soft_cross_entropy": 0.8712347149848938,
+      "step": 257
+    },
+    {
+      "gradient_norm_before_clip": 0.09247615933418274,
+      "soft_cross_entropy": 0.8838647603988647,
+      "step": 258
+    },
+    {
+      "gradient_norm_before_clip": 0.09574271738529205,
+      "soft_cross_entropy": 0.8789704442024231,
+      "step": 259
+    },
+    {
+      "gradient_norm_before_clip": 0.10454902797937393,
+      "soft_cross_entropy": 0.8977738618850708,
+      "step": 260
+    },
+    {
+      "gradient_norm_before_clip": 0.093461774289608,
+      "soft_cross_entropy": 0.8867150545120239,
+      "step": 261
+    },
+    {
+      "gradient_norm_before_clip": 0.0845937579870224,
+      "soft_cross_entropy": 0.8873646855354309,
+      "step": 262
+    },
+    {
+      "gradient_norm_before_clip": 0.12486792355775833,
+      "soft_cross_entropy": 0.8999719619750977,
+      "step": 263
+    },
+    {
+      "gradient_norm_before_clip": 0.10136297345161438,
+      "soft_cross_entropy": 0.8920565247535706,
+      "step": 264
+    },
+    {
+      "gradient_norm_before_clip": 0.09793830662965775,
+      "soft_cross_entropy": 0.8864611387252808,
+      "step": 265
+    },
+    {
+      "gradient_norm_before_clip": 0.08976525813341141,
+      "soft_cross_entropy": 0.8835827708244324,
+      "step": 266
+    },
+    {
+      "gradient_norm_before_clip": 0.07714822888374329,
+      "soft_cross_entropy": 0.8663746118545532,
+      "step": 267
+    },
+    {
+      "gradient_norm_before_clip": 0.09636629372835159,
+      "soft_cross_entropy": 0.8936374187469482,
+      "step": 268
+    },
+    {
+      "gradient_norm_before_clip": 0.09342022240161896,
+      "soft_cross_entropy": 0.8860615491867065,
+      "step": 269
+    },
+    {
+      "gradient_norm_before_clip": 0.09357704967260361,
+      "soft_cross_entropy": 0.8766822218894958,
+      "step": 270
+    },
+    {
+      "gradient_norm_before_clip": 0.0887226089835167,
+      "soft_cross_entropy": 0.8819921016693115,
+      "step": 271
+    },
+    {
+      "gradient_norm_before_clip": 0.09056214988231659,
+      "soft_cross_entropy": 0.8916311264038086,
+      "step": 272
+    },
+    {
+      "gradient_norm_before_clip": 0.088900625705719,
+      "soft_cross_entropy": 0.8857784867286682,
+      "step": 273
+    },
+    {
+      "gradient_norm_before_clip": 0.10288644582033157,
+      "soft_cross_entropy": 0.8843731880187988,
+      "step": 274
+    },
+    {
+      "gradient_norm_before_clip": 0.08202383667230606,
+      "soft_cross_entropy": 0.880072295665741,
+      "step": 275
+    },
+    {
+      "gradient_norm_before_clip": 0.09180564433336258,
+      "soft_cross_entropy": 0.8866021633148193,
+      "step": 276
+    },
+    {
+      "gradient_norm_before_clip": 0.11043629050254822,
+      "soft_cross_entropy": 0.9017334580421448,
+      "step": 277
+    },
+    {
+      "gradient_norm_before_clip": 0.09282279014587402,
+      "soft_cross_entropy": 0.889152467250824,
+      "step": 278
+    },
+    {
+      "gradient_norm_before_clip": 0.08424968272447586,
+      "soft_cross_entropy": 0.8622088432312012,
+      "step": 279
+    },
+    {
+      "gradient_norm_before_clip": 0.09952236711978912,
+      "soft_cross_entropy": 0.8834072351455688,
+      "step": 280
+    },
+    {
+      "gradient_norm_before_clip": 0.10357015579938889,
+      "soft_cross_entropy": 0.881912887096405,
+      "step": 281
+    },
+    {
+      "gradient_norm_before_clip": 0.0988561138510704,
+      "soft_cross_entropy": 0.8824695944786072,
+      "step": 282
+    },
+    {
+      "gradient_norm_before_clip": 0.09221256524324417,
+      "soft_cross_entropy": 0.8817078471183777,
+      "step": 283
+    },
+    {
+      "gradient_norm_before_clip": 0.08185916393995285,
+      "soft_cross_entropy": 0.8734534382820129,
+      "step": 284
+    },
+    {
+      "gradient_norm_before_clip": 0.09291326254606247,
+      "soft_cross_entropy": 0.8933058977127075,
+      "step": 285
+    },
+    {
+      "gradient_norm_before_clip": 0.10653258115053177,
+      "soft_cross_entropy": 0.8944927453994751,
+      "step": 286
+    },
+    {
+      "gradient_norm_before_clip": 0.09686020761728287,
+      "soft_cross_entropy": 0.880196750164032,
+      "step": 287
+    },
+    {
+      "gradient_norm_before_clip": 0.1003643348813057,
+      "soft_cross_entropy": 0.8898699283599854,
+      "step": 288
+    },
+    {
+      "gradient_norm_before_clip": 0.11399655044078827,
+      "soft_cross_entropy": 0.8968390822410583,
+      "step": 289
+    },
+    {
+      "gradient_norm_before_clip": 0.08014627546072006,
+      "soft_cross_entropy": 0.8728912472724915,
+      "step": 290
+    },
+    {
+      "gradient_norm_before_clip": 0.1064353883266449,
+      "soft_cross_entropy": 0.8944604992866516,
+      "step": 291
+    },
+    {
+      "gradient_norm_before_clip": 0.10148269683122635,
+      "soft_cross_entropy": 0.8850708603858948,
+      "step": 292
+    },
+    {
+      "gradient_norm_before_clip": 0.0787523090839386,
+      "soft_cross_entropy": 0.8702930212020874,
+      "step": 293
+    },
+    {
+      "gradient_norm_before_clip": 0.08280664682388306,
+      "soft_cross_entropy": 0.8826128244400024,
+      "step": 294
+    },
+    {
+      "gradient_norm_before_clip": 0.09364904463291168,
+      "soft_cross_entropy": 0.8672956228256226,
+      "step": 295
+    },
+    {
+      "gradient_norm_before_clip": 0.09223973751068115,
+      "soft_cross_entropy": 0.8827949166297913,
+      "step": 296
+    },
+    {
+      "gradient_norm_before_clip": 0.10149265825748444,
+      "soft_cross_entropy": 0.8846897482872009,
+      "step": 297
+    },
+    {
+      "gradient_norm_before_clip": 0.0841030403971672,
+      "soft_cross_entropy": 0.8842341899871826,
+      "step": 298
+    },
+    {
+      "gradient_norm_before_clip": 0.08501221984624863,
+      "soft_cross_entropy": 0.8878504633903503,
+      "step": 299
+    },
+    {
+      "gradient_norm_before_clip": 0.09319602698087692,
+      "soft_cross_entropy": 0.8712785243988037,
+      "step": 300
+    },
+    {
+      "gradient_norm_before_clip": 0.09580495953559875,
+      "soft_cross_entropy": 0.8896842002868652,
+      "step": 301
+    },
+    {
+      "gradient_norm_before_clip": 0.09771092981100082,
+      "soft_cross_entropy": 0.8821869492530823,
+      "step": 302
+    },
+    {
+      "gradient_norm_before_clip": 0.07091261446475983,
+      "soft_cross_entropy": 0.884765625,
+      "step": 303
+    },
+    {
+      "gradient_norm_before_clip": 0.09237520396709442,
+      "soft_cross_entropy": 0.8903757333755493,
+      "step": 304
+    },
+    {
+      "gradient_norm_before_clip": 0.07957428693771362,
+      "soft_cross_entropy": 0.8653459548950195,
+      "step": 305
+    },
+    {
+      "gradient_norm_before_clip": 0.08419232070446014,
+      "soft_cross_entropy": 0.875534176826477,
+      "step": 306
+    },
+    {
+      "gradient_norm_before_clip": 0.09757900983095169,
+      "soft_cross_entropy": 0.8875371217727661,
+      "step": 307
+    },
+    {
+      "gradient_norm_before_clip": 0.08965624123811722,
+      "soft_cross_entropy": 0.8876607418060303,
+      "step": 308
+    },
+    {
+      "gradient_norm_before_clip": 0.09088283032178879,
+      "soft_cross_entropy": 0.8714079856872559,
+      "step": 309
+    },
+    {
+      "gradient_norm_before_clip": 0.09398991614580154,
+      "soft_cross_entropy": 0.8829580545425415,
+      "step": 310
+    },
+    {
+      "gradient_norm_before_clip": 0.09525547921657562,
+      "soft_cross_entropy": 0.8815237283706665,
+      "step": 311
+    },
+    {
+      "gradient_norm_before_clip": 0.08543413132429123,
+      "soft_cross_entropy": 0.8699573278427124,
+      "step": 312
+    },
+    {
+      "gradient_norm_before_clip": 0.07984449714422226,
+      "soft_cross_entropy": 0.8923362493515015,
+      "step": 313
+    },
+    {
+      "gradient_norm_before_clip": 0.08799630403518677,
+      "soft_cross_entropy": 0.8917852640151978,
+      "step": 314
+    },
+    {
+      "gradient_norm_before_clip": 0.09468087553977966,
+      "soft_cross_entropy": 0.8724911212921143,
+      "step": 315
+    },
+    {
+      "gradient_norm_before_clip": 0.09356741607189178,
+      "soft_cross_entropy": 0.8731474280357361,
+      "step": 316
+    },
+    {
+      "gradient_norm_before_clip": 0.086156465113163,
+      "soft_cross_entropy": 0.8870746493339539,
+      "step": 317
+    },
+    {
+      "gradient_norm_before_clip": 0.1023876816034317,
+      "soft_cross_entropy": 0.8801398277282715,
+      "step": 318
+    },
+    {
+      "gradient_norm_before_clip": 0.07981661707162857,
+      "soft_cross_entropy": 0.8792864084243774,
+      "step": 319
+    },
+    {
+      "gradient_norm_before_clip": 0.07865588366985321,
+      "soft_cross_entropy": 0.8910750150680542,
+      "step": 320
+    },
+    {
+      "gradient_norm_before_clip": 0.09872164577245712,
+      "soft_cross_entropy": 0.8962351679801941,
+      "step": 321
+    },
+    {
+      "gradient_norm_before_clip": 0.08000712841749191,
+      "soft_cross_entropy": 0.8857628107070923,
+      "step": 322
+    },
+    {
+      "gradient_norm_before_clip": 0.09401474893093109,
+      "soft_cross_entropy": 0.8915644288063049,
+      "step": 323
+    },
+    {
+      "gradient_norm_before_clip": 0.10195101797580719,
+      "soft_cross_entropy": 0.887541651725769,
+      "step": 324
+    },
+    {
+      "gradient_norm_before_clip": 0.08711888641119003,
+      "soft_cross_entropy": 0.8838508129119873,
+      "step": 325
+    },
+    {
+      "gradient_norm_before_clip": 0.08744397759437561,
+      "soft_cross_entropy": 0.8866766095161438,
+      "step": 326
+    },
+    {
+      "gradient_norm_before_clip": 0.08133275806903839,
+      "soft_cross_entropy": 0.8799384832382202,
+      "step": 327
+    },
+    {
+      "gradient_norm_before_clip": 0.08418523520231247,
+      "soft_cross_entropy": 0.88646399974823,
+      "step": 328
+    },
+    {
+      "gradient_norm_before_clip": 0.10637515783309937,
+      "soft_cross_entropy": 0.8812518119812012,
+      "step": 329
+    },
+    {
+      "gradient_norm_before_clip": 0.07932375371456146,
+      "soft_cross_entropy": 0.8731614947319031,
+      "step": 330
+    },
+    {
+      "gradient_norm_before_clip": 0.07768265902996063,
+      "soft_cross_entropy": 0.8724387884140015,
+      "step": 331
+    },
+    {
+      "gradient_norm_before_clip": 0.07582985609769821,
+      "soft_cross_entropy": 0.8825713396072388,
+      "step": 332
+    },
+    {
+      "gradient_norm_before_clip": 0.08636385947465897,
+      "soft_cross_entropy": 0.8856062293052673,
+      "step": 333
+    },
+    {
+      "gradient_norm_before_clip": 0.09820961952209473,
+      "soft_cross_entropy": 0.8836161494255066,
+      "step": 334
+    },
+    {
+      "gradient_norm_before_clip": 0.09804891049861908,
+      "soft_cross_entropy": 0.8792676329612732,
+      "step": 335
+    },
+    {
+      "gradient_norm_before_clip": 0.08452973514795303,
+      "soft_cross_entropy": 0.8728159666061401,
+      "step": 336
+    },
+    {
+      "gradient_norm_before_clip": 0.08628722280263901,
+      "soft_cross_entropy": 0.8828282952308655,
+      "step": 337
+    },
+    {
+      "gradient_norm_before_clip": 0.0819990262389183,
+      "soft_cross_entropy": 0.8722929954528809,
+      "step": 338
+    },
+    {
+      "gradient_norm_before_clip": 0.10268507897853851,
+      "soft_cross_entropy": 0.8904820084571838,
+      "step": 339
+    },
+    {
+      "gradient_norm_before_clip": 0.08438228815793991,
+      "soft_cross_entropy": 0.885595440864563,
+      "step": 340
+    },
+    {
+      "gradient_norm_before_clip": 0.10166551172733307,
+      "soft_cross_entropy": 0.8676905035972595,
+      "step": 341
+    },
+    {
+      "gradient_norm_before_clip": 0.08129742741584778,
+      "soft_cross_entropy": 0.8919848203659058,
+      "step": 342
+    },
+    {
+      "gradient_norm_before_clip": 0.0861300602555275,
+      "soft_cross_entropy": 0.8798710703849792,
+      "step": 343
+    },
+    {
+      "gradient_norm_before_clip": 0.07845132797956467,
+      "soft_cross_entropy": 0.8806310296058655,
+      "step": 344
+    },
+    {
+      "gradient_norm_before_clip": 0.07576847821474075,
+      "soft_cross_entropy": 0.8739038705825806,
+      "step": 345
+    },
+    {
+      "gradient_norm_before_clip": 0.09713880717754364,
+      "soft_cross_entropy": 0.8708605766296387,
+      "step": 346
+    },
+    {
+      "gradient_norm_before_clip": 0.0852743610739708,
+      "soft_cross_entropy": 0.8697007298469543,
+      "step": 347
+    },
+    {
+      "gradient_norm_before_clip": 0.06956970691680908,
+      "soft_cross_entropy": 0.8714024424552917,
+      "step": 348
+    },
+    {
+      "gradient_norm_before_clip": 0.0830695703625679,
+      "soft_cross_entropy": 0.8987519145011902,
+      "step": 349
+    },
+    {
+      "gradient_norm_before_clip": 0.09245918691158295,
+      "soft_cross_entropy": 0.8945228457450867,
+      "step": 350
+    },
+    {
+      "gradient_norm_before_clip": 0.08278234302997589,
+      "soft_cross_entropy": 0.8723195791244507,
+      "step": 351
+    },
+    {
+      "gradient_norm_before_clip": 0.08717242628335953,
+      "soft_cross_entropy": 0.8835418224334717,
+      "step": 352
+    },
+    {
+      "gradient_norm_before_clip": 0.07376566529273987,
+      "soft_cross_entropy": 0.8758392333984375,
+      "step": 353
+    },
+    {
+      "gradient_norm_before_clip": 0.08846075087785721,
+      "soft_cross_entropy": 0.875349760055542,
+      "step": 354
+    },
+    {
+      "gradient_norm_before_clip": 0.08851741254329681,
+      "soft_cross_entropy": 0.8854260444641113,
+      "step": 355
+    },
+    {
+      "gradient_norm_before_clip": 0.08745907992124557,
+      "soft_cross_entropy": 0.8928920030593872,
+      "step": 356
+    },
+    {
+      "gradient_norm_before_clip": 0.09678497910499573,
+      "soft_cross_entropy": 0.8762483596801758,
+      "step": 357
+    },
+    {
+      "gradient_norm_before_clip": 0.08639942854642868,
+      "soft_cross_entropy": 0.8910977840423584,
+      "step": 358
+    },
+    {
+      "gradient_norm_before_clip": 0.09636278450489044,
+      "soft_cross_entropy": 0.8867672681808472,
+      "step": 359
+    },
+    {
+      "gradient_norm_before_clip": 0.08728437125682831,
+      "soft_cross_entropy": 0.8710504770278931,
+      "step": 360
+    },
+    {
+      "gradient_norm_before_clip": 0.0817689299583435,
+      "soft_cross_entropy": 0.8919925689697266,
+      "step": 361
+    },
+    {
+      "gradient_norm_before_clip": 0.06794522702693939,
+      "soft_cross_entropy": 0.8803348541259766,
+      "step": 362
+    },
+    {
+      "gradient_norm_before_clip": 0.10731668025255203,
+      "soft_cross_entropy": 0.8806334733963013,
+      "step": 363
+    },
+    {
+      "gradient_norm_before_clip": 0.0903286263346672,
+      "soft_cross_entropy": 0.8784500360488892,
+      "step": 364
+    },
+    {
+      "gradient_norm_before_clip": 0.08301776647567749,
+      "soft_cross_entropy": 0.8810065984725952,
+      "step": 365
+    },
+    {
+      "gradient_norm_before_clip": 0.09415247291326523,
+      "soft_cross_entropy": 0.8906794786453247,
+      "step": 366
+    },
+    {
+      "gradient_norm_before_clip": 0.07122619450092316,
+      "soft_cross_entropy": 0.8714262247085571,
+      "step": 367
+    },
+    {
+      "gradient_norm_before_clip": 0.09339965879917145,
+      "soft_cross_entropy": 0.876948356628418,
+      "step": 368
+    },
+    {
+      "gradient_norm_before_clip": 0.08769829571247101,
+      "soft_cross_entropy": 0.8761928081512451,
+      "step": 369
+    },
+    {
+      "gradient_norm_before_clip": 0.09330879151821136,
+      "soft_cross_entropy": 0.8771786689758301,
+      "step": 370
+    },
+    {
+      "gradient_norm_before_clip": 0.09007405489683151,
+      "soft_cross_entropy": 0.8929016590118408,
+      "step": 371
+    },
+    {
+      "gradient_norm_before_clip": 0.06924288719892502,
+      "soft_cross_entropy": 0.8720675706863403,
+      "step": 372
+    },
+    {
+      "gradient_norm_before_clip": 0.08611375093460083,
+      "soft_cross_entropy": 0.8798795342445374,
+      "step": 373
+    },
+    {
+      "gradient_norm_before_clip": 0.08058550953865051,
+      "soft_cross_entropy": 0.8854982852935791,
+      "step": 374
+    },
+    {
+      "gradient_norm_before_clip": 0.07043590396642685,
+      "soft_cross_entropy": 0.8805501461029053,
+      "step": 375
+    },
+    {
+      "gradient_norm_before_clip": 0.06801871955394745,
+      "soft_cross_entropy": 0.8774166703224182,
+      "step": 376
+    },
+    {
+      "gradient_norm_before_clip": 0.07282717525959015,
+      "soft_cross_entropy": 0.8833873271942139,
+      "step": 377
+    },
+    {
+      "gradient_norm_before_clip": 0.08187057822942734,
+      "soft_cross_entropy": 0.8941599130630493,
+      "step": 378
+    },
+    {
+      "gradient_norm_before_clip": 0.09074082970619202,
+      "soft_cross_entropy": 0.8776043057441711,
+      "step": 379
+    },
+    {
+      "gradient_norm_before_clip": 0.09386764466762543,
+      "soft_cross_entropy": 0.8796637058258057,
+      "step": 380
+    },
+    {
+      "gradient_norm_before_clip": 0.07322132587432861,
+      "soft_cross_entropy": 0.883882999420166,
+      "step": 381
+    },
+    {
+      "gradient_norm_before_clip": 0.08477230370044708,
+      "soft_cross_entropy": 0.880790650844574,
+      "step": 382
+    },
+    {
+      "gradient_norm_before_clip": 0.07969480007886887,
+      "soft_cross_entropy": 0.8756898641586304,
+      "step": 383
+    },
+    {
+      "gradient_norm_before_clip": 0.07973827421665192,
+      "soft_cross_entropy": 0.8668408393859863,
+      "step": 384
+    },
+    {
+      "gradient_norm_before_clip": 0.07577062398195267,
+      "soft_cross_entropy": 0.8847023844718933,
+      "step": 385
+    },
+    {
+      "gradient_norm_before_clip": 0.0879686176776886,
+      "soft_cross_entropy": 0.8909876942634583,
+      "step": 386
+    },
+    {
+      "gradient_norm_before_clip": 0.08175237476825714,
+      "soft_cross_entropy": 0.8689621686935425,
+      "step": 387
+    },
+    {
+      "gradient_norm_before_clip": 0.082606740295887,
+      "soft_cross_entropy": 0.874448299407959,
+      "step": 388
+    },
+    {
+      "gradient_norm_before_clip": 0.08949427306652069,
+      "soft_cross_entropy": 0.8951399326324463,
+      "step": 389
+    },
+    {
+      "gradient_norm_before_clip": 0.07123863697052002,
+      "soft_cross_entropy": 0.8782026171684265,
+      "step": 390
+    },
+    {
+      "gradient_norm_before_clip": 0.07814203947782516,
+      "soft_cross_entropy": 0.8967063426971436,
+      "step": 391
+    },
+    {
+      "gradient_norm_before_clip": 0.07828389108181,
+      "soft_cross_entropy": 0.8811407089233398,
+      "step": 392
+    },
+    {
+      "gradient_norm_before_clip": 0.07831897586584091,
+      "soft_cross_entropy": 0.8695420622825623,
+      "step": 393
+    },
+    {
+      "gradient_norm_before_clip": 0.08211621642112732,
+      "soft_cross_entropy": 0.8767082691192627,
+      "step": 394
+    },
+    {
+      "gradient_norm_before_clip": 0.06938519328832626,
+      "soft_cross_entropy": 0.8777256011962891,
+      "step": 395
+    },
+    {
+      "gradient_norm_before_clip": 0.08013805001974106,
+      "soft_cross_entropy": 0.8718111515045166,
+      "step": 396
+    },
+    {
+      "gradient_norm_before_clip": 0.0655369758605957,
+      "soft_cross_entropy": 0.8886520862579346,
+      "step": 397
+    },
+    {
+      "gradient_norm_before_clip": 0.06780198961496353,
+      "soft_cross_entropy": 0.8678464293479919,
+      "step": 398
+    },
+    {
+      "gradient_norm_before_clip": 0.09247945249080658,
+      "soft_cross_entropy": 0.8769574165344238,
+      "step": 399
+    },
+    {
+      "gradient_norm_before_clip": 0.07814082503318787,
+      "soft_cross_entropy": 0.8724088072776794,
+      "step": 400
+    },
+    {
+      "gradient_norm_before_clip": 0.07883379608392715,
+      "soft_cross_entropy": 0.8883623480796814,
+      "step": 401
+    },
+    {
+      "gradient_norm_before_clip": 0.08643001317977905,
+      "soft_cross_entropy": 0.8922796845436096,
+      "step": 402
+    },
+    {
+      "gradient_norm_before_clip": 0.0895492434501648,
+      "soft_cross_entropy": 0.8747612237930298,
+      "step": 403
+    },
+    {
+      "gradient_norm_before_clip": 0.10864617675542831,
+      "soft_cross_entropy": 0.9016104936599731,
+      "step": 404
+    },
+    {
+      "gradient_norm_before_clip": 0.07505094259977341,
+      "soft_cross_entropy": 0.8668611645698547,
+      "step": 405
+    },
+    {
+      "gradient_norm_before_clip": 0.08356351405382156,
+      "soft_cross_entropy": 0.8703776597976685,
+      "step": 406
+    },
+    {
+      "gradient_norm_before_clip": 0.08400078862905502,
+      "soft_cross_entropy": 0.8848167657852173,
+      "step": 407
+    },
+    {
+      "gradient_norm_before_clip": 0.11161517351865768,
+      "soft_cross_entropy": 0.8837997913360596,
+      "step": 408
+    },
+    {
+      "gradient_norm_before_clip": 0.10359121114015579,
+      "soft_cross_entropy": 0.8789092898368835,
+      "step": 409
+    },
+    {
+      "gradient_norm_before_clip": 0.0941716805100441,
+      "soft_cross_entropy": 0.8809310793876648,
+      "step": 410
+    },
+    {
+      "gradient_norm_before_clip": 0.07395681738853455,
+      "soft_cross_entropy": 0.8729535341262817,
+      "step": 411
+    },
+    {
+      "gradient_norm_before_clip": 0.10148851573467255,
+      "soft_cross_entropy": 0.8957580327987671,
+      "step": 412
+    },
+    {
+      "gradient_norm_before_clip": 0.09216589480638504,
+      "soft_cross_entropy": 0.8765379190444946,
+      "step": 413
+    },
+    {
+      "gradient_norm_before_clip": 0.06261175125837326,
+      "soft_cross_entropy": 0.8727049827575684,
+      "step": 414
+    },
+    {
+      "gradient_norm_before_clip": 0.08142552524805069,
+      "soft_cross_entropy": 0.8823025822639465,
+      "step": 415
+    },
+    {
+      "gradient_norm_before_clip": 0.08837616443634033,
+      "soft_cross_entropy": 0.8944340348243713,
+      "step": 416
+    },
+    {
+      "gradient_norm_before_clip": 0.08022742718458176,
+      "soft_cross_entropy": 0.8986673951148987,
+      "step": 417
+    },
+    {
+      "gradient_norm_before_clip": 0.09211914986371994,
+      "soft_cross_entropy": 0.8801534175872803,
+      "step": 418
+    },
+    {
+      "gradient_norm_before_clip": 0.07173976302146912,
+      "soft_cross_entropy": 0.8785045146942139,
+      "step": 419
+    },
+    {
+      "gradient_norm_before_clip": 0.08706531673669815,
+      "soft_cross_entropy": 0.8995504379272461,
+      "step": 420
+    },
+    {
+      "gradient_norm_before_clip": 0.09659469872713089,
+      "soft_cross_entropy": 0.880964994430542,
+      "step": 421
+    },
+    {
+      "gradient_norm_before_clip": 0.08781091123819351,
+      "soft_cross_entropy": 0.8776994943618774,
+      "step": 422
+    },
+    {
+      "gradient_norm_before_clip": 0.08237874507904053,
+      "soft_cross_entropy": 0.8830193877220154,
+      "step": 423
+    },
+    {
+      "gradient_norm_before_clip": 0.0925045907497406,
+      "soft_cross_entropy": 0.8849053978919983,
+      "step": 424
+    },
+    {
+      "gradient_norm_before_clip": 0.08534477651119232,
+      "soft_cross_entropy": 0.8799868822097778,
+      "step": 425
+    },
+    {
+      "gradient_norm_before_clip": 0.07103424519300461,
+      "soft_cross_entropy": 0.8768979907035828,
+      "step": 426
+    },
+    {
+      "gradient_norm_before_clip": 0.09736320376396179,
+      "soft_cross_entropy": 0.8898686170578003,
+      "step": 427
+    },
+    {
+      "gradient_norm_before_clip": 0.08320862054824829,
+      "soft_cross_entropy": 0.8855636715888977,
+      "step": 428
+    },
+    {
+      "gradient_norm_before_clip": 0.07193741202354431,
+      "soft_cross_entropy": 0.8748369812965393,
+      "step": 429
+    },
+    {
+      "gradient_norm_before_clip": 0.06884445250034332,
+      "soft_cross_entropy": 0.8908582329750061,
+      "step": 430
+    },
+    {
+      "gradient_norm_before_clip": 0.08209047466516495,
+      "soft_cross_entropy": 0.8850313425064087,
+      "step": 431
+    },
+    {
+      "gradient_norm_before_clip": 0.07656262814998627,
+      "soft_cross_entropy": 0.8844232559204102,
+      "step": 432
+    },
+    {
+      "gradient_norm_before_clip": 0.07561812549829483,
+      "soft_cross_entropy": 0.8937766551971436,
+      "step": 433
+    },
+    {
+      "gradient_norm_before_clip": 0.07167075574398041,
+      "soft_cross_entropy": 0.8715833425521851,
+      "step": 434
+    },
+    {
+      "gradient_norm_before_clip": 0.07243374735116959,
+      "soft_cross_entropy": 0.8901891112327576,
+      "step": 435
+    },
+    {
+      "gradient_norm_before_clip": 0.07704542577266693,
+      "soft_cross_entropy": 0.8868908882141113,
+      "step": 436
+    },
+    {
+      "gradient_norm_before_clip": 0.0770641565322876,
+      "soft_cross_entropy": 0.868431806564331,
+      "step": 437
+    },
+    {
+      "gradient_norm_before_clip": 0.08549797534942627,
+      "soft_cross_entropy": 0.8724202513694763,
+      "step": 438
+    },
+    {
+      "gradient_norm_before_clip": 0.07278135418891907,
+      "soft_cross_entropy": 0.8797048330307007,
+      "step": 439
+    },
+    {
+      "gradient_norm_before_clip": 0.07923535257577896,
+      "soft_cross_entropy": 0.8685367703437805,
+      "step": 440
+    },
+    {
+      "gradient_norm_before_clip": 0.07050477713346481,
+      "soft_cross_entropy": 0.8815726637840271,
+      "step": 441
+    },
+    {
+      "gradient_norm_before_clip": 0.0780753642320633,
+      "soft_cross_entropy": 0.8721009492874146,
+      "step": 442
+    },
+    {
+      "gradient_norm_before_clip": 0.06654372811317444,
+      "soft_cross_entropy": 0.8745847940444946,
+      "step": 443
+    },
+    {
+      "gradient_norm_before_clip": 0.07082594186067581,
+      "soft_cross_entropy": 0.8858991861343384,
+      "step": 444
+    },
+    {
+      "gradient_norm_before_clip": 0.0691639855504036,
+      "soft_cross_entropy": 0.8727262616157532,
+      "step": 445
+    },
+    {
+      "gradient_norm_before_clip": 0.08105349540710449,
+      "soft_cross_entropy": 0.8703393936157227,
+      "step": 446
+    },
+    {
+      "gradient_norm_before_clip": 0.08953456580638885,
+      "soft_cross_entropy": 0.8923921585083008,
+      "step": 447
+    },
+    {
+      "gradient_norm_before_clip": 0.0638425424695015,
+      "soft_cross_entropy": 0.8873660564422607,
+      "step": 448
+    },
+    {
+      "gradient_norm_before_clip": 0.08022131025791168,
+      "soft_cross_entropy": 0.8826184272766113,
+      "step": 449
+    },
+    {
+      "gradient_norm_before_clip": 0.10731548070907593,
+      "soft_cross_entropy": 0.8949071168899536,
+      "step": 450
+    },
+    {
+      "gradient_norm_before_clip": 0.08546131104230881,
+      "soft_cross_entropy": 0.8792049288749695,
+      "step": 451
+    },
+    {
+      "gradient_norm_before_clip": 0.08258591592311859,
+      "soft_cross_entropy": 0.8863387703895569,
+      "step": 452
+    },
+    {
+      "gradient_norm_before_clip": 0.058532461524009705,
+      "soft_cross_entropy": 0.8610303997993469,
+      "step": 453
+    },
+    {
+      "gradient_norm_before_clip": 0.06737858802080154,
+      "soft_cross_entropy": 0.8821930289268494,
+      "step": 454
+    },
+    {
+      "gradient_norm_before_clip": 0.08377711474895477,
+      "soft_cross_entropy": 0.8633751273155212,
+      "step": 455
+    },
+    {
+      "gradient_norm_before_clip": 0.07454633712768555,
+      "soft_cross_entropy": 0.8855057954788208,
+      "step": 456
+    },
+    {
+      "gradient_norm_before_clip": 0.08485645800828934,
+      "soft_cross_entropy": 0.8784347772598267,
+      "step": 457
+    },
+    {
+      "gradient_norm_before_clip": 0.06808428466320038,
+      "soft_cross_entropy": 0.8642914295196533,
+      "step": 458
+    },
+    {
+      "gradient_norm_before_clip": 0.09333094954490662,
+      "soft_cross_entropy": 0.8955092430114746,
+      "step": 459
+    },
+    {
+      "gradient_norm_before_clip": 0.08634711802005768,
+      "soft_cross_entropy": 0.8778731822967529,
+      "step": 460
+    },
+    {
+      "gradient_norm_before_clip": 0.08155655115842819,
+      "soft_cross_entropy": 0.8807993531227112,
+      "step": 461
+    },
+    {
+      "gradient_norm_before_clip": 0.0753193199634552,
+      "soft_cross_entropy": 0.8712024092674255,
+      "step": 462
+    },
+    {
+      "gradient_norm_before_clip": 0.08412649482488632,
+      "soft_cross_entropy": 0.9020208716392517,
+      "step": 463
+    },
+    {
+      "gradient_norm_before_clip": 0.09696817398071289,
+      "soft_cross_entropy": 0.8939701318740845,
+      "step": 464
+    },
+    {
+      "gradient_norm_before_clip": 0.07842236012220383,
+      "soft_cross_entropy": 0.8760242462158203,
+      "step": 465
+    },
+    {
+      "gradient_norm_before_clip": 0.07500248402357101,
+      "soft_cross_entropy": 0.8830910921096802,
+      "step": 466
+    },
+    {
+      "gradient_norm_before_clip": 0.09012746810913086,
+      "soft_cross_entropy": 0.8920037746429443,
+      "step": 467
+    },
+    {
+      "gradient_norm_before_clip": 0.07543186098337173,
+      "soft_cross_entropy": 0.888737678527832,
+      "step": 468
+    },
+    {
+      "gradient_norm_before_clip": 0.05696939304471016,
+      "soft_cross_entropy": 0.8701252341270447,
+      "step": 469
+    },
+    {
+      "gradient_norm_before_clip": 0.07061190903186798,
+      "soft_cross_entropy": 0.8756134510040283,
+      "step": 470
+    },
+    {
+      "gradient_norm_before_clip": 0.0711066871881485,
+      "soft_cross_entropy": 0.8880444765090942,
+      "step": 471
+    },
+    {
+      "gradient_norm_before_clip": 0.06951064616441727,
+      "soft_cross_entropy": 0.8857131600379944,
+      "step": 472
+    },
+    {
+      "gradient_norm_before_clip": 0.07066720724105835,
+      "soft_cross_entropy": 0.8662891983985901,
+      "step": 473
+    },
+    {
+      "gradient_norm_before_clip": 0.06828761845827103,
+      "soft_cross_entropy": 0.8926730155944824,
+      "step": 474
+    },
+    {
+      "gradient_norm_before_clip": 0.07417695969343185,
+      "soft_cross_entropy": 0.8839493989944458,
+      "step": 475
+    },
+    {
+      "gradient_norm_before_clip": 0.07204405218362808,
+      "soft_cross_entropy": 0.8945812582969666,
+      "step": 476
+    },
+    {
+      "gradient_norm_before_clip": 0.07847806066274643,
+      "soft_cross_entropy": 0.8764521479606628,
+      "step": 477
+    },
+    {
+      "gradient_norm_before_clip": 0.0731317475438118,
+      "soft_cross_entropy": 0.8877255916595459,
+      "step": 478
+    },
+    {
+      "gradient_norm_before_clip": 0.06340678781270981,
+      "soft_cross_entropy": 0.8759332895278931,
+      "step": 479
+    },
+    {
+      "gradient_norm_before_clip": 0.07320985943078995,
+      "soft_cross_entropy": 0.8748774528503418,
+      "step": 480
+    },
+    {
+      "gradient_norm_before_clip": 0.07483691722154617,
+      "soft_cross_entropy": 0.8758724331855774,
+      "step": 481
+    },
+    {
+      "gradient_norm_before_clip": 0.06780829280614853,
+      "soft_cross_entropy": 0.881924033164978,
+      "step": 482
+    },
+    {
+      "gradient_norm_before_clip": 0.09007830917835236,
+      "soft_cross_entropy": 0.8838729858398438,
+      "step": 483
+    },
+    {
+      "gradient_norm_before_clip": 0.06655358523130417,
+      "soft_cross_entropy": 0.8681872487068176,
+      "step": 484
+    },
+    {
+      "gradient_norm_before_clip": 0.05958631634712219,
+      "soft_cross_entropy": 0.8832025527954102,
+      "step": 485
+    },
+    {
+      "gradient_norm_before_clip": 0.06289485096931458,
+      "soft_cross_entropy": 0.8877753019332886,
+      "step": 486
+    },
+    {
+      "gradient_norm_before_clip": 0.06862573325634003,
+      "soft_cross_entropy": 0.877819299697876,
+      "step": 487
+    },
+    {
+      "gradient_norm_before_clip": 0.05991628021001816,
+      "soft_cross_entropy": 0.8864443302154541,
+      "step": 488
+    },
+    {
+      "gradient_norm_before_clip": 0.06533525884151459,
+      "soft_cross_entropy": 0.8929133415222168,
+      "step": 489
+    },
+    {
+      "gradient_norm_before_clip": 0.0752597451210022,
+      "soft_cross_entropy": 0.8723438382148743,
+      "step": 490
+    },
+    {
+      "gradient_norm_before_clip": 0.07348678261041641,
+      "soft_cross_entropy": 0.8893377184867859,
+      "step": 491
+    },
+    {
+      "gradient_norm_before_clip": 0.06542056798934937,
+      "soft_cross_entropy": 0.8670010566711426,
+      "step": 492
+    },
+    {
+      "gradient_norm_before_clip": 0.0653994008898735,
+      "soft_cross_entropy": 0.8797723054885864,
+      "step": 493
+    },
+    {
+      "gradient_norm_before_clip": 0.06452431529760361,
+      "soft_cross_entropy": 0.8659354448318481,
+      "step": 494
+    },
+    {
+      "gradient_norm_before_clip": 0.07449579238891602,
+      "soft_cross_entropy": 0.8936485052108765,
+      "step": 495
+    },
+    {
+      "gradient_norm_before_clip": 0.07517005503177643,
+      "soft_cross_entropy": 0.8807622194290161,
+      "step": 496
+    },
+    {
+      "gradient_norm_before_clip": 0.06974167376756668,
+      "soft_cross_entropy": 0.8915774822235107,
+      "step": 497
+    },
+    {
+      "gradient_norm_before_clip": 0.07332085818052292,
+      "soft_cross_entropy": 0.8680932521820068,
+      "step": 498
+    },
+    {
+      "gradient_norm_before_clip": 0.07536330074071884,
+      "soft_cross_entropy": 0.8854677677154541,
+      "step": 499
+    },
+    {
+      "gradient_norm_before_clip": 0.08116485923528671,
+      "soft_cross_entropy": 0.8807882070541382,
+      "step": 500
+    },
+    {
+      "gradient_norm_before_clip": 0.06532738357782364,
+      "soft_cross_entropy": 0.8749962449073792,
+      "step": 501
+    },
+    {
+      "gradient_norm_before_clip": 0.0654962882399559,
+      "soft_cross_entropy": 0.8705832958221436,
+      "step": 502
+    },
+    {
+      "gradient_norm_before_clip": 0.07548686861991882,
+      "soft_cross_entropy": 0.8727476596832275,
+      "step": 503
+    },
+    {
+      "gradient_norm_before_clip": 0.07031261920928955,
+      "soft_cross_entropy": 0.8727452754974365,
+      "step": 504
+    },
+    {
+      "gradient_norm_before_clip": 0.07177254557609558,
+      "soft_cross_entropy": 0.877767026424408,
+      "step": 505
+    },
+    {
+      "gradient_norm_before_clip": 0.06096689775586128,
+      "soft_cross_entropy": 0.8735334873199463,
+      "step": 506
+    },
+    {
+      "gradient_norm_before_clip": 0.06760765612125397,
+      "soft_cross_entropy": 0.8638689517974854,
+      "step": 507
+    },
+    {
+      "gradient_norm_before_clip": 0.0686735138297081,
+      "soft_cross_entropy": 0.8855702877044678,
+      "step": 508
+    },
+    {
+      "gradient_norm_before_clip": 0.07774640619754791,
+      "soft_cross_entropy": 0.8796374797821045,
+      "step": 509
+    },
+    {
+      "gradient_norm_before_clip": 0.07931865006685257,
+      "soft_cross_entropy": 0.8825780153274536,
+      "step": 510
+    },
+    {
+      "gradient_norm_before_clip": 0.08122212439775467,
+      "soft_cross_entropy": 0.88496994972229,
+      "step": 511
+    },
+    {
+      "gradient_norm_before_clip": 0.06661810725927353,
+      "soft_cross_entropy": 0.8734983205795288,
+      "step": 512
+    },
+    {
+      "gradient_norm_before_clip": 0.07275239378213882,
+      "soft_cross_entropy": 0.8844164609909058,
+      "step": 513
+    },
+    {
+      "gradient_norm_before_clip": 0.05666876956820488,
+      "soft_cross_entropy": 0.8907674551010132,
+      "step": 514
+    },
+    {
+      "gradient_norm_before_clip": 0.0730840340256691,
+      "soft_cross_entropy": 0.8880661129951477,
+      "step": 515
+    },
+    {
+      "gradient_norm_before_clip": 0.06929285824298859,
+      "soft_cross_entropy": 0.8773848414421082,
+      "step": 516
+    },
+    {
+      "gradient_norm_before_clip": 0.0711372122168541,
+      "soft_cross_entropy": 0.8775758743286133,
+      "step": 517
+    },
+    {
+      "gradient_norm_before_clip": 0.06997181475162506,
+      "soft_cross_entropy": 0.8909837007522583,
+      "step": 518
+    },
+    {
+      "gradient_norm_before_clip": 0.07201354950666428,
+      "soft_cross_entropy": 0.8821184635162354,
+      "step": 519
+    },
+    {
+      "gradient_norm_before_clip": 0.08041054010391235,
+      "soft_cross_entropy": 0.8884323835372925,
+      "step": 520
+    },
+    {
+      "gradient_norm_before_clip": 0.07505723088979721,
+      "soft_cross_entropy": 0.8722834587097168,
+      "step": 521
+    },
+    {
+      "gradient_norm_before_clip": 0.06599696725606918,
+      "soft_cross_entropy": 0.8671536445617676,
+      "step": 522
+    },
+    {
+      "gradient_norm_before_clip": 0.07623923569917679,
+      "soft_cross_entropy": 0.8837875723838806,
+      "step": 523
+    },
+    {
+      "gradient_norm_before_clip": 0.07036133110523224,
+      "soft_cross_entropy": 0.8804194331169128,
+      "step": 524
+    },
+    {
+      "gradient_norm_before_clip": 0.07095792889595032,
+      "soft_cross_entropy": 0.8966983556747437,
+      "step": 525
+    },
+    {
+      "gradient_norm_before_clip": 0.07620279490947723,
+      "soft_cross_entropy": 0.8731174468994141,
+      "step": 526
+    },
+    {
+      "gradient_norm_before_clip": 0.07369127869606018,
+      "soft_cross_entropy": 0.881771445274353,
+      "step": 527
+    },
+    {
+      "gradient_norm_before_clip": 0.06097319349646568,
+      "soft_cross_entropy": 0.8777576088905334,
+      "step": 528
+    },
+    {
+      "gradient_norm_before_clip": 0.08447417616844177,
+      "soft_cross_entropy": 0.88752681016922,
+      "step": 529
+    },
+    {
+      "gradient_norm_before_clip": 0.07969813793897629,
+      "soft_cross_entropy": 0.8766823410987854,
+      "step": 530
+    },
+    {
+      "gradient_norm_before_clip": 0.0786714255809784,
+      "soft_cross_entropy": 0.8739209771156311,
+      "step": 531
+    },
+    {
+      "gradient_norm_before_clip": 0.07089551538228989,
+      "soft_cross_entropy": 0.8712961673736572,
+      "step": 532
+    },
+    {
+      "gradient_norm_before_clip": 0.0629798173904419,
+      "soft_cross_entropy": 0.8794057369232178,
+      "step": 533
+    },
+    {
+      "gradient_norm_before_clip": 0.06618613004684448,
+      "soft_cross_entropy": 0.879973292350769,
+      "step": 534
+    },
+    {
+      "gradient_norm_before_clip": 0.07090175896883011,
+      "soft_cross_entropy": 0.8904334306716919,
+      "step": 535
+    },
+    {
+      "gradient_norm_before_clip": 0.07293790578842163,
+      "soft_cross_entropy": 0.8850076198577881,
+      "step": 536
+    },
+    {
+      "gradient_norm_before_clip": 0.06822998076677322,
+      "soft_cross_entropy": 0.8776062726974487,
+      "step": 537
+    },
+    {
+      "gradient_norm_before_clip": 0.07741157710552216,
+      "soft_cross_entropy": 0.8690693974494934,
+      "step": 538
+    },
+    {
+      "gradient_norm_before_clip": 0.06810341775417328,
+      "soft_cross_entropy": 0.8755457997322083,
+      "step": 539
+    },
+    {
+      "gradient_norm_before_clip": 0.06932166963815689,
+      "soft_cross_entropy": 0.8939188718795776,
+      "step": 540
+    },
+    {
+      "gradient_norm_before_clip": 0.06765943765640259,
+      "soft_cross_entropy": 0.8720042109489441,
+      "step": 541
+    },
+    {
+      "gradient_norm_before_clip": 0.06942591071128845,
+      "soft_cross_entropy": 0.8837088346481323,
+      "step": 542
+    },
+    {
+      "gradient_norm_before_clip": 0.07316721975803375,
+      "soft_cross_entropy": 0.8744696378707886,
+      "step": 543
+    },
+    {
+      "gradient_norm_before_clip": 0.06793782114982605,
+      "soft_cross_entropy": 0.8838303685188293,
+      "step": 544
+    },
+    {
+      "gradient_norm_before_clip": 0.06946256011724472,
+      "soft_cross_entropy": 0.8842317461967468,
+      "step": 545
+    },
+    {
+      "gradient_norm_before_clip": 0.07352547347545624,
+      "soft_cross_entropy": 0.8902198076248169,
+      "step": 546
+    },
+    {
+      "gradient_norm_before_clip": 0.072237029671669,
+      "soft_cross_entropy": 0.8800532817840576,
+      "step": 547
+    },
+    {
+      "gradient_norm_before_clip": 0.0640641525387764,
+      "soft_cross_entropy": 0.8800845742225647,
+      "step": 548
+    },
+    {
+      "gradient_norm_before_clip": 0.07348708808422089,
+      "soft_cross_entropy": 0.8913499116897583,
+      "step": 549
+    },
+    {
+      "gradient_norm_before_clip": 0.07102686166763306,
+      "soft_cross_entropy": 0.8723984956741333,
+      "step": 550
+    },
+    {
+      "gradient_norm_before_clip": 0.07418132573366165,
+      "soft_cross_entropy": 0.8759936094284058,
+      "step": 551
+    },
+    {
+      "gradient_norm_before_clip": 0.0866321250796318,
+      "soft_cross_entropy": 0.8752259612083435,
+      "step": 552
+    },
+    {
+      "gradient_norm_before_clip": 0.0616840124130249,
+      "soft_cross_entropy": 0.8786348700523376,
+      "step": 553
+    },
+    {
+      "gradient_norm_before_clip": 0.06439477950334549,
+      "soft_cross_entropy": 0.8760958909988403,
+      "step": 554
+    },
+    {
+      "gradient_norm_before_clip": 0.07272903621196747,
+      "soft_cross_entropy": 0.8748304843902588,
+      "step": 555
+    },
+    {
+      "gradient_norm_before_clip": 0.0788106694817543,
+      "soft_cross_entropy": 0.8935186862945557,
+      "step": 556
+    },
+    {
+      "gradient_norm_before_clip": 0.06795788556337357,
+      "soft_cross_entropy": 0.8755218982696533,
+      "step": 557
+    },
+    {
+      "gradient_norm_before_clip": 0.06218724325299263,
+      "soft_cross_entropy": 0.8789187073707581,
+      "step": 558
+    },
+    {
+      "gradient_norm_before_clip": 0.0580802820622921,
+      "soft_cross_entropy": 0.8751634359359741,
+      "step": 559
+    },
+    {
+      "gradient_norm_before_clip": 0.07454338669776917,
+      "soft_cross_entropy": 0.8790127635002136,
+      "step": 560
+    },
+    {
+      "gradient_norm_before_clip": 0.06343811005353928,
+      "soft_cross_entropy": 0.8944412469863892,
+      "step": 561
+    },
+    {
+      "gradient_norm_before_clip": 0.05580037832260132,
+      "soft_cross_entropy": 0.8872259259223938,
+      "step": 562
+    },
+    {
+      "gradient_norm_before_clip": 0.0635519027709961,
+      "soft_cross_entropy": 0.8862646818161011,
+      "step": 563
+    },
+    {
+      "gradient_norm_before_clip": 0.0802067294716835,
+      "soft_cross_entropy": 0.890331506729126,
+      "step": 564
+    },
+    {
+      "gradient_norm_before_clip": 0.052914444357156754,
+      "soft_cross_entropy": 0.8716651201248169,
+      "step": 565
+    },
+    {
+      "gradient_norm_before_clip": 0.08003043383359909,
+      "soft_cross_entropy": 0.8784233927726746,
+      "step": 566
+    },
+    {
+      "gradient_norm_before_clip": 0.059846844524145126,
+      "soft_cross_entropy": 0.8880249261856079,
+      "step": 567
+    },
+    {
+      "gradient_norm_before_clip": 0.0783398225903511,
+      "soft_cross_entropy": 0.8861839771270752,
+      "step": 568
+    },
+    {
+      "gradient_norm_before_clip": 0.06450291723012924,
+      "soft_cross_entropy": 0.8759304881095886,
+      "step": 569
+    },
+    {
+      "gradient_norm_before_clip": 0.06954722106456757,
+      "soft_cross_entropy": 0.8870769739151001,
+      "step": 570
+    },
+    {
+      "gradient_norm_before_clip": 0.06990073621273041,
+      "soft_cross_entropy": 0.8725541830062866,
+      "step": 571
+    },
+    {
+      "gradient_norm_before_clip": 0.06380970776081085,
+      "soft_cross_entropy": 0.8740506172180176,
+      "step": 572
+    },
+    {
+      "gradient_norm_before_clip": 0.07398295402526855,
+      "soft_cross_entropy": 0.8852369785308838,
+      "step": 573
+    },
+    {
+      "gradient_norm_before_clip": 0.07358940690755844,
+      "soft_cross_entropy": 0.8655547499656677,
+      "step": 574
+    },
+    {
+      "gradient_norm_before_clip": 0.07468070834875107,
+      "soft_cross_entropy": 0.8695318698883057,
+      "step": 575
+    },
+    {
+      "gradient_norm_before_clip": 0.06695413589477539,
+      "soft_cross_entropy": 0.865702748298645,
+      "step": 576
+    },
+    {
+      "gradient_norm_before_clip": 0.06986580044031143,
+      "soft_cross_entropy": 0.8745670914649963,
+      "step": 577
+    },
+    {
+      "gradient_norm_before_clip": 0.065446637570858,
+      "soft_cross_entropy": 0.8713346719741821,
+      "step": 578
+    },
+    {
+      "gradient_norm_before_clip": 0.056533604860305786,
+      "soft_cross_entropy": 0.8670392632484436,
+      "step": 579
+    },
+    {
+      "gradient_norm_before_clip": 0.07795237004756927,
+      "soft_cross_entropy": 0.8861644268035889,
+      "step": 580
+    },
+    {
+      "gradient_norm_before_clip": 0.07794704288244247,
+      "soft_cross_entropy": 0.8684375286102295,
+      "step": 581
+    },
+    {
+      "gradient_norm_before_clip": 0.08247014135122299,
+      "soft_cross_entropy": 0.88688063621521,
+      "step": 582
+    },
+    {
+      "gradient_norm_before_clip": 0.07926859706640244,
+      "soft_cross_entropy": 0.8908928632736206,
+      "step": 583
+    },
+    {
+      "gradient_norm_before_clip": 0.06685128808021545,
+      "soft_cross_entropy": 0.8790320158004761,
+      "step": 584
+    },
+    {
+      "gradient_norm_before_clip": 0.060876451432704926,
+      "soft_cross_entropy": 0.871367335319519,
+      "step": 585
+    },
+    {
+      "gradient_norm_before_clip": 0.07841505855321884,
+      "soft_cross_entropy": 0.903899073600769,
+      "step": 586
+    },
+    {
+      "gradient_norm_before_clip": 0.07470611482858658,
+      "soft_cross_entropy": 0.8855643272399902,
+      "step": 587
+    },
+    {
+      "gradient_norm_before_clip": 0.05708472058176994,
+      "soft_cross_entropy": 0.8711148500442505,
+      "step": 588
+    },
+    {
+      "gradient_norm_before_clip": 0.07076291739940643,
+      "soft_cross_entropy": 0.8884847164154053,
+      "step": 589
+    },
+    {
+      "gradient_norm_before_clip": 0.06534739583730698,
+      "soft_cross_entropy": 0.8723552227020264,
+      "step": 590
+    },
+    {
+      "gradient_norm_before_clip": 0.06433551013469696,
+      "soft_cross_entropy": 0.8789233565330505,
+      "step": 591
+    },
+    {
+      "gradient_norm_before_clip": 0.07146690785884857,
+      "soft_cross_entropy": 0.8892437815666199,
+      "step": 592
+    },
+    {
+      "gradient_norm_before_clip": 0.060891877859830856,
+      "soft_cross_entropy": 0.8662370443344116,
+      "step": 593
+    },
+    {
+      "gradient_norm_before_clip": 0.061076339334249496,
+      "soft_cross_entropy": 0.8691035509109497,
+      "step": 594
+    },
+    {
+      "gradient_norm_before_clip": 0.07185586541891098,
+      "soft_cross_entropy": 0.8749909400939941,
+      "step": 595
+    },
+    {
+      "gradient_norm_before_clip": 0.06290274858474731,
+      "soft_cross_entropy": 0.8969084620475769,
+      "step": 596
+    },
+    {
+      "gradient_norm_before_clip": 0.06480464339256287,
+      "soft_cross_entropy": 0.8709534406661987,
+      "step": 597
+    },
+    {
+      "gradient_norm_before_clip": 0.06880178302526474,
+      "soft_cross_entropy": 0.8785511255264282,
+      "step": 598
+    },
+    {
+      "gradient_norm_before_clip": 0.07099434733390808,
+      "soft_cross_entropy": 0.8780430555343628,
+      "step": 599
+    },
+    {
+      "gradient_norm_before_clip": 0.07194273918867111,
+      "soft_cross_entropy": 0.8759233355522156,
+      "step": 600
+    },
+    {
+      "gradient_norm_before_clip": 0.07384490221738815,
+      "soft_cross_entropy": 0.8981531262397766,
+      "step": 601
+    },
+    {
+      "gradient_norm_before_clip": 0.06360001116991043,
+      "soft_cross_entropy": 0.8838188052177429,
+      "step": 602
+    },
+    {
+      "gradient_norm_before_clip": 0.06244601309299469,
+      "soft_cross_entropy": 0.8660701513290405,
+      "step": 603
+    },
+    {
+      "gradient_norm_before_clip": 0.06527277082204819,
+      "soft_cross_entropy": 0.8816187381744385,
+      "step": 604
+    },
+    {
+      "gradient_norm_before_clip": 0.07066632062196732,
+      "soft_cross_entropy": 0.8724144101142883,
+      "step": 605
+    },
+    {
+      "gradient_norm_before_clip": 0.05330798029899597,
+      "soft_cross_entropy": 0.8675591349601746,
+      "step": 606
+    },
+    {
+      "gradient_norm_before_clip": 0.08056064695119858,
+      "soft_cross_entropy": 0.897543728351593,
+      "step": 607
+    },
+    {
+      "gradient_norm_before_clip": 0.06657395511865616,
+      "soft_cross_entropy": 0.8835619688034058,
+      "step": 608
+    },
+    {
+      "gradient_norm_before_clip": 0.07007075846195221,
+      "soft_cross_entropy": 0.8790144920349121,
+      "step": 609
+    },
+    {
+      "gradient_norm_before_clip": 0.07301277667284012,
+      "soft_cross_entropy": 0.8763471245765686,
+      "step": 610
+    },
+    {
+      "gradient_norm_before_clip": 0.06502323597669601,
+      "soft_cross_entropy": 0.8770115971565247,
+      "step": 611
+    },
+    {
+      "gradient_norm_before_clip": 0.06526075303554535,
+      "soft_cross_entropy": 0.8835822343826294,
+      "step": 612
+    },
+    {
+      "gradient_norm_before_clip": 0.0698377788066864,
+      "soft_cross_entropy": 0.8794063925743103,
+      "step": 613
+    },
+    {
+      "gradient_norm_before_clip": 0.070194311439991,
+      "soft_cross_entropy": 0.8669201135635376,
+      "step": 614
+    },
+    {
+      "gradient_norm_before_clip": 0.08584100753068924,
+      "soft_cross_entropy": 0.8819857239723206,
+      "step": 615
+    },
+    {
+      "gradient_norm_before_clip": 0.06996417790651321,
+      "soft_cross_entropy": 0.8885501623153687,
+      "step": 616
+    },
+    {
+      "gradient_norm_before_clip": 0.06826837360858917,
+      "soft_cross_entropy": 0.877197265625,
+      "step": 617
+    },
+    {
+      "gradient_norm_before_clip": 0.0809226781129837,
+      "soft_cross_entropy": 0.8946334719657898,
+      "step": 618
+    },
+    {
+      "gradient_norm_before_clip": 0.059343185275793076,
+      "soft_cross_entropy": 0.8784171938896179,
+      "step": 619
+    },
+    {
+      "gradient_norm_before_clip": 0.05564095452427864,
+      "soft_cross_entropy": 0.8779716491699219,
+      "step": 620
+    },
+    {
+      "gradient_norm_before_clip": 0.06279120594263077,
+      "soft_cross_entropy": 0.8816254138946533,
+      "step": 621
+    },
+    {
+      "gradient_norm_before_clip": 0.06212843582034111,
+      "soft_cross_entropy": 0.8820372223854065,
+      "step": 622
+    },
+    {
+      "gradient_norm_before_clip": 0.06459667533636093,
+      "soft_cross_entropy": 0.8744833469390869,
+      "step": 623
+    },
+    {
+      "gradient_norm_before_clip": 0.07905679196119308,
+      "soft_cross_entropy": 0.8823621869087219,
+      "step": 624
+    },
+    {
+      "gradient_norm_before_clip": 0.06077882647514343,
+      "soft_cross_entropy": 0.8801946640014648,
+      "step": 625
+    },
+    {
+      "gradient_norm_before_clip": 0.06847356259822845,
+      "soft_cross_entropy": 0.8751163482666016,
+      "step": 626
+    },
+    {
+      "gradient_norm_before_clip": 0.07686837017536163,
+      "soft_cross_entropy": 0.8780237436294556,
+      "step": 627
+    },
+    {
+      "gradient_norm_before_clip": 0.06502695381641388,
+      "soft_cross_entropy": 0.8989448547363281,
+      "step": 628
+    },
+    {
+      "gradient_norm_before_clip": 0.06273756921291351,
+      "soft_cross_entropy": 0.8794299364089966,
+      "step": 629
+    },
+    {
+      "gradient_norm_before_clip": 0.06050414964556694,
+      "soft_cross_entropy": 0.8805570602416992,
+      "step": 630
+    },
+    {
+      "gradient_norm_before_clip": 0.07463560253381729,
+      "soft_cross_entropy": 0.8791027665138245,
+      "step": 631
+    },
+    {
+      "gradient_norm_before_clip": 0.07523255050182343,
+      "soft_cross_entropy": 0.8976409435272217,
+      "step": 632
+    },
+    {
+      "gradient_norm_before_clip": 0.059549979865550995,
+      "soft_cross_entropy": 0.8761304616928101,
+      "step": 633
+    },
+    {
+      "gradient_norm_before_clip": 0.06357800215482712,
+      "soft_cross_entropy": 0.8735071420669556,
+      "step": 634
+    },
+    {
+      "gradient_norm_before_clip": 0.06382164359092712,
+      "soft_cross_entropy": 0.8734062910079956,
+      "step": 635
+    },
+    {
+      "gradient_norm_before_clip": 0.06785306334495544,
+      "soft_cross_entropy": 0.875407338142395,
+      "step": 636
+    },
+    {
+      "gradient_norm_before_clip": 0.06536496430635452,
+      "soft_cross_entropy": 0.8836098909378052,
+      "step": 637
+    },
+    {
+      "gradient_norm_before_clip": 0.07834070920944214,
+      "soft_cross_entropy": 0.8963615894317627,
+      "step": 638
+    },
+    {
+      "gradient_norm_before_clip": 0.07328567653894424,
+      "soft_cross_entropy": 0.8640038371086121,
+      "step": 639
+    },
+    {
+      "gradient_norm_before_clip": 0.0605911947786808,
+      "soft_cross_entropy": 0.8892226815223694,
+      "step": 640
+    },
+    {
+      "gradient_norm_before_clip": 0.059241656213998795,
+      "soft_cross_entropy": 0.8753018379211426,
+      "step": 641
+    },
+    {
+      "gradient_norm_before_clip": 0.05841854214668274,
+      "soft_cross_entropy": 0.8828156590461731,
+      "step": 642
+    },
+    {
+      "gradient_norm_before_clip": 0.0691337063908577,
+      "soft_cross_entropy": 0.8810206651687622,
+      "step": 643
+    },
+    {
+      "gradient_norm_before_clip": 0.07614397257566452,
+      "soft_cross_entropy": 0.8827934265136719,
+      "step": 644
+    },
+    {
+      "gradient_norm_before_clip": 0.07741234451532364,
+      "soft_cross_entropy": 0.8875058889389038,
+      "step": 645
+    },
+    {
+      "gradient_norm_before_clip": 0.07443558424711227,
+      "soft_cross_entropy": 0.8849785923957825,
+      "step": 646
+    },
+    {
+      "gradient_norm_before_clip": 0.06032849848270416,
+      "soft_cross_entropy": 0.8659468293190002,
+      "step": 647
+    },
+    {
+      "gradient_norm_before_clip": 0.06129699572920799,
+      "soft_cross_entropy": 0.878479540348053,
+      "step": 648
+    },
+    {
+      "gradient_norm_before_clip": 0.062426913529634476,
+      "soft_cross_entropy": 0.8658928871154785,
+      "step": 649
+    },
+    {
+      "gradient_norm_before_clip": 0.06136756390333176,
+      "soft_cross_entropy": 0.8731962442398071,
+      "step": 650
+    },
+    {
+      "gradient_norm_before_clip": 0.06887934356927872,
+      "soft_cross_entropy": 0.8739331364631653,
+      "step": 651
+    },
+    {
+      "gradient_norm_before_clip": 0.06135033816099167,
+      "soft_cross_entropy": 0.8723678588867188,
+      "step": 652
+    },
+    {
+      "gradient_norm_before_clip": 0.06291773170232773,
+      "soft_cross_entropy": 0.8823055624961853,
+      "step": 653
+    },
+    {
+      "gradient_norm_before_clip": 0.057464007288217545,
+      "soft_cross_entropy": 0.8908566236495972,
+      "step": 654
+    },
+    {
+      "gradient_norm_before_clip": 0.06538056582212448,
+      "soft_cross_entropy": 0.8829789161682129,
+      "step": 655
+    },
+    {
+      "gradient_norm_before_clip": 0.06938587874174118,
+      "soft_cross_entropy": 0.8817328810691833,
+      "step": 656
+    },
+    {
+      "gradient_norm_before_clip": 0.07539970427751541,
+      "soft_cross_entropy": 0.9019612073898315,
+      "step": 657
+    },
+    {
+      "gradient_norm_before_clip": 0.07141254842281342,
+      "soft_cross_entropy": 0.8795045614242554,
+      "step": 658
+    },
+    {
+      "gradient_norm_before_clip": 0.06494227051734924,
+      "soft_cross_entropy": 0.8798244595527649,
+      "step": 659
+    },
+    {
+      "gradient_norm_before_clip": 0.06694406270980835,
+      "soft_cross_entropy": 0.8742246627807617,
+      "step": 660
+    },
+    {
+      "gradient_norm_before_clip": 0.06933283060789108,
+      "soft_cross_entropy": 0.869668185710907,
+      "step": 661
+    },
+    {
+      "gradient_norm_before_clip": 0.07105273753404617,
+      "soft_cross_entropy": 0.8901405334472656,
+      "step": 662
+    },
+    {
+      "gradient_norm_before_clip": 0.0632488802075386,
+      "soft_cross_entropy": 0.891607403755188,
+      "step": 663
+    },
+    {
+      "gradient_norm_before_clip": 0.056753743439912796,
+      "soft_cross_entropy": 0.8695329427719116,
+      "step": 664
+    },
+    {
+      "gradient_norm_before_clip": 0.054552365094423294,
+      "soft_cross_entropy": 0.8770692348480225,
+      "step": 665
+    },
+    {
+      "gradient_norm_before_clip": 0.07780986279249191,
+      "soft_cross_entropy": 0.8828186988830566,
+      "step": 666
+    },
+    {
+      "gradient_norm_before_clip": 0.06927093863487244,
+      "soft_cross_entropy": 0.8861513137817383,
+      "step": 667
+    },
+    {
+      "gradient_norm_before_clip": 0.06175719574093819,
+      "soft_cross_entropy": 0.8823040127754211,
+      "step": 668
+    },
+    {
+      "gradient_norm_before_clip": 0.05636370927095413,
+      "soft_cross_entropy": 0.8854703903198242,
+      "step": 669
+    },
+    {
+      "gradient_norm_before_clip": 0.05865257605910301,
+      "soft_cross_entropy": 0.8684730529785156,
+      "step": 670
+    },
+    {
+      "gradient_norm_before_clip": 0.057025253772735596,
+      "soft_cross_entropy": 0.8724275231361389,
+      "step": 671
+    },
+    {
+      "gradient_norm_before_clip": 0.08161954581737518,
+      "soft_cross_entropy": 0.8805235028266907,
+      "step": 672
+    },
+    {
+      "gradient_norm_before_clip": 0.07031229138374329,
+      "soft_cross_entropy": 0.8775230050086975,
+      "step": 673
+    },
+    {
+      "gradient_norm_before_clip": 0.0615338496863842,
+      "soft_cross_entropy": 0.8793900012969971,
+      "step": 674
+    },
+    {
+      "gradient_norm_before_clip": 0.06241496652364731,
+      "soft_cross_entropy": 0.8622255325317383,
+      "step": 675
+    },
+    {
+      "gradient_norm_before_clip": 0.06815341860055923,
+      "soft_cross_entropy": 0.8874584436416626,
+      "step": 676
+    },
+    {
+      "gradient_norm_before_clip": 0.06011597439646721,
+      "soft_cross_entropy": 0.8774653673171997,
+      "step": 677
+    },
+    {
+      "gradient_norm_before_clip": 0.08299186080694199,
+      "soft_cross_entropy": 0.8863881826400757,
+      "step": 678
+    },
+    {
+      "gradient_norm_before_clip": 0.05281175300478935,
+      "soft_cross_entropy": 0.8760953545570374,
+      "step": 679
+    },
+    {
+      "gradient_norm_before_clip": 0.0653415247797966,
+      "soft_cross_entropy": 0.8843569755554199,
+      "step": 680
+    },
+    {
+      "gradient_norm_before_clip": 0.06420830637216568,
+      "soft_cross_entropy": 0.8862737417221069,
+      "step": 681
+    },
+    {
+      "gradient_norm_before_clip": 0.06740705668926239,
+      "soft_cross_entropy": 0.8856768012046814,
+      "step": 682
+    },
+    {
+      "gradient_norm_before_clip": 0.046955712139606476,
+      "soft_cross_entropy": 0.8845909237861633,
+      "step": 683
+    },
+    {
+      "gradient_norm_before_clip": 0.05188075453042984,
+      "soft_cross_entropy": 0.8762170076370239,
+      "step": 684
+    },
+    {
+      "gradient_norm_before_clip": 0.05576713755726814,
+      "soft_cross_entropy": 0.8689390420913696,
+      "step": 685
+    },
+    {
+      "gradient_norm_before_clip": 0.05882061645388603,
+      "soft_cross_entropy": 0.8824927806854248,
+      "step": 686
+    },
+    {
+      "gradient_norm_before_clip": 0.04877215623855591,
+      "soft_cross_entropy": 0.8606119155883789,
+      "step": 687
+    },
+    {
+      "gradient_norm_before_clip": 0.0695791244506836,
+      "soft_cross_entropy": 0.8659327030181885,
+      "step": 688
+    },
+    {
+      "gradient_norm_before_clip": 0.057178039103746414,
+      "soft_cross_entropy": 0.8789854645729065,
+      "step": 689
+    },
+    {
+      "gradient_norm_before_clip": 0.06760524213314056,
+      "soft_cross_entropy": 0.8856253623962402,
+      "step": 690
+    },
+    {
+      "gradient_norm_before_clip": 0.07502349466085434,
+      "soft_cross_entropy": 0.8746801614761353,
+      "step": 691
+    },
+    {
+      "gradient_norm_before_clip": 0.060861531645059586,
+      "soft_cross_entropy": 0.877618670463562,
+      "step": 692
+    },
+    {
+      "gradient_norm_before_clip": 0.06738858669996262,
+      "soft_cross_entropy": 0.8707268834114075,
+      "step": 693
+    },
+    {
+      "gradient_norm_before_clip": 0.0657510757446289,
+      "soft_cross_entropy": 0.8896181583404541,
+      "step": 694
+    },
+    {
+      "gradient_norm_before_clip": 0.06791878491640091,
+      "soft_cross_entropy": 0.8771605491638184,
+      "step": 695
+    },
+    {
+      "gradient_norm_before_clip": 0.05477232113480568,
+      "soft_cross_entropy": 0.8722728490829468,
+      "step": 696
+    },
+    {
+      "gradient_norm_before_clip": 0.05638887360692024,
+      "soft_cross_entropy": 0.8671542406082153,
+      "step": 697
+    },
+    {
+      "gradient_norm_before_clip": 0.06391613185405731,
+      "soft_cross_entropy": 0.868648886680603,
+      "step": 698
+    },
+    {
+      "gradient_norm_before_clip": 0.07376299798488617,
+      "soft_cross_entropy": 0.8716253042221069,
+      "step": 699
+    },
+    {
+      "gradient_norm_before_clip": 0.06107395887374878,
+      "soft_cross_entropy": 0.8869154453277588,
+      "step": 700
+    },
+    {
+      "gradient_norm_before_clip": 0.06657759845256805,
+      "soft_cross_entropy": 0.8957393765449524,
+      "step": 701
+    },
+    {
+      "gradient_norm_before_clip": 0.051823172718286514,
+      "soft_cross_entropy": 0.8708066940307617,
+      "step": 702
+    },
+    {
+      "gradient_norm_before_clip": 0.05170413851737976,
+      "soft_cross_entropy": 0.8750513792037964,
+      "step": 703
+    },
+    {
+      "gradient_norm_before_clip": 0.06468376517295837,
+      "soft_cross_entropy": 0.8777316808700562,
+      "step": 704
+    },
+    {
+      "gradient_norm_before_clip": 0.049763843417167664,
+      "soft_cross_entropy": 0.8770893812179565,
+      "step": 705
+    },
+    {
+      "gradient_norm_before_clip": 0.057203784584999084,
+      "soft_cross_entropy": 0.8681513071060181,
+      "step": 706
+    },
+    {
+      "gradient_norm_before_clip": 0.05907690152525902,
+      "soft_cross_entropy": 0.877456784248352,
+      "step": 707
+    },
+    {
+      "gradient_norm_before_clip": 0.060789063572883606,
+      "soft_cross_entropy": 0.8867073655128479,
+      "step": 708
+    },
+    {
+      "gradient_norm_before_clip": 0.057874199002981186,
+      "soft_cross_entropy": 0.8727750778198242,
+      "step": 709
+    },
+    {
+      "gradient_norm_before_clip": 0.05982900410890579,
+      "soft_cross_entropy": 0.8790156841278076,
+      "step": 710
+    },
+    {
+      "gradient_norm_before_clip": 0.05157974734902382,
+      "soft_cross_entropy": 0.866263747215271,
+      "step": 711
+    },
+    {
+      "gradient_norm_before_clip": 0.06800628453493118,
+      "soft_cross_entropy": 0.8760562539100647,
+      "step": 712
+    },
+    {
+      "gradient_norm_before_clip": 0.06103629991412163,
+      "soft_cross_entropy": 0.8860352039337158,
+      "step": 713
+    },
+    {
+      "gradient_norm_before_clip": 0.06151926517486572,
+      "soft_cross_entropy": 0.8844746351242065,
+      "step": 714
+    },
+    {
+      "gradient_norm_before_clip": 0.05627209693193436,
+      "soft_cross_entropy": 0.8793342113494873,
+      "step": 715
+    },
+    {
+      "gradient_norm_before_clip": 0.05932669714093208,
+      "soft_cross_entropy": 0.8685383200645447,
+      "step": 716
+    },
+    {
+      "gradient_norm_before_clip": 0.06743530929088593,
+      "soft_cross_entropy": 0.8745682239532471,
+      "step": 717
+    },
+    {
+      "gradient_norm_before_clip": 0.057860299944877625,
+      "soft_cross_entropy": 0.8792452812194824,
+      "step": 718
+    },
+    {
+      "gradient_norm_before_clip": 0.05207005515694618,
+      "soft_cross_entropy": 0.8846452236175537,
+      "step": 719
+    },
+    {
+      "gradient_norm_before_clip": 0.07451141625642776,
+      "soft_cross_entropy": 0.859673798084259,
+      "step": 720
+    },
+    {
+      "gradient_norm_before_clip": 0.0738641694188118,
+      "soft_cross_entropy": 0.8989384174346924,
+      "step": 721
+    },
+    {
+      "gradient_norm_before_clip": 0.06365212798118591,
+      "soft_cross_entropy": 0.8837452530860901,
+      "step": 722
+    },
+    {
+      "gradient_norm_before_clip": 0.0685930922627449,
+      "soft_cross_entropy": 0.8820991516113281,
+      "step": 723
+    },
+    {
+      "gradient_norm_before_clip": 0.06196797266602516,
+      "soft_cross_entropy": 0.8603259325027466,
+      "step": 724
+    },
+    {
+      "gradient_norm_before_clip": 0.0650739073753357,
+      "soft_cross_entropy": 0.8801264762878418,
+      "step": 725
+    },
+    {
+      "gradient_norm_before_clip": 0.060523003339767456,
+      "soft_cross_entropy": 0.8651101589202881,
+      "step": 726
+    },
+    {
+      "gradient_norm_before_clip": 0.06039122864603996,
+      "soft_cross_entropy": 0.8783799409866333,
+      "step": 727
+    },
+    {
+      "gradient_norm_before_clip": 0.053067050874233246,
+      "soft_cross_entropy": 0.8853839635848999,
+      "step": 728
+    },
+    {
+      "gradient_norm_before_clip": 0.06767327338457108,
+      "soft_cross_entropy": 0.8766429424285889,
+      "step": 729
+    },
+    {
+      "gradient_norm_before_clip": 0.06537055969238281,
+      "soft_cross_entropy": 0.880164623260498,
+      "step": 730
+    },
+    {
+      "gradient_norm_before_clip": 0.06734160333871841,
+      "soft_cross_entropy": 0.8821972012519836,
+      "step": 731
+    },
+    {
+      "gradient_norm_before_clip": 0.08321518450975418,
+      "soft_cross_entropy": 0.8953524827957153,
+      "step": 732
+    },
+    {
+      "gradient_norm_before_clip": 0.06115290895104408,
+      "soft_cross_entropy": 0.8800125122070312,
+      "step": 733
+    },
+    {
+      "gradient_norm_before_clip": 0.04982190579175949,
+      "soft_cross_entropy": 0.8661882877349854,
+      "step": 734
+    },
+    {
+      "gradient_norm_before_clip": 0.06268903613090515,
+      "soft_cross_entropy": 0.8842601776123047,
+      "step": 735
+    },
+    {
+      "gradient_norm_before_clip": 0.05028226599097252,
+      "soft_cross_entropy": 0.8678468465805054,
+      "step": 736
+    },
+    {
+      "gradient_norm_before_clip": 0.07079480588436127,
+      "soft_cross_entropy": 0.8679842948913574,
+      "step": 737
+    },
+    {
+      "gradient_norm_before_clip": 0.06320098042488098,
+      "soft_cross_entropy": 0.8759101629257202,
+      "step": 738
+    },
+    {
+      "gradient_norm_before_clip": 0.06835237145423889,
+      "soft_cross_entropy": 0.8995319604873657,
+      "step": 739
+    },
+    {
+      "gradient_norm_before_clip": 0.052946727722883224,
+      "soft_cross_entropy": 0.865869402885437,
+      "step": 740
+    },
+    {
+      "gradient_norm_before_clip": 0.054630108177661896,
+      "soft_cross_entropy": 0.8569895625114441,
+      "step": 741
+    },
+    {
+      "gradient_norm_before_clip": 0.06737205386161804,
+      "soft_cross_entropy": 0.8809264898300171,
+      "step": 742
+    },
+    {
+      "gradient_norm_before_clip": 0.06390982866287231,
+      "soft_cross_entropy": 0.8766299486160278,
+      "step": 743
+    },
+    {
+      "gradient_norm_before_clip": 0.06680386513471603,
+      "soft_cross_entropy": 0.8817697763442993,
+      "step": 744
+    },
+    {
+      "gradient_norm_before_clip": 0.057404544204473495,
+      "soft_cross_entropy": 0.867595911026001,
+      "step": 745
+    },
+    {
+      "gradient_norm_before_clip": 0.06732784956693649,
+      "soft_cross_entropy": 0.8755823373794556,
+      "step": 746
+    },
+    {
+      "gradient_norm_before_clip": 0.060025036334991455,
+      "soft_cross_entropy": 0.8800255656242371,
+      "step": 747
+    },
+    {
+      "gradient_norm_before_clip": 0.06262961775064468,
+      "soft_cross_entropy": 0.8883802890777588,
+      "step": 748
+    },
+    {
+      "gradient_norm_before_clip": 0.066902756690979,
+      "soft_cross_entropy": 0.8836051225662231,
+      "step": 749
+    },
+    {
+      "gradient_norm_before_clip": 0.06835797429084778,
+      "soft_cross_entropy": 0.88142329454422,
+      "step": 750
+    },
+    {
+      "gradient_norm_before_clip": 0.06696499139070511,
+      "soft_cross_entropy": 0.8923472166061401,
+      "step": 751
+    },
+    {
+      "gradient_norm_before_clip": 0.05897028371691704,
+      "soft_cross_entropy": 0.8660173416137695,
+      "step": 752
+    },
+    {
+      "gradient_norm_before_clip": 0.057689469307661057,
+      "soft_cross_entropy": 0.8713346123695374,
+      "step": 753
+    },
+    {
+      "gradient_norm_before_clip": 0.06393779814243317,
+      "soft_cross_entropy": 0.866036057472229,
+      "step": 754
+    },
+    {
+      "gradient_norm_before_clip": 0.05138501897454262,
+      "soft_cross_entropy": 0.869896411895752,
+      "step": 755
+    },
+    {
+      "gradient_norm_before_clip": 0.06172996759414673,
+      "soft_cross_entropy": 0.8838441371917725,
+      "step": 756
+    },
+    {
+      "gradient_norm_before_clip": 0.06807353347539902,
+      "soft_cross_entropy": 0.882929265499115,
+      "step": 757
+    },
+    {
+      "gradient_norm_before_clip": 0.057090166956186295,
+      "soft_cross_entropy": 0.8781204223632812,
+      "step": 758
+    },
+    {
+      "gradient_norm_before_clip": 0.055498190224170685,
+      "soft_cross_entropy": 0.8816778063774109,
+      "step": 759
+    },
+    {
+      "gradient_norm_before_clip": 0.05685090646147728,
+      "soft_cross_entropy": 0.8708648681640625,
+      "step": 760
+    },
+    {
+      "gradient_norm_before_clip": 0.061754945665597916,
+      "soft_cross_entropy": 0.8763391971588135,
+      "step": 761
+    },
+    {
+      "gradient_norm_before_clip": 0.06462638825178146,
+      "soft_cross_entropy": 0.8765062093734741,
+      "step": 762
+    },
+    {
+      "gradient_norm_before_clip": 0.07053231447935104,
+      "soft_cross_entropy": 0.8925368189811707,
+      "step": 763
+    },
+    {
+      "gradient_norm_before_clip": 0.06828238070011139,
+      "soft_cross_entropy": 0.8876433372497559,
+      "step": 764
+    },
+    {
+      "gradient_norm_before_clip": 0.057232566177845,
+      "soft_cross_entropy": 0.8762952089309692,
+      "step": 765
+    },
+    {
+      "gradient_norm_before_clip": 0.059567686170339584,
+      "soft_cross_entropy": 0.8691160082817078,
+      "step": 766
+    },
+    {
+      "gradient_norm_before_clip": 0.0646306574344635,
+      "soft_cross_entropy": 0.8771072626113892,
+      "step": 767
+    },
+    {
+      "gradient_norm_before_clip": 0.05741196125745773,
+      "soft_cross_entropy": 0.8827085494995117,
+      "step": 768
+    },
+    {
+      "gradient_norm_before_clip": 0.06645563989877701,
+      "soft_cross_entropy": 0.8870859146118164,
+      "step": 769
+    },
+    {
+      "gradient_norm_before_clip": 0.06549472361803055,
+      "soft_cross_entropy": 0.8642085194587708,
+      "step": 770
+    },
+    {
+      "gradient_norm_before_clip": 0.05631449818611145,
+      "soft_cross_entropy": 0.8679385185241699,
+      "step": 771
+    },
+    {
+      "gradient_norm_before_clip": 0.08398735523223877,
+      "soft_cross_entropy": 0.8831408023834229,
+      "step": 772
+    },
+    {
+      "gradient_norm_before_clip": 0.0628703236579895,
+      "soft_cross_entropy": 0.8879625797271729,
+      "step": 773
+    },
+    {
+      "gradient_norm_before_clip": 0.07168447971343994,
+      "soft_cross_entropy": 0.8874781131744385,
+      "step": 774
+    },
+    {
+      "gradient_norm_before_clip": 0.05037561058998108,
+      "soft_cross_entropy": 0.8730964660644531,
+      "step": 775
+    },
+    {
+      "gradient_norm_before_clip": 0.05260031670331955,
+      "soft_cross_entropy": 0.8950750827789307,
+      "step": 776
+    },
+    {
+      "gradient_norm_before_clip": 0.050924766808748245,
+      "soft_cross_entropy": 0.8758344650268555,
+      "step": 777
+    },
+    {
+      "gradient_norm_before_clip": 0.06076813116669655,
+      "soft_cross_entropy": 0.8861672878265381,
+      "step": 778
+    },
+    {
+      "gradient_norm_before_clip": 0.05606568604707718,
+      "soft_cross_entropy": 0.883466362953186,
+      "step": 779
+    },
+    {
+      "gradient_norm_before_clip": 0.060422688722610474,
+      "soft_cross_entropy": 0.8854471445083618,
+      "step": 780
+    },
+    {
+      "gradient_norm_before_clip": 0.0605139322578907,
+      "soft_cross_entropy": 0.8753231763839722,
+      "step": 781
+    },
+    {
+      "gradient_norm_before_clip": 0.07200372219085693,
+      "soft_cross_entropy": 0.8971143364906311,
+      "step": 782
+    },
+    {
+      "gradient_norm_before_clip": 0.08175305277109146,
+      "soft_cross_entropy": 0.893383264541626,
+      "step": 783
+    },
+    {
+      "gradient_norm_before_clip": 0.050789911299943924,
+      "soft_cross_entropy": 0.8773213624954224,
+      "step": 784
+    },
+    {
+      "gradient_norm_before_clip": 0.0554012730717659,
+      "soft_cross_entropy": 0.8684942126274109,
+      "step": 785
+    },
+    {
+      "gradient_norm_before_clip": 0.05085791274905205,
+      "soft_cross_entropy": 0.8756787180900574,
+      "step": 786
+    },
+    {
+      "gradient_norm_before_clip": 0.060444578528404236,
+      "soft_cross_entropy": 0.8849228620529175,
+      "step": 787
+    },
+    {
+      "gradient_norm_before_clip": 0.058298494666814804,
+      "soft_cross_entropy": 0.8875117301940918,
+      "step": 788
+    },
+    {
+      "gradient_norm_before_clip": 0.0555567629635334,
+      "soft_cross_entropy": 0.8825364112854004,
+      "step": 789
+    },
+    {
+      "gradient_norm_before_clip": 0.059739455580711365,
+      "soft_cross_entropy": 0.8958204984664917,
+      "step": 790
+    },
+    {
+      "gradient_norm_before_clip": 0.06305745244026184,
+      "soft_cross_entropy": 0.8814033269882202,
+      "step": 791
+    },
+    {
+      "gradient_norm_before_clip": 0.06920454651117325,
+      "soft_cross_entropy": 0.882906973361969,
+      "step": 792
+    },
+    {
+      "gradient_norm_before_clip": 0.04746300354599953,
+      "soft_cross_entropy": 0.8675300478935242,
+      "step": 793
+    },
+    {
+      "gradient_norm_before_clip": 0.053588688373565674,
+      "soft_cross_entropy": 0.8788838386535645,
+      "step": 794
+    },
+    {
+      "gradient_norm_before_clip": 0.055128198117017746,
+      "soft_cross_entropy": 0.8858733177185059,
+      "step": 795
+    },
+    {
+      "gradient_norm_before_clip": 0.05972198024392128,
+      "soft_cross_entropy": 0.8877283334732056,
+      "step": 796
+    },
+    {
+      "gradient_norm_before_clip": 0.06680966168642044,
+      "soft_cross_entropy": 0.8757188320159912,
+      "step": 797
+    },
+    {
+      "gradient_norm_before_clip": 0.06085510179400444,
+      "soft_cross_entropy": 0.8899887800216675,
+      "step": 798
+    },
+    {
+      "gradient_norm_before_clip": 0.06787408888339996,
+      "soft_cross_entropy": 0.8976237177848816,
+      "step": 799
+    },
+    {
+      "gradient_norm_before_clip": 0.09104577451944351,
+      "soft_cross_entropy": 0.8960946202278137,
+      "step": 800
+    },
+    {
+      "gradient_norm_before_clip": 0.07186892628669739,
+      "soft_cross_entropy": 0.8650381565093994,
+      "step": 801
+    },
+    {
+      "gradient_norm_before_clip": 0.06750130653381348,
+      "soft_cross_entropy": 0.8793033361434937,
+      "step": 802
+    },
+    {
+      "gradient_norm_before_clip": 0.059412676841020584,
+      "soft_cross_entropy": 0.8769766688346863,
+      "step": 803
+    },
+    {
+      "gradient_norm_before_clip": 0.053200457245111465,
+      "soft_cross_entropy": 0.859987735748291,
+      "step": 804
+    },
+    {
+      "gradient_norm_before_clip": 0.05631708726286888,
+      "soft_cross_entropy": 0.8643393516540527,
+      "step": 805
+    },
+    {
+      "gradient_norm_before_clip": 0.0640881285071373,
+      "soft_cross_entropy": 0.886057436466217,
+      "step": 806
+    },
+    {
+      "gradient_norm_before_clip": 0.06450667977333069,
+      "soft_cross_entropy": 0.8667259216308594,
+      "step": 807
+    },
+    {
+      "gradient_norm_before_clip": 0.07413491606712341,
+      "soft_cross_entropy": 0.8839203119277954,
+      "step": 808
+    },
+    {
+      "gradient_norm_before_clip": 0.05533077195286751,
+      "soft_cross_entropy": 0.8832526803016663,
+      "step": 809
+    },
+    {
+      "gradient_norm_before_clip": 0.04946509748697281,
+      "soft_cross_entropy": 0.8773879408836365,
+      "step": 810
+    },
+    {
+      "gradient_norm_before_clip": 0.053334783762693405,
+      "soft_cross_entropy": 0.8830173015594482,
+      "step": 811
+    },
+    {
+      "gradient_norm_before_clip": 0.05281037464737892,
+      "soft_cross_entropy": 0.8889148235321045,
+      "step": 812
+    },
+    {
+      "gradient_norm_before_clip": 0.061849553138017654,
+      "soft_cross_entropy": 0.8653486371040344,
+      "step": 813
+    },
+    {
+      "gradient_norm_before_clip": 0.05636412277817726,
+      "soft_cross_entropy": 0.8804653286933899,
+      "step": 814
+    },
+    {
+      "gradient_norm_before_clip": 0.062307242304086685,
+      "soft_cross_entropy": 0.8722007274627686,
+      "step": 815
+    },
+    {
+      "gradient_norm_before_clip": 0.053084976971149445,
+      "soft_cross_entropy": 0.8784584999084473,
+      "step": 816
+    },
+    {
+      "gradient_norm_before_clip": 0.07014460116624832,
+      "soft_cross_entropy": 0.8990960717201233,
+      "step": 817
+    },
+    {
+      "gradient_norm_before_clip": 0.05400862917304039,
+      "soft_cross_entropy": 0.8837864398956299,
+      "step": 818
+    },
+    {
+      "gradient_norm_before_clip": 0.06216916814446449,
+      "soft_cross_entropy": 0.8860999345779419,
+      "step": 819
+    },
+    {
+      "gradient_norm_before_clip": 0.0543731227517128,
+      "soft_cross_entropy": 0.8866747617721558,
+      "step": 820
+    },
+    {
+      "gradient_norm_before_clip": 0.053888194262981415,
+      "soft_cross_entropy": 0.873365044593811,
+      "step": 821
+    },
+    {
+      "gradient_norm_before_clip": 0.0650390237569809,
+      "soft_cross_entropy": 0.8827399015426636,
+      "step": 822
+    },
+    {
+      "gradient_norm_before_clip": 0.053904592990875244,
+      "soft_cross_entropy": 0.8907483220100403,
+      "step": 823
+    },
+    {
+      "gradient_norm_before_clip": 0.0625636950135231,
+      "soft_cross_entropy": 0.88852858543396,
+      "step": 824
+    },
+    {
+      "gradient_norm_before_clip": 0.06353835761547089,
+      "soft_cross_entropy": 0.8932020664215088,
+      "step": 825
+    },
+    {
+      "gradient_norm_before_clip": 0.06241271272301674,
+      "soft_cross_entropy": 0.878160834312439,
+      "step": 826
+    },
+    {
+      "gradient_norm_before_clip": 0.06708817183971405,
+      "soft_cross_entropy": 0.8882372379302979,
+      "step": 827
+    },
+    {
+      "gradient_norm_before_clip": 0.06335295736789703,
+      "soft_cross_entropy": 0.886708676815033,
+      "step": 828
+    },
+    {
+      "gradient_norm_before_clip": 0.061011262238025665,
+      "soft_cross_entropy": 0.8820067048072815,
+      "step": 829
+    },
+    {
+      "gradient_norm_before_clip": 0.053167667239904404,
+      "soft_cross_entropy": 0.8889545202255249,
+      "step": 830
+    },
+    {
+      "gradient_norm_before_clip": 0.0713435560464859,
+      "soft_cross_entropy": 0.8772764205932617,
+      "step": 831
+    },
+    {
+      "gradient_norm_before_clip": 0.06285889446735382,
+      "soft_cross_entropy": 0.8723821640014648,
+      "step": 832
+    },
+    {
+      "gradient_norm_before_clip": 0.06123652681708336,
+      "soft_cross_entropy": 0.8855180740356445,
+      "step": 833
+    },
+    {
+      "gradient_norm_before_clip": 0.06400834769010544,
+      "soft_cross_entropy": 0.8785340785980225,
+      "step": 834
+    },
+    {
+      "gradient_norm_before_clip": 0.0722605511546135,
+      "soft_cross_entropy": 0.8851381540298462,
+      "step": 835
+    },
+    {
+      "gradient_norm_before_clip": 0.05362161248922348,
+      "soft_cross_entropy": 0.8595443964004517,
+      "step": 836
+    },
+    {
+      "gradient_norm_before_clip": 0.05916425958275795,
+      "soft_cross_entropy": 0.8813877105712891,
+      "step": 837
+    },
+    {
+      "gradient_norm_before_clip": 0.06732486188411713,
+      "soft_cross_entropy": 0.8962191939353943,
+      "step": 838
+    },
+    {
+      "gradient_norm_before_clip": 0.06307243555784225,
+      "soft_cross_entropy": 0.8727941513061523,
+      "step": 839
+    },
+    {
+      "gradient_norm_before_clip": 0.07402986288070679,
+      "soft_cross_entropy": 0.8911892175674438,
+      "step": 840
+    },
+    {
+      "gradient_norm_before_clip": 0.06161903962492943,
+      "soft_cross_entropy": 0.8702384233474731,
+      "step": 841
+    },
+    {
+      "gradient_norm_before_clip": 0.06135045364499092,
+      "soft_cross_entropy": 0.8809396624565125,
+      "step": 842
+    },
+    {
+      "gradient_norm_before_clip": 0.06519986689090729,
+      "soft_cross_entropy": 0.8874378204345703,
+      "step": 843
+    },
+    {
+      "gradient_norm_before_clip": 0.05597793310880661,
+      "soft_cross_entropy": 0.8614542484283447,
+      "step": 844
+    },
+    {
+      "gradient_norm_before_clip": 0.07049278169870377,
+      "soft_cross_entropy": 0.8741565942764282,
+      "step": 845
+    },
+    {
+      "gradient_norm_before_clip": 0.06189471855759621,
+      "soft_cross_entropy": 0.868611216545105,
+      "step": 846
+    },
+    {
+      "gradient_norm_before_clip": 0.06041856110095978,
+      "soft_cross_entropy": 0.8918797373771667,
+      "step": 847
+    },
+    {
+      "gradient_norm_before_clip": 0.054498132318258286,
+      "soft_cross_entropy": 0.8790537118911743,
+      "step": 848
+    },
+    {
+      "gradient_norm_before_clip": 0.06032672896981239,
+      "soft_cross_entropy": 0.887771725654602,
+      "step": 849
+    },
+    {
+      "gradient_norm_before_clip": 0.05001131445169449,
+      "soft_cross_entropy": 0.8813619613647461,
+      "step": 850
+    },
+    {
+      "gradient_norm_before_clip": 0.06226509064435959,
+      "soft_cross_entropy": 0.879385769367218,
+      "step": 851
+    },
+    {
+      "gradient_norm_before_clip": 0.06314602494239807,
+      "soft_cross_entropy": 0.8788682222366333,
+      "step": 852
+    },
+    {
+      "gradient_norm_before_clip": 0.06201756000518799,
+      "soft_cross_entropy": 0.8745129108428955,
+      "step": 853
+    },
+    {
+      "gradient_norm_before_clip": 0.060535430908203125,
+      "soft_cross_entropy": 0.8906680941581726,
+      "step": 854
+    },
+    {
+      "gradient_norm_before_clip": 0.061104342341423035,
+      "soft_cross_entropy": 0.883853018283844,
+      "step": 855
+    },
+    {
+      "gradient_norm_before_clip": 0.0695878341794014,
+      "soft_cross_entropy": 0.8746085166931152,
+      "step": 856
+    },
+    {
+      "gradient_norm_before_clip": 0.05103873461484909,
+      "soft_cross_entropy": 0.8707432746887207,
+      "step": 857
+    },
+    {
+      "gradient_norm_before_clip": 0.06329300999641418,
+      "soft_cross_entropy": 0.8764220476150513,
+      "step": 858
+    },
+    {
+      "gradient_norm_before_clip": 0.0551888532936573,
+      "soft_cross_entropy": 0.868505597114563,
+      "step": 859
+    },
+    {
+      "gradient_norm_before_clip": 0.05262969434261322,
+      "soft_cross_entropy": 0.8587327599525452,
+      "step": 860
+    },
+    {
+      "gradient_norm_before_clip": 0.052819740027189255,
+      "soft_cross_entropy": 0.8804543018341064,
+      "step": 861
+    },
+    {
+      "gradient_norm_before_clip": 0.049417272210121155,
+      "soft_cross_entropy": 0.8720090389251709,
+      "step": 862
+    },
+    {
+      "gradient_norm_before_clip": 0.05443134158849716,
+      "soft_cross_entropy": 0.8641490340232849,
+      "step": 863
+    },
+    {
+      "gradient_norm_before_clip": 0.06223048269748688,
+      "soft_cross_entropy": 0.863251805305481,
+      "step": 864
+    },
+    {
+      "gradient_norm_before_clip": 0.051536355167627335,
+      "soft_cross_entropy": 0.8834419846534729,
+      "step": 865
+    },
+    {
+      "gradient_norm_before_clip": 0.05968921631574631,
+      "soft_cross_entropy": 0.8768354654312134,
+      "step": 866
+    },
+    {
+      "gradient_norm_before_clip": 0.05881096422672272,
+      "soft_cross_entropy": 0.8678529858589172,
+      "step": 867
+    },
+    {
+      "gradient_norm_before_clip": 0.06032079830765724,
+      "soft_cross_entropy": 0.8872266411781311,
+      "step": 868
+    },
+    {
+      "gradient_norm_before_clip": 0.05299825593829155,
+      "soft_cross_entropy": 0.8694218397140503,
+      "step": 869
+    },
+    {
+      "gradient_norm_before_clip": 0.06483124196529388,
+      "soft_cross_entropy": 0.8898154497146606,
+      "step": 870
+    },
+    {
+      "gradient_norm_before_clip": 0.05542315915226936,
+      "soft_cross_entropy": 0.8826147317886353,
+      "step": 871
+    },
+    {
+      "gradient_norm_before_clip": 0.049012862145900726,
+      "soft_cross_entropy": 0.8930063247680664,
+      "step": 872
+    },
+    {
+      "gradient_norm_before_clip": 0.060855232179164886,
+      "soft_cross_entropy": 0.8893353939056396,
+      "step": 873
+    },
+    {
+      "gradient_norm_before_clip": 0.07766775786876678,
+      "soft_cross_entropy": 0.8790656328201294,
+      "step": 874
+    },
+    {
+      "gradient_norm_before_clip": 0.049919817596673965,
+      "soft_cross_entropy": 0.866218090057373,
+      "step": 875
+    },
+    {
+      "gradient_norm_before_clip": 0.09085416048765182,
+      "soft_cross_entropy": 0.8760741949081421,
+      "step": 876
+    },
+    {
+      "gradient_norm_before_clip": 0.05118158087134361,
+      "soft_cross_entropy": 0.8732147812843323,
+      "step": 877
+    },
+    {
+      "gradient_norm_before_clip": 0.05605732277035713,
+      "soft_cross_entropy": 0.8703008890151978,
+      "step": 878
+    },
+    {
+      "gradient_norm_before_clip": 0.07691315561532974,
+      "soft_cross_entropy": 0.8818055391311646,
+      "step": 879
+    },
+    {
+      "gradient_norm_before_clip": 0.07104065269231796,
+      "soft_cross_entropy": 0.8826271295547485,
+      "step": 880
+    },
+    {
+      "gradient_norm_before_clip": 0.060112886130809784,
+      "soft_cross_entropy": 0.8758708238601685,
+      "step": 881
+    },
+    {
+      "gradient_norm_before_clip": 0.0658394917845726,
+      "soft_cross_entropy": 0.8678472638130188,
+      "step": 882
+    },
+    {
+      "gradient_norm_before_clip": 0.05625779926776886,
+      "soft_cross_entropy": 0.8762270212173462,
+      "step": 883
+    },
+    {
+      "gradient_norm_before_clip": 0.06355281919240952,
+      "soft_cross_entropy": 0.8739442825317383,
+      "step": 884
+    },
+    {
+      "gradient_norm_before_clip": 0.05393403023481369,
+      "soft_cross_entropy": 0.8845260143280029,
+      "step": 885
+    },
+    {
+      "gradient_norm_before_clip": 0.07637998461723328,
+      "soft_cross_entropy": 0.8715378046035767,
+      "step": 886
+    },
+    {
+      "gradient_norm_before_clip": 0.06101009622216225,
+      "soft_cross_entropy": 0.884993314743042,
+      "step": 887
+    },
+    {
+      "gradient_norm_before_clip": 0.06096819043159485,
+      "soft_cross_entropy": 0.8791993856430054,
+      "step": 888
+    },
+    {
+      "gradient_norm_before_clip": 0.06423024833202362,
+      "soft_cross_entropy": 0.8770365715026855,
+      "step": 889
+    },
+    {
+      "gradient_norm_before_clip": 0.04928814619779587,
+      "soft_cross_entropy": 0.8813328742980957,
+      "step": 890
+    },
+    {
+      "gradient_norm_before_clip": 0.04957471042871475,
+      "soft_cross_entropy": 0.8768835067749023,
+      "step": 891
+    },
+    {
+      "gradient_norm_before_clip": 0.059735946357250214,
+      "soft_cross_entropy": 0.8719503879547119,
+      "step": 892
+    },
+    {
+      "gradient_norm_before_clip": 0.05603759363293648,
+      "soft_cross_entropy": 0.8942785263061523,
+      "step": 893
+    },
+    {
+      "gradient_norm_before_clip": 0.06595810502767563,
+      "soft_cross_entropy": 0.8708652257919312,
+      "step": 894
+    },
+    {
+      "gradient_norm_before_clip": 0.06210007891058922,
+      "soft_cross_entropy": 0.881475567817688,
+      "step": 895
+    },
+    {
+      "gradient_norm_before_clip": 0.05988534539937973,
+      "soft_cross_entropy": 0.8783570528030396,
+      "step": 896
+    },
+    {
+      "gradient_norm_before_clip": 0.0653727576136589,
+      "soft_cross_entropy": 0.883103609085083,
+      "step": 897
+    },
+    {
+      "gradient_norm_before_clip": 0.06184055283665657,
+      "soft_cross_entropy": 0.8857375383377075,
+      "step": 898
+    },
+    {
+      "gradient_norm_before_clip": 0.07806053757667542,
+      "soft_cross_entropy": 0.8777703046798706,
+      "step": 899
+    },
+    {
+      "gradient_norm_before_clip": 0.05509301275014877,
+      "soft_cross_entropy": 0.8737537860870361,
+      "step": 900
+    },
+    {
+      "gradient_norm_before_clip": 0.06391351670026779,
+      "soft_cross_entropy": 0.878207802772522,
+      "step": 901
+    },
+    {
+      "gradient_norm_before_clip": 0.06602136045694351,
+      "soft_cross_entropy": 0.8854097127914429,
+      "step": 902
+    },
+    {
+      "gradient_norm_before_clip": 0.0550459660589695,
+      "soft_cross_entropy": 0.8624305725097656,
+      "step": 903
+    },
+    {
+      "gradient_norm_before_clip": 0.05714854598045349,
+      "soft_cross_entropy": 0.8651216626167297,
+      "step": 904
+    },
+    {
+      "gradient_norm_before_clip": 0.06199966371059418,
+      "soft_cross_entropy": 0.8791704773902893,
+      "step": 905
+    },
+    {
+      "gradient_norm_before_clip": 0.06380592286586761,
+      "soft_cross_entropy": 0.8831546306610107,
+      "step": 906
+    },
+    {
+      "gradient_norm_before_clip": 0.05039738491177559,
+      "soft_cross_entropy": 0.8763013482093811,
+      "step": 907
+    },
+    {
+      "gradient_norm_before_clip": 0.05508384853601456,
+      "soft_cross_entropy": 0.8962090015411377,
+      "step": 908
+    },
+    {
+      "gradient_norm_before_clip": 0.05267767608165741,
+      "soft_cross_entropy": 0.8763279318809509,
+      "step": 909
+    },
+    {
+      "gradient_norm_before_clip": 0.06428387761116028,
+      "soft_cross_entropy": 0.8883514404296875,
+      "step": 910
+    },
+    {
+      "gradient_norm_before_clip": 0.05660884827375412,
+      "soft_cross_entropy": 0.863000214099884,
+      "step": 911
+    },
+    {
+      "gradient_norm_before_clip": 0.0627012699842453,
+      "soft_cross_entropy": 0.8905634880065918,
+      "step": 912
+    },
+    {
+      "gradient_norm_before_clip": 0.07035526633262634,
+      "soft_cross_entropy": 0.8834030628204346,
+      "step": 913
+    },
+    {
+      "gradient_norm_before_clip": 0.05711114779114723,
+      "soft_cross_entropy": 0.8862452507019043,
+      "step": 914
+    },
+    {
+      "gradient_norm_before_clip": 0.055150192230939865,
+      "soft_cross_entropy": 0.8788988590240479,
+      "step": 915
+    },
+    {
+      "gradient_norm_before_clip": 0.06803058832883835,
+      "soft_cross_entropy": 0.8883615732192993,
+      "step": 916
+    },
+    {
+      "gradient_norm_before_clip": 0.057055313140153885,
+      "soft_cross_entropy": 0.8686961531639099,
+      "step": 917
+    },
+    {
+      "gradient_norm_before_clip": 0.07504690438508987,
+      "soft_cross_entropy": 0.8860898017883301,
+      "step": 918
+    },
+    {
+      "gradient_norm_before_clip": 0.05928274244070053,
+      "soft_cross_entropy": 0.881418764591217,
+      "step": 919
+    },
+    {
+      "gradient_norm_before_clip": 0.06105876713991165,
+      "soft_cross_entropy": 0.8775393962860107,
+      "step": 920
+    },
+    {
+      "gradient_norm_before_clip": 0.0704038068652153,
+      "soft_cross_entropy": 0.8619111180305481,
+      "step": 921
+    },
+    {
+      "gradient_norm_before_clip": 0.04623568058013916,
+      "soft_cross_entropy": 0.8762356042861938,
+      "step": 922
+    },
+    {
+      "gradient_norm_before_clip": 0.04911269247531891,
+      "soft_cross_entropy": 0.873926043510437,
+      "step": 923
+    },
+    {
+      "gradient_norm_before_clip": 0.06227593123912811,
+      "soft_cross_entropy": 0.8804394006729126,
+      "step": 924
+    },
+    {
+      "gradient_norm_before_clip": 0.05680917203426361,
+      "soft_cross_entropy": 0.8798146843910217,
+      "step": 925
+    },
+    {
+      "gradient_norm_before_clip": 0.05858166143298149,
+      "soft_cross_entropy": 0.8693402409553528,
+      "step": 926
+    },
+    {
+      "gradient_norm_before_clip": 0.0597543902695179,
+      "soft_cross_entropy": 0.885717511177063,
+      "step": 927
+    },
+    {
+      "gradient_norm_before_clip": 0.05390366539359093,
+      "soft_cross_entropy": 0.8751434087753296,
+      "step": 928
+    },
+    {
+      "gradient_norm_before_clip": 0.056160200387239456,
+      "soft_cross_entropy": 0.8764896392822266,
+      "step": 929
+    },
+    {
+      "gradient_norm_before_clip": 0.06090715900063515,
+      "soft_cross_entropy": 0.8880842328071594,
+      "step": 930
+    },
+    {
+      "gradient_norm_before_clip": 0.05528305470943451,
+      "soft_cross_entropy": 0.8843088746070862,
+      "step": 931
+    },
+    {
+      "gradient_norm_before_clip": 0.04263267293572426,
+      "soft_cross_entropy": 0.8642695546150208,
+      "step": 932
+    },
+    {
+      "gradient_norm_before_clip": 0.04611283168196678,
+      "soft_cross_entropy": 0.8897382616996765,
+      "step": 933
+    },
+    {
+      "gradient_norm_before_clip": 0.05733814463019371,
+      "soft_cross_entropy": 0.8857090473175049,
+      "step": 934
+    },
+    {
+      "gradient_norm_before_clip": 0.05190832540392876,
+      "soft_cross_entropy": 0.8745043277740479,
+      "step": 935
+    },
+    {
+      "gradient_norm_before_clip": 0.06400798261165619,
+      "soft_cross_entropy": 0.8770664930343628,
+      "step": 936
+    },
+    {
+      "gradient_norm_before_clip": 0.05449020490050316,
+      "soft_cross_entropy": 0.8753412961959839,
+      "step": 937
+    },
+    {
+      "gradient_norm_before_clip": 0.05540132895112038,
+      "soft_cross_entropy": 0.8821769952774048,
+      "step": 938
+    },
+    {
+      "gradient_norm_before_clip": 0.06369048357009888,
+      "soft_cross_entropy": 0.885751485824585,
+      "step": 939
+    },
+    {
+      "gradient_norm_before_clip": 0.054525263607501984,
+      "soft_cross_entropy": 0.8898279070854187,
+      "step": 940
+    },
+    {
+      "gradient_norm_before_clip": 0.056907620280981064,
+      "soft_cross_entropy": 0.8802215456962585,
+      "step": 941
+    },
+    {
+      "gradient_norm_before_clip": 0.055540118366479874,
+      "soft_cross_entropy": 0.8798055648803711,
+      "step": 942
+    },
+    {
+      "gradient_norm_before_clip": 0.058132242411375046,
+      "soft_cross_entropy": 0.8874775171279907,
+      "step": 943
+    },
+    {
+      "gradient_norm_before_clip": 0.05954574793577194,
+      "soft_cross_entropy": 0.8832051157951355,
+      "step": 944
+    },
+    {
+      "gradient_norm_before_clip": 0.05281081795692444,
+      "soft_cross_entropy": 0.8845788240432739,
+      "step": 945
+    },
+    {
+      "gradient_norm_before_clip": 0.05470505356788635,
+      "soft_cross_entropy": 0.8757174015045166,
+      "step": 946
+    },
+    {
+      "gradient_norm_before_clip": 0.055066898465156555,
+      "soft_cross_entropy": 0.8835725784301758,
+      "step": 947
+    },
+    {
+      "gradient_norm_before_clip": 0.06624836474657059,
+      "soft_cross_entropy": 0.8844480514526367,
+      "step": 948
+    },
+    {
+      "gradient_norm_before_clip": 0.0645897164940834,
+      "soft_cross_entropy": 0.9008369445800781,
+      "step": 949
+    },
+    {
+      "gradient_norm_before_clip": 0.06013822555541992,
+      "soft_cross_entropy": 0.8767974376678467,
+      "step": 950
+    },
+    {
+      "gradient_norm_before_clip": 0.055820077657699585,
+      "soft_cross_entropy": 0.8882455229759216,
+      "step": 951
+    },
+    {
+      "gradient_norm_before_clip": 0.06762195378541946,
+      "soft_cross_entropy": 0.8936948776245117,
+      "step": 952
+    },
+    {
+      "gradient_norm_before_clip": 0.05704199895262718,
+      "soft_cross_entropy": 0.8900499939918518,
+      "step": 953
+    },
+    {
+      "gradient_norm_before_clip": 0.05705980211496353,
+      "soft_cross_entropy": 0.8884744644165039,
+      "step": 954
+    },
+    {
+      "gradient_norm_before_clip": 0.06102711334824562,
+      "soft_cross_entropy": 0.8721581697463989,
+      "step": 955
+    },
+    {
+      "gradient_norm_before_clip": 0.05949147790670395,
+      "soft_cross_entropy": 0.8874981999397278,
+      "step": 956
+    },
+    {
+      "gradient_norm_before_clip": 0.07441243529319763,
+      "soft_cross_entropy": 0.8815237879753113,
+      "step": 957
+    },
+    {
+      "gradient_norm_before_clip": 0.06800255179405212,
+      "soft_cross_entropy": 0.8879899382591248,
+      "step": 958
+    },
+    {
+      "gradient_norm_before_clip": 0.04804709553718567,
+      "soft_cross_entropy": 0.8757361769676208,
+      "step": 959
+    },
+    {
+      "gradient_norm_before_clip": 0.0502924770116806,
+      "soft_cross_entropy": 0.8914772272109985,
+      "step": 960
+    },
+    {
+      "gradient_norm_before_clip": 0.05418423190712929,
+      "soft_cross_entropy": 0.8631379008293152,
+      "step": 961
+    },
+    {
+      "gradient_norm_before_clip": 0.05168430134654045,
+      "soft_cross_entropy": 0.8689531087875366,
+      "step": 962
+    },
+    {
+      "gradient_norm_before_clip": 0.06633750349283218,
+      "soft_cross_entropy": 0.8858987092971802,
+      "step": 963
+    },
+    {
+      "gradient_norm_before_clip": 0.05385846644639969,
+      "soft_cross_entropy": 0.8973369002342224,
+      "step": 964
+    },
+    {
+      "gradient_norm_before_clip": 0.0599360354244709,
+      "soft_cross_entropy": 0.8768664002418518,
+      "step": 965
+    },
+    {
+      "gradient_norm_before_clip": 0.06440351158380508,
+      "soft_cross_entropy": 0.8791199922561646,
+      "step": 966
+    },
+    {
+      "gradient_norm_before_clip": 0.06044935807585716,
+      "soft_cross_entropy": 0.8963398933410645,
+      "step": 967
+    },
+    {
+      "gradient_norm_before_clip": 0.06759338080883026,
+      "soft_cross_entropy": 0.8901066780090332,
+      "step": 968
+    },
+    {
+      "gradient_norm_before_clip": 0.061772774904966354,
+      "soft_cross_entropy": 0.8799136877059937,
+      "step": 969
+    },
+    {
+      "gradient_norm_before_clip": 0.054663464426994324,
+      "soft_cross_entropy": 0.8696780204772949,
+      "step": 970
+    },
+    {
+      "gradient_norm_before_clip": 0.0476435087621212,
+      "soft_cross_entropy": 0.8666175603866577,
+      "step": 971
+    },
+    {
+      "gradient_norm_before_clip": 0.04434141516685486,
+      "soft_cross_entropy": 0.8779594302177429,
+      "step": 972
+    },
+    {
+      "gradient_norm_before_clip": 0.06334096938371658,
+      "soft_cross_entropy": 0.8899797201156616,
+      "step": 973
+    },
+    {
+      "gradient_norm_before_clip": 0.06508088111877441,
+      "soft_cross_entropy": 0.8782918453216553,
+      "step": 974
+    },
+    {
+      "gradient_norm_before_clip": 0.04584072157740593,
+      "soft_cross_entropy": 0.862846851348877,
+      "step": 975
+    },
+    {
+      "gradient_norm_before_clip": 0.06007252633571625,
+      "soft_cross_entropy": 0.8804135322570801,
+      "step": 976
+    },
+    {
+      "gradient_norm_before_clip": 0.05276300758123398,
+      "soft_cross_entropy": 0.9047282934188843,
+      "step": 977
+    },
+    {
+      "gradient_norm_before_clip": 0.06029334291815758,
+      "soft_cross_entropy": 0.8867185115814209,
+      "step": 978
+    },
+    {
+      "gradient_norm_before_clip": 0.05770515277981758,
+      "soft_cross_entropy": 0.8737998008728027,
+      "step": 979
+    },
+    {
+      "gradient_norm_before_clip": 0.05595375970005989,
+      "soft_cross_entropy": 0.8774397373199463,
+      "step": 980
+    },
+    {
+      "gradient_norm_before_clip": 0.06212978437542915,
+      "soft_cross_entropy": 0.8872883319854736,
+      "step": 981
+    },
+    {
+      "gradient_norm_before_clip": 0.05112247169017792,
+      "soft_cross_entropy": 0.875187873840332,
+      "step": 982
+    },
+    {
+      "gradient_norm_before_clip": 0.05462102219462395,
+      "soft_cross_entropy": 0.8557757139205933,
+      "step": 983
+    },
+    {
+      "gradient_norm_before_clip": 0.058563828468322754,
+      "soft_cross_entropy": 0.8828098773956299,
+      "step": 984
+    },
+    {
+      "gradient_norm_before_clip": 0.061361897736787796,
+      "soft_cross_entropy": 0.8971201181411743,
+      "step": 985
+    },
+    {
+      "gradient_norm_before_clip": 0.058314695954322815,
+      "soft_cross_entropy": 0.8892616033554077,
+      "step": 986
+    },
+    {
+      "gradient_norm_before_clip": 0.04955035448074341,
+      "soft_cross_entropy": 0.8760373592376709,
+      "step": 987
+    },
+    {
+      "gradient_norm_before_clip": 0.05490793287754059,
+      "soft_cross_entropy": 0.8901088237762451,
+      "step": 988
+    },
+    {
+      "gradient_norm_before_clip": 0.055487580597400665,
+      "soft_cross_entropy": 0.8681696653366089,
+      "step": 989
+    },
+    {
+      "gradient_norm_before_clip": 0.0613509863615036,
+      "soft_cross_entropy": 0.8860083222389221,
+      "step": 990
+    },
+    {
+      "gradient_norm_before_clip": 0.0509708896279335,
+      "soft_cross_entropy": 0.8889505863189697,
+      "step": 991
+    },
+    {
+      "gradient_norm_before_clip": 0.05911443009972572,
+      "soft_cross_entropy": 0.8762301206588745,
+      "step": 992
+    },
+    {
+      "gradient_norm_before_clip": 0.05721386522054672,
+      "soft_cross_entropy": 0.8725016117095947,
+      "step": 993
+    },
+    {
+      "gradient_norm_before_clip": 0.06333322823047638,
+      "soft_cross_entropy": 0.8896417021751404,
+      "step": 994
+    },
+    {
+      "gradient_norm_before_clip": 0.04787290096282959,
+      "soft_cross_entropy": 0.871015191078186,
+      "step": 995
+    },
+    {
+      "gradient_norm_before_clip": 0.05295118689537048,
+      "soft_cross_entropy": 0.8945755958557129,
+      "step": 996
+    },
+    {
+      "gradient_norm_before_clip": 0.05460716784000397,
+      "soft_cross_entropy": 0.8777866363525391,
+      "step": 997
+    },
+    {
+      "gradient_norm_before_clip": 0.058778561651706696,
+      "soft_cross_entropy": 0.8721457123756409,
+      "step": 998
+    },
+    {
+      "gradient_norm_before_clip": 0.06053166836500168,
+      "soft_cross_entropy": 0.876479983329773,
+      "step": 999
+    },
+    {
+      "gradient_norm_before_clip": 0.05217752233147621,
+      "soft_cross_entropy": 0.8727766275405884,
+      "step": 1000
+    }
+  ],
+  "validation": [
+    {
+      "became_strict_best": true,
+      "is_trained": false,
+      "own_validation_label_cross_entropy": 1.0989682832732797,
+      "step": 0
+    },
+    {
+      "became_strict_best": true,
+      "is_trained": true,
+      "own_validation_label_cross_entropy": 0.9381748815067112,
+      "step": 100
+    },
+    {
+      "became_strict_best": true,
+      "is_trained": true,
+      "own_validation_label_cross_entropy": 0.9142341393550547,
+      "step": 200
+    },
+    {
+      "became_strict_best": true,
+      "is_trained": true,
+      "own_validation_label_cross_entropy": 0.9064116012693072,
+      "step": 300
+    },
+    {
+      "became_strict_best": true,
+      "is_trained": true,
+      "own_validation_label_cross_entropy": 0.9038119841522226,
+      "step": 400
+    },
+    {
+      "became_strict_best": true,
+      "is_trained": true,
+      "own_validation_label_cross_entropy": 0.9029456291464157,
+      "step": 500
+    },
+    {
+      "became_strict_best": true,
+      "is_trained": true,
+      "own_validation_label_cross_entropy": 0.90270391094964,
+      "step": 600
+    },
+    {
+      "became_strict_best": false,
+      "is_trained": true,
+      "own_validation_label_cross_entropy": 0.9031551620767763,
+      "step": 700
+    },
+    {
+      "became_strict_best": true,
+      "is_trained": true,
+      "own_validation_label_cross_entropy": 0.9025651525589637,
+      "step": 800
+    },
+    {
+      "became_strict_best": false,
+      "is_trained": true,
+      "own_validation_label_cross_entropy": 0.9032886805556094,
+      "step": 900
+    },
+    {
+      "became_strict_best": false,
+      "is_trained": true,
+      "own_validation_label_cross_entropy": 0.9029492246142278,
+      "step": 1000
+    }
+  ]
+}
