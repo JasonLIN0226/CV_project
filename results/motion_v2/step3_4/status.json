@@ -1,5 +1,5 @@
 {
-  "status": "cpu_passed_waiting_user_authentication",
+  "status": "deployed_waiting_chrome_window_coordination",
   "protocol": {
     "path": "experiments/motion_v2/protocol_step34.json",
     "sha256": "3b4fdd6b7888ef0d052d74b2be3a07b4680debccb59406487d054308be3bd91d"
@@ -12,7 +12,7 @@
   "wall_seconds": 10500,
   "confirmation_or_test_used": false,
   "created_utc": "2026-11-02T00:59:47.167156+00:00",
-  "updated_utc": "2026-11-02T01:08:42.951466+00:00",
+  "updated_utc": "2026-11-02T01:21:10.529899+00:00",
   "software_tests": {
     "passed": 432,
     "new_tests": 334,
@@ -40,7 +40,8 @@
     "manifest_sha256": "18185ffb796ff954d6d577f0bf134aea22febc54899400411a98e6fe36334925"
   },
   "hpc_block": {
-    "observed": "Existing Incognito HPC Dashboard redirected to https://device.login.microsoftonline.com/ with title Working... after opening My Interactive Sessions",
+    "authentication_resolved": true,
+    "observed": "Native Chrome UI commands interrupted by other Chrome window switching; no authentication prompt currently",
     "user_handoff_requested": true,
     "scientific_job_submitted": false
   },
@@ -51,5 +52,14 @@
     "path": "experiments/motion_v2/protocol_step34_execution.json",
     "sha256": "5493af36aa390113d7b001d2215b7cbf3c1b401cd60077a12b75ae9b48e0ac1e"
   },
-  "independent_cpu_receipt_checks": 20
+  "independent_cpu_receipt_checks": 20,
+  "deployment": {
+    "root": "/scratch/xy3257/motion-v2-20261101-step34-deployment1",
+    "head": "bfe66f998aa057598d6576fcd9c4deaccb5d5543",
+    "cpu_auxiliary_job_id": 17718,
+    "zip_uploaded": true,
+    "transfer_hash_verification": "not_run",
+    "gpu_preflight": "not_run",
+    "gpu_submitted": false
+  }
 }
