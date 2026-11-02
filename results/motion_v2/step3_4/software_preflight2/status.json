@@ -1,0 +1,57 @@
+{
+  "status": "stopped_software_test_failure",
+  "groups": [
+    {
+      "group": "step34_synthetic",
+      "returncode": 0,
+      "command": [
+        "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/.venv/bin/python",
+        "-I",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp",
+        "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project_motion_v2_20261030/results/motion_v2/step3_4/software_preflight2/step34_synthetic_tmp",
+        "--junitxml",
+        "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project_motion_v2_20261030/results/motion_v2/step3_4/software_preflight2/step34_synthetic.xml",
+        "experiments/motion_v2/test_export_step34.py",
+        "experiments/motion_v2/test_run_step34.py",
+        "experiments/motion_v2/test_step34_core.py",
+        "experiments/motion_v2/test_step34_data.py",
+        "experiments/motion_v2/test_step34_metrics.py",
+        "experiments/motion_v2/test_step34_runtime.py",
+        "experiments/motion_v2/test_step34_students.py",
+        "experiments/motion_v2/test_submit_step34.py"
+      ],
+      "environment": {}
+    },
+    {
+      "group": "native_replay",
+      "returncode": 1,
+      "command": [
+        "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/.venv/bin/python",
+        "-I",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp",
+        "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project_motion_v2_20261030/results/motion_v2/step3_4/software_preflight2/native_replay_tmp",
+        "--junitxml",
+        "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project_motion_v2_20261030/results/motion_v2/step3_4/software_preflight2/native_replay.xml",
+        "experiments/motion_v2/test_slurm_records_v2_3_1.py"
+      ],
+      "environment": {
+        "MOTION_SLURM_REPLAY_OUTPUT": "results/motion_v2/step3_4/software_preflight2/native_replay_fields.json"
+      }
+    }
+  ],
+  "gpu_seconds": 0,
+  "registration_sha256": "b3cdcf5e00fed0a50a58ae331505b46777ecc217058efd45269a54b2a6dc3063",
+  "finished_utc": "2026-11-02T01:01:02.329324+00:00"
+}
