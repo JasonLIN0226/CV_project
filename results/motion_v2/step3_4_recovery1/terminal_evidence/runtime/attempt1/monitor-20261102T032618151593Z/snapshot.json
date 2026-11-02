@@ -1,0 +1,49 @@
+{
+  "captured_utc": "2026-11-02T03:26:18.151593+00:00",
+  "job_id": "17925",
+  "commands": {
+    "squeue": {
+      "argv": [
+        "squeue",
+        "-j",
+        "17925",
+        "-o",
+        "%.18i %.10T %.10M %.25R"
+      ],
+      "returncode": 0,
+      "stdout": "             JOBID      STATE       TIME          NODELIST(REASON)\n             17925    PENDING       0:00               (Resources)\n",
+      "stderr": ""
+    },
+    "scontrol": {
+      "argv": [
+        "scontrol",
+        "show",
+        "job",
+        "--oneliner",
+        "17925"
+      ],
+      "returncode": 0,
+      "stdout": "JobId=17925 JobName=motion-v2-step34 UserId=xy3257(4882486) GroupId=xy3257(4882486) MCS_label=N/A Priority=16298 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=PENDING Reason=Resources Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:00:00 TimeLimit=02:55:00 TimeMin=N/A SubmitTime=2026-11-02T03:23:53 EligibleTime=2026-11-02T03:23:53 AccrueTime=2026-11-02T03:23:53 StartTime=2026-11-02T03:50:47 EndTime=2026-11-02T06:45:47 Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-11-02T03:26:01 Scheduler=Main Partition=c12m85-a100-1 AllocNode:Sid=3-gcp-r2:8250 ReqNodeList=(null) ExcNodeList=(null) NodeList= SchedNodeList=b-19-13 NumNodes=1-1 NumCPUs=4 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=4,mem=16G,node=1,billing=4,gres/gpu=1 AllocTRES=(null) Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=4 MinMemoryNode=16G MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/scratch/xy3257/motion-v2-20261101-step34-deployment2/repo/experiments/motion_v2/run_step34_recovery1.sbatch WorkDir=/scratch/xy3257/motion-v2-20261101-step34-deployment2/repo StdErr=/scratch/xy3257/motion-v2-20261101-step34-deployment2/scientific-job-17925.stderr.log StdIn=/dev/null StdOut=/scratch/xy3257/motion-v2-20261101-step34-deployment2/scientific-job-17925.stdout.log TresPerNode=gres/gpu:a100:1 TresPerTask=cpu=4 \n",
+      "stderr": ""
+    },
+    "sacct": {
+      "argv": [
+        "sacct",
+        "--duplicates",
+        "-j",
+        "17925",
+        "--noheader",
+        "--parsable2",
+        "--format=JobIDRaw,JobName,User,Account,Partition,State,ExitCode,Start,End,ElapsedRaw,AllocTRES,ReqTRES,Cluster,DBIndex,Submit,Restarts,NodeList,TimelimitRaw"
+      ],
+      "returncode": 0,
+      "stdout": "17925|bash|ms12962|ds_ua_301-2024fa|c12m85-a100-1|FAILED|0:2|2024-11-13T05:16:33|2024-11-13T05:16:37|4|billing=12,cpu=12,gres/gpu=1,mem=85000M,node=1|billing=1,cpu=1,gres/gpu=1,mem=85000M,node=1|slurm-cloud|24884|2024-11-13T05:16:33|0|b-19-24|60\n17925|motion-v2-step34|xy3257|csci_ga_2271-2026fa|c12m85-a100-1|PENDING|0:0|Unknown|Unknown|0||billing=4,cpu=4,gres/gpu=1,mem=16G,node=1|slurm-cloud|15404147361634295808|2026-11-02T03:23:53|0|None assigned|175\n",
+      "stderr": ""
+    }
+  },
+  "files": {},
+  "logs": {},
+  "marker_exists": false,
+  "science_output_exists": false,
+  "new_encoded_npz_count": 0
+}

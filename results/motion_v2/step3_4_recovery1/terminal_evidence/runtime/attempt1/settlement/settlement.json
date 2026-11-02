@@ -1,0 +1,375 @@
+{
+  "started_utc": "2026-11-02T04:42:43.654454+00:00",
+  "mode": "settle",
+  "attempt": 1,
+  "scientific_entry_invocations": 0,
+  "sbatch_attempted": false,
+  "job_id": "17925",
+  "commands": [
+    {
+      "name": "git_head",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "0f171090457c21dc966a3da0a00793d4225b8e0f\n",
+      "stderr": "",
+      "captured_utc": "2026-11-02T04:42:43.676009+00:00"
+    },
+    {
+      "name": "git_branch",
+      "argv": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "returncode": 0,
+      "stdout": "experiments/motion-v2-20261030\n",
+      "stderr": "",
+      "captured_utc": "2026-11-02T04:42:43.691309+00:00"
+    },
+    {
+      "name": "git_tracked_status",
+      "argv": [
+        "git",
+        "status",
+        "--porcelain",
+        "--untracked-files=no"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "captured_utc": "2026-11-02T04:42:44.354458+00:00"
+    },
+    {
+      "name": "final_sacct_duplicates",
+      "argv": [
+        "sacct",
+        "--duplicates",
+        "-j",
+        "17925",
+        "--noheader",
+        "--parsable2",
+        "--format=JobIDRaw,JobName,User,Account,Partition,State,ExitCode,Start,End,ElapsedRaw,AllocTRES,ReqTRES,Cluster,DBIndex,Submit,Restarts,NodeList,TimelimitRaw"
+      ],
+      "returncode": 0,
+      "stdout": "17925|bash|ms12962|ds_ua_301-2024fa|c12m85-a100-1|FAILED|0:2|2024-11-13T05:16:33|2024-11-13T05:16:37|4|billing=12,cpu=12,gres/gpu=1,mem=85000M,node=1|billing=1,cpu=1,gres/gpu=1,mem=85000M,node=1|slurm-cloud|24884|2024-11-13T05:16:33|0|b-19-24|60\n17925|motion-v2-step34|xy3257|csci_ga_2271-2026fa|c12m85-a100-1|COMPLETED|0:0|2026-11-02T03:27:50|2026-11-02T04:03:23|2133|billing=12,cpu=12,gres/gpu=1,mem=16G,node=1|billing=4,cpu=4,gres/gpu=1,mem=16G,node=1|slurm-cloud|15404147361634295808|2026-11-02T03:23:53|0|b-19-46|175\n17925.batch|batch||csci_ga_2271-2026fa||COMPLETED|0:0|2026-11-02T03:27:50|2026-11-02T04:03:23|2133|cpu=12,gres/gpu=1,mem=16G,node=1||slurm-cloud|15404147361634295808|2026-11-02T03:27:50||b-19-46|\n17925.extern|extern||csci_ga_2271-2026fa||COMPLETED|0:0|2026-11-02T03:27:50|2026-11-02T04:03:23|2133|billing=12,cpu=12,gres/gpu=1,mem=16G,node=1||slurm-cloud|15404147361634295808|2026-11-02T03:27:50||b-19-46|\n",
+      "stderr": "",
+      "captured_utc": "2026-11-02T04:42:53.007051+00:00"
+    },
+    {
+      "name": "final_scontrol",
+      "argv": [
+        "scontrol",
+        "show",
+        "job",
+        "--oneliner",
+        "17925"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "slurm_load_jobs error: Invalid job id specified\n",
+      "captured_utc": "2026-11-02T04:42:53.077235+00:00"
+    }
+  ],
+  "registration": {
+    "head_commit": "0f171090457c21dc966a3da0a00793d4225b8e0f",
+    "branch": "experiments/motion-v2-20261030",
+    "science_protocol_sha256": "dff74a2066aa78a54f88047f2d42d2e76f45e720d53f90015f4bd417d41e232d",
+    "execution_protocol_sha256": "0ffb160ce997d08aad7312095050fd8afc5574a41da31766b58f225a8d6482be",
+    "wrapper_sha256": "f5aced174c9f30abc66573a98fa24bf38f235146ff4bf3bbd5e252a40e5e359c",
+    "wrapper_directives": {
+      "--job-name": "motion-v2-step34",
+      "--account": "csci_ga_2271-2026fa",
+      "--partition": "c12m85-a100-1",
+      "--nodes": "1",
+      "--ntasks": "1",
+      "--cpus-per-task": "4",
+      "--mem": "16G",
+      "--gres": "gpu:a100:1",
+      "--time": "02:55:00",
+      "--no-requeue": true,
+      "--export": "ALL",
+      "--open-mode": "append",
+      "--output": "/scratch/xy3257/motion-v2-20261101-step34-deployment2/scientific-job-%j.stdout.log",
+      "--error": "/scratch/xy3257/motion-v2-20261101-step34-deployment2/scientific-job-%j.stderr.log"
+    }
+  },
+  "submission_sha256": "ac268c3f8179f4bbcca804416ff8fc7f356c5de38755d7c02bc5b9418e03c8c5",
+  "submission_inventory_sha256": "9442c7bc0ab03e37f3d2b257439221d97f7cf5446194ccd8aadbf00bbd61cc2f",
+  "expected_identity": {
+    "JobName": "motion-v2-step34",
+    "User": "xy3257",
+    "Account": "csci_ga_2271-2026fa",
+    "Partition": "c12m85-a100-1",
+    "Submit": "2026-11-02T03:23:53"
+  },
+  "startup_control": "JobId=17925 JobName=motion-v2-step34\n   UserId=xy3257(4882486) GroupId=xy3257(4882486) MCS_label=N/A\n   Priority=16298 Nice=0 Account=csci_ga_2271-2026fa QOS=normal\n   JobState=RUNNING Reason=None Dependency=(null)\n   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:00:01 TimeLimit=02:55:00 TimeMin=N/A\n   SubmitTime=2026-11-02T03:23:53 EligibleTime=2026-11-02T03:23:53\n   AccrueTime=2026-11-02T03:23:53\n   StartTime=2026-11-02T03:27:50 EndTime=2026-11-02T06:22:50 Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-11-02T03:26:20 Scheduler=Backfill\n   Partition=c12m85-a100-1 AllocNode:Sid=3-gcp-r2:8250\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=b-19-46\n   BatchHost=b-19-46\n   NumNodes=1 NumCPUs=12 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=4,mem=16G,node=1,billing=4,gres/gpu=1\n   AllocTRES=cpu=12,mem=16G,node=1,billing=12,gres/gpu=1\n   Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=*\n   MinCPUsNode=4 MinMemoryNode=16G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/scratch/xy3257/motion-v2-20261101-step34-deployment2/repo/experiments/motion_v2/run_step34_recovery1.sbatch\n   WorkDir=/scratch/xy3257/motion-v2-20261101-step34-deployment2/repo\n   StdErr=/scratch/xy3257/motion-v2-20261101-step34-deployment2/scientific-job-17925.stderr.log\n   StdIn=/dev/null\n   StdOut=/scratch/xy3257/motion-v2-20261101-step34-deployment2/scientific-job-17925.stdout.log\n   TresPerNode=gres/gpu:a100:1\n   TresPerTask=cpu=4\n   \n\n",
+  "startup_control_sha256": "90a31f4f451019001c0207c6651d9cacef1c06010c24090ee57e345affa9c5f8",
+  "terminal_accounting": {
+    "native_state": "COMPLETED",
+    "exit_code": "0:0",
+    "allocated_gpu_count": 1,
+    "actual_a100_gpu_seconds": 2133,
+    "restarts": 0,
+    "accounting_row": {
+      "JobIDRaw": "17925",
+      "JobName": "motion-v2-step34",
+      "User": "xy3257",
+      "Account": "csci_ga_2271-2026fa",
+      "Partition": "c12m85-a100-1",
+      "State": "COMPLETED",
+      "ExitCode": "0:0",
+      "Start": "2026-11-02T03:27:50",
+      "End": "2026-11-02T04:03:23",
+      "ElapsedRaw": "2133",
+      "AllocTRES": "billing=12,cpu=12,gres/gpu=1,mem=16G,node=1",
+      "ReqTRES": "billing=4,cpu=4,gres/gpu=1,mem=16G,node=1",
+      "Cluster": "slurm-cloud",
+      "DBIndex": "15404147361634295808",
+      "Submit": "2026-11-02T03:23:53",
+      "Restarts": "0",
+      "NodeList": "b-19-46",
+      "TimelimitRaw": "175"
+    },
+    "control_evidence": "terminal_sacct_restarts_with_retained_startup_control",
+    "fresh_terminal_scontrol_available": false,
+    "terminal_scontrol_fabricated": false,
+    "requested_seconds": 10500
+  },
+  "complete_accounting": {
+    "allocation_row": {
+      "JobIDRaw": "17925",
+      "JobName": "motion-v2-step34",
+      "User": "xy3257",
+      "Account": "csci_ga_2271-2026fa",
+      "Partition": "c12m85-a100-1",
+      "State": "COMPLETED",
+      "ExitCode": "0:0",
+      "Start": "2026-11-02T03:27:50",
+      "End": "2026-11-02T04:03:23",
+      "ElapsedRaw": "2133",
+      "AllocTRES": "billing=12,cpu=12,gres/gpu=1,mem=16G,node=1",
+      "ReqTRES": "billing=4,cpu=4,gres/gpu=1,mem=16G,node=1",
+      "Cluster": "slurm-cloud",
+      "DBIndex": "15404147361634295808",
+      "Submit": "2026-11-02T03:23:53",
+      "Restarts": "0",
+      "NodeList": "b-19-46",
+      "TimelimitRaw": "175"
+    },
+    "all_rows": [
+      {
+        "JobIDRaw": "17925",
+        "JobName": "bash",
+        "User": "ms12962",
+        "Account": "ds_ua_301-2024fa",
+        "Partition": "c12m85-a100-1",
+        "State": "FAILED",
+        "ExitCode": "0:2",
+        "Start": "2024-11-13T05:16:33",
+        "End": "2024-11-13T05:16:37",
+        "ElapsedRaw": "4",
+        "AllocTRES": "billing=12,cpu=12,gres/gpu=1,mem=85000M,node=1",
+        "ReqTRES": "billing=1,cpu=1,gres/gpu=1,mem=85000M,node=1",
+        "Cluster": "slurm-cloud",
+        "DBIndex": "24884",
+        "Submit": "2024-11-13T05:16:33",
+        "Restarts": "0",
+        "NodeList": "b-19-24",
+        "TimelimitRaw": "60"
+      },
+      {
+        "JobIDRaw": "17925",
+        "JobName": "motion-v2-step34",
+        "User": "xy3257",
+        "Account": "csci_ga_2271-2026fa",
+        "Partition": "c12m85-a100-1",
+        "State": "COMPLETED",
+        "ExitCode": "0:0",
+        "Start": "2026-11-02T03:27:50",
+        "End": "2026-11-02T04:03:23",
+        "ElapsedRaw": "2133",
+        "AllocTRES": "billing=12,cpu=12,gres/gpu=1,mem=16G,node=1",
+        "ReqTRES": "billing=4,cpu=4,gres/gpu=1,mem=16G,node=1",
+        "Cluster": "slurm-cloud",
+        "DBIndex": "15404147361634295808",
+        "Submit": "2026-11-02T03:23:53",
+        "Restarts": "0",
+        "NodeList": "b-19-46",
+        "TimelimitRaw": "175"
+      },
+      {
+        "JobIDRaw": "17925.batch",
+        "JobName": "batch",
+        "User": "",
+        "Account": "csci_ga_2271-2026fa",
+        "Partition": "",
+        "State": "COMPLETED",
+        "ExitCode": "0:0",
+        "Start": "2026-11-02T03:27:50",
+        "End": "2026-11-02T04:03:23",
+        "ElapsedRaw": "2133",
+        "AllocTRES": "cpu=12,gres/gpu=1,mem=16G,node=1",
+        "ReqTRES": "",
+        "Cluster": "slurm-cloud",
+        "DBIndex": "15404147361634295808",
+        "Submit": "2026-11-02T03:27:50",
+        "Restarts": "",
+        "NodeList": "b-19-46",
+        "TimelimitRaw": ""
+      },
+      {
+        "JobIDRaw": "17925.extern",
+        "JobName": "extern",
+        "User": "",
+        "Account": "csci_ga_2271-2026fa",
+        "Partition": "",
+        "State": "COMPLETED",
+        "ExitCode": "0:0",
+        "Start": "2026-11-02T03:27:50",
+        "End": "2026-11-02T04:03:23",
+        "ElapsedRaw": "2133",
+        "AllocTRES": "billing=12,cpu=12,gres/gpu=1,mem=16G,node=1",
+        "ReqTRES": "",
+        "Cluster": "slurm-cloud",
+        "DBIndex": "15404147361634295808",
+        "Submit": "2026-11-02T03:27:50",
+        "Restarts": "",
+        "NodeList": "b-19-46",
+        "TimelimitRaw": ""
+      }
+    ],
+    "selected_rows": [
+      {
+        "JobIDRaw": "17925",
+        "JobName": "motion-v2-step34",
+        "User": "xy3257",
+        "Account": "csci_ga_2271-2026fa",
+        "Partition": "c12m85-a100-1",
+        "State": "COMPLETED",
+        "ExitCode": "0:0",
+        "Start": "2026-11-02T03:27:50",
+        "End": "2026-11-02T04:03:23",
+        "ElapsedRaw": "2133",
+        "AllocTRES": "billing=12,cpu=12,gres/gpu=1,mem=16G,node=1",
+        "ReqTRES": "billing=4,cpu=4,gres/gpu=1,mem=16G,node=1",
+        "Cluster": "slurm-cloud",
+        "DBIndex": "15404147361634295808",
+        "Submit": "2026-11-02T03:23:53",
+        "Restarts": "0",
+        "NodeList": "b-19-46",
+        "TimelimitRaw": "175"
+      },
+      {
+        "JobIDRaw": "17925.batch",
+        "JobName": "batch",
+        "User": "",
+        "Account": "csci_ga_2271-2026fa",
+        "Partition": "",
+        "State": "COMPLETED",
+        "ExitCode": "0:0",
+        "Start": "2026-11-02T03:27:50",
+        "End": "2026-11-02T04:03:23",
+        "ElapsedRaw": "2133",
+        "AllocTRES": "cpu=12,gres/gpu=1,mem=16G,node=1",
+        "ReqTRES": "",
+        "Cluster": "slurm-cloud",
+        "DBIndex": "15404147361634295808",
+        "Submit": "2026-11-02T03:27:50",
+        "Restarts": "",
+        "NodeList": "b-19-46",
+        "TimelimitRaw": ""
+      },
+      {
+        "JobIDRaw": "17925.extern",
+        "JobName": "extern",
+        "User": "",
+        "Account": "csci_ga_2271-2026fa",
+        "Partition": "",
+        "State": "COMPLETED",
+        "ExitCode": "0:0",
+        "Start": "2026-11-02T03:27:50",
+        "End": "2026-11-02T04:03:23",
+        "ElapsedRaw": "2133",
+        "AllocTRES": "billing=12,cpu=12,gres/gpu=1,mem=16G,node=1",
+        "ReqTRES": "",
+        "Cluster": "slurm-cloud",
+        "DBIndex": "15404147361634295808",
+        "Submit": "2026-11-02T03:27:50",
+        "Restarts": "",
+        "NodeList": "b-19-46",
+        "TimelimitRaw": ""
+      }
+    ],
+    "excluded_historical_rows": [
+      {
+        "JobIDRaw": "17925",
+        "JobName": "bash",
+        "User": "ms12962",
+        "Account": "ds_ua_301-2024fa",
+        "Partition": "c12m85-a100-1",
+        "State": "FAILED",
+        "ExitCode": "0:2",
+        "Start": "2024-11-13T05:16:33",
+        "End": "2024-11-13T05:16:37",
+        "ElapsedRaw": "4",
+        "AllocTRES": "billing=12,cpu=12,gres/gpu=1,mem=85000M,node=1",
+        "ReqTRES": "billing=1,cpu=1,gres/gpu=1,mem=85000M,node=1",
+        "Cluster": "slurm-cloud",
+        "DBIndex": "24884",
+        "Submit": "2024-11-13T05:16:33",
+        "Restarts": "0",
+        "NodeList": "b-19-24",
+        "TimelimitRaw": "60"
+      }
+    ],
+    "selection_keys": {
+      "JobName": "motion-v2-step34",
+      "User": "xy3257",
+      "Account": "csci_ga_2271-2026fa",
+      "Partition": "c12m85-a100-1",
+      "Submit": "2026-11-02T03:23:53",
+      "Cluster": "slurm-cloud",
+      "DBIndex": "15404147361634295808"
+    },
+    "batch_step_ids": [
+      "17925.batch"
+    ],
+    "no_batch_step": false
+  },
+  "terminal_scontrol": "",
+  "terminal_scontrol_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "path_probes": {
+    "stdout": {
+      "path": "/scratch/xy3257/motion-v2-20261101-step34-deployment2/scientific-job-17925.stdout.log",
+      "absent": false
+    },
+    "stderr": {
+      "path": "/scratch/xy3257/motion-v2-20261101-step34-deployment2/scientific-job-17925.stderr.log",
+      "absent": false
+    },
+    "scientific_marker": {
+      "path": "/scratch/xy3257/motion-v2-20261101-step34-deployment2/scientific_job_started",
+      "absent": false
+    },
+    "scientific_output": {
+      "path": "/scratch/xy3257/motion-v2-20261101-step34-deployment2/repo/results/motion_v2/step3_4_recovery1/gpu",
+      "absent": false
+    }
+  },
+  "four_facts": {
+    "stdout_stderr_absent": false,
+    "scientific_marker_absent": false,
+    "scientific_output_absent": false,
+    "no_batch_step": false
+  },
+  "predecessor_history": [],
+  "prior_a100_seconds": 3753,
+  "cumulative_a100_seconds": 5886,
+  "cumulative_a100_hours": 1.635,
+  "total_cap_a100_seconds": 14400,
+  "finished_utc": "2026-11-02T04:42:53.097641+00:00"
+}

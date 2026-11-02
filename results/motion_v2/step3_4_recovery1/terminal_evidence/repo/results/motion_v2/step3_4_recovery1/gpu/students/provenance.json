@@ -1,0 +1,199 @@
+{
+  "architecture_plan": {
+    "independent": {
+      "parameters": 54401,
+      "width": 64
+    },
+    "set": {
+      "parameters": 54361,
+      "width": 60
+    }
+  },
+  "checkpoint_rule": "own_validation_label_cross_entropy_strict_min_earliest_tie_including_step0",
+  "cross_architecture_identical_weights_claimed": false,
+  "device": "cuda:0",
+  "duplicate_states_keep_manifest_multiplicity": true,
+  "label_scales_sha256": "3c53b7e9ce48c53be3d62c37b4d72aecd484e6c0d6aa805b23696bfb8c537c09",
+  "labels": [
+    "local_feature",
+    "local_position",
+    "use_time_feature",
+    "use_time_position",
+    "future_attention",
+    "shuffle_local_feature",
+    "shuffle_local_position",
+    "shuffle_use_time_feature",
+    "shuffle_use_time_position"
+  ],
+  "minibatch_indices_sha256": "821d0548b4f850127e0ca33ef3b72fe3f0ad3861406a9f5997dc84d22dec76a3",
+  "normalization_fit_split": "train",
+  "normalization_sha256": "89d21a17a9badf867bdfdf6d8042946db8700c38284b8ceb91115d8458603441",
+  "normalization_std_floor": 0.0001,
+  "numpy_version": "1.26.4",
+  "optimizer": {
+    "batch_size": 128,
+    "dropout": 0.0,
+    "gradient_clip": 1.0,
+    "learning_rate": 0.001,
+    "name": "Adam",
+    "scheduler": null,
+    "steps": 1000,
+    "weight_decay": 0.0
+  },
+  "raw_input_arrays": {
+    "train": {
+      "context": {
+        "dtype": "<f4",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "5da732d0c848e778e149a1ac065a26802ab917da78be5f424019f1923655dac5",
+        "shape": [
+          16384,
+          524
+        ]
+      },
+      "items": {
+        "dtype": "<f4",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "bef624ad112e958164cb36b5ee8c6013cb2911aecce23772314b7bc4b7a6eb27",
+        "shape": [
+          16384,
+          3,
+          259
+        ]
+      }
+    },
+    "validation": {
+      "context": {
+        "dtype": "<f4",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "40a4bd52295928c4bf619c0bada554ca73cfd141baaa2aa87c4dcde481a2d5d8",
+        "shape": [
+          3072,
+          524
+        ]
+      },
+      "items": {
+        "dtype": "<f4",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "994fe82bf14ba96e195f7788fe80c6b856f96c72c48a416d8937a7b969899518",
+        "shape": [
+          3072,
+          3,
+          259
+        ]
+      }
+    }
+  },
+  "raw_label_arrays": {
+    "train": {
+      "future_attention": {
+        "dtype": "<f8",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "7cc1c8e4481b8a59fa46da8f442d91a078f355d543eee083ac0014276f8c485b",
+        "shape": [
+          16384,
+          3
+        ]
+      },
+      "local_feature": {
+        "dtype": "<f8",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "b97b254753193e4edbe727cfb69711794ff8e87a4f7a13f0c9294c20cae3fe3f",
+        "shape": [
+          16384,
+          3
+        ]
+      },
+      "local_position": {
+        "dtype": "<f8",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "1b551ed1e49c7a2ebc33102de96eab275e1880a7d3b7b097276f50a9effe6bdd",
+        "shape": [
+          16384,
+          3
+        ]
+      },
+      "use_time_feature": {
+        "dtype": "<f8",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "2da07254d00119cc9cf05bea294f30e94f2b2f97ba9dbb305f9002ae5a7d24aa",
+        "shape": [
+          16384,
+          3
+        ]
+      },
+      "use_time_position": {
+        "dtype": "<f8",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "e0ce269a476934852b649966d4a41deb4dae5f41bdb01977974d8bfccabf4b2e",
+        "shape": [
+          16384,
+          3
+        ]
+      }
+    },
+    "validation": {
+      "future_attention": {
+        "dtype": "<f8",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "6e6e0c0af507da05bc90f6b079fea863596822f879f682610af5215ee1b80700",
+        "shape": [
+          3072,
+          3
+        ]
+      },
+      "local_feature": {
+        "dtype": "<f8",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "7098563d66554192d1ef07dd4a180f336e9ef66df0462d7dee643fc4a09f07af",
+        "shape": [
+          3072,
+          3
+        ]
+      },
+      "local_position": {
+        "dtype": "<f8",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "9ac33a03d5ac37120c0d2b321ed1e6fec3f78fd38b527c49dee9f7925e1e10fb",
+        "shape": [
+          3072,
+          3
+        ]
+      },
+      "use_time_feature": {
+        "dtype": "<f8",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "749f7eaa6d9a2ec0adcae7a138b132df61fe6f2b8f0da52ec4f74c010d9658b4",
+        "shape": [
+          3072,
+          3
+        ]
+      },
+      "use_time_position": {
+        "dtype": "<f8",
+        "hash_format": "canonical_dtype_shape_json + NUL + contiguous_C_bytes",
+        "sha256": "1e369a9eafe9f9bd37905449113cda7c4177b3b3d91a0e252a391cbf270f7c66",
+        "shape": [
+          3072,
+          3
+        ]
+      }
+    }
+  },
+  "same_architecture_seed_identical_initialization": true,
+  "same_seed_identical_minibatch_indices_all_architectures_and_labels": true,
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "source_file": "step34_students.py",
+  "source_ids_sha256": "29ecd9d9b72a4443e3d1a680493e95143f7f5969a8af952435fcac88a6c55a05",
+  "source_sha256": "f2262d968962ca2c36e91d3c9933140dc0b610634e2c1025fb6f9fc3b67d5c7f",
+  "supervision_audit_sha256": "f26c4c8e40656583c85d098352a9bf2249cd722810bafbe4466eb7919d99bca8",
+  "torch_version": "2.5.1+cu121",
+  "train_rows": 16384,
+  "validate_every": 100,
+  "validation_batch_size": 512,
+  "validation_rows": 3072
+}
