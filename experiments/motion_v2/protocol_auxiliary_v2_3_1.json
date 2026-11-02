@@ -1,0 +1,24 @@
+{
+  "version": "v2.3.1",
+  "status": "REGISTER_BEFORE_AUXILIARY_SESSION",
+  "purpose": "CPU-only import/data preparation, one-shot sbatch dispatch, read-only monitoring and final export",
+  "cpu_cores_requested": 4,
+  "memory_gb_requested": 16,
+  "wall_hours": 4,
+  "gpu_count": 0,
+  "account": "csci_ga_2271-2026fa",
+  "partition": "n2c48m24",
+  "deployment_root": "/scratch/xy3257/motion-v2-20261031-deployment3",
+  "protected_roots": [
+    "/scratch/xy3257/motion-v2-20261031-deployment1",
+    "/scratch/xy3257/motion-v2-20261031-deployment2"
+  ],
+  "nonblocking": [
+    "auxiliary Requeue",
+    "auxiliary AllocTRES differs from requested CPU/memory scheduling"
+  ],
+  "scientific_entrypoint_in_auxiliary": false,
+  "auth_requires_user": true,
+  "delete_files": false,
+  "test_access": false
+}

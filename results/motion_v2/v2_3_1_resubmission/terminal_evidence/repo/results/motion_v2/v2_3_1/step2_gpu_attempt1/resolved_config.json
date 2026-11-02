@@ -1,0 +1,114 @@
+{
+  "mode": "confirm",
+  "output": "/scratch/xy3257/motion-v2-20261031-deployment3/repo/results/motion_v2/v2_3_1/step2_gpu_attempt1",
+  "device": "cuda",
+  "threads": 4,
+  "data": {
+    "seed": 20261030,
+    "tasks": [
+      "motion"
+    ],
+    "image_size": 96,
+    "recent": 4,
+    "budget": 2,
+    "horizons": [
+      3,
+      6
+    ],
+    "pairs": {
+      "train": 512,
+      "validation": 96
+    },
+    "gap": [
+      5,
+      10
+    ],
+    "long_gap": [
+      20,
+      32
+    ]
+  },
+  "encoder": {
+    "backend": "ijepa",
+    "repository": "facebook/ijepa_vith14_1k",
+    "revision": "f157467ea509bc356ff9f61fd3c0d840eec5e04e",
+    "pooling": "grid2",
+    "dtype": "float32",
+    "batch_size": 2,
+    "smoke_size": 12,
+    "local_files_only": false,
+    "cache_dir": "/scratch/xy3257/motion-v2-20261031-deployment3/repo/results/motion_v2/v2_3_1/step2_gpu_attempt1/hf_cache"
+  },
+  "normalization": {
+    "std_floor": 0.05
+  },
+  "probe": {
+    "ridge": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "fit_split": "train",
+    "selection_split": "train_grouped_cross_validation",
+    "cv_folds": 5
+  },
+  "model": {
+    "hidden": 128,
+    "heads": 4,
+    "layers": 2,
+    "dropout": 0.0,
+    "rank": 128
+  },
+  "training": {
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "epochs": 120,
+    "batch_size": 64,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "clip": 1.0,
+    "lr_step": 40,
+    "lr_gamma": 0.5,
+    "pair_weight": 2.0,
+    "rank_weight": 0.5
+  },
+  "evaluation": {
+    "random_seed": 901,
+    "bootstrap": 2000,
+    "latency_warmup": 10,
+    "latency_repeats": 30,
+    "conditions": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ]
+  },
+  "decision": {
+    "primary": "position_mse(d)-position_mse(b), paired 95% CI lower >0 at both h=3 and h=6",
+    "secondary_required": "position_mse(c)-position_mse(b), paired 95% CI lower >0 at both h=3 and h=6",
+    "b_vs_a": "report only",
+    "after_evaluation": "stop regardless of pass/fail; no retention training",
+    "direction_required": "B-position_mse(b), paired 95% CI lower >0 at both h=3 and h=6",
+    "direction_diagnostic": "position_mse(d)-B and frozen decoder MSE on true validation features, report only",
+    "mandatory_gate_count": 6
+  },
+  "generator_version": "motion_v2.1",
+  "execution": {
+    "expected_gpu": "A100",
+    "gpu_count": 1,
+    "estimated_gpu_seconds": 10800,
+    "hard_cap_gpu_seconds": 14400,
+    "encoding_frames_per_second": 27.15545,
+    "training_seconds_per_epoch": 5.72894,
+    "remaining_overhead_seconds": 3600,
+    "expected_frames": 39398,
+    "max_frames": 52288,
+    "memory_dropout": 0.25,
+    "encoding_rate_minimum_frames": 64
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "pair_audit",
+      "reference": {
+        "v1_ordinary": "500/500",
+        "v1_long_gap": "500/500",
+        "v2_ordinary": "500/500",
+        "v2_long_gap": "500/500"
+      },
+      "observed": {
+        "v1_ordinary": "500/500",
+        "v1_long_gap": "500/500",
+        "v2_ordinary": "500/500",
+        "v2_long_gap": "500/500"
+      },
+      "passed": true
+    },
+    {
+      "name": "online_policies",
+      "reference": {
+        "v1_ordinary": {
+          "episodes": 1000,
+          "hindsight_oracle": 1.0,
+          "fifo": 0.0,
+          "keep_first": 1.0,
+          "reservoir": 0.316,
+          "temporal_buckets": 0.0,
+          "pixel_diversity": 0.0,
+          "pixel_surprise": 0.0,
+          "latest_visible_reference": 1.0
+        },
+        "v1_long_gap": {
+          "episodes": 1000,
+          "hindsight_oracle": 1.0,
+          "fifo": 0.0,
+          "keep_first": 1.0,
+          "reservoir": 0.084,
+          "temporal_buckets": 0.0,
+          "pixel_diversity": 0.0,
+          "pixel_surprise": 0.0,
+          "latest_visible_reference": 1.0
+        },
+        "v2_ordinary": {
+          "episodes": 1000,
+          "hindsight_oracle": 1.0,
+          "fifo": 0.0,
+          "keep_first": 0.0,
+          "reservoir": 0.016,
+          "temporal_buckets": 0.0,
+          "pixel_diversity": 0.0,
+          "pixel_surprise": 0.013,
+          "latest_visible_reference": 1.0
+        },
+        "v2_long_gap": {
+          "episodes": 1000,
+          "hindsight_oracle": 1.0,
+          "fifo": 0.0,
+          "keep_first": 0.0,
+          "reservoir": 0.02,
+          "temporal_buckets": 0.0,
+          "pixel_diversity": 0.0,
+          "pixel_surprise": 0.009,
+          "latest_visible_reference": 1.0
+        }
+      },
+      "observed": {
+        "v1_ordinary": {
+          "episodes": 1000,
+          "hindsight_oracle": 1.0,
+          "fifo": 0.0,
+          "keep_first": 1.0,
+          "reservoir": 0.316,
+          "temporal_buckets": 0.0,
+          "pixel_diversity": 0.0,
+          "pixel_surprise": 0.0,
+          "latest_visible_reference": 1.0
+        },
+        "v1_long_gap": {
+          "episodes": 1000,
+          "hindsight_oracle": 1.0,
+          "fifo": 0.0,
+          "keep_first": 1.0,
+          "reservoir": 0.084,
+          "temporal_buckets": 0.0,
+          "pixel_diversity": 0.0,
+          "pixel_surprise": 0.0,
+          "latest_visible_reference": 1.0
+        },
+        "v2_ordinary": {
+          "episodes": 1000,
+          "hindsight_oracle": 1.0,
+          "fifo": 0.0,
+          "keep_first": 0.0,
+          "reservoir": 0.016,
+          "temporal_buckets": 0.0,
+          "pixel_diversity": 0.0,
+          "pixel_surprise": 0.013,
+          "latest_visible_reference": 1.0
+        },
+        "v2_long_gap": {
+          "episodes": 1000,
+          "hindsight_oracle": 1.0,
+          "fifo": 0.0,
+          "keep_first": 0.0,
+          "reservoir": 0.02,
+          "temporal_buckets": 0.0,
+          "pixel_diversity": 0.0,
+          "pixel_surprise": 0.009,
+          "latest_visible_reference": 1.0
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "leakage_long_gap.v1.end_only",
+      "reference": 0.5,
+      "observed": 0.5,
+      "passed": true,
+      "rule": "exact"
+    },
+    {
+      "name": "leakage_long_gap.v1.stale_plus_end",
+      "reference": null,
+      "observed": null,
+      "passed": true,
+      "rule": "exact"
+    },
+    {
+      "name": "leakage_long_gap.v1.one_post_non_end",
+      "reference": 0.624,
+      "observed": 0.62,
+      "passed": true,
+      "rule": "absolute_difference_and_same_threshold_side",
+      "absolute_difference": 0.0040000000000000036,
+      "threshold": 0.58,
+      "same_threshold_side": true
+    },
+    {
+      "name": "leakage_long_gap.v1.two_post",
+      "reference": 0.996,
+      "observed": 0.996,
+      "passed": true,
+      "rule": "absolute_difference_and_same_threshold_side",
+      "absolute_difference": 0.0,
+      "threshold": 0.95,
+      "same_threshold_side": true
+    },
+    {
+      "name": "leakage_long_gap.v2.end_only",
+      "reference": 0.5,
+      "observed": 0.5,
+      "passed": true,
+      "rule": "exact"
+    },
+    {
+      "name": "leakage_long_gap.v2.stale_plus_end",
+      "reference": 0.5,
+      "observed": 0.5,
+      "passed": true,
+      "rule": "exact"
+    },
+    {
+      "name": "leakage_long_gap.v2.one_post_non_end",
+      "reference": 0.538,
+      "observed": 0.545,
+      "passed": true,
+      "rule": "absolute_difference_and_same_threshold_side",
+      "absolute_difference": 0.007000000000000006,
+      "threshold": 0.58,
+      "same_threshold_side": true
+    },
+    {
+      "name": "leakage_long_gap.v2.two_post",
+      "reference": 0.993,
+      "observed": 0.993,
+      "passed": true,
+      "rule": "absolute_difference_and_same_threshold_side",
+      "absolute_difference": 0.0,
+      "threshold": 0.95,
+      "same_threshold_side": true
+    }
+  ],
+  "recomputed_measurements": false,
+  "external_recalculations_executed": false
+}

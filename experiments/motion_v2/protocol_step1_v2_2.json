@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-31",
+  "stage": "step1_generator_and_cpu_audit",
+  "status_at_registration": "not_run",
+  "source_sha256": {
+    "docs/MOTION_V2_2_AMENDMENT_ZH.md": "366b4d231d6f8b7b8ab5deab53cbc43e4fdebae2058d2d87128f5e8a3c10694e",
+    "experiments/motion_v2/config_v2_1.json": "76e36db2be1e593e1adf1b2724732f4d1b2b8967b9c4218d8b35d4efb4ce4408",
+    "experiments/motion_v2/envs_v2.py": "6949d94c78e7fd87606d0552d0b5f292e49c2238029f2ba13de902ef4164987f",
+    "experiments/motion_v2/generate_v2.py": "cf32f6d4d4ba1d923a87285458ec3572c1073f375fc991f8c4ff6ab9f6a84912",
+    "experiments/motion_v2/audit_v2.py": "f68237f64781859b442c57b12b76821326c7798350462d5924b15a90480ab7c1",
+    "experiments/motion_v2/test_envs_v2.py": "9a0f2430e10f9c90c9e2ae3fe2514d272ce6ab9be2e67c90d97c760f434ea60f",
+    "experiments/motion_v2/run_step1.py": "07dd8c9ad76137fe7c046f04aac97caf1fd2e06ae1299495bb27ec3b90f0f2fb",
+    "experiments/motion_v2/requirements-cpu.lock": "e404b3cbafa53510341d8ea941cbeeeb001eab07fc1476527ae3bf2f2d13811a",
+    "results/motion_v2/v2_2/step0/rejudge/status.json": "6431b99961f17ccf069a5a63ebb0ce7cddb31c4bfb0efa8c38313af5fc4831c6",
+    "results/motion_v2/v2_2/step0/phase1_headroom/status.json": "d46f9c51ff521232cf2e05e6c95270006400912b83276ac585b37b96844810b7",
+    "results/phase1_independent_confirmation/execution_v10_checkpoint_resume/source/original_src/phase1/envs.py": "64b07f972fc5144d5d13c7bd614c1c796d67a73521043efc57073454ac4c12a7"
+  },
+  "config": "experiments/motion_v2/config_v2_1.json",
+  "output_root": "results/motion_v2/v2_2/step1",
+  "prerequisite_status_paths": [
+    "results/motion_v2/v2_2/step0/rejudge/status.json",
+    "results/motion_v2/v2_2/step0/phase1_headroom/status.json"
+  ],
+  "thread_environment": {
+    "OMP_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "BLIS_NUM_THREADS": "1"
+  },
+  "audit_environment": {
+    "MOTION_V2_DATASET": "results/motion_v2/v2_2/step1/data/dataset",
+    "MOTION_V2_AUDIT_OUTPUT": "results/motion_v2/v2_2/step1/audit.json",
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"
+  },
+  "commands": {
+    "generate": [
+      "experiments/motion_v2/generate_v2.py",
+      "--config",
+      "experiments/motion_v2/config_v2_1.json",
+      "--output",
+      "results/motion_v2/v2_2/step1/data"
+    ],
+    "pytest": [
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "-o",
+      "addopts=",
+      "-o",
+      "pythonpath=",
+      "experiments/motion_v2/test_envs_v2.py",
+      "--junitxml=results/motion_v2/v2_2/step1/pytest.xml"
+    ]
+  },
+  "generation": {
+    "seed": 20261030,
+    "pairs": {
+      "train": 512,
+      "validation": 96
+    },
+    "task": "motion",
+    "pair_id": "sha256(canonical_json([seed,task,split,index]))[:24]",
+    "image_size": 96,
+    "recent": 4,
+    "budget": 2,
+    "horizons": [
+      3,
+      6
+    ],
+    "timing": {
+      "t_on": [
+        0,
+        6
+      ],
+      "L0": [
+        4,
+        10
+      ],
+      "L1": [
+        3,
+        7
+      ],
+      "ordinary_gap": [
+        5,
+        10
+      ],
+      "test_long_gap_reserved_but_not_generated": [
+        20,
+        32
+      ]
+    },
+    "mask": "Independent 25% occlusion during visible interval; force end visible and reject/resample timing+mask until >=2 old and >=2 new visible.",
+    "positions": {
+      "old_lane_y": 0.4,
+      "new_lane_y": 0.62,
+      "x_pre": [
+        0.2,
+        0.8
+      ],
+      "x_end": [
+        0.2,
+        0.8
+      ],
+      "v0_abs": [
+        0.005,
+        0.007
+      ],
+      "v1_abs": [
+        0.008,
+        0.012
+      ],
+      "new_position": "x_end + sign*speed*(t-end)",
+      "kick_at_tc": true
+    },
+    "actions": "Phase 1 action[t] applied only after end via reflect(x+v+.0015*a0+.001*a1,v). Shared across siblings.",
+    "distractors": "Shared 8x3 Gaussian random walk clipped [0,1], sigma .08 each frame; render 3 normal distractors, keep Phase1 shift style in code but do not construct shifted/test samples.",
+    "future_visibility": "Shutter through query+1; visible from query+2 including both targets.",
+    "observation_keys": [
+      "rgb",
+      "actions",
+      "query"
+    ],
+    "hidden_metadata": "evaluation_only only; no hidden fields in model observations; public manifest follows Phase1 identity/time/path/hash fields."
+  },
+  "audit": {
+    "structure": "All 608 pairs must pass. Equality on old/recent/end RGB, actions, end states; historical RGB differences restricted to visible new segment; correct masks, targets, trajectories, IDs and hashes.",
+    "online": {
+      "splits": [
+        "train",
+        "validation"
+      ],
+      "fifo_max": 0.02,
+      "keep_first_max": 0.02,
+      "hindsight_oracle_required": 1.0,
+      "latest_visible_reference_required": 1.0,
+      "definition": "both retained history frames satisfy evaluator-only sufficient mask"
+    },
+    "leakage": {
+      "source": "actual saved train only, 512 scenes/1024 siblings",
+      "frame_selection_seed": 7,
+      "folds": 5,
+      "group": "sibling_pair",
+      "classifier": "HistGradientBoostingClassifier(max_iter=200,random_state=0)",
+      "features": [
+        "t-query",
+        "x",
+        "y",
+        "visible"
+      ],
+      "end_only_range": [
+        0.47,
+        0.53
+      ],
+      "stale_plus_end_range": [
+        0.47,
+        0.53
+      ],
+      "one_post_non_end_max": 0.58,
+      "two_post_min": 0.95,
+      "decision": "unrounded mean of five fold accuracies",
+      "validation_used_for_leakage": false
+    }
+  },
+  "stop_conditions": [
+    "Any structural audit, online gate, leakage threshold or runtime failure: preserve outputs and stop; no retries, repairs after results, threshold changes or Step2."
+  ],
+  "test_generation_or_access": false,
+  "gpu_seconds": 0,
+  "manifest_dependency": "non-blocking; original Phase1 metadata remains unverified",
+  "artifact_policy": "Dataset NPZ are local generated artifacts, tracked manifest contains individual SHA256; no existing files overwritten or deleted."
+}

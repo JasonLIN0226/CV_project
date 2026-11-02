@@ -1,0 +1,43 @@
+{
+  "captured_utc": "2026-11-02T01:47:24.346357+00:00",
+  "commands": {
+    "scontrol": {
+      "argv": [
+        "scontrol",
+        "show",
+        "job",
+        "--oneliner",
+        "17761"
+      ],
+      "returncode": 1
+    },
+    "sacct": {
+      "argv": [
+        "sacct",
+        "--duplicates",
+        "-j",
+        "17761",
+        "--noheader",
+        "--parsable2",
+        "--format=JobIDRaw,JobName,User,Account,Partition,State,ExitCode,Start,End,ElapsedRaw,AllocTRES,ReqTRES"
+      ],
+      "returncode": 0
+    },
+    "squeue": {
+      "argv": [
+        "squeue",
+        "-j",
+        "17761",
+        "-o",
+        "%i %T %R %M %l"
+      ],
+      "returncode": 1
+    }
+  },
+  "path_exists": {
+    "scientific_marker": true,
+    "scientific_output": true,
+    "stdout": true,
+    "stderr": true
+  }
+}

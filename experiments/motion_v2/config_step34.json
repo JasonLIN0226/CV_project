@@ -1,0 +1,104 @@
+{
+  "version": "motion_v2_step34_v1",
+  "scope": [
+    "train",
+    "ordinary_validation",
+    "long_gap_validation"
+  ],
+  "seeds": {
+    "students": [
+      17,
+      29,
+      43
+    ],
+    "long_gap_validation": 20261101,
+    "random_post": 20261102,
+    "behavior": 20261103,
+    "online_rng": 20261105,
+    "shuffle": 20261108,
+    "bootstrap": 901
+  },
+  "budget": {
+    "prior_a100_seconds": 3705,
+    "total_a100_seconds": 14400,
+    "remaining_a100_seconds": 10695,
+    "estimated_seconds": 8500,
+    "wall_seconds": 10500
+  },
+  "phase_estimates_seconds": {
+    "initialization": 450,
+    "encoding_diagnostics": 900,
+    "labels": 1000,
+    "students": 3400,
+    "online": 2300,
+    "finalize": 450
+  },
+  "gpu_environment": {
+    "numpy": "1.26.4",
+    "torch": "2.5.1+cu121",
+    "torchvision": "0.20.1+cu121",
+    "transformers": "5.5.4",
+    "huggingface-hub": "1.11.0",
+    "safetensors": "0.7.0",
+    "PyYAML": "6.0.3",
+    "Pillow": "11.3.0",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.17.1",
+    "pytest": "7.4.4"
+  },
+  "parents": {
+    "behaviors": [
+      "fifo",
+      "reservoir",
+      "temporal_buckets",
+      "diversity"
+    ],
+    "clocks": "6 + floor(j*(q-6)/3), j=0..3",
+    "train": 16384,
+    "validation": 3072,
+    "keep_multiplicity": true
+  },
+  "students": {
+    "architectures": [
+      "set",
+      "independent"
+    ],
+    "labels": [
+      "local_feature",
+      "local_position",
+      "use_time_feature",
+      "use_time_position",
+      "future_attention",
+      "shuffle_local_feature",
+      "shuffle_local_position",
+      "shuffle_use_time_feature",
+      "shuffle_use_time_position"
+    ],
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "updates": 1000,
+    "batch_size": 128,
+    "lr": 0.001,
+    "optimizer": "Adam",
+    "weight_decay": 0,
+    "clip": 1,
+    "validate_every": 100,
+    "allow_step_zero": true,
+    "checkpoint": "strict own-label validation cross-entropy minimum, earliest tie"
+  },
+  "evaluation": {
+    "horizons": [
+      3,
+      6
+    ],
+    "pairs": 96,
+    "bootstrap": 2000,
+    "primary_label": "use_time_position",
+    "stop_after_step": 4,
+    "confirmation_generated": false,
+    "test_used": false
+  }
+}

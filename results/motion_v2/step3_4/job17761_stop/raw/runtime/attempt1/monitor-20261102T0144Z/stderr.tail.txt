@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/scratch/xy3257/motion-v2-20261101-step34-deployment1/repo/experiments/motion_v2/run_step34.py", line 289, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/scratch/xy3257/motion-v2-20261101-step34-deployment1/repo/experiments/motion_v2/run_step34.py", line 286, in main
+    else:gpu(args,protocol,config)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/xy3257/motion-v2-20261101-step34-deployment1/repo/experiments/motion_v2/run_step34.py", line 209, in gpu
+    write(out/'visible_gpu.json',runtime.verify_gpu())
+                                 ^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/xy3257/motion-v2-20261101-step34-deployment1/repo/experiments/motion_v2/step34_runtime.py", line 115, in verify_gpu
+    raise RuntimeError("Torch exposed an invalid or unsupported GPU UUID")
+RuntimeError: Torch exposed an invalid or unsupported GPU UUID

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "version": "v2.3",
+  "status": "REGISTER_AUXILIARY_CPU_SESSION_BEFORE_SUBMISSION",
+  "amendment_commit": "58c1a37",
+  "amendment_path": "experiments/motion_v2/amendment_v2_3.json",
+  "amendment_sha256": "7e39af1d6e8aaec37fef860da69d3151ea0f7a912955bef8aaed0d54bb0cd033",
+  "purpose": "CPU preparation, current partition inspection, later one-shot sbatch submission and final accounting; no scientific runner in this auxiliary session",
+  "cpu_session": {
+    "form_observed": "2026-10-31 current authenticated OOD Jupyter form",
+    "user": "xy3257",
+    "account": "csci_ga_2271-2026fa",
+    "partition": "n2c48m24",
+    "gpus": 0,
+    "hours": 3,
+    "root_choice": "scratch",
+    "optional_slurm_options": "--time=03:00:00 --mem=16G --cpus-per-task=4 --export=ALL",
+    "jupyterlab": true,
+    "submit_once": true,
+    "email_notification": false,
+    "native_identity_cwd_allocation_record_required": true,
+    "auxiliary_Requeue_AllocTRES_discrepancy": "record_nonblocking_under_v2_3",
+    "release": "scancel auxiliary job after accounting if still running; never delete session/files"
+  },
+  "filesystem": {
+    "new_root": "/scratch/xy3257/motion-v2-20261031-deployment2",
+    "must_not_exist": true,
+    "preserved_read_only_root": "/scratch/xy3257/motion-v2-20261031-deployment1",
+    "clone": "single-branch shallow clone once final scientific protocol commit is pushed; verify exact HEAD",
+    "all_new_logs_caches_tmp": "deployment2",
+    "no_delete_or_overwrite": true
+  },
+  "allowed_before_scientific_protocol_push": [
+    "observe identity/pwd/scratch ownership",
+    "create new deployment2 root after nonexistence check",
+    "record native auxiliary job and current partition availability",
+    "read-only inspect existing venv/package metadata and archive metadata; do not run scientific entrypoints"
+  ],
+  "future_actions_only_after_scientific_protocol_push": [
+    "clone exact final registered HEAD",
+    "run registered import/version checks once",
+    "validate archive and unpack per-file hashes into new repo",
+    "compute validation B on CPU once",
+    "register actual A100 submission parameters and wrapper before sbatch",
+    "submit single scientific A100 job with --no-requeue and wall<=7200",
+    "immediately scontrol and stop on any Restarts>0",
+    "record final sacct"
+  ],
+  "blocking_conditions": [
+    "actual authentication challenge requiring user",
+    "new_root_already_exists",
+    "identity/owner cannot be verified",
+    "scientific hash/version/data/input mismatch",
+    "dependency/import validation failure",
+    "scientific output already exists",
+    "GPU model/count/restart/budget mismatch"
+  ],
+  "gpu_jobs_submitted_by_this_registration": 0,
+  "scientific_computation_authorized_before_frozen_protocol": false,
+  "test_access_or_generation": false,
+  "retention_training": false
+}

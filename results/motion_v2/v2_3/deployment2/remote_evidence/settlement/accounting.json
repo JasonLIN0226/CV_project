@@ -1,0 +1,71 @@
+{
+  "created_utc": "2026-10-31T21:38:33.860479+00:00",
+  "job_id": "16542",
+  "registration": {
+    "head_commit": "dd9582c317cd6388180868ef175960cc2875321d",
+    "deployment_protocol_sha256": "b952731a4e9ff657662cec44a799ac923249d9e5fe4f88aea0bd2ab33496965b",
+    "scientific_protocol_sha256": "031e37b3f83d3ec5c05242a72069fc8336b32e771c3e2a8a2a3f6f0302e10875",
+    "wrapper_sha256": "3d4d197da391d51881863ee74a7e258f80d25a39c69aa7c96d731b8fdf462997",
+    "wrapper_directives": {
+      "--job-name": "motion-v23",
+      "--account": "csci_ga_2271-2026fa",
+      "--partition": "c12m85-a100-1",
+      "--nodes": "1",
+      "--ntasks": "1",
+      "--cpus-per-task": "4",
+      "--mem": "16G",
+      "--gres": "gpu:a100:1",
+      "--time": "02:00:00",
+      "--no-requeue": true,
+      "--export": "ALL",
+      "--open-mode": "append",
+      "--output": "/scratch/xy3257/motion-v2-20261031-deployment2/scientific-job-%j.stdout.log",
+      "--error": "/scratch/xy3257/motion-v2-20261031-deployment2/scientific-job-%j.stderr.log"
+    },
+    "manifest_sha256": "9ac43b81eb75456e17f3542e64e8a0ab58282207752ae3712836f6d2ea20032a"
+  },
+  "submission_receipt_sha256": "394da008dae2d3bbca5fb9127785fb37b80149e6ba019323083980304268d396",
+  "sacct": {
+    "argv": [
+      "sacct",
+      "-j",
+      "16542",
+      "--noheader",
+      "--parsable2",
+      "--format=JobIDRaw,JobName%40,User,Account,Partition,State%40,ExitCode,Start,End,ElapsedRaw,AllocTRES,ReqTRES"
+    ],
+    "returncode": 0,
+    "stdout": "16542|motion-v23|xy3257|csci_ga_2271-2026fa|c12m85-a100-1|CANCELLED by 4882486|0:0|None|2026-10-31T21:38:11|0||billing=4,cpu=4,gres/gpu=1,mem=16G,node=1\n",
+    "stderr": "",
+    "captured_utc": "2026-10-31T21:38:33.780426+00:00"
+  },
+  "scontrol": {
+    "argv": [
+      "scontrol",
+      "show",
+      "job",
+      "--oneliner",
+      "16542"
+    ],
+    "returncode": 0,
+    "stdout": "JobId=16542 JobName=motion-v23 UserId=xy3257(4882486) GroupId=xy3257(4882486) MCS_label=N/A Priority=14750 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=CANCELLED Reason=Priority Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:00:00 TimeLimit=02:00:00 TimeMin=N/A SubmitTime=2026-10-31T21:37:46 EligibleTime=2026-10-31T21:37:46 AccrueTime=2026-10-31T21:37:46 StartTime=2026-10-31T21:38:11 EndTime=2026-10-31T21:38:11 Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-31T21:38:10 Scheduler=Backfill Partition=c12m85-a100-1 AllocNode:Sid=3-gcp-r2:8267 ReqNodeList=(null) ExcNodeList=(null) NodeList= SchedNodeList=b-19-47 NumNodes=1 NumCPUs=12 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=4,mem=16G,node=1,billing=4,gres/gpu=1 AllocTRES=(null) Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=4 MinMemoryNode=16G MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/scratch/xy3257/motion-v2-20261031-deployment2/repo/experiments/motion_v2/run_step2_v2_3.sbatch WorkDir=/scratch/xy3257/motion-v2-20261031-deployment2/repo StdErr=/scratch/xy3257/motion-v2-20261031-deployment2/scientific-job-16542.stderr.log StdIn=/dev/null StdOut=/scratch/xy3257/motion-v2-20261031-deployment2/scientific-job-16542.stdout.log TresPerNode=gres/gpu:a100:1 TresPerTask=cpu=4 \n",
+    "stderr": "",
+    "captured_utc": "2026-10-31T21:38:33.831665+00:00"
+  },
+  "allocation_row": {
+    "JobIDRaw": "16542",
+    "JobName": "motion-v23",
+    "User": "xy3257",
+    "Account": "csci_ga_2271-2026fa",
+    "Partition": "c12m85-a100-1",
+    "State": "CANCELLED by 4882486",
+    "ExitCode": "0:0",
+    "Start": "None",
+    "End": "2026-10-31T21:38:11",
+    "ElapsedRaw": "0",
+    "AllocTRES": "",
+    "ReqTRES": "billing=4,cpu=4,gres/gpu=1,mem=16G,node=1"
+  },
+  "scientific_success_inferred": false,
+  "traceback": "Traceback (most recent call last):\n  File \"/scratch/xy3257/motion-v2-20261031-deployment2/repo/experiments/motion_v2/submit_step2_v2_3.py\", line 392, in settle\n    gpu_count = one_gpu(row[\"AllocTRES\"])\n                ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/scratch/xy3257/motion-v2-20261031-deployment2/repo/experiments/motion_v2/submit_step2_v2_3.py\", line 151, in one_gpu\n    require(entries and all(value == 1 for value in entries.values()), \"Native TRES does not certify exactly one GPU\")\n  File \"/scratch/xy3257/motion-v2-20261031-deployment2/repo/experiments/motion_v2/submit_step2_v2_3.py\", line 46, in require\n    raise ValueError(message)\nValueError: Native TRES does not certify exactly one GPU\n"
+}

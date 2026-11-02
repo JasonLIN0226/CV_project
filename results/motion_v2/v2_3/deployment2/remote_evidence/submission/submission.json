@@ -1,0 +1,73 @@
+{
+  "started_utc": "2026-10-31T21:37:46.244518+00:00",
+  "sbatch_attempted": true,
+  "job_id": "16542",
+  "retry_permitted": false,
+  "control_session_job_id": "16537",
+  "registration": {
+    "head_commit": "dd9582c317cd6388180868ef175960cc2875321d",
+    "deployment_protocol_sha256": "b952731a4e9ff657662cec44a799ac923249d9e5fe4f88aea0bd2ab33496965b",
+    "scientific_protocol_sha256": "031e37b3f83d3ec5c05242a72069fc8336b32e771c3e2a8a2a3f6f0302e10875",
+    "wrapper_sha256": "3d4d197da391d51881863ee74a7e258f80d25a39c69aa7c96d731b8fdf462997",
+    "wrapper_directives": {
+      "--job-name": "motion-v23",
+      "--account": "csci_ga_2271-2026fa",
+      "--partition": "c12m85-a100-1",
+      "--nodes": "1",
+      "--ntasks": "1",
+      "--cpus-per-task": "4",
+      "--mem": "16G",
+      "--gres": "gpu:a100:1",
+      "--time": "02:00:00",
+      "--no-requeue": true,
+      "--export": "ALL",
+      "--open-mode": "append",
+      "--output": "/scratch/xy3257/motion-v2-20261031-deployment2/scientific-job-%j.stdout.log",
+      "--error": "/scratch/xy3257/motion-v2-20261031-deployment2/scientific-job-%j.stderr.log"
+    },
+    "manifest_sha256": "9ac43b81eb75456e17f3542e64e8a0ab58282207752ae3712836f6d2ea20032a"
+  },
+  "preparation": {
+    "preflight_hashes": {
+      "receipt.json": "0668ad9d484db2909db7909e95464aa6f05a774902dc89d471e0e8a4b12f1c53",
+      "status.json": "507aa662f7d7acd568b2bd5c51fbc944916cca4ff35fdf7dc344ed25c2c4e74f",
+      "SHA256SUMS": "1585d1dc1ce8625147b7eb23a0e1824de21f077af5bbcedcc77f03f4f1d0041a"
+    },
+    "unpack_receipt_sha256": "72284dc504d34f8d10920a03375bf3cbfe9d4a4b9ac767355541ee4a8a464612",
+    "direction_bound_hashes": {
+      "direction_bound.npz": "0a99ba0570ef116a03c24775d311ba25886434e7f1e2c87637bc6e1a800427ea",
+      "status.json": "8b89cd9e23f5d8a057da94693c36dfe184a6f4ae060452f81ab3d43ea4507df4",
+      "artifact_sha256.json": "f6d943e9d67e9ff5b8af2d766eda4124adbe1c4ec678cb74ef47803323cb1a1f"
+    },
+    "scientific_output_absent_before_submission": "/scratch/xy3257/motion-v2-20261031-deployment2/repo/results/motion_v2/v2_3/step2_gpu_attempt1",
+    "dataset_arrays_decoded": false
+  },
+  "sbatch": {
+    "argv": [
+      "sbatch",
+      "--parsable",
+      "--no-requeue",
+      "/scratch/xy3257/motion-v2-20261031-deployment2/repo/experiments/motion_v2/run_step2_v2_3.sbatch"
+    ],
+    "returncode": 0,
+    "stdout": "16542\n",
+    "stderr": "",
+    "captured_utc": "2026-10-31T21:37:46.976944+00:00"
+  },
+  "cluster": null,
+  "immediate_scontrol": {
+    "argv": [
+      "scontrol",
+      "show",
+      "job",
+      "--oneliner",
+      "16542"
+    ],
+    "returncode": 0,
+    "stdout": "JobId=16542 JobName=motion-v23 UserId=xy3257(4882486) GroupId=xy3257(4882486) MCS_label=N/A Priority=14750 Nice=0 Account=csci_ga_2271-2026fa QOS=normal JobState=PENDING Reason=Resources Dependency=(null) Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:00:00 TimeLimit=02:00:00 TimeMin=N/A SubmitTime=2026-10-31T21:37:46 EligibleTime=2026-10-31T21:37:46 AccrueTime=Unknown StartTime=Unknown EndTime=Unknown Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-31T21:37:46 Scheduler=Main Partition=c12m85-a100-1 AllocNode:Sid=3-gcp-r2:8267 ReqNodeList=(null) ExcNodeList=(null) NodeList= NumNodes=1-1 NumCPUs=4 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=4,mem=16G,node=1,billing=4,gres/gpu=1 AllocTRES=(null) Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=* MinCPUsNode=4 MinMemoryNode=16G MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/scratch/xy3257/motion-v2-20261031-deployment2/repo/experiments/motion_v2/run_step2_v2_3.sbatch WorkDir=/scratch/xy3257/motion-v2-20261031-deployment2/repo StdErr=/scratch/xy3257/motion-v2-20261031-deployment2/scientific-job-16542.stderr.log StdIn=/dev/null StdOut=/scratch/xy3257/motion-v2-20261031-deployment2/scientific-job-16542.stdout.log TresPerNode=gres/gpu:a100:1 TresPerTask=cpu=4 \n",
+    "stderr": "",
+    "captured_utc": "2026-10-31T21:37:47.038077+00:00"
+  },
+  "traceback": "Traceback (most recent call last):\n  File \"/scratch/xy3257/motion-v2-20261031-deployment2/repo/experiments/motion_v2/submit_step2_v2_3.py\", line 334, in submit\n    fields = control_fields(native, job_id)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/scratch/xy3257/motion-v2-20261031-deployment2/repo/experiments/motion_v2/submit_step2_v2_3.py\", line 164, in control_fields\n    require(fields.get(\"NumNodes\") == \"1\", \"Native job must request one node\")\n  File \"/scratch/xy3257/motion-v2-20261031-deployment2/repo/experiments/motion_v2/submit_step2_v2_3.py\", line 46, in require\n    raise ValueError(message)\nValueError: Native job must request one node\n",
+  "finished_utc": "2026-10-31T21:37:47.064063+00:00"
+}
