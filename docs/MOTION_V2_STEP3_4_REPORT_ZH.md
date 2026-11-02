@@ -1,8 +1,29 @@
-# Motion v2 第 3/4 步当前进展报告
+# Motion v2 第 3/4 步停止报告
 
-本报告记录 CPU 审计、远端传输及预检完成，GPU 作业 **17761 已唯一提交并验证、即时状态为 PENDING（Resources）** 时的进展。新 long-gap validation 的 **96/96 对结构审计、四项泄漏检查和无模型在线检查全部通过**；新实现的 334 项软件测试、在独立进程中正确调用的原 98 项 Slurm 回放测试均通过。另行登记的 18 项纯传输检查也已通过。预测器诊断、删除代价标签、54 个学生及在线比较尚无科学结果，是否值得开启 CONF 尚未评估。
+GPU 作业 **17761 在科学初始化的 GPU UUID 检查处失败，已停止，禁止重提**。CPU 审计、远端传输及部署预检均已完成；新 long-gap validation 的 **96/96 对结构审计、四项泄漏检查和无模型在线检查全部通过**，新 334 项软件测试、原 98 项 Slurm 回放及 18 项纯传输检查也已通过。失败发生在 `FrozenAssets` 载入、新编码、预测器诊断、标签、学生与在线评价之前；这些科学结果全部为 **N/A**，不能建议开启 CONF。这是运行初始化失败，尚未产生可判断科学假设的统计结果。
 
-CPU 回执完成时间为 2026-11-02 01:01:45 UTC（纽约时间 2026-11-01）。本文件为第 3/4 步的新报告，不替换此前 Step2 报告、停止记录或原始结果。CPU/软件数字抄录已保存 JSON/JUnit；最新远端部署进展来自终端 UI 观测及其本地记录，完整远端原生回执将在终态后导出。撰写报告未读取 NPZ 数组或重新计算指标。
+CPU 回执完成时间为 2026-11-02 01:01:45 UTC（纽约时间 2026-11-01）。本文件为第 3/4 步的新报告，不替换此前 Step2 报告、停止记录或原始结果。CPU/软件数字抄录已保存 JSON/JUnit；本次终态、启动记录、科学 status 和部署回执均已通过 OOD Files 手动下载原始文件，此前提交进展的 UI 转录另行保留。冻结的正式 settle/export 入口受证据条件阻塞，未被调用，不能声称已经完成冻结导出或正式结算。撰写报告未读取 NPZ 数组或重新计算指标。
+
+## 17761 的终态与停止依据
+
+| 项目 | 观测结果 |
+|---|---|
+| 相关作业身份 | 2026 年、用户 `xy3257` 的 17761 |
+| 分配节点 | `b-19-49` |
+| 原生 Start / End（UTC） | `2026-11-02T01:35:48Z` / `2026-11-02T01:36:36Z` |
+| 原生 State / ExitCode | `FAILED` / `1:0` |
+| 相关 sacct 行 | `ElapsedRaw=48`，`gres/gpu=1` |
+| 科学 status started / finished（UTC） | `2026-11-02T01:35:53.758349Z` / `2026-11-02T01:36:34.523705Z` |
+| 异常 | `RuntimeError: Torch exposed an invalid or unsupported GPU UUID` |
+| 失败位置 | `run_step34.py:209` 调用 `runtime.verify_gpu()` |
+
+初始化已通过 CUDA 可用、单卡和名称含 A100 的检查；随后 `str(properties.uuid)` 未满足冻结校验器要求的 `GPU-...` 正则格式，因而停止。原始 UUID 值没有被记录，**不能据此猜测实际字符串表示、认定分配了错误 GPU，或断言设备本身损坏**。这也不证明 I-JEPA、预测器或保留策略失效：作业内 `FrozenAssets` 载入及所有后续科学阶段尚未开始。
+
+科学启动 marker、输出目录、`.batch` 和日志均已存在，已不满足“科学入口之前的基础设施失败”重提条件；不重提、不修改检查后重跑、不把 54 个未启动学生记作选中 step0。此前 CPU 预检通过与本次作业内初始化失败分别保留，二者检查阶段不同。
+
+新查询的 `scontrol` 返回码为 1、stdout 为空，stderr 为 `slurm_load_jobs error: Invalid job id specified`。另外，原始 `sacct --duplicates` 中还包含 **2024 年用户 `ym3143` 的同号 V100 作业**；必须原样保留该行，不能将它计入本次用时，也不能悄悄删除后声称冻结解析器获得唯一记录。冻结 settle 要求唯一顶层行及 fresh terminal control；当前条件不满足，所以 **settle/export 均为 blocked/not run**，没有绕过入口或伪造其输出。
+
+停止取证见 [观测与阻塞记录](../results/motion_v2/step3_4/job17761_stop/observation.json)、[完整未过滤 sacct](../results/motion_v2/step3_4/job17761_stop/raw/runtime/attempt1/monitor-20261102T0144Z/sacct.stdout.txt)、[scontrol 错误原文](../results/motion_v2/step3_4/job17761_stop/raw/runtime/attempt1/monitor-20261102T0144Z/scontrol.stderr.txt)、[启动 scontrol](../results/motion_v2/step3_4/job17761_stop/raw/scientific_job_started/scontrol_start.txt) 和 [科学 status](../results/motion_v2/step3_4/job17761_stop/raw/gpu/status.json)。四个 OOD 文件夹 ZIP 的原始哈希、41 项远端内置 SHA256、5 项科学产物清单哈希和 72 项源码哈希均已 [核对通过](../results/motion_v2/step3_4/job17761_stop/download_checks.json)。这是手动原样取证，不等同于冻结 exporter 成功运行。下文保留提交时 PENDING 等历史观测，以说明唯一提交到终态失败的过程。
 
 ## 登记与软件检查
 
@@ -61,17 +82,19 @@ CPU 回执完成时间为 2026-11-02 01:01:45 UTC（纽约时间 2026-11-01）�
 
 ## GPU 阶段与科学结论的边界
 
-本次继续复用已结算作业 16614、科学提交 `6dc5ed253dfa305b26be8f19d40edcd6a5878ea7` 的原编码特征、train-only normalization、basis、decoder 和 seed17/29/43 预测器选点。旧预测器结果见 [Step2 最终报告](MOTION_V2_3_1_RESUBMISSION_REPORT_ZH.md)。本报告没有新增这些模型的结果。
+本次协议登记复用已结算作业 16614、科学提交 `6dc5ed253dfa305b26be8f19d40edcd6a5878ea7` 的原编码特征、train-only normalization、basis、decoder 和 seed17/29/43 预测器选点。部署预检已核验旧资产，但 17761 在作业内载入这些资产之前失败。旧预测器结果见 [Step2 最终报告](MOTION_V2_3_1_RESUBMISSION_REPORT_ZH.md)。本报告没有新增这些模型的结果。
 
 | 登记工作 | 范围 | 当前结果 |
 |---|---|---|
 | ordinary 预测器诊断 | 随机两张新段帧、b、d，与 B/真实特征 decoder 误差；h3/6 | 未运行；feature/position MSE、95% CI 与差值均 N/A |
 | long-gap 预测器诊断 | a/b/d、B、真实特征 decoder 误差；h3/6 | 未运行；B−b、d−b、d−B 与各区间均 N/A |
 | 四种删除代价 | local_feature、local_position、use_time_feature、use_time_position | 未生成标签或评价标签 |
-| 学生及对照 | 4 种代价 + future_attention + 4 种 shuffle，2 种架构 × 3 seeds，共 54 臂 | 未训练、未选 checkpoint；各 seed 结果均 N/A |
+| 学生及对照 | 4 种代价 + future_attention + 4 种 shuffle，2 种架构 × 3 seeds，共 54 臂 | 训练尚未开始、无选中步或 checkpoint；全部 N/A，**不是选中 step0** |
 | ordinary 在线评价 | 54 学生、7 个通用 baseline 及 3 个特权/事后参照 | 未评估；成功率、h3/6 损失与全部配对差值均 N/A |
 | long-gap 在线评价 | 仅在冻结 reader 的 long-gap 诊断获得资格后评价 | 资格尚未判断；结果均 N/A |
 | 是否建议开启 CONF | 主要候选 set/use_time_position 的预登记联合条件 | **当前证据不足，不能建议开启** |
+
+54 个学生的逐 seed [未运行附表](../results/motion_v2/step3_4/job17761_stop/not_evaluated.json) 明确列出架构、标签、seed 和空的 selected_step；没有用 0 冒充缺失值。
 
 long-gap 的资格要求 h3、h6 各自的 `B − position MSE(b)` 配对 95% 下界严格大于 0。未评估不等于通过或失败；若不满足，该间隔的主张范围受限，不能用普通间隔的结果补足。在线成功率及损失、集合与独立学生的差值、所有 future_attention/shuffle 臂都需要完整报告；不能凭本次 CPU 上限或旧 Step2 结果选择性省略。
 
@@ -84,13 +107,14 @@ long-gap 的资格要求 h3、h6 各自的 `B − position MSE(b)` 配对 95% �
 | 已结算旧作业 16550 | 769 |
 | 已结算旧作业 16614 | 2936 |
 | 当前已结算累计 | **3705** |
-| 新作业 17761 实际 | **待原生终态结算** |
+| 新作业 17761 相关 sacct 行观测 | **48（尚未通过冻结正式结算）** |
+| 加入上述观测的暂计累计 | **3753（provisional）** |
 | 总预算 | 14400 |
 | 本次提交前剩余 | **10695** |
 | 本次登记估计 | 8500 |
 | 本次单 A100 作业上限 | 10500 |
 
-8500 秒为运行前估算，不是实测；登记上限与旧累计之和为 14205 秒，仍须按原生 Slurm 计时核验及动态预算守卫停止。CPU 数据审计、软件测试和部署预检没有消耗 A100 时间。17761 提交后即刻尚未分配 GPU，不能把这一 PENDING 快照的零分配当作该作业最终用时为 0；最终累计须加上其终态结算。
+8500 秒为运行前估算，不是实测；登记上限与旧累计之和为 14205 秒。CPU 数据审计、软件测试和部署预检没有消耗 A100 时间。17761 提交时 PENDING 的零分配不能作为其最终用时；相关 2026 年 `xy3257` 行观测到 48 秒、单 GPU，对应暂计累计 3753 秒。由于冻结 settle 被阻塞，**正式已结算累计仍为 3705 秒**，48 秒及 3753 秒均须明确带观测/暂计标记，不能声称已正式结算。
 
 部署历史：用户回复后只读确认 Microsoft 跳转已经完成，My Interactive Sessions 显示 `xy3257` 已登录；此前对暂时跳转的阻塞判断过早，原记录保留。零 GPU 辅助会话 `17718` 在 `b-10-167` 运行（Start `2026-11-02T01:12:17Z`、Restarts=0、Requeue=1、请求4 CPU/实际24 CPU）；这些辅助调度差异按 v2.3 分级规则记录后继续。新目录独立浅克隆完成，完整 HEAD 与部署登记匹配，上传了唯一 CPU ZIP。随后其他 Chrome 窗口切换，工具两次中止操作，当时已请求用户短暂保留 HPC 前台；当时保存辅助原生记录的命令完成状态尚未确认，因此没有盲目重发。该阶段原记录保留在 [deployment_progress1](../results/motion_v2/step3_4/deployment_progress1/deployment_state.json)。
 
@@ -107,8 +131,8 @@ long-gap 的资格要求 h3、h6 各自的 `B − position MSE(b)` 配对 95% �
 | TimeLimit | `02:55:00` |
 | submission 回执 SHA256 | `5257ba414fe0f2fb4db82aa7c6aafd63ce278d407ca9e3af7fbefc6562cb0091` |
 
-`Requeue=1` 按已登记规则记录；任何实际 `Restarts>0` 仍是停止条件。已建立 `motion-v2-3-4-17761` 的 ACTIVE heartbeat，每 10 分钟检查；这不代表已取得科学结果。最新本地观测见 [deployment_progress2/deployment_state.json](../results/motion_v2/step3_4/deployment_progress2/deployment_state.json) 及其 [SHA256SUMS](../results/motion_v2/step3_4/deployment_progress2/SHA256SUMS)，当前记录来源是终端 UI；完整远端原生回执及科学输出须在终态后导出核验。科学结果继续标 N/A。
+`Requeue=1` 按已登记规则记录；任何实际 `Restarts>0` 仍是停止条件。提交后最初建立 `motion-v2-3-4-17761` heartbeat，每 10 分钟检查，之后已按用户请求改为每小时；终态交付后暂停。提交时的本地 UI 观测仍保存在 [deployment_progress2/deployment_state.json](../results/motion_v2/step3_4/deployment_progress2/deployment_state.json) 及其 [SHA256SUMS](../results/motion_v2/step3_4/deployment_progress2/SHA256SUMS)，该快照不代表当前终态。终态失败见本报告开头，科学结果全部 N/A；冻结导出未运行，后续取证须保留手动下载或 UI 转录的来源标记。
 
-当前最大的研究风险是：**CPU 隐藏状态审计证明两张充分帧包含信息，不能证明冻结 I-JEPA/预测器能在新 long-gap 上读取这些信息，也不能证明学生会在线保留它们。** 本次尚缺这两层实证。第 4 步结束后仍须停止，不能因 validation 表现理想而自行生成或打开 CONF/test。
+当前直接阻塞是 GPU UUID 校验未通过，原始 UUID 缺失限制了进一步诊断；当前最大的研究证据缺口仍是：**CPU 隐藏状态审计证明两张充分帧包含信息，不能证明冻结 I-JEPA/预测器能在新 long-gap 上读取这些信息，也不能证明学生会在线保留它们。** 本次两层实证均未运行，不能报告统计失败、通过或建议开启 CONF。已按停止规则结束本次执行，不重提，不生成或打开 CONF/test。
 
-校验清单的版本边界：`SHA256SUMS_CPU_DELIVERY` 固定描述 `bfe66f9` 的交付快照，包含当时的报告和根 status；`SHA256SUMS_DEPLOYMENT_PROGRESS1` 保存前次部署进展快照。本次报告、根 status 与新增部署观测的当前版本由 `SHA256SUMS_DEPLOYMENT_PROGRESS2` 记录。CPU 子目录的原始文件和哈希清单保持不变。
+校验清单的版本边界：`SHA256SUMS_CPU_DELIVERY` 固定描述 `bfe66f9` 的交付快照，包含当时的报告和根 status；`SHA256SUMS_DEPLOYMENT_PROGRESS1`、`SHA256SUMS_DEPLOYMENT_PROGRESS2` 分别保存前两次部署进展快照，不能用来验证本次更新后的停止报告。停止取证及本报告的新版本须由新增停止交付清单核验，不改写原清单。CPU 子目录的原始文件和哈希清单保持不变。

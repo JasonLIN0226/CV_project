@@ -1,5 +1,5 @@
 {
-  "status": "submitted_pending",
+  "status": "stopped_initialization_gpu_uuid",
   "protocol": {
     "path": "experiments/motion_v2/protocol_step34.json",
     "sha256": "3b4fdd6b7888ef0d052d74b2be3a07b4680debccb59406487d054308be3bd91d"
@@ -12,7 +12,7 @@
   "wall_seconds": 10500,
   "confirmation_or_test_used": false,
   "created_utc": "2026-11-02T00:59:47.167156+00:00",
-  "updated_utc": "2026-11-02T01:34:10.981040+00:00",
+  "updated_utc": "2026-11-02T02:00:06.539890+00:00",
   "software_tests": {
     "passed": 432,
     "new_tests": 334,
@@ -65,15 +65,35 @@
     "attempt": 1,
     "native_state_at_submission": "PENDING",
     "submitted_utc": "2026-11-02T01:33:01Z",
-    "restarts_at_submission": 0
+    "restarts_at_submission": 0,
+    "native_state_observed": "FAILED",
+    "node": "b-19-49",
+    "start_utc": "2026-11-02T01:35:48Z",
+    "end_utc": "2026-11-02T01:36:36Z",
+    "restarts_last_observed": 0,
+    "terminal_scontrol_unavailable": true
   },
   "settled_prior_a100_seconds": 3705,
   "remaining_at_submission_a100_seconds": 10695,
-  "accounting_status": "job17761_unsettled",
+  "accounting_status": "blocked_not_run",
   "monitor": {
     "automation_id": "motion-v2-3-4-17761",
-    "status": "ACTIVE",
-    "interval_minutes": 10
+    "status": "PAUSED",
+    "interval_minutes": 60,
+    "pause_after_stop_delivery": true,
+    "paused_reason": "native_failed_and_stop_delivery"
   },
-  "current_evidence": "results/motion_v2/step3_4/deployment_progress2/deployment_state.json"
+  "current_evidence": "results/motion_v2/step3_4/job17761_stop/observation.json",
+  "observed_new_a100_seconds": 48,
+  "provisional_cumulative_a100_seconds": 3753,
+  "provisional_remaining_a100_seconds": 10647,
+  "failure": {
+    "stage": "initialization",
+    "error_type": "RuntimeError",
+    "error": "Torch exposed an invalid or unsupported GPU UUID",
+    "retry_authorized": false
+  },
+  "settlement_status": "blocked_not_run",
+  "export_status": "blocked_not_run",
+  "manual_forensic_download": "passed_41_embedded_hashes_and_5_artifact_hashes"
 }

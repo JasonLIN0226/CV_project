@@ -1,0 +1,93 @@
+{
+  "started_utc": "2026-11-02T01:35:53.758349+00:00",
+  "stage": "steps3_4",
+  "status": "stopped",
+  "test_or_confirmation_used": false,
+  "predictors_retrained": false,
+  "existing_frames_reencoded": 0,
+  "science_protocol_sha256": "3b4fdd6b7888ef0d052d74b2be3a07b4680debccb59406487d054308be3bd91d",
+  "error_type": "RuntimeError",
+  "error": "Torch exposed an invalid or unsupported GPU UUID",
+  "traceback": "Traceback (most recent call last):\n  File \"/scratch/xy3257/motion-v2-20261101-step34-deployment1/repo/experiments/motion_v2/run_step34.py\", line 209, in gpu\n    write(out/'visible_gpu.json',runtime.verify_gpu())\n                                 ^^^^^^^^^^^^^^^^^^^^\n  File \"/scratch/xy3257/motion-v2-20261101-step34-deployment1/repo/experiments/motion_v2/step34_runtime.py\", line 115, in verify_gpu\n    raise RuntimeError(\"Torch exposed an invalid or unsupported GPU UUID\")\nRuntimeError: Torch exposed an invalid or unsupported GPU UUID\n",
+  "budget": {
+    "actual_allocated_gpu_seconds_so_far": 47.187163307000006,
+    "prior_a100_gpu_seconds": 3705,
+    "cumulative_a100_gpu_seconds_so_far": 3752.187164946,
+    "estimated_remaining_seconds": 8452.812832013,
+    "projected_allocation_seconds": 8499.999999314,
+    "phase_wall_seconds": {
+      "initialization": 47.187179184,
+      "encoding_diagnostics": 0.0,
+      "labels": 0.0,
+      "students": 0.0,
+      "online": 0.0,
+      "finalize": 0.0
+    },
+    "phase": "initialization",
+    "phase_progress": {
+      "initialization": {
+        "completed": 0,
+        "total": null,
+        "finished": false
+      },
+      "encoding_diagnostics": {
+        "completed": 0,
+        "total": null,
+        "finished": false
+      },
+      "labels": {
+        "completed": 0,
+        "total": null,
+        "finished": false
+      },
+      "students": {
+        "completed": 0,
+        "total": null,
+        "finished": false
+      },
+      "online": {
+        "completed": 0,
+        "total": null,
+        "finished": false
+      },
+      "finalize": {
+        "completed": 0,
+        "total": null,
+        "finished": false
+      }
+    },
+    "phase_initial_estimates": {
+      "initialization": 450,
+      "encoding_diagnostics": 900,
+      "labels": 1000,
+      "students": 3400,
+      "online": 2300,
+      "finalize": 450
+    },
+    "dynamic_rate_warmup_fraction": 0.1,
+    "dynamic_rate_threshold_units": {
+      "initialization": null,
+      "encoding_diagnostics": null,
+      "labels": null,
+      "students": null,
+      "online": null,
+      "finalize": null
+    },
+    "warmup_remaining_rule": "Keep the full registered phase estimate until ceil(total*0.1) units complete; actual/projected cap checks remain active",
+    "initial_estimate_seconds": 8500,
+    "native_allocation_checks": 1,
+    "native_restarts_required": 0,
+    "native_check_interval_seconds": 30,
+    "startup_accounting_grace_seconds": 120,
+    "runtime_accounting_grace_seconds": 0,
+    "native_time_limit_seconds": 10500,
+    "effective_allocation_cap_seconds": 10500,
+    "total_cap_seconds": 14400,
+    "gpu_count": 1,
+    "stopped_reason": null,
+    "requeue": "1",
+    "requeue_is_report_only": true,
+    "automatic_retry_or_resume": false
+  },
+  "finished_utc": "2026-11-02T01:36:34.523705+00:00"
+}
