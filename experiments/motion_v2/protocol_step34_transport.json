@@ -1,0 +1,50 @@
+{
+  "status": "PREREGISTERED_PURE_TRANSPORT_SOFTWARE_ONLY",
+  "created_utc": "2026-11-02T01:08:07.638727+00:00",
+  "scientific_source_commit": "9f8600a1f37f13ec014bb3454c67c13907eef10c",
+  "science_protocol_sha256": "3b4fdd6b7888ef0d052d74b2be3a07b4680debccb59406487d054308be3bd91d",
+  "scope": "Byte-only transfer of the already generated validation NPZ; no array decoding, data generation, training, evaluation or scientific parameter change.",
+  "source_sha256": {
+    "experiments/motion_v2/transfer_step34_cpu.py": "a7303d8eaec0a53f78178c5e96028d851b29c5118849b5762f8e3bd96f33548e",
+    "experiments/motion_v2/test_transfer_step34_cpu.py": "d2c67d007980b74165159ec5e978e6a8abd720880f4e17b838930b8073d18616"
+  },
+  "archive": {
+    "basename": "motion-v2-step34-cpu-20261101.zip",
+    "bytes": 1371657,
+    "sha256": "e52b8605dd29607ed1982620ebc526e1f7c9fe018fb41d992688c813360c2070",
+    "npz_files": 384,
+    "final_cpu_files": 391
+  },
+  "test_argv": [
+    "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project/.venv/bin/python",
+    "-I",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp",
+    "/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project_motion_v2_20261030/results/motion_v2/step3_4/transport_software_preflight1/tmp",
+    "experiments/motion_v2/test_transfer_step34_cpu.py",
+    "--junitxml=/Users/xintongyang/Documents/Documents - Mac/CV-26fall/CV_project_motion_v2_20261030/results/motion_v2/step3_4/transport_software_preflight1/junit.xml"
+  ],
+  "test_output": "results/motion_v2/step3_4/transport_software_preflight1",
+  "test_input": "Artificial in-memory ZIP bytes only. Do not invoke the production transfer or read/decode actual NPZ arrays locally.",
+  "execution_order": [
+    "Commit and push this registration and both source files.",
+    "Run this new software test group once; preserve raw stdout/JUnit/status/SHA256.",
+    "If passed, bind helper and receipt hashes in protocol_step34_execution.json, commit and push before remote deployment.",
+    "After user completes HPC authentication, invoke the helper once in the new registered deployment with exact pushed HEAD and a new transfer1 receipt."
+  ],
+  "stop_conditions": [
+    "Any helper/unit-test mismatch: preserve evidence and stop before remote transfer.",
+    "Existing transfer receipt or any NPZ target: refuse to overwrite or resume.",
+    "Any archive, source, HEAD, metadata, inventory or final file SHA mismatch: stop and retain partial files.",
+    "Actual user authentication: wait for the user; do not bypass."
+  ],
+  "scientific_source_changed": false,
+  "scientific_thresholds_changed": false,
+  "gpu_seconds": 0,
+  "files_deleted": false
+}
