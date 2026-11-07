@@ -13,7 +13,7 @@ set -euo pipefail
 PKG=${SLURM_SUBMIT_DIR:-$PWD}
 cd "$PKG"
 test -f code/experiments/phase2/probe_pusht_cog_features.py || { echo "Submit from the package directory"; exit 1; }
-hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
+{ cat /proc/sys/kernel/hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; } 2>/dev/null || true
 
 if [ ! -x .venv/bin/python ]; then
   PY=""
