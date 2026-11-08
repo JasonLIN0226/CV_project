@@ -29,10 +29,10 @@ if [ ! -x .venv/bin/python ]; then
   [ -n "$PY" ] || { echo "Need Python >= 3.10 on this node"; exit 1; }
   "$PY" -m venv .venv
   .venv/bin/pip install -q --upgrade pip
-  .venv/bin/pip install -q torch==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+  .venv/bin/pip install -q torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
   .venv/bin/pip install -q -r requirements.txt
 fi
-.venv/bin/python -c "import torch, transformers, numpy; print('torch', torch.__version__, 'cuda', torch.cuda.is_available(), 'transformers', transformers.__version__, 'numpy', numpy.__version__)"
+.venv/bin/python -c "import torch, torchvision, transformers, numpy; print('torch', torch.__version__, 'cuda', torch.cuda.is_available(), 'transformers', transformers.__version__, 'numpy', numpy.__version__)"
 
 export HF_HUB_OFFLINE=1 HF_HUB_DISABLE_TELEMETRY=1 PYTHONNOUSERSITE=1
 DATA=$PKG/data/pusht-cog-v4-20261107
