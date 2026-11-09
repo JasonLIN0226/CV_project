@@ -78,6 +78,19 @@ Rejections: 48 out of bounds, 2 approach contact, 2 transit/gap contact. Seeds: 
 validation 2026152000+, evaluation 2026153000+. I-JEPA encoding runs on the course cloud-bursting cluster
 from the package built by `experiments/phase2/slurm/cloud_burst/make_package.sh` (train+validation only).
 
+**I-JEPA readability (course cloud-bursting A100, 940 s; validation, chance 0.33, linear/MLP):** recent
+window 0.30/0.29; first frame 0.33/0.33; end of probe 0.27/0.30; first frame + query 0.32/0.31; target
+0.26/0.29; query + target 0.30/0.83. Probes over every probe frame (+ first frame + query) also stay at
+0.28–0.38: with 102 probe types and 384 labelled episodes the end-to-end probes are data-starved.
+
+**Pose decoding** (`diagnose_pusht_cog_pose_decoding.py`, `results/pusht_cog/v4_pose_decoding_20261108.json`):
+a per-frame regressor from I-JEPA features (StandardScaler, PCA 256, MLP 512-256) trained on all ~34k
+train frames with privileged simulator poses decodes block centre / angle / pusher at a median 4.2 px /
+3.1° / 10.7 px on validation (ridge: 7.0 px / 9.1° / 18.5 px). Classifying the CoG from decoded poses:
+present 0.33, first frame + present 0.59, end of probe + present 0.52 (true poses: 0.36 / 0.81 / 0.63).
+The cue survives the encoder; pose precision (probe turns differ by roughly 10–40°) limits it. Stage 1
+uses simulator labels and is a diagnostic only.
+
 ## v3 (abandoned): matched probes
 
 Every sibling shares the start pose; each class gets its own probe, solved by least squares (offset, tilt,

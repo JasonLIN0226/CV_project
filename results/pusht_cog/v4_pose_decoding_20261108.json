@@ -1,0 +1,78 @@
+{
+  "completed_utc": "2026-11-09T03:34:31.940912+00:00",
+  "data": "pusht-cog-v4-20261107",
+  "features": "pusht-cog-v4-20261107-ijepa",
+  "counts": {
+    "train_episodes": 384,
+    "validation_episodes": 96,
+    "train_frames": 34095
+  },
+  "classes": [
+    "center",
+    "left",
+    "right"
+  ],
+  "chance": 0.3333333333333333,
+  "pose_targets": [
+    "block_centre_x",
+    "block_centre_y",
+    "sin_angle",
+    "cos_angle",
+    "pusher_x",
+    "pusher_y"
+  ],
+  "feature_reduction": "StandardScaler + PCA(256), fit on train frames",
+  "classifier": "HistGradientBoosting(max_iter=300, lr=0.05) on dev_pusht_cog_natural pose features",
+  "privileged_labels": "stage 1 uses simulator poses; diagnostic only",
+  "results": {
+    "true_poses": {
+      "class_accuracy": {
+        "present": 0.3645833333333333,
+        "first_frame+present": 0.8125,
+        "probe_end+present": 0.625
+      }
+    },
+    "decoded_ridge": {
+      "validation_pose_error": {
+        "block_centre_px": {
+          "median": 7.027440219440131,
+          "q90": 13.836868181206317
+        },
+        "block_angle_deg": {
+          "median": 9.075076248613428,
+          "q90": 24.254850433063428
+        },
+        "pusher_px": {
+          "median": 18.493663477090088,
+          "q90": 39.62360366276428
+        }
+      },
+      "class_accuracy": {
+        "present": 0.3854166666666667,
+        "first_frame+present": 0.5208333333333334,
+        "probe_end+present": 0.4270833333333333
+      }
+    },
+    "decoded_mlp": {
+      "validation_pose_error": {
+        "block_centre_px": {
+          "median": 4.204504802518937,
+          "q90": 9.91368638722934
+        },
+        "block_angle_deg": {
+          "median": 3.1373507375093173,
+          "q90": 9.699385325285157
+        },
+        "pusher_px": {
+          "median": 10.656218870246423,
+          "q90": 28.37135333588335
+        }
+      },
+      "class_accuracy": {
+        "present": 0.3333333333333333,
+        "first_frame+present": 0.59375,
+        "probe_end+present": 0.5208333333333334
+      }
+    }
+  }
+}
