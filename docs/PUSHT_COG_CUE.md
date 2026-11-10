@@ -5,8 +5,8 @@ current retention scheme needs in order to work on them, and why the natural var
 than the marker variant (v5), with the ways to address it. Results, data locations and reproduction steps
 follow at the end.
 
-**Status.** v5 (marker) is the Gate-like PushT testbed to build on first; its corpus is being collected
-(job 22486446). v4 (natural) is collected and encoded; it is the harder follow-up. v1–v3 are kept for
+**Status.** v5 (marker) is the Gate-like PushT testbed to build on first; its corpus is collected
+(job 22486446) and awaits encoding. v4 (natural) is collected and encoded; it is the harder follow-up. v1–v3 are kept for
 provenance. No PushT predictor, retention scorer or planner has been trained yet. The PushT end goal is
 planning; before that, the latent prediction accuracy of an I-JEPA-feature predictor is evaluated under the
 different hidden dynamics with only the retained history frames as cues.
@@ -116,7 +116,10 @@ frame  0 | 1 … 20 (marker for 3 frames starting at 2–10) | transit, hold, ga
 - Marker frames and positions are oracle information, stored only in `evaluation_only/`.
 
 Corpus `pusht-cog-v5-marker-20261109` (128/32/32 families; seeds train 2026161000+, validation 2026162000+,
-evaluation 2026163000+; test-only 2026159000–029): collection job 22486446, results pending.
+evaluation 2026163000+; test-only 2026159000–029), job 22486446, 46 s on 32 CPUs: 128 / 32 / 32 families
+(384 / 96 / 96 episodes; 27,978 / 6,972 / 7,023 frames), 48 MB, no rejected candidates. The query falls at
+frame 50–56 and the last marker frame is at least 38 frames before it. Closest pair of classes at the target:
+22 / 26 / 30 px mean keypoint distance (10th/50th/90th, train).
 
 ## 5. v4 (natural): the harder follow-up
 
@@ -334,7 +337,7 @@ Data are not in Git (`build/` is ignored). On Torch, under `/projects/work/yang-
 
 | Path | Size | Contents |
 |---|---:|---|
-| `pusht-cog-v5-marker-20261109/` | ~60 MB (expected) | v5 corpus, all three splits |
+| `pusht-cog-v5-marker-20261109/` | 48 MB | v5 corpus, all three splits |
 | `pusht-cog-v4-20261107/` | 60 MB | v4 corpus, all three splits |
 | `pusht-cog-v4-20261107-ijepa/` | 833 MB | v4 train+validation I-JEPA features (5120/frame), probes, burst log |
 | `pusht_cog_probe_library_v3.json` | 0.2 MB | probe library used by v3/v4 |
