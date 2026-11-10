@@ -7,7 +7,7 @@
 #   DATA=$PWD/data/<name> SLURM_SUBMIT_DIR=$PWD nohup bash run_encode_probe.sbatch > run_<name>.log 2>&1 &
 set -euo pipefail
 DATA=$(realpath "$1"); OUT=$(realpath -m "$2"); name=$(basename "$DATA")
-HERE=$(cd "$(dirname "$0")" && pwd); REPO=$(cd "$HERE/../../.." && pwd)
+HERE=$(cd "$(dirname "$0")" && pwd); REPO=$(cd "$HERE/../../../.." && pwd)
 STAGE=$OUT/${name}_addon_stage; P=$STAGE/pusht_cog_v4_encode
 test ! -e "$STAGE" || { echo "$STAGE exists"; exit 1; }
 mkdir -p "$P/code/experiments/phase2" "$P/data/$name/observations" "$P/data/$name/evaluation_only"

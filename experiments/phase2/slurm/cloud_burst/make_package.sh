@@ -8,7 +8,7 @@
 #   tar xzf pusht_cog_v4_encode.tar.gz && cd pusht_cog_v4_encode && sbatch run_encode_probe.sbatch
 set -euo pipefail
 DATA=$(realpath "$1"); CACHE=$(realpath "$2"); OUT=$(realpath -m "$3")
-HERE=$(cd "$(dirname "$0")" && pwd); REPO=$(cd "$HERE/../../.." && pwd)
+HERE=$(cd "$(dirname "$0")" && pwd); REPO=$(cd "$HERE/../../../.." && pwd)
 REV=f157467ea509bc356ff9f61fd3c0d840eec5e04e
 P=$OUT/pusht_cog_v4_encode
 test ! -e "$P" || { echo "$P exists"; exit 1; }
