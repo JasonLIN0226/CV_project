@@ -3,7 +3,7 @@
 Stage `encode` (GPU) runs the repository's FrozenIJepa (pinned ViT-H/14, grid2
 pooling, 5120 features) on every frame and saves one float32 array per episode.
 Stage `probe` (CPU) asks whether the CoG class is linearly / nonlinearly readable
-from chosen frames (design v2: continuous trajectories). Siblings share the
+from chosen frames (designs v2/v4: continuous trajectories; v5: marker, see probe_inputs). Siblings share the
 block pose after the probe and every frame from `converge_frame` on; they start
 at angles that differ by the probe turn. The main probes pair frames:
 
@@ -91,17 +91,25 @@ def encode(data: Path, out: Path, cache_dir: Path, batch_size: int):
     })
 
 
-def probe_inputs(features: dict, record: dict):
+def probe_inputs(features: dict, record: dict, marker_frames=None):
+    """Probe designs (v2/v4) use the probe end; the marker design (v5) uses the middle marker
+    frame, which is privileged (evaluation_only) and read here only for this diagnostic."""
     z = features[record["id"]]
     q, t = record["query_frame"], record["target_frame"]
-    return {
+    inputs = {
         "recent_window": z[q - RECENT_LENGTH + 1:q + 1].ravel(),
         "reset_only": z[0],
         "reset_vs_query": np.concatenate([z[0], z[q] - z[0]]),
-        "probe_end_only": z[record["probe_end_frame"]],
-        "target_only": z[t],
-        "target_vs_query": np.concatenate([z[q], z[t] - z[q]]),
     }
+    if marker_frames is None:
+        inputs["probe_end_only"] = z[record["probe_end_frame"]]
+    else:
+        m = marker_frames[len(marker_frames) // 2]
+        inputs["marker_only"] = z[m]
+        inputs["marker_vs_query"] = np.concatenate([z[m], z[q] - z[m]])
+    inputs["target_only"] = z[t]
+    inputs["target_vs_query"] = np.concatenate([z[q], z[t] - z[q]])
+    return inputs
 
 
 def fit_probe(x_train, y_train, groups, x_val, y_val, kind):
@@ -155,7 +163,12 @@ def probe(data: Path, feat_dir: Path, out: Path):
     split = {s: [r for r in records if r["split"] == s] for s in SPLITS}
     y = {s: np.array([label(r) for r in split[s]]) for s in SPLITS}
     groups = np.array([r["family_id"] for r in split["train"]])
-    inputs = {s: [probe_inputs(features, r) for r in split[s]] for s in SPLITS}
+    marker = None
+    if "probe_end_frame" not in records[0]:
+        marker = {r["id"]: json.loads((data / "evaluation_only" / f"{r['id']}.json").read_text())["marker_frames"]
+                  for r in records}
+    inputs = {s: [probe_inputs(features, r, None if marker is None else marker[r["id"]]) for r in split[s]]
+              for s in SPLITS}
     for name in inputs["train"][0]:
         x = {s: np.stack([d[name] for d in inputs[s]]) for s in SPLITS}
         results[name] = {kind: fit_probe(x["train"], y["train"], groups, x["validation"], y["validation"], kind)

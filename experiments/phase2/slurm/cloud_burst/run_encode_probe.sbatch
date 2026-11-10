@@ -35,8 +35,8 @@ fi
 .venv/bin/python -c "import torch, torchvision, transformers, numpy; print('torch', torch.__version__, 'cuda', torch.cuda.is_available(), 'transformers', transformers.__version__, 'numpy', numpy.__version__)"
 
 export HF_HUB_OFFLINE=1 HF_HUB_DISABLE_TELEMETRY=1 PYTHONNOUSERSITE=1
-DATA=$PKG/data/pusht-cog-v4-20261107
-OUT=$PKG/output/pusht-cog-v4-20261107-ijepa
+DATA=${DATA:-$PKG/data/pusht-cog-v4-20261107}   # override to encode another dataset under data/
+OUT=$PKG/output/$(basename "$DATA")-ijepa
 mkdir -p "$PKG/output"
 if [ ! -f "$OUT/encoding_manifest.json" ]; then
   rm -rf -- "$OUT"   # partial output from an interrupted run
