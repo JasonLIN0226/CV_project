@@ -1,0 +1,321 @@
+{
+ "page_title": "Memory Results Panel",
+ "title": "Bounded memory: results at a glance",
+ "subtitle": "4 recent frames + 2 memory slots · frozen I-JEPA features · frozen predictor · 10 Nov 2026",
+ "methods": [
+  {
+   "key": "floor",
+   "label": "No history",
+   "color": "gray"
+  },
+  {
+   "key": "oracle",
+   "label": "Oracle",
+   "color": "orange"
+  },
+  {
+   "key": "baseline",
+   "label": "Strongest baseline",
+   "color": "aqua"
+  },
+  {
+   "key": "ours",
+   "label": "Ours",
+   "color": "blue"
+  }
+ ],
+ "units": [
+  {
+   "name": "Gate",
+   "facts": [
+    [
+     "Setup",
+     "Arrows show a direction once, early. After the query the ball takes the upper or lower route."
+    ],
+    [
+     "Data",
+     "1,024 train and 192 validation episodes, in sibling pairs that differ only in the cue."
+    ]
+   ],
+   "example": {
+    "columns": [
+     "t=3 cue (noisy)",
+     "t=23 recent (noisy)",
+     "t=28 recent (noisy)",
+     "t=31 target +3 (clean)",
+     "t=34 target +6 (clean)"
+    ],
+    "rows": [
+     {
+      "label": "Sibling A",
+      "images": [
+       "img/gate_0_0.png",
+       "img/gate_0_1.png",
+       "img/gate_0_2.png",
+       "img/gate_0_3.png",
+       "img/gate_0_4.png"
+      ]
+     },
+     {
+      "label": "Sibling B",
+      "images": [
+       "img/gate_1_0.png",
+       "img/gate_1_1.png",
+       "img/gate_1_2.png",
+       "img/gate_1_3.png",
+       "img/gate_1_4.png"
+      ]
+     }
+    ],
+    "pixelated": true,
+    "highlight": [
+     0
+    ]
+   },
+   "figure": {
+    "type": "bars",
+    "metric": "Route accuracy, validation",
+    "direction": "higher is better",
+    "unit": "%",
+    "decimals": 1,
+    "values": {
+     "floor": 50.0,
+     "oracle": 95.57,
+     "baseline": 71.79,
+     "ours": 94.53
+    },
+    "who": {
+     "floor": "recent 4 frames only",
+     "oracle": "cue frame kept by hand",
+     "baseline": "visual diversity",
+     "ours": "deletion-cost scorer"
+    },
+    "notes": {
+     "floor": "Latent MSE 0.1250",
+     "oracle": "Latent MSE 0.0978",
+     "baseline": "Latent MSE 0.1139",
+     "ours": "Latent MSE 0.0993"
+    }
+   },
+   "footnote": "Strongest of the reported baselines. An attention baseline was run but its number is missing."
+  },
+  {
+   "name": "Synergy",
+   "facts": [
+    [
+     "Setup",
+     "Three cue cards arrive and one must be deleted. The two with matching tags decide the future together (XOR)."
+    ],
+    [
+     "Data",
+     "3,456 train, 1,728 validation and 3,456 locked-test episodes; two thirds are synergy."
+    ]
+   ],
+   "example": {
+    "columns": [
+     "cue 1",
+     "cue 2",
+     "cue 3",
+     "shared current",
+     "target +3",
+     "target +6"
+    ],
+    "rows": [
+     {
+      "label": "Synergy",
+      "images": [
+       "img/synergy_0_0.png",
+       "img/synergy_0_1.png",
+       "img/synergy_0_2.png",
+       "img/synergy_0_3.png",
+       "img/synergy_0_4.png",
+       "img/synergy_0_5.png"
+      ]
+     }
+    ],
+    "pixelated": true,
+    "highlight": [
+     0,
+     1,
+     2
+    ]
+   },
+   "figure": {
+    "type": "bars",
+    "metric": "Prediction regret, locked test",
+    "direction": "extra latent MSE over the best deletion; lower is better",
+    "decimals": 4,
+    "max": 0.06,
+    "ticks": [
+     0,
+     0.02,
+     0.04,
+     0.06
+    ],
+    "values": {
+     "floor": 0.0476,
+     "oracle": 0,
+     "baseline": 0.0046,
+     "ours": 0.0036
+    },
+    "who": {
+     "floor": "delete the oldest card",
+     "oracle": "lowest-error deletion",
+     "baseline": "distilled-sensitivity student",
+     "ours": "deletion-cost student"
+    },
+    "notes": {
+     "floor": "Needed card deleted 66.7% of the time, the random rate",
+     "oracle": "Zero by definition. The by-hand deletion was not scored for prediction error.",
+     "baseline": "Needed card deleted 8.8% of the time. Second reader: regret 0.0096",
+     "ours": "Needed card deleted 4.6% of the time. Second reader: regret 0.0020"
+    },
+    "labels": {
+     "floor": "No guidance"
+    }
+   },
+   "footnote": "The oracle here is the lowest-error deletion, zero by definition. The by-hand choice and a no-history arm were not scored. Needed card deleted: 66.7%, 8.8% and 4.6% for the three policies."
+  },
+  {
+   "name": "Motion v2",
+   "facts": [
+    [
+     "Setup",
+     "A ball is kicked into a new lane, then hidden. Its direction can only be read from two frames after the kick."
+    ],
+    [
+     "Data",
+     "1,024 train and 192 validation episodes, in sibling pairs with opposite directions."
+    ]
+   ],
+   "example": {
+    "columns": [
+     "t=5 old segment",
+     "t=6 new segment (cue)",
+     "t=11 end (cue)",
+     "t=24 query",
+     "t=27 target +3",
+     "t=30 target +6"
+    ],
+    "rows": [
+     {
+      "label": "Sibling A",
+      "images": [
+       "img/motion_0_0.png",
+       "img/motion_0_1.png",
+       "img/motion_0_2.png",
+       "img/motion_0_4.png",
+       "img/motion_0_5.png",
+       "img/motion_0_6.png"
+      ]
+     },
+     {
+      "label": "Sibling B",
+      "images": [
+       "img/motion_1_0.png",
+       "img/motion_1_1.png",
+       "img/motion_1_2.png",
+       "img/motion_1_4.png",
+       "img/motion_1_5.png",
+       "img/motion_1_6.png"
+      ]
+     }
+    ],
+    "pixelated": true,
+    "highlight": [
+     1,
+     2
+    ]
+   },
+   "figure": {
+    "type": "bars",
+    "metric": "Position MSE at +3, validation",
+    "direction": "lower is better",
+    "decimals": 4,
+    "max": 0.03,
+    "ticks": [
+     0,
+     0.01,
+     0.02,
+     0.03
+    ],
+    "values": {
+     "floor": 0.0231,
+     "oracle": 0.0061,
+     "baseline": 0.0091,
+     "ours": 0.0214
+    },
+    "who": {
+     "floor": "recent 4 frames only",
+     "oracle": "two cue frames kept by hand",
+     "baseline": "attention",
+     "ours": "deletion-cost student, untrained"
+    },
+    "notes": {
+     "baseline": "Keeps both cue frames in 100% of episodes",
+     "ours": "Keeps both cue frames in 5.9% of episodes"
+    }
+   },
+   "footnote": "Ours is an untrained network here: training never improved on the initial weights."
+  },
+  {
+   "name": "PushT, hidden centre of gravity",
+   "facts": [
+    [
+     "Setup",
+     "A red dot marks the block's centre of gravity for 3 early frames. A push after the query turns the block by class."
+    ],
+    [
+     "Data",
+     "384 train, 96 validation and 96 test episodes, in families of three classes. Not yet encoded."
+    ]
+   ],
+   "example": {
+    "columns": [
+     "t=0 first frame",
+     "t=3 marker (cue)",
+     "t=29 transit",
+     "t=56 query",
+     "t=68 target +12"
+    ],
+    "rows": [
+     {
+      "label": "CoG left",
+      "images": [
+       "img/pusht_0_0.png",
+       "img/pusht_0_1.png",
+       "img/pusht_0_2.png",
+       "img/pusht_0_3.png",
+       "img/pusht_0_4.png"
+      ]
+     },
+     {
+      "label": "CoG right",
+      "images": [
+       "img/pusht_2_0.png",
+       "img/pusht_2_1.png",
+       "img/pusht_2_2.png",
+       "img/pusht_2_3.png",
+       "img/pusht_2_4.png"
+      ]
+     }
+    ],
+    "pixelated": true,
+    "highlight": [
+     1
+    ]
+   },
+   "figure": {
+    "type": "bars",
+    "metric": "Latent prediction at +12",
+    "unit": "%",
+    "who": {
+     "floor": "recent 4 frames only",
+     "oracle": "marker frame kept by hand",
+     "ours": "deletion-cost scorer"
+    }
+   },
+   "footnote": "No predictor has been trained on PushT yet."
+  }
+ ]
+}
