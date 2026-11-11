@@ -109,6 +109,40 @@ def test_compressor_trains_only_itself_and_gradients_pass_through_the_frozen_rea
     assert prediction.shape == (6, 2, 24) and np.isfinite(prediction).all() and gap >= 0 and info["steps"] == 8
 
 
+@pytest.mark.parametrize("variant", ["full", "recurrent"])
+def test_compressor_training_resumed_from_a_checkpoint_equals_an_uninterrupted_run(variant, tmp_path, monkeypatch):
+    model = TinyReader().eval().requires_grad_(False)
+    episodes = [episode(i) for i in range(6)]
+    settings = dict(variant=variant, steps=12, batch=4, width=32)
+    whole, whole_info = pacc.train(model, episodes, 17, "cpu", **settings)
+
+    path, calls, teacher = tmp_path / "compressor.pt", [], pacc._teacher
+
+    def stops_in_step_8(*a):
+        calls.append(1)
+        if len(calls) == 8:
+            raise KeyboardInterrupt
+        return teacher(*a)
+
+    monkeypatch.setattr(pacc, "_teacher", stops_in_step_8)
+    with pytest.raises(KeyboardInterrupt):
+        pacc.train(model, episodes, 17, "cpu", checkpoint=path, checkpoint_every=5, tag="a", **settings)
+    monkeypatch.setattr(pacc, "_teacher", teacher)
+    resumed, info = pacc.train(model, episodes, 17, "cpu", checkpoint=path, checkpoint_every=5, tag="a", **settings)
+    assert info.pop("continued_from_step") == 5 and whole_info.pop("continued_from_step") == 0
+    assert info == whole_info                               # same loss curve ends
+    for (name, a), b in zip(whole.state_dict().items(), resumed.state_dict().values()):
+        assert torch.equal(a, b), name
+
+    # A finished run is loaded, not retrained; a checkpoint from another run is refused.
+    monkeypatch.setattr(pacc, "_teacher", lambda *a: pytest.fail("retrained a finished compressor"))
+    again, info = pacc.train(model, episodes, 17, "cpu", checkpoint=path, checkpoint_every=5, tag="a", **settings)
+    assert info["continued_from_step"] == 12
+    assert all(torch.equal(a, b) for a, b in zip(whole.state_dict().values(), again.state_dict().values()))
+    with pytest.raises(ValueError):
+        pacc.train(model, episodes, 17, "cpu", checkpoint=path, checkpoint_every=5, tag="b", **settings)
+
+
 def test_memory_tokens_replace_only_the_history_slots():
     e = episode()
     recent = item_batch([e], [e.q], [[]], "cpu")

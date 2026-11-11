@@ -10,7 +10,9 @@
 # online variant); 9-14 FrameMorrow on the project's I-JEPA features (optional extra); 15-17 the repo's
 # earlier PaFu-KV adaptation as a second PaFu row.
 # Trains the literature baselines on the Gate train split and scores every policy on the 192 validation
-# episodes. Finished parts are skipped on resubmission. Two asset sets:
+# episodes. Finished parts are skipped on resubmission, and the compressor training checkpoints every 100
+# steps, so a task stopped by the time limit continues where it stopped when the same index is resubmitted.
+# Two asset sets:
 #   ASSETS=team (default)  the team's frozen predictors, features and scorers; needs gate_team_assets.sbatch.
 #                          "Ours" is the published checkpoint, not retrained, and shared policies are checked
 #                          row by row against the team's original validation output.
@@ -58,5 +60,6 @@ if [[ "$PART" == fm_dinov2_* ]]; then
 fi
 
 python -m experiments.memory_baselines.gate_run --config "$CONFIG" --snapshot "$SNAP" --out "$OUT" \
-  --seed "$SEED" --part "$PART" --device "$DEVICE" --threads "$THREADS" --dinov2 "$DINO" ${SOURCE[@]+"${SOURCE[@]}"} ${EXTRA:-}
+  --seed "$SEED" --part "$PART" --device "$DEVICE" --threads "$THREADS" --dinov2 "$DINO" \
+  --checkpoints "$RUNS/gate_checkpoints/$ASSETS" ${SOURCE[@]+"${SOURCE[@]}"} ${EXTRA:-}
 echo "GATE_BASELINES_DONE seed=$SEED part=$PART $(date -Is)"

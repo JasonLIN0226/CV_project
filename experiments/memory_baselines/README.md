@@ -47,6 +47,14 @@ Gate array tasks, one per predictor seed (17, 29, 43): 0-2 core (reference rungs
 Remember), 3-5 FrameMorrow as published, 6-8 FrameMorrow online, 9-14 FrameMorrow on the project's I-JEPA
 features (optional), 15-17 the earlier-repo PaFu-KV row.
 
+A Gate task stopped by its time limit continues when the same array index is resubmitted: the compressor
+training saves a checkpoint every 100 steps under `/scratch/ys4907/cv_project_runs/gate_checkpoints/`, and a
+resumed run takes the same steps as an uninterrupted one. The 2-slot compressor variant needs about 4.5 hours
+on CPU and about 3 minutes on a GPU.
+
+`synergy_released.py` scores every released Synergy policy (the project's own baselines and students) from
+the released arrays, with no training, and writes `results/memory_baselines/synergy/released_scores.json`.
+
 Jobs run on CPU by default; add `--gres=gpu:1 --constraint=l40s --export=ALL,DEVICE=cuda` for a GPU.
 The conda env is `/scratch/ys4907/miniconda3/envs/cvmem`. Large files (dataset, features, checkpoints) stay
 under `/scratch/ys4907/cv_project_runs/`; only small JSON results are written into `results/memory_baselines/`.

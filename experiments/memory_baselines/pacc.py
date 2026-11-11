@@ -21,7 +21,10 @@ No code is public, so this follows the paper text.
 """
 from __future__ import annotations
 
+import json
 import math
+import os
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -127,7 +130,16 @@ def _recurrent_memory(compressor, episodes, clocks, device):
     return torch.stack(out)
 
 
-def train(model, train_episodes, seed, device, variant="full", steps=3000, batch=64, lr=3e-4, width=128, layers=2):
+def train(model, train_episodes, seed, device, variant="full", steps=3000, batch=64, lr=3e-4, width=128, layers=2,
+          checkpoint=None, checkpoint_every=100, tag=None):
+    """Train the compressor against the frozen model.
+
+    With `checkpoint` (a file path) the loop saves its whole state every `checkpoint_every` steps and
+    continues from that file when it exists, so a run stopped by a time limit is resumed by starting it
+    again. The state covers the compressor, optimiser, schedule and the batch sampler, so a resumed run
+    takes exactly the steps an uninterrupted one would. A finished run leaves a final checkpoint and is
+    not retrained. `tag` names the asset set; a checkpoint from a different run is refused.
+    """
     if variant not in ("full", "recurrent"):
         raise ValueError(variant)
     d = train_episodes[0].p.shape[1]
@@ -138,8 +150,21 @@ def train(model, train_episodes, seed, device, variant="full", steps=3000, batch
     opt = torch.optim.AdamW(compressor.parameters(), lr=lr, weight_decay=0.01)
     sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda s: _schedule(s, steps))
     rng = np.random.default_rng(seed)
-    curve = []
-    for step in range(steps):
+    curve, start = [], 0
+    identity = json.dumps({"seed": seed, "variant": variant, "steps": steps, "batch": batch, "lr": lr, "width": width,
+                           "layers": layers, "train_episodes": len(train_episodes),
+                           "device": torch.device(device).type, "tag": tag}, sort_keys=True)
+    if checkpoint is not None and Path(checkpoint).exists():
+        state = torch.load(checkpoint, map_location=device, weights_only=True)
+        if state["identity"] != identity:
+            raise ValueError(f"{checkpoint} was written by a different run: {state['identity']} != {identity}")
+        compressor.load_state_dict(state["compressor"])
+        opt.load_state_dict(state["optimizer"])
+        sched.load_state_dict(state["scheduler"])
+        rng.bit_generator.state = json.loads(state["sampler"])
+        curve, start = list(state["curve"]), int(state["step"])
+        print(f"[pacc {variant} seed {seed}] continuing from step {start}/{steps}", flush=True)
+    for step in range(start, steps):
         idx = rng.integers(0, len(train_episodes), size=batch)
         eps = [train_episodes[i] for i in idx]
         # Half the examples sit at the query, the rest at an earlier clock with more than B history frames.
@@ -156,8 +181,17 @@ def train(model, train_episodes, seed, device, variant="full", steps=3000, batch
         opt.step(); sched.step()
         if step % 100 == 0 or step == steps - 1:
             curve.append(float(loss))
+        done = step + 1
+        if checkpoint is not None and (done % checkpoint_every == 0 or done == steps):
+            partial = Path(f"{checkpoint}.tmp")
+            torch.save({"identity": identity, "step": done, "curve": curve, "compressor": compressor.state_dict(),
+                        "optimizer": opt.state_dict(), "scheduler": sched.state_dict(),
+                        "sampler": json.dumps(rng.bit_generator.state)}, partial)
+            os.replace(partial, checkpoint)
+            print(f"[pacc {variant} seed {seed}] step {done}/{steps} loss {float(loss):.5f}", flush=True)
     return compressor.eval(), {"variant": variant, "steps": steps, "loss_first": curve[0], "loss_last": curve[-1],
-                               "parameters": sum(p.numel() for p in compressor.parameters())}
+                               "parameters": sum(p.numel() for p in compressor.parameters()),
+                               "continued_from_step": start}
 
 
 @torch.inference_mode()

@@ -163,7 +163,12 @@ def core_policies(args, seed, assets, model, train, val, device, add, info, rows
     add("pafu_teacher_top2", pafu.teacher_select(model, val, device))
 
     for variant in ("full", "recurrent"):
-        compressor, meta = pacc.train(model, train, seed, device, variant=variant, steps=args.pacc_steps)
+        checkpoint = None
+        if args.checkpoints:      # lets a job stopped by its time limit continue when the same task is resubmitted
+            Path(args.checkpoints).mkdir(parents=True, exist_ok=True)
+            checkpoint = Path(args.checkpoints) / f"pacc_{variant}_seed{seed}_{device.type}.pt"
+        compressor, meta = pacc.train(model, train, seed, device, variant=variant, steps=args.pacc_steps,
+                                      checkpoint=checkpoint, tag=f"{args.assets_note} | {Path(args.config).resolve()}")
         prediction, gap = pacc.predict(model, compressor, val, device, variant=variant)
         info[f"pacc_{variant}"] = {**meta, "validation_gap_to_full_history": gap}
         add(f"pacc_{variant}", prediction=prediction)
@@ -238,6 +243,8 @@ def main():
                                                        "fm_ijepa_published", "fm_ijepa_online", "pafu_repo"),
                     help="core: everything that needs the predictor to train; fm_<visual>_<variant>: one FrameMorrow selector")
     ap.add_argument("--threads", type=int, default=4)
+    ap.add_argument("--checkpoints", help="folder for compressor training checkpoints; with it, rerunning a stopped "
+                    "task continues its training instead of restarting it")
     ap.add_argument("--students", help="team model bundle folder: use its frozen student_<seed>.pt scorers instead of retraining ours")
     ap.add_argument("--reference", help="the team's original validation_results.json, to compare shared policies row by row")
     ap.add_argument("--assets-note", default="Gate dataset, I-JEPA features and predictors regenerated on torch from the repo "
