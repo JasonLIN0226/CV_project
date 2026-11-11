@@ -1,0 +1,761 @@
+{
+  "task": "gate",
+  "split": "validation",
+  "validation_episodes": 192,
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "horizons": [
+    3,
+    6
+  ],
+  "recent": 4,
+  "budget": 2,
+  "aggregation": "mean over episodes, seeds and horizons; repeated rows are not independent samples",
+  "assets": "team frozen Gate bundle from the private HF org: original predictors, feature cache and scorers",
+  "scores": {
+    "attention": {
+      "route_accuracy": 0.8923611111111112,
+      "normalized_mse": 0.11680861220682143,
+      "cue_kept": 0.9878472222222222,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.8880208333333334,
+        "29": 0.9088541666666666,
+        "43": 0.8802083333333334
+      },
+      "label": "attention"
+    },
+    "attention_proxy_student": {
+      "route_accuracy": 0.5607638888888888,
+      "normalized_mse": 0.12331636291087812,
+      "cue_kept": 0.1371527777777778,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.5572916666666666,
+        "29": 0.578125,
+        "43": 0.546875
+      },
+      "label": "Feature-attention-proxy scorer (repo)"
+    },
+    "deletion_cost_student": {
+      "route_accuracy": 0.9453125,
+      "normalized_mse": 0.09933681884689981,
+      "cue_kept": 1.0,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.9375,
+        "29": 0.9479166666666666,
+        "43": 0.9505208333333334
+      },
+      "label": "Ours: deletion-cost scorer"
+    },
+    "fifo": {
+      "route_accuracy": 0.5651041666666666,
+      "normalized_mse": 0.12423242600117293,
+      "cue_kept": 0.13541666666666666,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.5677083333333334,
+        "29": 0.5651041666666666,
+        "43": 0.5625
+      },
+      "label": "fifo"
+    },
+    "fm_dinov2_online": {
+      "route_accuracy": 0.5069444444444444,
+      "normalized_mse": 0.1278626617212366,
+      "cue_kept": 0.013888888888888888,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.5052083333333334,
+        "29": 0.5,
+        "43": 0.515625
+      },
+      "label": "FrameMorrow (DINOv2, as published; online 2-slot variant)"
+    },
+    "fm_dinov2_published": {
+      "route_accuracy": 0.5434027777777778,
+      "normalized_mse": 0.12540123628827538,
+      "cue_kept": 0.08854166666666667,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.546875,
+        "29": 0.5442708333333334,
+        "43": 0.5390625
+      },
+      "label": "FrameMorrow (DINOv2, as published; ranks whole history)"
+    },
+    "fm_dinov2_teacher_top2": {
+      "route_accuracy": 0.5546875,
+      "normalized_mse": 0.1242668043220571,
+      "cue_kept": 0.10416666666666667,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.5572916666666666,
+        "29": 0.5520833333333334,
+        "43": 0.5546875
+      },
+      "label": "FrameMorrow teacher (DINOv2, as published), top 2 (reads the future)"
+    },
+    "full_history": {
+      "route_accuracy": 0.9383680555555556,
+      "normalized_mse": 0.10293979095230396,
+      "cue_kept": 1.0,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.9583333333333334,
+        "29": 0.9348958333333334,
+        "43": 0.921875
+      },
+      "label": "Full history (no memory bound)"
+    },
+    "oracle_keyframe": {
+      "route_accuracy": 0.9557291666666666,
+      "normalized_mse": 0.0978298846942683,
+      "cue_kept": 1.0,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.9505208333333334,
+        "29": 0.9557291666666666,
+        "43": 0.9609375
+      },
+      "label": "Oracle keyframe (knows the cue position)"
+    },
+    "pacc_full": {
+      "route_accuracy": 0.953125,
+      "normalized_mse": 0.09312399341595462,
+      "cue_kept": null,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.9635416666666666,
+        "29": 0.9427083333333334,
+        "43": 0.953125
+      },
+      "label": "Compress to Remember, as published (reads whole history)"
+    },
+    "pacc_recurrent": {
+      "route_accuracy": 0.7951388888888888,
+      "normalized_mse": 0.10345050533133973,
+      "cue_kept": null,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.5052083333333334,
+        "29": 0.9375,
+        "43": 0.9427083333333334
+      },
+      "label": "Compress to Remember, online 2-slot variant"
+    },
+    "pafu_kv": {
+      "route_accuracy": 0.9027777777777778,
+      "normalized_mse": 0.11491100134379748,
+      "cue_kept": 1.0,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.9010416666666666,
+        "29": 0.90625,
+        "43": 0.9010416666666666
+      },
+      "label": "PaFu-KV (one stored score per frame, as published)"
+    },
+    "pafu_kv_repo": {
+      "route_accuracy": 0.8888888888888888,
+      "normalized_mse": 0.11598562561104903,
+      "cue_kept": 0.9739583333333334,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.8854166666666666,
+        "29": 0.9010416666666666,
+        "43": 0.8802083333333334
+      },
+      "label": "PaFu-KV, repo's earlier adaptation (re-scores the three residents at each eviction)"
+    },
+    "pafu_teacher_top2": {
+      "route_accuracy": 0.9010416666666666,
+      "normalized_mse": 0.11621066923059213,
+      "cue_kept": 0.9947916666666666,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.890625,
+        "29": 0.921875,
+        "43": 0.890625
+      },
+      "label": "PaFu-KV teacher, top 2 (reads the future)"
+    },
+    "prediction_surprise": {
+      "route_accuracy": 0.6614583333333334,
+      "normalized_mse": 0.1176498732497243,
+      "cue_kept": 0.3454861111111111,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.6692708333333334,
+        "29": 0.65625,
+        "43": 0.6588541666666666
+      },
+      "label": "prediction_surprise"
+    },
+    "recent_only": {
+      "route_accuracy": 0.5,
+      "normalized_mse": 0.12496673833164904,
+      "cue_kept": 0.0,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.5,
+        "29": 0.5,
+        "43": 0.5
+      },
+      "label": "Recent frames only"
+    },
+    "reservoir": {
+      "route_accuracy": 0.5737847222222222,
+      "normalized_mse": 0.12361937887099986,
+      "cue_kept": 0.1684027777777778,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.5989583333333334,
+        "29": 0.5520833333333334,
+        "43": 0.5703125
+      },
+      "label": "reservoir"
+    },
+    "temporal_buckets": {
+      "route_accuracy": 0.5659722222222222,
+      "normalized_mse": 0.12255892442772165,
+      "cue_kept": 0.15625,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.5677083333333334,
+        "29": 0.5651041666666666,
+        "43": 0.5651041666666666
+      },
+      "label": "temporal_buckets"
+    },
+    "visual_diversity": {
+      "route_accuracy": 0.7178819444444444,
+      "normalized_mse": 0.11385280092751297,
+      "cue_kept": 0.4739583333333333,
+      "rows": 1152,
+      "route_accuracy_by_seed": {
+        "17": 0.7317708333333334,
+        "29": 0.703125,
+        "43": 0.71875
+      },
+      "label": "visual_diversity"
+    }
+  },
+  "training_info": {
+    "17": {
+      "metric_crosscheck_rows": 32,
+      "ours": {
+        "source": "team frozen checkpoint, not retrained",
+        "file": "student_17.pt",
+        "sha256": "56b7e8fcbba629bd80ebf80168c71efd0bca5586402466fc555fe0d0e85dd056"
+      },
+      "original_validation_check": {
+        "attention": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.4901161193847656e-07,
+          "original_route_accuracy": 0.8880208333333334,
+          "this_run_route_accuracy": 0.8880208333333334
+        },
+        "attention_proxy_student": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.341104507446289e-07,
+          "original_route_accuracy": 0.5572916666666666,
+          "this_run_route_accuracy": 0.5572916666666666
+        },
+        "deletion_cost_student": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.9371509552001953e-07,
+          "original_route_accuracy": 0.9375,
+          "this_run_route_accuracy": 0.9375
+        },
+        "fifo": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.7881393432617188e-07,
+          "original_route_accuracy": 0.5677083333333334,
+          "this_run_route_accuracy": 0.5677083333333334
+        },
+        "oracle_keyframe": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.9371509552001953e-07,
+          "original_route_accuracy": 0.9505208333333334,
+          "this_run_route_accuracy": 0.9505208333333334
+        },
+        "prediction_surprise": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 4.6193599700927734e-07,
+          "original_route_accuracy": 0.6692708333333334,
+          "this_run_route_accuracy": 0.6692708333333334
+        },
+        "recent_only": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 5.960464477539063e-08,
+          "original_route_accuracy": 0.5,
+          "this_run_route_accuracy": 0.5
+        },
+        "reservoir": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.341104507446289e-07,
+          "original_route_accuracy": 0.5989583333333334,
+          "this_run_route_accuracy": 0.5989583333333334
+        },
+        "temporal_buckets": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 7.450580596923828e-08,
+          "original_route_accuracy": 0.5677083333333334,
+          "this_run_route_accuracy": 0.5677083333333334
+        },
+        "visual_diversity": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 4.023313522338867e-07,
+          "original_route_accuracy": 0.7317708333333334,
+          "this_run_route_accuracy": 0.7317708333333334
+        }
+      },
+      "pafu_kv": {
+        "tokens": 25600,
+        "loss_first": 0.03220357000827789,
+        "loss_last": 0.0011846569832414389,
+        "target_mean": 0.05152434855699539,
+        "target_std": 0.18182843923568726
+      },
+      "pacc_full": {
+        "variant": "full",
+        "steps": 3000,
+        "loss_first": 0.046287938952445984,
+        "loss_last": 0.005215593613684177,
+        "parameters": 448131,
+        "validation_gap_to_full_history": 0.014665384776890278
+      },
+      "pacc_recurrent": {
+        "variant": "recurrent",
+        "steps": 3000,
+        "loss_first": 0.046646710485219955,
+        "loss_last": 0.04707041010260582,
+        "parameters": 448131,
+        "validation_gap_to_full_history": 0.04957813024520874
+      },
+      "fm_dinov2_online": {
+        "variant": "online",
+        "tuples_per_epoch": 21206,
+        "updates": 3320,
+        "held_out_pairs": 51,
+        "held_out_listwise": [
+          1.7948080682388656,
+          1.7958304752982384,
+          1.795628088921029,
+          1.7964035973829382,
+          1.795400598266647,
+          1.7957096446403966,
+          1.7958854916557123,
+          1.7956489635550457,
+          1.7952267150033363,
+          1.7952441089903302
+        ],
+        "best_epoch": 1,
+        "parameters": 13794816
+      },
+      "fm_dinov2_published": {
+        "variant": "published",
+        "tuples_per_epoch": 21206,
+        "updates": 3320,
+        "held_out_pairs": 51,
+        "held_out_listwise": [
+          2.49432638396794,
+          2.494175740011919,
+          2.493843239185044,
+          2.493181560147246,
+          2.4922484176746313,
+          2.4934666309210347,
+          2.492797668022878,
+          2.4928665734313027,
+          2.4923825221293416,
+          2.4923667291850995
+        ],
+        "best_epoch": 5,
+        "parameters": 13794816
+      },
+      "pafu_kv_repo": {
+        "decision_states_visited": 86324,
+        "decision_states_used": 20000,
+        "loss_first": 0.07383154332637787,
+        "loss_last": 0.003331642597913742
+      }
+    },
+    "29": {
+      "metric_crosscheck_rows": 32,
+      "ours": {
+        "source": "team frozen checkpoint, not retrained",
+        "file": "student_29.pt",
+        "sha256": "d7aead64fed565df0c7a97d14e30c03f65699f4b5fbed5727a8fada7f186f7dd"
+      },
+      "original_validation_check": {
+        "attention": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.7881393432617188e-07,
+          "original_route_accuracy": 0.9088541666666666,
+          "this_run_route_accuracy": 0.9088541666666666
+        },
+        "attention_proxy_student": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.1920928955078125e-07,
+          "original_route_accuracy": 0.578125,
+          "this_run_route_accuracy": 0.578125
+        },
+        "deletion_cost_student": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.4156103134155273e-07,
+          "original_route_accuracy": 0.9479166666666666,
+          "this_run_route_accuracy": 0.9479166666666666
+        },
+        "fifo": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 2.682209014892578e-07,
+          "original_route_accuracy": 0.5651041666666666,
+          "this_run_route_accuracy": 0.5651041666666666
+        },
+        "oracle_keyframe": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.862645149230957e-07,
+          "original_route_accuracy": 0.9557291666666666,
+          "this_run_route_accuracy": 0.9557291666666666
+        },
+        "prediction_surprise": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.1920928955078125e-07,
+          "original_route_accuracy": 0.65625,
+          "this_run_route_accuracy": 0.65625
+        },
+        "recent_only": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 4.470348358154297e-08,
+          "original_route_accuracy": 0.5,
+          "this_run_route_accuracy": 0.5
+        },
+        "reservoir": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 4.6193599700927734e-07,
+          "original_route_accuracy": 0.5520833333333334,
+          "this_run_route_accuracy": 0.5520833333333334
+        },
+        "temporal_buckets": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.341104507446289e-07,
+          "original_route_accuracy": 0.5651041666666666,
+          "this_run_route_accuracy": 0.5651041666666666
+        },
+        "visual_diversity": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 3.129243850708008e-07,
+          "original_route_accuracy": 0.703125,
+          "this_run_route_accuracy": 0.703125
+        }
+      },
+      "pafu_kv": {
+        "tokens": 25600,
+        "loss_first": 0.05630692467093468,
+        "loss_last": 0.0008661540341563523,
+        "target_mean": 0.051346711814403534,
+        "target_std": 0.18564389646053314
+      },
+      "pacc_full": {
+        "variant": "full",
+        "steps": 3000,
+        "loss_first": 0.04167180135846138,
+        "loss_last": 0.0076706139370799065,
+        "parameters": 448131,
+        "validation_gap_to_full_history": 0.014785016886889935
+      },
+      "pacc_recurrent": {
+        "variant": "recurrent",
+        "steps": 3000,
+        "loss_first": 0.041876111179590225,
+        "loss_last": 0.022062944248318672,
+        "parameters": 448131,
+        "validation_gap_to_full_history": 0.019918398931622505
+      },
+      "fm_dinov2_online": {
+        "variant": "online",
+        "tuples_per_epoch": 21206,
+        "updates": 3320,
+        "held_out_pairs": 51,
+        "held_out_listwise": [
+          1.7955058267354356,
+          1.7947202872132402,
+          1.7948449347025293,
+          1.7943899466863373,
+          1.7952904332324366,
+          1.794664385068752,
+          1.7946289594825882,
+          1.7953843517579895,
+          1.7948413700094004,
+          1.7947670750809042
+        ],
+        "best_epoch": 4,
+        "parameters": 13794816
+      },
+      "fm_dinov2_published": {
+        "variant": "published",
+        "tuples_per_epoch": 21206,
+        "updates": 3320,
+        "held_out_pairs": 51,
+        "held_out_listwise": [
+          2.4937744612177517,
+          2.4947290172560646,
+          2.4929456214872263,
+          2.4925300030248954,
+          2.4932202416815925,
+          2.493842134288713,
+          2.4922246258175487,
+          2.4918906170388926,
+          2.4919951632809454,
+          2.491882387431178
+        ],
+        "best_epoch": 10,
+        "parameters": 13794816
+      },
+      "pafu_kv_repo": {
+        "decision_states_visited": 86421,
+        "decision_states_used": 20000,
+        "loss_first": 0.07469819486141205,
+        "loss_last": 0.0036962851881980896
+      }
+    },
+    "43": {
+      "metric_crosscheck_rows": 32,
+      "ours": {
+        "source": "team frozen checkpoint, not retrained",
+        "file": "student_43.pt",
+        "sha256": "3cdf05fc92348d511ef81f037939e3c38a2e0cec1b38323099c15c96e92f5f9f"
+      },
+      "original_validation_check": {
+        "attention": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.7881393432617188e-07,
+          "original_route_accuracy": 0.8802083333333334,
+          "this_run_route_accuracy": 0.8802083333333334
+        },
+        "attention_proxy_student": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 2.384185791015625e-07,
+          "original_route_accuracy": 0.546875,
+          "this_run_route_accuracy": 0.546875
+        },
+        "deletion_cost_student": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 9.685754776000977e-08,
+          "original_route_accuracy": 0.9505208333333334,
+          "this_run_route_accuracy": 0.9505208333333334
+        },
+        "fifo": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.6391277313232422e-07,
+          "original_route_accuracy": 0.5625,
+          "this_run_route_accuracy": 0.5625
+        },
+        "oracle_keyframe": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 8.940696716308594e-08,
+          "original_route_accuracy": 0.9609375,
+          "this_run_route_accuracy": 0.9609375
+        },
+        "prediction_surprise": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 3.725290298461914e-07,
+          "original_route_accuracy": 0.6588541666666666,
+          "this_run_route_accuracy": 0.6588541666666666
+        },
+        "recent_only": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 7.450580596923828e-08,
+          "original_route_accuracy": 0.5,
+          "this_run_route_accuracy": 0.5
+        },
+        "reservoir": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 2.086162567138672e-07,
+          "original_route_accuracy": 0.5703125,
+          "this_run_route_accuracy": 0.5703125
+        },
+        "temporal_buckets": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 8.940696716308594e-08,
+          "original_route_accuracy": 0.5651041666666666,
+          "this_run_route_accuracy": 0.5651041666666666
+        },
+        "visual_diversity": {
+          "rows": 384,
+          "route_mismatches": 0,
+          "max_abs_mse_diff": 1.1175870895385742e-07,
+          "original_route_accuracy": 0.71875,
+          "this_run_route_accuracy": 0.71875
+        }
+      },
+      "pafu_kv": {
+        "tokens": 25600,
+        "loss_first": 0.0381738543510437,
+        "loss_last": 0.0010670493356883526,
+        "target_mean": 0.05249226465821266,
+        "target_std": 0.1894819438457489
+      },
+      "pacc_full": {
+        "variant": "full",
+        "steps": 3000,
+        "loss_first": 0.04892805591225624,
+        "loss_last": 0.005537458695471287,
+        "parameters": 448131,
+        "continued_from_step": 3000,
+        "validation_gap_to_full_history": 0.016443496569991112
+      },
+      "pacc_recurrent": {
+        "variant": "recurrent",
+        "steps": 3000,
+        "loss_first": 0.051069699227809906,
+        "loss_last": 0.018920179456472397,
+        "parameters": 448131,
+        "continued_from_step": 2400,
+        "validation_gap_to_full_history": 0.020959345623850822
+      },
+      "fm_dinov2_online": {
+        "variant": "online",
+        "tuples_per_epoch": 21206,
+        "updates": 3320,
+        "held_out_pairs": 51,
+        "held_out_listwise": [
+          1.7961713523815965,
+          1.7963705099452183,
+          1.7948277563695103,
+          1.7958303419626989,
+          1.7958390776763486,
+          1.7954189978597108,
+          1.7952261496484534,
+          1.7948159327998896,
+          1.7953164889481164,
+          1.7952745217902988
+        ],
+        "best_epoch": 8,
+        "parameters": 13794816
+      },
+      "fm_dinov2_published": {
+        "variant": "published",
+        "tuples_per_epoch": 21206,
+        "updates": 3320,
+        "held_out_pairs": 51,
+        "held_out_listwise": [
+          2.4952404314091545,
+          2.4948003808352444,
+          2.493552775435842,
+          2.4930312546114584,
+          2.494066661377799,
+          2.4937811769792795,
+          2.49385595951747,
+          2.492992471042903,
+          2.4926043010022227,
+          2.4927345903531566
+        ],
+        "best_epoch": 9,
+        "parameters": 13794816
+      },
+      "pafu_kv_repo": {
+        "decision_states_visited": 86404,
+        "decision_states_used": 20000,
+        "loss_first": 0.07312747836112976,
+        "loss_last": 0.0035702353343367577
+      }
+    }
+  },
+  "original_validation_check": {
+    "attention": {
+      "rows": 1152,
+      "route_mismatches": 0,
+      "max_abs_mse_diff": 1.7881393432617188e-07,
+      "original_route_accuracy": 0.8923611111111112
+    },
+    "attention_proxy_student": {
+      "rows": 1152,
+      "route_mismatches": 0,
+      "max_abs_mse_diff": 2.384185791015625e-07,
+      "original_route_accuracy": 0.5607638888888888
+    },
+    "deletion_cost_student": {
+      "rows": 1152,
+      "route_mismatches": 0,
+      "max_abs_mse_diff": 1.9371509552001953e-07,
+      "original_route_accuracy": 0.9453125
+    },
+    "fifo": {
+      "rows": 1152,
+      "route_mismatches": 0,
+      "max_abs_mse_diff": 2.682209014892578e-07,
+      "original_route_accuracy": 0.5651041666666666
+    },
+    "oracle_keyframe": {
+      "rows": 1152,
+      "route_mismatches": 0,
+      "max_abs_mse_diff": 1.9371509552001953e-07,
+      "original_route_accuracy": 0.9557291666666666
+    },
+    "prediction_surprise": {
+      "rows": 1152,
+      "route_mismatches": 0,
+      "max_abs_mse_diff": 4.6193599700927734e-07,
+      "original_route_accuracy": 0.6614583333333334
+    },
+    "recent_only": {
+      "rows": 1152,
+      "route_mismatches": 0,
+      "max_abs_mse_diff": 7.450580596923828e-08,
+      "original_route_accuracy": 0.5
+    },
+    "reservoir": {
+      "rows": 1152,
+      "route_mismatches": 0,
+      "max_abs_mse_diff": 4.6193599700927734e-07,
+      "original_route_accuracy": 0.5737847222222222
+    },
+    "temporal_buckets": {
+      "rows": 1152,
+      "route_mismatches": 0,
+      "max_abs_mse_diff": 1.341104507446289e-07,
+      "original_route_accuracy": 0.5659722222222222
+    },
+    "visual_diversity": {
+      "rows": 1152,
+      "route_mismatches": 0,
+      "max_abs_mse_diff": 4.023313522338867e-07,
+      "original_route_accuracy": 0.7178819444444445
+    }
+  }
+}
