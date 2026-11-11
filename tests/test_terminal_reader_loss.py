@@ -1,6 +1,11 @@
 """Regression checks for the proper conditional-mean reader objective."""
 import torch
-from experiments.phase2.run_terminal_structures import group_loss, fifo_parent_trace
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+from bounded_memory.environments.synergy.dataset import group_loss, fifo_parent_trace  # noqa: E402
 
 
 def test_balanced_missing_xor_has_zero_mean_gradient():

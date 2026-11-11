@@ -1,0 +1,17 @@
+# Gate, training reproduction of our method alone: teacher labels and the scorer are regenerated on
+# the team's frozen predictors and features, then compared with the published scorer.
+environment: gate
+path: retrain_scorer
+assets:
+  root: ${BM_SCRATCH}/gate_team/root
+  predictor_sha256: team
+  students: ${BM_RUN}/gate/retrain_scorer/students
+  reference_students: ${BM_SCRATCH}/gate_team/extracted/model
+protocol:
+  recent: 4
+  budget: 2
+  horizons: [3, 6]
+  seeds: [17, 29, 43]
+  split: validation
+  train_episodes: 1024
+  validation_episodes: 192

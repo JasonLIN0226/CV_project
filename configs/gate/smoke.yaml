@@ -1,0 +1,13 @@
+# Mechanics check on a small local asset tree (any encoder). Numbers from it mean nothing.
+environment: gate
+path: smoke
+assets:
+  root: ${BM_GATE_ROOT}
+  predictor_sha256: ${BM_GATE_ROOT}/predictor/gate/checksums.json
+  students: ${BM_SMOKE_OUT}/students
+protocol: {recent: 4, budget: 2, horizons: [3, 6], seeds: [17], split: validation}
+baselines:
+  pafu_kv: {steps: 200}
+  pafu_kv_repo: {max_states: 400}
+  pacc: {steps: 20}
+  framemorrow: {epochs: 1, hidden: 32, layers: 1}

@@ -1,95 +1,233 @@
-# Bounded Visual Memory: Gate Retention Study
+# Bounded Visual Memory for World Models
 
-This project studies how a model with limited visual memory can preserve observations that matter for predicting the future. The current stage uses a controlled, synthetic **Gate** task to examine two questions:
+A world model that can keep only a few past frames has to decide which ones to keep. This project
+studies that decision on controlled tasks: every method sees the same **four recent frames** and
+may keep **two memory items** (R = 4, B = 2), on top of a frozen I-JEPA ViT-H/14 encoder and a
+frozen future predictor. Methods differ only in what fills the two memory slots.
 
-1. Does retaining a key visual cue help the frozen model predict what happens next?
-2. How do online memory-retention policies compare on the same task and memory budget?
+This file is the single guide: [results](#current-results) · [layout](#repository-layout) ·
+[1. environment](#1-set-up-the-environment) · [2. models](#2-get-the-models-download-or-train) ·
+[3. evaluation](#3-evaluate-reproduce-the-panel) · [checks](#checks) · [next steps](#next-steps).
 
-The current study is an exploratory comparison on a simple task. Its results do not depend on passing the earlier Phase 1 gate, and they do not change the historical evaluation.
+## Current results
 
-## The Gate task and data
+The results panel is `reports/memory_results_20261111/memory-panel-baselines.html` (open it in a
+browser). Its numbers are frozen in `configs/reference_values.json`; section 3 recreates them.
 
-An episode contains a direction cue represented by pale-gray arrows, a sequence of frames with randomly distributed vertical-line distractions, and a future route or state to predict. The cue can occur at different positions in the history. Input frames contain the distractions; future prediction targets are rendered without them. Paired scenes share actions and nuisance patterns while varying the cue and corresponding future.
+| Environment | Metric | No memory | Oracle | Strongest baseline | Ours (deletion-cost scorer) |
+|---|---|---:|---:|---:|---:|
+| **Gate**: an arrow panel shows a direction once, early; later the ball takes the upper or lower route | route accuracy, validation, higher is better | 50.00 | 95.57 | 90.28 (PaFu-KV) | **94.53** |
+| **Synergy**: three cue cards arrive, one must be deleted; two cards decide the future together | prediction regret, locked confirmation, 2,304 S records, lower is better | 0.0476 (FIFO) | 0.0000 | −0.0046 (Compress to Remember) | **0.0036** |
+| **Motion v2**: a ball is kicked into a new lane, then hidden | position MSE at +3, validation, lower is better | 0.0231 | 0.0061 | 0.0091 (attention) | 0.0214 |
+| **PushT**, hidden centre of gravity | latent prediction at +12 | not run | not run | not run | not run |
 
-The latest comparison reuses the existing encoded train/validation data: **1,024 training episodes and 192 validation episodes**. Each policy has two history slots (B = 2) and receives the same four recent frames, with the same frozen encoder and predictor. On arrival, a policy can retain only two of its two stored history frames and the new frame; a discarded frame cannot return.
+What to keep in mind when reading the table:
 
-![An example Gate sequence](results/gate_retention_comparison_20261029/data_preview.png)
+- **Gate** is scored on the validation set (192 episodes, three predictor seeds, two horizons); there is no independent test set. The oracle knows where the cue is. Compress to Remember as published reads the whole history and reaches 95.31; restricted to two slots it reaches 79.51 and is unstable across seeds (50.5 / 93.8 / 94.3).
+- **Synergy**: regret is error above the best single deletion, not MSE. Compress to Remember blends the three cards into two learned items instead of deleting one and scores below its own teacher; the cause is untested. The next baselines are the distilled-sensitivity scorer (0.0046) and full-set sensitivity (0.0077).
+- **Motion v2**: our scorer never improved on its initial weights during training, so 0.0214 is an untrained network. The three literature baselines were not run on Motion v2.
+- **PushT**: the corpora exist; no predictor has been trained.
 
-[Data generation and configuration](docs/GATE_RETENTION_COMPARISON_LATEST.md#data-design) · [Dataset preflight](results/gate_retention_comparison_20261029/data_preflight.json)
+Every row of the panel (16 methods on Gate, 16 on Synergy, 14 on Motion v2), its dataset, split,
+seeds, checkpoints, tasks and status is listed in `configs/reproduction.yaml`.
 
-## Current validation comparison
+## Repository layout
 
-The table aggregates the 192 validation episodes across three predictor seeds and two horizons. These repeated measurements are not independent examples. Cue hit means at least one retained history frame is in the cue interval; it is separate from route/state prediction accuracy.
+| Where | What |
+|---|---|
+| `src/bounded_memory/methods/deletion_cost/` | Our method: scorer, teacher, online retention, training, ablations |
+| `src/bounded_memory/methods/{pafu_kv,pacc,framemorrow}/` | The three literature baselines (PaFu-KV, Compress to Remember, FrameMorrow), one file per environment |
+| `src/bounded_memory/environments/{gate,synergy,motion_v2,pusht}/` | Data generation, feature encoding, predictor training, asset reading, protocol constants |
+| `src/bounded_memory/{encoders,predictors,evaluation,data}/` | Pinned encoders, predictor architectures (`predictors/phase1/` is the frozen predictor source), metrics, oracles, heuristics, I/O |
+| `configs/reproduction.yaml` | The manifest: every result, how it is produced, and every compute task |
+| `configs/<environment>/*.yaml` | One config per asset set; paths use `${BM_SCRATCH}`, `${BM_RUN}`, `${BM_REPO}` |
+| `scripts/<task>/<environment>.py` | Thin entry points: explicit config, seed, device, inputs and output folder |
+| `torch/` | `cluster.sh` (every cluster setting, as environment variables), `setup_env.sbatch`, and `make_jobs.py`, which turns manifest tasks into Slurm arrays |
+| `runs/<run_id>/` | Small JSON outputs and aggregate tables of one run; heavy files stay on scratch |
+| `tests/` | Guards (code moved unchanged), old-versus-new migration checks, unit tests |
+| `docs/`, `results/`, `reports/`, `handoff/`, `tools/` | The historical record, unchanged (see the last section) |
 
-| Retention method | Route/state accuracy | Cue hit | Normalized latent MSE ↓ |
-|---|---:|---:|---:|
-| Manual keyframe reference* | 95.57% | 100.00% | 0.09783 |
-| Deletion-cost scorer | 94.53% | 100.00% | 0.09934 |
-| Visual diversity | 71.79% | 47.40% | 0.11385 |
-| Prediction surprise | 66.15% | 34.55% | 0.11765 |
-| Reservoir | 57.38% | 16.84% | 0.12362 |
-| Temporal buckets | 56.60% | 15.62% | 0.12256 |
-| FIFO | 56.51% | 13.54% | 0.12423 |
-| Feature-attention-proxy scorer | 56.08% | 13.72% | 0.12332 |
-| Recent frames only | 50.00% | 0.00% | 0.12497 |
+## 1. Set up the environment
 
-\* Manual keyframe selection is a privileged diagnostic reference: it knows the cue position. Its advantage over the recent-only control supports the usefulness of cue-containing history **in this setting**, but is not by itself a general causal or independent-test guarantee. The two learned scorers have the same architecture and student training budget, but their teacher signals and preparation costs differ. The deletion-cost teacher uses the frozen predictor and future targets during training; it is therefore predictor-aligned. No future information or cue labels are used by the learned students during online selection.
+One environment for everything: Python 3.11 and `requirements.txt`.
 
-The retired task-trained attention method is excluded from the current table. Historical code and records remain available for provenance.
+**Your own cluster settings.** No file in the repository holds an account or a personal path.
+Each one is an environment variable defined in `torch/cluster.sh`, with a default built from your
+cluster user name, so teammates can share the same code and differ only in these values:
 
-[Full result and fairness details](docs/GATE_RETENTION_COMPARISON_LATEST.md) · [Chinese result summary](results/gate_retention_comparison_20261029/RESULTS_ZH.md) · [Machine-readable results](results/gate_retention_comparison_20261029/summary.json)
+| Variable | What it is | Default |
+|---|---|---|
+| `BM_ACCOUNT` | Slurm account to charge | your Slurm default account |
+| `BM_SCRATCH` | datasets, features, checkpoints, logs and run outputs | `/scratch/$USER/cv_project_runs` |
+| `BM_REPO` | the checkout on the cluster (the Mutagen target) | detected from where the scripts are |
+| `BM_HF_HOME` | Hugging Face cache and token | `/scratch/$USER/hf_cache` |
+| `BM_CONDA_SH` | conda's activation script | `/scratch/$USER/miniconda3/etc/profile.d/conda.sh` |
+| `BM_CONDA_ENV` | the environment every job activates | `/scratch/$USER/miniconda3/envs/cvmem` |
+| `BM_SBATCH_ARGS` | extra `sbatch` options for every job (partition, QOS, constraint) | none |
+| `BM_GPU_TYPE` | GPU model for the tasks that need a GPU (`l40s`, `a100`, ...) | any GPU |
+| `BM_GPU_SBATCH_ARGS` | extra `sbatch` options for GPU tasks only | none |
 
-## Code map: reproduce the Gate study
+To change one, do not edit `torch/cluster.sh`. Either keep your values in `torch/.env` (one
+`KEY=value` per line, no quotes; git ignores the file and Mutagen syncs it to the cluster):
 
-### Team model and data downloads
+```bash
+# torch/.env
+BM_ACCOUNT=torch_pr_000_mylab
+BM_GPU_TYPE=a100
+```
 
-- [Private Gate model bundle](https://huggingface.co/cv-project-team5guys/gate-retention-models-v1) — three frozen predictors, both new scorers for seeds 17/29/43, transforms, probes, checksums and portable loading examples.
-- [Private Gate train/validation dataset](https://huggingface.co/datasets/cv-project-team5guys/gate-clean-future-trainval-v1) — the 1,216 episodes, matching feature cache, original validation output and per-file checksums.
+or export it for a single command:
 
-An organization member must grant your Hugging Face account access before either private link works. The bundles were downloaded again and their checksums verified; a real validation-episode loading and inference example ran successfully. These are validation artifacts, not a fresh independent test. Official I-JEPA pretrained encoder weights are not redistributed.
+```bash
+ssh torch 'BM_ACCOUNT=torch_pr_000_mylab bash /scratch/$USER/CV_project/torch/generated/<run_id>/submit.sh'
+```
 
-The links below follow the experiment flow. The original course-HPC batch launchers retain their historical paths and are **not portable launchers**; use the download and loading instructions in the model and dataset repositories. `/scratch/xl4358/...` paths in historical records are provenance, not required teammate paths.
+An exported variable wins over `torch/.env`, which wins over the default. `submit.sh` prints the
+values it used. In the commands of this guide, `torch` is the SSH alias of the cluster login node
+and `/scratch/$USER/CV_project` is the checkout; replace them if yours differ.
 
-### 1. Generate and check the data
+**On the cluster.** Install Miniconda (under `/scratch/$USER/miniconda3`, or point `BM_CONDA_SH`
+and `BM_CONDA_ENV` at your own), then build the environment:
 
-- [Clean-future dataset generator](experiments/gate_clean_future/materialize.py): builds paired Gate episodes with noisy input frames and clean future targets.
-- [Structured scene and distraction design](experiments/retention_structured_noise_audit/structured_design.py) · [cue-position/noise utilities](experiments/retention_position_noise_audit/design.py): scene and augmentation rules used by the generator.
-- [Dataset configuration template](results/gate_retention_comparison_20261029/dataset_config_template.json) · [train/validation protocol](experiments/gate_clean_future/protocol.json) · [preflight checks](experiments/retention_structured_noise_audit/clean_future_preflight.py) · [recorded preflight results](results/gate_retention_comparison_20261029/data_preflight.json). The configuration is a readable path-adjusted template, not a byte-identical copy of the HPC resolved configuration.
+```bash
+ssh torch 'bash /scratch/$USER/CV_project/torch/submit_setup_env.sh'
+```
 
-### 2. Encode frames and train the future predictor
+This creates the conda environment (Torch 2.5.1 with CUDA 12.1, then `requirements.txt`) and
+caches the pinned I-JEPA encoder under `BM_HF_HOME`.
 
-The October 22 clean-future run uses its [frozen predictor-source snapshot](experiments/gate_clean_future/frozen_control/README.md). The older Phase 1 control source is retained separately for its historical results and source lock. Run `python tools/verify_gate_clean_future_source.py` to check the 53 recorded source files.
+**On a laptop** (tests, aggregation, the panel):
 
-- [Feature encoding and train-only transforms](experiments/gate_clean_future/fit_features.py) · [encoder cache implementation](experiments/predictor/control/src/phase1/cache.py).
-- [Predictor architecture and projection](experiments/predictor/control/src/phase1/model.py) · [training and checkpointing](experiments/predictor/control/src/phase1/training.py) · [three-seed training entry point](experiments/retention_structured_noise_audit/train_reference.py).
-- [Original train/validation batch launcher](experiments/gate_clean_future/run_trainval.sbatch) · [predictor validation](experiments/gate_clean_future/evaluate_validation.py). The recorded validation used this [per-sibling bookkeeping repair](results/retention_structured_noise_audit/clean_future_evaluation_repair_20261022/evaluate_each_sibling.py); preserve its behavior when reproducing that validation. It is an HPC-specific execution snapshot.
-- [Frozen clean-future source checksums](experiments/retention_structured_noise_audit/clean_future_source_lock.json) · [clean-future protocol](experiments/gate_clean_future/protocol.json).
+```bash
+python -m pip install -r requirements.txt
+python -m pip install -e . --no-deps        # optional: makes bounded_memory importable everywhere
+```
 
-### 3. Train the two new retention scorers
+**Hugging Face access.** The Gate models and dataset are private team repositories
+(`cv-project-team5guys/gate-retention-models-v1`, `cv-project-team5guys/gate-clean-future-trainval-v1`).
+Ask an organisation member for access, create a token with read access to the organisation, and
+store it on the cluster under `BM_HF_HOME` (`HF_HOME=$BM_HF_HOME huggingface-cli login`). The Synergy
+releases are public.
 
-- [Scorer architecture and matched initialization](experiments/gate_supervision_comparison_design_v2/core.py).
-- [Teacher definitions](experiments/gate_supervision_comparison_design_v2/teachers.py) · [teacher-label preparation](experiments/gate_supervision_comparison_design_v2/teacher_stage.py) · [matched checkpointed training](experiments/gate_supervision_comparison_design_v2/checkpoint_fit.py).
-- [Train/validation runner](experiments/gate_supervision_comparison_design_v2/run_trainval.py) · [original training batch script](experiments/gate_supervision_comparison_design_v2/train.sbatch) · [experiment protocol](experiments/gate_supervision_comparison_design_v2/PROTOCOL.md) · [execution amendment](experiments/gate_supervision_comparison_design_v2/EXECUTION_AMENDMENT_20261029.md). The protocol contains its original pre-run wording; the [package README](experiments/gate_supervision_comparison_design_v2/README.md) explains the completed run.
+Edit code locally and let Mutagen sync it; run all compute through `sbatch`, never on a login node.
 
-### 4. Run and inspect the policy comparison
+## 2. Get the models: download or train
 
-- [Online B=2 update rules](experiments/gate_retention_comparison_v1/online.py) · [baseline policy implementations](experiments/retention_online_matrix/policies.py).
-- [Policy validation and trace checks](experiments/gate_supervision_comparison_design_v2/validation.py) · [original validation batch script](experiments/gate_supervision_comparison_design_v2/validate.sbatch) · [independent validation-audit snapshot](results/gate_retention_comparison_20261029/audit_validation_hpc_snapshot.py).
-- [Results and fairness details](docs/GATE_RETENTION_COMPARISON_LATEST.md) · [Chinese result summary](results/gate_retention_comparison_20261029/RESULTS_ZH.md) · [machine-readable summary](results/gate_retention_comparison_20261029/summary.json).
-- [Scorer software tests](experiments/gate_supervision_comparison_design_v2/test_v2.py) · [data-protocol tests](experiments/gate_clean_future/test_protocol.py). These are software checks, not new scientific results.
+All compute is started the same way: pick task prefixes from the manifest, generate the job
+arrays locally, submit on the cluster.
 
-The historical validation code also computed the retired task-trained attention comparator. It is preserved for provenance and omitted from the latest results table. The reported comparison is on the existing validation set, not a new independent test.
+```bash
+python torch/make_jobs.py --run-id <run_id> --select <task prefixes>
+ssh torch 'bash /scratch/$USER/CV_project/torch/generated/<run_id>/submit.sh'
+```
 
-## Set-structure retention, reader diagnostics and PushT preparation (20–26 October 2026)
+The generated files are the same for everyone; `submit.sh` reads your settings on the cluster.
+Every seed and variant in the manifest becomes one array index. Jobs run from a copy of `src/`,
+`scripts/` and `configs/` taken at submission, skip outputs that already exist, and resume long
+training from checkpoints.
 
-This separate development track (merged from PR #1) tests the proposal's set-conditioned claim: whether deletion-cost supervision helps when evidence is redundant, decoyed, or only useful jointly. It uses its own synthetic data, readers and students; its results are not part of the Gate table above and do not change the formal Phase 1 decision.
+| Environment | Download the released models (`--select`) | Train them yourself (`--select`) |
+|---|---|---|
+| Gate | `gate.assets`: the team bundle (three predictors, the scorers for seeds 17/29/43, dataset, features), checksum-verified | `gate.retrain_scorer`: our scorer on the released predictors. `gate.retrain`: everything from scratch (dataset, I-JEPA features, three predictors, scorer, PaFu-KV) |
+| Synergy | `synergy.assets.release`: readers, basis, encoded confirmation set, released students | `synergy.assets.trainvaldev` then `synergy.retrain`: re-encoded train/validation features, teacher labels, all student arms. `synergy.retrain_readers`: the two readers |
+| Motion v2 | not available: the frozen readers, features and dataset were never released | `motion_v2.retrain.students`: the 54 students from the tracked teacher labels. Reader training is not runnable yet (see next steps) |
+| PushT | nothing to download | `pusht.prepare_data`: the two corpora. No predictor exists |
 
-- **Locked confirmation (26 October, seed 20261104, 48 families).** On the synergy task, a set-conditioned deletion-cost student lost necessary evidence in 4.59% (multihead reader) and 0.65% (item-attention reader) of cases, versus 35.89% / 37.80% for full-set sensitivity, 70.27% / 55.12% for head-averaged attention, and 67.38% / 56.29% for a matched future-attention student. All three preregistered claims passed. Limits: the redundancy-task student does not generalize, the decoy task admits an appearance shortcut, each reader has one training seed, and uniform/diversity baselines were not computed on this confirmation set. [Confirmation record](results/literature_diagnosis/qualified-reader-retention-20261025/conf/README.md) · [development report](docs/QUALIFIED_READER_RETENTION_DEV_ZH.md)
-- **Reader qualification.** The original reader failed preregistered redundancy/decoy checks; multihead and item-attention readers passed all K2/K3 gates. [Three-structure report](docs/TERMINAL_THREE_STRUCTURES_REPORT_ZH.md) · [reader aggregation results](docs/READER_AGGREGATION_RESULTS_ZH.md)
-- **Negative and diagnostic results.** On the 23 October locked Gate confirmation, a masked deletion-cost linear probe did not beat its shuffled-label control. Some oracles delete the cue to lower feature MSE, and use-time labels fix that ranking without improving the student. [Literature-baseline fresh report](docs/LITERATURE_BASELINE_FRESH_REPORT.md) · [oracle diagnosis](docs/BASELINE_ORACLE_DIAGNOSIS_20261022.md) · [Gate confirmation and casebook](docs/GATE_CONFIRMATION_AND_CASEBOOK.md) · [use-time probe](docs/GATE_USE_TIME_PROBE.md)
-- **Predictor history use.** [History diagnosis](docs/PHASE2_HISTORY_DIAGNOSIS.md): Gate gains useful history dependence without input whitening; Motion shows no net history benefit.
-- **PushT.** [Interface](docs/PHASE2_PUSHT.md) and [48-episode occluded/unoccluded corpus](docs/PHASE2_PUSHT_PLANNING_PREPARATION.md). Not yet encoded; no PushT predictor or MPC planning result exists.
+The released Gate predictors and Synergy features and readers were produced on a GPU, and a CPU
+gives slightly different features. The tasks above run on CPU. Each has a GPU twin that repeats it
+on the hardware class of the release: `gate.retrain_gpu`, `synergy.assets.trainvaldev_gpu` with
+`synergy.retrain_gpu`, and `synergy.retrain_readers_gpu`. Set `BM_GPU_TYPE` for them.
 
-## Next stage
+The literature baselines have no released checkpoints. They are trained inside the evaluation
+tasks of section 3 (`gate.replay.{pafu_kv,pacc,framemorrow}`, `synergy.replay.literature`).
 
-The next research stage can extend this comparison to **Motion and more complex simulated scenes**, where relevant information may unfold over time and require multiple observations. This is a future direction, not a completed result of the current Gate study.
+## 3. Evaluate: reproduce the panel
+
+Two paths are kept apart. **Replay** loads the released checkpoints and scores them again; this
+recreates the panel. **Retrain** produces new measurements, reported in their own tables and never
+written into the panel.
+
+```bash
+# replay: downloads, old-versus-new checks, every bar of the panel
+python torch/make_jobs.py --run-id <run_id> --select gate.assets gate.validate gate.replay
+python torch/make_jobs.py --run-id <run_id> --select synergy.assets synergy.validate synergy.replay
+python torch/make_jobs.py --run-id <run_id> --select motion_v2.replay
+ssh torch 'bash /scratch/$USER/CV_project/torch/generated/<run_id>/submit.sh'      # after each generate step
+
+# retrain (optional): see the table in section 2
+python torch/make_jobs.py --run-id <run_id> --select gate.retrain_scorer gate.retrain synergy.retrain synergy.retrain_readers motion_v2.retrain
+
+# pool the run and rebuild the panel (locally, once Mutagen has synced runs/<run_id>/ back)
+python scripts/aggregate_results/aggregate.py --run runs/<run_id>      # per-seed and pooled tables, differences from the frozen values
+python scripts/aggregate_results/build_panel.py --run runs/<run_id>    # runs/<run_id>/aggregate/panel.html and panel_check.json
+```
+
+`runs/<run_id>/aggregate/tables.md` lists every result per seed and pooled, with a verdict against
+`configs/reference_values.json`. The manifest gives each result a tolerance: `exact` for
+deterministic replay, `tie_sensitive` where exactly tied candidates are broken by CPU rounding,
+`per_seed` for models trained in the run, `unstable` for training known to flip between runs.
+
+| Environment | Replay | Retrain |
+|---|---|---|
+| Gate | every bar of the panel, from the team bundle | scorer on the released predictors; the full chain from scratch |
+| Synergy | every bar of the panel, from the public releases, for both readers and R/D/S | teacher labels and every student arm on the released readers; the two readers on re-encoded features |
+| Motion v2 | the published tables, recomputed from the tracked loss arrays; policies cannot be re-scored without the frozen readers and features | the 54 students from tracked labels |
+| PushT | nothing to replay | data preparation only |
+
+The latest run is `runs/repro_20261111/`; its tables and panel are in `runs/repro_20261111/aggregate/`,
+and `panel_check.json` there counts the bars that match the frozen values (42 of 46 on 11 November
+2026; the four Gate bars of Compress to Remember and FrameMorrow were still training).
+
+## Checks
+
+```bash
+python -m pytest -q tests                                 # everything that needs no assets
+BM_GATE_ROOT=<Gate asset tree> python -m pytest -q tests/test_migration_gate.py
+BM_SYN=<Synergy assets> BM_SYN_STUDENTS=<released students> python -m pytest -q tests/test_migration_synergy.py
+```
+
+- `tests/test_refactor_guards.py`: the package holds the same code as the original experiment
+  files (compared with commit `fe69074` through git), the historical record is unchanged, and the
+  reproduction starts nothing outside `scripts/`.
+- `tests/test_migration_*.py`: old code and new package on the same assets give identical arrays,
+  predictions, kept frames, metrics, labels and trained weights. The old code is taken from git
+  (`tests/legacy_tree.py`), or from `BM_LEGACY_TREE` where git is not available.
+
+## Next steps
+
+1. **Motion v2 with the new layout.** Obtain the frozen assets from the teammate's storage
+   (dataset archive, step-2 readers and features, long-gap features, step-3/4 CPU archive). The
+   original run scripts in `src/bounded_memory/environments/motion_v2/pipeline/` verify checksums
+   registered under their old paths and require one A100, which this account cannot request:
+   re-register them, add `scripts/` entry points as for Gate and Synergy, then rerun the readers
+   and the online evaluation and run PaFu-KV, Compress to Remember and FrameMorrow there.
+2. **Motion v2, our method.** The deletion-cost students kept their initial weights. Find out why
+   the teacher labels are not learnable before comparing against baselines.
+3. **PushT.** Encode the v5 marker corpus, train a predictor, fix the metric (latent prediction at
+   +12), then run the same ladder: no memory, oracle, baselines, ours.
+4. **Gate.** Run Compress to Remember with two slots on more seeds (it fails on one of three on CPU
+   and on both seeds tried on GPU). The comparison is on validation data; an independent test set
+   has not been generated.
+5. **Synergy.** Test why Compress to Remember scores below its own teacher.
+6. **Code.** `predictors/dynamics.py` and `predictors/inputs.py` duplicate parts of
+   `predictors/phase1/`; remove the duplicates and rerun the migration checks.
+
+## The historical record
+
+`docs/`, `results/`, `reports/` and `handoff/` are unchanged and remain the record of how each
+result was first produced: protocols, preregistrations, raw outputs, checksums and reports in
+English and Chinese. Start with `docs/GATE_RETENTION_COMPARISON_LATEST.md` (Gate),
+`docs/QUALIFIED_READER_RETENTION_DEV_ZH.md` and
+`results/literature_diagnosis/qualified-reader-retention-20261025/conf/README.md` (Synergy),
+`docs/MOTION_V2_STEP3_4_RECOVERY1_REPORT_ZH.md` (Motion v2) and `docs/PHASE2_PUSHT.md` (PushT).
+
+Those documents and their checksum files name paths under `experiments/`. That folder held the
+original experiment code; everything still used was moved into `src/bounded_memory/` and the folder
+was removed. A path such as `experiments/gate_clean_future/materialize.py` now means the file at
+commit `fe69074`:
+
+```bash
+git show fe69074:experiments/gate_clean_future/materialize.py
+```
+
+`results/publication_manifest.json` describes the whole tree at that commit and verifies only there.

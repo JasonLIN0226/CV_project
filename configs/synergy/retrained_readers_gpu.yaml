@@ -1,0 +1,36 @@
+# Synergy with readers retrained on a GPU on GPU-encoded TRAIN/VAL features (synergy.retrain_readers_gpu.*).
+# Identical to retrained_readers.yaml except for the feature and reader folders.
+environment: synergy
+assets:
+  terminal: ${BM_SCRATCH}/synergy/terminal/run
+  train_features: ${BM_SCRATCH}/synergy/trainvaldev_gpu/xfer
+  confirmation: ${BM_SCRATCH}/synergy/conf_xfer
+  readers: ${BM_RUN}/synergy/readers_rebuilt_gpu
+  reader_checksums: reader_locked.json      # each retrained reader is verified against the checksum recorded when it was written
+  released: ${BM_SCRATCH}/synergy/conf_full/results/literature_diagnosis/qualified-reader-retention-20261025
+  appearance_trainvaldev: ${BM_SCRATCH}/synergy/conf_full/build/qualified-reader-conf-20261026/dev-preflight/appearance_all.npz
+  students: ${BM_SCRATCH}/synergy/students_released      # the released student archives, unzipped
+protocol:
+  readers: [multihead, item_attention]
+  reader_seed: 17
+  student_seeds: [17, 29, 43]
+  split: confirmation
+  records: 3456
+students:                       # StudentConfig of the frozen study (experiments/phase2/configs/terminal_structures_20261025.json)
+  seeds: [17, 29, 43]
+  steps: 1000
+  batch_size: 128
+  validate_every: 100
+  validation_batch_size: 512
+  learning_rate: 0.001
+  grad_clip: 1.0
+  independent_width: 64
+  shuffle_seed: 20261108
+  batch_seed_offset: 300000
+  standard_deviation_floor: 0.0001
+  label_scale_floor: 1.0e-08
+  cpu_threads: 4            # part of the frozen student settings; changing it can change float summation order
+baselines:
+  pafu_kv: {steps: 1000}
+  pacc: {steps: 3000}
+  framemorrow: {epochs: 30, hidden: 512, layers: 4}

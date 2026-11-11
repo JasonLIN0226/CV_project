@@ -1,0 +1,47 @@
+{
+  "task": "stage_a_multihead_confirmation",
+  "seed": 17,
+  "device": "cpu",
+  "host": "ga030.hpc.nyu.edu",
+  "python": "3.11.18",
+  "torch": "2.5.1+cu121",
+  "numpy": "1.26.4",
+  "threads": 8,
+  "config": "configs/synergy/retrained_readers.yaml",
+  "source_sha256": "1819f3eb74789620cfc8c404aeede65e2167d58b7b2a1b1f8608209c8df10c9a",
+  "slurm_job_id": "22732997",
+  "seconds": 85.28282308578491,
+  "info": {
+    "against_released": {
+      "medoid_sum": {
+        "max_abs_diff": 0.7085123497073031,
+        "same_argmin": 0.7644675925925926
+      },
+      "sensitivity": {
+        "max_abs_diff": 0.2868518107250068,
+        "same_argmin": 0.7800925925925926
+      },
+      "eval_cost": {
+        "max_abs_diff": 0.4458185418668013,
+        "same_argmin": 0.8804976851851852
+      },
+      "eval_losses": {
+        "max_abs_diff": 0.5082226050909632
+      },
+      "teacher_eval": {
+        "max_abs_diff": 0.3783526122570038,
+        "same_argmin": 0.8020833333333334
+      },
+      "attention": {
+        "max_abs_diff": 0.30581384897232056,
+        "same_argmin": 0.7682291666666666
+      }
+    }
+  },
+  "environment": "synergy",
+  "reader": "multihead",
+  "split": "confirmation",
+  "records": 3456,
+  "labels": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/synergy/stageA_retrained_readers/multihead_confirmation.npz",
+  "labels_sha256": "ffc5008122a71eff803d7be50ec26019b900b6068980abb7c33d91452570a790"
+}

@@ -1,0 +1,620 @@
+{
+ "page_title": "Memory Baselines Panel",
+ "title": "Bounded memory: results at a glance",
+ "subtitle": "4 recent frames + 2 memory slots · frozen I-JEPA features · frozen predictor · recreated from run repro_20261111",
+ "methods": [
+  {
+   "key": "floor",
+   "label": "No history",
+   "color": "gray"
+  },
+  {
+   "key": "oracle",
+   "label": "Oracle",
+   "color": "orange"
+  },
+  {
+   "key": "fifo",
+   "label": "FIFO",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "reservoir",
+   "label": "Reservoir",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "buckets",
+   "label": "Temporal buckets",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "diversity",
+   "label": "Visual diversity",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "surprise",
+   "label": "Prediction surprise",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "keep_first",
+   "label": "Keep first",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "attention",
+   "label": "Attention",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "proxy",
+   "label": "Attention-proxy scorer",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "sensitivity",
+   "label": "Full-set sensitivity",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "appearance",
+   "label": "Appearance-only student",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "fut_set",
+   "label": "Future-attention student",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "fut_ind",
+   "label": "Future-attention student",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "shuf_set",
+   "label": "Shuffled-label student",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "shuf_ind",
+   "label": "Shuffled-label student",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "dist_set",
+   "label": "Distilled-sensitivity student",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "dist_ind",
+   "label": "Distilled-sensitivity student",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "cost_ind",
+   "label": "Deletion-cost student",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "init_ind",
+   "label": "Independent students",
+   "color": "aqua",
+   "group": "Project baselines"
+  },
+  {
+   "key": "pafu",
+   "label": "PaFu-KV",
+   "color": "yellow",
+   "group": "Literature baselines"
+  },
+  {
+   "key": "pafu_repo",
+   "label": "PaFu-KV",
+   "color": "yellow",
+   "group": "Literature baselines"
+  },
+  {
+   "key": "c2r",
+   "label": "Compress to Remember",
+   "color": "yellow",
+   "group": "Literature baselines"
+  },
+  {
+   "key": "c2r_slots",
+   "label": "Compress to Remember",
+   "color": "yellow",
+   "group": "Literature baselines"
+  },
+  {
+   "key": "fm",
+   "label": "FrameMorrow",
+   "color": "yellow",
+   "group": "Literature baselines"
+  },
+  {
+   "key": "fm_slots",
+   "label": "FrameMorrow",
+   "color": "yellow",
+   "group": "Literature baselines"
+  },
+  {
+   "key": "ours",
+   "label": "Deletion-cost scorer",
+   "color": "blue",
+   "group": "Ours"
+  }
+ ],
+ "units": [
+  {
+   "name": "Gate",
+   "facts": [
+    [
+     "Setup",
+     "Arrows show a direction once, early. After the query the ball takes the upper or lower route."
+    ],
+    [
+     "Data",
+     "1,024 train and 192 validation episodes, in sibling pairs that differ only in the cue."
+    ]
+   ],
+   "example": {
+    "columns": [
+     "t=3 cue (noisy)",
+     "t=23 recent (noisy)",
+     "t=28 recent (noisy)",
+     "t=31 target +3 (clean)",
+     "t=34 target +6 (clean)"
+    ],
+    "rows": [
+     {
+      "label": "Sibling A",
+      "images": [
+       "img/gate_0_0.png",
+       "img/gate_0_1.png",
+       "img/gate_0_2.png",
+       "img/gate_0_3.png",
+       "img/gate_0_4.png"
+      ]
+     },
+     {
+      "label": "Sibling B",
+      "images": [
+       "img/gate_1_0.png",
+       "img/gate_1_1.png",
+       "img/gate_1_2.png",
+       "img/gate_1_3.png",
+       "img/gate_1_4.png"
+      ]
+     }
+    ],
+    "pixelated": true,
+    "highlight": [
+     0
+    ]
+   },
+   "figure": {
+    "type": "bars",
+    "metric": "Route accuracy, validation",
+    "direction": "higher is better",
+    "unit": "%",
+    "decimals": 1,
+    "rows": [
+     "floor",
+     "oracle",
+     "attention",
+     "diversity",
+     "surprise",
+     "reservoir",
+     "buckets",
+     "fifo",
+     "proxy",
+     "pafu",
+     "pafu_repo",
+     "c2r",
+     "c2r_slots",
+     "fm",
+     "fm_slots",
+     "ours"
+    ],
+    "values": {
+     "floor": 50.0,
+     "oracle": 95.57,
+     "fifo": 56.51,
+     "reservoir": 57.38,
+     "buckets": 56.6,
+     "diversity": 71.79,
+     "surprise": 66.15,
+     "attention": 89.24,
+     "proxy": 56.08,
+     "ours": 94.53,
+     "pafu": 90.28,
+     "pafu_repo": 88.89
+    },
+    "who": {
+     "floor": "recent 4 frames only",
+     "oracle": "cue frame kept by hand",
+     "attention": "retired from the README table",
+     "proxy": "ours' twin, trained on attention labels",
+     "pafu": "as published; teacher 90.1%",
+     "pafu_repo": "the repo's earlier adaptation",
+     "c2r": "as published: reads the whole history; teacher 93.8%",
+     "c2r_slots": "held to 2 slots",
+     "fm": "as published: ranks the whole history; teacher pending",
+     "fm_slots": "held to 2 slots"
+    },
+    "notes": {
+     "floor": "Latent MSE 0.1250. Cue frame kept in 0.0% of episodes.",
+     "oracle": "Latent MSE 0.0978. Cue frame kept in 100.0% of episodes.",
+     "fifo": "Latent MSE 0.1242. Cue frame kept in 13.5% of episodes.",
+     "reservoir": "Latent MSE 0.1236. Cue frame kept in 16.8% of episodes.",
+     "buckets": "Latent MSE 0.1226. Cue frame kept in 15.6% of episodes.",
+     "diversity": "Latent MSE 0.1139. Cue frame kept in 47.4% of episodes.",
+     "surprise": "Latent MSE 0.1176. Cue frame kept in 34.5% of episodes.",
+     "attention": "Latent MSE 0.1168. Cue frame kept in 98.8% of episodes.",
+     "proxy": "Latent MSE 0.1233. Cue frame kept in 13.7% of episodes.",
+     "ours": "Latent MSE 0.0993. Cue frame kept in 100.0% of episodes.",
+     "pafu": "Latent MSE 0.1149. Cue frame kept in 100.0% of episodes.",
+     "pafu_repo": "Latent MSE 0.1160. Cue frame kept in 97.4% of episodes."
+    },
+    "pending": {
+     "c2r": "0/3 seeds",
+     "c2r_slots": "0/3 seeds",
+     "fm": "0/3 seeds",
+     "fm_slots": "0/3 seeds"
+    }
+   },
+   "footnote": "Teacher is the signal a literature method is trained to copy, scored directly. FrameMorrow uses DINOv2 features, as published; its I-JEPA variant was not run."
+  },
+  {
+   "name": "Synergy",
+   "facts": [
+    [
+     "Setup",
+     "Three cue cards arrive and one must be deleted. The two with matching tags decide the future together (XOR)."
+    ],
+    [
+     "Data",
+     "3,456 train, 1,728 validation and 3,456 locked-test episodes; two thirds are synergy."
+    ]
+   ],
+   "example": {
+    "columns": [
+     "cue 1",
+     "cue 2",
+     "cue 3",
+     "shared current",
+     "target +3",
+     "target +6"
+    ],
+    "rows": [
+     {
+      "label": "Synergy",
+      "images": [
+       "img/synergy_0_0.png",
+       "img/synergy_0_1.png",
+       "img/synergy_0_2.png",
+       "img/synergy_0_3.png",
+       "img/synergy_0_4.png",
+       "img/synergy_0_5.png"
+      ]
+     }
+    ],
+    "pixelated": true,
+    "highlight": [
+     0,
+     1,
+     2
+    ],
+    "tile": 72
+   },
+   "figure": {
+    "type": "bars",
+    "metric": "Prediction regret, locked test, 2,304 synergy episodes",
+    "direction": "error above the best single deletion; lower is better",
+    "decimals": 4,
+    "max": 0.06,
+    "ticks": [
+     0,
+     0.02,
+     0.04,
+     0.06
+    ],
+    "rows": [
+     "floor",
+     "oracle",
+     "dist_set",
+     "sensitivity",
+     "fut_ind",
+     "dist_ind",
+     "appearance",
+     "cost_ind",
+     "shuf_ind",
+     "shuf_set",
+     "fut_set",
+     "attention",
+     "c2r_slots",
+     "pafu",
+     "fm",
+     "ours"
+    ],
+    "values": {
+     "floor": 0.0476,
+     "oracle": 0.0,
+     "attention": 0.0545,
+     "sensitivity": 0.0077,
+     "ours": 0.0036,
+     "cost_ind": 0.0449,
+     "fut_set": 0.0508,
+     "fut_ind": 0.042,
+     "shuf_set": 0.0489,
+     "shuf_ind": 0.0476,
+     "appearance": 0.0442,
+     "dist_set": 0.0046,
+     "dist_ind": 0.0435,
+     "pafu": 0.0454,
+     "c2r_slots": -0.0046,
+     "fm": 0.0477
+    },
+    "who": {
+     "floor": "delete the oldest card",
+     "oracle": "lowest-error deletion",
+     "ours": "set-conditioned",
+     "cost_ind": "ours with independent scoring",
+     "fut_set": "set-conditioned",
+     "fut_ind": "independent scoring",
+     "shuf_set": "set-conditioned",
+     "shuf_ind": "independent scoring",
+     "dist_set": "set-conditioned",
+     "dist_ind": "independent scoring",
+     "pafu": "teacher 0.0511",
+     "c2r_slots": "2 learned slots from all 3 cards; teacher +0.0036",
+     "fm": "teacher 0.0475"
+    },
+    "notes": {
+     "floor": "Needed card deleted 66.7% of the time. Second reader: regret 0.0516",
+     "oracle": "Needed card deleted 22.9% of the time. Second reader: regret 0.0000",
+     "attention": "Needed card deleted 70.3% of the time. Second reader: regret 0.0439",
+     "sensitivity": "Needed card deleted 35.9% of the time. Second reader: regret 0.0179",
+     "ours": "Needed card deleted 4.6% of the time. Second reader: regret 0.0020",
+     "cost_ind": "Needed card deleted 62.8% of the time. Second reader: regret 0.0470",
+     "fut_set": "Needed card deleted 67.4% of the time. Second reader: regret 0.0438",
+     "fut_ind": "Needed card deleted 54.8% of the time. Second reader: regret 0.0443",
+     "shuf_set": "Needed card deleted 64.4% of the time. Second reader: regret 0.0501",
+     "shuf_ind": "Needed card deleted 63.2% of the time. Second reader: regret 0.0496",
+     "appearance": "Needed card deleted 62.3% of the time. Second reader: regret 0.0433",
+     "dist_set": "Needed card deleted 8.8% of the time. Second reader: regret 0.0096",
+     "dist_ind": "Needed card deleted 59.1% of the time. Second reader: regret 0.0468",
+     "pafu": "Needed card deleted 60.3% of the time. Second reader: regret 0.0446",
+     "c2r_slots": "Deletes nothing, so it has no needed-card rate.",
+     "fm": "Needed card deleted 62.6% of the time."
+    },
+    "pending": {},
+    "labels": {
+     "floor": "No guidance",
+     "ours": "Deletion-cost student"
+    }
+   },
+   "footnote": "Regret is error above the best single deletion, not an MSE, so it can be negative. Compress to Remember scores below its teacher, the reader given all three cards (+0.0036), as it does on Gate; the cause is untested."
+  },
+  {
+   "name": "Motion v2",
+   "facts": [
+    [
+     "Setup",
+     "A ball is kicked into a new lane, then hidden. Its direction can only be read from two frames after the kick."
+    ],
+    [
+     "Data",
+     "1,024 train and 192 validation episodes, in sibling pairs with opposite directions."
+    ]
+   ],
+   "example": {
+    "columns": [
+     "t=5 old segment",
+     "t=6 new segment (cue)",
+     "t=11 end (cue)",
+     "t=24 query",
+     "t=27 target +3",
+     "t=30 target +6"
+    ],
+    "rows": [
+     {
+      "label": "Sibling A",
+      "images": [
+       "img/motion_0_0.png",
+       "img/motion_0_1.png",
+       "img/motion_0_2.png",
+       "img/motion_0_4.png",
+       "img/motion_0_5.png",
+       "img/motion_0_6.png"
+      ]
+     },
+     {
+      "label": "Sibling B",
+      "images": [
+       "img/motion_1_0.png",
+       "img/motion_1_1.png",
+       "img/motion_1_2.png",
+       "img/motion_1_4.png",
+       "img/motion_1_5.png",
+       "img/motion_1_6.png"
+      ]
+     }
+    ],
+    "pixelated": true,
+    "highlight": [
+     1,
+     2
+    ],
+    "tile": 72
+   },
+   "figure": {
+    "type": "bars",
+    "metric": "Position MSE at +3, validation",
+    "direction": "lower is better",
+    "decimals": 4,
+    "max": 0.03,
+    "ticks": [
+     0,
+     0.01,
+     0.02,
+     0.03
+    ],
+    "rows": [
+     "floor",
+     "oracle",
+     "attention",
+     "fut_ind",
+     "fut_set",
+     "diversity",
+     "reservoir",
+     "shuf_set",
+     "init_ind",
+     "buckets",
+     "fifo",
+     "surprise",
+     "keep_first",
+     "pafu",
+     "c2r",
+     "fm",
+     "ours"
+    ],
+    "values": {
+     "floor": 0.0231,
+     "oracle": 0.0061,
+     "fifo": 0.0238,
+     "reservoir": 0.0208,
+     "buckets": 0.0236,
+     "diversity": 0.0167,
+     "surprise": 0.0248,
+     "keep_first": 0.0266,
+     "attention": 0.0091,
+     "fut_set": 0.0098,
+     "fut_ind": 0.0096,
+     "ours": 0.0214,
+     "shuf_set": 0.0214,
+     "init_ind": 0.0221
+    },
+    "who": {
+     "floor": "recent 4 frames only",
+     "oracle": "two cue frames kept by hand",
+     "fut_set": "set-conditioned",
+     "fut_ind": "independent scoring",
+     "ours": "untrained",
+     "shuf_set": "set-conditioned; untrained, same as ours",
+     "init_ind": "8 arms, all untrained"
+    },
+    "notes": {
+     "oracle": "Keeps both cue frames in 100.0% of episodes",
+     "fifo": "Keeps both cue frames in 0.0% of episodes",
+     "reservoir": "Keeps both cue frames in 4.5% of episodes",
+     "buckets": "Keeps both cue frames in 0.0% of episodes",
+     "diversity": "Keeps both cue frames in 9.4% of episodes",
+     "surprise": "Keeps both cue frames in 0.0% of episodes",
+     "keep_first": "Keeps both cue frames in 0.0% of episodes",
+     "attention": "Keeps both cue frames in 100.0% of episodes",
+     "fut_set": "Keeps both cue frames in 100.0% of episodes",
+     "fut_ind": "Keeps both cue frames in 97.4% of episodes",
+     "ours": "Keeps both cue frames in 5.9% of episodes",
+     "shuf_set": "Keeps both cue frames in 5.9% of episodes",
+     "init_ind": "Keeps both cue frames in 5.0% of episodes"
+    },
+    "pending": {},
+    "labels": {
+     "ours": "Deletion-cost student"
+    }
+   },
+   "footnote": "No deletion-cost or shuffled-label student trained past its initial weights, ours included. Recomputed from the study's saved loss arrays; nothing can be rerun, and the literature baselines were never run: the frozen reader and features are on a teammate's storage."
+  },
+  {
+   "name": "PushT, hidden centre of gravity",
+   "facts": [
+    [
+     "Setup",
+     "A red dot marks the block's centre of gravity for 3 early frames. A push after the query turns the block by class."
+    ],
+    [
+     "Data",
+     "384 train, 96 validation and 96 test episodes, in families of three classes. Not yet encoded."
+    ]
+   ],
+   "example": {
+    "columns": [
+     "t=0 first frame",
+     "t=3 marker (cue)",
+     "t=29 transit",
+     "t=56 query",
+     "t=68 target +12"
+    ],
+    "rows": [
+     {
+      "label": "CoG left",
+      "images": [
+       "img/pusht_0_0.png",
+       "img/pusht_0_1.png",
+       "img/pusht_0_2.png",
+       "img/pusht_0_3.png",
+       "img/pusht_0_4.png"
+      ]
+     },
+     {
+      "label": "CoG right",
+      "images": [
+       "img/pusht_2_0.png",
+       "img/pusht_2_1.png",
+       "img/pusht_2_2.png",
+       "img/pusht_2_3.png",
+       "img/pusht_2_4.png"
+      ]
+     }
+    ],
+    "pixelated": true,
+    "highlight": [
+     1
+    ]
+   },
+   "figure": {
+    "type": "bars",
+    "metric": "Latent prediction at +12",
+    "unit": "%",
+    "rows": [
+     "floor",
+     "oracle",
+     "pafu",
+     "c2r",
+     "fm",
+     "ours"
+    ],
+    "values": {},
+    "who": {
+     "floor": "recent 4 frames only",
+     "oracle": "marker frame kept by hand"
+    },
+    "notes": {},
+    "pending": {}
+   },
+   "footnote": "No predictor has been trained on PushT yet."
+  }
+ ],
+ "intro": "One bar per method, scored on the same items within a block: the two reference points, every project baseline, every literature baseline, then ours."
+}

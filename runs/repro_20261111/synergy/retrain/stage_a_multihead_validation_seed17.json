@@ -1,0 +1,47 @@
+{
+  "task": "stage_a_multihead_validation",
+  "seed": 17,
+  "device": "cpu",
+  "host": "gh015.hpc.nyu.edu",
+  "python": "3.11.18",
+  "torch": "2.5.1+cu121",
+  "numpy": "1.26.4",
+  "threads": 8,
+  "config": "configs/synergy/release.yaml",
+  "source_sha256": "d1b7365a4b87395a58eca847646df71f41b5b121da323652974e19a51639d913",
+  "slurm_job_id": "22729374",
+  "seconds": 34.57369875907898,
+  "info": {
+    "against_released": {
+      "medoid_sum": {
+        "max_abs_diff": 0.00023939615417001292,
+        "same_argmin": 1.0
+      },
+      "sensitivity": {
+        "max_abs_diff": 0.00014086177696862046,
+        "same_argmin": 1.0
+      },
+      "eval_cost": {
+        "max_abs_diff": 0.00010553487548300988,
+        "same_argmin": 0.9994212962962963
+      },
+      "eval_losses": {
+        "max_abs_diff": 0.00011835383614020034
+      },
+      "teacher_eval": {
+        "max_abs_diff": 0.00011496245861053467,
+        "same_argmin": 1.0
+      },
+      "attention": {
+        "max_abs_diff": 0.0001266002655029297,
+        "same_argmin": 1.0
+      }
+    }
+  },
+  "environment": "synergy",
+  "reader": "multihead",
+  "split": "validation",
+  "records": 1728,
+  "labels": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/synergy/stageA/multihead_validation.npz",
+  "labels_sha256": "2f6c8325a138a7e05787c07c1387556cf44c4dbce7339071a6a4c1c5aa29088b"
+}

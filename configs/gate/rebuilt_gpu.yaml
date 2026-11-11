@@ -1,0 +1,22 @@
+# Gate, training reproduction on a GPU (gate.retrain_gpu.*): the device class the released predictors were
+# encoded and trained on. Identical to rebuilt.yaml except for the asset tree and the student folder.
+environment: gate
+path: retrain
+assets:
+  root: ${BM_SCRATCH}/gate_rebuilt_gpu
+  predictor_sha256: ${BM_SCRATCH}/gate_rebuilt_gpu/predictor/gate/checksums.json   # written after training
+  students: ${BM_RUN}/gate/retrain_gpu/students
+  dinov2: ${BM_SCRATCH}/gate_team/dinov2/features.npz    # the dataset is byte-identical to the team's
+protocol:
+  recent: 4
+  budget: 2
+  horizons: [3, 6]
+  seeds: [17, 29, 43]
+  split: validation
+  train_episodes: 1024
+  validation_episodes: 192
+baselines:
+  pafu_kv: {steps: 1000}
+  pafu_kv_repo: {max_states: 20000}
+  pacc: {steps: 3000}
+  framemorrow: {epochs: 10, hidden: 512, layers: 4}

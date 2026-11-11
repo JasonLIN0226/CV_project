@@ -1,0 +1,825 @@
+# Reproduction manifest: every significant result of the 11 Nov 2026 panel and how to get it again.
+#
+#   reference panel   reports/memory_results_20261111/memory-panel-baselines.html   (read-only)
+#   reference values  configs/reference_values.json, frozen from the sources named below by
+#                     scripts/aggregate_results/freeze_reference_values.py
+#
+# Two reproduction paths are kept apart everywhere:
+#   replay    released checkpoints and arrays are loaded and scored again; only the literature
+#             baselines, which were never released, are trained. This path recreates the panel.
+#   retrain   data, features, predictors and students are regenerated or retrained. Its numbers are
+#             new measurements and are reported next to the panel, never inside it.
+#
+# `tasks` are the units of compute. torch/make_jobs.py expands each one over its seeds and variants
+# into a Slurm array, so no seed or variant can be left out by hand. `results` link each number to
+# its environment (dataset, split, seeds, encoder, predictor), method, metric, tasks and sources.
+version: 1
+protocol:
+  recent_frames: 4
+  memory_slots: 2
+  note: every method reads the same four recent frames; methods differ only in what fills the memory
+
+status_vocabulary:
+  replayable: released artifacts exist and the result is recomputed from them
+  retrainable: every input can be regenerated and a launcher exists
+  assets_missing: a required frozen asset is not available to this account
+  not_run: the experiment has never been run
+  extracted_only: code is in the package and tested, but no result has been produced with it
+tolerance_vocabulary:
+  exact: deterministic replay; the primary metric must match to 1e-9 and secondary metrics to 1e-5
+  tie_sensitive: deterministic code whose choice between exactly tied candidates depends on CPU rounding; within 1 point
+  per_seed: a model trained in this run; reported per seed, within 1 point on the pooled primary metric
+  unstable: training known to succeed or fail between runs and devices; no verdict, per-seed values only
+
+environments:
+  gate:
+    summary: an arrow panel shows a direction once, early; after the query the ball takes the upper or lower route
+    dataset:
+      name: clean-future Gate train/validation v1
+      generator: src/bounded_memory/environments/gate/generate.py
+      generator_config: configs/gate/dataset_config_template.json
+      seed: 6301
+      episodes: {train: 1024, validation: 192}
+      frames: 42560
+      released: {repository: cv-project-team5guys/gate-clean-future-trainval-v1, type: dataset,
+                 tar_sha256: 80ef7ea826848664fa240274cca5d6639f02373a0ae1946de3a33f903a28a937}
+    split: validation, 192 episodes in 96 sibling pairs; no test split exists for this dataset
+    seeds: [17, 29, 43]
+    horizons: [3, 6]
+    encoder: {name: I-JEPA ViT-H/14, repository: facebook/ijepa_vith14_1k,
+              revision: f157467ea509bc356ff9f61fd3c0d840eec5e04e, pooling: grid2, frozen: true}
+    predictor:
+      architecture: DynamicsPredictor, hidden 128, rank 128, dropout 0 (src/bounded_memory/predictors/dynamics.py)
+      training: 120 epochs, batch 64, AdamW lr 0.001, one model per seed, frozen afterwards
+      released: {repository: cv-project-team5guys/gate-retention-models-v1, type: model,
+                 tar_sha256: b54c32e4410348993cc908856acd96f4cdea965cd081ad27125ff61183a4fa12}
+      checkpoint_sha256:
+        17: 449bb70e55161ff553ce4b2e75e9e093a58e1914f268bbe3748442f0315f9ed0
+        29: f7301b06df9e62fede69268c53e1bc0f08de027659fe9f15f561756faba8d3c2
+        43: 96311a7cf010c527ae8f6c29a390a8275d0b402718dd57928395f832b07e7782
+      basis_sha256: 1828bd01d83a0c9b1e504739d3bd864bb9469ff3fb058292c895ca198dd0da8d
+    metrics:
+      route_accuracy: {primary: true, direction: higher, definition: sign of the frozen linear state decoder on the predicted latent equals the true route}
+      normalized_mse: {direction: lower, definition: mean squared error in train-normalised I-JEPA feature space}
+      cue_kept: {direction: higher, definition: share of episodes whose memory holds a frame from the cue interval}
+    aggregation: mean over 192 episodes x 3 seeds x 2 horizons; repeated rows are not independent samples
+    reference_file: results/memory_baselines/gate_team/summary.json
+    configs: {replay: configs/gate/team_bundle.yaml, retrain: configs/gate/rebuilt.yaml,
+              retrain_scorer: configs/gate/retrained_scorer_on_team_assets.yaml}
+
+  synergy:
+    summary: three cue cards arrive and one must be deleted; R redundancy, D decoy, S XOR synergy (two cards with matching tags decide the future together)
+    dataset:
+      name: terminal R/D/S structures, 2026-10-25
+      generator: src/bounded_memory/environments/synergy/generate.py, through environments/synergy/dataset.py
+      splits: {train: {seed: 20261101, families: 48, records: 3456}, validation: {seed: 20261102, families: 24, records: 1728},
+               confirmation: {seed: 20261104, families: 48, records: 3456, opened: "2026-10-26, once"}}
+      released: "GitHub releases terminal-structures-20261025 and qualified-reader-retention-confirmation-20261026 (public)"
+    split: locked confirmation, 3,456 records in 48 families (576 R, 576 D, 2,304 S); no further held-out data may be opened
+    seeds: {reader: 17, students: [17, 29, 43], literature_baselines: [17, 29, 43]}
+    horizons: [3, 6]
+    encoder: {name: I-JEPA ViT-H/14, repository: facebook/ijepa_vith14_1k, frozen: true}
+    predictor:
+      architecture: multihead and item_attention readers (src/bounded_memory/predictors/readers.py), hidden 128, rank 128
+      training: 1,024 updates, pure feature MSE, memory sizes 0/1/2/3 equally represented, frozen afterwards
+      checkpoint_sha256:
+        multihead: fb0ea31b20e5aa53c4f3adbaa1b261d82826cda068ad23fa5d1a9edd56221543
+        item_attention: 15428e52128c16887238bf4a424691b0785966001c680a0a409f13cf8026a597
+      basis_sha256: 922bc4a676893d0ba5974cd20dbcac09c461bc908549966f197dfbbe38f4f05d
+    metrics:
+      needed_evidence_lost: {primary: true, direction: lower, definition: share of records where a semantically needed card is deleted; undefined for memories that delete nothing}
+      regret: {direction: lower, definition: "expected in-span prediction loss over 32 evaluation plans minus that of the best single deletion; family mean"}
+    aggregation: per task family (R, D, S), mean over records and student or baseline seeds
+    reference_files: [results/memory_baselines/synergy/released_scores.json, results/memory_baselines/synergy/summary.json]
+    configs: {replay: configs/synergy/release.yaml, retrain: configs/synergy/release.yaml}
+
+  motion_v2:
+    summary: a ball is kicked into a new lane, then hidden; its direction can only be read from two frames after the kick
+    dataset: {name: Motion v2, episodes: {train: 1024, validation: 192}, availability: "dataset archive only on a teammate's storage (/scratch/xy3257); not available to this account"}
+    split: validation, 96 scene pairs; ordinary interval is primary, long gap is reported separately
+    seeds: {readers: [17, 29, 43], students: [17, 29, 43]}
+    horizons: [3, 6]
+    encoder: {name: I-JEPA ViT-H/14, frozen: true}
+    predictor: {architecture: Motion v2 reader (src/bounded_memory/environments/motion_v2/reader_v2.py), availability: "three frozen readers only on a teammate's storage"}
+    metrics:
+      position_mse: {primary: true, direction: lower, definition: mean squared error of the decoded normalised ball position}
+      feature_mse: {direction: lower}
+      success_rate: {direction: higher, definition: share of episodes whose memory holds both cue frames}
+    aggregation: mean over siblings, 96 scene pairs, three reader seeds and three student or RNG seeds
+    evidence:
+      step34: results/motion_v2/step3_4_recovery1/terminal_evidence/repo/results/motion_v2/step3_4_recovery1/gpu
+      step2: results/motion_v2/v2_3_1_resubmission/terminal_evidence/repo/results/motion_v2/v2_3_1/step2_gpu_attempt1
+    missing_assets: [frozen Motion v2 readers (seeds 17, 29, 43), I-JEPA feature caches, the dataset archive]
+    from_scratch: "not attempted. The original run scripts (src/bounded_memory/environments/motion_v2/pipeline: run_step1.py, run_step2.py, run_step34_recovery1.py) are kept byte-identical but verify checksums registered under their old paths and require one A100; they need re-registration before they run"
+    code: src/bounded_memory/environments/motion_v2/ (environment, generator, reader, metrics, students; tests/motion_v2) and pipeline/ (original run scripts, not runnable yet)
+    configs: {replay: configs/motion_v2/evidence.yaml}
+  pusht:
+    summary: hidden centre-of-gravity PushT; a push after the query turns the block according to a class seen only early in the episode
+    versions:
+      v5: {name: marker, cue: the centre of gravity is drawn as a dot for 3 early frames, corpus: pusht-cog-v5-marker-20261109,
+           families: {train: 128, validation: 32, test: 32}, episodes: {train: 384, validation: 96, test: 96},
+           generator: src/bounded_memory/environments/pusht/prepare_pusht_cog_marker_data.py, state: collected; not encoded}
+      v4: {name: natural, cue: "the block's response to a shared probe push", corpus: pusht-cog-v4-20261107,
+           families: {train: 128, validation: 32, test: 32}, episodes: {train: 384, validation: 96, test: 96},
+           generator: src/bounded_memory/environments/pusht/prepare_pusht_cog_v4_data.py, state: "collected; train and validation encoded with I-JEPA; readability probes and pose decoding run",
+           diagnostics: [results/pusht_cog/v4_pose_decoding_20261108.json]}
+    availability: "corpora and features are on a teammate's project storage (/projects/work/yang-lab/users/yz12129); they regenerate on CPU with the PushT simulator packages"
+    predictor: none trained
+    code: src/bounded_memory/environments/pusht/ (simulator wrappers, corpus generators, probes; tests/pusht)
+    configs: {}
+
+tasks:
+  # ---------------------------------------------------------------- Gate, migration check
+  # The new package against the code it was extracted from, on the team's frozen bundle: episode
+  # arrays, predictor outputs, kept frames, metric rows, teacher labels, scorer weights and the three
+  # literature baselines must be identical; the rebuild chain (dataset, features, predictors) is
+  # compared on a small configuration. Every Gate replay task waits for this to pass.
+  # The old code is the base commit's experiments/ folder, kept outside the repository (BM_LEGACY_TREE):
+  #   git archive fe69074 experiments | tar -x -C <folder>; ln -s <repo>/results <folder>/results
+  gate.validate.migration:
+    script: -m pytest -q -p no:cacheprovider tests/test_migration_gate.py
+    seeds: null
+    cwd: repo
+    env: {BM_GATE_ROOT: "${BM_SCRATCH}/gate_team/root", BM_LEGACY_TREE: "${BM_SCRATCH}/legacy_fe69074", BM_MIGRATION_EPISODES: "48"}
+    needs: [gate.assets.team_bundle]
+    resources: {cpus: 8, mem: 24G, time: "01:30:00"}
+  # ---------------------------------------------------------------- Gate, replay
+  gate.assets.team_bundle:
+    script: scripts/prepare_data/gate_team_bundle.py
+    args: --work ${BM_SCRATCH}/gate_team
+    seeds: null
+    resources: {cpus: 4, mem: 16G, time: "01:00:00"}
+    done_when: ${BM_SCRATCH}/gate_team/bundle_report.json
+  gate.assets.dinov2:
+    script: scripts/encode/dinov2.py
+    config: configs/gate/team_bundle.yaml
+    args: --out ${BM_SCRATCH}/gate_team/dinov2/features.npz --revision f9e44c814b77203eaa57a6bdbbd535f21ede1415 --device cpu
+    seeds: null
+    needs: [gate.assets.team_bundle]
+    resources: {cpus: 16, mem: 24G, time: "02:00:00"}
+    done_when: ${BM_SCRATCH}/gate_team/dinov2/features.npz
+  gate.validate.dinov2:
+    # re-encode with the new encoder script and compare with the features the reference rows were trained on
+    script: scripts/encode/dinov2.py
+    config: configs/gate/team_bundle.yaml
+    args: --out ${BM_RUN}/gate/dinov2/features.npz --revision f9e44c814b77203eaa57a6bdbbd535f21ede1415 --device cpu --compare ${BM_SCRATCH}/gate_team/dinov2/features.npz
+    seeds: null
+    needs: [gate.assets.team_bundle]
+    resources: {cpus: 16, mem: 24G, time: "03:00:00"}
+  gate.replay.references:
+    script: scripts/run_oracles/gate.py
+    config: configs/gate/team_bundle.yaml
+    out: gate/replay
+    seeds: [17, 29, 43]
+    needs: [gate.assets.team_bundle, gate.validate.migration]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00"}
+  gate.replay.heuristics:
+    script: scripts/run_baselines/gate.py
+    config: configs/gate/team_bundle.yaml
+    out: gate/replay
+    seeds: [17, 29, 43]
+    needs: [gate.assets.team_bundle, gate.validate.migration]
+    resources: {cpus: 8, mem: 16G, time: "01:00:00"}
+  gate.replay.deletion_cost:
+    script: scripts/evaluate/gate.py
+    config: configs/gate/team_bundle.yaml
+    out: gate/replay
+    seeds: [17, 29, 43]
+    needs: [gate.replay.references, gate.replay.heuristics]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00"}
+  gate.replay.attention_proxy:
+    script: scripts/run_ablations/gate.py
+    config: configs/gate/team_bundle.yaml
+    out: gate/replay
+    seeds: [17, 29, 43]
+    needs: [gate.assets.team_bundle, gate.validate.migration]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00"}
+  gate.replay.pafu_kv:
+    script: scripts/train_baselines/gate.py
+    config: configs/gate/team_bundle.yaml
+    out: gate/replay
+    seeds: [17, 29, 43]
+    variants: {method: [pafu_kv, pafu_kv_repo]}
+    needs: [gate.assets.team_bundle, gate.validate.migration]
+    resources: {cpus: 8, mem: 16G, time: "01:00:00"}
+  gate.replay.pacc:
+    script: scripts/train_baselines/gate.py
+    config: configs/gate/team_bundle.yaml
+    out: gate/replay
+    seeds: [17, 29, 43]
+    variants: {method: [pacc_full, pacc_recurrent]}
+    args: --checkpoints ${BM_RUN}/gate/replay/checkpoints
+    needs: [gate.assets.team_bundle, gate.validate.migration]
+    resources: {cpus: 16, mem: 24G, time: "06:00:00"}
+    resubmit: 2          # the 2-slot variant needs about 4.5 CPU hours; a stopped task continues from its checkpoint
+  gate.replay.framemorrow:
+    script: scripts/train_baselines/gate.py
+    config: configs/gate/team_bundle.yaml
+    out: gate/replay
+    seeds: [17, 29, 43]
+    variants: {method: [fm_dinov2_published, fm_dinov2_online]}
+    needs: [gate.assets.dinov2, gate.validate.migration]
+    resources: {cpus: 16, mem: 24G, time: "06:00:00"}
+  # ---------------------------------------------------------------- Gate, our scorer retrained on the team's predictors
+  gate.retrain_scorer.teacher_labels:
+    script: scripts/generate_teacher_labels/gate.py
+    config: configs/gate/retrained_scorer_on_team_assets.yaml
+    out: gate/retrain_scorer
+    args: --out ${BM_RUN}/gate/retrain_scorer/labels
+    seeds: [17, 29, 43]
+    needs: [gate.assets.team_bundle, gate.validate.migration]
+    resources: {cpus: 8, mem: 16G, time: "01:00:00"}
+  gate.retrain_scorer.train:
+    script: scripts/train_scorer/gate.py
+    config: configs/gate/retrained_scorer_on_team_assets.yaml
+    out: gate/retrain_scorer
+    args: --labels ${BM_RUN}/gate/retrain_scorer/labels --checkpoints ${BM_RUN}/gate/retrain_scorer/students --compare ${BM_SCRATCH}/gate_team/extracted/model
+    seeds: [17, 29, 43]
+    needs: [gate.retrain_scorer.teacher_labels]
+    resources: {cpus: 4, mem: 8G, time: "00:30:00"}
+  gate.retrain_scorer.deletion_cost:
+    script: scripts/evaluate/gate.py
+    config: configs/gate/retrained_scorer_on_team_assets.yaml
+    out: gate/retrain_scorer
+    seeds: [17, 29, 43]
+    needs: [gate.retrain_scorer.train]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00"}
+  gate.retrain_scorer.attention_proxy:
+    script: scripts/run_ablations/gate.py
+    config: configs/gate/retrained_scorer_on_team_assets.yaml
+    out: gate/retrain_scorer
+    seeds: [17, 29, 43]
+    needs: [gate.retrain_scorer.train]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00"}
+
+  # ---------------------------------------------------------------- Gate, everything retrained from scratch
+  gate.retrain.assets:
+    script: scripts/train_predictor/gate.py
+    args: --stage all --work ${BM_SCRATCH}/gate_rebuilt --device cpu
+    seeds: null
+    resources: {cpus: 16, mem: 24G, time: "06:00:00"}
+    resubmit: 2          # I-JEPA encoding of 42,560 frames and 360 training epochs take about 14 hours on CPU; every stage resumes
+    done_when: ${BM_SCRATCH}/gate_rebuilt/predictor/gate/checksums.json
+  gate.retrain.compare_assets:
+    # dataset, features, normalisation, bases and decoder of the rebuilt tree against the team's tree
+    script: scripts/evaluate/gate_assets_diff.py
+    args: --reference ${BM_SCRATCH}/gate_team/root --candidate ${BM_SCRATCH}/gate_rebuilt --out ${BM_OUT}/gate/retrain
+    seeds: null
+    needs: [gate.retrain.assets]
+    resources: {cpus: 4, mem: 16G, time: "01:00:00"}
+  gate.retrain.compare_old_code:
+    # the tree the pre-refactor code built on CPU (dataset, features, 25 epochs of seed 17; kept on
+    # scratch) against the tree the package builds on CPU: old code against new code at full size
+    script: scripts/evaluate/gate_assets_diff.py
+    args: --reference ${BM_SCRATCH}/gate_clean_future --candidate ${BM_SCRATCH}/gate_rebuilt --out ${BM_OUT}/gate/retrain/old_code_tree --weights
+    seeds: null
+    needs: [gate.retrain.assets]
+    resources: {cpus: 4, mem: 16G, time: "01:00:00"}
+  gate.retrain.references:
+    script: scripts/run_oracles/gate.py
+    config: configs/gate/rebuilt.yaml
+    out: gate/retrain
+    seeds: [17, 29, 43]
+    needs: [gate.retrain.assets]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00"}
+  gate.retrain.heuristics:
+    script: scripts/run_baselines/gate.py
+    config: configs/gate/rebuilt.yaml
+    out: gate/retrain
+    seeds: [17, 29, 43]
+    needs: [gate.retrain.assets]
+    resources: {cpus: 8, mem: 16G, time: "01:00:00"}
+  gate.retrain.teacher_labels:
+    script: scripts/generate_teacher_labels/gate.py
+    config: configs/gate/rebuilt.yaml
+    out: gate/retrain
+    args: --out ${BM_RUN}/gate/retrain/labels
+    seeds: [17, 29, 43]
+    needs: [gate.retrain.assets]
+    resources: {cpus: 8, mem: 16G, time: "01:00:00"}
+  gate.retrain.train:
+    script: scripts/train_scorer/gate.py
+    config: configs/gate/rebuilt.yaml
+    out: gate/retrain
+    args: --labels ${BM_RUN}/gate/retrain/labels --checkpoints ${BM_RUN}/gate/retrain/students
+    seeds: [17, 29, 43]
+    needs: [gate.retrain.teacher_labels]
+    resources: {cpus: 4, mem: 8G, time: "00:30:00"}
+  gate.retrain.deletion_cost:
+    script: scripts/evaluate/gate.py
+    config: configs/gate/rebuilt.yaml
+    out: gate/retrain
+    seeds: [17, 29, 43]
+    needs: [gate.retrain.train]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00"}
+  gate.retrain.attention_proxy:
+    script: scripts/run_ablations/gate.py
+    config: configs/gate/rebuilt.yaml
+    out: gate/retrain
+    seeds: [17, 29, 43]
+    needs: [gate.retrain.train]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00"}
+  gate.retrain.pafu_kv:
+    script: scripts/train_baselines/gate.py
+    config: configs/gate/rebuilt.yaml
+    out: gate/retrain
+    seeds: [17, 29, 43]
+    variants: {method: [pafu_kv, pafu_kv_repo]}
+    needs: [gate.retrain.assets]
+    resources: {cpus: 8, mem: 16G, time: "01:00:00"}
+  # ---------------------------------------------------------------- Gate, the same chain on a GPU
+  # The released predictors were encoded and trained on a GPU (device = cuda, one A100). gate.retrain.*
+  # above runs on CPU; these tasks repeat it on a GPU, so a difference from the release is not one of hardware.
+  gate.retrain_gpu.assets:
+    # On a GPU, as the released predictors were (their run set device = cuda on one A100). On CPU the
+    # same chain takes about 14 hours and gives slightly different features: use --device cpu, no gpu.
+    script: scripts/train_predictor/gate.py
+    args: --stage all --work ${BM_SCRATCH}/gate_rebuilt_gpu --device cuda --threads 4
+    seeds: null
+    resources: {cpus: 4, mem: 48G, time: "04:00:00", gpu: 1}      # four threads, as in the released run
+    resubmit: 1          # every stage resumes
+    done_when: ${BM_SCRATCH}/gate_rebuilt_gpu/predictor/gate/checksums.json
+  gate.retrain_gpu.compare_assets:
+    # dataset, features, normalisation, bases and decoder of the rebuilt tree against the team's tree
+    script: scripts/evaluate/gate_assets_diff.py
+    args: --reference ${BM_SCRATCH}/gate_team/root --candidate ${BM_SCRATCH}/gate_rebuilt_gpu --out ${BM_OUT}/gate/retrain_gpu
+    seeds: null
+    needs: [gate.retrain_gpu.assets]
+    resources: {cpus: 4, mem: 16G, time: "01:00:00"}
+  gate.retrain_gpu.compare_cpu:
+    # the tree built on CPU (gate.retrain_gpu.assets) against the tree built on a GPU: the dataset must be
+    # byte-identical; feature, basis and training-log differences measure CPU against GPU
+    script: scripts/evaluate/gate_assets_diff.py
+    args: --reference ${BM_SCRATCH}/gate_rebuilt --candidate ${BM_SCRATCH}/gate_rebuilt_gpu --out ${BM_OUT}/gate/retrain_gpu/cpu_tree --weights
+    seeds: null
+    needs: [gate.retrain_gpu.assets]
+    resources: {cpus: 4, mem: 16G, time: "01:00:00"}
+  gate.retrain_gpu.references:
+    script: scripts/run_oracles/gate.py
+    config: configs/gate/rebuilt_gpu.yaml
+    out: gate/retrain_gpu
+    seeds: [17, 29, 43]
+    needs: [gate.retrain_gpu.assets]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00"}
+  gate.retrain_gpu.heuristics:
+    script: scripts/run_baselines/gate.py
+    config: configs/gate/rebuilt_gpu.yaml
+    out: gate/retrain_gpu
+    seeds: [17, 29, 43]
+    needs: [gate.retrain_gpu.assets]
+    resources: {cpus: 8, mem: 16G, time: "01:00:00"}
+  gate.retrain_gpu.teacher_labels:
+    script: scripts/generate_teacher_labels/gate.py
+    config: configs/gate/rebuilt_gpu.yaml
+    out: gate/retrain_gpu
+    args: --out ${BM_RUN}/gate/retrain_gpu/labels
+    seeds: [17, 29, 43]
+    needs: [gate.retrain_gpu.assets]
+    resources: {cpus: 8, mem: 16G, time: "01:00:00"}
+  gate.retrain_gpu.train:
+    script: scripts/train_scorer/gate.py
+    config: configs/gate/rebuilt_gpu.yaml
+    out: gate/retrain_gpu
+    args: --labels ${BM_RUN}/gate/retrain_gpu/labels --checkpoints ${BM_RUN}/gate/retrain_gpu/students
+    seeds: [17, 29, 43]
+    needs: [gate.retrain_gpu.teacher_labels]
+    resources: {cpus: 4, mem: 8G, time: "00:30:00"}
+  gate.retrain_gpu.deletion_cost:
+    script: scripts/evaluate/gate.py
+    config: configs/gate/rebuilt_gpu.yaml
+    out: gate/retrain_gpu
+    seeds: [17, 29, 43]
+    needs: [gate.retrain_gpu.train]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00"}
+  gate.retrain_gpu.attention_proxy:
+    script: scripts/run_ablations/gate.py
+    config: configs/gate/rebuilt_gpu.yaml
+    out: gate/retrain_gpu
+    seeds: [17, 29, 43]
+    needs: [gate.retrain_gpu.train]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00"}
+  gate.retrain_gpu.pafu_kv:
+    script: scripts/train_baselines/gate.py
+    config: configs/gate/rebuilt_gpu.yaml
+    out: gate/retrain_gpu
+    seeds: [17, 29, 43]
+    variants: {method: [pafu_kv, pafu_kv_repo]}
+    needs: [gate.retrain_gpu.assets]
+    resources: {cpus: 8, mem: 16G, time: "01:00:00"}
+  # ---------------------------------------------------------------- Synergy, assets and migration check
+  synergy.assets.release:
+    script: scripts/prepare_data/synergy_release.py
+    args: --work ${BM_SCRATCH}/synergy
+    seeds: null
+    resources: {cpus: 2, mem: 8G, time: "01:00:00"}
+    done_when: ${BM_SCRATCH}/synergy/students_released/item_attention_standard/manifest.json
+  synergy.assets.trainvaldev:
+    script: scripts/prepare_data/synergy_trainvaldev.py
+    args: --release ${BM_SCRATCH}/synergy/terminal/run --work ${BM_SCRATCH}/synergy/trainvaldev_rebuilt --hf-cache ${HF_HOME}/hub --device cpu
+    seeds: null
+    needs: [synergy.assets.release]
+    resources: {cpus: 16, mem: 48G, time: "06:00:00"}
+    done_when: ${BM_SCRATCH}/synergy/trainvaldev_rebuilt/assets_report.json
+  synergy.assets.trainvaldev_gpu:
+    # The same re-encoding on a GPU, the device class the released features came from (the release
+    # log shows 229 s for the confirmation set). Feeds the synergy.retrain_gpu.* and reader retraining tasks.
+    script: scripts/prepare_data/synergy_trainvaldev.py
+    args: --release ${BM_SCRATCH}/synergy/terminal/run --work ${BM_SCRATCH}/synergy/trainvaldev_gpu --hf-cache ${HF_HOME}/hub --device cuda
+    seeds: null
+    needs: [synergy.assets.release]
+    resources: {cpus: 8, mem: 48G, time: "02:00:00", gpu: 1}
+    done_when: ${BM_SCRATCH}/synergy/trainvaldev_gpu/assets_report.json
+  synergy.validate.migration:
+    script: -m pytest -q -p no:cacheprovider tests/test_migration_synergy.py
+    seeds: null
+    cwd: repo
+    env: {BM_SYN: "${BM_SCRATCH}/synergy", BM_SYN_STUDENTS: "${BM_SCRATCH}/synergy/students_released", BM_MIGRATION_RECORDS: "576",
+          BM_LEGACY_TREE: "${BM_SCRATCH}/legacy_fe69074",
+          BM_MIGRATION_READERS: "multihead,item_attention",
+          BM_MIGRATION_REPORT: "${BM_OUT}/synergy/validate/students_vs_released_READER.json"}
+    needs: [synergy.assets.release]
+    resources: {cpus: 8, mem: 24G, time: "01:00:00"}
+  # ---------------------------------------------------------------- Synergy, replay
+  synergy.replay.stage_a:
+    script: scripts/generate_teacher_labels/synergy.py
+    config: configs/synergy/release.yaml
+    out: synergy/replay
+    seeds: [17]
+    variants: {reader: [multihead, item_attention]}
+    args: --split confirmation --labels ${BM_RUN}/synergy/stageA
+    needs: [synergy.assets.release, synergy.validate.migration]
+    resources: {cpus: 8, mem: 24G, time: "01:00:00"}
+  synergy.replay.references:
+    script: scripts/run_oracles/synergy.py
+    config: configs/synergy/release.yaml
+    out: synergy/replay
+    seeds: [17]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA
+    needs: [synergy.replay.stage_a]
+    resources: {cpus: 8, mem: 24G, time: "01:00:00"}
+  synergy.replay.rules:
+    script: scripts/run_baselines/synergy.py
+    config: configs/synergy/release.yaml
+    out: synergy/replay
+    seeds: [17]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA
+    needs: [synergy.replay.stage_a]
+    resources: {cpus: 2, mem: 8G, time: "00:20:00"}
+  synergy.replay.deletion_cost:
+    script: scripts/evaluate/synergy.py
+    config: configs/synergy/release.yaml
+    out: synergy/replay
+    seeds: [17, 29, 43]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA
+    needs: [synergy.replay.stage_a]
+    resources: {cpus: 4, mem: 8G, time: "00:20:00"}
+  synergy.replay.ablations:
+    script: scripts/run_ablations/synergy.py
+    config: configs/synergy/release.yaml
+    out: synergy/replay
+    seeds: [17, 29, 43]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA
+    needs: [synergy.replay.stage_a]
+    resources: {cpus: 4, mem: 8G, time: "00:20:00"}
+  synergy.replay.literature:
+    script: scripts/train_baselines/synergy.py
+    config: configs/synergy/release.yaml
+    out: synergy/replay
+    seeds: [17, 29, 43]
+    variants: {reader: [multihead, item_attention], method: [pafu_kv, pacc, framemorrow]}
+    args: --stage-a ${BM_RUN}/synergy/stageA
+    needs: [synergy.replay.stage_a, synergy.assets.trainvaldev]
+    resources: {cpus: 8, mem: 24G, time: "04:00:00"}
+  # ---------------------------------------------------------------- Synergy, our students retrained
+  synergy.retrain.stage_a:
+    script: scripts/generate_teacher_labels/synergy.py
+    config: configs/synergy/release.yaml
+    out: synergy/retrain
+    seeds: [17]
+    variants: {reader: [multihead, item_attention], split: [train, validation]}
+    args: --labels ${BM_RUN}/synergy/stageA
+    needs: [synergy.assets.trainvaldev, synergy.validate.migration]
+    resources: {cpus: 8, mem: 24G, time: "01:00:00"}
+  synergy.retrain.students:
+    script: scripts/train_scorer/synergy.py
+    config: configs/synergy/release.yaml
+    out: synergy/retrain
+    seeds: [17]
+    variants: {reader: [multihead, item_attention], mode: [standard, distilled]}
+    args: --stage-a ${BM_RUN}/synergy/stageA --students ${BM_RUN}/synergy/students_retrained
+    needs: [synergy.retrain.stage_a]
+    resources: {cpus: 4, mem: 16G, time: "02:00:00"}
+  synergy.retrain.deletion_cost:
+    script: scripts/evaluate/synergy.py
+    config: configs/synergy/release.yaml
+    out: synergy/retrain
+    seeds: [17, 29, 43]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA --students ${BM_RUN}/synergy/students_retrained
+    needs: [synergy.retrain.students, synergy.replay.stage_a]
+    resources: {cpus: 4, mem: 8G, time: "00:20:00"}
+  synergy.retrain.ablations:
+    script: scripts/run_ablations/synergy.py
+    config: configs/synergy/release.yaml
+    out: synergy/retrain
+    seeds: [17, 29, 43]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA --students ${BM_RUN}/synergy/students_retrained
+    needs: [synergy.retrain.students, synergy.replay.stage_a]
+    resources: {cpus: 4, mem: 8G, time: "00:20:00"}
+
+  # ---------------------------------------------------------------- Synergy, retrained on GPU-encoded features
+  # The synergy.retrain.* tasks above use features encoded on CPU. These repeat them on features
+  # encoded on a GPU, so that a difference from the release is not a difference of hardware.
+  synergy.retrain_gpu.stage_a:
+    script: scripts/generate_teacher_labels/synergy.py
+    config: configs/synergy/gpu_features.yaml
+    out: synergy/retrain_gpu
+    seeds: [17]
+    variants: {reader: [multihead, item_attention], split: [train, validation, confirmation]}
+    args: --labels ${BM_RUN}/synergy/stageA_gpu
+    needs: [synergy.assets.trainvaldev_gpu]
+    resources: {cpus: 8, mem: 24G, time: "01:00:00"}
+  synergy.retrain_gpu.students:
+    script: scripts/train_scorer/synergy.py
+    config: configs/synergy/gpu_features.yaml
+    out: synergy/retrain_gpu
+    seeds: [17]
+    variants: {reader: [multihead, item_attention], mode: [standard, distilled]}
+    args: --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu
+    needs: [synergy.retrain_gpu.stage_a]
+    resources: {cpus: 4, mem: 16G, time: "02:00:00"}
+  synergy.retrain_gpu.deletion_cost:
+    script: scripts/evaluate/synergy.py
+    config: configs/synergy/gpu_features.yaml
+    out: synergy/retrain_gpu
+    seeds: [17, 29, 43]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu
+    needs: [synergy.retrain_gpu.students]
+    resources: {cpus: 4, mem: 8G, time: "00:20:00"}
+  synergy.retrain_gpu.ablations:
+    script: scripts/run_ablations/synergy.py
+    config: configs/synergy/gpu_features.yaml
+    out: synergy/retrain_gpu
+    seeds: [17, 29, 43]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu
+    needs: [synergy.retrain_gpu.students]
+    resources: {cpus: 4, mem: 8G, time: "00:20:00"}
+
+  # ---------------------------------------------------------------- Synergy, readers retrained
+  synergy.retrain_readers.train:
+    script: scripts/train_predictor/synergy.py
+    args: --terminal ${BM_SCRATCH}/synergy/terminal/run --data ${BM_SCRATCH}/synergy/trainvaldev_rebuilt/data --out ${BM_RUN}/synergy/readers_rebuilt --device cpu --released ${BM_SCRATCH}/synergy/conf_full/build/reader-aggregation-20261025/hpc/extracted/run
+    seeds: null
+    needs: [synergy.assets.trainvaldev]
+    resources: {cpus: 4, mem: 32G, time: "02:00:00"}
+    done_when: ${BM_RUN}/synergy/readers_rebuilt/retraining_report.json
+  synergy.retrain_readers.stage_a:
+    script: scripts/generate_teacher_labels/synergy.py
+    config: configs/synergy/retrained_readers.yaml
+    out: synergy/retrain_readers
+    seeds: [17]
+    variants: {reader: [multihead, item_attention]}
+    args: --split confirmation --labels ${BM_RUN}/synergy/stageA_retrained_readers
+    needs: [synergy.retrain_readers.train]
+    resources: {cpus: 8, mem: 24G, time: "01:00:00"}
+  synergy.retrain_readers.references:
+    script: scripts/run_oracles/synergy.py
+    config: configs/synergy/retrained_readers.yaml
+    out: synergy/retrain_readers
+    seeds: [17]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA_retrained_readers
+    needs: [synergy.retrain_readers.stage_a]
+    resources: {cpus: 8, mem: 24G, time: "01:00:00"}
+  synergy.retrain_readers.rules:
+    script: scripts/run_baselines/synergy.py
+    config: configs/synergy/retrained_readers.yaml
+    out: synergy/retrain_readers
+    seeds: [17]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA_retrained_readers
+    needs: [synergy.retrain_readers.stage_a]
+    resources: {cpus: 2, mem: 8G, time: "00:20:00"}
+  # ---------------------------------------------------------------- Synergy, readers retrained on a GPU
+  # The same on features encoded on a GPU and with training on a GPU, the original study's default device.
+  synergy.retrain_readers_gpu.train:
+    script: scripts/train_predictor/synergy.py
+    args: --terminal ${BM_SCRATCH}/synergy/terminal/run --data ${BM_SCRATCH}/synergy/trainvaldev_gpu/data --out ${BM_RUN}/synergy/readers_rebuilt_gpu --device cuda --released ${BM_SCRATCH}/synergy/conf_full/build/reader-aggregation-20261025/hpc/extracted/run
+    seeds: null
+    needs: [synergy.assets.trainvaldev_gpu]
+    resources: {cpus: 4, mem: 32G, time: "02:00:00", gpu: 1}
+    done_when: ${BM_RUN}/synergy/readers_rebuilt_gpu/retraining_report.json
+  synergy.retrain_readers_gpu.stage_a:
+    script: scripts/generate_teacher_labels/synergy.py
+    config: configs/synergy/retrained_readers_gpu.yaml
+    out: synergy/retrain_readers_gpu
+    seeds: [17]
+    variants: {reader: [multihead, item_attention]}
+    args: --split confirmation --labels ${BM_RUN}/synergy/stageA_retrained_readers_gpu
+    needs: [synergy.retrain_readers_gpu.train]
+    resources: {cpus: 8, mem: 24G, time: "01:00:00"}
+  synergy.retrain_readers_gpu.references:
+    script: scripts/run_oracles/synergy.py
+    config: configs/synergy/retrained_readers_gpu.yaml
+    out: synergy/retrain_readers_gpu
+    seeds: [17]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA_retrained_readers_gpu
+    needs: [synergy.retrain_readers_gpu.stage_a]
+    resources: {cpus: 8, mem: 24G, time: "01:00:00"}
+  synergy.retrain_readers_gpu.rules:
+    script: scripts/run_baselines/synergy.py
+    config: configs/synergy/retrained_readers_gpu.yaml
+    out: synergy/retrain_readers_gpu
+    seeds: [17]
+    variants: {reader: [multihead, item_attention]}
+    args: --stage-a ${BM_RUN}/synergy/stageA_retrained_readers_gpu
+    needs: [synergy.retrain_readers_gpu.stage_a]
+    resources: {cpus: 2, mem: 8G, time: "00:20:00"}
+  # ---------------------------------------------------------------- Motion v2: evidence replay only
+  motion_v2.replay.evidence:
+    script: scripts/evaluate/motion_v2.py
+    config: configs/motion_v2/evidence.yaml
+    out: motion_v2/replay
+    seeds: [0]
+    resources: {cpus: 2, mem: 4G, time: "00:10:00"}
+  motion_v2.retrain.students:
+    # refits the 54 student arms from the tracked teacher labels and compares each with its recorded history
+    script: scripts/train_scorer/motion_v2.py
+    config: configs/motion_v2/evidence.yaml
+    out: motion_v2/retrain
+    seeds: [0]
+    args: --students ${BM_RUN}/motion_v2/students_retrained
+    resources: {cpus: 4, mem: 8G, time: "01:00:00"}
+  # ---------------------------------------------------------------- PushT: data preparation only
+  pusht.prepare_data:
+    script: scripts/prepare_data/pusht.py
+    seeds: null
+    variants: {version: [v5, v4]}
+    args: --output-root ${BM_SCRATCH}/pusht --processes 32
+    resources: {cpus: 32, mem: 96G, time: "01:00:00"}
+  pusht.train_predictor:
+    script: scripts/train_predictor/pusht.py
+    seeds: null
+    resources: {cpus: 2, mem: 4G, time: "00:10:00"}
+    expected: fails; no PushT predictor exists
+
+results:
+  # Gate has two retraining routes. retrain_scorer: only our scorer and its twin are retrained, on the team's
+  # frozen predictors (isolates the method). retrain: dataset, features and predictors are regenerated first
+  # (tasks gate.retrain.*), then every reference, heuristic, our scorer and PaFu-KV are run on those predictors.
+  # Compress to Remember and FrameMorrow are not rerun on the retrained predictors.
+  gate:
+    # id: the policy name in the row files. group: reference | project_baseline | ablation | literature | ours.
+    # memory: none | bounded (two slots, online) | full_history (reads every eligible frame) | privileged (uses cue timestamps).
+    - {id: recent_only, panel_key: floor, group: reference, memory: none, method: none,
+       replay: {task: gate.replay.references, status: replayable, tolerance: exact}}
+    - {id: oracle_keyframe, panel_key: oracle, group: reference, memory: privileged, method: evaluation/oracles/gate.py oracle_keyframe,
+       replay: {task: gate.replay.references, status: replayable, tolerance: exact}}
+    - {id: full_history, panel_key: null, group: reference, memory: full_history, method: evaluation/oracles/gate.py full_history,
+       replay: {task: gate.replay.references, status: replayable, tolerance: exact},
+       note: the teacher that Compress to Remember copies; not a bounded policy}
+    - {id: fifo, panel_key: fifo, group: project_baseline, memory: bounded, method: evaluation/heuristics/gate.py,
+       replay: {task: gate.replay.heuristics, status: replayable, tolerance: exact}}
+    - {id: reservoir, panel_key: reservoir, group: project_baseline, memory: bounded, method: evaluation/heuristics/gate.py,
+       replay: {task: gate.replay.heuristics, status: replayable, tolerance: exact}}
+    - {id: temporal_buckets, panel_key: buckets, group: project_baseline, memory: bounded, method: evaluation/heuristics/gate.py,
+       replay: {task: gate.replay.heuristics, status: replayable, tolerance: exact}}
+    - {id: visual_diversity, panel_key: diversity, group: project_baseline, memory: bounded, method: evaluation/heuristics/gate.py,
+       replay: {task: gate.replay.heuristics, status: replayable, tolerance: exact}}
+    - {id: prediction_surprise, panel_key: surprise, group: project_baseline, memory: bounded, method: evaluation/heuristics/gate.py,
+       replay: {task: gate.replay.heuristics, status: replayable, tolerance: exact}}
+    - {id: attention, panel_key: attention, group: project_baseline, memory: bounded, method: evaluation/heuristics/gate.py,
+       replay: {task: gate.replay.heuristics, status: replayable, tolerance: exact},
+       note: the comparator the README retired from its table}
+    - {id: attention_proxy_student, panel_key: proxy, group: ablation, memory: bounded,
+       method: methods/deletion_cost with the attention-proxy teacher (ablations/attention_proxy.py),
+       replay: {task: gate.replay.attention_proxy, status: replayable, tolerance: exact, checkpoint: "published student_<seed>.pt, first arm"},
+       retrain: {tasks: [gate.retrain_scorer.teacher_labels, gate.retrain_scorer.train, gate.retrain_scorer.attention_proxy],
+                 status: retrainable, tolerance: per_seed}}
+    - {id: deletion_cost_student, panel_key: ours, group: ours, memory: bounded,
+       method: methods/deletion_cost (scorer.py, teacher.py, retention.py, training.py),
+       training_procedure: "4,096 training states from four behaviour policies; teacher = frozen predictor error after each deletion; 1,000 AdamW steps of 64, no validation selection",
+       replay: {task: gate.replay.deletion_cost, status: replayable, tolerance: exact, checkpoint: "published student_<seed>.pt, second arm"},
+       retrain: {tasks: [gate.retrain_scorer.teacher_labels, gate.retrain_scorer.train, gate.retrain_scorer.deletion_cost],
+                 status: retrainable, tolerance: per_seed}}
+    - {id: pafu_kv, panel_key: pafu, group: literature, memory: bounded, method: methods/pafu_kv/gate.py,
+       replay: {task: gate.replay.pafu_kv, variant: pafu_kv, status: retrainable, tolerance: per_seed},
+       note: "no released checkpoint; trained here on the frozen predictor, 1000 steps"}
+    - {id: pafu_teacher_top2, panel_key: null, group: literature_teacher, memory: privileged, method: methods/pafu_kv/gate.py teacher_select,
+       replay: {task: gate.replay.pafu_kv, variant: pafu_kv, status: replayable, tolerance: exact},
+       note: diagnostic; the future-reading signal PaFu-KV is trained to copy}
+    - {id: pafu_kv_repo, panel_key: pafu_repo, group: literature, memory: bounded, method: methods/pafu_kv/repo_adaptation.py,
+       replay: {task: gate.replay.pafu_kv, variant: pafu_kv_repo, status: retrainable, tolerance: per_seed}}
+    - {id: pacc_full, panel_key: c2r, group: literature, memory: full_history, method: methods/pacc (variant full),
+       replay: {task: gate.replay.pacc, variant: pacc_full, status: retrainable, tolerance: per_seed},
+       note: as published it reads the whole eligible history at the query}
+    - {id: pacc_recurrent, panel_key: c2r_slots, group: literature, memory: bounded, method: methods/pacc (variant recurrent),
+       replay: {task: gate.replay.pacc, variant: pacc_recurrent, status: retrainable, tolerance: unstable},
+       note: "not in the paper; training fails on one of three seeds on CPU and on both seeds tried on GPU, so per-seed values can flip between runs"}
+    - {id: fm_dinov2_published, panel_key: fm, group: literature, memory: full_history, method: methods/framemorrow/gate.py select_published,
+       replay: {task: gate.replay.framemorrow, variant: fm_dinov2_published, status: retrainable, tolerance: per_seed}}
+    - {id: fm_dinov2_teacher_top2, panel_key: null, group: literature_teacher, memory: privileged, method: methods/framemorrow/gate.py select_teacher,
+       replay: {task: gate.replay.framemorrow, variant: fm_dinov2_published, status: replayable, tolerance: exact}}
+    - {id: fm_dinov2_online, panel_key: fm_slots, group: literature, memory: bounded, method: methods/framemorrow/gate.py select_online,
+       replay: {task: gate.replay.framemorrow, variant: fm_dinov2_online, status: retrainable, tolerance: per_seed}}
+    - {id: fm_ijepa_published, panel_key: null, group: literature, memory: full_history, method: methods/framemorrow/gate.py,
+       replay: {status: not_run}, note: optional variant on the project's I-JEPA features; never run}
+    - {id: fm_ijepa_online, panel_key: null, group: literature, memory: bounded, method: methods/framemorrow/gate.py,
+       replay: {status: not_run}, note: optional variant on the project's I-JEPA features; never run}
+
+  synergy:
+    # Reported per reader (multihead, item_attention) and task family (R, D, S). The panel shows S on the multihead reader.
+    - {id: fifo, panel_key: floor, group: reference, memory: bounded, method: delete the oldest card,
+       replay: {task: synergy.replay.rules, status: replayable, tolerance: exact}}
+    - {id: oracle, panel_key: oracle, group: reference, memory: privileged, method: lowest-error deletion,
+       replay: {task: synergy.replay.references, status: replayable, tolerance: exact}}
+    - {id: three_cards, panel_key: null, group: reference, memory: full_history, method: the reader given all three cards,
+       replay: {task: synergy.replay.references, status: replayable, tolerance: exact},
+       note: the teacher that Compress to Remember copies; not a bounded memory}
+    - {id: attention, panel_key: attention, group: project_baseline, memory: bounded, method: evaluation/heuristics/synergy.py,
+       replay: {task: synergy.replay.rules, status: replayable, tolerance: exact}}
+    - {id: full_set_sensitivity, panel_key: sensitivity, group: project_baseline, memory: bounded, method: evaluation/heuristics/synergy.py,
+       replay: {task: synergy.replay.rules, status: replayable, tolerance: exact}}
+    - {id: medoid, panel_key: null, group: project_baseline, memory: bounded, method: evaluation/heuristics/synergy.py,
+       replay: {task: synergy.replay.rules, status: replayable, tolerance: none},
+       note: scored by the study but not part of the frozen reference values}
+    - {id: deletion_cost_student_set, panel_key: ours, group: ours, memory: bounded,
+       method: methods/deletion_cost (terminal.py teacher labels; terminal_students.py set-conditioned scorer),
+       training_procedure: "labels = mean reader loss per deletion over 16 reference plans on 3,456 TRAIN records; 1,000 steps of 128; checkpoint with the lowest own-label validation cross-entropy, step 0 included",
+       replay: {task: synergy.replay.deletion_cost, status: replayable, tolerance: exact, checkpoint: released student archive <reader>_standard},
+       retrain: {tasks: [synergy.retrain.stage_a, synergy.retrain.students, synergy.retrain.deletion_cost], status: retrainable, tolerance: per_seed}}
+    - {id: deletion_cost_student_independent, panel_key: cost_ind, group: ablation, memory: bounded, method: ours with independent scoring,
+       replay: {task: synergy.replay.ablations, status: replayable, tolerance: exact},
+       retrain: {tasks: [synergy.retrain.students, synergy.retrain.ablations], status: retrainable, tolerance: per_seed}}
+    - {id: future_attention_student_set, panel_key: fut_set, group: ablation, memory: bounded, method: set-conditioned scorer trained on the future-attention teacher,
+       replay: {task: synergy.replay.ablations, status: replayable, tolerance: exact},
+       retrain: {tasks: [synergy.retrain.students, synergy.retrain.ablations], status: retrainable, tolerance: per_seed}}
+    - {id: future_attention_student_independent, panel_key: fut_ind, group: ablation, memory: bounded, method: independent scorer trained on the future-attention teacher,
+       replay: {task: synergy.replay.ablations, status: replayable, tolerance: exact},
+       retrain: {tasks: [synergy.retrain.students, synergy.retrain.ablations], status: retrainable, tolerance: per_seed}}
+    - {id: shuffled_label_student_set, panel_key: shuf_set, group: ablation, memory: bounded, method: set-conditioned scorer trained on shuffled cost labels,
+       replay: {task: synergy.replay.ablations, status: replayable, tolerance: exact},
+       retrain: {tasks: [synergy.retrain.students, synergy.retrain.ablations], status: retrainable, tolerance: per_seed}}
+    - {id: shuffled_label_student_independent, panel_key: shuf_ind, group: ablation, memory: bounded, method: independent scorer trained on shuffled cost labels,
+       replay: {task: synergy.replay.ablations, status: replayable, tolerance: exact},
+       retrain: {tasks: [synergy.retrain.students, synergy.retrain.ablations], status: retrainable, tolerance: per_seed}}
+    - {id: appearance_only_student, panel_key: appearance, group: ablation, memory: bounded, method: independent cost scorer restricted to appearance features,
+       note: "cards that look identical get equal logits; which one is deleted depends on CPU rounding (0.06 to 0.4% of records differ from the release on x86)",
+       replay: {task: synergy.replay.ablations, status: replayable, tolerance: tie_sensitive},
+       retrain: {tasks: [synergy.retrain.students, synergy.retrain.ablations], status: retrainable, tolerance: per_seed}}
+    - {id: distilled_sensitivity_student_set, panel_key: dist_set, group: ablation, memory: bounded, method: set-conditioned scorer distilled from the full-set sensitivity,
+       replay: {task: synergy.replay.ablations, status: replayable, tolerance: exact},
+       retrain: {tasks: [synergy.retrain.students, synergy.retrain.ablations], status: retrainable, tolerance: per_seed}}
+    - {id: distilled_sensitivity_student_independent, panel_key: dist_ind, group: ablation, memory: bounded, method: independent scorer distilled from the full-set sensitivity,
+       replay: {task: synergy.replay.ablations, status: replayable, tolerance: exact},
+       retrain: {tasks: [synergy.retrain.students, synergy.retrain.ablations], status: retrainable, tolerance: per_seed}}
+    - {id: pafu_kv, panel_key: pafu, group: literature, memory: bounded, method: methods/pafu_kv/synergy.py,
+       replay: {task: synergy.replay.literature, variant: pafu_kv, status: retrainable, tolerance: per_seed}}
+    - {id: pafu_teacher_top2, panel_key: null, group: literature_teacher, memory: privileged, method: methods/pafu_kv/synergy.py pafu_teacher,
+       replay: {task: synergy.replay.literature, variant: pafu_kv, status: replayable, tolerance: exact}}
+    - {id: pacc, panel_key: c2r_slots, group: literature, memory: bounded, method: methods/pacc/synergy.py,
+       replay: {task: synergy.replay.literature, variant: pacc, status: retrainable, tolerance: per_seed},
+       note: "blends three cards into two learned items and deletes nothing; scores below its own teacher (three_cards), cause untested"}
+    - {id: fm_published, panel_key: fm, group: literature, memory: bounded, method: methods/framemorrow/synergy.py,
+       replay: {task: synergy.replay.literature, variant: framemorrow, status: retrainable, tolerance: per_seed}}
+    - {id: fm_teacher_top2, panel_key: null, group: literature_teacher, memory: privileged, method: methods/framemorrow/synergy.py framemorrow_teacher,
+       replay: {task: synergy.replay.literature, variant: framemorrow, status: replayable, tolerance: exact}}
+    - {id: readers, panel_key: null, group: predictor, memory: null, method: predictors/readers.py,
+       replay: {status: replayable, note: released checkpoints loaded by pinned SHA256},
+       retrain: {tasks: [synergy.retrain_readers.train, synergy.retrain_readers.stage_a, synergy.retrain_readers.references, synergy.retrain_readers.rules],
+                 status: retrainable, tolerance: per_seed,
+                 note: "environments/synergy/train_readers.py on features re-encoded by environments/synergy/dataset.py (the original study only accepted the team's unpublished cache); the retrained readers are compared on the confirmation cost table and the reference policies, students are not retrained on them"}}
+  motion_v2:
+    # Every number is recomputed from tracked loss arrays (status replayable); nothing can be rerun on the environment.
+    - {id: reference_arms, panel_keys: {a: floor, b: oracle}, group: reference, metric: position_mse,
+       replay: {task: motion_v2.replay.evidence, status: replayable, tolerance: exact, source: step-2 reader qualification (v2.3.1)},
+       retrain: {status: extracted_only, note: "reader training not attempted; see environments.motion_v2.from_scratch"}}
+    - {id: online_validation, group: all methods, metric: position_mse,
+       covers: "7 project baselines, 18 student arms (2 architectures x 9 labels), 3 references; ordinary and long-gap intervals; horizons +3 and +6",
+       replay: {task: motion_v2.replay.evidence, status: replayable, tolerance: exact, source: step 3/4 online validation (17925)},
+       retrain: {task: motion_v2.retrain.students, status: assets_missing,
+                 note: "the 54 students are refitted from the tracked labels (motion_v2.retrain.students), but scoring them online needs the frozen readers and features"}}
+    - {id: student_selection, group: negative_result,
+       finding: "16 of 18 student arms, including every deletion-cost and shuffled-label arm, kept their initial weights: validation cross-entropy never improved on step 0; only the two future-attention arms trained",
+       replay: {task: motion_v2.replay.evidence, status: replayable, tolerance: exact}, retrain: {task: motion_v2.retrain.students, status: retrainable, tolerance: per_seed,
+                 note: "refitted from the tracked teacher labels; compared with the recorded training histories"}}
+    - {id: literature_baselines, panel_keys: [pafu, c2r, fm], group: literature, replay: {status: assets_missing}, retrain: {status: not_run},
+       note: "PaFu-KV, Compress to Remember and FrameMorrow were never run on Motion v2"}
+  pusht:
+    - {id: v5_marker_corpus, group: data, replay: {status: not_run}, retrain: {task: pusht.prepare_data, variant: v5, status: retrainable,
+       note: "needs the PushT simulator packages (gym-pusht, pymunk); not rerun in this reproduction"}}
+    - {id: v4_natural_corpus, group: data, replay: {status: not_run}, retrain: {task: pusht.prepare_data, variant: v4, status: retrainable,
+       note: "needs the PushT simulator packages; not rerun in this reproduction"}}
+    - {id: v4_diagnostics, group: diagnostic, source: results/pusht_cog/v4_pose_decoding_20261108.json,
+       replay: {status: assets_missing, note: v4 I-JEPA features are on a teammate's project storage}, retrain: {status: not_run}}
+    - {id: predictor, group: predictor, replay: {status: not_run}, retrain: {task: pusht.train_predictor, status: not_run}, note: no PushT predictor has been trained}
+    - {id: retention, panel_keys: [floor, oracle, pafu, c2r, fm, ours], group: all methods, replay: {status: not_run}, retrain: {status: not_run},
+       note: no retention result exists for PushT}

@@ -6,9 +6,14 @@ import hashlib
 import json
 from pathlib import Path
 
-from experiments.phase2 import fit_terminal_students as students
+import sys
+from pathlib import Path
 
-from experiments.phase2.fit_terminal_students import (
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+from bounded_memory.methods.deletion_cost import terminal_students as students  # noqa: E402
+
+from bounded_memory.methods.deletion_cost.terminal_students import (  # noqa: E402
     TerminalScorer, architecture_plan, fit_normalization, normalize_inputs,
     soft_targets, stable_parent_permutations, training_label_scales,
     validate_inputs, _validation,

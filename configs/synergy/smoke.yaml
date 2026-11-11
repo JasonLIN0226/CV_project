@@ -1,0 +1,35 @@
+# Mechanics check on local copies of the release assets (confirmation only). Baselines trained
+# with this config use a slice of the confirmation set and tiny settings: never a result.
+environment: synergy
+assets:
+  terminal: ${BM_SYN}/terminal_min/run
+  train_features: ${BM_SYN}/conf_xfer
+  confirmation: ${BM_SYN}/conf_xfer
+  readers: ${BM_SYN}/conf_full/build/reader-aggregation-20261025/hpc/extracted/run
+  released: ${BM_SYN}/conf_full/results/literature_diagnosis/qualified-reader-retention-20261025
+  appearance_trainvaldev: ${BM_SYN}/conf_full/build/qualified-reader-conf-20261026/dev-preflight/appearance_all.npz
+  students: ${BM_SYN_STUDENTS}      # the released student archives, unzipped
+protocol:
+  readers: [multihead, item_attention]
+  reader_seed: 17
+  student_seeds: [17, 29, 43]
+  split: confirmation
+  records: 3456
+students:                       # StudentConfig of the frozen study (experiments/phase2/configs/terminal_structures_20261025.json)
+  seeds: [17, 29, 43]
+  steps: 1000
+  batch_size: 128
+  validate_every: 100
+  validation_batch_size: 512
+  learning_rate: 0.001
+  grad_clip: 1.0
+  independent_width: 64
+  shuffle_seed: 20261108
+  batch_seed_offset: 300000
+  standard_deviation_floor: 0.0001
+  label_scale_floor: 1.0e-08
+  cpu_threads: 4            # part of the frozen student settings; changing it can change float summation order
+baselines:
+  pafu_kv: {steps: 50}
+  pacc: {steps: 10}
+  framemorrow: {epochs: 1, hidden: 32, layers: 1}

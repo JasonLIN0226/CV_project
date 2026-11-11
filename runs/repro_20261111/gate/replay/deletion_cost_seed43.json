@@ -1,0 +1,5474 @@
+{
+  "task": "deletion_cost",
+  "seed": 43,
+  "device": "cpu",
+  "host": "cs729.hpc.nyu.edu",
+  "python": "3.11.18",
+  "torch": "2.5.1+cu121",
+  "numpy": "1.26.4",
+  "threads": 4,
+  "config": "configs/gate/team_bundle.yaml",
+  "source_sha256": "b27b2a27039b82a48a98c8325e8d8ba78b383172ca10e2c8a374c43335a74358",
+  "slurm_job_id": "22723924",
+  "seconds": 46.68146800994873,
+  "info": {
+    "students": {
+      "source": "frozen checkpoint, not retrained",
+      "file": "student_43.pt",
+      "sha256": "3cdf05fc92348d511ef81f037939e3c38a2e0cec1b38323099c15c96e92f5f9f"
+    },
+    "original_validation_check": {
+      "attention": {
+        "rows": 384,
+        "route_mismatches": 0,
+        "max_abs_mse_diff": 0.0,
+        "original_route_accuracy": 0.8802083333333334,
+        "this_run_route_accuracy": 0.8802083333333334
+      },
+      "attention_proxy_student": {
+        "rows": 384,
+        "route_mismatches": 0,
+        "max_abs_mse_diff": 5.960464477539063e-08,
+        "original_route_accuracy": 0.546875,
+        "this_run_route_accuracy": 0.546875
+      },
+      "deletion_cost_student": {
+        "rows": 384,
+        "route_mismatches": 0,
+        "max_abs_mse_diff": 1.1920928955078125e-07,
+        "original_route_accuracy": 0.9505208333333334,
+        "this_run_route_accuracy": 0.9505208333333334
+      },
+      "fifo": {
+        "rows": 384,
+        "route_mismatches": 0,
+        "max_abs_mse_diff": 0.0,
+        "original_route_accuracy": 0.5625,
+        "this_run_route_accuracy": 0.5625
+      },
+      "oracle_keyframe": {
+        "rows": 384,
+        "route_mismatches": 0,
+        "max_abs_mse_diff": 8.940696716308594e-08,
+        "original_route_accuracy": 0.9609375,
+        "this_run_route_accuracy": 0.9609375
+      },
+      "prediction_surprise": {
+        "rows": 384,
+        "route_mismatches": 0,
+        "max_abs_mse_diff": 0.0,
+        "original_route_accuracy": 0.6588541666666666,
+        "this_run_route_accuracy": 0.6588541666666666
+      },
+      "recent_only": {
+        "rows": 384,
+        "route_mismatches": 0,
+        "max_abs_mse_diff": 5.960464477539063e-08,
+        "original_route_accuracy": 0.5,
+        "this_run_route_accuracy": 0.5
+      },
+      "reservoir": {
+        "rows": 384,
+        "route_mismatches": 0,
+        "max_abs_mse_diff": 0.0,
+        "original_route_accuracy": 0.5703125,
+        "this_run_route_accuracy": 0.5703125
+      },
+      "temporal_buckets": {
+        "rows": 384,
+        "route_mismatches": 0,
+        "max_abs_mse_diff": 0.0,
+        "original_route_accuracy": 0.5651041666666666,
+        "this_run_route_accuracy": 0.5651041666666666
+      },
+      "visual_diversity": {
+        "rows": 384,
+        "route_mismatches": 0,
+        "max_abs_mse_diff": 0.0,
+        "original_route_accuracy": 0.71875,
+        "this_run_route_accuracy": 0.71875
+      }
+    }
+  },
+  "environment": "gate",
+  "validation_episodes": 192,
+  "train_episodes": 1024,
+  "rows": [
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9118ce8a2add875b20b6fcc6",
+      "pair": "f2e35fc66ee530829f32a849",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10026707500219345,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9118ce8a2add875b20b6fcc6",
+      "pair": "f2e35fc66ee530829f32a849",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08496731519699097,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ae8a7fb76e9d368c1e493f74",
+      "pair": "f2e35fc66ee530829f32a849",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12214678525924683,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ae8a7fb76e9d368c1e493f74",
+      "pair": "f2e35fc66ee530829f32a849",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10337487608194351,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ca6a8dfb354e0e3a32b168b5",
+      "pair": "a8b059b33e2c6b4e440df08e",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07566040009260178,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ca6a8dfb354e0e3a32b168b5",
+      "pair": "a8b059b33e2c6b4e440df08e",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07093270123004913,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "386471ca238ab490d50003b8",
+      "pair": "a8b059b33e2c6b4e440df08e",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07893706113100052,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "386471ca238ab490d50003b8",
+      "pair": "a8b059b33e2c6b4e440df08e",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0691729411482811,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "166372a35f8c6fd13bc9b52b",
+      "pair": "80519b0c02e6b47b2fda9e5f",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08266103267669678,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "166372a35f8c6fd13bc9b52b",
+      "pair": "80519b0c02e6b47b2fda9e5f",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08104279637336731,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e475ec44b27f5dc746f3cca3",
+      "pair": "80519b0c02e6b47b2fda9e5f",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09637929499149323,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e475ec44b27f5dc746f3cca3",
+      "pair": "80519b0c02e6b47b2fda9e5f",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08359836041927338,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "282f0d2360384d7e394e2c3c",
+      "pair": "9728640b7a6a021c92456d69",
+      "horizon": 3,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.11373385041952133,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "282f0d2360384d7e394e2c3c",
+      "pair": "9728640b7a6a021c92456d69",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11525604873895645,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e49a2e3666084c7230f864c9",
+      "pair": "9728640b7a6a021c92456d69",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09108223766088486,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e49a2e3666084c7230f864c9",
+      "pair": "9728640b7a6a021c92456d69",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08403220027685165,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e9fd28e093bde9db679ebcd4",
+      "pair": "fa71512453c35753f6884fe1",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08655281364917755,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e9fd28e093bde9db679ebcd4",
+      "pair": "fa71512453c35753f6884fe1",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08225765079259872,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "6fc264d40c15cbd2cf93fc99",
+      "pair": "fa71512453c35753f6884fe1",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09306558966636658,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "6fc264d40c15cbd2cf93fc99",
+      "pair": "fa71512453c35753f6884fe1",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07859301567077637,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "aaf4671ff51ecb16ead1fab5",
+      "pair": "2befc86489396b4562dd1ad3",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08153712004423141,
+      "cue_kept": 1.0,
+      "kept": [
+        0,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "aaf4671ff51ecb16ead1fab5",
+      "pair": "2befc86489396b4562dd1ad3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08240433037281036,
+      "cue_kept": 1.0,
+      "kept": [
+        0,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "dc58d0817572f6bf5a3e04a6",
+      "pair": "2befc86489396b4562dd1ad3",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08341342210769653,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "dc58d0817572f6bf5a3e04a6",
+      "pair": "2befc86489396b4562dd1ad3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08899928629398346,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9d8655230948536e88eb6be9",
+      "pair": "545565f97258fddd922b6800",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08597111701965332,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9d8655230948536e88eb6be9",
+      "pair": "545565f97258fddd922b6800",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09056304395198822,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "34e87c96acd63737bf8a0a15",
+      "pair": "545565f97258fddd922b6800",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08119704574346542,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "34e87c96acd63737bf8a0a15",
+      "pair": "545565f97258fddd922b6800",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08633624017238617,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0831baa850b35d375cdb5aec",
+      "pair": "1c060482306d704707d07f22",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09917192906141281,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0831baa850b35d375cdb5aec",
+      "pair": "1c060482306d704707d07f22",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08982256054878235,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "aa912a175c576d02b686b373",
+      "pair": "1c060482306d704707d07f22",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10096363723278046,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "aa912a175c576d02b686b373",
+      "pair": "1c060482306d704707d07f22",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09873532503843307,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4f98809d85a70804553b6403",
+      "pair": "35bc7c7176d6c55779c370df",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09432584047317505,
+      "cue_kept": 1.0,
+      "kept": [
+        0,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4f98809d85a70804553b6403",
+      "pair": "35bc7c7176d6c55779c370df",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10308148711919785,
+      "cue_kept": 1.0,
+      "kept": [
+        0,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "bf6d8350104a1e7daad49c45",
+      "pair": "35bc7c7176d6c55779c370df",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1149558275938034,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "bf6d8350104a1e7daad49c45",
+      "pair": "35bc7c7176d6c55779c370df",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12355099618434906,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f5d77387bb26e991d4122468",
+      "pair": "6b884c99277386dfdc11014c",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09193625301122665,
+      "cue_kept": 1.0,
+      "kept": [
+        3,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f5d77387bb26e991d4122468",
+      "pair": "6b884c99277386dfdc11014c",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10432245582342148,
+      "cue_kept": 1.0,
+      "kept": [
+        3,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d8114fdd5963171a6f2d5bcb",
+      "pair": "6b884c99277386dfdc11014c",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09844387322664261,
+      "cue_kept": 1.0,
+      "kept": [
+        3,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d8114fdd5963171a6f2d5bcb",
+      "pair": "6b884c99277386dfdc11014c",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0980190858244896,
+      "cue_kept": 1.0,
+      "kept": [
+        3,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "47d30cd814515ba8e2131667",
+      "pair": "206c1531237e050474813b19",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10483348369598389,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "47d30cd814515ba8e2131667",
+      "pair": "206c1531237e050474813b19",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09861122071743011,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "53bbc821b82e7437026a87cb",
+      "pair": "206c1531237e050474813b19",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08100961148738861,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "53bbc821b82e7437026a87cb",
+      "pair": "206c1531237e050474813b19",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09703068435192108,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "69ce238a8c5d9c94cd83a56e",
+      "pair": "f904b7c4e97166f1f6ce5719",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0988958552479744,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "69ce238a8c5d9c94cd83a56e",
+      "pair": "f904b7c4e97166f1f6ce5719",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1240689754486084,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2325c0a271fe02df68b174a8",
+      "pair": "f904b7c4e97166f1f6ce5719",
+      "horizon": 3,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.16761808097362518,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2325c0a271fe02df68b174a8",
+      "pair": "f904b7c4e97166f1f6ce5719",
+      "horizon": 6,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.15043148398399353,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d21e7d9b1eff594b47e53fa3",
+      "pair": "6c7f7dcafb211a01690ac8ba",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1034667044878006,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d21e7d9b1eff594b47e53fa3",
+      "pair": "6c7f7dcafb211a01690ac8ba",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09139229357242584,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "749d52641b461c43c6945427",
+      "pair": "6c7f7dcafb211a01690ac8ba",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08532583713531494,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "749d52641b461c43c6945427",
+      "pair": "6c7f7dcafb211a01690ac8ba",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08536318689584732,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "61088cf54bb316c4dae9c636",
+      "pair": "6f45749f1f73a9b93835e556",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06842327862977982,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "61088cf54bb316c4dae9c636",
+      "pair": "6f45749f1f73a9b93835e556",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0714845210313797,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d8c640d66aead92c256a6cde",
+      "pair": "6f45749f1f73a9b93835e556",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07921542227268219,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d8c640d66aead92c256a6cde",
+      "pair": "6f45749f1f73a9b93835e556",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08001720905303955,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3ecd3697454d09d71fdf1cf0",
+      "pair": "0b2ef028305f3f070f83af7b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1195610761642456,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3ecd3697454d09d71fdf1cf0",
+      "pair": "0b2ef028305f3f070f83af7b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11703343689441681,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "22e0fa16a7c41e63135b376c",
+      "pair": "0b2ef028305f3f070f83af7b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11730165779590607,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "22e0fa16a7c41e63135b376c",
+      "pair": "0b2ef028305f3f070f83af7b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10060001909732819,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b930659e44832b285b0bfc0e",
+      "pair": "6f9db342d9a96c113f7b4470",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.13548465073108673,
+      "cue_kept": 1.0,
+      "kept": [
+        21,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b930659e44832b285b0bfc0e",
+      "pair": "6f9db342d9a96c113f7b4470",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1301131546497345,
+      "cue_kept": 1.0,
+      "kept": [
+        21,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b268409d1a0351653168692d",
+      "pair": "6f9db342d9a96c113f7b4470",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12748494744300842,
+      "cue_kept": 1.0,
+      "kept": [
+        21,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b268409d1a0351653168692d",
+      "pair": "6f9db342d9a96c113f7b4470",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11648943275213242,
+      "cue_kept": 1.0,
+      "kept": [
+        21,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "428d0cf92526eda1a6a677ae",
+      "pair": "fbf4a34a37d94c609761b0a9",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0937495231628418,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "428d0cf92526eda1a6a677ae",
+      "pair": "fbf4a34a37d94c609761b0a9",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10551252216100693,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9fc09eae44c4bba4dfb53f5d",
+      "pair": "fbf4a34a37d94c609761b0a9",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0955439954996109,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9fc09eae44c4bba4dfb53f5d",
+      "pair": "fbf4a34a37d94c609761b0a9",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09716594219207764,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "30e4b5d4cbdc698c81a4c2f1",
+      "pair": "99a7c6403964eb5d042a0a21",
+      "horizon": 3,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.1347312182188034,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "30e4b5d4cbdc698c81a4c2f1",
+      "pair": "99a7c6403964eb5d042a0a21",
+      "horizon": 6,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.17148491740226746,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "731b7fede8f845c54b377e9c",
+      "pair": "99a7c6403964eb5d042a0a21",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11588676273822784,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "731b7fede8f845c54b377e9c",
+      "pair": "99a7c6403964eb5d042a0a21",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.13291771709918976,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3c88921928b58bf0c983d59b",
+      "pair": "b5ac4f9790dac01fbffea53d",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10141453891992569,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3c88921928b58bf0c983d59b",
+      "pair": "b5ac4f9790dac01fbffea53d",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10267937183380127,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "8427d80d4073f6717d928c62",
+      "pair": "b5ac4f9790dac01fbffea53d",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09423911571502686,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "8427d80d4073f6717d928c62",
+      "pair": "b5ac4f9790dac01fbffea53d",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0961209312081337,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2684eb32f1b1be0bd3181b2c",
+      "pair": "794dcda170e1929a23e816c1",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0816572979092598,
+      "cue_kept": 1.0,
+      "kept": [
+        15,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2684eb32f1b1be0bd3181b2c",
+      "pair": "794dcda170e1929a23e816c1",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09124807268381119,
+      "cue_kept": 1.0,
+      "kept": [
+        15,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e13cbd299e005f047e51330a",
+      "pair": "794dcda170e1929a23e816c1",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0692654475569725,
+      "cue_kept": 1.0,
+      "kept": [
+        15,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e13cbd299e005f047e51330a",
+      "pair": "794dcda170e1929a23e816c1",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10215780884027481,
+      "cue_kept": 1.0,
+      "kept": [
+        15,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ec0e29f16914b19ec0748805",
+      "pair": "91474b5053cb26d6a4f1064d",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08606255054473877,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ec0e29f16914b19ec0748805",
+      "pair": "91474b5053cb26d6a4f1064d",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0887453630566597,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c5133aa2a9d82f1211555ee0",
+      "pair": "91474b5053cb26d6a4f1064d",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07978185266256332,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c5133aa2a9d82f1211555ee0",
+      "pair": "91474b5053cb26d6a4f1064d",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09261175245046616,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7d4477868c2c1075c6eb97f8",
+      "pair": "c459bf189bc8b1802102efcd",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09541501849889755,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7d4477868c2c1075c6eb97f8",
+      "pair": "c459bf189bc8b1802102efcd",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08412119001150131,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "655eae310b8e7a8e44af4a67",
+      "pair": "c459bf189bc8b1802102efcd",
+      "horizon": 3,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.1424069106578827,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "655eae310b8e7a8e44af4a67",
+      "pair": "c459bf189bc8b1802102efcd",
+      "horizon": 6,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.14597861468791962,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "855c0bacdcda67a6dc4fcad4",
+      "pair": "859d7720c8c324bb5e644870",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0817929059267044,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "855c0bacdcda67a6dc4fcad4",
+      "pair": "859d7720c8c324bb5e644870",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10249084234237671,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "22dcd2b010ef2f819437e890",
+      "pair": "859d7720c8c324bb5e644870",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09353822469711304,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "22dcd2b010ef2f819437e890",
+      "pair": "859d7720c8c324bb5e644870",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08958481252193451,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a23d830059f3880f7183f0fd",
+      "pair": "e88188e0990b426e80b640b9",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06992082297801971,
+      "cue_kept": 1.0,
+      "kept": [
+        4,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a23d830059f3880f7183f0fd",
+      "pair": "e88188e0990b426e80b640b9",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08846579492092133,
+      "cue_kept": 1.0,
+      "kept": [
+        4,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "05df2fd9e9cc4357f099f25f",
+      "pair": "e88188e0990b426e80b640b9",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10573446750640869,
+      "cue_kept": 1.0,
+      "kept": [
+        4,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "05df2fd9e9cc4357f099f25f",
+      "pair": "e88188e0990b426e80b640b9",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11223937571048737,
+      "cue_kept": 1.0,
+      "kept": [
+        4,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e1602ab56591f9a1e75c9f69",
+      "pair": "1bf822ce7c63f3b641fac80f",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10202820599079132,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e1602ab56591f9a1e75c9f69",
+      "pair": "1bf822ce7c63f3b641fac80f",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09490516036748886,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "92d91c5ed6dbc9e70d7419e1",
+      "pair": "1bf822ce7c63f3b641fac80f",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07713091373443604,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "92d91c5ed6dbc9e70d7419e1",
+      "pair": "1bf822ce7c63f3b641fac80f",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09822817146778107,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f772e484e5743c77b95d61b1",
+      "pair": "13f7257d17267a1629aa90e5",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11215756833553314,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f772e484e5743c77b95d61b1",
+      "pair": "13f7257d17267a1629aa90e5",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12142636626958847,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "fe8a5251dae218791e5f568f",
+      "pair": "13f7257d17267a1629aa90e5",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11701631546020508,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "fe8a5251dae218791e5f568f",
+      "pair": "13f7257d17267a1629aa90e5",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12792596220970154,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "94cbc20432a15d8c0199a8cd",
+      "pair": "ba859d954a5b50eb40d01968",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09704435616731644,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "94cbc20432a15d8c0199a8cd",
+      "pair": "ba859d954a5b50eb40d01968",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1155439168214798,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b33caa4ccff34de269d2af8a",
+      "pair": "ba859d954a5b50eb40d01968",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.13639362156391144,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b33caa4ccff34de269d2af8a",
+      "pair": "ba859d954a5b50eb40d01968",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12650978565216064,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "1050619b0b51d593f7041b96",
+      "pair": "2784dfed98dd21223493db4b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08279062807559967,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "1050619b0b51d593f7041b96",
+      "pair": "2784dfed98dd21223493db4b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08001923561096191,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "48b4016930054efdf90d930a",
+      "pair": "2784dfed98dd21223493db4b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08179527521133423,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "48b4016930054efdf90d930a",
+      "pair": "2784dfed98dd21223493db4b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07469643652439117,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "8d3083deb035fbb39ff5af2a",
+      "pair": "92406e17af35a7feab78cb16",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06348778307437897,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "8d3083deb035fbb39ff5af2a",
+      "pair": "92406e17af35a7feab78cb16",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.056096743792295456,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "fa253cfc1f873e555cb2b154",
+      "pair": "92406e17af35a7feab78cb16",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0805879458785057,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "fa253cfc1f873e555cb2b154",
+      "pair": "92406e17af35a7feab78cb16",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07903836667537689,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "955d022c2e093ad09c66716c",
+      "pair": "24f78e6b9e3a5c24fa2327c2",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08496871590614319,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "955d022c2e093ad09c66716c",
+      "pair": "24f78e6b9e3a5c24fa2327c2",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08532220870256424,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4e3bd962414cdc3573be4d5d",
+      "pair": "24f78e6b9e3a5c24fa2327c2",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0875471830368042,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4e3bd962414cdc3573be4d5d",
+      "pair": "24f78e6b9e3a5c24fa2327c2",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08358390629291534,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "edc2a29f758df6f7e2e82958",
+      "pair": "f0b01b8d982663a2aa45e799",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.14220094680786133,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "edc2a29f758df6f7e2e82958",
+      "pair": "f0b01b8d982663a2aa45e799",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12239368259906769,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0445d106771baa6897335599",
+      "pair": "f0b01b8d982663a2aa45e799",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10435159504413605,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0445d106771baa6897335599",
+      "pair": "f0b01b8d982663a2aa45e799",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10943078994750977,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "1942c67dda1c3e56023aa9d8",
+      "pair": "5f5c2393618a455a206da7c3",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11201786994934082,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "1942c67dda1c3e56023aa9d8",
+      "pair": "5f5c2393618a455a206da7c3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08923472464084625,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e734c4c1d4a740dbfee5af24",
+      "pair": "5f5c2393618a455a206da7c3",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08907322585582733,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e734c4c1d4a740dbfee5af24",
+      "pair": "5f5c2393618a455a206da7c3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09061039984226227,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4db6e3528bbfb4e90064b663",
+      "pair": "3004ea607b15f3bcfd1fb8c8",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11552020162343979,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4db6e3528bbfb4e90064b663",
+      "pair": "3004ea607b15f3bcfd1fb8c8",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10431449115276337,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7aa25bba37fbc14164c3ae67",
+      "pair": "3004ea607b15f3bcfd1fb8c8",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.13246631622314453,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7aa25bba37fbc14164c3ae67",
+      "pair": "3004ea607b15f3bcfd1fb8c8",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1378592997789383,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c06587a0613d7cedeebdf4f9",
+      "pair": "2c8f0719329b7086abd66b02",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11274494230747223,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c06587a0613d7cedeebdf4f9",
+      "pair": "2c8f0719329b7086abd66b02",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1061483770608902,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "86c7199e773395ae714c0058",
+      "pair": "2c8f0719329b7086abd66b02",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10021662712097168,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "86c7199e773395ae714c0058",
+      "pair": "2c8f0719329b7086abd66b02",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10252954810857773,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "df69d63f4904d96b938bdbea",
+      "pair": "3d83e1bbf8787f41b61c959c",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10688891261816025,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "df69d63f4904d96b938bdbea",
+      "pair": "3d83e1bbf8787f41b61c959c",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11204077303409576,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0c6c0bcaf5d9d172ce032123",
+      "pair": "3d83e1bbf8787f41b61c959c",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08158539980649948,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0c6c0bcaf5d9d172ce032123",
+      "pair": "3d83e1bbf8787f41b61c959c",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08467213809490204,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "618b2ba931b19c5f350c3a32",
+      "pair": "6c34c883d79c9db96ba3e3ff",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08896075189113617,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "618b2ba931b19c5f350c3a32",
+      "pair": "6c34c883d79c9db96ba3e3ff",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08882573992013931,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "70ea37fae338e319b4360aff",
+      "pair": "6c34c883d79c9db96ba3e3ff",
+      "horizon": 3,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.13129334151744843,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "70ea37fae338e319b4360aff",
+      "pair": "6c34c883d79c9db96ba3e3ff",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12051530927419662,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4d0179367a335e280c9af046",
+      "pair": "76e0abf44930c59eea6855c0",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0834617093205452,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4d0179367a335e280c9af046",
+      "pair": "76e0abf44930c59eea6855c0",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08548198640346527,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ffed15b0bd240ae95c1a80d6",
+      "pair": "76e0abf44930c59eea6855c0",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09253476560115814,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ffed15b0bd240ae95c1a80d6",
+      "pair": "76e0abf44930c59eea6855c0",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10551927238702774,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0942ac6c87d39ddf8925e919",
+      "pair": "29b03a01b50accacab1030e5",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09456868469715118,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0942ac6c87d39ddf8925e919",
+      "pair": "29b03a01b50accacab1030e5",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08811689168214798,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "bfc2561f36b45f8c8ddd6615",
+      "pair": "29b03a01b50accacab1030e5",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08550933748483658,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "bfc2561f36b45f8c8ddd6615",
+      "pair": "29b03a01b50accacab1030e5",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09739136695861816,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "79461f6059de8e11777b5685",
+      "pair": "d01ccf52e79f92d767183546",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.13545583188533783,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "79461f6059de8e11777b5685",
+      "pair": "d01ccf52e79f92d767183546",
+      "horizon": 6,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.16915230453014374,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ce5178b9c37d74b5a66ccf0c",
+      "pair": "d01ccf52e79f92d767183546",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11794338375329971,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ce5178b9c37d74b5a66ccf0c",
+      "pair": "d01ccf52e79f92d767183546",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08977887779474258,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3f6d3deeacef736ea9e4d7cb",
+      "pair": "df4472108a75a747feeb9d15",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10695312172174454,
+      "cue_kept": 1.0,
+      "kept": [
+        15,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3f6d3deeacef736ea9e4d7cb",
+      "pair": "df4472108a75a747feeb9d15",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11056356132030487,
+      "cue_kept": 1.0,
+      "kept": [
+        15,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "359d12cd555b11b1edf28c5a",
+      "pair": "df4472108a75a747feeb9d15",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.13371436297893524,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "359d12cd555b11b1edf28c5a",
+      "pair": "df4472108a75a747feeb9d15",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11761008203029633,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "28079a01bb8ec1c0716de29e",
+      "pair": "3e13352b953fef48f3ab2f66",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0885980874300003,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        14
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "28079a01bb8ec1c0716de29e",
+      "pair": "3e13352b953fef48f3ab2f66",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09522180259227753,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        14
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2aa961aec7a604ec7e47dfaf",
+      "pair": "3e13352b953fef48f3ab2f66",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08194146305322647,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2aa961aec7a604ec7e47dfaf",
+      "pair": "3e13352b953fef48f3ab2f66",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08703825622797012,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b92741075b4c195c1b91b4c8",
+      "pair": "a8ecf6c64dcec78282d2b703",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10894183069467545,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b92741075b4c195c1b91b4c8",
+      "pair": "a8ecf6c64dcec78282d2b703",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10449445247650146,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f58008bda0c5ffcb811ba078",
+      "pair": "a8ecf6c64dcec78282d2b703",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10097160190343857,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f58008bda0c5ffcb811ba078",
+      "pair": "a8ecf6c64dcec78282d2b703",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08586486428976059,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3b965c3bb2d9ebd2ad17d9a4",
+      "pair": "a3e6a962e3401f1b4ecacdb0",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09655747562646866,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3b965c3bb2d9ebd2ad17d9a4",
+      "pair": "a3e6a962e3401f1b4ecacdb0",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09292684495449066,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4a384daef549603ffea10bf9",
+      "pair": "a3e6a962e3401f1b4ecacdb0",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0876765325665474,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4a384daef549603ffea10bf9",
+      "pair": "a3e6a962e3401f1b4ecacdb0",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08580761402845383,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b87ae2a63863a629ce3bbbc6",
+      "pair": "eee7246b6eb0abc903de7761",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06363725662231445,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b87ae2a63863a629ce3bbbc6",
+      "pair": "eee7246b6eb0abc903de7761",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06583355367183685,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d9ad310b73afdf725729bf9b",
+      "pair": "eee7246b6eb0abc903de7761",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06912212073802948,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d9ad310b73afdf725729bf9b",
+      "pair": "eee7246b6eb0abc903de7761",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07766419649124146,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a40aa6ff2036c198715d3dd9",
+      "pair": "547d4a36dc1b240d7ce784e7",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10003087669610977,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a40aa6ff2036c198715d3dd9",
+      "pair": "547d4a36dc1b240d7ce784e7",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11062898486852646,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "efbc8e024297a93823cae4eb",
+      "pair": "547d4a36dc1b240d7ce784e7",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11866877973079681,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "efbc8e024297a93823cae4eb",
+      "pair": "547d4a36dc1b240d7ce784e7",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10820140689611435,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "31f124bf41c5c34dc66ca365",
+      "pair": "9b2acdc93ffbdd65c952f9dc",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08468343317508698,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "31f124bf41c5c34dc66ca365",
+      "pair": "9b2acdc93ffbdd65c952f9dc",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07820900529623032,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "12c0ac033db59f89173c49b4",
+      "pair": "9b2acdc93ffbdd65c952f9dc",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0805899053812027,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "12c0ac033db59f89173c49b4",
+      "pair": "9b2acdc93ffbdd65c952f9dc",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0911368653178215,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "6b3a97c5d09f046260270aba",
+      "pair": "bf2684268569523f8dd2afbf",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10168077051639557,
+      "cue_kept": 1.0,
+      "kept": [
+        3,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "6b3a97c5d09f046260270aba",
+      "pair": "bf2684268569523f8dd2afbf",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11318914592266083,
+      "cue_kept": 1.0,
+      "kept": [
+        3,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d7a5c75682df6827e1718b11",
+      "pair": "bf2684268569523f8dd2afbf",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10737404972314835,
+      "cue_kept": 1.0,
+      "kept": [
+        3,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d7a5c75682df6827e1718b11",
+      "pair": "bf2684268569523f8dd2afbf",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11857849359512329,
+      "cue_kept": 1.0,
+      "kept": [
+        3,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c64d201b4d5ce64468901839",
+      "pair": "f6954a7eb1858cb4b9799895",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12447868287563324,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c64d201b4d5ce64468901839",
+      "pair": "f6954a7eb1858cb4b9799895",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.115557000041008,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "60c803408da33760530099dc",
+      "pair": "f6954a7eb1858cb4b9799895",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11510177701711655,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "60c803408da33760530099dc",
+      "pair": "f6954a7eb1858cb4b9799895",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12071973085403442,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9fb6b3a47b9037da8fc0f759",
+      "pair": "738adca68ee3b79f234e9800",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08249888569116592,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9fb6b3a47b9037da8fc0f759",
+      "pair": "738adca68ee3b79f234e9800",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07747738063335419,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d638607f0e6116b8df72ec96",
+      "pair": "738adca68ee3b79f234e9800",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08891858160495758,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d638607f0e6116b8df72ec96",
+      "pair": "738adca68ee3b79f234e9800",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10157716274261475,
+      "cue_kept": 1.0,
+      "kept": [
+        8,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e0ff39a510cfae7551ca9177",
+      "pair": "3391763a622cc9df3ef56747",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11982593685388565,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e0ff39a510cfae7551ca9177",
+      "pair": "3391763a622cc9df3ef56747",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09950865805149078,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2addc8bbbd613e5cae4bb194",
+      "pair": "3391763a622cc9df3ef56747",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10572348535060883,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2addc8bbbd613e5cae4bb194",
+      "pair": "3391763a622cc9df3ef56747",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10358338057994843,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b33220b6d0c0c7617f1b4a7d",
+      "pair": "38828af27ffd37b522db2cd3",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09252948313951492,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b33220b6d0c0c7617f1b4a7d",
+      "pair": "38828af27ffd37b522db2cd3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09090700000524521,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "65b0fb032e2eb5b9503bb79f",
+      "pair": "38828af27ffd37b522db2cd3",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08254265040159225,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "65b0fb032e2eb5b9503bb79f",
+      "pair": "38828af27ffd37b522db2cd3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07700111716985703,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0aeae93601fd2835b353b87e",
+      "pair": "7753e3b6e32c572fa4d61f7b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08349906653165817,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0aeae93601fd2835b353b87e",
+      "pair": "7753e3b6e32c572fa4d61f7b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0691118985414505,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a8465ee201c4e97ab9032481",
+      "pair": "7753e3b6e32c572fa4d61f7b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0855514407157898,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a8465ee201c4e97ab9032481",
+      "pair": "7753e3b6e32c572fa4d61f7b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08648091554641724,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "8f0e9e9b631e0ad592d34266",
+      "pair": "89563cc42b461c6a5aef4713",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11162371933460236,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "8f0e9e9b631e0ad592d34266",
+      "pair": "89563cc42b461c6a5aef4713",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08649368584156036,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "8f76dc78b19ec247c40a1c00",
+      "pair": "89563cc42b461c6a5aef4713",
+      "horizon": 3,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.1269979327917099,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "8f76dc78b19ec247c40a1c00",
+      "pair": "89563cc42b461c6a5aef4713",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10993178188800812,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0b2242cdc3539a81ea02127a",
+      "pair": "52817550492afc8cf5acd952",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07567597925662994,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0b2242cdc3539a81ea02127a",
+      "pair": "52817550492afc8cf5acd952",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07881007343530655,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "988f480a1a6d2d626b29b158",
+      "pair": "52817550492afc8cf5acd952",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08082430064678192,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "988f480a1a6d2d626b29b158",
+      "pair": "52817550492afc8cf5acd952",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08386586606502533,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "acbdca5cfe256a0e9eff2445",
+      "pair": "2525ffbd9eeca289bfa1cd85",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0893935114145279,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "acbdca5cfe256a0e9eff2445",
+      "pair": "2525ffbd9eeca289bfa1cd85",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10803329944610596,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "25bdbc818f347109411b5ac7",
+      "pair": "2525ffbd9eeca289bfa1cd85",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08765119314193726,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "25bdbc818f347109411b5ac7",
+      "pair": "2525ffbd9eeca289bfa1cd85",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06928791105747223,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b0d3abb0fab2ce6d4910b8f7",
+      "pair": "dbc54f9c5d77d14327805577",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10338474810123444,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b0d3abb0fab2ce6d4910b8f7",
+      "pair": "dbc54f9c5d77d14327805577",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10535375773906708,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3c841354c429561c4eebc291",
+      "pair": "dbc54f9c5d77d14327805577",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11294277012348175,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3c841354c429561c4eebc291",
+      "pair": "dbc54f9c5d77d14327805577",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08953950554132462,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f0cbf330fd63aafb504d3076",
+      "pair": "6ad9b910caef5b36aa00000a",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09260467439889908,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        18
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f0cbf330fd63aafb504d3076",
+      "pair": "6ad9b910caef5b36aa00000a",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12210048735141754,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        18
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "78f8219706c58dd1c70a5816",
+      "pair": "6ad9b910caef5b36aa00000a",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08160834014415741,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        18
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "78f8219706c58dd1c70a5816",
+      "pair": "6ad9b910caef5b36aa00000a",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07895475625991821,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        18
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "48e2d19388de5747d6ba5bf0",
+      "pair": "ee94c754b814a7966b01785b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06521453708410263,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "48e2d19388de5747d6ba5bf0",
+      "pair": "ee94c754b814a7966b01785b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0741325244307518,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "52d2b569b254ccafffe707bf",
+      "pair": "ee94c754b814a7966b01785b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06655476987361908,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "52d2b569b254ccafffe707bf",
+      "pair": "ee94c754b814a7966b01785b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07513384521007538,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0815ebfdccac91983c9eef5c",
+      "pair": "d1e816766ec7e12c8826e56d",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09032680094242096,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0815ebfdccac91983c9eef5c",
+      "pair": "d1e816766ec7e12c8826e56d",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09473028033971786,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e49f38e001bc669c7e1c76da",
+      "pair": "d1e816766ec7e12c8826e56d",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09720203280448914,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e49f38e001bc669c7e1c76da",
+      "pair": "d1e816766ec7e12c8826e56d",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1100170761346817,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "053ac1cad54ced736bdc41d7",
+      "pair": "22ba8c2978399f02d21dd0d7",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07725082337856293,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "053ac1cad54ced736bdc41d7",
+      "pair": "22ba8c2978399f02d21dd0d7",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08408255875110626,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "fd27eb2076d5af5d4a035568",
+      "pair": "22ba8c2978399f02d21dd0d7",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07558716088533401,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "fd27eb2076d5af5d4a035568",
+      "pair": "22ba8c2978399f02d21dd0d7",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07511484622955322,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "95aabb5df505b0a136c80ff5",
+      "pair": "1d7ee47d9e47df8a91c81b8b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.13845425844192505,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "95aabb5df505b0a136c80ff5",
+      "pair": "1d7ee47d9e47df8a91c81b8b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.13725128769874573,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e43fe0a9b6892540e28bf73e",
+      "pair": "1d7ee47d9e47df8a91c81b8b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.18416310846805573,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e43fe0a9b6892540e28bf73e",
+      "pair": "1d7ee47d9e47df8a91c81b8b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.15736250579357147,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d725cec218449a1507c0a7a7",
+      "pair": "8b9a0d27ab5fbffbd2cac254",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12219897657632828,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        18
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d725cec218449a1507c0a7a7",
+      "pair": "8b9a0d27ab5fbffbd2cac254",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11645080894231796,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        18
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "79b177371452d1bff25064c7",
+      "pair": "8b9a0d27ab5fbffbd2cac254",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11867570877075195,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        18
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "79b177371452d1bff25064c7",
+      "pair": "8b9a0d27ab5fbffbd2cac254",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09529654681682587,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        18
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2a48fb5fcefa2b18a832a6cb",
+      "pair": "5d85242ab9c3f241349cdb67",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09379300475120544,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2a48fb5fcefa2b18a832a6cb",
+      "pair": "5d85242ab9c3f241349cdb67",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07989291846752167,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4b3ccdb0a72188f7ba96c212",
+      "pair": "5d85242ab9c3f241349cdb67",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08922221511602402,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4b3ccdb0a72188f7ba96c212",
+      "pair": "5d85242ab9c3f241349cdb67",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0859094113111496,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "39d6eefdd348b18238e7097d",
+      "pair": "5c2d0ab96b6d6385d1ae797d",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08396096527576447,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "39d6eefdd348b18238e7097d",
+      "pair": "5c2d0ab96b6d6385d1ae797d",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07517673075199127,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "293f692a6ae632ea0046eea1",
+      "pair": "5c2d0ab96b6d6385d1ae797d",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08670210838317871,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "293f692a6ae632ea0046eea1",
+      "pair": "5c2d0ab96b6d6385d1ae797d",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07573255151510239,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2777d68e8d57c2b506bd2ae8",
+      "pair": "a6091cbc726fc29bb908f514",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0956263318657875,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "2777d68e8d57c2b506bd2ae8",
+      "pair": "a6091cbc726fc29bb908f514",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09874482452869415,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f060b0de212a976106149ccf",
+      "pair": "a6091cbc726fc29bb908f514",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1150423064827919,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f060b0de212a976106149ccf",
+      "pair": "a6091cbc726fc29bb908f514",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1283348649740219,
+      "cue_kept": 1.0,
+      "kept": [
+        13,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "8dc28eed131e0c70d6825793",
+      "pair": "d0890e012f2e7fd7b1a45470",
+      "horizon": 3,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.19795429706573486,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "8dc28eed131e0c70d6825793",
+      "pair": "d0890e012f2e7fd7b1a45470",
+      "horizon": 6,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.2548585534095764,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7687b00822b7d56c99484f5b",
+      "pair": "d0890e012f2e7fd7b1a45470",
+      "horizon": 3,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.19168324768543243,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7687b00822b7d56c99484f5b",
+      "pair": "d0890e012f2e7fd7b1a45470",
+      "horizon": 6,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.23194566369056702,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "cef106f464568758a534aa02",
+      "pair": "6bcf420082672b2fdd3b1825",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10529492795467377,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "cef106f464568758a534aa02",
+      "pair": "6bcf420082672b2fdd3b1825",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1206209659576416,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "5d3df1dfe5798206084a2ae6",
+      "pair": "6bcf420082672b2fdd3b1825",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1329059898853302,
+      "cue_kept": 1.0,
+      "kept": [
+        4,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "5d3df1dfe5798206084a2ae6",
+      "pair": "6bcf420082672b2fdd3b1825",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1259121596813202,
+      "cue_kept": 1.0,
+      "kept": [
+        4,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "51662e7342283e0428fd2790",
+      "pair": "1d683588a02c76670dbed2f2",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09973523020744324,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "51662e7342283e0428fd2790",
+      "pair": "1d683588a02c76670dbed2f2",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.126531183719635,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "015ac81395fe5dd904a6d609",
+      "pair": "1d683588a02c76670dbed2f2",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09086968004703522,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "015ac81395fe5dd904a6d609",
+      "pair": "1d683588a02c76670dbed2f2",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11602767556905746,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a3cbd142e3e1428b86e5d25d",
+      "pair": "91e5a221b9af668855c67cae",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11932373046875,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a3cbd142e3e1428b86e5d25d",
+      "pair": "91e5a221b9af668855c67cae",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10861023515462875,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f47bee36c1282dbc079578a3",
+      "pair": "91e5a221b9af668855c67cae",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1165129765868187,
+      "cue_kept": 1.0,
+      "kept": [
+        4,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f47bee36c1282dbc079578a3",
+      "pair": "91e5a221b9af668855c67cae",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08379442989826202,
+      "cue_kept": 1.0,
+      "kept": [
+        4,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c6c94e493130df215b4fe3f8",
+      "pair": "7e4b6374fd1b61fe80898fc9",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07548543065786362,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c6c94e493130df215b4fe3f8",
+      "pair": "7e4b6374fd1b61fe80898fc9",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07002730667591095,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "1c97ce7bd23337c24390dd4e",
+      "pair": "7e4b6374fd1b61fe80898fc9",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07613527029752731,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "1c97ce7bd23337c24390dd4e",
+      "pair": "7e4b6374fd1b61fe80898fc9",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08629085123538971,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ca4e14af33ac765262fac1db",
+      "pair": "f231bb5ae66fd8ac315a0930",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06962268799543381,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ca4e14af33ac765262fac1db",
+      "pair": "f231bb5ae66fd8ac315a0930",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09941278398036957,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a321188cc1343e452397dbd6",
+      "pair": "f231bb5ae66fd8ac315a0930",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08067288249731064,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a321188cc1343e452397dbd6",
+      "pair": "f231bb5ae66fd8ac315a0930",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09615171700716019,
+      "cue_kept": 1.0,
+      "kept": [
+        23,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "98836b11e896335ac34ed7b1",
+      "pair": "4a0fa62638895df8e78a0b2c",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12921050190925598,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "98836b11e896335ac34ed7b1",
+      "pair": "4a0fa62638895df8e78a0b2c",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12515714764595032,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "1134e55bc9043c886deb5601",
+      "pair": "4a0fa62638895df8e78a0b2c",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11161971092224121,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "1134e55bc9043c886deb5601",
+      "pair": "4a0fa62638895df8e78a0b2c",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0983675941824913,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "568e66e59133171c1376df44",
+      "pair": "519694cd9898cb519a74cd9f",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08363638818264008,
+      "cue_kept": 1.0,
+      "kept": [
+        7,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "568e66e59133171c1376df44",
+      "pair": "519694cd9898cb519a74cd9f",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07502482086420059,
+      "cue_kept": 1.0,
+      "kept": [
+        7,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0fef169c0f3abf91d7626742",
+      "pair": "519694cd9898cb519a74cd9f",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09368129074573517,
+      "cue_kept": 1.0,
+      "kept": [
+        7,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0fef169c0f3abf91d7626742",
+      "pair": "519694cd9898cb519a74cd9f",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10653863102197647,
+      "cue_kept": 1.0,
+      "kept": [
+        7,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7bdef821b4b643924c2b74e7",
+      "pair": "d2e41e5f20c259554d9ec3d2",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12179198116064072,
+      "cue_kept": 1.0,
+      "kept": [
+        20,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7bdef821b4b643924c2b74e7",
+      "pair": "d2e41e5f20c259554d9ec3d2",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12372048944234848,
+      "cue_kept": 1.0,
+      "kept": [
+        20,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "fec2f609c97cfaa4c2e2575e",
+      "pair": "d2e41e5f20c259554d9ec3d2",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12098467350006104,
+      "cue_kept": 1.0,
+      "kept": [
+        20,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "fec2f609c97cfaa4c2e2575e",
+      "pair": "d2e41e5f20c259554d9ec3d2",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1178109422326088,
+      "cue_kept": 1.0,
+      "kept": [
+        20,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "48772a1f9f56707c2b1406f3",
+      "pair": "1d669efc891e61807509bdbb",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.067313052713871,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "48772a1f9f56707c2b1406f3",
+      "pair": "1d669efc891e61807509bdbb",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.086482934653759,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e9ec3d5671c555966cd89f42",
+      "pair": "1d669efc891e61807509bdbb",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.061908621340990067,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e9ec3d5671c555966cd89f42",
+      "pair": "1d669efc891e61807509bdbb",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07595174014568329,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9ad271eb572fc457e4c26796",
+      "pair": "a5d68fffb777a0f3f478b0ca",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12060084193944931,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9ad271eb572fc457e4c26796",
+      "pair": "a5d68fffb777a0f3f478b0ca",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08787991851568222,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "847fa849107d4fb1bc84c9c4",
+      "pair": "a5d68fffb777a0f3f478b0ca",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08395867049694061,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "847fa849107d4fb1bc84c9c4",
+      "pair": "a5d68fffb777a0f3f478b0ca",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08810263127088547,
+      "cue_kept": 1.0,
+      "kept": [
+        18,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4b48e7ddab7b11cad6c45140",
+      "pair": "fcfb1a41aeff1ddb3af1ff9b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11081290245056152,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4b48e7ddab7b11cad6c45140",
+      "pair": "fcfb1a41aeff1ddb3af1ff9b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10158352553844452,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0668e57d84c11689dddf6a84",
+      "pair": "fcfb1a41aeff1ddb3af1ff9b",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.13316388428211212,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0668e57d84c11689dddf6a84",
+      "pair": "fcfb1a41aeff1ddb3af1ff9b",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10001262277364731,
+      "cue_kept": 1.0,
+      "kept": [
+        1,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7d74a04cf2e62753d445daf1",
+      "pair": "503de6da806595134464708a",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07333238422870636,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        16
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7d74a04cf2e62753d445daf1",
+      "pair": "503de6da806595134464708a",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0741099864244461,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        16
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7d61fd7b9d9502eaedab4536",
+      "pair": "503de6da806595134464708a",
+      "horizon": 3,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.18236280977725983,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        16
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "7d61fd7b9d9502eaedab4536",
+      "pair": "503de6da806595134464708a",
+      "horizon": 6,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.17710979282855988,
+      "cue_kept": 1.0,
+      "kept": [
+        14,
+        16
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d4da30723142ccd2c119fad3",
+      "pair": "d2625a4f1b65dbc8e8f68451",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.05871189758181572,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d4da30723142ccd2c119fad3",
+      "pair": "d2625a4f1b65dbc8e8f68451",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06977953016757965,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        19
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e28d5f0e574f2242fcf7626d",
+      "pair": "d2625a4f1b65dbc8e8f68451",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0894559770822525,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e28d5f0e574f2242fcf7626d",
+      "pair": "d2625a4f1b65dbc8e8f68451",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06570202112197876,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ad8af0c9a2fce01098994f87",
+      "pair": "b294360c95a3d64e420824d3",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10210629552602768,
+      "cue_kept": 1.0,
+      "kept": [
+        0,
+        15
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ad8af0c9a2fce01098994f87",
+      "pair": "b294360c95a3d64e420824d3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10154404491186142,
+      "cue_kept": 1.0,
+      "kept": [
+        0,
+        15
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ce081acf497a35403c2e1475",
+      "pair": "b294360c95a3d64e420824d3",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09671091288328171,
+      "cue_kept": 1.0,
+      "kept": [
+        0,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ce081acf497a35403c2e1475",
+      "pair": "b294360c95a3d64e420824d3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09059478342533112,
+      "cue_kept": 1.0,
+      "kept": [
+        0,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "218a7611c40f53438fa5ec3c",
+      "pair": "3c39face632586c29fd70cd3",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10627070814371109,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "218a7611c40f53438fa5ec3c",
+      "pair": "3c39face632586c29fd70cd3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09370659291744232,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "547241787af10893cb5939d4",
+      "pair": "3c39face632586c29fd70cd3",
+      "horizon": 3,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.12352225929498672,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "547241787af10893cb5939d4",
+      "pair": "3c39face632586c29fd70cd3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09925062954425812,
+      "cue_kept": 1.0,
+      "kept": [
+        11,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "55b3d16fea87fd61d032ffcb",
+      "pair": "aeb91a32ff00cb18317459ce",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1052626222372055,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "55b3d16fea87fd61d032ffcb",
+      "pair": "aeb91a32ff00cb18317459ce",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11444666236639023,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c0a3dbf8cf77bee4b9257c5c",
+      "pair": "aeb91a32ff00cb18317459ce",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07500674575567245,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        14
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c0a3dbf8cf77bee4b9257c5c",
+      "pair": "aeb91a32ff00cb18317459ce",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08208911120891571,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        14
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "320846a873ab43cac68f8dfa",
+      "pair": "ece2973c4b95d0aa0bdaa28a",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10704413801431656,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "320846a873ab43cac68f8dfa",
+      "pair": "ece2973c4b95d0aa0bdaa28a",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11030425876379013,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4becf148cade32a19cdc1999",
+      "pair": "ece2973c4b95d0aa0bdaa28a",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10429582744836807,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "4becf148cade32a19cdc1999",
+      "pair": "ece2973c4b95d0aa0bdaa28a",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07859368622303009,
+      "cue_kept": 1.0,
+      "kept": [
+        5,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e08f4ef2d3cc14da32de5d7c",
+      "pair": "9eb0880b3568fcb0fb2e0a77",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08071254193782806,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e08f4ef2d3cc14da32de5d7c",
+      "pair": "9eb0880b3568fcb0fb2e0a77",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08830633014440536,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ec1b25fee2e16319a6bbcf88",
+      "pair": "9eb0880b3568fcb0fb2e0a77",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1032739132642746,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "ec1b25fee2e16319a6bbcf88",
+      "pair": "9eb0880b3568fcb0fb2e0a77",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09467146545648575,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "de851c0ff59747d79b8035cf",
+      "pair": "14350b8bf75c947059a8f5d3",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08452120423316956,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "de851c0ff59747d79b8035cf",
+      "pair": "14350b8bf75c947059a8f5d3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07669393718242645,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a35bbbd6349fbd477c4fe7f3",
+      "pair": "14350b8bf75c947059a8f5d3",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.13864047825336456,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "a35bbbd6349fbd477c4fe7f3",
+      "pair": "14350b8bf75c947059a8f5d3",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0975470095872879,
+      "cue_kept": 1.0,
+      "kept": [
+        22,
+        24
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c5a6ea1434546c91de0cac19",
+      "pair": "d19c32a01fb2dc8f000a59f2",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08801117539405823,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "c5a6ea1434546c91de0cac19",
+      "pair": "d19c32a01fb2dc8f000a59f2",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10683999210596085,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "777a200b9c4eebaa547018a3",
+      "pair": "d19c32a01fb2dc8f000a59f2",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1103024035692215,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "777a200b9c4eebaa547018a3",
+      "pair": "d19c32a01fb2dc8f000a59f2",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.1141224130988121,
+      "cue_kept": 1.0,
+      "kept": [
+        2,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0b09ec269cc72ac2d9cb3e7b",
+      "pair": "e383c9f4a22372dbfdfeda74",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09433521330356598,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "0b09ec269cc72ac2d9cb3e7b",
+      "pair": "e383c9f4a22372dbfdfeda74",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08655466139316559,
+      "cue_kept": 1.0,
+      "kept": [
+        16,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "49acaf5a8d0d2d46f0246445",
+      "pair": "e383c9f4a22372dbfdfeda74",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08363759517669678,
+      "cue_kept": 1.0,
+      "kept": [
+        15,
+        16
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "49acaf5a8d0d2d46f0246445",
+      "pair": "e383c9f4a22372dbfdfeda74",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08036822080612183,
+      "cue_kept": 1.0,
+      "kept": [
+        15,
+        16
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d3de7388334a5e7f4894c085",
+      "pair": "dd31bd479f2a77ccc42a4076",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.156253844499588,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "d3de7388334a5e7f4894c085",
+      "pair": "dd31bd479f2a77ccc42a4076",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.16893860697746277,
+      "cue_kept": 1.0,
+      "kept": [
+        10,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9261a75cfa5e37d1385e7a91",
+      "pair": "dd31bd479f2a77ccc42a4076",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.14327052235603333,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "9261a75cfa5e37d1385e7a91",
+      "pair": "dd31bd479f2a77ccc42a4076",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.16483446955680847,
+      "cue_kept": 1.0,
+      "kept": [
+        9,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "74739d68ec68b197cd1d0a2d",
+      "pair": "a4f09dd056403995697c3f1f",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08777057379484177,
+      "cue_kept": 1.0,
+      "kept": [
+        4,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "74739d68ec68b197cd1d0a2d",
+      "pair": "a4f09dd056403995697c3f1f",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08099215477705002,
+      "cue_kept": 1.0,
+      "kept": [
+        4,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3af8d46342158d81971a9a31",
+      "pair": "a4f09dd056403995697c3f1f",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0841449648141861,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "3af8d46342158d81971a9a31",
+      "pair": "a4f09dd056403995697c3f1f",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06340119987726212,
+      "cue_kept": 1.0,
+      "kept": [
+        6,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "69f1df52851ece32b71e804f",
+      "pair": "848e92d6dc964a472d3ec5f4",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07852116972208023,
+      "cue_kept": 1.0,
+      "kept": [
+        21,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "69f1df52851ece32b71e804f",
+      "pair": "848e92d6dc964a472d3ec5f4",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07520601153373718,
+      "cue_kept": 1.0,
+      "kept": [
+        21,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "97087b0bab87c2e5dc070b13",
+      "pair": "848e92d6dc964a472d3ec5f4",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10165971517562866,
+      "cue_kept": 1.0,
+      "kept": [
+        21,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "97087b0bab87c2e5dc070b13",
+      "pair": "848e92d6dc964a472d3ec5f4",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07687409222126007,
+      "cue_kept": 1.0,
+      "kept": [
+        21,
+        23
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "eb5819a57d0e4a8aa0a27b0d",
+      "pair": "e43a658664898072540fc3fc",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11394277960062027,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "eb5819a57d0e4a8aa0a27b0d",
+      "pair": "e43a658664898072540fc3fc",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12197785079479218,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f1530779e49f9181fe309121",
+      "pair": "e43a658664898072540fc3fc",
+      "horizon": 3,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.14810845255851746,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f1530779e49f9181fe309121",
+      "pair": "e43a658664898072540fc3fc",
+      "horizon": 6,
+      "route_accuracy": 0.0,
+      "normalized_mse": 0.1398700475692749,
+      "cue_kept": 1.0,
+      "kept": [
+        12,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f6cf0be20bf0eadf56d5480d",
+      "pair": "6f9a9352d834c1aef2a3775a",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0942598432302475,
+      "cue_kept": 1.0,
+      "kept": [
+        20,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "f6cf0be20bf0eadf56d5480d",
+      "pair": "6f9a9352d834c1aef2a3775a",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11354167759418488,
+      "cue_kept": 1.0,
+      "kept": [
+        20,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "77a068ea27d2c32bfd5efe2c",
+      "pair": "6f9a9352d834c1aef2a3775a",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11206576973199844,
+      "cue_kept": 1.0,
+      "kept": [
+        20,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "77a068ea27d2c32bfd5efe2c",
+      "pair": "6f9a9352d834c1aef2a3775a",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09767413139343262,
+      "cue_kept": 1.0,
+      "kept": [
+        20,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "754c755a0948be9563603e84",
+      "pair": "9621245baaee3b8d33e905a6",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08680321276187897,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "754c755a0948be9563603e84",
+      "pair": "9621245baaee3b8d33e905a6",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07977523654699326,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "734b3936242240b7e703fc57",
+      "pair": "9621245baaee3b8d33e905a6",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.11758601665496826,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "734b3936242240b7e703fc57",
+      "pair": "9621245baaee3b8d33e905a6",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09204617142677307,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        21
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "dbce416470822baf1fb3a2ee",
+      "pair": "68f436dbd7181abdf9448eae",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06850428879261017,
+      "cue_kept": 1.0,
+      "kept": [
+        20,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "dbce416470822baf1fb3a2ee",
+      "pair": "68f436dbd7181abdf9448eae",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07606401294469833,
+      "cue_kept": 1.0,
+      "kept": [
+        20,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "dbbdade5e0b297b6b0c5d3f5",
+      "pair": "68f436dbd7181abdf9448eae",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.07334627211093903,
+      "cue_kept": 1.0,
+      "kept": [
+        21,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "dbbdade5e0b297b6b0c5d3f5",
+      "pair": "68f436dbd7181abdf9448eae",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08428313583135605,
+      "cue_kept": 1.0,
+      "kept": [
+        21,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "6bf9e98be89350c48e249d64",
+      "pair": "c7364f3af5510a86976a9947",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.10875584185123444,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "6bf9e98be89350c48e249d64",
+      "pair": "c7364f3af5510a86976a9947",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12200506031513214,
+      "cue_kept": 1.0,
+      "kept": [
+        17,
+        20
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "082df87071212237d5d20c72",
+      "pair": "c7364f3af5510a86976a9947",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.09083620458841324,
+      "cue_kept": 1.0,
+      "kept": [
+        15,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "082df87071212237d5d20c72",
+      "pair": "c7364f3af5510a86976a9947",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.12579017877578735,
+      "cue_kept": 1.0,
+      "kept": [
+        15,
+        17
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b4abc7ff8e9763dcf3547b6d",
+      "pair": "a6e29a9d4c3a88300181495a",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0650709718465805,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "b4abc7ff8e9763dcf3547b6d",
+      "pair": "a6e29a9d4c3a88300181495a",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.06947360932826996,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e2808e428459992487e36de7",
+      "pair": "a6e29a9d4c3a88300181495a",
+      "horizon": 3,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.08382262289524078,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        22
+      ]
+    },
+    {
+      "policy": "deletion_cost_student",
+      "seed": 43,
+      "episode": "e2808e428459992487e36de7",
+      "pair": "a6e29a9d4c3a88300181495a",
+      "horizon": 6,
+      "route_accuracy": 1.0,
+      "normalized_mse": 0.0869942456483841,
+      "cue_kept": 1.0,
+      "kept": [
+        19,
+        22
+      ]
+    }
+  ]
+}

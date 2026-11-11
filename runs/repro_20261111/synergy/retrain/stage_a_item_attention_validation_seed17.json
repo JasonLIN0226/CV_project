@@ -1,0 +1,47 @@
+{
+  "task": "stage_a_item_attention_validation",
+  "seed": 17,
+  "device": "cpu",
+  "host": "ga022.hpc.nyu.edu",
+  "python": "3.11.18",
+  "torch": "2.5.1+cu121",
+  "numpy": "1.26.4",
+  "threads": 8,
+  "config": "configs/synergy/release.yaml",
+  "source_sha256": "d1b7365a4b87395a58eca847646df71f41b5b121da323652974e19a51639d913",
+  "slurm_job_id": "22728952",
+  "seconds": 48.60734534263611,
+  "info": {
+    "against_released": {
+      "medoid_sum": {
+        "max_abs_diff": 0.0025974827542605827,
+        "same_argmin": 1.0
+      },
+      "sensitivity": {
+        "max_abs_diff": 0.0007439108129399519,
+        "same_argmin": 1.0
+      },
+      "eval_cost": {
+        "max_abs_diff": 0.0005662407678202752,
+        "same_argmin": 1.0
+      },
+      "eval_losses": {
+        "max_abs_diff": 0.0006050774674820347
+      },
+      "teacher_eval": {
+        "max_abs_diff": 0.0025127530097961426,
+        "same_argmin": 0.9994212962962963
+      },
+      "attention": {
+        "max_abs_diff": 0.002459704875946045,
+        "same_argmin": 1.0
+      }
+    }
+  },
+  "environment": "synergy",
+  "reader": "item_attention",
+  "split": "validation",
+  "records": 1728,
+  "labels": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/synergy/stageA/item_attention_validation.npz",
+  "labels_sha256": "ddb713f8a1c4ae9130be943932928d2e61e8688cc18859c2d6f81f8e812d1b5a"
+}

@@ -1,0 +1,23 @@
+# Gate, artifact replay: the team's frozen bundle (dataset, I-JEPA feature cache, three predictors,
+# state decoder, published scorers). Fetch and verify it with scripts/prepare_data/gate_team_bundle.py.
+environment: gate
+path: replay
+assets:
+  root: ${BM_SCRATCH}/gate_team/root
+  predictor_sha256: team                       # pinned in src/bounded_memory/environments/gate/bundle.py
+  students: ${BM_SCRATCH}/gate_team/extracted/model
+  reference_rows: ${BM_SCRATCH}/gate_team/extracted/dataset/validation_results.json
+  dinov2: ${BM_SCRATCH}/gate_team/dinov2/features.npz
+protocol:
+  recent: 4
+  budget: 2
+  horizons: [3, 6]
+  seeds: [17, 29, 43]
+  split: validation
+  train_episodes: 1024
+  validation_episodes: 192
+baselines:
+  pafu_kv: {steps: 1000}
+  pafu_kv_repo: {max_states: 20000}
+  pacc: {steps: 3000}
+  framemorrow: {epochs: 10, hidden: 512, layers: 4}

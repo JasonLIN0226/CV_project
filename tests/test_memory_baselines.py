@@ -1,4 +1,4 @@
-"""Software checks for experiments/memory_baselines. Synthetic inputs only; no scientific result."""
+"""Software checks for the literature baselines (methods/pafu_kv, pacc, framemorrow). Synthetic inputs only; no scientific result."""
 import math
 import sys
 from pathlib import Path
@@ -9,12 +9,15 @@ import pytest
 
 torch = pytest.importorskip("torch")
 ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+if str(ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(ROOT / "src"))
 
-from experiments.memory_baselines import fm, pacc, pafu  # noqa: E402
-from experiments.memory_baselines.framemorrow_ref import ranking_loss, teacher_scores  # noqa: E402
-from experiments.memory_baselines.gate_data import B, R, Episode, item_batch, with_memory_tokens  # noqa: E402
+from bounded_memory.methods.framemorrow import gate as fm  # noqa: E402
+from bounded_memory.methods.pacc import gate as pacc  # noqa: E402
+from bounded_memory.methods.pafu_kv import gate as pafu  # noqa: E402
+from bounded_memory.methods.framemorrow.reference import ranking_loss, teacher_scores  # noqa: E402
+from bounded_memory.environments.gate.assets import Episode  # noqa: E402
+from bounded_memory.environments.gate.protocol import B, R, item_batch, with_memory_tokens  # noqa: E402
 
 D = 16
 
@@ -59,7 +62,7 @@ def test_pafu_teacher_groups_queries_before_at_and_after_each_frame():
     salience = pafu.teacher_salience(model, e, "cpu")
     assert salience.shape == (e.q + 1,) and np.isfinite(salience).all() and (salience > 0).all()
     # Frame 0 has no earlier query, so its score averages two groups; a middle frame averages three.
-    from experiments.memory_baselines.gate_data import pooling_attention
+    from bounded_memory.environments.gate.protocol import pooling_attention
     keys = torch.from_numpy(e.p[:e.q + 1])
     queries = torch.from_numpy(e.p[:e.q + 7])
     with torch.no_grad():

@@ -1,0 +1,13 @@
+# Motion v2, artifact replay from tracked evidence only. The frozen readers, features and dataset
+# of the Motion v2 study exist only on a teammate's storage, so no Motion policy can be run again;
+# the published tables are recomputed from the loss arrays the study committed.
+environment: motion_v2
+assets:
+  step34: ${BM_REPO}/results/motion_v2/step3_4_recovery1/terminal_evidence/repo/results/motion_v2/step3_4_recovery1/gpu
+  step2: ${BM_REPO}/results/motion_v2/v2_3_1_resubmission/terminal_evidence/repo/results/motion_v2/v2_3_1/step2_gpu_attempt1
+protocol:
+  reader_seeds: [17, 29, 43]
+  student_seeds: [17, 29, 43]
+  split: validation, 96 scene pairs
+  horizons: [3, 6]
+  intervals: [ordinary, long_gap]

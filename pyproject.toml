@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "bounded-visual-memory"
 version = "0.2.0"
-description = "Latest I-JEPA predictor and equal-capacity deletion assay"
+description = "Bounded visual memory for world models: environments, predictors, retention methods and baselines"
 requires-python = ">=3.10,<3.13"
 dependencies = ["numpy==1.26.4"]
 
@@ -16,10 +16,12 @@ model = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["experiments/predictor/control/src", "."]
-include = ["phase1", "phase1.*", "handoff", "handoff.*"]
+# bounded_memory is the package; phase1 (the frozen predictor source, the same files as
+# bounded_memory.predictors.phase1) stays importable under its old top-level name for handoff/.
+where = ["src", "src/bounded_memory/predictors", "."]
+include = ["bounded_memory", "bounded_memory.*", "phase1", "phase1.*", "handoff", "handoff.*"]
 namespaces = false
 
 [tool.pytest.ini_options]
-pythonpath = ["experiments/predictor/control/src", "experiments/deletion"]
-testpaths = ["experiments/deletion/test_assay.py", "experiments/predictor/control/test_centered_transport.py", "tests"]
+pythonpath = ["src", "src/bounded_memory/predictors"]
+testpaths = ["tests"]

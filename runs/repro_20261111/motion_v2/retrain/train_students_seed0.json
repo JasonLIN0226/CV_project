@@ -1,0 +1,457 @@
+{
+  "task": "train_students",
+  "seed": 0,
+  "device": "cpu",
+  "host": "Yixiangs-MacBook-Pro.local",
+  "python": "3.13.2",
+  "torch": "2.7.1",
+  "numpy": "2.2.6",
+  "threads": 4,
+  "config": "configs/motion_v2/evidence.yaml",
+  "source_sha256": "86babe77e0aad7a447a57452c0513e5bb66b7c0442a161abdf11a402a2a987b8",
+  "slurm_job_id": null,
+  "seconds": 53.8551070690155,
+  "info": {
+    "arms": 54,
+    "same_selected_step": 51,
+    "kept_initial_weights": 48,
+    "recorded_kept_initial_weights": 48,
+    "max_abs_validation_ce_diff": 0.009735766138570856
+  },
+  "environment": "motion_v2",
+  "students": "/private/tmp/claude-501/-Users-yixiangsun-Desktop-torch-CV-project/e74c83be-bd11-4dd1-a14f-0bde1fd1141d/scratchpad/motion_students",
+  "per_arm": {
+    "independent_future_attention_seed17": {
+      "selected_step": 100,
+      "recorded_selected_step": 100,
+      "kept_initial_weights": false,
+      "recorded_kept_initial_weights": false,
+      "max_abs_validation_ce_diff": 0.0035554121520059434,
+      "step0_validation_ce_diff": 4.734223235658419e-09
+    },
+    "independent_future_attention_seed29": {
+      "selected_step": 200,
+      "recorded_selected_step": 100,
+      "kept_initial_weights": false,
+      "recorded_kept_initial_weights": false,
+      "max_abs_validation_ce_diff": 0.002600256217798802,
+      "step0_validation_ce_diff": 1.0322158461306685e-08
+    },
+    "independent_future_attention_seed43": {
+      "selected_step": 100,
+      "recorded_selected_step": 100,
+      "kept_initial_weights": false,
+      "recorded_kept_initial_weights": false,
+      "max_abs_validation_ce_diff": 0.0031094177975319326,
+      "step0_validation_ce_diff": 3.1044085080367267e-09
+    },
+    "independent_local_feature_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.006121980472623134,
+      "step0_validation_ce_diff": 5.549130488446963e-09
+    },
+    "independent_local_feature_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0075503663586764524,
+      "step0_validation_ce_diff": 1.2301218932364577e-08
+    },
+    "independent_local_feature_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0032134598198656494,
+      "step0_validation_ce_diff": 8.537124340790569e-10
+    },
+    "independent_local_position_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0030984084587544203,
+      "step0_validation_ce_diff": 4.579002732540971e-09
+    },
+    "independent_local_position_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.002531369245843962,
+      "step0_validation_ce_diff": 1.0128132998943329e-08
+    },
+    "independent_local_position_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.005784992215922102,
+      "step0_validation_ce_diff": 1.0671403760653675e-09
+    },
+    "independent_shuffle_local_feature_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.001433215414484268,
+      "step0_validation_ce_diff": 6.111804395914078e-09
+    },
+    "independent_shuffle_local_feature_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0012083556697084497,
+      "step0_validation_ce_diff": 8.653538774439085e-09
+    },
+    "independent_shuffle_local_feature_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0034715801399822777,
+      "step0_validation_ce_diff": 1.1641532182693481e-10
+    },
+    "independent_shuffle_local_position_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0028718450921587646,
+      "step0_validation_ce_diff": 6.7908938472527325e-09
+    },
+    "independent_shuffle_local_position_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0035656220473661016,
+      "step0_validation_ce_diff": 7.799826562404633e-09
+    },
+    "independent_shuffle_local_position_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.003502051734055156,
+      "step0_validation_ce_diff": 2.522333453214287e-10
+    },
+    "independent_shuffle_use_time_feature_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0030367816410337145,
+      "step0_validation_ce_diff": 4.889443516731262e-09
+    },
+    "independent_shuffle_use_time_feature_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0032879497157409787,
+      "step0_validation_ce_diff": 6.402842700481415e-09
+    },
+    "independent_shuffle_use_time_feature_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0037183806222551574,
+      "step0_validation_ce_diff": 1.7656325290715813e-09
+    },
+    "independent_shuffle_use_time_position_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.002871276616739582,
+      "step0_validation_ce_diff": 5.510325085111845e-09
+    },
+    "independent_shuffle_use_time_position_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.005454031963987971,
+      "step0_validation_ce_diff": 8.071462387349015e-09
+    },
+    "independent_shuffle_use_time_position_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0020168373982112353,
+      "step0_validation_ce_diff": 1.979060471057892e-09
+    },
+    "independent_use_time_feature_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.005860377869491229,
+      "step0_validation_ce_diff": 6.092401916291124e-09
+    },
+    "independent_use_time_feature_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0008493009857677425,
+      "step0_validation_ce_diff": 6.05359673500061e-09
+    },
+    "independent_use_time_feature_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.005687896744348109,
+      "step0_validation_ce_diff": 2.25069607395767e-09
+    },
+    "independent_use_time_position_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.002752506756223738,
+      "step0_validation_ce_diff": 5.277494441457975e-09
+    },
+    "independent_use_time_position_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0026434841953837385,
+      "step0_validation_ce_diff": 7.334165275096893e-09
+    },
+    "independent_use_time_position_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0014854748539316898,
+      "step0_validation_ce_diff": 3.14321368932724e-09
+    },
+    "set_future_attention_seed17": {
+      "selected_step": 1000,
+      "recorded_selected_step": 1000,
+      "kept_initial_weights": false,
+      "recorded_kept_initial_weights": false,
+      "max_abs_validation_ce_diff": 0.0005457192892208695,
+      "step0_validation_ce_diff": 1.3193734993421913e-09
+    },
+    "set_future_attention_seed29": {
+      "selected_step": 1000,
+      "recorded_selected_step": 800,
+      "kept_initial_weights": false,
+      "recorded_kept_initial_weights": false,
+      "max_abs_validation_ce_diff": 0.0013356913502017287,
+      "step0_validation_ce_diff": 6.868503987789154e-09
+    },
+    "set_future_attention_seed43": {
+      "selected_step": 900,
+      "recorded_selected_step": 700,
+      "kept_initial_weights": false,
+      "recorded_kept_initial_weights": false,
+      "max_abs_validation_ce_diff": 0.0013596016021134583,
+      "step0_validation_ce_diff": 5.820766091346741e-10
+    },
+    "set_local_feature_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.006289564213754151,
+      "step0_validation_ce_diff": 2.0954757928848267e-09
+    },
+    "set_local_feature_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.006104646614403464,
+      "step0_validation_ce_diff": 7.178944771979445e-09
+    },
+    "set_local_feature_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.009735766138570856,
+      "step0_validation_ce_diff": 1.0865430777329266e-09
+    },
+    "set_local_position_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0035312701753960063,
+      "step0_validation_ce_diff": 2.444721758365631e-09
+    },
+    "set_local_position_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0059348788927309215,
+      "step0_validation_ce_diff": 5.161079341675645e-09
+    },
+    "set_local_position_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.005916335115519811,
+      "step0_validation_ce_diff": 5.432716498887658e-10
+    },
+    "set_shuffle_local_feature_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0028234788527090604,
+      "step0_validation_ce_diff": 3.1820188706177532e-09
+    },
+    "set_shuffle_local_feature_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.005777706120473569,
+      "step0_validation_ce_diff": 5.16107911963104e-09
+    },
+    "set_shuffle_local_feature_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.00358122425192664,
+      "step0_validation_ce_diff": 1.0865428556883217e-09
+    },
+    "set_shuffle_local_position_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0031386245197306817,
+      "step0_validation_ce_diff": 2.2118911147117615e-09
+    },
+    "set_shuffle_local_position_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.004581411039301653,
+      "step0_validation_ce_diff": 5.3551048040390015e-09
+    },
+    "set_shuffle_local_position_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.00268223012487101,
+      "step0_validation_ce_diff": 9.701277559059918e-10
+    },
+    "set_shuffle_use_time_feature_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0021451817204556356,
+      "step0_validation_ce_diff": 4.773028194904327e-09
+    },
+    "set_shuffle_use_time_feature_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.003150404159290021,
+      "step0_validation_ce_diff": 6.51925802230835e-09
+    },
+    "set_shuffle_use_time_feature_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.002541386755183339,
+      "step0_validation_ce_diff": 3.6476801579254925e-09
+    },
+    "set_shuffle_use_time_position_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0033930943075877185,
+      "step0_validation_ce_diff": 6.247622197363967e-09
+    },
+    "set_shuffle_use_time_position_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0020627098468442018,
+      "step0_validation_ce_diff": 4.617807913831484e-09
+    },
+    "set_shuffle_use_time_position_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.003338842303492129,
+      "step0_validation_ce_diff": 1.9402552897673786e-09
+    },
+    "set_use_time_feature_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.004561716394770654,
+      "step0_validation_ce_diff": 5.587935447692871e-09
+    },
+    "set_use_time_feature_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.008583588292822242,
+      "step0_validation_ce_diff": 6.092401694246519e-09
+    },
+    "set_use_time_feature_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.004035652256182853,
+      "step0_validation_ce_diff": 2.9491882269638836e-09
+    },
+    "set_use_time_position_seed17": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0047337764020387585,
+      "step0_validation_ce_diff": 4.2297567670601666e-09
+    },
+    "set_use_time_position_seed29": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0033190550457220525,
+      "step0_validation_ce_diff": 4.307366907596588e-09
+    },
+    "set_use_time_position_seed43": {
+      "selected_step": 0,
+      "recorded_selected_step": 0,
+      "kept_initial_weights": true,
+      "recorded_kept_initial_weights": true,
+      "max_abs_validation_ce_diff": 0.0029291065535894667,
+      "step0_validation_ce_diff": 5.005858838558197e-09
+    }
+  }
+}

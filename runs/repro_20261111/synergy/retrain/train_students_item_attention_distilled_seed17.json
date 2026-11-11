@@ -1,0 +1,114 @@
+{
+  "task": "train_students_item_attention_distilled",
+  "seed": 17,
+  "device": "cpu",
+  "host": "ga024.hpc.nyu.edu",
+  "python": "3.11.18",
+  "torch": "2.5.1+cu121",
+  "numpy": "1.26.4",
+  "threads": 4,
+  "config": "configs/synergy/release.yaml",
+  "source_sha256": "d1b7365a4b87395a58eca847646df71f41b5b121da323652974e19a51639d913",
+  "slurm_job_id": "22728960",
+  "seconds": 56.979103565216064,
+  "info": {
+    "arms": {
+      "independent_cost_seed17": {
+        "selected_step": 100,
+        "parameters": 54401
+      },
+      "independent_cost_seed29": {
+        "selected_step": 200,
+        "parameters": 54401
+      },
+      "independent_cost_seed43": {
+        "selected_step": 300,
+        "parameters": 54401
+      },
+      "independent_future_attention_seed17": {
+        "selected_step": 700,
+        "parameters": 54401
+      },
+      "independent_future_attention_seed29": {
+        "selected_step": 100,
+        "parameters": 54401
+      },
+      "independent_future_attention_seed43": {
+        "selected_step": 900,
+        "parameters": 54401
+      },
+      "independent_shuffle_seed17": {
+        "selected_step": 0,
+        "parameters": 54401
+      },
+      "independent_shuffle_seed29": {
+        "selected_step": 0,
+        "parameters": 54401
+      },
+      "independent_shuffle_seed43": {
+        "selected_step": 0,
+        "parameters": 54401
+      },
+      "set_cost_seed17": {
+        "selected_step": 1000,
+        "parameters": 54361
+      },
+      "set_cost_seed29": {
+        "selected_step": 1000,
+        "parameters": 54361
+      },
+      "set_cost_seed43": {
+        "selected_step": 1000,
+        "parameters": 54361
+      },
+      "set_future_attention_seed17": {
+        "selected_step": 1000,
+        "parameters": 54361
+      },
+      "set_future_attention_seed29": {
+        "selected_step": 800,
+        "parameters": 54361
+      },
+      "set_future_attention_seed43": {
+        "selected_step": 600,
+        "parameters": 54361
+      },
+      "set_shuffle_seed17": {
+        "selected_step": 0,
+        "parameters": 54361
+      },
+      "set_shuffle_seed29": {
+        "selected_step": 0,
+        "parameters": 54361
+      },
+      "set_shuffle_seed43": {
+        "selected_step": 0,
+        "parameters": 54361
+      }
+    },
+    "selected_step_matches_released": {
+      "independent_cost_seed17": true,
+      "independent_cost_seed29": false,
+      "independent_cost_seed43": false,
+      "independent_future_attention_seed17": false,
+      "independent_future_attention_seed29": false,
+      "independent_future_attention_seed43": true,
+      "independent_shuffle_seed17": true,
+      "independent_shuffle_seed29": true,
+      "independent_shuffle_seed43": true,
+      "set_cost_seed17": false,
+      "set_cost_seed29": true,
+      "set_cost_seed43": true,
+      "set_future_attention_seed17": false,
+      "set_future_attention_seed29": false,
+      "set_future_attention_seed43": false,
+      "set_shuffle_seed17": true,
+      "set_shuffle_seed29": true,
+      "set_shuffle_seed43": true
+    }
+  },
+  "environment": "synergy",
+  "reader": "item_attention",
+  "mode": "distilled",
+  "archive": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/synergy/students_retrained/item_attention_distilled"
+}

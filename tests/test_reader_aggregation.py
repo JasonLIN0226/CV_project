@@ -1,9 +1,14 @@
-"""Contract tests for the reader-only aggregation ablation, without experiments."""
+"""Contract tests for the Synergy reader variants (predictors/readers.py); synthetic inputs only."""
+import sys
+from pathlib import Path
+
 import numpy as np
 import pytest
 import torch
 
-from experiments.phase2.reader_aggregation import (
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+from bounded_memory.predictors.readers import (  # noqa: E402
     VARIANTS, INTERVENTIONS, DynamicsPredictor, build_reader, describe_reader, reader_attention,
 )
 
