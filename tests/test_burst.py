@@ -1,14 +1,14 @@
-"""The scripts in burst/ (course cluster), run here with stand-ins for sbatch and conda.
+"""The scripts in burst/ (course cluster), run here with a local venv and a stand-in for sbatch.
 
 They have not run on the course cluster yet. These tests check what can be checked without it:
 the settings file, the sbatch call that submit.sh makes, that job.sbatch runs the tasks and
 returns their exit code, how the driver version is read, and the result archive.
 """
-import os
 import shutil
 import subprocess
 import sys
 import tarfile
+import venv
 from pathlib import Path
 
 import pytest
@@ -16,7 +16,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 NAMES = ("BM_ACCOUNT", "BM_GPU_PARTITION", "BM_GPU_GRES", "BM_CPUS", "BM_MEM", "BM_TIME", "BM_PARALLEL", "BM_SCRATCH", "BM_REPO",
-         "HF_HOME", "BM_CONDA_SH", "BM_CONDA_ENV", "BM_SBATCH_ARGS")
+         "HF_HOME", "BM_VENV", "UV_CACHE_DIR", "UV_PYTHON_INSTALL_DIR", "BM_SBATCH_ARGS")
 
 
 @pytest.fixture
@@ -46,8 +46,9 @@ def test_defaults_are_the_course_account_and_one_a100(checkout):
     assert settings(checkout) == {
         "BM_ACCOUNT": "csci_ga_2271-2026fa", "BM_GPU_PARTITION": "c12m85-a100-1", "BM_GPU_GRES": "gpu:1", "BM_CPUS": "12", "BM_MEM": "80G",
         "BM_TIME": "05:00:00", "BM_PARALLEL": "3", "BM_SCRATCH": "/scratch/alice/cv_project_runs", "BM_REPO": str(checkout.resolve()),
-        "HF_HOME": "/scratch/alice/hf_cache", "BM_CONDA_SH": "/scratch/alice/miniforge3/etc/profile.d/conda.sh",
-        "BM_CONDA_ENV": "/scratch/alice/miniforge3/envs/cvmem", "BM_SBATCH_ARGS": ""}
+        "HF_HOME": "/scratch/alice/hf_cache", "BM_VENV": str(checkout.resolve() / ".venv"),
+        "UV_CACHE_DIR": "/scratch/alice/cv_project_runs/.cache/uv", "UV_PYTHON_INSTALL_DIR": "/scratch/alice/cv_project_runs/uv-python",
+        "BM_SBATCH_ARGS": ""}
 
 
 def test_personal_file_replaces_defaults_and_exported_variables_replace_both(checkout):
@@ -59,18 +60,16 @@ def test_personal_file_replaces_defaults_and_exported_variables_replace_both(che
 
 
 def stand_ins(checkout):
-    """A conda environment and an sbatch that only record what they were given."""
+    """A venv that can import the test dependencies and an sbatch that records its arguments."""
     tmp = checkout.parent
-    env_dir = tmp / "conda/envs/cvmem/bin"
-    env_dir.mkdir(parents=True)
-    (env_dir / "python").symlink_to(sys.executable)
-    (tmp / "conda/conda.sh").write_text("conda() { :; }\n")
+    env_dir = tmp / "venvs/cvmem"
+    venv.EnvBuilder(system_site_packages=True, symlinks=True).create(env_dir)
     sbatch = tmp / "bin/sbatch"
     sbatch.write_text('#!/bin/bash\nprintf "%s\\n" "$@" > "$RECORD/args"\nprintf "%s" "$BM_PACK_ARGS" > "$RECORD/pack_args"\necho 4242\n')
     sbatch.chmod(0o755)
     (tmp / "record").mkdir()
     return base_env(checkout, RECORD=str(tmp / "record"), BM_SCRATCH=str(tmp / "scratch"), BM_HF_HOME=str(tmp / "hf"),
-                    BM_CONDA_SH=str(tmp / "conda/conda.sh"), BM_CONDA_ENV=str(tmp / "conda/envs/cvmem"))
+                    BM_VENV=str(env_dir))
 
 
 def test_submit_asks_for_one_gpu_job_and_passes_the_arguments_through(checkout):
@@ -92,12 +91,12 @@ def test_submit_refuses_without_a_run_id_or_an_environment(checkout):
     env = stand_ins(checkout)
     assert subprocess.run(["bash", str(checkout / "burst/submit.sh"), "--select", "gate"], env=env, capture_output=True).returncode == 1
     done = subprocess.run(["bash", str(checkout / "burst/submit.sh"), "--run-id", "r1", "--select", "gate"],
-                          env=dict(env, BM_CONDA_ENV="/nowhere"), capture_output=True, text=True)
+                          env=dict(env, BM_VENV="/nowhere"), capture_output=True, text=True)
     assert done.returncode == 1 and "burst/setup.sh" in done.stderr
     assert not (checkout.parent / "record/args").exists()
 
 
-WORK = "import sys, pathlib\npathlib.Path(sys.argv[1]).write_text('ran')\nsys.exit(int(sys.argv[2]))\n"
+WORK = "import sys, pathlib\npathlib.Path(sys.argv[1]).write_text(sys.prefix)\nsys.exit(int(sys.argv[2]))\n"
 
 
 @pytest.mark.parametrize("exit_code", [0, 1])
@@ -111,9 +110,40 @@ def test_the_job_runs_the_selected_tasks_and_returns_their_exit_code(checkout, e
     script = f'source "{checkout}/burst/cluster.sh"; bash "{checkout}/burst/job.sbatch"'
     done = subprocess.run(["bash", "-c", script], env=env, capture_output=True, text=True, timeout=300)
     assert done.returncode == exit_code, done.stdout + done.stderr
-    assert (tmp / "ran").read_text() == "ran"
+    assert Path((tmp / "ran").read_text()).resolve() == Path(env["BM_VENV"]).resolve()
     assert "x.a[0]" in (checkout / "runs/r1/pack_status.txt").read_text()
     assert f"exit code {exit_code}" in done.stdout
+
+
+def test_submit_dry_run_uses_the_venv_without_submitting(checkout):
+    env = stand_ins(checkout)
+    # Catch entry points that accidentally use the caller's Python.
+    ambient = checkout.parent / "bin/python"
+    ambient.unlink()
+    ambient.write_text("#!/bin/sh\nexit 99\n")
+    ambient.chmod(0o755)
+    done = subprocess.run(["bash", str(checkout / "burst/submit.sh"), "--run-id", "check", "--select",
+                           "gate.assets.team_bundle", "--dry-run"], env=env, capture_output=True, text=True)
+    assert done.returncode == 0, done.stderr
+    assert "gate.assets.team_bundle" in done.stdout
+    assert not (checkout.parent / "record/args").exists()
+
+
+def test_interactive_run_and_login_use_the_configured_venv(checkout):
+    env = stand_ins(checkout)
+    # Keep the real shell entry points, and replace the external GPU and HF operations.
+    (checkout / "burst/gpu_driver.sh").write_text('test "$(command -v python)" = "$BM_VENV/bin/python"\n')
+    tmp = checkout.parent
+    (tmp / "huggingface_hub.py").write_text(
+        "import sys\ndef login(): pass\ndef whoami(): return {'name': sys.prefix}\n")
+    env["PYTHONPATH"] = str(tmp)
+    login = subprocess.run(["bash", str(checkout / "burst/hf_login.sh")], env=env, capture_output=True, text=True)
+    assert login.returncode == 0, login.stderr
+    assert env["BM_VENV"] in login.stdout
+    run = subprocess.run(["bash", str(checkout / "burst/run_here.sh"), "--run-id", "check", "--select",
+                          "gate.assets.team_bundle", "--dry-run"], env=env, capture_output=True, text=True)
+    assert run.returncode == 0, run.stderr
+    assert "gate.assets.team_bundle" in run.stdout
 
 
 @pytest.mark.parametrize("line, version", [

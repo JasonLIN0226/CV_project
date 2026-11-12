@@ -5,5 +5,5 @@
 set -euo pipefail
 HERE=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 source "$HERE/cluster.sh"
-set +u; source "$BM_CONDA_SH"; conda activate "$BM_CONDA_ENV"; set -u
+bm_activate_venv
 python -c "from huggingface_hub import login, whoami; login(); print('logged in as', whoami()['name'])"

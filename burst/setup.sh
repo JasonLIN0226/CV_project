@@ -4,28 +4,29 @@
 #
 #     bash burst/setup.sh
 #
-# Installs Miniforge if there is no conda, builds the Python 3.11 environment from
+# Installs uv if needed, builds the Python 3.11 environment from
 # requirements.txt, and caches the pinned I-JEPA encoder. Settings: burst/cluster.sh.
 set -euo pipefail
 HERE=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 source "$HERE/cluster.sh"
 mkdir -p "$BM_SCRATCH/logs" "$HF_HOME" || {
-    echo "cannot write to $BM_SCRATCH or $HF_HOME: put BM_SCRATCH, BM_HF_HOME, BM_CONDA_SH and BM_CONDA_ENV lines for a folder you own into burst/.env" >&2; exit 1; }
-echo "== $(hostname) $(date -Is)  repo: $BM_REPO  scratch: $BM_SCRATCH  env: $BM_CONDA_ENV"
+    echo "Cannot write to $BM_SCRATCH or $HF_HOME. Set BM_SCRATCH and BM_HF_HOME to writable paths in burst/.env." >&2; exit 1; }
+echo "== $(hostname) $(date -Is)  repo: $BM_REPO  scratch: $BM_SCRATCH  venv: $BM_VENV"
 
-if [ ! -f "$BM_CONDA_SH" ]; then
-    root=${BM_CONDA_SH%/etc/profile.d/conda.sh}
-    echo "== installing Miniforge into $root"
-    installer=$(mktemp -d)/miniforge.sh
-    curl -fsSL -o "$installer" https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
-    bash "$installer" -b -p "$root"
+export PATH="$PATH:$HOME/.local/bin"
+if ! command -v uv >/dev/null; then
+    curl -fsSL https://astral.sh/uv/install.sh | UV_UNMANAGED_INSTALL="$HOME/.local/bin" sh
 fi
-set +u; source "$BM_CONDA_SH"; set -u
-[ -x "$BM_CONDA_ENV/bin/python" ] || conda create -y -p "$BM_CONDA_ENV" -c conda-forge --override-channels python=3.11 pip
-set +u; conda activate "$BM_CONDA_ENV"; set -u
-python -m pip install --index-url https://download.pytorch.org/whl/cu121 torch==2.5.1 torchvision==0.20.1
-python -m pip install -r "$BM_REPO/requirements.txt"
-python -m pip check || echo "pip check reported conflicts (see above)"
+if [ ! -f "$BM_VENV/pyvenv.cfg" ]; then
+    uv venv --managed-python --python 3.11 "$BM_VENV"
+fi
+bm_activate_venv
+if ! python -c 'import sys; sys.exit(sys.version_info[:2] != (3, 11))'; then
+    echo "Burst needs Python 3.11. Set BM_VENV to a new venv path in burst/.env and rerun setup." >&2
+    exit 1
+fi
+uv pip install --python "$BM_VENV/bin/python" --torch-backend=cu121 -r "$BM_REPO/requirements.txt" -e "$BM_REPO"
+uv pip check --python "$BM_VENV/bin/python"
 
 python - "$BM_REPO" <<'PY'
 import json, sys

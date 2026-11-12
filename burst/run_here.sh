@@ -9,7 +9,7 @@
 set -euo pipefail
 HERE=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 source "$HERE/cluster.sh"
-set +u; source "$BM_CONDA_SH"; conda activate "$BM_CONDA_ENV"; set -u
+bm_activate_venv
 source "$HERE/gpu_driver.sh"
 cd "$BM_REPO"
 python scripts/run_tasks.py "$@" && code=0 || code=$?

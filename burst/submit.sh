@@ -9,10 +9,9 @@
 set -euo pipefail
 HERE=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 source "$HERE/cluster.sh"
-[ -x "$BM_CONDA_ENV/bin/python" ] || { echo "no environment at $BM_CONDA_ENV: run bash burst/setup.sh first" >&2; exit 1; }
+bm_activate_venv
 case " $* " in *" --run-id "*) ;; *) echo "usage: bash burst/submit.sh --run-id <id> --select <task prefixes> ..." >&2; exit 1 ;; esac
 case " $* " in *" --dry-run "*)         # only list what the job would run
-    set +u; source "$BM_CONDA_SH"; conda activate "$BM_CONDA_ENV"; set -u
     cd "$BM_REPO" && exec python scripts/run_tasks.py "$@" ;;
 esac
 mkdir -p "$BM_SCRATCH/logs"

@@ -50,9 +50,14 @@ seeds, checkpoints, tasks and status is listed in `configs/reproduction.yaml`.
 
 ## 1. Set up the environment
 
-One environment for everything: Python 3.11 and `requirements.txt`.
+All environments use Python 3.11 and `requirements.txt`.
 
-**Your own cluster settings.** No file in the repository holds an account or a personal path.
+**On Burst (course OOD)**, run `bash burst/setup.sh` from the checkout. It creates a uv
+environment at `.venv`, installs the CUDA 12.1 dependencies, and caches the encoder. Burst
+selects this environment automatically for interactive and batch runs. See the
+[Burst guide](burst/README.md) for login and launch commands.
+
+**Your own Torch cluster settings.** Torch reads your account and paths from the environment.
 Each one is an environment variable defined in `torch/cluster.sh`, with a default built from your
 cluster user name, so teammates can share the same code and differ only in these values:
 
@@ -87,7 +92,7 @@ An exported variable wins over `torch/.env`, which wins over the default. `submi
 values it used. In the commands of this guide, `torch` is the SSH alias of the cluster login node
 and `/scratch/$USER/CV_project` is the checkout; replace them if yours differ.
 
-**On the cluster.** Install Miniconda (under `/scratch/$USER/miniconda3`, or point `BM_CONDA_SH`
+**On Torch.** Install Miniconda (under `/scratch/$USER/miniconda3`, or point `BM_CONDA_SH`
 and `BM_CONDA_ENV` at your own), then build the environment:
 
 ```bash
@@ -204,8 +209,7 @@ BM_SYN=<Synergy assets> BM_SYN_STUDENTS=<released students> python -m pytest -q 
   files (compared with commit `fe69074` through git), the historical record is unchanged, and the
   reproduction starts nothing outside `scripts/`.
 - `tests/test_run_tasks.py`, `tests/test_burst.py`, `tests/test_torch_pack.py`: the single-job runner (order, tasks at once,
-  memory budget, failures, continuing) and the course-cluster scripts, with stand-ins for `sbatch`
-  and conda.
+  memory budget, failures, continuing) and the Burst and Torch launch scripts, using a local stand-in for Slurm.
 - `tests/test_migration_*.py`: old code and new package on the same assets give identical arrays,
   predictions, kept frames, metrics, labels and trained weights. The old code is taken from git
   (`tests/legacy_tree.py`), or from `BM_LEGACY_TREE` where git is not available.

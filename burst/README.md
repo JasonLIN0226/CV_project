@@ -5,9 +5,8 @@ job therefore runs the whole GPU chain: `scripts/run_tasks.py` starts the tasks 
 dependency order and keeps three running at once on the one GPU. The tasks are the same as on
 Torch (`torch/`); only how they are started differs.
 
-**Not yet run on the course cluster.** The scripts are tested locally with stand-ins for `sbatch`
-and conda (`tests/test_burst.py`, `tests/test_run_tasks.py`). Unverified there: `sbatch` from an
-Open OnDemand session, the job size, and `gpu_driver.sh`.
+Local tests cover the launch scripts and task runner. Submitting a job and detecting the A100
+still need verification on the course cluster.
 
 ## 1. Set up once
 
@@ -17,8 +16,18 @@ Open a terminal in a session at https://ood.burst.hpc.nyu.edu, then:
 cd /scratch/$USER
 git clone -b clean https://github.com/JasonLIN0226/CV_project.git
 cd CV_project
-bash burst/setup.sh        # about 15 minutes: Miniforge, the Python 3.11 environment, the I-JEPA weights
+bash burst/setup.sh        # installs uv if needed, creates .venv, and caches the I-JEPA weights
 bash burst/hf_login.sh     # paste a Hugging Face token that can read the team organisation (Gate bundle)
+```
+
+If you already cloned the repository, start with `bash burst/setup.sh` in your checkout.
+Setup reuses an existing Python 3.11 `.venv`. It installs the pinned dependencies from
+`requirements.txt` with the CUDA 12.1 PyTorch wheels. The login and launch scripts activate
+the same environment automatically. To use it in your own OOD shell:
+
+```bash
+source burst/cluster.sh
+bm_activate_venv
 ```
 
 ## 2. Run
@@ -75,6 +84,11 @@ tar xzf burst_a100_results.tar.gz && python scripts/aggregate_results/aggregate.
 `burst/cluster.sh` lists every setting with its default (account, partition, job size, tasks at
 once, folders). To change one, export it before the command or put `KEY=value` lines in
 `burst/.env`, which git ignores.
+
+`BM_VENV` defaults to `.venv` in the checkout. To use a different location, set it to an
+absolute path visible from both the OOD terminal and the batch nodes. The uv package cache
+(`UV_CACHE_DIR`) and managed Python (`UV_PYTHON_INSTALL_DIR`) default to `$BM_SCRATCH/.cache/uv`
+and `$BM_SCRATCH/uv-python`. Keep the managed Python directory for the lifetime of the venv.
 
 | File | Purpose |
 |---|---|

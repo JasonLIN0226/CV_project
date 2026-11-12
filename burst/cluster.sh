@@ -11,8 +11,9 @@
 #   BM_SCRATCH        datasets, features, checkpoints, logs       default: /scratch/$USER/cv_project_runs
 #   BM_REPO           this checkout                               default: detected
 #   BM_HF_HOME        Hugging Face cache and token                default: /scratch/$USER/hf_cache
-#   BM_CONDA_SH       conda's activation script                   default: /scratch/$USER/miniforge3/etc/profile.d/conda.sh
-#   BM_CONDA_ENV      the environment the jobs activate           default: /scratch/$USER/miniforge3/envs/cvmem
+#   BM_VENV           Python 3.11 venv shared with jobs           default: $BM_REPO/.venv
+#   UV_CACHE_DIR      uv package cache                            default: $BM_SCRATCH/.cache/uv
+#   UV_PYTHON_INSTALL_DIR   uv-managed Python installations       default: $BM_SCRATCH/uv-python
 #   BM_SBATCH_ARGS    extra sbatch options                        default: none
 
 _bm_here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
@@ -31,8 +32,17 @@ export BM_PARALLEL="${BM_PARALLEL:-3}"
 export BM_SCRATCH="${BM_SCRATCH:-/scratch/$USER/cv_project_runs}"
 export BM_REPO="${BM_REPO:-$(dirname "$_bm_here")}"
 export BM_HF_HOME="${BM_HF_HOME:-/scratch/$USER/hf_cache}"
-export BM_CONDA_SH="${BM_CONDA_SH:-/scratch/$USER/miniforge3/etc/profile.d/conda.sh}"
-export BM_CONDA_ENV="${BM_CONDA_ENV:-/scratch/$USER/miniforge3/envs/cvmem}"
+export BM_VENV="${BM_VENV:-$BM_REPO/.venv}"
+export UV_CACHE_DIR="${UV_CACHE_DIR:-$BM_SCRATCH/.cache/uv}"
+export UV_PYTHON_INSTALL_DIR="${UV_PYTHON_INSTALL_DIR:-$BM_SCRATCH/uv-python}"
 export BM_SBATCH_ARGS="${BM_SBATCH_ARGS:-}"
 export HF_HOME="$BM_HF_HOME"
 unset _bm_here _bm_key _bm_value
+
+bm_activate_venv() {
+    if [[ ! -x "$BM_VENV/bin/python" || ! -r "$BM_VENV/bin/activate" ]]; then
+        echo "No usable venv at $BM_VENV. Run bash burst/setup.sh first." >&2
+        return 1
+    fi
+    source "$BM_VENV/bin/activate"
+}
