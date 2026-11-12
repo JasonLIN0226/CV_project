@@ -42,7 +42,7 @@ seeds, checkpoints, tasks and status is listed in `configs/reproduction.yaml`.
 | `configs/reproduction.yaml` | The manifest: every result, how it is produced, and every compute task |
 | `configs/<environment>/*.yaml` | One config per asset set; paths use `${BM_SCRATCH}`, `${BM_RUN}`, `${BM_REPO}` |
 | `scripts/<task>/<environment>.py` | Thin entry points: explicit config, seed, device, inputs and output folder |
-| `torch/` | `cluster.sh` (every cluster setting, as environment variables), `setup_env.sbatch`, and `make_jobs.py`, which turns manifest tasks into Slurm arrays |
+| `torch/` | `cluster.sh` (every cluster setting, as environment variables), `setup_env.sbatch`, `make_jobs.py`, which turns manifest tasks into Slurm arrays, and `submit_pack.sh`, one GPU job for many tasks |
 | `burst/` | The same tasks on the course cluster: one GPU job that runs many tasks through `scripts/run_tasks.py` (see `burst/README.md`) |
 | `runs/<run_id>/` | Small JSON outputs and aggregate tables of one run; heavy files stay on scratch |
 | `tests/` | Guards (code moved unchanged), old-versus-new migration checks, unit tests |
@@ -141,9 +141,16 @@ on the hardware class of the release: `gate.retrain_gpu`, `synergy.assets.trainv
 
 Where a GPU is scarce, one job should do all the GPU work instead of one job per seed.
 `scripts/run_tasks.py` runs the selected tasks inside one allocation, in dependency order, three
-at a time on the one GPU, and continues an unfinished run when started again. The course cluster
-(NYU cloud bursting, one A100) uses it: [`burst/README.md`](burst/README.md) has the commands and
-says where the results appear. Those scripts have not run on the course cluster yet.
+at a time on the one GPU, and continues an unfinished run when started again; the state of every
+task is in `runs/<run_id>/pack_status.txt`.
+
+```bash
+ssh torch 'bash /scratch/$USER/CV_project/torch/submit_pack.sh --run-id <run_id> --select <task prefixes>'
+```
+
+The course cluster (NYU cloud bursting, one A100) uses the same runner:
+[`burst/README.md`](burst/README.md) has the commands and says where the results appear. Neither
+`torch/submit_pack.sh` nor the `burst/` scripts have run on their cluster yet.
 
 The literature baselines have no released checkpoints. They are trained inside the evaluation
 tasks of section 3 (`gate.replay.{pafu_kv,pacc,framemorrow}`, `synergy.replay.literature`).
@@ -196,7 +203,7 @@ BM_SYN=<Synergy assets> BM_SYN_STUDENTS=<released students> python -m pytest -q 
 - `tests/test_refactor_guards.py`: the package holds the same code as the original experiment
   files (compared with commit `fe69074` through git), the historical record is unchanged, and the
   reproduction starts nothing outside `scripts/`.
-- `tests/test_run_tasks.py`, `tests/test_burst.py`: the single-job runner (order, tasks at once,
+- `tests/test_run_tasks.py`, `tests/test_burst.py`, `tests/test_torch_pack.py`: the single-job runner (order, tasks at once,
   memory budget, failures, continuing) and the course-cluster scripts, with stand-ins for `sbatch`
   and conda.
 - `tests/test_migration_*.py`: old code and new package on the same assets give identical arrays,
