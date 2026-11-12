@@ -29,6 +29,7 @@ a = ap.parse_args()
 marks = pathlib.Path(a.marks); marks.mkdir(parents=True, exist_ok=True)
 name = a.name + a.seed
 (marks / (name + ".start")).write_text(repr(time.time()))
+(marks / (name + ".threads")).write_text(__import__("os").environ["OMP_NUM_THREADS"] + " " + __import__("os").environ["MKL_NUM_THREADS"])
 time.sleep(a.sleep)
 if a.fail:
     sys.exit(3)
@@ -38,9 +39,9 @@ if a.touch:
 '''
 
 
-def task(name, args="", needs=(), mem="1G", **extra):
+def task(name, args="", needs=(), mem="1G", cpus=1, **extra):
     return {"script": "work.py", "args": f"--name {name} --marks ${{BM_RUN}}/marks {args}".strip(), "needs": list(needs),
-            "resources": {"cpus": 1, "mem": mem, "time": "00:01:00"}, **extra}
+            "resources": {"cpus": cpus, "mem": mem, "time": "00:01:00"}, **extra}
 
 
 class World:
@@ -110,6 +111,15 @@ def test_units_that_do_not_fit_the_memory_budget_together_take_turns(world):
     assert overlapping([world.span(n) for n in ("a", "b", "big")]) == 1
 
 
+def test_a_unit_gets_the_thread_count_of_its_own_job(world):
+    """The per-task jobs set the thread count to the task's cpus; a different count can change rounding."""
+    world.env["SLURM_CPUS_PER_TASK"] = "4"
+    tasks = {"x.a": task("a", cpus=2), "x.b": task("b", cpus=4), "x.c": task("c", cpus=16)}      # 16 does not fit the allocation
+    code, _, out = world.run(tasks, "--select", "x", "--parallel", "3")
+    assert code == 0, out
+    assert [(world.marks / f"{n}.threads").read_text() for n in "abc"] == ["2 2", "4 4", "4 4"]
+
+
 def test_a_failure_blocks_only_the_tasks_that_need_it(world):
     tasks = {"x.a": task("a", "--fail"), "x.b": task("b", needs=["x.a"]), "x.c": task("c", needs=["x.b"]), "x.d": task("d")}
     code, states, out = world.run(tasks, "--select", "x")
@@ -138,6 +148,12 @@ def test_a_stop_signal_ends_the_running_units_and_reports_them(world):
     deadline = time.time() + 30
     while not (world.marks / "a.start").exists() and time.time() < deadline:
         time.sleep(0.05)
+    status = world.repo / "runs/t/pack_status.json"
+    while not (status.exists() and '"running"' in status.read_text()) and time.time() < deadline:
+        time.sleep(0.05)
+    before = status.stat().st_mtime_ns
+    time.sleep(0.5)                                                          # ten polls with nothing starting or ending
+    assert status.stat().st_mtime_ns == before                               # the status files are written only on a change
     process.send_signal(signal.SIGTERM)
     out, _ = process.communicate(timeout=90)
     assert process.returncode == 1, out

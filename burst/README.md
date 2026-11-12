@@ -1,7 +1,7 @@
 # Running on the course cluster (NYU cloud bursting)
 
-The course account `csci_ga_2271-2026fa` gives one A100 at a time. One job therefore runs the
-whole GPU chain: `scripts/run_tasks.py` starts the tasks of `configs/reproduction.yaml` in
+The course partition `c12m85-a100-1` (account `csci_ga_2271-2026fa`) has one A100 per job. One
+job therefore runs the whole GPU chain: `scripts/run_tasks.py` starts the tasks of `configs/reproduction.yaml` in
 dependency order and keeps three running at once on the one GPU. The tasks are the same as on
 Torch (`torch/`); only how they are started differs.
 
@@ -55,7 +55,7 @@ nohup bash burst/run_here.sh --run-id burst_a100 --select ... > run_here.log 2>&
 | What | Where |
 |---|---|
 | Is it queued or running | `squeue -u $USER` |
-| State of every task, rewritten every few seconds | `runs/burst_a100/pack_status.txt` |
+| State of every task, rewritten whenever one starts or ends | `runs/burst_a100/pack_status.txt` |
 | Job log | `/scratch/$USER/cv_project_runs/logs/bm_burst_<job id>.log` |
 | Log of one task | `/scratch/$USER/cv_project_runs/reproduction/burst_a100/logs/<task>_<index>.log` |
 | Results per seed and pooled, compared with the frozen values | `runs/burst_a100/aggregate/tables.md` (written when the job ends) |

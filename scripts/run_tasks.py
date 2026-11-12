@@ -7,7 +7,9 @@ all the work instead of one Slurm job per seed. This expands the selected tasks 
 configs/reproduction.yaml exactly as torch/make_jobs.py does (every seed and variant is one unit),
 starts a task when the tasks it needs have finished, and keeps up to --parallel units running at
 once; they share the node's GPU and CPUs. A unit starts only if the memory the manifest lists for
-it still fits in --mem-budget.
+it still fits in --mem-budget. Every unit gets the thread count the manifest gives its task
+(`cpus`, at most the cores of the allocation), the same as when the task runs as its own job, so
+both ways of running a task compute with the same number of threads.
 
 Everything is resumable: finished units are skipped (each script skips its own finished output,
 and a task with `done_when` is skipped as a whole), so after a time limit or a failure the same
@@ -15,7 +17,7 @@ command continues where it stopped. A unit that fails blocks only the tasks that
 
 Needs BM_SCRATCH, BM_REPO and HF_HOME in the environment (torch/cluster.sh or burst/cluster.sh).
 Logs: $BM_SCRATCH/reproduction/<run_id>/logs/<task>_<index>.log
-Status: runs/<run_id>/pack_status.txt (and .json), rewritten after every change.
+Status: runs/<run_id>/pack_status.txt (and .json), rewritten whenever a unit starts or ends.
 Exit code 0 when every selected unit is done, 1 otherwise.
 """
 from __future__ import annotations
@@ -68,7 +70,8 @@ def plan(manifest, select, skip):
                           "needs": [n for n in task.get("needs", []) if n in chosen],
                           "assumed_done": [n for n in task.get("needs", []) if n not in chosen],
                           "done_when": task.get("done_when"), "env": task.get("env") or {},
-                          "memory_gb": gigabytes(task["resources"]["mem"]), "gpu": bool(task["resources"].get("gpu"))})
+                          "memory_gb": gigabytes(task["resources"]["mem"]), "cpus": int(task["resources"]["cpus"]),
+                          "gpu": bool(task["resources"].get("gpu"))})
     return chosen, units
 
 
@@ -110,8 +113,6 @@ def main():
     env = dict(os.environ, BM_RUN=f"{os.environ['BM_SCRATCH']}/reproduction/{args.run_id}",
                BM_OUT=f"{os.environ['BM_REPO']}/runs/{args.run_id}", TOKENIZERS_PARALLELISM="false", PYTHONUNBUFFERED="1")
     cores = int(os.environ.get("SLURM_CPUS_PER_TASK") or os.cpu_count() or 1)
-    threads = str(max(1, cores // max(1, args.parallel)))
-    env.update(OMP_NUM_THREADS=threads, MKL_NUM_THREADS=threads)
     budget = args.mem_budget or (float(os.environ["SLURM_MEM_PER_NODE"]) / 1024 if os.environ.get("SLURM_MEM_PER_NODE") else float("inf"))
     logs, out = Path(env["BM_RUN"]) / "logs", Path(env["BM_OUT"])
     logs.mkdir(parents=True, exist_ok=True)
@@ -125,9 +126,10 @@ def main():
         u["log"] = str(logs / f"{u['task']}_{u['index']}.log")
         if u["done_when"] and Path(os.path.expandvars(u["done_when"].replace("${BM_RUN}", env["BM_RUN"]).replace("${BM_OUT}", env["BM_OUT"]))).exists():
             u["state"] = "already done"
-    say(f"{len(chosen)} tasks, {len(units)} units, {args.parallel} at once, {threads} threads each, memory budget {budget:.0f} GB, code {workdir}")
+    say(f"{len(chosen)} tasks, {len(units)} units, {args.parallel} at once, {cores} cores, memory budget {budget:.0f} GB, code {workdir}")
 
     running = {}                                    # process -> unit
+    written = None                                  # the states last written to the status files
     stop = {"signal": None}
     def on_signal(number, frame):
         stop["signal"] = number
@@ -168,11 +170,15 @@ def main():
             with open(u["log"], "a") as log:
                 log.write(f"== {time.strftime('%Y-%m-%dT%H:%M:%S%z')} {u['task']}[{u['index']}]: {u['command']}\n")
                 log.flush()
-                process = subprocess.Popen(["bash", "-c", script], env=env, stdout=log, stderr=subprocess.STDOUT)
+                threads = str(max(1, min(u["cpus"], cores)))             # as in the task's own job, which sets it to its cpus
+                process = subprocess.Popen(["bash", "-c", script], env=dict(env, OMP_NUM_THREADS=threads, MKL_NUM_THREADS=threads),
+                                           stdout=log, stderr=subprocess.STDOUT)
             u["state"], u["began"] = "running", time.time()
             running[process] = u
             say(f"start  {u['task']}[{u['index']}]")
-        write_status(out, args.run_id, units, started)
+        if written != [u["state"] for u in units]:
+            write_status(out, args.run_id, units, started)
+            written = [u["state"] for u in units]
         if not running and not any(u["state"] == "pending" and all(finished(n) for n in u["needs"]) for u in units):
             break
         time.sleep(float(os.environ.get("BM_POLL_SECONDS", "5")))
