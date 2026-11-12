@@ -1,5 +1,5 @@
 #!/bin/bash
-# Submit one GPU job that runs the selected manifest tasks, several at a time on the one GPU.
+# Submit one Slurm job for the selected tasks, using the GPU allocation set in cluster.sh.
 # Run it in a terminal of an OOD session, from the checkout:
 #
 #     bash burst/submit.sh --run-id burst_a100 --select <task prefixes> [--skip <prefixes>] [--parallel 3] [--dry-run]

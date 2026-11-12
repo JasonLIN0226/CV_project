@@ -65,7 +65,8 @@ def stand_ins(checkout):
     env_dir = tmp / "venvs/cvmem"
     venv.EnvBuilder(system_site_packages=True, symlinks=True).create(env_dir)
     sbatch = tmp / "bin/sbatch"
-    sbatch.write_text('#!/bin/bash\nprintf "%s\\n" "$@" > "$RECORD/args"\nprintf "%s" "$BM_PACK_ARGS" > "$RECORD/pack_args"\necho 4242\n')
+    sbatch.write_text('#!/bin/bash\nprintf "%s\\n" "$@" > "$RECORD/args"\nprintf "%s" "$BM_PACK_ARGS" > "$RECORD/pack_args"\n'
+                      'echo "$BM_GPU_COUNT" > "$RECORD/gpu_count"\necho 4242\n')
     sbatch.chmod(0o755)
     (tmp / "record").mkdir()
     return base_env(checkout, RECORD=str(tmp / "record"), BM_SCRATCH=str(tmp / "scratch"), BM_HF_HOME=str(tmp / "hf"),
@@ -85,6 +86,19 @@ def test_submit_asks_for_one_gpu_job_and_passes_the_arguments_through(checkout):
     # exactly what was typed: the runner takes --parallel from the command line, else from BM_PARALLEL
     assert (record / "pack_args").read_text() == "--run-id r1 --select gate.retrain_gpu synergy.retrain_gpu --skip gate.retrain_gpu.compare_cpu --parallel 2"
     assert "submitted job 4242" in done.stdout and "runs/r1/pack_status.txt" in done.stdout
+
+
+def test_two_gpu_setting_applies_to_the_slurm_request_and_runner(checkout):
+    env = stand_ins(checkout)
+    (checkout / "burst/.env").write_text("BM_GPU_COUNT=2\n")
+    done = subprocess.run(["bash", str(checkout / "burst/submit.sh"), "--run-id", "r1", "--select", "gate.retrain_gpu"],
+                          env=env, capture_output=True, text=True)
+    assert done.returncode == 0, done.stderr
+    record = checkout.parent / "record"
+    assert (record / "gpu_count").read_text().strip() == "2"
+    args = (record / "args").read_text().splitlines()
+    for expected in ("--partition=c24m170-a100-2", "--gres=gpu:2", "--cpus-per-task=24", "--mem=128G"):
+        assert expected in args
 
 
 def test_submit_refuses_without_a_run_id_or_an_environment(checkout):

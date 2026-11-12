@@ -153,9 +153,8 @@ task is in `runs/<run_id>/pack_status.txt`.
 ssh torch 'bash /scratch/$USER/CV_project/torch/submit_pack.sh --run-id <run_id> --select <task prefixes>'
 ```
 
-The course cluster (NYU cloud bursting, one A100) uses the same runner:
-[`burst/README.md`](burst/README.md) has the commands and says where the results appear. Neither
-`torch/submit_pack.sh` nor the `burst/` scripts have run on their cluster yet.
+On NYU Burst the runner defaults to one A100. Set `BM_GPU_COUNT=2` to schedule ready CUDA tasks
+on two GPUs. The [Burst guide](burst/README.md) gives the launch command and result paths.
 
 The literature baselines have no released checkpoints. They are trained inside the evaluation
 tasks of section 3 (`gate.replay.{pafu_kv,pacc,framemorrow}`, `synergy.replay.literature`).

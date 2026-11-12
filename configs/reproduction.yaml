@@ -344,7 +344,7 @@ tasks:
     script: scripts/evaluate/gate_assets_diff.py
     args: --reference ${BM_SCRATCH}/gate_team/root --candidate ${BM_SCRATCH}/gate_rebuilt_gpu --out ${BM_OUT}/gate/retrain_gpu
     seeds: null
-    needs: [gate.retrain_gpu.assets]
+    needs: [gate.retrain_gpu.assets, gate.assets.team_bundle]
     resources: {cpus: 4, mem: 16G, time: "01:00:00"}
   gate.retrain_gpu.compare_cpu:
     # the tree built on CPU (gate.retrain_gpu.assets) against the tree built on a GPU: the dataset must be
