@@ -374,16 +374,18 @@ tasks:
     out: gate/retrain_gpu
     args: --out ${BM_RUN}/gate/retrain_gpu/labels
     seeds: [17, 29, 43]
+    device: cuda          # the released teacher labels and scorers were computed in an A100 job
     needs: [gate.retrain_gpu.assets]
-    resources: {cpus: 8, mem: 16G, time: "01:00:00"}
+    resources: {cpus: 8, mem: 16G, time: "01:00:00", gpu: 1}
   gate.retrain_gpu.train:
     script: scripts/train_scorer/gate.py
     config: configs/gate/rebuilt_gpu.yaml
     out: gate/retrain_gpu
     args: --labels ${BM_RUN}/gate/retrain_gpu/labels --checkpoints ${BM_RUN}/gate/retrain_gpu/students
     seeds: [17, 29, 43]
+    device: cuda
     needs: [gate.retrain_gpu.teacher_labels]
-    resources: {cpus: 4, mem: 8G, time: "00:30:00"}
+    resources: {cpus: 4, mem: 8G, time: "00:30:00", gpu: 1}
   gate.retrain_gpu.deletion_cost:
     script: scripts/evaluate/gate.py
     config: configs/gate/rebuilt_gpu.yaml
@@ -540,10 +542,11 @@ tasks:
     config: configs/synergy/gpu_features.yaml
     out: synergy/retrain_gpu
     seeds: [17]
+    device: cuda          # the released labels were computed on the A100
     variants: {reader: [multihead, item_attention], split: [train, validation, confirmation]}
     args: --labels ${BM_RUN}/synergy/stageA_gpu
     needs: [synergy.assets.trainvaldev_gpu]
-    resources: {cpus: 8, mem: 24G, time: "01:00:00"}
+    resources: {cpus: 8, mem: 24G, time: "01:00:00", gpu: 1}
   synergy.retrain_gpu.students:
     script: scripts/train_scorer/synergy.py
     config: configs/synergy/gpu_features.yaml
@@ -621,10 +624,11 @@ tasks:
     config: configs/synergy/retrained_readers_gpu.yaml
     out: synergy/retrain_readers_gpu
     seeds: [17]
+    device: cuda
     variants: {reader: [multihead, item_attention]}
     args: --split confirmation --labels ${BM_RUN}/synergy/stageA_retrained_readers_gpu
     needs: [synergy.retrain_readers_gpu.train]
-    resources: {cpus: 8, mem: 24G, time: "01:00:00"}
+    resources: {cpus: 8, mem: 24G, time: "01:00:00", gpu: 1}
   synergy.retrain_readers_gpu.references:
     script: scripts/run_oracles/synergy.py
     config: configs/synergy/retrained_readers_gpu.yaml

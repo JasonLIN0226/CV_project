@@ -43,6 +43,7 @@ seeds, checkpoints, tasks and status is listed in `configs/reproduction.yaml`.
 | `configs/<environment>/*.yaml` | One config per asset set; paths use `${BM_SCRATCH}`, `${BM_RUN}`, `${BM_REPO}` |
 | `scripts/<task>/<environment>.py` | Thin entry points: explicit config, seed, device, inputs and output folder |
 | `torch/` | `cluster.sh` (every cluster setting, as environment variables), `setup_env.sbatch`, and `make_jobs.py`, which turns manifest tasks into Slurm arrays |
+| `burst/` | The same tasks on the course cluster: one GPU job that runs many tasks through `scripts/run_tasks.py` (see `burst/README.md`) |
 | `runs/<run_id>/` | Small JSON outputs and aggregate tables of one run; heavy files stay on scratch |
 | `tests/` | Guards (code moved unchanged), old-versus-new migration checks, unit tests |
 | `docs/`, `results/`, `reports/`, `handoff/`, `tools/` | The historical record, unchanged (see the last section) |
@@ -138,6 +139,12 @@ gives slightly different features. The tasks above run on CPU. Each has a GPU tw
 on the hardware class of the release: `gate.retrain_gpu`, `synergy.assets.trainvaldev_gpu` with
 `synergy.retrain_gpu`, and `synergy.retrain_readers_gpu`. Set `BM_GPU_TYPE` for them.
 
+Where a GPU is scarce, one job should do all the GPU work instead of one job per seed.
+`scripts/run_tasks.py` runs the selected tasks inside one allocation, in dependency order, three
+at a time on the one GPU, and continues an unfinished run when started again. The course cluster
+(NYU cloud bursting, one A100) uses it: [`burst/README.md`](burst/README.md) has the commands and
+says where the results appear. Those scripts have not run on the course cluster yet.
+
 The literature baselines have no released checkpoints. They are trained inside the evaluation
 tasks of section 3 (`gate.replay.{pafu_kv,pacc,framemorrow}`, `synergy.replay.literature`).
 
@@ -189,6 +196,9 @@ BM_SYN=<Synergy assets> BM_SYN_STUDENTS=<released students> python -m pytest -q 
 - `tests/test_refactor_guards.py`: the package holds the same code as the original experiment
   files (compared with commit `fe69074` through git), the historical record is unchanged, and the
   reproduction starts nothing outside `scripts/`.
+- `tests/test_run_tasks.py`, `tests/test_burst.py`: the single-job runner (order, tasks at once,
+  memory budget, failures, continuing) and the course-cluster scripts, with stand-ins for `sbatch`
+  and conda.
 - `tests/test_migration_*.py`: old code and new package on the same assets give identical arrays,
   predictions, kept frames, metrics, labels and trained weights. The old code is taken from git
   (`tests/legacy_tree.py`), or from `BM_LEGACY_TREE` where git is not available.
