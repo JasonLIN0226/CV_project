@@ -1,0 +1,997 @@
+{
+ "run_id": "ood_gpu_repro",
+ "started": "2026-11-12T01:07:25+0000",
+ "updated": "2026-11-12T01:22:26+0000",
+ "counts": {
+  "done": 23,
+  "already done": 2,
+  "running": 0,
+  "pending": 0,
+  "failed": 2,
+  "blocked": 31,
+  "interrupted": 0
+ },
+ "units": [
+  {
+   "task": "gate.assets.team_bundle",
+   "index": 0,
+   "command": "scripts/prepare_data/gate_team_bundle.py --work ${BM_SCRATCH}/gate_team",
+   "state": "already done",
+   "needs": [],
+   "assumed_done": [],
+   "done_when": "${BM_SCRATCH}/gate_team/bundle_report.json",
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.assets.team_bundle_0.log"
+  },
+  {
+   "task": "gate.retrain_gpu.assets",
+   "index": 0,
+   "command": "scripts/train_predictor/gate.py --stage all --work ${BM_SCRATCH}/gate_rebuilt_gpu --device cuda --threads 4",
+   "state": "failed",
+   "needs": [],
+   "assumed_done": [],
+   "done_when": "${BM_SCRATCH}/gate_rebuilt_gpu/predictor/gate/checksums.json",
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "0"
+   },
+   "memory_gb": 48.0,
+   "cpus": 4,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.assets_0.log",
+   "seconds": 535.0673611164093
+  },
+  {
+   "task": "gate.retrain_gpu.compare_assets",
+   "index": 0,
+   "command": "scripts/evaluate/gate_assets_diff.py --reference ${BM_SCRATCH}/gate_team/root --candidate ${BM_SCRATCH}/gate_rebuilt_gpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.compare_assets_0.log"
+  },
+  {
+   "task": "gate.retrain_gpu.references",
+   "index": 0,
+   "command": "scripts/run_oracles/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 17 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.references_0.log"
+  },
+  {
+   "task": "gate.retrain_gpu.references",
+   "index": 1,
+   "command": "scripts/run_oracles/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 29 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.references_1.log"
+  },
+  {
+   "task": "gate.retrain_gpu.references",
+   "index": 2,
+   "command": "scripts/run_oracles/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 43 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.references_2.log"
+  },
+  {
+   "task": "gate.retrain_gpu.heuristics",
+   "index": 0,
+   "command": "scripts/run_baselines/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 17 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.heuristics_0.log"
+  },
+  {
+   "task": "gate.retrain_gpu.heuristics",
+   "index": 1,
+   "command": "scripts/run_baselines/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 29 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.heuristics_1.log"
+  },
+  {
+   "task": "gate.retrain_gpu.heuristics",
+   "index": 2,
+   "command": "scripts/run_baselines/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 43 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.heuristics_2.log"
+  },
+  {
+   "task": "gate.retrain_gpu.teacher_labels",
+   "index": 0,
+   "command": "scripts/generate_teacher_labels/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 17 --device cuda --out ${BM_RUN}/gate/retrain_gpu/labels",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "0"
+   },
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.teacher_labels_0.log"
+  },
+  {
+   "task": "gate.retrain_gpu.teacher_labels",
+   "index": 1,
+   "command": "scripts/generate_teacher_labels/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 29 --device cuda --out ${BM_RUN}/gate/retrain_gpu/labels",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "0"
+   },
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.teacher_labels_1.log"
+  },
+  {
+   "task": "gate.retrain_gpu.teacher_labels",
+   "index": 2,
+   "command": "scripts/generate_teacher_labels/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 43 --device cuda --out ${BM_RUN}/gate/retrain_gpu/labels",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "0"
+   },
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.teacher_labels_2.log"
+  },
+  {
+   "task": "gate.retrain_gpu.train",
+   "index": 0,
+   "command": "scripts/train_scorer/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 17 --device cuda --out ${BM_OUT}/gate/retrain_gpu --labels ${BM_RUN}/gate/retrain_gpu/labels --checkpoints ${BM_RUN}/gate/retrain_gpu/students",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.teacher_labels"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "0"
+   },
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.train_0.log"
+  },
+  {
+   "task": "gate.retrain_gpu.train",
+   "index": 1,
+   "command": "scripts/train_scorer/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 29 --device cuda --out ${BM_OUT}/gate/retrain_gpu --labels ${BM_RUN}/gate/retrain_gpu/labels --checkpoints ${BM_RUN}/gate/retrain_gpu/students",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.teacher_labels"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "0"
+   },
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.train_1.log"
+  },
+  {
+   "task": "gate.retrain_gpu.train",
+   "index": 2,
+   "command": "scripts/train_scorer/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 43 --device cuda --out ${BM_OUT}/gate/retrain_gpu --labels ${BM_RUN}/gate/retrain_gpu/labels --checkpoints ${BM_RUN}/gate/retrain_gpu/students",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.teacher_labels"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "0"
+   },
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.train_2.log"
+  },
+  {
+   "task": "gate.retrain_gpu.deletion_cost",
+   "index": 0,
+   "command": "scripts/evaluate/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 17 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.train"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.deletion_cost_0.log"
+  },
+  {
+   "task": "gate.retrain_gpu.deletion_cost",
+   "index": 1,
+   "command": "scripts/evaluate/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 29 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.train"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.deletion_cost_1.log"
+  },
+  {
+   "task": "gate.retrain_gpu.deletion_cost",
+   "index": 2,
+   "command": "scripts/evaluate/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 43 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.train"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.deletion_cost_2.log"
+  },
+  {
+   "task": "gate.retrain_gpu.attention_proxy",
+   "index": 0,
+   "command": "scripts/run_ablations/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 17 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.train"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.attention_proxy_0.log"
+  },
+  {
+   "task": "gate.retrain_gpu.attention_proxy",
+   "index": 1,
+   "command": "scripts/run_ablations/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 29 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.train"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.attention_proxy_1.log"
+  },
+  {
+   "task": "gate.retrain_gpu.attention_proxy",
+   "index": 2,
+   "command": "scripts/run_ablations/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 43 --device cpu --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.train"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.attention_proxy_2.log"
+  },
+  {
+   "task": "gate.retrain_gpu.pafu_kv",
+   "index": 0,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 17 --device cpu --method pafu_kv --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.pafu_kv_0.log"
+  },
+  {
+   "task": "gate.retrain_gpu.pafu_kv",
+   "index": 1,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 29 --device cpu --method pafu_kv --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.pafu_kv_1.log"
+  },
+  {
+   "task": "gate.retrain_gpu.pafu_kv",
+   "index": 2,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 43 --device cpu --method pafu_kv --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.pafu_kv_2.log"
+  },
+  {
+   "task": "gate.retrain_gpu.pafu_kv",
+   "index": 3,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 17 --device cpu --method pafu_kv_repo --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.pafu_kv_3.log"
+  },
+  {
+   "task": "gate.retrain_gpu.pafu_kv",
+   "index": 4,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 29 --device cpu --method pafu_kv_repo --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.pafu_kv_4.log"
+  },
+  {
+   "task": "gate.retrain_gpu.pafu_kv",
+   "index": 5,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/rebuilt_gpu.yaml --seed 43 --device cpu --method pafu_kv_repo --out ${BM_OUT}/gate/retrain_gpu",
+   "state": "blocked",
+   "needs": [
+    "gate.retrain_gpu.assets"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 8,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/gate.retrain_gpu.pafu_kv_5.log"
+  },
+  {
+   "task": "synergy.assets.release",
+   "index": 0,
+   "command": "scripts/prepare_data/synergy_release.py --work ${BM_SCRATCH}/synergy",
+   "state": "already done",
+   "needs": [],
+   "assumed_done": [],
+   "done_when": "${BM_SCRATCH}/synergy/students_released/item_attention_standard/manifest.json",
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 2,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.assets.release_0.log"
+  },
+  {
+   "task": "synergy.assets.trainvaldev_gpu",
+   "index": 0,
+   "command": "scripts/prepare_data/synergy_trainvaldev.py --release ${BM_SCRATCH}/synergy/terminal/run --work ${BM_SCRATCH}/synergy/trainvaldev_gpu --hf-cache ${HF_HOME}/hub --device cuda",
+   "state": "done",
+   "needs": [
+    "synergy.assets.release"
+   ],
+   "assumed_done": [],
+   "done_when": "${BM_SCRATCH}/synergy/trainvaldev_gpu/assets_report.json",
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "1"
+   },
+   "memory_gb": 48.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.assets.trainvaldev_gpu_0.log",
+   "seconds": 535.0588686466217
+  },
+  {
+   "task": "synergy.retrain_gpu.stage_a",
+   "index": 0,
+   "command": "scripts/generate_teacher_labels/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cuda --reader multihead --split train --out ${BM_OUT}/synergy/retrain_gpu --labels ${BM_RUN}/synergy/stageA_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.assets.trainvaldev_gpu"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "1"
+   },
+   "memory_gb": 24.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.stage_a_0.log",
+   "seconds": 60.05622839927673
+  },
+  {
+   "task": "synergy.retrain_gpu.stage_a",
+   "index": 1,
+   "command": "scripts/generate_teacher_labels/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cuda --reader multihead --split validation --out ${BM_OUT}/synergy/retrain_gpu --labels ${BM_RUN}/synergy/stageA_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.assets.trainvaldev_gpu"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "1"
+   },
+   "memory_gb": 24.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.stage_a_1.log",
+   "seconds": 55.023056507110596
+  },
+  {
+   "task": "synergy.retrain_gpu.stage_a",
+   "index": 2,
+   "command": "scripts/generate_teacher_labels/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cuda --reader multihead --split confirmation --out ${BM_OUT}/synergy/retrain_gpu --labels ${BM_RUN}/synergy/stageA_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.assets.trainvaldev_gpu"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "1"
+   },
+   "memory_gb": 24.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.stage_a_2.log",
+   "seconds": 100.0639226436615
+  },
+  {
+   "task": "synergy.retrain_gpu.stage_a",
+   "index": 3,
+   "command": "scripts/generate_teacher_labels/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cuda --reader item_attention --split train --out ${BM_OUT}/synergy/retrain_gpu --labels ${BM_RUN}/synergy/stageA_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.assets.trainvaldev_gpu"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "1"
+   },
+   "memory_gb": 24.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.stage_a_3.log",
+   "seconds": 60.08038377761841
+  },
+  {
+   "task": "synergy.retrain_gpu.stage_a",
+   "index": 4,
+   "command": "scripts/generate_teacher_labels/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cuda --reader item_attention --split validation --out ${BM_OUT}/synergy/retrain_gpu --labels ${BM_RUN}/synergy/stageA_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.assets.trainvaldev_gpu"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "1"
+   },
+   "memory_gb": 24.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.stage_a_4.log",
+   "seconds": 50.03406858444214
+  },
+  {
+   "task": "synergy.retrain_gpu.stage_a",
+   "index": 5,
+   "command": "scripts/generate_teacher_labels/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cuda --reader item_attention --split confirmation --out ${BM_OUT}/synergy/retrain_gpu --labels ${BM_RUN}/synergy/stageA_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.assets.trainvaldev_gpu"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "1"
+   },
+   "memory_gb": 24.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.stage_a_5.log",
+   "seconds": 95.07594871520996
+  },
+  {
+   "task": "synergy.retrain_gpu.students",
+   "index": 0,
+   "command": "scripts/train_scorer/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cpu --reader multihead --mode standard --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.stage_a"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.students_0.log",
+   "seconds": 70.05353236198425
+  },
+  {
+   "task": "synergy.retrain_gpu.students",
+   "index": 1,
+   "command": "scripts/train_scorer/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cpu --reader multihead --mode distilled --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.stage_a"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.students_1.log",
+   "seconds": 65.02377986907959
+  },
+  {
+   "task": "synergy.retrain_gpu.students",
+   "index": 2,
+   "command": "scripts/train_scorer/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cpu --reader item_attention --mode standard --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.stage_a"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.students_2.log",
+   "seconds": 70.0392415523529
+  },
+  {
+   "task": "synergy.retrain_gpu.students",
+   "index": 3,
+   "command": "scripts/train_scorer/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cpu --reader item_attention --mode distilled --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.stage_a"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.students_3.log",
+   "seconds": 65.02921175956726
+  },
+  {
+   "task": "synergy.retrain_gpu.deletion_cost",
+   "index": 0,
+   "command": "scripts/evaluate/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cpu --reader multihead --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.deletion_cost_0.log",
+   "seconds": 10.026765584945679
+  },
+  {
+   "task": "synergy.retrain_gpu.deletion_cost",
+   "index": 1,
+   "command": "scripts/evaluate/synergy.py --config configs/synergy/gpu_features.yaml --seed 29 --device cpu --reader multihead --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.deletion_cost_1.log",
+   "seconds": 10.019322872161865
+  },
+  {
+   "task": "synergy.retrain_gpu.deletion_cost",
+   "index": 2,
+   "command": "scripts/evaluate/synergy.py --config configs/synergy/gpu_features.yaml --seed 43 --device cpu --reader multihead --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.deletion_cost_2.log",
+   "seconds": 10.011802434921265
+  },
+  {
+   "task": "synergy.retrain_gpu.deletion_cost",
+   "index": 3,
+   "command": "scripts/evaluate/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cpu --reader item_attention --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.deletion_cost_3.log",
+   "seconds": 10.028556823730469
+  },
+  {
+   "task": "synergy.retrain_gpu.deletion_cost",
+   "index": 4,
+   "command": "scripts/evaluate/synergy.py --config configs/synergy/gpu_features.yaml --seed 29 --device cpu --reader item_attention --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.deletion_cost_4.log",
+   "seconds": 10.01925539970398
+  },
+  {
+   "task": "synergy.retrain_gpu.deletion_cost",
+   "index": 5,
+   "command": "scripts/evaluate/synergy.py --config configs/synergy/gpu_features.yaml --seed 43 --device cpu --reader item_attention --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.deletion_cost_5.log",
+   "seconds": 10.012107372283936
+  },
+  {
+   "task": "synergy.retrain_gpu.ablations",
+   "index": 0,
+   "command": "scripts/run_ablations/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cpu --reader multihead --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.ablations_0.log",
+   "seconds": 10.02655816078186
+  },
+  {
+   "task": "synergy.retrain_gpu.ablations",
+   "index": 1,
+   "command": "scripts/run_ablations/synergy.py --config configs/synergy/gpu_features.yaml --seed 29 --device cpu --reader multihead --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.ablations_1.log",
+   "seconds": 10.018380403518677
+  },
+  {
+   "task": "synergy.retrain_gpu.ablations",
+   "index": 2,
+   "command": "scripts/run_ablations/synergy.py --config configs/synergy/gpu_features.yaml --seed 43 --device cpu --reader multihead --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.ablations_2.log",
+   "seconds": 10.010749340057373
+  },
+  {
+   "task": "synergy.retrain_gpu.ablations",
+   "index": 3,
+   "command": "scripts/run_ablations/synergy.py --config configs/synergy/gpu_features.yaml --seed 17 --device cpu --reader item_attention --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.ablations_3.log",
+   "seconds": 10.022804737091064
+  },
+  {
+   "task": "synergy.retrain_gpu.ablations",
+   "index": 4,
+   "command": "scripts/run_ablations/synergy.py --config configs/synergy/gpu_features.yaml --seed 29 --device cpu --reader item_attention --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.ablations_4.log",
+   "seconds": 10.016421794891357
+  },
+  {
+   "task": "synergy.retrain_gpu.ablations",
+   "index": 5,
+   "command": "scripts/run_ablations/synergy.py --config configs/synergy/gpu_features.yaml --seed 43 --device cpu --reader item_attention --out ${BM_OUT}/synergy/retrain_gpu --stage-a ${BM_RUN}/synergy/stageA_gpu --students ${BM_RUN}/synergy/students_retrained_gpu",
+   "state": "done",
+   "needs": [
+    "synergy.retrain_gpu.students"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_gpu.ablations_5.log",
+   "seconds": 10.010882139205933
+  },
+  {
+   "task": "synergy.retrain_readers_gpu.train",
+   "index": 0,
+   "command": "scripts/train_predictor/synergy.py --terminal ${BM_SCRATCH}/synergy/terminal/run --data ${BM_SCRATCH}/synergy/trainvaldev_gpu/data --out ${BM_RUN}/synergy/readers_rebuilt_gpu --device cuda --released ${BM_SCRATCH}/synergy/conf_full/build/reader-aggregation-20261025/hpc/extracted/run",
+   "state": "failed",
+   "needs": [
+    "synergy.assets.trainvaldev_gpu"
+   ],
+   "assumed_done": [],
+   "done_when": "${BM_RUN}/synergy/readers_rebuilt_gpu/retraining_report.json",
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "0"
+   },
+   "memory_gb": 32.0,
+   "cpus": 4,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_readers_gpu.train_0.log",
+   "seconds": 15.02981424331665
+  },
+  {
+   "task": "synergy.retrain_readers_gpu.stage_a",
+   "index": 0,
+   "command": "scripts/generate_teacher_labels/synergy.py --config configs/synergy/retrained_readers_gpu.yaml --seed 17 --device cuda --reader multihead --out ${BM_OUT}/synergy/retrain_readers_gpu --split confirmation --labels ${BM_RUN}/synergy/stageA_retrained_readers_gpu",
+   "state": "blocked",
+   "needs": [
+    "synergy.retrain_readers_gpu.train"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "0"
+   },
+   "memory_gb": 24.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_readers_gpu.stage_a_0.log"
+  },
+  {
+   "task": "synergy.retrain_readers_gpu.stage_a",
+   "index": 1,
+   "command": "scripts/generate_teacher_labels/synergy.py --config configs/synergy/retrained_readers_gpu.yaml --seed 17 --device cuda --reader item_attention --out ${BM_OUT}/synergy/retrain_readers_gpu --split confirmation --labels ${BM_RUN}/synergy/stageA_retrained_readers_gpu",
+   "state": "blocked",
+   "needs": [
+    "synergy.retrain_readers_gpu.train"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {
+    "CUDA_VISIBLE_DEVICES": "0"
+   },
+   "memory_gb": 24.0,
+   "cpus": 8,
+   "gpu": true,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_readers_gpu.stage_a_1.log"
+  },
+  {
+   "task": "synergy.retrain_readers_gpu.references",
+   "index": 0,
+   "command": "scripts/run_oracles/synergy.py --config configs/synergy/retrained_readers_gpu.yaml --seed 17 --device cpu --reader multihead --out ${BM_OUT}/synergy/retrain_readers_gpu --stage-a ${BM_RUN}/synergy/stageA_retrained_readers_gpu",
+   "state": "blocked",
+   "needs": [
+    "synergy.retrain_readers_gpu.stage_a"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 8,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_readers_gpu.references_0.log"
+  },
+  {
+   "task": "synergy.retrain_readers_gpu.references",
+   "index": 1,
+   "command": "scripts/run_oracles/synergy.py --config configs/synergy/retrained_readers_gpu.yaml --seed 17 --device cpu --reader item_attention --out ${BM_OUT}/synergy/retrain_readers_gpu --stage-a ${BM_RUN}/synergy/stageA_retrained_readers_gpu",
+   "state": "blocked",
+   "needs": [
+    "synergy.retrain_readers_gpu.stage_a"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 8,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_readers_gpu.references_1.log"
+  },
+  {
+   "task": "synergy.retrain_readers_gpu.rules",
+   "index": 0,
+   "command": "scripts/run_baselines/synergy.py --config configs/synergy/retrained_readers_gpu.yaml --seed 17 --device cpu --reader multihead --out ${BM_OUT}/synergy/retrain_readers_gpu --stage-a ${BM_RUN}/synergy/stageA_retrained_readers_gpu",
+   "state": "blocked",
+   "needs": [
+    "synergy.retrain_readers_gpu.stage_a"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 2,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_readers_gpu.rules_0.log"
+  },
+  {
+   "task": "synergy.retrain_readers_gpu.rules",
+   "index": 1,
+   "command": "scripts/run_baselines/synergy.py --config configs/synergy/retrained_readers_gpu.yaml --seed 17 --device cpu --reader item_attention --out ${BM_OUT}/synergy/retrain_readers_gpu --stage-a ${BM_RUN}/synergy/stageA_retrained_readers_gpu",
+   "state": "blocked",
+   "needs": [
+    "synergy.retrain_readers_gpu.stage_a"
+   ],
+   "assumed_done": [],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 8.0,
+   "cpus": 2,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/logs/synergy.retrain_readers_gpu.rules_1.log"
+  }
+ ]
+}

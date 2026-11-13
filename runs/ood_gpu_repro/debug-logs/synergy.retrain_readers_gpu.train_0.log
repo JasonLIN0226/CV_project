@@ -1,0 +1,34 @@
+== 2026-11-12T01:18:10+0000 synergy.retrain_readers_gpu.train[0]: scripts/train_predictor/synergy.py --terminal ${BM_SCRATCH}/synergy/terminal/run --data ${BM_SCRATCH}/synergy/trainvaldev_gpu/data --out ${BM_RUN}/synergy/readers_rebuilt_gpu --device cuda --released ${BM_SCRATCH}/synergy/conf_full/build/reader-aggregation-20261025/hpc/extracted/run
+Traceback (most recent call last):
+  File "/scratch/ys4907/CV_project/scripts/train_predictor/synergy.py", line 76, in <module>
+    main()
+  File "/scratch/ys4907/CV_project/scripts/train_predictor/synergy.py", line 61, in main
+    study.train_one(c, base_c, source, out, variant, args.device, common)
+  File "/scratch/ys4907/CV_project/src/bounded_memory/environments/synergy/train_readers.py", line 86, in train_one
+    v = validation(); logs.append({'step': step, **v})
+        ^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/src/bounded_memory/environments/synergy/train_readers.py", line 80, in validation
+    vals.append(float((model(batch)-y).square().mean()))
+                       ^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/src/bounded_memory/predictors/readers.py", line 117, in forward
+    current, history, past, age, aligned, weights = self._observed(batch)
+                                                    ^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/src/bounded_memory/predictors/readers.py", line 83, in _observed
+    past = self.past_action(batch['past_actions'].masked_fill(~valid[..., None], 0))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility

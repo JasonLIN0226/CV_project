@@ -1,0 +1,275 @@
+{
+ "run_id": "repro_20261111",
+ "started": "2026-11-12T00:56:39+0000",
+ "updated": "2026-11-12T04:33:34+0000",
+ "counts": {
+  "done": 13,
+  "already done": 1,
+  "running": 0,
+  "pending": 0,
+  "failed": 0,
+  "blocked": 0,
+  "interrupted": 0
+ },
+ "units": [
+  {
+   "task": "gate.assets.team_bundle",
+   "index": 0,
+   "command": "scripts/prepare_data/gate_team_bundle.py --work ${BM_SCRATCH}/gate_team",
+   "state": "already done",
+   "needs": [],
+   "assumed_done": [],
+   "done_when": "${BM_SCRATCH}/gate_team/bundle_report.json",
+   "env": {},
+   "memory_gb": 16.0,
+   "cpus": 4,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.assets.team_bundle_0.log"
+  },
+  {
+   "task": "gate.assets.dinov2",
+   "index": 0,
+   "command": "scripts/encode/dinov2.py --config configs/gate/team_bundle.yaml --out ${BM_SCRATCH}/gate_team/dinov2/features.npz --revision f9e44c814b77203eaa57a6bdbbd535f21ede1415 --device cpu",
+   "state": "done",
+   "needs": [
+    "gate.assets.team_bundle"
+   ],
+   "assumed_done": [],
+   "done_when": "${BM_SCRATCH}/gate_team/dinov2/features.npz",
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.assets.dinov2_0.log",
+   "seconds": 2230.2030477523804
+  },
+  {
+   "task": "gate.replay.pacc",
+   "index": 0,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 17 --device cpu --method pacc_full --out ${BM_OUT}/gate/replay --checkpoints ${BM_RUN}/gate/replay/checkpoints",
+   "state": "done",
+   "needs": [
+    "gate.assets.team_bundle"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.pacc_0.log",
+   "seconds": 145.0249810218811
+  },
+  {
+   "task": "gate.replay.pacc",
+   "index": 1,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 29 --device cpu --method pacc_full --out ${BM_OUT}/gate/replay --checkpoints ${BM_RUN}/gate/replay/checkpoints",
+   "state": "done",
+   "needs": [
+    "gate.assets.team_bundle"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.pacc_1.log",
+   "seconds": 150.0374195575714
+  },
+  {
+   "task": "gate.replay.pacc",
+   "index": 2,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 43 --device cpu --method pacc_full --out ${BM_OUT}/gate/replay --checkpoints ${BM_RUN}/gate/replay/checkpoints",
+   "state": "done",
+   "needs": [
+    "gate.assets.team_bundle"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.pacc_2.log",
+   "seconds": 125.03575396537781
+  },
+  {
+   "task": "gate.replay.pacc",
+   "index": 3,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 17 --device cpu --method pacc_recurrent --out ${BM_OUT}/gate/replay --checkpoints ${BM_RUN}/gate/replay/checkpoints",
+   "state": "done",
+   "needs": [
+    "gate.assets.team_bundle"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.pacc_3.log",
+   "seconds": 855.0629348754883
+  },
+  {
+   "task": "gate.replay.pacc",
+   "index": 4,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 29 --device cpu --method pacc_recurrent --out ${BM_OUT}/gate/replay --checkpoints ${BM_RUN}/gate/replay/checkpoints",
+   "state": "done",
+   "needs": [
+    "gate.assets.team_bundle"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.pacc_4.log",
+   "seconds": 975.0575530529022
+  },
+  {
+   "task": "gate.replay.pacc",
+   "index": 5,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 43 --device cpu --method pacc_recurrent --out ${BM_OUT}/gate/replay --checkpoints ${BM_RUN}/gate/replay/checkpoints",
+   "state": "done",
+   "needs": [
+    "gate.assets.team_bundle"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.pacc_5.log",
+   "seconds": 600.039808511734
+  },
+  {
+   "task": "gate.replay.framemorrow",
+   "index": 0,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 17 --device cpu --method fm_dinov2_published --out ${BM_OUT}/gate/replay",
+   "state": "done",
+   "needs": [
+    "gate.assets.dinov2"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.framemorrow_0.log",
+   "seconds": 5690.221438169479
+  },
+  {
+   "task": "gate.replay.framemorrow",
+   "index": 1,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 29 --device cpu --method fm_dinov2_published --out ${BM_OUT}/gate/replay",
+   "state": "done",
+   "needs": [
+    "gate.assets.dinov2"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.framemorrow_1.log",
+   "seconds": 8120.332226037979
+  },
+  {
+   "task": "gate.replay.framemorrow",
+   "index": 2,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 43 --device cpu --method fm_dinov2_published --out ${BM_OUT}/gate/replay",
+   "state": "done",
+   "needs": [
+    "gate.assets.dinov2"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.framemorrow_2.log",
+   "seconds": 3790.1265761852264
+  },
+  {
+   "task": "gate.replay.framemorrow",
+   "index": 3,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 17 --device cpu --method fm_dinov2_online --out ${BM_OUT}/gate/replay",
+   "state": "done",
+   "needs": [
+    "gate.assets.dinov2"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.framemorrow_3.log",
+   "seconds": 3545.143702507019
+  },
+  {
+   "task": "gate.replay.framemorrow",
+   "index": 4,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 29 --device cpu --method fm_dinov2_online --out ${BM_OUT}/gate/replay",
+   "state": "done",
+   "needs": [
+    "gate.assets.dinov2"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.framemorrow_4.log",
+   "seconds": 4035.170998573303
+  },
+  {
+   "task": "gate.replay.framemorrow",
+   "index": 5,
+   "command": "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 43 --device cpu --method fm_dinov2_online --out ${BM_OUT}/gate/replay",
+   "state": "done",
+   "needs": [
+    "gate.assets.dinov2"
+   ],
+   "assumed_done": [
+    "gate.validate.migration"
+   ],
+   "done_when": null,
+   "env": {},
+   "memory_gb": 24.0,
+   "cpus": 16,
+   "gpu": false,
+   "log": "/scratch/ys4907/cv_project_runs/reproduction/repro_20261111/logs/gate.replay.framemorrow_5.log",
+   "seconds": 3450.1495048999786
+  }
+ ]
+}

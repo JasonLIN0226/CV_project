@@ -1,0 +1,47 @@
+{
+  "task": "stage_a_multihead_validation",
+  "seed": 17,
+  "device": "cuda",
+  "host": "b-20-1",
+  "python": "3.11.18",
+  "torch": "2.5.1+cu121",
+  "numpy": "1.26.4",
+  "threads": 4,
+  "config": "configs/synergy/gpu_features.yaml",
+  "source_sha256": "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc",
+  "slurm_job_id": "29336",
+  "seconds": 48.289974212646484,
+  "info": {
+    "against_released": {
+      "medoid_sum": {
+        "max_abs_diff": 1.949123872302394e-06,
+        "same_argmin": 1.0
+      },
+      "sensitivity": {
+        "max_abs_diff": 8.123253707470468e-07,
+        "same_argmin": 1.0
+      },
+      "eval_cost": {
+        "max_abs_diff": 5.734032603454953e-07,
+        "same_argmin": 1.0
+      },
+      "eval_losses": {
+        "max_abs_diff": 6.209500713616478e-07
+      },
+      "teacher_eval": {
+        "max_abs_diff": 9.834766387939453e-07,
+        "same_argmin": 1.0
+      },
+      "attention": {
+        "max_abs_diff": 7.450580596923828e-07,
+        "same_argmin": 1.0
+      }
+    }
+  },
+  "environment": "synergy",
+  "reader": "multihead",
+  "split": "validation",
+  "records": 1728,
+  "labels": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/synergy/stageA_gpu/multihead_validation.npz",
+  "labels_sha256": "3505ccd8de3737d3245057e9090d3aeb71038207118d511d61b394fa0fe7c6fb"
+}

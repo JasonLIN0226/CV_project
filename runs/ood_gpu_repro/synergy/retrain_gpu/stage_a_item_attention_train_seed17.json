@@ -1,0 +1,44 @@
+{
+  "task": "stage_a_item_attention_train",
+  "seed": 17,
+  "device": "cuda",
+  "host": "b-20-1",
+  "python": "3.11.18",
+  "torch": "2.5.1+cu121",
+  "numpy": "1.26.4",
+  "threads": 4,
+  "config": "configs/synergy/gpu_features.yaml",
+  "source_sha256": "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc",
+  "slurm_job_id": "29336",
+  "seconds": 56.870919942855835,
+  "info": {
+    "against_released": {
+      "medoid_sum": {
+        "max_abs_diff": 4.775607587825803e-06,
+        "same_argmin": 1.0
+      },
+      "sensitivity": {
+        "max_abs_diff": 3.872659849663007e-06,
+        "same_argmin": 1.0
+      },
+      "ref_cost": {
+        "max_abs_diff": 2.119196087280173e-06,
+        "same_argmin": 1.0
+      },
+      "teacher_ref": {
+        "max_abs_diff": 4.76837158203125e-06,
+        "same_argmin": 1.0
+      },
+      "attention": {
+        "max_abs_diff": 5.7220458984375e-06,
+        "same_argmin": 1.0
+      }
+    }
+  },
+  "environment": "synergy",
+  "reader": "item_attention",
+  "split": "train",
+  "records": 3456,
+  "labels": "/scratch/ys4907/cv_project_runs/reproduction/ood_gpu_repro/synergy/stageA_gpu/item_attention_train.npz",
+  "labels_sha256": "32807749f60887e59136bfb1ca1738bca81095258231b507f07f80d9c00630d8"
+}

@@ -1,0 +1,247 @@
+== 2026-11-12T00:44:16+0000 gate.retrain_gpu.assets[0]: scripts/train_predictor/gate.py --stage all --work ${BM_SCRATCH}/gate_rebuilt_gpu --device cuda --threads 4
+== stage data
+== /scratch/ys4907/CV_project/.venv/bin/python -m bounded_memory.environments.gate.generate --source-config /scratch/ys4907/CV_project/configs/gate/dataset_config_template.json --output /scratch/ys4907/cv_project_runs/gate_rebuilt_gpu
+train: 0/512
+train: 32/512
+train: 64/512
+train: 96/512
+train: 128/512
+train: 160/512
+train: 192/512
+train: 224/512
+train: 256/512
+train: 288/512
+train: 320/512
+train: 352/512
+train: 384/512
+train: 416/512
+train: 448/512
+train: 480/512
+validation: 0/96
+validation: 32/96
+validation: 64/96
+{
+  "status": "CLEAN_FUTURE_TRAINVAL_MATERIALIZED",
+  "output": "/scratch/ys4907/cv_project_runs/gate_rebuilt_gpu",
+  "records": 1216,
+  "frames": 42560,
+  "splits": {
+    "train": {
+      "pairs": 512,
+      "records": 1024,
+      "frames_per_record": [
+        35
+      ],
+      "total_frames": 35840,
+      "input_frames": 29696,
+      "clean_future_frames": 6144,
+      "post_cue_min": 0,
+      "post_cue_max": 24,
+      "labels": {
+        "0": 512,
+        "1": 512
+      }
+    },
+    "validation": {
+      "pairs": 96,
+      "records": 192,
+      "frames_per_record": [
+        35
+      ],
+      "total_frames": 6720,
+      "input_frames": 5568,
+      "clean_future_frames": 1152,
+      "post_cue_min": 0,
+      "post_cue_max": 23,
+      "labels": {
+        "0": 96,
+        "1": 96
+      }
+    }
+  },
+  "test_generated": false
+}
+dataset ok {'train': 1024, 'validation': 192}
+== stage features
+== /scratch/ys4907/CV_project/.venv/bin/python -m bounded_memory.environments.gate.features --config /scratch/ys4907/cv_project_runs/gate_rebuilt_gpu/resolved_config.json --output /scratch/ys4907/cv_project_runs/gate_features_report
+Loading weights:   0%|          | 0/517 [00:00<?, ?it/s]Loading weights:  13%|█▎        | 67/517 [00:00<00:00, 669.41it/s]Loading weights:  26%|██▌       | 134/517 [00:00<00:00, 571.59it/s]Loading weights:  40%|███▉      | 206/517 [00:00<00:00, 628.47it/s]Loading weights:  56%|█████▋    | 291/517 [00:00<00:00, 698.94it/s]Loading weights:  70%|███████   | 362/517 [00:00<00:00, 701.94it/s]Loading weights:  86%|████████▋ | 447/517 [00:00<00:00, 745.26it/s]Loading weights: 100%|██████████| 517/517 [00:00<00:00, 752.60it/s]
+encoded 32/1216 episodes
+encoded 64/1216 episodes
+encoded 96/1216 episodes
+encoded 128/1216 episodes
+encoded 160/1216 episodes
+encoded 192/1216 episodes
+encoded 224/1216 episodes
+encoded 256/1216 episodes
+encoded 288/1216 episodes
+encoded 320/1216 episodes
+encoded 352/1216 episodes
+encoded 384/1216 episodes
+encoded 416/1216 episodes
+encoded 448/1216 episodes
+encoded 480/1216 episodes
+encoded 512/1216 episodes
+encoded 544/1216 episodes
+encoded 576/1216 episodes
+encoded 608/1216 episodes
+encoded 640/1216 episodes
+encoded 672/1216 episodes
+encoded 704/1216 episodes
+encoded 736/1216 episodes
+encoded 768/1216 episodes
+encoded 800/1216 episodes
+encoded 832/1216 episodes
+== 2026-11-12T01:07:25+0000 gate.retrain_gpu.assets[0]: scripts/train_predictor/gate.py --stage all --work ${BM_SCRATCH}/gate_rebuilt_gpu --device cuda --threads 4
+== stage data
+dataset ok {'train': 1024, 'validation': 192}
+== stage features
+== /scratch/ys4907/CV_project/.venv/bin/python -m bounded_memory.environments.gate.features --config /scratch/ys4907/cv_project_runs/gate_rebuilt_gpu/resolved_config.json --output /scratch/ys4907/cv_project_runs/gate_features_report
+Loading weights:   0%|          | 0/517 [00:00<?, ?it/s]Loading weights:  24%|██▍       | 124/517 [00:00<00:00, 1137.53it/s]Loading weights:  46%|████▌     | 238/517 [00:00<00:00, 1038.11it/s]Loading weights:  66%|██████▋   | 343/517 [00:00<00:00, 990.46it/s] Loading weights:  86%|████████▌ | 443/517 [00:00<00:00, 966.01it/s]Loading weights: 100%|██████████| 517/517 [00:00<00:00, 1021.64it/s]
+encoded 872/1216 episodes
+encoded 904/1216 episodes
+encoded 936/1216 episodes
+encoded 968/1216 episodes
+encoded 1000/1216 episodes
+encoded 1032/1216 episodes
+encoded 1064/1216 episodes
+encoded 1096/1216 episodes
+encoded 1128/1216 episodes
+encoded 1160/1216 episodes
+encoded 1192/1216 episodes
+{
+  "status": "PASS_CLEAN_FUTURE_TRAIN_ONLY_FEATURES",
+  "cache_signature": "77f8db234113b65562843d1c7e1271c960a37d40a0ad652e27668c952b197cce",
+  "episodes": 1216,
+  "splits": [
+    "train",
+    "validation"
+  ],
+  "encoder": {
+    "name": "facebook/ijepa_vith14_1k",
+    "resolved_revision": "f157467ea509bc356ff9f61fd3c0d840eec5e04e",
+    "processor": {
+      "do_normalize": true,
+      "do_rescale": true,
+      "do_resize": true,
+      "image_mean": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "image_processor_type": "ViTImageProcessor",
+      "image_std": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "resample": 2,
+      "rescale_factor": 0.00392156862745098,
+      "size": {
+        "height": 224,
+        "width": 224
+      }
+    },
+    "pooling": "grid2",
+    "dtype": "float32",
+    "special_tokens": 0,
+    "model_config": {
+      "transformers_version": "5.5.4",
+      "architectures": [
+        "IJepaModel"
+      ],
+      "output_hidden_states": false,
+      "return_dict": true,
+      "dtype": "float32",
+      "chunk_size_feed_forward": 0,
+      "is_encoder_decoder": false,
+      "id2label": {
+        "0": "LABEL_0",
+        "1": "LABEL_1"
+      },
+      "label2id": {
+        "LABEL_0": 0,
+        "LABEL_1": 1
+      },
+      "problem_type": null,
+      "hidden_size": 1280,
+      "num_hidden_layers": 32,
+      "num_attention_heads": 16,
+      "intermediate_size": 5120,
+      "hidden_act": "gelu",
+      "hidden_dropout_prob": 0.0,
+      "attention_probs_dropout_prob": 0.0,
+      "initializer_range": 0.02,
+      "layer_norm_eps": 1e-06,
+      "image_size": 224,
+      "patch_size": 14,
+      "num_channels": 3,
+      "qkv_bias": true,
+      "pooler_output_size": 1280,
+      "pooler_act": "tanh",
+      "_name_or_path": "facebook/ijepa_vith14_1k",
+      "mlp_ratio": 4,
+      "model_type": "ijepa",
+      "output_attentions": false
+    },
+    "parameter_bytes": 2523048960
+  },
+  "encoder_hash": "caaf35f0bbb97992cc49450dafdc6cfbe0e84395650bd61a48f3718f175e2fa4",
+  "normalization_sha256": "20e27764cdcc84db0e2d38c5fe64a024255dc6fc68ca4050ec8299411ec4598b",
+  "basis_sha256": "1ba81e1e0d9055bcd5ef5d1ccb7e13c202d2d87b7d6d23868f952277d8ad4277",
+  "probe_metrics_sha256": "4c9d8f3f5f3f36f780efc734b582d7353c13592fde4e3407e8ac8bdf2e15cc7e",
+  "train_only_transforms": true,
+  "held_out_used_for_fitting": false,
+  "test_accessed": false
+}== stage predictors
+== /scratch/ys4907/CV_project/.venv/bin/python -m bounded_memory.environments.gate.train_predictor --config /scratch/ys4907/cv_project_runs/gate_rebuilt_gpu/resolved_config.json --output /scratch/ys4907/cv_project_runs/gate_training_report
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/scratch/ys4907/CV_project/src/bounded_memory/environments/gate/train_predictor.py", line 43, in <module>
+    main()
+  File "/scratch/ys4907/CV_project/src/bounded_memory/environments/gate/train_predictor.py", line 29, in main
+    result = train(c, resume=True)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/src/bounded_memory/predictors/phase1/training.py", line 240, in train
+    prediction = model(batch)
+                 ^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/src/bounded_memory/predictors/phase1/model.py", line 81, in forward
+    score = self.score(torch.cat([p,p-current[:,None]],-1)).squeeze(-1)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ys4907/CV_project/.venv/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility
+Traceback (most recent call last):
+  File "/scratch/ys4907/CV_project/scripts/train_predictor/gate.py", line 92, in <module>
+    main()
+  File "/scratch/ys4907/CV_project/scripts/train_predictor/gate.py", line 88, in main
+    globals()[f"stage_{stage}"](work, args.device, args.threads)
+  File "/scratch/ys4907/CV_project/scripts/train_predictor/gate.py", line 63, in stage_predictors
+    run("train_predictor", "--config", work / "resolved_config.json", "--output", work.parent / "gate_training_report")
+  File "/scratch/ys4907/CV_project/scripts/train_predictor/gate.py", line 37, in run
+    subprocess.run(command, check=True, env=env)
+  File "/home/ys4907/.local/share/uv/python/cpython-3.11.18-linux-x86_64-gnu/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/scratch/ys4907/CV_project/.venv/bin/python', '-m', 'bounded_memory.environments.gate.train_predictor', '--config', '/scratch/ys4907/cv_project_runs/gate_rebuilt_gpu/resolved_config.json', '--output', '/scratch/ys4907/cv_project_runs/gate_training_report']' returned non-zero exit status 1.

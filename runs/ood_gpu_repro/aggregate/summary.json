@@ -1,0 +1,2206 @@
+{
+ "run_id": "ood_gpu_repro",
+ "reference_sources": {
+  "results/memory_baselines/gate_team/summary.json": "ee806a989bce8f6ccb9c3d1238eea3b30b89d568a364ffb04d82e9340e3007d3",
+  "results/memory_baselines/synergy/released_scores.json": "09dc91dd948b524f28d733333f3c6bd1f65c8347f66050d8f409588a5cb5b966",
+  "results/memory_baselines/synergy/summary.json": "b8f82581a9ec51b0045191659c9c65a4e01f1764dd03f694b3ff133cdcb5c29f",
+  "docs/MOTION_V2_STEP3_4_RECOVERY1_REPORT_ZH.md": "3ccb2fc35df03313a8a076584bfea859f7dfcdaea687270c59c58d258d735497",
+  "docs/MOTION_V2_3_1_RESUBMISSION_REPORT_ZH.md": "61193c9b48fe6c6fabbdc4b271991a16976b4b555e736a3dcb4861843c61ae81",
+  "reports/memory_results_20261111/spec/spec.json": "287eed10871500b1a5b3b3d4089ed9527fe052d8fcc1eafd08bb2f9a6b39f8a5"
+ },
+ "gate": {},
+ "synergy": {
+  "retrain_gpu": {
+   "readers": {
+    "multihead": {
+     "appearance_only_student": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.4259259259259259,
+        "regret": 0.016375010610137287,
+        "regret_by_seed": {
+         "17": 0.015035379049130928,
+         "29": 0.015080052016366184,
+         "43": 0.019009600764914744
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4236111111111111,
+         "29": 0.4583333333333333,
+         "43": 0.3958333333333333
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.0,
+        "regret": 0.0006360982091469711,
+        "regret_by_seed": {
+         "17": 0.0006360982091469711,
+         "29": 0.0006360982091469711,
+         "43": 0.0006360982091469711
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.0,
+         "29": 0.0,
+         "43": 0.0
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.6226851851851852,
+        "regret": 0.04418615163951909,
+        "regret_by_seed": {
+         "17": 0.04359422581064989,
+         "29": 0.04329690074320647,
+         "43": 0.04566732836470092
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.6215277777777778,
+         "29": 0.6215277777777778,
+         "43": 0.625
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.4305555555555556,
+        "regret": 0.016537549371466863
+       },
+       "D": {
+        "needed_evidence_lost": 0.0,
+        "regret": 0.0006360979386735121
+       },
+       "S": {
+        "needed_evidence_lost": 0.6226851851851852,
+        "regret": 0.04416133409445929
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": -0.004629629629629706,
+        "regret": -0.00016253876132957604
+       },
+       "D": {
+        "needed_evidence_lost": 0.0,
+        "regret": 2.704734589509955e-10
+       },
+       "S": {
+        "needed_evidence_lost": 0.0,
+        "regret": 2.4817545059799273e-05
+       }
+      },
+      "tolerance": "tie_sensitive",
+      "verdict": "within 1 point"
+     },
+     "deletion_cost_student_independent": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.38946759259259256,
+        "regret": 0.02050983365186722,
+        "regret_by_seed": {
+         "17": 0.022181521396812873,
+         "29": 0.019446334075477734,
+         "43": 0.019901645483311064
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4236111111111111,
+         "29": 0.3697916666666667,
+         "43": 0.375
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.025462962962962965,
+        "regret": 0.001070086880809696,
+        "regret_by_seed": {
+         "17": 0.0010233561385653938,
+         "29": 0.0009682494699283783,
+         "43": 0.0012186550339353158
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.027777777777777776,
+         "29": 0.017361111111111112,
+         "43": 0.03125
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.6180555555555555,
+        "regret": 0.04488908468169875,
+        "regret_by_seed": {
+         "17": 0.04539980364939152,
+         "29": 0.04308914455176547,
+         "43": 0.04617830584393925
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.6280381944444444,
+         "29": 0.5928819444444444,
+         "43": 0.6332465277777778
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.3744212962962963,
+        "regret": 0.01968648369023714
+       },
+       "D": {
+        "needed_evidence_lost": 0.015046296296296295,
+        "regret": 0.0007600530389832937
+       },
+       "S": {
+        "needed_evidence_lost": 0.6280381944444444,
+        "regret": 0.04493157752706861
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 0.01504629629629628,
+        "regret": 0.0008233499616300821
+       },
+       "D": {
+        "needed_evidence_lost": 0.01041666666666667,
+        "regret": 0.00031003384182640235
+       },
+       "S": {
+        "needed_evidence_lost": -0.00998263888888895,
+        "regret": -4.249284536986253e-05
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "differs by more than 1 point"
+     },
+     "deletion_cost_student_set": {
+      "group": "ours",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.3599537037037037,
+        "regret": 0.016803926114307973,
+        "regret_by_seed": {
+         "17": 0.018371020470268302,
+         "29": 0.016425223178625478,
+         "43": 0.015615534694030144
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.390625,
+         "29": 0.3368055555555556,
+         "43": 0.3524305555555556
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.03935185185185185,
+        "regret": 0.0012262732640344895,
+        "regret_by_seed": {
+         "17": 0.0010975452730204217,
+         "29": 0.001500214370988507,
+         "43": 0.0010810601480945403
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.029513888888888888,
+         "29": 0.059027777777777776,
+         "43": 0.029513888888888888
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.17274305555555555,
+        "regret": 0.011533813775522464,
+        "regret_by_seed": {
+         "17": 0.00372786347743562,
+         "29": 0.02711645161080621,
+         "43": 0.003757126238325566
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.0,
+         "29": 0.3997395833333333,
+         "43": 0.11848958333333333
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.34317129629629634,
+        "regret": 0.015002340205697023
+       },
+       "D": {
+        "needed_evidence_lost": 0.039351851851851846,
+        "regret": 0.0009188080595783684
+       },
+       "S": {
+        "needed_evidence_lost": 0.04586226851851852,
+        "regret": 0.003601458196477362
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 0.016782407407407385,
+        "regret": 0.00180158590861095
+       },
+       "D": {
+        "needed_evidence_lost": 6.938893903907228e-18,
+        "regret": 0.0003074652044561211
+       },
+       "S": {
+        "needed_evidence_lost": 0.12688078703703703,
+        "regret": 0.007932355579045102
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "differs by more than 1 point"
+     },
+     "distilled_sensitivity_student_independent": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.39351851851851855,
+        "regret": 0.017693975390427077,
+        "regret_by_seed": {
+         "17": 0.020397646049896714,
+         "29": 0.01622808630423625,
+         "43": 0.016456193817148256
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4479166666666667,
+         "29": 0.3836805555555556,
+         "43": 0.3489583333333333
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.1111111111111111,
+        "regret": 0.0018757854191339023,
+        "regret_by_seed": {
+         "17": 0.0020851948515935403,
+         "29": 0.0012631500402793762,
+         "43": 0.0022790113655287905
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.11805555555555555,
+         "29": 0.0798611111111111,
+         "43": 0.13541666666666666
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.6001157407407408,
+        "regret": 0.04352106326141522,
+        "regret_by_seed": {
+         "17": 0.04171172253353745,
+         "29": 0.04578734767002329,
+         "43": 0.043064119580684936
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.5846354166666666,
+         "29": 0.6124131944444444,
+         "43": 0.6032986111111112
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.39178240740740733,
+        "regret": 0.016975959397896468
+       },
+       "D": {
+        "needed_evidence_lost": 0.11574074074074073,
+        "regret": 0.0022560138226175403
+       },
+       "S": {
+        "needed_evidence_lost": 0.5914351851851851,
+        "regret": 0.04354628254207885
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 0.001736111111111216,
+        "regret": 0.0007180159925306087
+       },
+       "D": {
+        "needed_evidence_lost": -0.0046296296296296224,
+        "regret": -0.000380228403483638
+       },
+       "S": {
+        "needed_evidence_lost": 0.008680555555555691,
+        "regret": -2.521928066363116e-05
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "within 1 point"
+     },
+     "distilled_sensitivity_student_set": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.3327546296296296,
+        "regret": 0.012415224599143236,
+        "regret_by_seed": {
+         "17": 0.011777497580136324,
+         "29": 0.012056500397169032,
+         "43": 0.01341167582012435
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.328125,
+         "29": 0.328125,
+         "43": 0.3420138888888889
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.12326388888888888,
+        "regret": 0.002478303256008285,
+        "regret_by_seed": {
+         "17": 0.0026536347329184,
+         "29": 0.0023988437571287806,
+         "43": 0.0023824312779776747
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.125,
+         "29": 0.11805555555555555,
+         "43": 0.1267361111111111
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.11400462962962964,
+        "regret": 0.0046201420748882005,
+        "regret_by_seed": {
+         "17": 0.004678675135982121,
+         "29": 0.004293807526732764,
+         "43": 0.004887943561949717
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.1267361111111111,
+         "29": 0.05772569444444445,
+         "43": 0.15755208333333334
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.3246527777777778,
+        "regret": 0.01225493556646757
+       },
+       "D": {
+        "needed_evidence_lost": 0.11921296296296295,
+        "regret": 0.0022413864573296517
+       },
+       "S": {
+        "needed_evidence_lost": 0.0881076388888889,
+        "regret": 0.00458202786149941
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 0.008101851851851805,
+        "regret": 0.00016028903267566522
+       },
+       "D": {
+        "needed_evidence_lost": 0.00405092592592593,
+        "regret": 0.00023691679867863342
+       },
+       "S": {
+        "needed_evidence_lost": 0.02589699074074074,
+        "regret": 3.8114213388790695e-05
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "differs by more than 1 point"
+     },
+     "future_attention_student_independent": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.4820601851851852,
+        "regret": 0.015777863313058842,
+        "regret_by_seed": {
+         "17": 0.016525297596429556,
+         "29": 0.015366520081222135,
+         "43": 0.015441772261524841
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4982638888888889,
+         "29": 0.4722222222222222,
+         "43": 0.4756944444444444
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.5601851851851852,
+        "regret": 0.013945555913066473,
+        "regret_by_seed": {
+         "17": 0.014126195226444706,
+         "29": 0.014910455300254375,
+         "43": 0.012800017212500335
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.5659722222222222,
+         "29": 0.5902777777777778,
+         "43": 0.5243055555555556
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.5571469907407408,
+        "regret": 0.04272676495234324,
+        "regret_by_seed": {
+         "17": 0.04285586378087936,
+         "29": 0.043138759359436625,
+         "43": 0.042185671716713745
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.5564236111111112,
+         "29": 0.5590277777777778,
+         "43": 0.5559895833333334
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.48726851851851843,
+        "regret": 0.01595791554745424
+       },
+       "D": {
+        "needed_evidence_lost": 0.53125,
+        "regret": 0.012986142007875413
+       },
+       "S": {
+        "needed_evidence_lost": 0.5483217592592592,
+        "regret": 0.04198425679138059
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": -0.005208333333333259,
+        "regret": -0.0001800522343953989
+       },
+       "D": {
+        "needed_evidence_lost": 0.02893518518518523,
+        "regret": 0.0009594139051910602
+       },
+       "S": {
+        "needed_evidence_lost": 0.008825231481481621,
+        "regret": 0.0007425081609626488
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "differs by more than 1 point"
+     },
+     "future_attention_student_set": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.44502314814814814,
+        "regret": 0.013551687018059514,
+        "regret_by_seed": {
+         "17": 0.013096029482120922,
+         "29": 0.013230287000504276,
+         "43": 0.014328744571553342
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4340277777777778,
+         "29": 0.4461805555555556,
+         "43": 0.4548611111111111
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.5856481481481481,
+        "regret": 0.015292801351885174,
+        "regret_by_seed": {
+         "17": 0.015080497985204194,
+         "29": 0.014585730396161276,
+         "43": 0.016212175674290046
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.5538194444444444,
+         "29": 0.5850694444444444,
+         "43": 0.6180555555555556
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.6642071759259259,
+        "regret": 0.05026312621338222,
+        "regret_by_seed": {
+         "17": 0.051160889073506556,
+         "29": 0.049795326285587055,
+         "43": 0.04983316328105306
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.6792534722222222,
+         "29": 0.65625,
+         "43": 0.6571180555555556
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.4415509259259259,
+        "regret": 0.013145539603089682
+       },
+       "D": {
+        "needed_evidence_lost": 0.5833333333333334,
+        "regret": 0.015212184757771988
+       },
+       "S": {
+        "needed_evidence_lost": 0.673755787037037,
+        "regret": 0.050796860797018006
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 0.0034722222222222654,
+        "regret": 0.00040614741496983187
+       },
+       "D": {
+        "needed_evidence_lost": 0.0023148148148147696,
+        "regret": 8.06165941131861e-05
+       },
+       "S": {
+        "needed_evidence_lost": -0.00954861111111105,
+        "regret": -0.0005337345836357865
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "within 1 point"
+     },
+     "shuffled_label_student_independent": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.40509259259259256,
+        "regret": 0.02384493238830189,
+        "regret_by_seed": {
+         "17": 0.029626879185537063,
+         "29": 0.020300862322208957,
+         "43": 0.021607055657159646
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4861111111111111,
+         "29": 0.3663194444444444,
+         "43": 0.3628472222222222
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.7621527777777777,
+        "regret": 0.042697734519991426,
+        "regret_by_seed": {
+         "17": 0.04628644289957327,
+         "29": 0.043741973378829256,
+         "43": 0.038064787281571755
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.7621527777777778,
+         "29": 0.8263888888888888,
+         "43": 0.6979166666666666
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.6322337962962963,
+        "regret": 0.04758730150256096,
+        "regret_by_seed": {
+         "17": 0.04805189521647465,
+         "29": 0.04765540899908064,
+         "43": 0.04705460029212758
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.6397569444444444,
+         "29": 0.6202256944444444,
+         "43": 0.63671875
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.40509259259259256,
+        "regret": 0.023844931855141027
+       },
+       "D": {
+        "needed_evidence_lost": 0.7621527777777778,
+        "regret": 0.042697734649243924
+       },
+       "S": {
+        "needed_evidence_lost": 0.6322337962962963,
+        "regret": 0.047587301114964266
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 0.0,
+        "regret": 5.331608626812923e-10
+       },
+       "D": {
+        "needed_evidence_lost": -1.1102230246251565e-16,
+        "regret": -1.292524975937681e-10
+       },
+       "S": {
+        "needed_evidence_lost": 0.0,
+        "regret": 3.875966908539752e-10
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "within 1 point"
+     },
+     "shuffled_label_student_set": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.4079861111111111,
+        "regret": 0.029482563580296495,
+        "regret_by_seed": {
+         "17": 0.02532716667863065,
+         "29": 0.0324787938133702,
+         "43": 0.030641730248888627
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.3940972222222222,
+         "29": 0.390625,
+         "43": 0.4392361111111111
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.704861111111111,
+        "regret": 0.04591484107555532,
+        "regret_by_seed": {
+         "17": 0.035827054846641386,
+         "29": 0.06531883310069043,
+         "43": 0.03659863527933413
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.7013888888888888,
+         "29": 0.828125,
+         "43": 0.5850694444444444
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.6436631944444444,
+        "regret": 0.048902114328588354,
+        "regret_by_seed": {
+         "17": 0.04939610116582538,
+         "29": 0.048596823887234804,
+         "43": 0.04871341793270489
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.6467013888888888,
+         "29": 0.6388888888888888,
+         "43": 0.6453993055555556
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.40798611111111105,
+        "regret": 0.029482562242320477
+       },
+       "D": {
+        "needed_evidence_lost": 0.7048611111111112,
+        "regret": 0.045914840626090504
+       },
+       "S": {
+        "needed_evidence_lost": 0.6436631944444444,
+        "regret": 0.048902113684697636
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 5.551115123125783e-17,
+        "regret": 1.3379760181730926e-09
+       },
+       "D": {
+        "needed_evidence_lost": -1.1102230246251565e-16,
+        "regret": 4.4946481259078297e-10
+       },
+       "S": {
+        "needed_evidence_lost": 0.0,
+        "regret": 6.438907185213338e-10
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "within 1 point"
+     }
+    },
+    "item_attention": {
+     "appearance_only_student": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.4236111111111111,
+        "regret": 0.015802925122293046,
+        "regret_by_seed": {
+         "17": 0.01503149270783735,
+         "29": 0.01592154079767204,
+         "43": 0.016455741861369746
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4097222222222222,
+         "29": 0.4375,
+         "43": 0.4236111111111111
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.0,
+        "regret": 0.00036833328571437944,
+        "regret_by_seed": {
+         "17": 0.00036833328571437944,
+         "29": 0.00036833328571437944,
+         "43": 0.00036833328571437944
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.0,
+         "29": 0.0,
+         "43": 0.0
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.5729166666666666,
+        "regret": 0.04270746805506965,
+        "regret_by_seed": {
+         "17": 0.04250058746500168,
+         "29": 0.0394362120924684,
+         "43": 0.046185604607738885
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.5694444444444444,
+         "29": 0.5277777777777778,
+         "43": 0.6215277777777778
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.4212962962962963,
+        "regret": 0.016027036772604527
+       },
+       "D": {
+        "needed_evidence_lost": 0.0,
+        "regret": 0.00036833391332726694
+       },
+       "S": {
+        "needed_evidence_lost": 0.5798611111111112,
+        "regret": 0.043319387901931884
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 0.002314814814814825,
+        "regret": -0.0002241116503114808
+       },
+       "D": {
+        "needed_evidence_lost": 0.0,
+        "regret": -6.276128874959687e-10
+       },
+       "S": {
+        "needed_evidence_lost": -0.006944444444444531,
+        "regret": -0.0006119198468622356
+       }
+      },
+      "tolerance": "tie_sensitive",
+      "verdict": "within 1 point"
+     },
+     "deletion_cost_student_independent": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.386574074074074,
+        "regret": 0.022396673557759386,
+        "regret_by_seed": {
+         "17": 0.02512993756837,
+         "29": 0.018443074661045337,
+         "43": 0.02361700844386282
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4270833333333333,
+         "29": 0.328125,
+         "43": 0.4045138888888889
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.01273148148148148,
+        "regret": 0.0005507863308803668,
+        "regret_by_seed": {
+         "17": 0.0005281935991062374,
+         "29": 0.0005326276000558973,
+         "43": 0.0005915377934789659
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.020833333333333332,
+         "29": 0.006944444444444444,
+         "43": 0.010416666666666666
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.6147280092592592,
+        "regret": 0.04658798529412556,
+        "regret_by_seed": {
+         "17": 0.046990965181220944,
+         "29": 0.0478696755619706,
+         "43": 0.04490331513918514
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.59765625,
+         "29": 0.6336805555555556,
+         "43": 0.6128472222222222
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.40162037037037035,
+        "regret": 0.023606032216566892
+       },
+       "D": {
+        "needed_evidence_lost": 0.011574074074074075,
+        "regret": 0.000584583655317876
+       },
+       "S": {
+        "needed_evidence_lost": 0.6167534722222222,
+        "regret": 0.04696876223985678
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": -0.015046296296296335,
+        "regret": -0.0012093586588075057
+       },
+       "D": {
+        "needed_evidence_lost": 0.0011574074074074056,
+        "regret": -3.379732443750921e-05
+       },
+       "S": {
+        "needed_evidence_lost": -0.0020254629629630205,
+        "regret": -0.0003807769457312149
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "differs by more than 1 point"
+     },
+     "deletion_cost_student_set": {
+      "group": "ours",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.33391203703703703,
+        "regret": 0.018556493301831095,
+        "regret_by_seed": {
+         "17": 0.01956672591181097,
+         "29": 0.019489224809565744,
+         "43": 0.016613529184116568
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.3298611111111111,
+         "29": 0.3732638888888889,
+         "43": 0.2986111111111111
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.028356481481481483,
+        "regret": 0.0009114261220901126,
+        "regret_by_seed": {
+         "17": 0.00080982575230062,
+         "29": 0.0006334606864680326,
+         "43": 0.0012909919275016846
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.022569444444444444,
+         "29": 0.017361111111111112,
+         "43": 0.04513888888888889
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.0011574074074074073,
+        "regret": 0.002004752004846835,
+        "regret_by_seed": {
+         "17": 0.0020353977521512085,
+         "29": 0.001989429131194648,
+         "43": 0.001989429131194648
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.003472222222222222,
+         "29": 0.0,
+         "43": 0.0
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.333912037037037,
+        "regret": 0.017100336845657736
+       },
+       "D": {
+        "needed_evidence_lost": 0.04456018518518518,
+        "regret": 0.0013890317543207378
+       },
+       "S": {
+        "needed_evidence_lost": 0.006510416666666667,
+        "regret": 0.0020011939048178375
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 5.551115123125783e-17,
+        "regret": 0.0014561564561733596
+       },
+       "D": {
+        "needed_evidence_lost": -0.0162037037037037,
+        "regret": -0.00047760563223062525
+       },
+       "S": {
+        "needed_evidence_lost": -0.00535300925925926,
+        "regret": 3.5581000289975316e-06
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "differs by more than 1 point"
+     },
+     "distilled_sensitivity_student_independent": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.3975694444444445,
+        "regret": 0.02238901862314513,
+        "regret_by_seed": {
+         "17": 0.021081759034328722,
+         "29": 0.02121781180956241,
+         "43": 0.024867485025544252
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.3767361111111111,
+         "29": 0.3993055555555556,
+         "43": 0.4166666666666667
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.0011574074074074073,
+        "regret": 0.0003863809024720701,
+        "regret_by_seed": {
+         "17": 0.00042247613598745136,
+         "29": 0.00036833328571437944,
+         "43": 0.00036833328571437944
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.003472222222222222,
+         "29": 0.0,
+         "43": 0.0
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.6085069444444443,
+        "regret": 0.04569836219593776,
+        "regret_by_seed": {
+         "17": 0.04798936782332919,
+         "29": 0.04507996059179973,
+         "43": 0.04402575817268436
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.6271701388888888,
+         "29": 0.6059027777777778,
+         "43": 0.5924479166666666
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.39988425925925924,
+        "regret": 0.020612142647691283
+       },
+       "D": {
+        "needed_evidence_lost": 0.004629629629629629,
+        "regret": 0.0004649837675893664
+       },
+       "S": {
+        "needed_evidence_lost": 0.6043113425925926,
+        "regret": 0.046759637498721716
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": -0.0023148148148147696,
+        "regret": 0.0017768759754538468
+       },
+       "D": {
+        "needed_evidence_lost": -0.003472222222222222,
+        "regret": -7.860286511729631e-05
+       },
+       "S": {
+        "needed_evidence_lost": 0.004195601851851749,
+        "regret": -0.001061275302783958
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "within 1 point"
+     },
+     "distilled_sensitivity_student_set": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.35127314814814814,
+        "regret": 0.0181223758823585,
+        "regret_by_seed": {
+         "17": 0.01709590440137232,
+         "29": 0.01784532103497195,
+         "43": 0.019425902210731223
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.3229166666666667,
+         "29": 0.3559027777777778,
+         "43": 0.375
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.020254629629629633,
+        "regret": 0.0008537667787323353,
+        "regret_by_seed": {
+         "17": 0.0004999918213998479,
+         "29": 0.0007647831854957392,
+         "43": 0.0012965253293014186
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.006944444444444444,
+         "29": 0.019097222222222224,
+         "43": 0.034722222222222224
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.19748263888888892,
+        "regret": 0.01033700962596343,
+        "regret_by_seed": {
+         "17": 0.010562110325505138,
+         "29": 0.010493185305246228,
+         "43": 0.009955733247138927
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.20789930555555555,
+         "29": 0.1953125,
+         "43": 0.1892361111111111
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.3246527777777778,
+        "regret": 0.016867970469816508
+       },
+       "D": {
+        "needed_evidence_lost": 0.016203703703703706,
+        "regret": 0.0006978129351005087
+       },
+       "S": {
+        "needed_evidence_lost": 0.17447916666666666,
+        "regret": 0.009583424760421571
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 0.02662037037037035,
+        "regret": 0.0012544054125419903
+       },
+       "D": {
+        "needed_evidence_lost": 0.004050925925925927,
+        "regret": 0.00015595384363182663
+       },
+       "S": {
+        "needed_evidence_lost": 0.023003472222222265,
+        "regret": 0.0007535848655418585
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "differs by more than 1 point"
+     },
+     "future_attention_student_independent": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.48611111111111116,
+        "regret": 0.018085027843762713,
+        "regret_by_seed": {
+         "17": 0.018175194291589775,
+         "29": 0.017587684754593418,
+         "43": 0.018492204485104944
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4861111111111111,
+         "29": 0.484375,
+         "43": 0.4878472222222222
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.46296296296296297,
+        "regret": 0.013985805276647069,
+        "regret_by_seed": {
+         "17": 0.012988001581504226,
+         "29": 0.014704941385581696,
+         "43": 0.014264472862855279
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4340277777777778,
+         "29": 0.4826388888888889,
+         "43": 0.4722222222222222
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.5593171296296297,
+        "regret": 0.044060920002826444,
+        "regret_by_seed": {
+         "17": 0.04438436868020456,
+         "29": 0.04457725362377451,
+         "43": 0.04322113770450028
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.5638020833333334,
+         "29": 0.5633680555555556,
+         "43": 0.55078125
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.48148148148148145,
+        "regret": 0.017910824580635403
+       },
+       "D": {
+        "needed_evidence_lost": 0.4409722222222222,
+        "regret": 0.013365793514233627
+       },
+       "S": {
+        "needed_evidence_lost": 0.5652488425925926,
+        "regret": 0.04434204224625141
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 0.004629629629629706,
+        "regret": 0.00017420326312730938
+       },
+       "D": {
+        "needed_evidence_lost": 0.021990740740740755,
+        "regret": 0.0006200117624134416
+       },
+       "S": {
+        "needed_evidence_lost": -0.0059317129629629095,
+        "regret": -0.0002811222434249694
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "differs by more than 1 point"
+     },
+     "future_attention_student_set": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.4803240740740741,
+        "regret": 0.01762641376568541,
+        "regret_by_seed": {
+         "17": 0.017678140922363122,
+         "29": 0.017327022937065804,
+         "43": 0.017874077437627315
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4809027777777778,
+         "29": 0.4774305555555556,
+         "43": 0.4826388888888889
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.464699074074074,
+        "regret": 0.014317623111738021,
+        "regret_by_seed": {
+         "17": 0.013098590720763323,
+         "29": 0.015864794045745877,
+         "43": 0.013989484568704864
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4236111111111111,
+         "29": 0.5277777777777778,
+         "43": 0.4427083333333333
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.5614872685185185,
+        "regret": 0.04354888782761448,
+        "regret_by_seed": {
+         "17": 0.042810355087509265,
+         "29": 0.04294427905813316,
+         "43": 0.04489202933720099
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.5520833333333334,
+         "29": 0.5542534722222222,
+         "43": 0.578125
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.4826388888888889,
+        "regret": 0.017565150572520272
+       },
+       "D": {
+        "needed_evidence_lost": 0.47337962962962954,
+        "regret": 0.014981304095229854
+       },
+       "S": {
+        "needed_evidence_lost": 0.5629340277777778,
+        "regret": 0.043813560860775404
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": -0.0023148148148147696,
+        "regret": 6.126319316513903e-05
+       },
+       "D": {
+        "needed_evidence_lost": -0.008680555555555525,
+        "regret": -0.0006636809834918329
+       },
+       "S": {
+        "needed_evidence_lost": -0.0014467592592593004,
+        "regret": -0.0002646730331609254
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "within 1 point"
+     },
+     "shuffled_label_student_independent": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.40509259259259256,
+        "regret": 0.025488239518610234,
+        "regret_by_seed": {
+         "17": 0.03292649661051117,
+         "29": 0.01983359761997513,
+         "43": 0.023704624325344398
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.4861111111111111,
+         "29": 0.3663194444444444,
+         "43": 0.3628472222222222
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.7621527777777777,
+        "regret": 0.04279173083418842,
+        "regret_by_seed": {
+         "17": 0.04433962986643195,
+         "29": 0.04457145277858828,
+         "43": 0.03946410985754503
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.7621527777777778,
+         "29": 0.8263888888888888,
+         "43": 0.6979166666666666
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.6322337962962963,
+        "regret": 0.049590287708540494,
+        "regret_by_seed": {
+         "17": 0.04982818848537853,
+         "29": 0.04886013102858552,
+         "43": 0.05008254361165745
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.6397569444444444,
+         "29": 0.6202256944444444,
+         "43": 0.63671875
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.40509259259259256,
+        "regret": 0.02548823897833129
+       },
+       "D": {
+        "needed_evidence_lost": 0.7621527777777778,
+        "regret": 0.042791731102529464
+       },
+       "S": {
+        "needed_evidence_lost": 0.6322337962962963,
+        "regret": 0.049590286161253334
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 0.0,
+        "regret": 5.40278943111927e-10
+       },
+       "D": {
+        "needed_evidence_lost": -1.1102230246251565e-16,
+        "regret": -2.683410438297784e-10
+       },
+       "S": {
+        "needed_evidence_lost": 0.0,
+        "regret": 1.5472871595090254e-09
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "within 1 point"
+     },
+     "shuffled_label_student_set": {
+      "group": "ablation",
+      "memory": "bounded",
+      "seeds_present": [
+       17,
+       29,
+       43
+      ],
+      "seeds_expected": [
+       17,
+       29,
+       43
+      ],
+      "complete": true,
+      "metrics": {
+       "R": {
+        "n": 576,
+        "needed_evidence_lost": 0.4079861111111111,
+        "regret": 0.029573522998826884,
+        "regret_by_seed": {
+         "17": 0.025038649078764314,
+         "29": 0.03213656021856454,
+         "43": 0.03154535969915178
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.3940972222222222,
+         "29": 0.390625,
+         "43": 0.4392361111111111
+        }
+       },
+       "D": {
+        "n": 576,
+        "needed_evidence_lost": 0.704861111111111,
+        "regret": 0.044185410192185914,
+        "regret_by_seed": {
+         "17": 0.03441996403418836,
+         "29": 0.06213166480912277,
+         "43": 0.036004601733246606
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.7013888888888888,
+         "29": 0.828125,
+         "43": 0.5850694444444444
+        }
+       },
+       "S": {
+        "n": 2304,
+        "needed_evidence_lost": 0.6436631944444444,
+        "regret": 0.050134333699859736,
+        "regret_by_seed": {
+         "17": 0.04932628322433091,
+         "29": 0.05158400675575699,
+         "43": 0.0494927111194913
+        },
+        "needed_evidence_lost_by_seed": {
+         "17": 0.6467013888888888,
+         "29": 0.6388888888888888,
+         "43": 0.6453993055555556
+        }
+       }
+      },
+      "provenance": {
+       "files": 3,
+       "hosts": [
+        "b-20-1"
+       ],
+       "devices": [
+        "cpu"
+       ],
+       "source_sha256": [
+        "1190685e6d5fdd5ceb0cc881e33caceb07d7fea159dbbcffe2cd4072223c8bbc"
+       ],
+       "torch": [
+        "2.5.1+cu121"
+       ]
+      },
+      "reference": {
+       "R": {
+        "needed_evidence_lost": 0.40798611111111105,
+        "regret": 0.029573523177243124
+       },
+       "D": {
+        "needed_evidence_lost": 0.7048611111111112,
+        "regret": 0.04418541024868137
+       },
+       "S": {
+        "needed_evidence_lost": 0.6436631944444444,
+        "regret": 0.050134332638088114
+       }
+      },
+      "difference": {
+       "R": {
+        "needed_evidence_lost": 5.551115123125783e-17,
+        "regret": -1.7841624011527557e-10
+       },
+       "D": {
+        "needed_evidence_lost": -1.1102230246251565e-16,
+        "regret": -5.649545414820878e-11
+       },
+       "S": {
+        "needed_evidence_lost": 0.0,
+        "regret": 1.0617716220129303e-09
+       }
+      },
+      "tolerance": "exact",
+      "verdict": "within 1 point"
+     }
+    }
+   },
+   "stage_a_against_released": {
+    "item_attention/confirmation": {
+     "medoid_sum": {
+      "max_abs_diff": 3.3096378623254097e-06,
+      "same_argmin": 1.0
+     },
+     "sensitivity": {
+      "max_abs_diff": 1.3994670793882058e-06,
+      "same_argmin": 1.0
+     },
+     "eval_cost": {
+      "max_abs_diff": 8.855286293130149e-07,
+      "same_argmin": 1.0
+     },
+     "eval_losses": {
+      "max_abs_diff": 1.005201057724392e-06
+     },
+     "teacher_eval": {
+      "max_abs_diff": 2.0265579223632812e-06,
+      "same_argmin": 1.0
+     },
+     "attention": {
+      "max_abs_diff": 2.8014183044433594e-06,
+      "same_argmin": 1.0
+     }
+    },
+    "item_attention/train": {
+     "medoid_sum": {
+      "max_abs_diff": 4.775607587825803e-06,
+      "same_argmin": 1.0
+     },
+     "sensitivity": {
+      "max_abs_diff": 3.872659849663007e-06,
+      "same_argmin": 1.0
+     },
+     "ref_cost": {
+      "max_abs_diff": 2.119196087280173e-06,
+      "same_argmin": 1.0
+     },
+     "teacher_ref": {
+      "max_abs_diff": 4.76837158203125e-06,
+      "same_argmin": 1.0
+     },
+     "attention": {
+      "max_abs_diff": 5.7220458984375e-06,
+      "same_argmin": 1.0
+     }
+    },
+    "item_attention/validation": {
+     "medoid_sum": {
+      "max_abs_diff": 4.839616320195805e-06,
+      "same_argmin": 1.0
+     },
+     "sensitivity": {
+      "max_abs_diff": 2.1310630279602893e-06,
+      "same_argmin": 1.0
+     },
+     "eval_cost": {
+      "max_abs_diff": 1.778317772427318e-06,
+      "same_argmin": 1.0
+     },
+     "eval_losses": {
+      "max_abs_diff": 1.8796099084950058e-06
+     },
+     "teacher_eval": {
+      "max_abs_diff": 7.12275505065918e-06,
+      "same_argmin": 1.0
+     },
+     "attention": {
+      "max_abs_diff": 7.569789886474609e-06,
+      "same_argmin": 1.0
+     }
+    },
+    "multihead/confirmation": {
+     "medoid_sum": {
+      "max_abs_diff": 5.444076661698105e-07,
+      "same_argmin": 1.0
+     },
+     "sensitivity": {
+      "max_abs_diff": 2.66839853380052e-07,
+      "same_argmin": 1.0
+     },
+     "eval_cost": {
+      "max_abs_diff": 2.152468388527673e-07,
+      "same_argmin": 1.0
+     },
+     "eval_losses": {
+      "max_abs_diff": 4.7483649523449856e-07
+     },
+     "teacher_eval": {
+      "max_abs_diff": 2.980232238769531e-07,
+      "same_argmin": 1.0
+     },
+     "attention": {
+      "max_abs_diff": 3.2782554626464844e-07,
+      "same_argmin": 1.0
+     }
+    },
+    "multihead/train": {
+     "medoid_sum": {
+      "max_abs_diff": 1.6587486286745445e-06,
+      "same_argmin": 1.0
+     },
+     "sensitivity": {
+      "max_abs_diff": 9.165897250085209e-07,
+      "same_argmin": 1.0
+     },
+     "ref_cost": {
+      "max_abs_diff": 4.073411718485964e-07,
+      "same_argmin": 1.0
+     },
+     "teacher_ref": {
+      "max_abs_diff": 9.5367431640625e-07,
+      "same_argmin": 1.0
+     },
+     "attention": {
+      "max_abs_diff": 9.685754776000977e-07,
+      "same_argmin": 1.0
+     }
+    },
+    "multihead/validation": {
+     "medoid_sum": {
+      "max_abs_diff": 1.949123872302394e-06,
+      "same_argmin": 1.0
+     },
+     "sensitivity": {
+      "max_abs_diff": 8.123253707470468e-07,
+      "same_argmin": 1.0
+     },
+     "eval_cost": {
+      "max_abs_diff": 5.734032603454953e-07,
+      "same_argmin": 1.0
+     },
+     "eval_losses": {
+      "max_abs_diff": 6.209500713616478e-07
+     },
+     "teacher_eval": {
+      "max_abs_diff": 9.834766387939453e-07,
+      "same_argmin": 1.0
+     },
+     "attention": {
+      "max_abs_diff": 7.450580596923828e-07,
+      "same_argmin": 1.0
+     }
+    }
+   },
+   "deletion_path_check": {},
+   "student_training": {
+    "item_attention/distilled": {
+     "arms": 18,
+     "arms_selecting_the_released_step": 11
+    },
+    "item_attention/standard": {
+     "arms": 21,
+     "arms_selecting_the_released_step": 14
+    },
+    "multihead/distilled": {
+     "arms": 18,
+     "arms_selecting_the_released_step": 12
+    },
+    "multihead/standard": {
+     "arms": 21,
+     "arms_selecting_the_released_step": 15
+    }
+   }
+  }
+ },
+ "motion_v2": {},
+ "status": {
+  "gate": [
+   {
+    "id": "fm_ijepa_published",
+    "path": "replay",
+    "status": "not_run",
+    "note": "optional variant on the project's I-JEPA features; never run"
+   },
+   {
+    "id": "fm_ijepa_online",
+    "path": "replay",
+    "status": "not_run",
+    "note": "optional variant on the project's I-JEPA features; never run"
+   }
+  ],
+  "motion_v2": [
+   {
+    "id": "reference_arms",
+    "path": "retrain",
+    "status": "extracted_only",
+    "note": "reader training not attempted; see environments.motion_v2.from_scratch"
+   },
+   {
+    "id": "online_validation",
+    "path": "retrain",
+    "status": "assets_missing",
+    "note": "the 54 students are refitted from the tracked labels (motion_v2.retrain.students), but scoring them online needs the frozen readers and features"
+   },
+   {
+    "id": "literature_baselines",
+    "path": "replay",
+    "status": "assets_missing",
+    "note": "PaFu-KV, Compress to Remember and FrameMorrow were never run on Motion v2"
+   },
+   {
+    "id": "literature_baselines",
+    "path": "retrain",
+    "status": "not_run",
+    "note": "PaFu-KV, Compress to Remember and FrameMorrow were never run on Motion v2"
+   }
+  ],
+  "pusht": [
+   {
+    "id": "v5_marker_corpus",
+    "path": "replay",
+    "status": "not_run",
+    "note": null
+   },
+   {
+    "id": "v4_natural_corpus",
+    "path": "replay",
+    "status": "not_run",
+    "note": null
+   },
+   {
+    "id": "v4_diagnostics",
+    "path": "replay",
+    "status": "assets_missing",
+    "note": "v4 I-JEPA features are on a teammate's project storage"
+   },
+   {
+    "id": "v4_diagnostics",
+    "path": "retrain",
+    "status": "not_run",
+    "note": null
+   },
+   {
+    "id": "predictor",
+    "path": "replay",
+    "status": "not_run",
+    "note": "no PushT predictor has been trained"
+   },
+   {
+    "id": "predictor",
+    "path": "retrain",
+    "status": "not_run",
+    "note": "no PushT predictor has been trained"
+   },
+   {
+    "id": "retention",
+    "path": "replay",
+    "status": "not_run",
+    "note": "no retention result exists for PushT"
+   },
+   {
+    "id": "retention",
+    "path": "retrain",
+    "status": "not_run",
+    "note": "no retention result exists for PushT"
+   }
+  ]
+ }
+}
