@@ -1,5 +1,5 @@
 #!/bin/bash
-# Run the selected tasks in this terminal, on the GPU of the OOD session you are in, instead of
+# Run the selected tasks in this terminal, on the GPUs of the OOD session you are in, instead of
 # submitting a job. Same arguments as burst/submit.sh. Keep it alive after the browser closes with:
 #
 #     nohup bash burst/run_here.sh --run-id burst_a100 --select <task prefixes> > run_here.log 2>&1 &

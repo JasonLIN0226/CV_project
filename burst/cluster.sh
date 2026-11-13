@@ -4,10 +4,11 @@
 # burst/.env, which wins over the default below.
 #
 #   BM_ACCOUNT        Slurm account                               default: csci_ga_2271-2026fa (the course account)
-#   BM_GPU_PARTITION  partition of the GPU job                    default: c12m85-a100-1 (one A100, 12 CPUs, 85 GB)
-#   BM_GPU_GRES       GPU request                                 default: gpu:1
-#   BM_CPUS, BM_MEM, BM_TIME   size of the GPU job                default: 12, 80G, 05:00:00
-#   BM_PARALLEL       tasks running at once on the one GPU        default: 3
+#   BM_GPU_PARTITION  Slurm partition                             default: c12m85-a100-1 or c24m170-a100-2
+#   BM_GPU_COUNT      GPUs for the runner and Slurm request       default: 1
+#   BM_GPU_GRES       Slurm GPU request override                  default: gpu:$BM_GPU_COUNT
+#   BM_CPUS, BM_MEM, BM_TIME   size of the GPU job                default: 12/80G or 24/128G, 05:00:00
+#   BM_PARALLEL       total tasks running at once                 default: 3
 #   BM_SCRATCH        datasets, features, checkpoints, logs       default: /scratch/$USER/cv_project_runs
 #   BM_REPO           this checkout                               default: detected
 #   BM_HF_HOME        Hugging Face cache and token                default: /scratch/$USER/hf_cache
@@ -25,9 +26,18 @@ if [ -f "$_bm_here/.env" ]; then
     done < "$_bm_here/.env"
 fi
 export BM_ACCOUNT="${BM_ACCOUNT:-csci_ga_2271-2026fa}"
-export BM_GPU_PARTITION="${BM_GPU_PARTITION:-c12m85-a100-1}"
-export BM_GPU_GRES="${BM_GPU_GRES:-gpu:1}"
-export BM_CPUS="${BM_CPUS:-12}" BM_MEM="${BM_MEM:-80G}" BM_TIME="${BM_TIME:-05:00:00}"
+export BM_GPU_COUNT="${BM_GPU_COUNT:-1}"
+if [[ ! "$BM_GPU_COUNT" =~ ^[1-9][0-9]*$ ]]; then
+    echo "BM_GPU_COUNT must be a positive integer" >&2
+    return 1
+fi
+_bm_partition=c12m85-a100-1 _bm_cpus=12 _bm_mem=80G
+if [[ "$BM_GPU_COUNT" == 2 ]]; then
+    _bm_partition=c24m170-a100-2 _bm_cpus=24 _bm_mem=128G
+fi
+export BM_GPU_PARTITION="${BM_GPU_PARTITION:-$_bm_partition}"
+export BM_GPU_GRES="${BM_GPU_GRES:-gpu:$BM_GPU_COUNT}"
+export BM_CPUS="${BM_CPUS:-$_bm_cpus}" BM_MEM="${BM_MEM:-$_bm_mem}" BM_TIME="${BM_TIME:-05:00:00}"
 export BM_PARALLEL="${BM_PARALLEL:-3}"
 export BM_SCRATCH="${BM_SCRATCH:-/scratch/$USER/cv_project_runs}"
 export BM_REPO="${BM_REPO:-$(dirname "$_bm_here")}"
@@ -37,7 +47,7 @@ export UV_CACHE_DIR="${UV_CACHE_DIR:-$BM_SCRATCH/.cache/uv}"
 export UV_PYTHON_INSTALL_DIR="${UV_PYTHON_INSTALL_DIR:-$BM_SCRATCH/uv-python}"
 export BM_SBATCH_ARGS="${BM_SBATCH_ARGS:-}"
 export HF_HOME="$BM_HF_HOME"
-unset _bm_here _bm_key _bm_value
+unset _bm_here _bm_key _bm_value _bm_partition _bm_cpus _bm_mem
 
 bm_activate_venv() {
     if [[ ! -x "$BM_VENV/bin/python" || ! -r "$BM_VENV/bin/activate" ]]; then

@@ -29,6 +29,7 @@ a = ap.parse_args()
 marks = pathlib.Path(a.marks); marks.mkdir(parents=True, exist_ok=True)
 name = a.name + a.seed
 (marks / (name + ".start")).write_text(repr(time.time()))
+(marks / (name + ".gpu")).write_text(__import__("os").environ.get("CUDA_VISIBLE_DEVICES", "unset"))
 (marks / (name + ".threads")).write_text(__import__("os").environ["OMP_NUM_THREADS"] + " " + __import__("os").environ["MKL_NUM_THREADS"])
 time.sleep(a.sleep)
 if a.fail:
@@ -39,9 +40,9 @@ if a.touch:
 '''
 
 
-def task(name, args="", needs=(), mem="1G", cpus=1, **extra):
+def task(name, args="", needs=(), mem="1G", cpus=1, gpu=0, **extra):
     return {"script": "work.py", "args": f"--name {name} --marks ${{BM_RUN}}/marks {args}".strip(), "needs": list(needs),
-            "resources": {"cpus": cpus, "mem": mem, "time": "00:01:00"}, **extra}
+            "resources": {"cpus": cpus, "gpu": gpu, "mem": mem, "time": "00:01:00"}, **extra}
 
 
 class World:
@@ -118,6 +119,59 @@ def test_a_unit_gets_the_thread_count_of_its_own_job(world):
     code, _, out = world.run(tasks, "--select", "x", "--parallel", "3")
     assert code == 0, out
     assert [(world.marks / f"{n}.threads").read_text() for n in "abc"] == ["2 2", "4 4", "4 4"]
+
+
+def stub_cuda(world, count):
+    (world.tmp / "torch.py").write_text(
+        "class cuda:\n"
+        f"    device_count = staticmethod(lambda: {count})\n"
+        f"    is_available = staticmethod(lambda: {bool(count)})\n"
+    )
+    world.env.update(PYTHONPATH=str(world.tmp), BM_GPU_COUNT="2")
+
+
+@pytest.mark.parametrize("mask, devices", [(None, ["0", "1"]), ("5,3", ["5", "3"]),
+                                          ("GPU-first,GPU-second", ["GPU-first", "GPU-second"])])
+def test_two_gpu_workers_use_allocated_devices_and_reuse_freed_slots(world, mask, devices):
+    stub_cuda(world, 2)
+    world.env.pop("CUDA_VISIBLE_DEVICES", None)
+    if mask is not None:
+        world.env["CUDA_VISIBLE_DEVICES"] = mask
+    tasks = {"x.cpu": task("cpu", "--sleep 0.2"),
+             "x.a": task("a", "--sleep 0.4", gpu=1),
+             "x.b": task("b", "--sleep 0.4", gpu=1),
+             "x.c": task("c", gpu=1, env={"CUDA_VISIBLE_DEVICES": "old-manifest-mask"})}
+    code, _, out = world.run(tasks, "--select", "x", "--parallel", "3")
+    assert code == 0, out
+    assigned = {n: (world.marks / f"{n}.gpu").read_text() for n in ("a", "b", "c", "cpu")}
+    assert [assigned["a"], assigned["b"]] == devices
+    assert assigned["cpu"] == (mask or "unset")
+    assert overlapping([world.span(n) for n in ("a", "b", "cpu")]) == 3
+    previous = {"a": devices[0], "b": devices[1]}
+    assert any(assigned["c"] == gpu and world.span("c")[0] >= world.span(n)[1] for n, gpu in previous.items())
+    status = json.loads((world.repo / "runs/t/pack_status.json").read_text())
+    for u in status["units"]:
+        if u["gpu"]:
+            assert u["gpu_device"] == assigned[u["task"].split(".")[1]]
+
+
+def test_too_few_visible_gpus_stops_before_launch_but_dry_run_works(world):
+    stub_cuda(world, 1)
+    args = world.command({"x.a": task("a", gpu=1)}, "--select", "x")
+    dry = subprocess.run([*args, "--dry-run"], env=world.env, capture_output=True, text=True)
+    assert dry.returncode == 0 and "configured GPUs: 2" in dry.stdout
+    done = subprocess.run(args, env=world.env, capture_output=True, text=True)
+    assert done.returncode and "PyTorch sees 1" in done.stderr
+    assert not world.marks.exists()
+
+
+def test_one_gpu_default_still_shares_the_inherited_mask(world):
+    world.env["CUDA_VISIBLE_DEVICES"] = "7"
+    tasks = {f"x.{n}": task(n, "--sleep 0.3", gpu=1) for n in ("a", "b")}
+    code, _, out = world.run(tasks, "--select", "x", "--parallel", "2")
+    assert code == 0, out
+    assert [(world.marks / f"{n}.gpu").read_text() for n in ("a", "b")] == ["7", "7"]
+    assert overlapping([world.span("a"), world.span("b")]) == 2
 
 
 def test_a_failure_blocks_only_the_tasks_that_need_it(world):

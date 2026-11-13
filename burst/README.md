@@ -1,9 +1,8 @@
 # Running on the course cluster (NYU cloud bursting)
 
-The course partition `c12m85-a100-1` (account `csci_ga_2271-2026fa`) has one A100 per job. One
-job therefore runs the whole GPU chain: `scripts/run_tasks.py` starts the tasks of `configs/reproduction.yaml` in
-dependency order and keeps three running at once on the one GPU. The tasks are the same as on
-Torch (`torch/`); only how they are started differs.
+The default Burst job uses one A100 on `c12m85-a100-1` (account `csci_ga_2271-2026fa`).
+Set `BM_GPU_COUNT=2` to run independent CUDA tasks concurrently on two A100s. The runner
+uses the same reproduction manifest, seeds, output paths and resume behavior in both modes.
 
 Local tests cover the launch scripts and task runner. Submitting a job and detecting the A100
 still need verification on the course cluster.
@@ -58,6 +57,28 @@ tasks in its terminal instead (same arguments):
 ```bash
 nohup bash burst/run_here.sh --run-id burst_a100 --select ... > run_here.log 2>&1 &
 ```
+
+### Running the full reproduction in a two-GPU OOD session
+
+Request two A100s, 24 CPUs and 128 GB of host RAM. From the checkout in that session, run:
+
+```bash
+BM_GPU_COUNT=2 nohup bash burst/run_here.sh --run-id ood_gpu_repro \
+    --parallel 3 --mem-budget 96 \
+    --select gate.assets.team_bundle synergy.assets.release gate.retrain_gpu \
+             synergy.assets.trainvaldev_gpu synergy.retrain_gpu synergy.retrain_readers_gpu \
+    --skip gate.retrain_gpu.compare_cpu > ood_gpu_repro_2gpu.log 2>&1 &
+```
+
+The runner checks which GPUs PyTorch can see. Each ready CUDA task gets one free device
+from that allocation. CPU tasks can use the remaining parallel slots. The Gate rebuild and
+Synergy feature encoding each request 48 GB of host RAM, so overlapping them requires a
+budget of at least 96 GB. Dependencies and CPU-only stages can still leave GPUs idle.
+The launch log and `runs/ood_gpu_repro/pack_status.txt` show each CUDA task's device.
+
+Set the same variable for `bash burst/submit.sh` to request two GPUs through Slurm.
+The two-GPU submission defaults to `c24m170-a100-2`, 24 CPUs and 128 GB. Values set
+explicitly in the environment or `burst/.env` override these resource defaults.
 
 ## 3. Where the results are
 
