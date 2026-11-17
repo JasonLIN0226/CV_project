@@ -196,6 +196,40 @@ The latest run is `runs/repro_20261111/`; its tables and panel are in `runs/repr
 and `panel_check.json` there counts the bars that match the frozen values (42 of 46 on 11 November
 2026; the four Gate bars of Compress to Remember and FrameMorrow were still training).
 
+### Trace one Gate validation episode
+
+Use this diagnostic to inspect each candidate's deletion logit, the removed and retained frames,
+and the final +3/+6 latent predictions, route decisions and errors. It uses the same frozen scorer,
+retention loop, predictor and metrics as the Gate evaluation. Cue-frame annotations are added
+after selection and never given to the scorer. Logits are deletion scores, not teacher losses.
+
+With the Gate team bundle already downloaded and verified, set `BM_SCRATCH` to the directory
+containing `gate_team/` in your shell, then run:
+
+```bash
+python scripts/evaluate/gate_trace.py --config configs/gate/team_bundle.yaml --seed 17 --out runs/gate_trace_case
+# Select another validation episode by its ID:
+python scripts/evaluate/gate_trace.py --config configs/gate/team_bundle.yaml --seed 17 --episode-id <ID> --out runs/gate_trace_other
+```
+
+On Windows, use the Python interpreter from your project environment and set the path with
+`$env:BM_SCRATCH = 'D:\your_asset_directory'` in PowerShell.
+The default is the first validation episode in manifest order, on CPU. `--students <directory>`
+overrides the scorer folder; `--device` selects another device. The loader still checks and loads
+the complete train/validation asset tree, even though only one episode is replayed. Cached I-JEPA
+features are required; this command does not download assets, re-encode frames or train models.
+
+The terminal shows the decision table. `<out>/gate_trace_seed17.json` also stores full-precision
+logits, predicted latent arrays, metric rows, sample ID and model/source hashes. Existing output
+is refused unless `--force` is supplied; use a separate output directory for each case. Missing
+assets, unknown validation IDs and checksum failures exit with an error and produce no new success
+record. This is a logical retention audit, not a measurement of physical streaming memory.
+
+Software tests use constructed inputs only. Real-data acceptance requires the released assets:
+set `BM_GATE_ROOT` and `BM_GATE_STUDENTS`, then run
+`python -m pytest -q tests/test_gate_trace.py`. Without both paths the real-asset check is explicitly
+skipped; software tests alone do not establish reproduction of a published result.
+
 ## Checks
 
 ```bash
