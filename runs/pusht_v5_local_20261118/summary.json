@@ -1,0 +1,75 @@
+{
+  "collection_seconds": 40.92200000002049,
+  "completed_utc": "2026-11-18T05:30:53.216895+00:00",
+  "counts": {
+    "train": {
+      "episodes": 384,
+      "families": 128,
+      "frames": 27978
+    },
+    "validation": {
+      "episodes": 96,
+      "families": 32,
+      "frames": 6972
+    }
+  },
+  "device": "cpu",
+  "encoder_run": false,
+  "git_base": "cca32004756c350c1a1a4bbe589e3be7227a0ad8",
+  "normalization_fitted": false,
+  "os": "Windows",
+  "packages": {
+    "gym-pusht": "0.1.8",
+    "gymnasium": "1.4.0",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "pygame": "2.6.1",
+    "pymunk": "6.11.1",
+    "shapely": "2.2.0"
+  },
+  "planning_run": false,
+  "predictor_trained": false,
+  "processes": 4,
+  "protocol_sha256": "9bc4dff4230f3535fa8ba310ad0e6e6d2b98a5eecd17b2b6369d5b7417f28a3a",
+  "python": "3.11.18",
+  "rejected_by_reason": {},
+  "rejected_candidates": 0,
+  "schema_version": 5,
+  "source_sha256": {
+    "experiments/phase2/prepare_pusht_cog_marker_data.py": "7540b165d6776033a3173858cc1de6ae4153e773f1fe78833cef6cc8d3b726e7",
+    "experiments/phase2/prepare_pusht_cog_v4_data.py": "3dd7c476378c93c48d331a9f3e8c3f996f69935b0b0a0155576bcf1c7ef06541",
+    "experiments/phase2/pusht.py": "285cd9f41e5c89e4266d05947a2e1ad8406f17c5740ef4fd3a5ff0519831dbc6",
+    "experiments/phase2/pusht_cog_coherent.py": "0c84afc3862588a8c7222aec528af5deff8c6b1e27b82cca22e949b1941d30cc",
+    "experiments/phase2/pusht_cog_cue.py": "a00819088599b065ac795b071ae67279b5611d41b819ef88f4d9ed612386b9e1",
+    "experiments/phase2/pusht_cog_marker.py": "61b0330b2744495f655fd0f797f0dfc512288256e93f675362507d2ebbe42160",
+    "experiments/phase2/pusht_cog_matched.py": "8d45c5a6597722317087fd2f8aa689f0ef15c7f1ad8053ec762a4effd4642c86",
+    "experiments/phase2/pusht_cog_natural.py": "c7d67e49617d1279569f9d4988e203a7d2055446d791b94782ba73ae639be767",
+    "experiments/phase2/pusht_marker_collection.py": "f36368a00e37758832fb6afcece67fc1ba10cab0483056cf503185ddc9a17787",
+    "gym_pusht": "d0889bd8127dc5a42c6d249d0729e684a975bbbf576310b201707d6170afc498",
+    "gym_pusht.envs.pusht": "8d3b6b7d065e46fb2bf945b196068cd6c96c107e9644b2606f5ac4d8e7452ff2",
+    "scripts/prepare_data/pusht.py": "541364ba95b9a8ca678d3d3546c0f0da330180446dda3f701cf5a2d58e6f4eea"
+  },
+  "splits": [
+    "train",
+    "validation"
+  ],
+  "started_utc": "2026-11-18T05:30:12.289495+00:00",
+  "status": "CPU_RGB_action_preparation_completed",
+  "structural_audit_passed": true,
+  "corpus": "pusht-cog-v5-marker-20261109",
+  "origin": "Locally regenerated with the Windows CPU simulator",
+  "manifest_sha256": "79b09b81167865ff81f372103a236f6f0ca0d98f3d919da514af9db08a7553cf",
+  "index_sha256": "5b9ea334b376c09075b1b0b48c52744ae5302864216be9fd46e489a2363c991a",
+  "audit_sha256": "33b25bfd5e0dd8e1025cf309b16990723b6f83bfa681c2c532cb8a1d6287e3fd",
+  "verified_artifacts": 1126,
+  "verified_bytes": 43867285,
+  "paired_families_checked": 160,
+  "disk_readback_checks": [
+    "all artifact sizes and hashes",
+    "three siblings per family",
+    "all sibling pairs share actions and recent four RGB frames",
+    "each pair differs only at the three marker frames before first contact",
+    "target is query + 12"
+  ],
+  "command": "python scripts/prepare_data/pusht.py --version v5 --processes 4 --splits train validation --output-root OUTPUT_ROOT"
+}
