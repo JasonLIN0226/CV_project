@@ -7,6 +7,23 @@ This project studies how a model with limited visual memory can preserve observa
 
 The current study is an exploratory comparison on a simple task. Its results do not depend on passing the earlier Phase 1 gate, and they do not change the historical evaluation.
 
+## Collecting the PushT v5 marker corpus
+
+For the PushT v5 marker corpus, run the CPU collector from the repository root
+with the PushT simulator dependencies installed:
+
+```sh
+python scripts/prepare_data/pusht.py --version v5 --processes 4 --splits train validation --output-root build/local-pusht
+```
+
+The collector creates a new `pusht-cog-v5-marker-20261109` directory under the output root.
+The command collects 128 training and 32 validation families, each with three paired
+trajectories. Omitting `--splits` collects all three splits, including evaluation.
+Use one worker for serial execution or multiple workers for ordered spawn-based collection.
+After the observations pass the structural audit, `preparation_manifest.json` records
+counts, checksums, seeds (via the indexed protocol), and the runtime environment.
+See the [PushT study guide](docs/PUSHT_COG_CUE.md) for the simulator and encoding protocol.
+
 ## The Gate task and data
 
 An episode contains a direction cue represented by pale-gray arrows, a sequence of frames with randomly distributed vertical-line distractions, and a future route or state to predict. The cue can occur at different positions in the history. Input frames contain the distractions; future prediction targets are rendered without them. Paired scenes share actions and nuisance patterns while varying the cue and corresponding future.
