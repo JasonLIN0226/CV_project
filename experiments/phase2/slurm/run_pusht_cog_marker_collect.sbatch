@@ -15,4 +15,4 @@ CODE=${CODE:-$REPO}                                      # set to a worktree to 
 export SDL_VIDEODRIVER=dummy PYTHONNOUSERSITE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 "$REPO/.venv/bin/python" -I "$CODE/experiments/phase2/prepare_pusht_cog_marker_data.py" \
   --output "${OUTPUT:-$REPO/build/pusht-cog-v5-marker-20261109}" --processes "$SLURM_CPUS_PER_TASK" \
-  --marker-radius "${MARKER_RADIUS:-2}"
+  --marker-radius "${MARKER_RADIUS:-2}" --train-families "${TRAIN_FAMILIES:-128}"

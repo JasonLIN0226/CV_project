@@ -139,8 +139,9 @@ def run(output: Path, processes: int):
         "schema_version": 5,
         # Radius 2 is v5 exactly; v5b (Nov 20) reuses v5's seeds with a larger dot, because the 2-px dot
         # was a faint signal in I-JEPA features (probe 0.78 single frame, much lower under a PCA fit on all frames).
-        "protocol_id": ("pusht-hidden-cog-marker-v5-20261109" if cue.MARKER_RADIUS_PX == 2
-                        else f"pusht-hidden-cog-marker-v5b-r{cue.MARKER_RADIUS_PX}-20261120"),
+        "protocol_id": (("pusht-hidden-cog-marker-v5-20261109" if cue.MARKER_RADIUS_PX == 2
+                         else f"pusht-hidden-cog-marker-v5b-r{cue.MARKER_RADIUS_PX}-20261120")
+                        + ("" if SPLIT_COUNTS["train"] == 128 else f"-t{SPLIT_COUNTS['train']}")),
         "purpose": "Gate-like PushT: the hidden CoG is shown as a dot for a few early frames; the future "
                    "depends on it through a later test push",
         "design": "no probe; block untouched until the test push; one shared action plan per family; "
@@ -257,10 +258,17 @@ def main():
     parser.add_argument("--processes", type=int, default=8)
     parser.add_argument("--marker-radius", type=int, default=cue.MARKER_RADIUS_PX,
                         help="dot radius in px at 96x96; 2 reproduces v5, larger values give v5b")
+    parser.add_argument("--train-families", type=int, default=SPLIT_COUNTS["train"],
+                        help="training families; 128 reproduces v5/v5b, more extends the same seed sequence")
     args = parser.parse_args()
     if args.marker_radius < 1:
         parser.error("--marker-radius must be at least 1")
+    if args.train_families < 1:
+        parser.error("--train-families must be at least 1")
     cue.MARKER_RADIUS_PX = args.marker_radius  # read by draw_marker; forked workers inherit it
+    # Training seeds stay consecutive from the split base, so a larger set contains the smaller one;
+    # validation and evaluation keep their 32 families.
+    SPLIT_COUNTS["train"] = args.train_families
     result = run(args.output, args.processes)
     print(json.dumps({k: result[k] for k in ("status", "counts", "rejected_candidates", "rejected_by_reason",
                                              "train_outcome_summary", "collection_seconds",
