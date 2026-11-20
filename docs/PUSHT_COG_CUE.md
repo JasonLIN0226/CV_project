@@ -121,6 +121,34 @@ evaluation 2026163000+; test-only 2026159000–029), job 22486446, 46 s on 32 CP
 frame 50–56 and the last marker frame is at least 38 frames before it. Closest pair of classes at the target:
 22 / 26 / 30 px mean keypoint distance (10th/50th/90th, train).
 
+**I-JEPA readability, v5 and v5b.** v5 was encoded on Torch (H200, job 23796497, 322 s). The 2-px dot turned
+out faint in the features, so **v5b** (`pusht-cog-v5b-marker-r4-20261120`, `--marker-radius 4`) reuses v5's
+seeds with a 4-px dot: identical scenes, actions and frames except the marker frames (job 23809733 collect,
+23809741 encode on H200). Probes (`probe_pusht_cog_features.py`; family-grouped CV on train / validation,
+chance 0.33):
+
+| Input | v5 (2 px) linear | v5 MLP | v5b (4 px) linear | v5b MLP |
+|---|---|---|---|---|
+| Recent window, first frame, first frame + query | 0.33 | 0.33 | 0.33 | 0.33 |
+| One marker frame | 0.58 / 0.56 | 0.69 / 0.78 | 0.65 / 0.57 | 0.82 / 0.84 |
+| Marker frame + query | 0.63 / 0.55 | 0.79 / 0.80 | 0.69 / 0.61 | 0.90 / 0.92 |
+| Target only | 0.37 / 0.38 | 0.39 / 0.32 | same | same |
+| Query + target | 0.32 / 0.38 | 0.94 / 0.94 | same | same |
+
+The present carries no class information (sibling features at the query are identical) and the class
+changes the test-push outcome strongly (0.94), so the headroom for retention is large.
+
+**Predictor-basis check** (`diagnose_pusht_cog_marker_basis.py`; `results/pusht_cog/v5_marker_basis_20261120.json`,
+`v5b_marker_r4_basis_20261120.json`). The repo predictor projects frames onto a whitened PCA fitted on all train
+frames, which ranks directions by variance. The dot changes a frame's features by a median 2.3 (v5) / 3.1 (v5b),
+against ~1.7 for one pusher step and a feature norm of ~49, spread almost evenly over the four pooled quadrants.
+A predictor-style basis (StandardScaler + whitened PCA 128 on all train frames up to the query) keeps 61% / 65%
+of that difference, but the class read from one marker frame through it is only 0.47 / 0.51 (v5, linear CV /
+validation) and 0.51 / 0.57 (MLP), rising to 0.54 / 0.57 and 0.63 / 0.77 for v5b. Four times the dot area gave
+only ~1.3× the feature footprint. Use v5b for the predictor, and add sibling frame differences to the input basis
+(as the output basis already does for futures) so the cue's direction is kept explicitly; if the predictor still
+cannot use it, try radius 6 or a 5-frame marker.
+
 ## 5. v4 (natural): the harder follow-up
 
 ```text
@@ -337,7 +365,8 @@ Data are not in Git (`build/` is ignored). On Torch, under `/projects/work/yang-
 
 | Path | Size | Contents |
 |---|---:|---|
-| `pusht-cog-v5-marker-20261109/` | 48 MB | v5 corpus, all three splits |
+| `pusht-cog-v5-marker-20261109/` | 48 MB | v5 corpus, all three splits; features in `cv_burst_pkg/output/pusht-cog-v5-marker-20261109-ijepa/` |
+| `pusht-cog-v5b-marker-r4-20261120/` (+ `-ijepa/`) | 48 MB + ~0.7 GB | v5b corpus (4-px dot, v5 seeds) and its train+validation features |
 | `pusht-cog-v4-20261107/` | 60 MB | v4 corpus, all three splits |
 | `pusht-cog-v4-20261107-ijepa/` | 833 MB | v4 train+validation I-JEPA features (5120/frame), probes, burst log |
 | `pusht_cog_probe_library_v3.json` | 0.2 MB | probe library used by v3/v4 |
