@@ -14,13 +14,17 @@
 #SBATCH --job-name=pusht_cog_ijepa
 #SBATCH --output=/projects/work/yang-lab/users/yz12129/logs/pusht_cog_ijepa_%j.out
 set -euo pipefail
-REPO=/projects/work/yang-lab/users/yz12129/CV_project
+REPO=/projects/work/yang-lab/users/yz12129/CV_project   # venv and build/ live here
+CODE=${CODE:-$REPO}                                      # set to a worktree to run its code
 DATA=${DATA:-$REPO/build/pusht-cog-v2-20261102}
 FEAT=${FEAT:-$DATA-ijepa}
 export HF_HUB_OFFLINE=1 HF_HUB_DISABLE_TELEMETRY=1 PYTHONNOUSERSITE=1
 nvidia-smi --query-gpu=name,uuid --format=csv,noheader
-"$REPO/.venv/bin/python" -I "$REPO/experiments/phase2/probe_pusht_cog_features.py" encode \
+if [ ! -f "$FEAT/encoding_manifest.json" ]; then
+rm -rf -- "$FEAT"   # partial output from an interrupted or preempted run
+"$REPO/.venv/bin/python" -I "$CODE/experiments/phase2/probe_pusht_cog_features.py" encode \
   --data "$DATA" --features "$FEAT" \
   --cache-dir /projects/work/yang-lab/users/yz12129/.cache/huggingface_cvproject/ijepa --batch-size 64
-"$REPO/.venv/bin/python" -I "$REPO/experiments/phase2/probe_pusht_cog_features.py" probe \
+fi
+"$REPO/.venv/bin/python" -I "$CODE/experiments/phase2/probe_pusht_cog_features.py" probe \
   --data "$DATA" --features "$FEAT"

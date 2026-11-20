@@ -47,3 +47,14 @@ def test_future_diverges_after_test_contact(family):
     result, _, _, _ = family
     assert result["first_test_contact_frame"] > result["query_frame"]
     assert result["target_min_pair_px"] > 12
+
+
+def test_marker_radius_sets_dot_size(family, monkeypatch):
+    result, runs, _, _ = family
+    xy = runs["center"]["marker_px"][result["marker_frames"][0]]
+    blank = np.zeros((96, 96, 3), np.uint8)
+    area = {}
+    for radius in (2, 4):
+        monkeypatch.setattr(m, "MARKER_RADIUS_PX", radius)
+        area[radius] = int((m.draw_marker(blank, xy) == np.array(m.MARKER_COLOR)).all(-1).sum())
+    assert area[4] > 3 * area[2]
