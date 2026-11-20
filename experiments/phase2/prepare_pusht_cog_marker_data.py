@@ -263,8 +263,10 @@ def main():
     args = parser.parse_args()
     if args.marker_radius < 1:
         parser.error("--marker-radius must be at least 1")
-    if args.train_families < 1:
-        parser.error("--train-families must be at least 1")
+    if not 1 <= args.train_families <= MAX_CANDIDATES_PER_SPLIT - 32:
+        # Each split draws seeds from its own 1000-seed block (train 2026161000+, validation 2026162000+);
+        # leave room for rejections so training seeds never reach the validation block.
+        parser.error(f"--train-families must be between 1 and {MAX_CANDIDATES_PER_SPLIT - 32}")
     cue.MARKER_RADIUS_PX = args.marker_radius  # read by draw_marker; forked workers inherit it
     # Training seeds stay consecutive from the split base, so a larger set contains the smaller one;
     # validation and evaluation keep their 32 families.
