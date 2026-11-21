@@ -238,6 +238,7 @@ def main():
     parser.add_argument("--seeds", type=int, nargs="+", default=[17, 29, 43])
     parser.add_argument("--epochs", type=int, default=300)
     parser.add_argument("--threads", type=int, default=8)
+    parser.add_argument("--save-dir", type=Path, help="save each seed's model and bases here (seed_<n>.pt)")
     args = parser.parse_args()
     torch.set_num_threads(args.threads)
     eps = load(args.data, args.features)
@@ -247,6 +248,10 @@ def main():
     for seed in args.seeds:
         bases = fit_bases(train_eps, seed)
         model = train(train_eps, bases, seed, args.epochs)
+        if args.save_dir is not None:
+            args.save_dir.mkdir(parents=True, exist_ok=True)
+            torch.save({"model": model.state_dict(), "bases": bases, "seed": seed, "epochs": args.epochs,
+                        "data": args.data.name}, args.save_dir / f"seed_{seed}.pt")
         results[str(seed)] = evaluate(model, val_eps, bases, seed)
         r = results[str(seed)]
         print(f"seed {seed}: " + "  ".join(f"{c} mse {v['h12']['mse']:.3f} id {v['h12']['sibling_id']:.2f}"
