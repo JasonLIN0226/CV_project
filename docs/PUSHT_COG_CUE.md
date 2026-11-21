@@ -149,6 +149,34 @@ only ~1.3× the feature footprint. Use v5b for the predictor, and add sibling fr
 (as the output basis already does for futures) so the cue's direction is kept explicitly; if the predictor still
 cannot use it, try radius 6 or a 5-frame marker.
 
+**Latent predictor on v5b** (`train_pusht_cog_predictor.py`). Predicts the standardized I-JEPA latent at
+query + 6 and + 12 from the 4-frame present, up to two retained history frames (each with its age and the
+pusher target at that time) and the future absolute pusher targets. Input basis: StandardScaler + whitened
+PCA 128 on train frames plus sibling frame differences; output basis: PCA 128 of future changes plus sibling
+future differences. Training samples keep a random memory condition (none, random pair, random single, the
+marker frames), so one model serves every retention rule. Metrics on validation: error at the target (mean
+over 5,120 standardized features) and **sibling identification** (is the prediction closest to its own
+future among the three siblings' futures; recent-only gives exactly 1/3, since siblings share the present).
+
+The 960-family set (`pusht-cog-v5b-marker-r4-t960-20261120`, `--train-families 960`; jobs 23864010 collect,
+23864012 encode + probes, 23864020 predictor) extends v5b's training seeds and keeps the same 32 validation
+families. Mean of seeds 17/29/43, +12:
+
+| Retained history | 128 families: error / sibling ID | 960 families: error / sibling ID |
+|---|---|---|
+| Recent only | 0.925 / 0.33 | 0.808 / 0.33 |
+| FIFO (last two history frames) | 0.923 / 0.33 | 0.809 / 0.33 |
+| First frame | 0.924 / 0.33 | 0.808 / 0.33 |
+| Random pair | 0.917 / 0.37 | 0.785 / 0.39 |
+| Marker frames (privileged reference) | 0.857 / 0.59 | **0.496 / 0.91** |
+| Best pair per episode (upper bound; chosen with the target) | 0.657 / 0.68 | 0.407 / 0.93 |
+
+With 960 families the marker frames cut the +12 error by 39% and every class benefits (sibling ID left 0.88,
+center 0.91, right 0.94); the best-pair oracle's pair contains a marker frame in 88–89% of episodes. FIFO and
+the first frame never hold the marker and stay at recent-only; random pairs gain little. The readability
+probes saturate at this scale (marker frame, marker + query and query + target 0.99 MLP; recent window, first
+frame and first frame + query 0.33). v5b at 960 families is the testbed for the retention scorer.
+
 ## 5. v4 (natural): the harder follow-up
 
 ```text
@@ -367,6 +395,7 @@ Data are not in Git (`build/` is ignored). On Torch, under `/projects/work/yang-
 |---|---:|---|
 | `pusht-cog-v5-marker-20261109/` | 48 MB | v5 corpus, all three splits; features in `cv_burst_pkg/output/pusht-cog-v5-marker-20261109-ijepa/` |
 | `pusht-cog-v5b-marker-r4-20261120/` (+ `-ijepa/`) | 48 MB + ~0.7 GB | v5b corpus (4-px dot, v5 seeds) and its train+validation features |
+| `pusht-cog-v5b-marker-r4-t960-20261120/` (+ `-ijepa/`) | 257 MB + 4.2 GB | v5b with 960 training families (same validation) and its features |
 | `pusht-cog-v4-20261107/` | 60 MB | v4 corpus, all three splits |
 | `pusht-cog-v4-20261107-ijepa/` | 833 MB | v4 train+validation I-JEPA features (5120/frame), probes, burst log |
 | `pusht_cog_probe_library_v3.json` | 0.2 MB | probe library used by v3/v4 |
