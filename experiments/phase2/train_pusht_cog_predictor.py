@@ -244,33 +244,58 @@ def main():
     eps = load(args.data, args.features)
     train_eps = [e for e in eps if e["split"] == "train"]
     val_eps = [e for e in eps if e["split"] == "validation"]
+    # The output is rewritten after every seed ("complete": false until the end); a resubmission skips
+    # seeds already in it and reuses saved models in --save-dir instead of retraining them.
     results = {}
+    if args.output.exists():
+        previous = json.loads(args.output.read_text())
+        results = {s: v for s, v in previous.get("per_seed", {}).items() if int(s) in args.seeds}
+
+    def write_output(complete):
+        done = [s for s in args.seeds if str(s) in results]
+        conds = list(results[str(done[0])]) if done else []
+        summary = {c: {f"h{h}": {k: float(np.mean([results[str(s)][c][f"h{h}"][k] for s in done]))
+                                 for k in ("mse", "sibling_id")} for h in HORIZONS} for c in conds}
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        tmp = args.output.with_suffix(".tmp")
+        tmp.write_text(json.dumps({
+            "completed_utc": datetime.now(timezone.utc).isoformat(), "complete": complete, "seeds_done": done,
+            "data": args.data.name, "features": str(args.features), "seeds": args.seeds, "epochs": args.epochs,
+            "counts": {"train_episodes": len(train_eps), "validation_episodes": len(val_eps)},
+            "train_conditions": TRAIN_CONDITIONS, "horizons": HORIZONS, "rank": RANK,
+            "notes": {"marker": "marker frame indices are privileged (evaluation_only); used for the marker training "
+                                "condition and the marker reference only",
+                      "pair_oracle": "selects with the validation target; an upper bound, not a policy",
+                      "mse": "mean over 5120 standardized I-JEPA features"},
+            "summary_mean_over_seeds": summary, "per_seed": results,
+        }, indent=2) + "\n")
+        tmp.replace(args.output)
+        return conds, summary
+
     for seed in args.seeds:
-        bases = fit_bases(train_eps, seed)
-        model = train(train_eps, bases, seed, args.epochs)
-        if args.save_dir is not None:
-            args.save_dir.mkdir(parents=True, exist_ok=True)
-            torch.save({"model": model.state_dict(), "bases": bases, "seed": seed, "epochs": args.epochs,
-                        "data": args.data.name}, args.save_dir / f"seed_{seed}.pt")
+        if str(seed) in results:
+            print(f"seed {seed}: already evaluated, skipping", flush=True)
+            continue
+        saved = args.save_dir / f"seed_{seed}.pt" if args.save_dir is not None else None
+        if saved is not None and saved.exists():
+            ck = torch.load(saved, map_location="cpu", weights_only=False)
+            bases, model = ck["bases"], Predictor()
+            model.load_state_dict(ck["model"])
+            model.eval()
+            print(f"seed {seed}: reusing saved model {saved}", flush=True)
+        else:
+            bases = fit_bases(train_eps, seed)
+            model = train(train_eps, bases, seed, args.epochs)
+            if saved is not None:
+                args.save_dir.mkdir(parents=True, exist_ok=True)
+                torch.save({"model": model.state_dict(), "bases": bases, "seed": seed, "epochs": args.epochs,
+                            "data": args.data.name}, saved)
         results[str(seed)] = evaluate(model, val_eps, bases, seed)
+        write_output(complete=False)
         r = results[str(seed)]
         print(f"seed {seed}: " + "  ".join(f"{c} mse {v['h12']['mse']:.3f} id {v['h12']['sibling_id']:.2f}"
                                           for c, v in r.items()), flush=True)
-    conds = list(results[str(args.seeds[0])])
-    summary = {c: {f"h{h}": {k: float(np.mean([results[str(s)][c][f"h{h}"][k] for s in args.seeds]))
-                             for k in ("mse", "sibling_id")} for h in HORIZONS} for c in conds}
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps({
-        "completed_utc": datetime.now(timezone.utc).isoformat(), "data": args.data.name,
-        "features": str(args.features), "seeds": args.seeds, "epochs": args.epochs,
-        "counts": {"train_episodes": len(train_eps), "validation_episodes": len(val_eps)},
-        "train_conditions": TRAIN_CONDITIONS, "horizons": HORIZONS, "rank": RANK,
-        "notes": {"marker": "marker frame indices are privileged (evaluation_only); used for the marker training "
-                            "condition and the marker reference only",
-                  "pair_oracle": "selects with the validation target; an upper bound, not a policy",
-                  "mse": "mean over 5120 standardized I-JEPA features"},
-        "summary_mean_over_seeds": summary, "per_seed": results,
-    }, indent=2) + "\n")
+    conds, summary = write_output(complete=True)
     for c in conds:
         print(f"{c:12s} " + "  ".join(f"h{h}: mse {summary[c][f'h{h}']['mse']:.4f} sibling_id {summary[c][f'h{h}']['sibling_id']:.3f}"
                                       for h in HORIZONS))

@@ -212,6 +212,8 @@ def main():
     parser.add_argument("--dagger-rounds", type=int, default=2)
     parser.add_argument("--max-train-episodes", type=int, default=0, help="0 = all (for smoke tests)")
     parser.add_argument("--threads", type=int, default=8)
+    parser.add_argument("--checkpoint-dir", type=Path,
+                        help="where to keep per-round states and scorers (default: <predictors>/../<output stem>_ckpt)")
     args = parser.parse_args()
     torch.set_num_threads(args.threads)
     update = load_online_rules()
@@ -220,8 +222,46 @@ def main():
     if args.max_train_episodes:
         train_eps = train_eps[:args.max_train_episodes]
     val_eps = [e for e in eps if e["split"] == "validation"]
+    # Intermediate state, so a killed job keeps its work and a resubmission resumes:
+    #   <output stem>_ckpt/seed<n>_round<r>.npz   labelled states (x, y) after each training round
+    #   <output stem>_ckpt/seed<n>_round<r>.pt    the scorer trained on them
+    #   <output>                                  rewritten after every seed ("complete": false until the end)
+    # Kept under build/ (next to the predictor checkpoints), never in the repo: states are ~GB per seed.
+    ckpt = args.checkpoint_dir or args.predictors.parent / f"{args.output.stem}_ckpt"
+    ckpt.mkdir(parents=True, exist_ok=True)
     results, log = {}, {}
+    if args.output.exists():
+        previous = json.loads(args.output.read_text())
+        results = {s: v for s, v in previous.get("per_seed", {}).items() if int(s) in args.seeds}
+        log = {s: v for s, v in previous.get("training_log", {}).items() if s in results}
+
+    def write_output(complete):
+        done = [s for s in args.seeds if str(s) in results]
+        names = list(results[str(done[0])]) if done else []
+        summary = {k: {"marker_hit": float(np.mean([results[str(s)][k]["marker_hit"] for s in done])),
+                       **{f"h{h}": {m: float(np.mean([results[str(s)][k][f"h{h}"][m] for s in done]))
+                                    for m in ("mse", "sibling_id")} for h in P.HORIZONS}} for k in names}
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        tmp = args.output.with_suffix(".tmp")
+        tmp.write_text(json.dumps({
+            "completed_utc": datetime.now(timezone.utc).isoformat(), "complete": complete,
+            "seeds_done": done, "data": args.data.name,
+            "predictors": str(args.predictors), "seeds": args.seeds,
+            "counts": {"train_episodes": len(train_eps), "validation_episodes": len(val_eps)},
+            "behaviours": BEHAVIOURS, "states_per_episode": args.states_per_episode, "dagger_rounds": args.dagger_rounds,
+            "teacher": "target-time deletion cost: frozen predictor error at query+6/+12 with the two kept frames",
+            "notes": {"marker": "privileged reference (marker indices from evaluation_only)",
+                      "prediction_surprise": "not included (needs a running forecast stream)",
+                      "resume": "a resumed seed reuses saved rounds; its later sampling differs from an uninterrupted run"},
+            "summary_mean_over_seeds": summary, "per_seed": results, "training_log": log,
+        }, indent=2) + "\n")
+        tmp.replace(args.output)
+        return names, summary
+
     for seed in args.seeds:
+        if str(seed) in results:
+            print(f"seed {seed}: already evaluated, skipping", flush=True)
+            continue
         t0 = time.perf_counter()
         ck = torch.load(args.predictors / f"seed_{seed}.pt", map_location="cpu", weights_only=False)
         model = P.Predictor()
@@ -230,38 +270,51 @@ def main():
         bases = ck["bases"]
         batcher = P.Batcher(train_eps + val_eps, bases)
         rng = np.random.default_rng(seed)
-        states = []
-        for policy in BEHAVIOURS:
-            states += collect_states(train_eps, batcher, policy, rng, update, args.states_per_episode)
-        x, y = label(states, train_eps, model, batcher, bases)
-        scorer = fit_scorer(x, y, seed)
-        rounds = [{"states": len(x), "seconds": time.perf_counter() - t0}]
-        for r in range(args.dagger_rounds):
-            new = collect_states(train_eps, batcher, "deletion_cost", rng, update, args.states_per_episode, scorer)
-            xn, yn = label(new, train_eps, model, batcher, bases)
-            x, y = np.concatenate([x, xn]), np.concatenate([y, yn])
+        rounds = []
+        x = y = scorer = None
+        paths = lambda r: (ckpt / f"seed{seed}_round{r}.npz", ckpt / f"seed{seed}_round{r}.pt")
+        # Only the latest round is kept (its states include every earlier round's); resume from it.
+        saved = [r for r in range(args.dagger_rounds + 1) if all(p.exists() for p in paths(r))]
+        start = 0
+        if saved:
+            last = max(saved)
+            with np.load(paths(last)[0]) as f:
+                x, y = f["x"].astype(np.float32), f["y"]
+            scorer = Scorer()
+            scorer.load_state_dict(torch.load(paths(last)[1], map_location="cpu"))
+            scorer.eval()
+            rounds.append({"round": last, "states": len(x), "seconds": time.perf_counter() - t0, "resumed": True})
+            print(f"seed {seed} round {last}: resumed from checkpoint ({len(x)} states)", flush=True)
+            start = last + 1
+        for r in range(start, args.dagger_rounds + 1):
+            data_path, model_path = paths(r)
+            if r == 0:
+                states = []
+                for policy in BEHAVIOURS:
+                    states += collect_states(train_eps, batcher, policy, rng, update, args.states_per_episode)
+                x, y = label(states, train_eps, model, batcher, bases)
+            else:
+                new = collect_states(train_eps, batcher, "deletion_cost", rng, update, args.states_per_episode, scorer)
+                xn, yn = label(new, train_eps, model, batcher, bases)
+                x, y = np.concatenate([x, xn]), np.concatenate([y, yn])
             scorer = fit_scorer(x, y, seed)
-            rounds.append({"states": len(x), "seconds": time.perf_counter() - t0})
+            # Write the new round fully before removing the previous one; float16 halves the disk use.
+            with open(data_path.with_suffix(".tmp"), "wb") as f:
+                np.savez(f, x=x.astype(np.float16), y=y)
+            data_path.with_suffix(".tmp").replace(data_path)
+            torch.save(scorer.state_dict(), model_path)
+            for old in range(r):
+                for p in paths(old):
+                    p.unlink(missing_ok=True)
+            rounds.append({"round": r, "states": len(x), "seconds": time.perf_counter() - t0})
+            print(f"seed {seed} round {r}: {len(x)} states, {time.perf_counter() - t0:.0f}s", flush=True)
         results[str(seed)] = evaluate(EVAL_POLICIES, val_eps, model, batcher, bases, update, seed, scorer)
         log[str(seed)] = rounds
+        write_output(complete=False)
         r = results[str(seed)]
         print(f"seed {seed} ({time.perf_counter() - t0:.0f}s): " + "  ".join(
             f"{k} mse {v['h12']['mse']:.3f} id {v['h12']['sibling_id']:.2f} hit {v['marker_hit']:.2f}" for k, v in r.items()), flush=True)
-    names = list(results[str(args.seeds[0])])
-    summary = {k: {"marker_hit": float(np.mean([results[str(s)][k]["marker_hit"] for s in args.seeds])),
-                   **{f"h{h}": {m: float(np.mean([results[str(s)][k][f"h{h}"][m] for s in args.seeds]))
-                                for m in ("mse", "sibling_id")} for h in P.HORIZONS}} for k in names}
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps({
-        "completed_utc": datetime.now(timezone.utc).isoformat(), "data": args.data.name,
-        "predictors": str(args.predictors), "seeds": args.seeds,
-        "counts": {"train_episodes": len(train_eps), "validation_episodes": len(val_eps)},
-        "behaviours": BEHAVIOURS, "states_per_episode": args.states_per_episode, "dagger_rounds": args.dagger_rounds,
-        "teacher": "target-time deletion cost: frozen predictor error at query+6/+12 with the two kept frames",
-        "notes": {"marker": "privileged reference (marker indices from evaluation_only)",
-                  "prediction_surprise": "not included (needs a running forecast stream)"},
-        "summary_mean_over_seeds": summary, "per_seed": results, "training_log": log,
-    }, indent=2) + "\n")
+    names, summary = write_output(complete=True)
     for k in names:
         s = summary[k]
         print(f"{k:18s} h12 mse {s['h12']['mse']:.4f} sibling_id {s['h12']['sibling_id']:.3f} | "
