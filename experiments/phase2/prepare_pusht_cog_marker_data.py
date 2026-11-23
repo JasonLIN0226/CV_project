@@ -65,13 +65,16 @@ def write_family(output: Path, family_id: str, cand: dict, classes: list[str]):
                    "actions_absolute": actions, "actions_normalized": normalize_actions(actions)}
         path = output / "observations" / f"{sibling_id}.npz"
         np.savez_compressed(path, **archive)
-        write_json(output / "evaluation_only" / f"{sibling_id}.json", {
+        diagnostics = {
             "episode_id": sibling_id, "family_id": family_id, "cog_class": cog,
             "cog_body_local": list(cue.COG_CLASSES[cog]), "phase": cand["phase"],
             "marker_frames": result["marker_frames"], "marker_px": run["marker_px"],
             "block_pose": run["pose"].tolist(), "block_keypoints": run["keypoints"].tolist(),
             "pusher_position": run["agent"].tolist(), "contact_points": run["contacts"].tolist(),
-        })
+        }
+        if cue.DISTRACTOR_DOTS:
+            diagnostics["distractors"] = run["distractors"]
+        write_json(output / "evaluation_only" / f"{sibling_id}.json", diagnostics)
         records.append({
             "id": sibling_id, "family_id": family_id, "split": cand["split"],
             "environment_seed": cand["seed"], "frames": len(run["rgb"]), **frames,
@@ -168,6 +171,17 @@ def run(output: Path, processes: int):
         "evaluation_role": "reserved families; validity checks only, no outcome-based tuning",
         "encoder_run": False, "predictor_trained": False, "planning_run": False,
     }
+    if cue.DISTRACTOR_DOTS:
+        # v5c: added only when distractors are on, so v5/v5b protocols stay byte-identical.
+        protocol["protocol_id"] = protocol["protocol_id"].replace("-v5b-", "-v5c-").replace(
+            "-20261120", f"-d{cue.DISTRACTOR_DOTS}-20261123")
+        protocol["distractors"] = {
+            "dots_per_history_frame": f"uniform 1..{cue.DISTRACTOR_DOTS}", "radius_px_at_96": cue.MARKER_RADIUS_PX,
+            "palette_rgb": [list(c) for c in cue.DISTRACTOR_PALETTE],
+            "placement": "empty background only (every pixel within radius + 1 is background); never on the block",
+            "frames": "every frame up to query-4 (history); the present and the targets are clean",
+            "seeding": "per family seed and frame; identical across siblings",
+            "why": "on v5b visual diversity kept the marker 99% of the time because the dot was the most salient thing"}
     provenance = _runtime_provenance()
     provenance["source_sha256"]["experiments/phase2/pusht_cog_marker.py"] = sha256(
         Path(__file__).with_name("pusht_cog_marker.py"))
@@ -260,7 +274,12 @@ def main():
                         help="dot radius in px at 96x96; 2 reproduces v5, larger values give v5b")
     parser.add_argument("--train-families", type=int, default=SPLIT_COUNTS["train"],
                         help="training families; 128 reproduces v5/v5b, more extends the same seed sequence")
+    parser.add_argument("--distractor-dots", type=int, default=cue.DISTRACTOR_DOTS,
+                        help="max distractor dots per history frame (v5c); 0 reproduces v5/v5b")
     args = parser.parse_args()
+    if args.distractor_dots < 0:
+        parser.error("--distractor-dots must be non-negative")
+    cue.DISTRACTOR_DOTS = args.distractor_dots  # read in run_episode; forked workers inherit it
     if args.marker_radius < 1:
         parser.error("--marker-radius must be at least 1")
     if not 1 <= args.train_families <= MAX_CANDIDATES_PER_SPLIT - 32:

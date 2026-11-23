@@ -58,3 +58,23 @@ def test_marker_radius_sets_dot_size(family, monkeypatch):
         monkeypatch.setattr(m, "MARKER_RADIUS_PX", radius)
         area[radius] = int((m.draw_marker(blank, xy) == np.array(m.MARKER_COLOR)).all(-1).sum())
     assert area[4] > 3 * area[2]
+
+
+def test_distractors_shared_by_siblings_and_off_the_block(monkeypatch):
+    monkeypatch.setattr(m, "MARKER_RADIUS_PX", 4)
+    monkeypatch.setattr(m, "DISTRACTOR_DOTS", 2)
+    for seed in range(2026159000, 2026159030):
+        result, runs, _, phase = m.check_family(m.sample_family(seed))
+        if result["valid"]:
+            break
+    # Siblings still differ only in the marker frames before the test contact.
+    assert result["frames_differing_before_test_contact"] == result["marker_frames"]
+    history_end = result["query_frame"] - m.RECENT_LENGTH
+    d = runs["center"]["distractors"]
+    assert all(1 <= len(d[t]) <= 2 for t in range(history_end + 1))
+    assert all(len(d[t]) == 0 for t in range(history_end + 1, len(d)))
+    assert all(runs[c]["distractors"] == d for c in runs)
+    # Distractors sit on background: the block's pixels are untouched by them.
+    for t in range(history_end + 1):
+        for x, y, _ in d[t]:
+            assert np.abs(runs["center"]["keypoints"][t].mean(0) / 512 * 96 - [x, y]).max() > 2

@@ -32,6 +32,13 @@ MARKER_FRAMES = 3
 MARKER_START_RANGE = (2, 10)          # inclusive; random so a scorer cannot just keep a fixed frame
 MARKER_RADIUS_PX = 2                  # at 96x96
 MARKER_COLOR = (220, 20, 20)          # distinct from block (119,136,153), pusher (65,105,225), goal (144,238,144)
+# v5c distractors (Nov 23): on v5b, visual diversity kept a marker frame 99% of the time because the red dot
+# was the most salient thing in the history. Distractor dots (marker size, palette including the marker red)
+# on empty background in every history frame make "visually distinct" stop meaning "cue"; the cue is still
+# unambiguous: a red dot ON the block. Seeded per family and frame, so siblings share them. 0 = v5/v5b exactly.
+DISTRACTOR_DOTS = 0                   # dots per history frame: uniform in 1..DISTRACTOR_DOTS
+DISTRACTOR_PALETTE = ((220, 20, 20), (240, 140, 20), (150, 60, 200), (30, 30, 30))
+BACKGROUND = (255, 255, 255)
 
 
 @dataclass(frozen=True)
@@ -98,19 +105,46 @@ def draw_marker(rgb, xy):
     return out
 
 
+def draw_distractors(rgb, seed: int, t: int):
+    """1..DISTRACTOR_DOTS dots on empty background (every pixel within radius + 1 is background).
+
+    Sampled on the frame before the marker is drawn, from a generator keyed by (family seed, frame), so
+    every sibling gets the same dots. Returns the new frame and the dots as (x, y, rgb)."""
+    import cv2
+    rng = np.random.default_rng([seed, 7_000_003, t])
+    out, dots, r = rgb.copy(), [], MARKER_RADIUS_PX
+    size = rgb.shape[0]
+    yy, xx = np.mgrid[:size, :size]
+    for _ in range(int(rng.integers(1, DISTRACTOR_DOTS + 1))):
+        for _attempt in range(200):
+            x, y = (int(v) for v in rng.integers(r + 2, size - r - 2, size=2))
+            disk = (xx - x) ** 2 + (yy - y) ** 2 <= (r + 1) ** 2
+            if (out[disk] == BACKGROUND).all():
+                color = DISTRACTOR_PALETTE[int(rng.integers(len(DISTRACTOR_PALETTE)))]
+                cv2.circle(out, (x, y), r, color, -1, lineType=cv2.LINE_8)
+                dots.append((x, y, list(color)))
+                break
+    return out, dots
+
+
 def run_episode(spec: FamilySpec, cog_class: str):
     p0, actions, phase = plan(spec)
     marker = set(range(spec.marker_start, spec.marker_start + MARKER_FRAMES))
+    history_end = phase.index("test") - 1 - RECENT_LENGTH   # last frame that can enter memory
     env = make_env(COG_CLASSES[cog_class])
     env.reset(seed=spec.seed)
     place(env, p0, spec.start_center, spec.start_angle)
-    out = {"rgb": [], "pose": [], "keypoints": [], "agent": [], "contacts": [0], "marker_px": []}
+    out = {"rgb": [], "pose": [], "keypoints": [], "agent": [], "contacts": [0], "marker_px": [], "distractors": []}
 
     def observe(rgb):
         t = len(out["rgb"])
         xy = cog_pixel(env)
+        dots = []
+        if DISTRACTOR_DOTS and t <= history_end:
+            rgb, dots = draw_distractors(rgb, spec.seed, t)
         out["rgb"].append(draw_marker(rgb, xy) if t in marker else rgb)
         out["marker_px"].append(xy.tolist() if t in marker else None)
+        out["distractors"].append(dots)
         out["pose"].append([*env.block.position, env.block.angle])
         out["keypoints"].append(keypoints(env))
         out["agent"].append(np.array(env.agent.position))
@@ -123,7 +157,7 @@ def run_episode(spec: FamilySpec, cog_class: str):
     env.close()
     run = {k: np.stack(v) for k, v in out.items() if k in ("pose", "keypoints", "agent")}
     run.update(rgb=np.stack(out["rgb"]).astype(np.uint8), contacts=np.array(out["contacts"]),
-               marker_px=out["marker_px"])
+               marker_px=out["marker_px"], distractors=out["distractors"])
     return run, actions, phase
 
 
