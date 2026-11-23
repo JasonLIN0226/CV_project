@@ -177,6 +177,32 @@ the first frame never hold the marker and stay at recent-only; random pairs gain
 probes saturate at this scale (marker frame, marker + query and query + target 0.99 MLP; recent window, first
 frame and first frame + query 0.33). v5b at 960 families is the testbed for the retention scorer.
 
+**Retention on v5b** (`retention_pusht_cog.py`; predictors retrained with saved checkpoints, jobs 24128853
+and 24128855, `results/pusht_cog/pusht-cog-v5b-marker-r4-t960-20261120_retention_syang.json`). Online memory:
+the 4-frame present plus B = 2 slots; when a frame leaves the present, one of three candidates is deleted.
+Baselines use the repo's audited online rules (FIFO, reservoir, temporal buckets, visual diversity) plus
+random deletion; prediction-surprise is not included. The deletion-cost student uses Gate v2's set-conditioned
+scorer with a **target-time teacher** (each deletion scored by the frozen predictor's error at the episode's
+query + 6/+12 targets with the two kept frames) and **training states along whole rollouts** of the baselines
+(~184k labelled states), followed by two **DAgger** rounds on the student's own states (~257k). Validation,
+mean of seeds 17/29/43:
+
+| Policy | Error at +12 | Sibling ID at +12 | Error at +6 | Kept a marker frame |
+|---|---:|---:|---:|---:|
+| Recent only | 0.810 | 0.33 | 0.432 | 0% |
+| FIFO | 0.810 | 0.33 | 0.432 | 0% |
+| Temporal buckets | 0.810 | 0.33 | 0.433 | 0% |
+| Random deletion | 0.810 | 0.34 | 0.433 | 0% |
+| Reservoir | 0.764 | 0.41 | 0.422 | 13% |
+| Visual diversity | 0.498 | 0.89 | 0.330 | 99% |
+| **Deletion-cost scorer** | **0.501** | **0.90** | **0.328** | **100%** |
+| Marker frames (privileged reference) | 0.499 | 0.90 | 0.329 | 100% |
+
+The deletion-cost scorer keeps a marker frame in every validation episode and matches the privileged
+reference, without labels, targets or marker positions at run time. Visual diversity ties: the red dot is the
+most visually distinct thing in the history. v5b therefore cannot separate a predictor-aware method from
+salience. Next: distractor dots or shapes in other frames (so distinctness no longer means cue), and v4.
+
 ## 5. v4 (natural): the harder follow-up
 
 ```text
