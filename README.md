@@ -23,9 +23,9 @@ browser). Its numbers are frozen in `configs/reference_values.json`; section 3 r
 
 What to keep in mind when reading the table:
 
-- **Gate** is scored on the validation set (192 episodes, three predictor seeds, two horizons); there is no independent test set. The oracle knows where the cue is. Compress to Remember as published reads the whole history and reaches 95.31; restricted to two slots it reaches 79.51 and is unstable across seeds (50.5 / 93.8 / 94.3).
+- **Gate** is scored on the validation set (192 episodes, three predictor seeds, two horizons); there is no independent test set. The oracle knows where the cue is. Compress to Remember as published reads the whole history and reaches 95.31; restricted to two slots it reaches 79.51 and is unstable across seeds (50.5 / 93.8 / 94.3). The same two-slot training, replayed on NYU Burst CPU (12 November, same config and seeds, 8 threads), trained on all three seeds: 95.83 / 94.27 / 95.83, pooled **95.31**, above ours. On Torch GPU it collapsed on both seeds tried (55.2, 52.9). Whether it trains depends on the run; the cause is untested.
 - **Synergy**: regret is error above the best single deletion, not MSE. Compress to Remember blends the three cards into two learned items instead of deleting one and scores below its own teacher; the cause is untested. The next baselines are the distilled-sensitivity scorer (0.0046) and full-set sensitivity (0.0077).
-- **Motion v2**: our scorer never improved on its initial weights during training, so 0.0214 is an untrained network. The three literature baselines were not run on Motion v2.
+- **Motion v2**: our scorer never improved on its initial weights during training, so 0.0214 is an untrained network. The three literature baselines were not run on Motion v2. The online validation now replays on the frozen assets (28 of 28 methods identical on both intervals, `runs/motion_v2_frozen_replay_20261124/README.md`).
 - **PushT**: the corpora exist; no predictor has been trained.
 
 Every row of the panel (16 methods on Gate, 16 on Synergy, 14 on Motion v2), its dataset, split,
@@ -136,7 +136,7 @@ training from checkpoints.
 |---|---|---|
 | Gate | `gate.assets`: the team bundle (three predictors, the scorers for seeds 17/29/43, dataset, features), checksum-verified | `gate.retrain_scorer`: our scorer on the released predictors. `gate.retrain`: everything from scratch (dataset, I-JEPA features, three predictors, scorer, PaFu-KV) |
 | Synergy | `synergy.assets.release`: readers, basis, encoded confirmation set, released students | `synergy.assets.trainvaldev` then `synergy.retrain`: re-encoded train/validation features, teacher labels, all student arms. `synergy.retrain_readers`: the two readers |
-| Motion v2 | not available: the frozen readers, features and dataset were never released | `motion_v2.retrain.students`: the 54 students from the tracked teacher labels. Reader training is not runnable yet (see next steps) |
+| Motion v2 | not released; the frozen readers, features and dataset are on a teammate's Burst scratch, checksum-verified by `configs/motion_v2/frozen.yaml` | `motion_v2.retrain.students`: the 54 students from the tracked teacher labels. Reader training is not runnable yet (see next steps) |
 | PushT | nothing to download | `pusht.prepare_data`: the two corpora. No predictor exists |
 
 The released Gate predictors and Synergy features and readers were produced on a GPU, and a CPU
@@ -189,12 +189,15 @@ deterministic replay, `tie_sensitive` where exactly tied candidates are broken b
 |---|---|---|
 | Gate | every bar of the panel, from the team bundle | scorer on the released predictors; the full chain from scratch |
 | Synergy | every bar of the panel, from the public releases, for both readers and R/D/S | teacher labels and every student arm on the released readers; the two readers on re-encoded features |
-| Motion v2 | the published tables, recomputed from the tracked loss arrays; policies cannot be re-scored without the frozen readers and features | the 54 students from tracked labels |
+| Motion v2 | the published tables, recomputed from the tracked loss arrays; with the frozen assets, `scripts/evaluate/motion_v2_online.py` re-scores every policy online (one GPU) | the 54 students from tracked labels |
 | PushT | nothing to replay | data preparation only |
 
 The latest run is `runs/repro_20261111/`; its tables and panel are in `runs/repro_20261111/aggregate/`,
-and `panel_check.json` there counts the bars that match the frozen values (42 of 46 on 11 November
-2026; the four Gate bars of Compress to Remember and FrameMorrow were still training).
+and `panel_check.json` there counts the bars that match the frozen values: 43 of 46 identical; 2 within
+the per-seed tolerance (Compress to Remember on the whole history 95.14 against 95.31, FrameMorrow
+54.51 against 54.34); and two-slot Compress to Remember at 95.31 against 79.51 (see Current results).
+The Gate files of Compress to Remember and FrameMorrow were produced on NYU Burst CPU on 12 November
+(`runs/repro_20261111/pack_status.txt`); everything else ran on Torch.
 
 ## Checks
 
@@ -215,21 +218,27 @@ BM_SYN=<Synergy assets> BM_SYN_STUDENTS=<released students> python -m pytest -q 
 
 ## Next steps
 
-1. **Motion v2 with the new layout.** Obtain the frozen assets from the teammate's storage
-   (dataset archive, step-2 readers and features, long-gap features, step-3/4 CPU archive). The
-   original run scripts in `src/bounded_memory/environments/motion_v2/pipeline/` verify checksums
-   registered under their old paths and require one A100, which this account cannot request:
-   re-register them, add `scripts/` entry points as for Gate and Synergy, then rerun the readers
-   and the online evaluation and run PaFu-KV, Compress to Remember and FrameMorrow there.
+1. **Motion v2 literature baselines.** The online validation replays on the frozen assets:
+   `scripts/evaluate/motion_v2_online.py` with `configs/motion_v2/frozen.yaml` and `BM_MOTION_ROOT`
+   set to the original deployment folders (a teammate's Burst scratch). Write Motion v2 versions of
+   PaFu-KV, Compress to Remember and FrameMorrow (none exist yet) and run them there. Retraining
+   the readers still needs the original run scripts in
+   `src/bounded_memory/environments/motion_v2/pipeline/` re-registered.
 2. **Motion v2, our method.** The deletion-cost students kept their initial weights. Find out why
    the teacher labels are not learnable before comparing against baselines.
 3. **PushT.** Encode the v5 marker corpus, train a predictor, fix the metric (latent prediction at
    +12), then run the same ladder: no memory, oracle, baselines, ours.
-4. **Gate.** Run Compress to Remember with two slots on more seeds (it fails on one of three on CPU
-   and on both seeds tried on GPU). The comparison is on validation data; an independent test set
-   has not been generated.
+4. **Gate.** Compare two-slot Compress to Remember with ours over more training seeds. The
+   baseline collapsed on 1 of 3 seeds on Torch CPU and on 2 of 2 on Torch GPU, and trained on 3 of
+   3 on Burst CPU. The comparison is on validation data; an independent test set has not been
+   generated.
 5. **Synergy.** Test why Compress to Remember scores below its own teacher.
-6. **Code.** `predictors/dynamics.py` and `predictors/inputs.py` duplicate parts of
+6. **GPU retraining on Burst** (run `ood_gpu_repro`, outputs on branch `debug/burst-repro-20261112`).
+   `gate.retrain_gpu.assets` and `synergy.retrain_readers_gpu.train` stopped on the deterministic
+   cuBLAS error, which is now fixed, so the 31 tasks after them have not run. Rerun the same command
+   to continue. In that run our Synergy student with the multihead reader failed on seed 29
+   (regret 0.0271, against 0.0037 and 0.0038 on the other two seeds).
+7. **Code.** `predictors/dynamics.py` and `predictors/inputs.py` duplicate parts of
    `predictors/phase1/`; remove the duplicates and rerun the migration checks.
 
 ## The historical record
