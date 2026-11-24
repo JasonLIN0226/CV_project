@@ -203,6 +203,62 @@ reference, without labels, targets or marker positions at run time. Visual diver
 most visually distinct thing in the history. v5b therefore cannot separate a predictor-aware method from
 salience. Next: distractor dots or shapes in other frames (so distinctness no longer means cue), and v4.
 
+**v5c: distractors** (`--distractor-dots 2`; corpus `pusht-cog-v5c-marker-r4-d2-t960-20261123`, v5b's seeds and
+radius, 960 training families; jobs 24248904 collect, 24248908 encode + probes, 24248947 predictor, 24248950
+retention). Every history frame (up to query−4) gets 1–2 marker-sized dots in black, orange, purple or the
+marker red, on empty background only (every pixel within radius + 1 is background). They are seeded per family
+and frame, so siblings share them and still differ only in the marker frames; the present and the targets are
+clean. The cue is a red dot **on the block**; a red or unusual-looking frame no longer is. With distractors off
+the code reproduces v5b's frames byte for byte.
+
+Probes (MLP, validation): marker frame 0.91, marker + query 0.96, query + target 0.99; recent window, first
+frame and first frame + query 0.33. Predictor (3 seeds, +12): recent-only 0.743 / sibling ID 0.33, marker
+frames 0.474 / 0.86. Retention, mean of seeds 17/29/43:
+
+| Policy | Error at +12 | Sibling ID at +12 | Error at +6 | Kept a marker frame |
+|---|---:|---:|---:|---:|
+| Recent only | 0.743 | 0.33 | 0.395 | 0% |
+| FIFO | 0.743 | 0.33 | 0.395 | 0% |
+| Temporal buckets | 0.744 | 0.33 | 0.395 | 0% |
+| Random deletion | 0.745 | 0.33 | 0.395 | 0% |
+| Reservoir | 0.702 | 0.40 | 0.386 | 13% |
+| Visual diversity | 0.618 | 0.57 | 0.361 | 44% |
+| **Deletion-cost scorer** | **0.473** | **0.87** | **0.306** | **100%** |
+| Marker frames (privileged reference) | 0.474 | 0.86 | 0.310 | 100% |
+
+Per seed, the scorer's +12 error is 0.469 / 0.486 / 0.465 and visual diversity keeps the marker 47% / 43% / 42%
+of the time. The distractors halve visual diversity's hit rate; the deletion-cost scorer is unaffected.
+
+**Why the deletion-cost scorer works on v5b/v5c** (from `retention_pusht_cog.py` and `train_pusht_cog_predictor.py`):
+
+1. *The teacher measures exactly the quantity of interest.* `teacher_energy` runs the frozen predictor once per
+   candidate with the other two kept, at the query, against the episode's real +6/+12 latents; `soft_target`
+   turns the three errors into a deletion distribution. The predictor's +12 error depends almost entirely on
+   whether a marker frame is kept (0.47 vs 0.74), so deleting the marker is costly and deleting anything else is
+   nearly free. The student does not have to discover the cue; the predictor already did.
+2. *Prediction-aligned rather than salience-driven.* Both the scorer and visual diversity read the same
+   128-dimensional projection. Visual diversity keeps the most spread-out pair, which distractors inflate. The
+   predictor was trained with random history pairs that often contain distractor frames, and the targets never
+   contain distractors, so it learned to ignore them; keeping one never lowers the error, so the teacher never
+   rewards it.
+3. *Target-time credit.* The marker becomes a candidate ~40 frames before the query. Scoring every decision at
+   the episode's target, as if the kept pair survives to the query, values it correctly at that moment; scoring
+   the near future of the decision clock would not (nothing class-dependent happens until the test push).
+4. *The training states contain the decisions that matter.* Every baseline rollout passes the step where the
+   marker frame arrives, so that decision is labelled in every training episode under many stored pairs; the
+   query state is always included. DAgger adds the student's own states ("marker held, new frame arrives"), which
+   baselines rarely produce and which it must get right ~40 times per episode.
+5. *Set-conditioned scoring.* Each candidate is encoded with its latent, its difference to the current frame,
+   the present, its age and actions, plus a pooled context over the three, so deletion is judged relatively.
+   Once one marker frame is kept the second slot barely matters, which is why the scorer reaches the reference.
+6. *An enabler: the input basis* includes sibling frame differences, which are non-zero only at marker frames,
+   so the marker's direction is explicit in the projection. Visual diversity uses the same projection, so this is
+   not an advantage between the two, but it relies on the dataset's sibling pairing.
+
+Caveats: the teacher is privileged at training time (frozen predictor, true future latents); v5c's cue fits in
+a single frame, so per-candidate deletion cost is nearly a perfect label, whereas v4's cue is relational; all
+results are on 96 validation episodes, and the evaluation split is untouched.
+
 ## 5. v4 (natural): the harder follow-up
 
 ```text
@@ -422,6 +478,7 @@ Data are not in Git (`build/` is ignored). On Torch, under `/projects/work/yang-
 | `pusht-cog-v5-marker-20261109/` | 48 MB | v5 corpus, all three splits; features in `cv_burst_pkg/output/pusht-cog-v5-marker-20261109-ijepa/` |
 | `pusht-cog-v5b-marker-r4-20261120/` (+ `-ijepa/`) | 48 MB + ~0.7 GB | v5b corpus (4-px dot, v5 seeds) and its train+validation features |
 | `pusht-cog-v5b-marker-r4-t960-20261120/` (+ `-ijepa/`) | 257 MB + 4.2 GB | v5b with 960 training families (same validation) and its features |
+| `pusht-cog-v5c-marker-r4-d2-t960-20261123/` (+ `-ijepa/`) | 291 MB + 6.5 GB | v5c (distractors), 960 training families, features, predictor checkpoints and retention checkpoints |
 | `pusht-cog-v4-20261107/` | 60 MB | v4 corpus, all three splits |
 | `pusht-cog-v4-20261107-ijepa/` | 833 MB | v4 train+validation I-JEPA features (5120/frame), probes, burst log |
 | `pusht_cog_probe_library_v3.json` | 0.2 MB | probe library used by v3/v4 |

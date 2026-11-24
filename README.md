@@ -88,7 +88,53 @@ This separate development track (merged from PR #1) tests the proposal's set-con
 - **Reader qualification.** The original reader failed preregistered redundancy/decoy checks; multihead and item-attention readers passed all K2/K3 gates. [Three-structure report](docs/TERMINAL_THREE_STRUCTURES_REPORT_ZH.md) · [reader aggregation results](docs/READER_AGGREGATION_RESULTS_ZH.md)
 - **Negative and diagnostic results.** On the 23 October locked Gate confirmation, a masked deletion-cost linear probe did not beat its shuffled-label control. Some oracles delete the cue to lower feature MSE, and use-time labels fix that ranking without improving the student. [Literature-baseline fresh report](docs/LITERATURE_BASELINE_FRESH_REPORT.md) · [oracle diagnosis](docs/BASELINE_ORACLE_DIAGNOSIS_20261022.md) · [Gate confirmation and casebook](docs/GATE_CONFIRMATION_AND_CASEBOOK.md) · [use-time probe](docs/GATE_USE_TIME_PROBE.md)
 - **Predictor history use.** [History diagnosis](docs/PHASE2_HISTORY_DIAGNOSIS.md): Gate gains useful history dependence without input whitening; Motion shows no net history benefit.
-- **PushT.** [Interface](docs/PHASE2_PUSHT.md) and [48-episode occluded/unoccluded corpus](docs/PHASE2_PUSHT_PLANNING_PREPARATION.md). Not yet encoded; no PushT predictor or MPC planning result exists.
+- **PushT.** [Interface](docs/PHASE2_PUSHT.md) and [48-episode occluded/unoccluded corpus](docs/PHASE2_PUSHT_PLANNING_PREPARATION.md). Superseded by the hidden-CoG PushT study below.
+
+## PushT with a hidden centre of gravity (November 2026)
+
+Plain PushT needs no memory: the block moves only while pushed (zero damping) and actions are absolute pusher targets, so the present frame and the actions determine the future. We hide a **discrete centre of gravity** (left, centre or right; body-local (−40, 20), (0, 45), (40, 20)) in the T block. The block looks the same in every class, but a later **test push** on the crossbar turns it differently, so predicting the future needs a past cue. The PushT end goal is planning; this stage evaluates latent prediction and retention. Full write-up: [docs/PUSHT_COG_CUE.md](docs/PUSHT_COG_CUE.md).
+
+**Setups.** A *family* is one scenario run once per class (three *siblings*). The model sees the 4-frame present (query−3 … query) plus B = 2 retained history frames; the target is the I-JEPA latent at query + 12.
+
+| Version | Cue | Status |
+|---|---|---|
+| **v5c** | the CoG drawn as a red dot (radius 4 px at 96×96) on the block for 3 early frames, plus 1–2 distractor dots (palette including the marker red) on empty background in every history frame | **main testbed** |
+| v5b | the same dot without distractors | the dot is the most salient frame, so visual diversity finds it |
+| v5 | a 2-px dot | too faint in I-JEPA features |
+| v4 | no symbol: the block's response to a shared probe push, read against the present | harder follow-up |
+| v1–v3 | scene cut / calibrated starts / matched probes | kept for provenance |
+
+In v5–v5c no frame is touched until the test push and all actions are shared, so siblings differ only in the marker frames: the present carries **no** class information (probes at exactly 1/3) and the future depends strongly on the class (query + target probe 0.99).
+
+**Predictor** ([train_pusht_cog_predictor.py](experiments/phase2/train_pusht_cog_predictor.py)). Predicts standardized I-JEPA latents at +6/+12 from the present, up to two history slots (latent, age, pusher target) and future absolute pusher targets, through a 128-dim input basis that includes sibling frame differences (so the faint marker direction is kept). Trained with random memory conditions so one model serves every policy. It needed data: with 128 training families keeping the marker lowered the +12 error only 7%; with **960** families, 39% (sibling identification 0.33 → 0.91).
+
+**Retention** ([retention_pusht_cog.py](experiments/phase2/retention_pusht_cog.py)). Online B = 2 memory; baselines use the repo's audited Gate rules. The deletion-cost scorer is Gate v2's set-conditioned student with a **target-time teacher** (each deletion scored by the frozen predictor's error at the episode's +6/+12 targets) and **training states along whole rollouts**, followed by two **DAgger** rounds. Validation (96 episodes), mean of 3 seeds, 960 training families; error is the mean squared error over 5,120 standardized features, sibling ID is how often the prediction is closest to its own sibling's future (chance 1/3):
+
+| Policy | v5b: +12 error / sibling ID / marker kept | **v5c (distractors): +12 error / sibling ID / marker kept** |
+|---|---|---|
+| Recent only | 0.810 / 0.33 / 0% | 0.743 / 0.33 / 0% |
+| FIFO | 0.810 / 0.33 / 0% | 0.743 / 0.33 / 0% |
+| Temporal buckets | 0.810 / 0.33 / 0% | 0.744 / 0.33 / 0% |
+| Random deletion | 0.810 / 0.34 / 0% | 0.745 / 0.33 / 0% |
+| Reservoir | 0.764 / 0.41 / 13% | 0.702 / 0.40 / 13% |
+| Visual diversity | 0.498 / 0.89 / 99% | 0.618 / 0.57 / 44% |
+| **Deletion-cost scorer** | **0.501 / 0.90 / 100%** | **0.473 / 0.87 / 100%** |
+| Marker frames (privileged reference) | 0.499 / 0.90 / 100% | 0.474 / 0.86 / 100% |
+
+On v5c the deletion-cost scorer keeps a marker frame in every validation episode in all three seeds and matches the privileged reference; visual diversity, which tied it on v5b, falls to 44% once distractors make other frames just as distinctive.
+
+**Why the deletion-cost scorer works here** (from the implementation):
+1. *The teacher measures what matters.* The predictor's +12 error depends almost only on whether a marker frame is in memory (0.47 with, 0.74 without), so deleting the marker is costly and deleting anything else is nearly free: a clear, consistent label.
+2. *It is prediction-aligned, not salience-driven.* The predictor learned to ignore distractor dots (they never appear in targets and keeping them never lowers error), so the teacher never rewards them; visual diversity measures feature spread, which distractors inflate.
+3. *Target-time credit.* The marker arrives ~40 frames before the query; scoring every decision at the episode's target (not the near future) gives it its true value when the decision is made, the use-time fix Gate also needed.
+4. *The right training states.* Every baseline rollout passes the step where the marker arrives, so that decision is labelled in every episode; DAgger adds the student's own "hold the marker against each new frame" states, which it must get right ~40 times per episode.
+5. *Set-conditioned scoring* judges each candidate relative to the other two, and once one marker frame is kept the second slot barely matters, so the scorer reaches the reference exactly.
+
+Caveats: the teacher uses the frozen predictor and true future latents at training time (run-time inputs are past frames and actions only); the input basis uses the dataset's sibling pairing; v5c's cue fits in one frame, whereas v4's is relational; all numbers are on validation, and the evaluation split is untouched.
+
+**Code and data.** Generators [pusht_cog_marker.py](experiments/phase2/pusht_cog_marker.py) and [prepare_pusht_cog_marker_data.py](experiments/phase2/prepare_pusht_cog_marker_data.py) (`--marker-radius`, `--train-families`, `--distractor-dots`); encoding and probes [probe_pusht_cog_features.py](experiments/phase2/probe_pusht_cog_features.py); Slurm scripts in [experiments/phase2/slurm/](experiments/phase2/slurm/); results JSON in [results/pusht_cog/](results/pusht_cog/). Corpora and features are not in Git; they regenerate in minutes on CPU (encoding ~40 min on an H200).
+
+**Next:** v4 with the same pipeline (the cue is a push and its response, which tests set conditioning and DAgger harder), then planning with the learned predictor.
 
 ## Next stage
 
