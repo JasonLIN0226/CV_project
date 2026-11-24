@@ -15,6 +15,7 @@ validation loss), and <out>/retraining_report.json comparing them with the relea
 """
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -31,6 +32,8 @@ def main():
     ap.add_argument("--device", default="cpu")
     ap.add_argument("--released", type=Path, help="released reader folder, to compare schedule hash and validation loss")
     args = ap.parse_args()
+    if args.device.split(":")[0] == "cuda":
+        os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
     sys.path.insert(0, str(ROOT / "src"))
     import numpy as np
     import torch

@@ -32,6 +32,9 @@ STAGES = ("data", "features", "predictors", "pins")
 
 def run(module, *args):
     env = dict(os.environ, PYTHONPATH=str(ROOT / "src"))
+    if module == "train_predictor":
+        # The trainer reads its device from resolved_config.json, including on resume.
+        env.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
     command = [sys.executable, "-m", f"bounded_memory.environments.gate.{module}", *map(str, args)]
     print("==", " ".join(command), flush=True)
     subprocess.run(command, check=True, env=env)
