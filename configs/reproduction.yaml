@@ -252,6 +252,71 @@ tasks:
     needs: [gate.retrain_scorer.train]
     resources: {cpus: 4, mem: 16G, time: "00:30:00"}
 
+  # ---------------------------------------------------------------- Gate, two-slot Compress to Remember: threads and machine
+  # gate.replay.pacc for seed 17 with a pinned thread count. Burst CPU with 8 threads trained it
+  # (95.83); the frozen Torch CPU run collapsed (50.52). --checkpoints also prints the loss every 100
+  # steps, to compare with the Burst log.
+  gate.threads.cpu1:
+    script: scripts/train_baselines/gate.py
+    config: configs/gate/team_bundle.yaml
+    out: gate/threads1
+    seeds: [17]
+    variants: {method: [pacc_recurrent]}
+    args: --threads 1 --checkpoints ${BM_RUN}/gate/threads1/checkpoints
+    needs: [gate.assets.team_bundle]
+    resources: {cpus: 1, mem: 24G, time: "06:00:00"}
+    resubmit: 2
+  gate.threads.cpu8:
+    script: scripts/train_baselines/gate.py
+    config: configs/gate/team_bundle.yaml
+    out: gate/threads8
+    seeds: [17]
+    variants: {method: [pacc_recurrent]}
+    args: --threads 8 --checkpoints ${BM_RUN}/gate/threads8/checkpoints
+    needs: [gate.assets.team_bundle]
+    resources: {cpus: 8, mem: 24G, time: "06:00:00"}
+    resubmit: 2
+  # ---------------------------------------------------------------- Gate, seed sweep: two-slot Compress to Remember against ours
+  # Training seeds 1-10 (initial weights, minibatch order) on each of the three frozen predictors, both
+  # methods on CPU with 8 threads. Pooled by scripts/aggregate_results/gate_seed_sweep.py. The throttles
+  # keep the sweep at 24 CPUs: two Compress to Remember runs and one step of ours at a time.
+  gate.sweep.pacc_recurrent:
+    script: scripts/train_baselines/gate.py
+    config: configs/gate/seed_sweep.yaml
+    out: gate/sweep
+    seeds: [17, 29, 43]
+    variants: {method: [pacc_recurrent], train-seed: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+    args: --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints
+    needs: [gate.assets.team_bundle]
+    resources: {cpus: 8, mem: 8G, time: "02:00:00", throttle: 2}
+    resubmit: 1
+  gate.sweep.teacher_labels:
+    script: scripts/generate_teacher_labels/gate.py
+    config: configs/gate/seed_sweep.yaml
+    out: gate/sweep
+    args: --threads 8 --out ${BM_RUN}/gate/sweep/labels
+    seeds: [17, 29, 43]
+    needs: [gate.assets.team_bundle]
+    resources: {cpus: 8, mem: 8G, time: "01:00:00", throttle: 1}
+  gate.sweep.train_scorer:
+    script: scripts/train_scorer/gate.py
+    config: configs/gate/seed_sweep.yaml
+    out: gate/sweep
+    seeds: [17, 29, 43]
+    variants: {train-seed: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+    args: --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students
+    needs: [gate.sweep.teacher_labels]
+    resources: {cpus: 8, mem: 8G, time: "00:30:00", throttle: 1}
+  gate.sweep.deletion_cost:
+    script: scripts/evaluate/gate.py
+    config: configs/gate/seed_sweep.yaml
+    out: gate/sweep
+    seeds: [17, 29, 43]
+    variants: {train-seed: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+    args: --threads 8
+    needs: [gate.sweep.train_scorer]
+    resources: {cpus: 8, mem: 8G, time: "00:30:00", throttle: 1}
+
   # ---------------------------------------------------------------- Gate, everything retrained from scratch
   gate.retrain.assets:
     script: scripts/train_predictor/gate.py

@@ -7,7 +7,8 @@ Without --students the folder named by the config (assets.students) is used: for
 that is the published frozen scorer. Point --students at the output of scripts/train_scorer/gate.py
 to score a retrained one. Writes <out>/deletion_cost_seed<seed>.json. When the config names the
 team's original validation output, every row written so far in <out> for this seed is also
-compared with it.
+compared with it. --train-seed N scores student_<seed>_t<N>.pt (scripts/train_scorer/gate.py
+--train-seed N) and writes deletion_cost_t<N>_seed<seed>.json.
 """
 import json
 import sys
@@ -25,8 +26,9 @@ ARM = "deletion_cost_student"
 def main(arm=ARM, name="deletion_cost", doc=__doc__):
     ap = runs.parser(doc)
     ap.add_argument("--students", type=Path)
+    ap.add_argument("--train-seed", type=int, help="score the scorer trained with this training seed (student_<seed>_t<N>.pt)")
     args = ap.parse_args()
-    task = runs.Task(args, name)
+    task = runs.Task(args, runs.seeded(name, args.train_seed))
     if task.done():
         return
     config = runs.load_config(args.config)
@@ -34,7 +36,9 @@ def main(arm=ARM, name="deletion_cost", doc=__doc__):
     students = args.students or config["assets"].get("students")
     if not students:
         raise SystemExit("no student checkpoint folder: pass --students or set assets.students in the config")
-    scorers, task.info["students"] = training.frozen_scorers(students, args.seed, scorer.assets.device)
+    scorers, task.info["students"] = training.frozen_scorers(students, args.seed, scorer.assets.device,
+                                                             filename=training.student_filename(args.train_seed))
+    task.info["train_seed"] = args.seed if args.train_seed is None else args.train_seed
     scorer.add(arm, retention.scorer_selections(scorers[arm], scorer.val))
     reference = config["assets"].get("reference_rows")
     if reference:

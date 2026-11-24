@@ -63,6 +63,11 @@ def parser(description, **extra):
     return ap
 
 
+def seeded(name, train_seed):
+    """Task name of a run with a training seed of its own, <name>_t<N>, so seed-sweep outputs never collide."""
+    return name if train_seed is None else f"{name}_t{train_seed}"
+
+
 class Task:
     """One (script, seed) unit of work with a single JSON output."""
 
