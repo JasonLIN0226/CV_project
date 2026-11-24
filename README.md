@@ -23,7 +23,7 @@ browser). Its numbers are frozen in `configs/reference_values.json`; section 3 r
 
 What to keep in mind when reading the table:
 
-- **Gate** is scored on the validation set (192 episodes, three predictor seeds, two horizons); there is no independent test set. The oracle knows where the cue is. Compress to Remember as published reads the whole history and reaches 95.31; restricted to two slots it reaches 79.51 and is unstable across seeds (50.5 / 93.8 / 94.3). The same two-slot training, replayed on NYU Burst CPU (12 November, same config and seeds, 8 threads), trained on all three seeds: 95.83 / 94.27 / 95.83, pooled **95.31**, above ours. On Torch GPU it collapsed on both seeds tried (55.2, 52.9). Whether it trains depends on the run; the cause is untested.
+- **Gate** is scored on the validation set (192 episodes, three predictor seeds, two horizons); there is no independent test set. The oracle knows where the cue is. Compress to Remember as published reads the whole history and reaches 95.31. Restricted to two slots, its training sometimes collapses to near chance (50–58), so a three-seed value is a draw: 79.51 in the release (50.5 / 93.8 / 94.3), 95.31 replayed on NYU Burst CPU (95.83 / 94.27 / 95.83), 55.2 and 52.9 on the two Torch GPU seeds tried. Over 10 training seeds on each predictor (30 runs per method, Torch CPU, 8 threads, `runs/gate_seed_sweep_20261124/aggregate/seed_sweep.md`), its three-seed value ranges from 69.01 to 95.14 and ours from 93.92 to 95.49; it is higher on 1 of the 10 training seeds. It collapsed in 5 of 30 runs and averaged 93.60 over the 25 that trained, 87.33 over all (PaFu-KV, one training seed per predictor, is 90.28); ours never collapsed and averaged **94.92**, higher in 24 of the 30 runs with the same predictor and seed number. With 8 threads pinned it still collapses, so the thread count is not the cause; the release's seed-17 collapse did not recur on Torch with 1 or 8 threads (90.89, 95.57). Torch GPU's 2 of 2 is unlikely at one in six but rests on two runs.
 - **Synergy**: regret is error above the best single deletion, not MSE. Compress to Remember blends the three cards into two learned items instead of deleting one and scores below its own teacher; the cause is untested. The next baselines are the distilled-sensitivity scorer (0.0046) and full-set sensitivity (0.0077).
 - **Motion v2**: our scorer never improved on its initial weights during training, so 0.0214 is an untrained network. The three literature baselines were not run on Motion v2. The online validation now replays on the frozen assets (28 of 28 methods identical on both intervals, `runs/motion_v2_frozen_replay_20261124/README.md`).
 - **PushT**: the corpora exist; no predictor has been trained.
@@ -175,9 +175,13 @@ ssh torch 'bash /scratch/$USER/CV_project/torch/generated/<run_id>/submit.sh'   
 # retrain (optional): see the table in section 2
 python torch/make_jobs.py --run-id <run_id> --select gate.retrain_scorer gate.retrain synergy.retrain synergy.retrain_readers motion_v2.retrain
 
+# Gate seed sweep (optional): two-slot Compress to Remember and ours, training seeds 1 to 10 on each predictor
+python torch/make_jobs.py --run-id <run_id> --select gate.assets.team_bundle gate.sweep
+
 # pool the run and rebuild the panel (locally, once Mutagen has synced runs/<run_id>/ back)
 python scripts/aggregate_results/aggregate.py --run runs/<run_id>      # per-seed and pooled tables, differences from the frozen values
 python scripts/aggregate_results/build_panel.py --run runs/<run_id>    # runs/<run_id>/aggregate/panel.html and panel_check.json
+python scripts/aggregate_results/gate_seed_sweep.py --run runs/<run_id> # the seed sweep: collapses, means, head-to-head (aggregate/seed_sweep.md)
 ```
 
 `runs/<run_id>/aggregate/tables.md` lists every result per seed and pooled, with a verdict against
@@ -197,7 +201,9 @@ and `panel_check.json` there counts the bars that match the frozen values: 43 of
 the per-seed tolerance (Compress to Remember on the whole history 95.14 against 95.31, FrameMorrow
 54.51 against 54.34); and two-slot Compress to Remember at 95.31 against 79.51 (see Current results).
 The Gate files of Compress to Remember and FrameMorrow were produced on NYU Burst CPU on 12 November
-(`runs/repro_20261111/pack_status.txt`); everything else ran on Torch.
+(`runs/repro_20261111/pack_status.txt`); everything else ran on Torch. The Gate seed sweep is
+`runs/gate_seed_sweep_20261124/`: the sweep ran the code of commit b626562 (`run.json` records fd8cc3e
+with those changes not yet committed), the two thread probes ran fd8cc3e.
 
 ## Checks
 
@@ -228,10 +234,9 @@ BM_SYN=<Synergy assets> BM_SYN_STUDENTS=<released students> python -m pytest -q 
    the teacher labels are not learnable before comparing against baselines.
 3. **PushT.** Encode the v5 marker corpus, train a predictor, fix the metric (latent prediction at
    +12), then run the same ladder: no memory, oracle, baselines, ours.
-4. **Gate.** Compare two-slot Compress to Remember with ours over more training seeds. The
-   baseline collapsed on 1 of 3 seeds on Torch CPU and on 2 of 2 on Torch GPU, and trained on 3 of
-   3 on Burst CPU. The comparison is on validation data; an independent test set has not been
-   generated.
+4. **Gate.** The comparison is on validation data; an independent test set has not been
+   generated. The seed sweep ran on CPU only: two-slot Compress to Remember collapsed on 2 of 2
+   Torch GPU runs, against 5 of 30 on CPU.
 5. **Synergy.** Test why Compress to Remember scores below its own teacher.
 6. **GPU retraining on Burst** (run `ood_gpu_repro`, outputs on branch `debug/burst-repro-20261112`).
    `gate.retrain_gpu.assets` and `synergy.retrain_readers_gpu.train` stopped on the deterministic

@@ -1,0 +1,241 @@
+{
+  "run_id": "gate_seed_sweep_20261124",
+  "submissions": [
+    {
+      "generated": "2026-11-24T01:21:39-0500",
+      "selected": [
+        "gate.assets.team_bundle",
+        "gate.threads"
+      ],
+      "tasks": {
+        "gate.assets.team_bundle": {
+          "array_size": 1,
+          "commands": [
+            "scripts/prepare_data/gate_team_bundle.py --work ${BM_SCRATCH}/gate_team"
+          ],
+          "needs": [],
+          "resources": {
+            "cpus": 4,
+            "mem": "16G",
+            "time": "01:00:00"
+          },
+          "resubmit": 0
+        },
+        "gate.threads.cpu1": {
+          "array_size": 1,
+          "commands": [
+            "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 17 --device cpu --method pacc_recurrent --out ${BM_OUT}/gate/threads1 --threads 1 --checkpoints ${BM_RUN}/gate/threads1/checkpoints"
+          ],
+          "needs": [
+            "gate.assets.team_bundle"
+          ],
+          "resources": {
+            "cpus": 1,
+            "mem": "24G",
+            "time": "06:00:00"
+          },
+          "resubmit": 2
+        },
+        "gate.threads.cpu8": {
+          "array_size": 1,
+          "commands": [
+            "scripts/train_baselines/gate.py --config configs/gate/team_bundle.yaml --seed 17 --device cpu --method pacc_recurrent --out ${BM_OUT}/gate/threads8 --threads 8 --checkpoints ${BM_RUN}/gate/threads8/checkpoints"
+          ],
+          "needs": [
+            "gate.assets.team_bundle"
+          ],
+          "resources": {
+            "cpus": 8,
+            "mem": "24G",
+            "time": "06:00:00"
+          },
+          "resubmit": 2
+        }
+      },
+      "cluster_settings": "read on the cluster at submission (torch/cluster.sh); printed by submit.sh",
+      "manifest_sha256": "5b8f7e5f676185f69a550304dab30b739a7a0df7f3a1f189a265f5bec603d892",
+      "git_head": "fd8cc3ecc000091f3c1434fff59e5f41139e98f4",
+      "git_branch": "clean",
+      "tracked_files_modified": [
+        "configs/reproduction.yaml"
+      ],
+      "code_sha256": "d7e746eea55c61f2282ff22d09f0e73e591dd556d0237df860ef2ac36cb18744",
+      "code_files": 213
+    },
+    {
+      "generated": "2026-11-24T01:33:39-0500",
+      "selected": [
+        "gate.sweep"
+      ],
+      "tasks": {
+        "gate.sweep.pacc_recurrent": {
+          "array_size": 30,
+          "commands": [
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --method pacc_recurrent --train-seed 1 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --method pacc_recurrent --train-seed 1 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --method pacc_recurrent --train-seed 1 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --method pacc_recurrent --train-seed 2 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --method pacc_recurrent --train-seed 2 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --method pacc_recurrent --train-seed 2 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --method pacc_recurrent --train-seed 3 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --method pacc_recurrent --train-seed 3 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --method pacc_recurrent --train-seed 3 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --method pacc_recurrent --train-seed 4 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --method pacc_recurrent --train-seed 4 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --method pacc_recurrent --train-seed 4 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --method pacc_recurrent --train-seed 5 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --method pacc_recurrent --train-seed 5 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --method pacc_recurrent --train-seed 5 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --method pacc_recurrent --train-seed 6 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --method pacc_recurrent --train-seed 6 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --method pacc_recurrent --train-seed 6 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --method pacc_recurrent --train-seed 7 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --method pacc_recurrent --train-seed 7 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --method pacc_recurrent --train-seed 7 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --method pacc_recurrent --train-seed 8 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --method pacc_recurrent --train-seed 8 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --method pacc_recurrent --train-seed 8 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --method pacc_recurrent --train-seed 9 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --method pacc_recurrent --train-seed 9 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --method pacc_recurrent --train-seed 9 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --method pacc_recurrent --train-seed 10 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --method pacc_recurrent --train-seed 10 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints",
+            "scripts/train_baselines/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --method pacc_recurrent --train-seed 10 --out ${BM_OUT}/gate/sweep --threads 8 --checkpoints ${BM_RUN}/gate/sweep/checkpoints"
+          ],
+          "needs": [
+            "gate.assets.team_bundle"
+          ],
+          "resources": {
+            "cpus": 8,
+            "mem": "8G",
+            "time": "02:00:00",
+            "throttle": 2
+          },
+          "resubmit": 1
+        },
+        "gate.sweep.teacher_labels": {
+          "array_size": 3,
+          "commands": [
+            "scripts/generate_teacher_labels/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --threads 8 --out ${BM_RUN}/gate/sweep/labels",
+            "scripts/generate_teacher_labels/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --threads 8 --out ${BM_RUN}/gate/sweep/labels",
+            "scripts/generate_teacher_labels/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --threads 8 --out ${BM_RUN}/gate/sweep/labels"
+          ],
+          "needs": [
+            "gate.assets.team_bundle"
+          ],
+          "resources": {
+            "cpus": 8,
+            "mem": "8G",
+            "time": "01:00:00",
+            "throttle": 1
+          },
+          "resubmit": 0
+        },
+        "gate.sweep.train_scorer": {
+          "array_size": 30,
+          "commands": [
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 1 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 1 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 1 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 2 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 2 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 2 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 3 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 3 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 3 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 4 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 4 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 4 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 5 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 5 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 5 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 6 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 6 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 6 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 7 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 7 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 7 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 8 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 8 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 8 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 9 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 9 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 9 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 10 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 10 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students",
+            "scripts/train_scorer/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 10 --out ${BM_OUT}/gate/sweep --threads 8 --labels ${BM_RUN}/gate/sweep/labels --checkpoints ${BM_RUN}/gate/sweep/students"
+          ],
+          "needs": [
+            "gate.sweep.teacher_labels"
+          ],
+          "resources": {
+            "cpus": 8,
+            "mem": "8G",
+            "time": "00:30:00",
+            "throttle": 1
+          },
+          "resubmit": 0
+        },
+        "gate.sweep.deletion_cost": {
+          "array_size": 30,
+          "commands": [
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 1 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 1 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 1 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 2 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 2 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 2 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 3 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 3 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 3 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 4 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 4 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 4 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 5 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 5 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 5 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 6 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 6 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 6 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 7 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 7 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 7 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 8 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 8 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 8 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 9 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 9 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 9 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 17 --device cpu --train-seed 10 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 29 --device cpu --train-seed 10 --out ${BM_OUT}/gate/sweep --threads 8",
+            "scripts/evaluate/gate.py --config configs/gate/seed_sweep.yaml --seed 43 --device cpu --train-seed 10 --out ${BM_OUT}/gate/sweep --threads 8"
+          ],
+          "needs": [
+            "gate.sweep.train_scorer"
+          ],
+          "resources": {
+            "cpus": 8,
+            "mem": "8G",
+            "time": "00:30:00",
+            "throttle": 1
+          },
+          "resubmit": 0
+        }
+      },
+      "cluster_settings": "read on the cluster at submission (torch/cluster.sh); printed by submit.sh",
+      "manifest_sha256": "f9af9682ba5551eb10218fbf27d2eac8bebc5d7726875a9f7dbaf3e920ad0b24",
+      "git_head": "fd8cc3ecc000091f3c1434fff59e5f41139e98f4",
+      "git_branch": "clean",
+      "tracked_files_modified": [
+        "configs/reproduction.yaml",
+        "scripts/evaluate/gate.py",
+        "scripts/train_baselines/gate.py",
+        "scripts/train_scorer/gate.py",
+        "src/bounded_memory/methods/deletion_cost/training.py",
+        "src/bounded_memory/runs.py"
+      ],
+      "code_sha256": "c35d5b22477538c9b291b12292ed16ba47e5173fd0c2ef6c90e5fa5309a3064d",
+      "code_files": 215
+    }
+  ]
+}
