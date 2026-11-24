@@ -7,6 +7,8 @@ Replayed artifacts and retrained models are separate tables. `diff` is this run 
 | Policy | Group | Memory | Seeds | Per seed | Pooled | Reference | Diff | Verdict |
 |---|---|---|---|---|---|---|---|---|
 | oracle_keyframe | reference | privileged | 3/3 | 95.05 / 95.57 / 96.09 | 95.57% | 95.57% | +0.00 | identical |
+| pacc_recurrent | literature | bounded | 3/3 | 95.83 / 94.27 / 95.83 | 95.31% | 79.51% | +15.80 | unstable training: read per seed |
+| pacc_full | literature | full_history | 3/3 | 96.35 / 94.27 / 94.79 | 95.14% | 95.31% | -0.17 | within 1 point |
 | deletion_cost_student | ours | bounded | 3/3 | 93.75 / 94.79 / 95.05 | 94.53% | 94.53% | +0.00 | identical |
 | full_history | reference | full_history | 3/3 | 95.83 / 93.49 / 92.19 | 93.84% | 93.84% | +0.00 | identical |
 | pafu_kv | literature | bounded | 3/3 | 90.10 / 90.62 / 90.10 | 90.28% | 90.28% | +0.00 | within 1 point |
@@ -19,12 +21,10 @@ Replayed artifacts and retrained models are separate tables. `diff` is this run 
 | temporal_buckets | project_baseline | bounded | 3/3 | 56.77 / 56.51 / 56.51 | 56.60% | 56.60% | +0.00 | identical |
 | fifo | project_baseline | bounded | 3/3 | 56.77 / 56.51 / 56.25 | 56.51% | 56.51% | +0.00 | identical |
 | attention_proxy_student | ablation | bounded | 3/3 | 55.73 / 57.81 / 54.69 | 56.08% | 56.08% | +0.00 | identical |
+| fm_dinov2_teacher_top2 | literature_teacher | privileged | 3/3 | 55.73 / 55.21 / 55.47 | 55.47% | 55.47% | +0.00 | identical |
+| fm_dinov2_published | literature | full_history | 3/3 | 54.69 / 53.65 / 55.21 | 54.51% | 54.34% | +0.17 | within 1 point |
+| fm_dinov2_online | literature | bounded | 3/3 | 50.52 / 50.00 / 51.56 | 50.69% | 50.69% | +0.00 | within 1 point |
 | recent_only | reference | none | 3/3 | 50.00 / 50.00 / 50.00 | 50.00% | 50.00% | +0.00 | identical |
-| fm_dinov2_online | literature | bounded | 0/3 | | | | | incomplete |
-| fm_dinov2_published | literature | full_history | 0/3 | | | | | incomplete |
-| fm_dinov2_teacher_top2 | literature_teacher | privileged | 0/3 | | | | | incomplete |
-| pacc_full | literature | full_history | 0/3 | | | | | incomplete |
-| pacc_recurrent | literature | bounded | 0/3 | | | | | incomplete |
 
 ## Gate, retrain (route accuracy, 192 validation episodes)
 
@@ -69,6 +69,7 @@ Replayed artifacts and retrained models are separate tables. `diff` is this run 
 |---|---|---|---|---|---|---|---|
 | oracle | reference | 1/1 | 10.20% | +0.0000 | 10.20% | +0.0000 | identical |
 | deletion_cost_student_set | ours | 3/3 | 0.65% | +0.0020 | 0.65% | +0.0020 | identical |
+| pacc | literature | 3/3 | n/a | +0.0037 | n/a | +0.0037 | within 1 point |
 | distilled_sensitivity_student_set | ablation | 3/3 | 17.45% | +0.0096 | 17.45% | +0.0096 | identical |
 | three_cards | reference | 1/1 | n/a | +0.0109 | n/a | +0.0109 | differs |
 | full_set_sensitivity | project_baseline | 1/1 | 37.80% | +0.0179 | 37.80% | +0.0179 | identical |
@@ -79,14 +80,13 @@ Replayed artifacts and retrained models are separate tables. `diff` is this run 
 | future_attention_student_independent | ablation | 3/3 | 56.52% | +0.0443 | 56.52% | +0.0443 | identical |
 | pafu_kv | literature | 3/3 | 56.32% | +0.0446 | 56.32% | +0.0446 | within 1 point |
 | distilled_sensitivity_student_independent | ablation | 3/3 | 60.43% | +0.0468 | 60.43% | +0.0468 | identical |
+| fm_teacher_top2 | literature_teacher | 1/1 | 62.28% | +0.0468 | 62.28% | +0.0468 | identical |
 | deletion_cost_student_independent | ablation | 3/3 | 61.68% | +0.0470 | 61.68% | +0.0470 | identical |
+| fm_published | literature | 3/3 | 62.62% | +0.0483 | 62.62% | +0.0483 | within 1 point |
 | shuffled_label_student_independent | ablation | 3/3 | 63.22% | +0.0496 | 63.22% | +0.0496 | identical |
 | shuffled_label_student_set | ablation | 3/3 | 64.37% | +0.0501 | 64.37% | +0.0501 | identical |
 | fifo | reference | 1/1 | 66.67% | +0.0516 | 66.67% | +0.0516 | identical |
 | medoid | project_baseline | 1/1 | 96.05% | +0.0613 |  |  | no reference |
-| fm_published | literature | 0/3 | | | | | incomplete |
-| fm_teacher_top2 | literature_teacher | 0/1 | | | | | incomplete |
-| pacc | literature | 0/3 | | | | | incomplete |
 
 ## Synergy, retrain, multihead reader (S task: needed card deleted, regret)
 

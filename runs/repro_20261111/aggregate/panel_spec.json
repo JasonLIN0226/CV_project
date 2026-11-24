@@ -228,10 +228,10 @@
      "buckets",
      "fifo",
      "proxy",
+     "c2r_slots",
+     "c2r",
      "pafu",
      "pafu_repo",
-     "c2r",
-     "c2r_slots",
      "fm",
      "fm_slots",
      "ours"
@@ -248,7 +248,11 @@
      "proxy": 56.08,
      "ours": 94.53,
      "pafu": 90.28,
-     "pafu_repo": 88.89
+     "pafu_repo": 88.89,
+     "c2r": 95.14,
+     "c2r_slots": 95.31,
+     "fm": 54.51,
+     "fm_slots": 50.69
     },
     "who": {
      "floor": "recent 4 frames only",
@@ -259,7 +263,7 @@
      "pafu_repo": "the repo's earlier adaptation",
      "c2r": "as published: reads the whole history; teacher 93.8%",
      "c2r_slots": "held to 2 slots",
-     "fm": "as published: ranks the whole history; teacher pending",
+     "fm": "as published: ranks the whole history; teacher 55.5%",
      "fm_slots": "held to 2 slots"
     },
     "notes": {
@@ -274,16 +278,15 @@
      "proxy": "Latent MSE 0.1233. Cue frame kept in 13.7% of episodes.",
      "ours": "Latent MSE 0.0993. Cue frame kept in 100.0% of episodes.",
      "pafu": "Latent MSE 0.1149. Cue frame kept in 100.0% of episodes.",
-     "pafu_repo": "Latent MSE 0.1160. Cue frame kept in 97.4% of episodes."
+     "pafu_repo": "Latent MSE 0.1160. Cue frame kept in 97.4% of episodes.",
+     "c2r": "Latent MSE 0.0932.",
+     "c2r_slots": "Latent MSE 0.0907. Per seed: 95.8%, 94.3%, 95.8%.",
+     "fm": "Latent MSE 0.1257. Cue frame kept in 8.5% of episodes.",
+     "fm_slots": "Latent MSE 0.1279. Cue frame kept in 1.4% of episodes."
     },
-    "pending": {
-     "c2r": "0/3 seeds",
-     "c2r_slots": "0/3 seeds",
-     "fm": "0/3 seeds",
-     "fm_slots": "0/3 seeds"
-    }
+    "pending": {}
    },
-   "footnote": "Teacher is the signal a literature method is trained to copy, scored directly. FrameMorrow uses DINOv2 features, as published; its I-JEPA variant was not run."
+   "footnote": "Teacher is the signal a literature method is trained to copy, scored directly; Compress to Remember beats its teacher, the predictor reading the whole history, on all three seeds. FrameMorrow uses DINOv2 features, as published; its I-JEPA variant was not run."
   },
   {
    "name": "Synergy",
@@ -405,8 +408,8 @@
      "dist_set": "Needed card deleted 8.8% of the time. Second reader: regret 0.0096",
      "dist_ind": "Needed card deleted 59.1% of the time. Second reader: regret 0.0468",
      "pafu": "Needed card deleted 60.3% of the time. Second reader: regret 0.0446",
-     "c2r_slots": "Deletes nothing, so it has no needed-card rate.",
-     "fm": "Needed card deleted 62.6% of the time."
+     "c2r_slots": "Deletes nothing, so it has no needed-card rate. Second reader: regret 0.0037",
+     "fm": "Needed card deleted 62.6% of the time. Second reader: regret 0.0483"
     },
     "pending": {},
     "labels": {
