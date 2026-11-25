@@ -23,7 +23,8 @@ for what in ${*:-synergy gate}; do
     case "$what" in
         synergy) script="$HERE/synergy_literature_gap.sh" ;;
         gate)    script="$HERE/gate_init_seeds.sh" ;;
-        *) echo "unknown run '$what' (use synergy or gate)" >&2; exit 2 ;;
+        motion_fresh) script="$HERE/motion_v2_fresh.sh" ;;
+        *) echo "unknown run '$what' (use synergy, gate or motion_fresh)" >&2; exit 2 ;;
     esac
     dependency=()
     for copy in $(seq 0 "$CHAIN"); do

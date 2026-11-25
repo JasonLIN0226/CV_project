@@ -14,6 +14,11 @@ Stages, each cached under <out> so an interrupted job continues where it stopped
 
 Without --validate nothing outside the training split is read. Every --validate run is appended to
 <out>/validation_ledger.jsonl (time, code hash, seeds, results) so the number of looks stays on record.
+
+--fresh <dir> replaces the registered training episodes, which the frozen readers memorised, with fresh
+scenes from the same generator that no reader has seen (environments/motion_v2/fresh.py): the first
+--fresh-pairs scene pairs give the training states, the next --fresh-dev-pairs the dev split. They are
+generated and encoded into <dir> first (resumable). Readers, decoder and validation data are unchanged.
 """
 import json
 import os
@@ -28,7 +33,7 @@ import numpy as np  # noqa: E402
 import torch  # noqa: E402
 
 from bounded_memory import runs  # noqa: E402
-from bounded_memory.environments.motion_v2 import deletion_cost_v2 as dc, frozen, literature  # noqa: E402
+from bounded_memory.environments.motion_v2 import deletion_cost_v2 as dc, fresh, frozen, literature  # noqa: E402
 
 SEEDS = (17, 29, 43)
 
@@ -68,9 +73,12 @@ def main():
     ap.add_argument("--seeds", nargs="+", type=int, default=list(SEEDS), choices=SEEDS)
     ap.add_argument("--steps", type=int, default=3000)
     ap.add_argument("--validate", action="store_true", help="also replay the trained scorers on the validation intervals")
+    ap.add_argument("--fresh", type=Path, help="train and select on fresh scenes generated and encoded here")
+    ap.add_argument("--fresh-pairs", type=int, default=512)
+    ap.add_argument("--fresh-dev-pairs", type=int, default=96)
     args = ap.parse_args()
     os.environ.setdefault("BM_REPO", str(runs.REPO))
-    task = runs.Task(args, "deletion_cost_v2" + ("_validated" if args.validate else ""))
+    task = runs.Task(args, "deletion_cost_v2" + ("_fresh" if args.fresh else "") + ("_validated" if args.validate else ""))
     if task.done():
         return
     torch.backends.cuda.matmul.allow_tf32 = False
@@ -83,9 +91,17 @@ def main():
     intervals = list(frozen.INTERVALS) if args.validate else ["ordinary"]
     task.info["verification"] = {k: v.get("checked", v.get("ok")) for k, v in frozen.verify(paths, intervals).items()}
     assets = frozen.load(paths, args.device)
-    records = assets.store.manifest["records"]
-    dev = dc.dev_pairs(records)
-    train_raw = [assets.episode(r) for r in records if r["split"] == "train"]
+    if args.fresh:
+        records = fresh.generate(args.fresh, args.fresh_pairs + args.fresh_dev_pairs, log=task.log)
+        fresh.encode(assets, args.fresh, records, args.device, log=task.log)
+        train_raw = [fresh.episode(assets, args.fresh, r) for r in records]
+        dev = {r["pair"] for r in records if r["scene_index"] >= args.fresh_pairs}
+        task.info["fresh"] = {"root": str(args.fresh), "split": fresh.FRESH_SPLIT, "fit_pairs": args.fresh_pairs,
+                              "dev_pairs": args.fresh_dev_pairs}
+    else:
+        records = assets.store.manifest["records"]
+        dev = dc.dev_pairs(records)
+        train_raw = [assets.episode(r) for r in records if r["split"] == "train"]
     dev_eps = [ep for ep in train_raw if ep["rec"]["pair"] in dev]
     fit_eps = [ep for ep in train_raw if ep["rec"]["pair"] not in dev]
     task.log(f"training episodes {len(train_raw)}: fit {len(fit_eps)}, dev {len(dev_eps)} ({len(dev)} scene pairs)")
@@ -95,8 +111,11 @@ def main():
     task.info["train_states"] = int(len(data["cost"]))
     attention = dc.table_loss(tables, dev_eps, dc.rollout(assets, dev_eps, dc.ScorerV2().to(args.device),
                               dc.fit_normalization(data["items"], data["context"]), args.device))
+    best_pair = np.array([tables[ep["rec"]["id"]].mean(0).min() for ep in dev_eps]).mean()
     task.info["dev_attention_policy"] = {"+3": float(attention[0]), "+6": float(attention[1])}
-    task.log(f"{len(data['cost'])} training states; dev attention policy +3 {attention[0]:.6f} +6 {attention[1]:.6f}")
+    task.info["dev_best_pair_mean_of_horizons"] = float(best_pair)
+    task.log(f"{len(data['cost'])} training states; dev attention policy +3 {attention[0]:.6f} +6 {attention[1]:.6f}; "
+             f"dev best pair (post hoc, mean of horizons) {best_pair:.6f}")
 
     fits = {}
     for seed in args.seeds:
