@@ -231,8 +231,10 @@ episodes (one miss in seed 43; on v5b it kept one in all 288 runs); visual diver
 45 / 41 / 40. The distractors halve visual diversity's hit rate; the deletion-cost scorer is unaffected.
 
 **Why ours lands on the reference.** The reference is a fixed privileged rule (keep the first and last marker
-frames), not the best possible memory: the best pair per episode, chosen with the target, reaches ~0.35 at +12
-(partly selection luck over ~1,100 pairs). What the saved round-2 scorers keep at the query on validation:
+frames), not the best possible memory: the best pair per episode, chosen with the target, reaches ~0.35 at +12.
+That best-pair value is not attainable by a retention policy: beyond keeping a marker frame, its gain comes from
+using the target to pick frames that sway the predictor, partly through predictor-specific quirks.
+What the saved round-2 scorers keep at the query on validation:
 
 | Seed | 2 marker frames | 1 marker + 1 other frame | No marker frame |
 |---|---:|---:|---:|
