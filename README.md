@@ -31,6 +31,8 @@ What to keep in mind when reading the table:
 Every row of the panel (16 methods on Gate, 16 on Synergy, 14 on Motion v2), its dataset, split,
 seeds, checkpoints, tasks and status is listed in `configs/reproduction.yaml`.
 
+Plain-language progress notes from team members, including work not yet merged here: `progress/`.
+
 ## Repository layout
 
 | Where | What |
