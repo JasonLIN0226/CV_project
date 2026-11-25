@@ -34,9 +34,11 @@ share them; the present and the targets are clean.
 | `pusht-cog-v5b-marker-r4-t128-20261120_predictor.json` | v5b predictor with 128 training families (job 23856857) |
 | `v5_marker_basis.json`, `v5b_marker_basis.json` | does a predictor-style PCA basis keep the dot? (2 px vs 4 px) |
 
-All on Torch CPU nodes, encoding on an H200. Corpora, features and checkpoints (~7 GB for v5c) are on a
-teammate's project storage (`/projects/work/yang-lab/users/yz12129/CV_project/build/`); they regenerate with the
-tasks `pusht.prepare_data`, `pusht.encode`, `pusht.train_predictor`, `pusht.retention` in `configs/reproduction.yaml`.
+All on Torch CPU nodes, encoding on an H200. Corpora, features, checkpoints and these results are in the team's
+private Hugging Face bundle [`cv-project-team5guys/pusht-hidden-cog-v1`](https://huggingface.co/datasets/cv-project-team5guys/pusht-hidden-cog-v1)
+(train and validation splits; one folder per setting; its README states each setting's parameters and which data
+each checkpoint was trained on). They also regenerate with the tasks `pusht.prepare_data`, `pusht.encode`,
+`pusht.train_predictor`, `pusht.retention` in `configs/reproduction.yaml`.
 
 ## Predictor
 
