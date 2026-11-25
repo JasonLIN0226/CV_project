@@ -223,11 +223,35 @@ frames 0.474 / 0.86. Retention, mean of seeds 17/29/43:
 | Random deletion | 0.745 | 0.33 | 0.395 | 0% |
 | Reservoir | 0.702 | 0.40 | 0.386 | 13% |
 | Visual diversity | 0.618 | 0.57 | 0.361 | 44% |
-| **Deletion-cost scorer** | **0.473** | **0.87** | **0.306** | **100%** |
+| **Deletion-cost scorer** | **0.473** | **0.87** | **0.306** | **99.7%** |
 | Marker frames (privileged reference) | 0.474 | 0.86 | 0.310 | 100% |
 
-Per seed, the scorer's +12 error is 0.469 / 0.486 / 0.465 and visual diversity keeps the marker 47% / 43% / 42%
-of the time. The distractors halve visual diversity's hit rate; the deletion-cost scorer is unaffected.
+Per seed, the scorer's +12 error is 0.469 / 0.486 / 0.465 and it keeps a marker frame in 96 / 96 / 95 of 96
+episodes (one miss in seed 43; on v5b it kept one in all 288 runs); visual diversity keeps the marker in
+45 / 41 / 40. The distractors halve visual diversity's hit rate; the deletion-cost scorer is unaffected.
+
+**Why ours lands on the reference.** The reference is a fixed privileged rule (keep the first and last marker
+frames), not the best possible memory: the best pair per episode, chosen with the target, reaches ~0.35 at +12
+(partly selection luck over ~1,100 pairs). What the saved round-2 scorers keep at the query on validation:
+
+| Seed | 2 marker frames | 1 marker + 1 other frame | No marker frame |
+|---|---:|---:|---:|
+| 17 | 72 | 24 | 0 |
+| 29 | 73 | 23 | 0 |
+| 43 | 67 | 28 | 1 |
+
++12 error with the same predictor for different memory contents:
+
+| Seed | Ours | Reference (first + last marker frame) | Only the middle marker frame, other slot empty |
+|---|---:|---:|---:|
+| 17 | 0.4689 | 0.4691 | 0.4637 |
+| 29 | 0.4861 | 0.4886 | 0.4795 |
+| 43 | 0.4652 | 0.4629 | 0.4856 |
+
+One marker frame carries almost all the value: with a single marker frame and an empty second slot the error is
+within ±0.02 of the reference's two, in either direction depending on the seed. The marker frames are
+near-duplicates (same dot, same block pose) and the predictor ignores ordinary and distractor frames, so the
+scorer and the reference reach almost the same error although they often keep different frames.
 
 **Why the deletion-cost scorer works on v5b/v5c** (from `retention_pusht_cog.py` and `train_pusht_cog_predictor.py`):
 

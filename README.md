@@ -118,10 +118,10 @@ In v5–v5c no frame is touched until the test push and all actions are shared, 
 | Random deletion | 0.810 / 0.34 / 0% | 0.745 / 0.33 / 0% |
 | Reservoir | 0.764 / 0.41 / 13% | 0.702 / 0.40 / 13% |
 | Visual diversity | 0.498 / 0.89 / 99% | 0.618 / 0.57 / 44% |
-| **Deletion-cost scorer** | **0.501 / 0.90 / 100%** | **0.473 / 0.87 / 100%** |
+| **Deletion-cost scorer** | **0.501 / 0.90 / 100%** | **0.473 / 0.87 / 99.7%** |
 | Marker frames (privileged reference) | 0.499 / 0.90 / 100% | 0.474 / 0.86 / 100% |
 
-On v5c the deletion-cost scorer keeps a marker frame in every validation episode in all three seeds and matches the privileged reference; visual diversity, which tied it on v5b, falls to 44% once distractors make other frames just as distinctive.
+On v5c the deletion-cost scorer keeps a marker frame in 287 of 288 episode runs (96 episodes × 3 seeds; one miss in seed 43; all 288 on v5b) and matches the privileged reference; visual diversity, which tied it on v5b, falls to 44% once distractors make other frames just as distinctive. It matches the reference because one marker frame carries almost all the value: the reference is a fixed rule (first and last marker frames), not the best possible memory, and with a single marker frame in memory the error is within ±0.02 of the reference's two. The scorer keeps two marker frames in ~73% of episodes and one marker plus another frame in ~26% (see [docs/PUSHT_COG_CUE.md](docs/PUSHT_COG_CUE.md)).
 
 **Why the deletion-cost scorer works here** (from the implementation):
 1. *The teacher measures what matters.* The predictor's +12 error depends almost only on whether a marker frame is in memory (0.47 with, 0.74 without), so deleting the marker is costly and deleting anything else is nearly free: a clear, consistent label.
