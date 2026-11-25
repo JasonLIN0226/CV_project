@@ -76,8 +76,10 @@ on v5b (285 of 288), keeps a marker frame in 45 / 41 / 40 of 96 episodes on v5c 
 frames just as distinctive.
 
 **Why ours lands on the oracle.** The "oracle" here is a fixed privileged rule (keep the first and last marker
-frames), not the best possible memory: the best pair per episode, chosen with the target, reaches ~0.35 at +12
-(partly selection luck over ~1,100 pairs). What the v5c scorer keeps at the query (validation, from the saved
+frames), not the best possible memory: the best pair per episode, chosen with the target, reaches ~0.35 at +12.
+That best-pair value is not attainable by a retention policy: beyond keeping a marker frame, its gain comes from
+using the target to pick frames that sway the predictor, partly through predictor-specific quirks.
+What the v5c scorer keeps at the query (validation, from the saved
 round-2 scorers):
 
 | Seed | 2 marker frames | 1 marker + 1 other frame | No marker frame |
