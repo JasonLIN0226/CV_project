@@ -497,7 +497,12 @@ cue frame 0.792/0.812; first frame + cue 0.667/1.000; target 0.333/0.344; query 
 
 ## 9. Data and handoff
 
-Data are not in Git (`build/` is ignored). On Torch, under `/projects/work/yang-lab/users/yz12129/CV_project/build/`:
+Data are not in Git (`build/` is ignored). **Download:** the team's private Hugging Face bundle
+[`cv-project-team5guys/pusht-hidden-cog-v1`](https://huggingface.co/datasets/cv-project-team5guys/pusht-hidden-cog-v1)
+holds the train/validation corpora and I-JEPA features of v5c, v5b (960 families), v5b_t128, v5 and v4, the v5c and
+v5b predictors and deletion-cost scorers (seeds 17/29/43) and their results, with `SHA256SUMS`; its README states each
+setting's parameters, which data each checkpoint was trained on and which settings have results. The evaluation
+split is not in the bundle. The originals (all splits) are on Torch, under `/projects/work/yang-lab/users/yz12129/CV_project/build/`:
 
 | Path | Size | Contents |
 |---|---:|---|
