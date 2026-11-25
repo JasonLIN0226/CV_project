@@ -10,6 +10,7 @@
 # Logs: $BM_SCRATCH/logs/bm-<what>-<job>.log ; check with: squeue -u $USER
 set -euo pipefail
 HERE=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+export PATH="/opt/slurm/bin:$PATH"      # OOD Jupyter sessions have the Slurm client here but not on PATH
 source "$HERE/cluster.sh"
 mkdir -p "$BM_SCRATCH/logs"
 for what in ${*:-synergy gate}; do
