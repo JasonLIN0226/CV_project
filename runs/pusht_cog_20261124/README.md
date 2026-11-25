@@ -66,12 +66,40 @@ prediction is closest to its own sibling's future (chance 1/3).
 | Random deletion | 0.810 / 0.34 / 0% | 0.745 / 0.33 / 0% |
 | Reservoir | 0.764 / 0.41 / 13% | 0.702 / 0.40 / 13% |
 | Visual diversity | 0.498 / 0.89 / 99% | 0.618 / 0.57 / 44% |
-| **Deletion-cost scorer** | **0.501 / 0.90 / 100%** | **0.473 / 0.87 / 100%** |
+| **Deletion-cost scorer** | **0.501 / 0.90 / 100%** | **0.473 / 0.87 / 99.7%** |
 | Marker frames (privileged reference) | 0.499 / 0.90 / 100% | 0.474 / 0.86 / 100% |
 
-On v5c the scorer keeps a marker frame in every validation episode in all three seeds (+12 error 0.469 /
-0.486 / 0.465) and matches the privileged reference; visual diversity, which tied it on v5b, keeps the marker
-47% / 43% / 42% of the time once distractors make other frames just as distinctive.
+"Marker kept" counts episodes whose memory at the query holds at least one marker frame. On v5b the scorer keeps
+one in all 288 episode runs (96 episodes × 3 seeds); on v5c in 287 of 288 (96 / 96 / 95; one miss in seed 43),
+with +12 error 0.469 / 0.486 / 0.465 per seed, matching the privileged reference. Visual diversity, which tied it
+on v5b (285 of 288), keeps a marker frame in 45 / 41 / 40 of 96 episodes on v5c once distractors make other
+frames just as distinctive.
+
+**Why ours lands on the oracle.** The "oracle" here is a fixed privileged rule (keep the first and last marker
+frames), not the best possible memory: the best pair per episode, chosen with the target, reaches ~0.35 at +12
+(partly selection luck over ~1,100 pairs). What the v5c scorer keeps at the query (validation, from the saved
+round-2 scorers):
+
+| Seed | 2 marker frames | 1 marker + 1 other frame | No marker frame |
+|---|---:|---:|---:|
+| 17 | 72 | 24 | 0 |
+| 29 | 73 | 23 | 0 |
+| 43 | 67 | 28 | 1 |
+
++12 error with the same predictor for different memory contents:
+
+| Seed | Ours | Reference (first + last marker frame) | Only the middle marker frame, other slot empty |
+|---|---:|---:|---:|
+| 17 | 0.4689 | 0.4691 | 0.4637 |
+| 29 | 0.4861 | 0.4886 | 0.4795 |
+| 43 | 0.4652 | 0.4629 | 0.4856 |
+
+A single marker frame carries almost all the value: the error with one marker frame and an empty second slot is
+within ±0.02 of the reference's two marker frames, in either direction depending on the seed. The three marker
+frames are near-duplicates (same dot, same block pose) and the predictor ignores ordinary and distractor frames.
+So the scorer and the reference reach almost the same error although they often keep different frames: in about
+a quarter of episodes the scorer keeps one marker frame plus another frame, and when it keeps two, often a
+different pair than first + last.
 
 ## Why the deletion-cost scorer works here
 
