@@ -116,16 +116,27 @@ environments:
   pusht:
     summary: hidden centre-of-gravity PushT; a push after the query turns the block according to a class seen only early in the episode
     versions:
-      v5: {name: marker, cue: the centre of gravity is drawn as a dot for 3 early frames, corpus: pusht-cog-v5-marker-20261109,
+      v5: {name: marker, cue: the centre of gravity is drawn as a 2-px dot for 3 early frames, corpus: pusht-cog-v5-marker-20261109,
            families: {train: 128, validation: 32, test: 32}, episodes: {train: 384, validation: 96, test: 96},
-           generator: src/bounded_memory/environments/pusht/prepare_pusht_cog_marker_data.py, state: collected; not encoded}
+           generator: src/bounded_memory/environments/pusht/prepare_pusht_cog_marker_data.py,
+           state: "collected; train and validation encoded; the 2-px dot is faint in I-JEPA features (superseded by v5b)"}
+      v5b: {name: marker, cue: the same with a 4-px dot, corpus: pusht-cog-v5b-marker-r4-t960-20261120,
+            families: {train: 960, validation: 32, test: 32}, episodes: {train: 2880, validation: 96, test: 96},
+            generator: src/bounded_memory/environments/pusht/prepare_pusht_cog_marker_v5c_data.py,
+            state: "collected, encoded, predictor and retention run; visual diversity ties ours because the dot is the most salient frame"}
+      v5c: {name: marker with distractors, cue: "v5b plus 1-2 distractor dots (palette including the marker red) on empty background in every history frame",
+            corpus: pusht-cog-v5c-marker-r4-d2-t960-20261123,
+            families: {train: 960, validation: 32, test: 32}, episodes: {train: 2880, validation: 96, test: 96},
+            generator: src/bounded_memory/environments/pusht/prepare_pusht_cog_marker_v5c_data.py,
+            state: "collected, encoded, predictor and retention run (the main PushT testbed)"}
       v4: {name: natural, cue: "the block's response to a shared probe push", corpus: pusht-cog-v4-20261107,
            families: {train: 128, validation: 32, test: 32}, episodes: {train: 384, validation: 96, test: 96},
            generator: src/bounded_memory/environments/pusht/prepare_pusht_cog_v4_data.py, state: "collected; train and validation encoded with I-JEPA; readability probes and pose decoding run",
            diagnostics: [results/pusht_cog/v4_pose_decoding_20261108.json]}
-    availability: "corpora and features are on a teammate's project storage (/projects/work/yang-lab/users/yz12129); they regenerate on CPU with the PushT simulator packages"
-    predictor: none trained
-    code: src/bounded_memory/environments/pusht/ (simulator wrappers, corpus generators, probes; tests/pusht)
+    availability: "corpora and features are on a teammate's project storage (/projects/work/yang-lab/users/yz12129/CV_project/build); they regenerate on CPU with the PushT simulator packages"
+    predictor: "train_pusht_cog_predictor.py: present + 2 history slots + absolute pusher targets -> I-JEPA latents at +6/+12; trained per version (v5b, v5c)"
+    code: src/bounded_memory/environments/pusht/ (simulator wrappers, corpus generators, probes, predictor, retention; corpora.py lists the versions; tests/pusht)
+    results: runs/pusht_cog_20261124/
     configs: {}
 
 tasks:
@@ -727,18 +738,38 @@ tasks:
     seeds: [0]
     args: --students ${BM_RUN}/motion_v2/students_retrained
     resources: {cpus: 4, mem: 8G, time: "01:00:00"}
-  # ---------------------------------------------------------------- PushT: data preparation only
+  # ---------------------------------------------------------------- PushT: data, encoding, predictor, retention
+  # The marker testbeds (v5b, v5c; v5c is the main one). Corpora, features and checkpoints under ${BM_SCRATCH}/pusht.
+  # Recorded run: runs/pusht_cog_20261124/ (Torch, jobs listed there; seeds 17/29/43).
   pusht.prepare_data:
     script: scripts/prepare_data/pusht.py
     seeds: null
-    variants: {version: [v5, v4]}
+    variants: {version: [v5, v4, v5b, v5c]}
     args: --output-root ${BM_SCRATCH}/pusht --processes 32
     resources: {cpus: 32, mem: 96G, time: "01:00:00"}
+  pusht.encode:
+    # train + validation I-JEPA features and readability probes; ~35 min of encoding plus ~40 min of probes on an H200
+    script: scripts/encode/ijepa_pusht.py
+    seeds: null
+    variants: {version: [v5b, v5c]}
+    args: --data-root ${BM_SCRATCH}/pusht --device cuda
+    needs: [pusht.prepare_data]
+    resources: {cpus: 8, mem: 64G, time: "03:00:00", gpu: 1}
   pusht.train_predictor:
     script: scripts/train_predictor/pusht.py
     seeds: null
-    resources: {cpus: 2, mem: 4G, time: "00:10:00"}
-    expected: fails; no PushT predictor exists
+    variants: {version: [v5b, v5c]}
+    args: --data-root ${BM_SCRATCH}/pusht --out ${BM_OUT}/pusht --threads 16
+    needs: [pusht.encode]
+    resources: {cpus: 16, mem: 128G, time: "04:00:00"}
+  pusht.retention:
+    # the deletion-cost scorer (target-time teacher, rollout states, two DAgger rounds) and every baseline
+    script: scripts/train_scorer/pusht.py
+    seeds: null
+    variants: {version: [v5b, v5c]}
+    args: --data-root ${BM_SCRATCH}/pusht --out ${BM_OUT}/pusht --threads 16
+    needs: [pusht.train_predictor]
+    resources: {cpus: 16, mem: 128G, time: "08:00:00"}
 
 results:
   # Gate has two retraining routes. retrain_scorer: only our scorer and its twin are retrained, on the team's
@@ -889,6 +920,12 @@ results:
        note: "needs the PushT simulator packages; not rerun in this reproduction"}}
     - {id: v4_diagnostics, group: diagnostic, source: results/pusht_cog/v4_pose_decoding_20261108.json,
        replay: {status: assets_missing, note: v4 I-JEPA features are on a teammate's project storage}, retrain: {status: not_run}}
-    - {id: predictor, group: predictor, replay: {status: not_run}, retrain: {task: pusht.train_predictor, status: not_run}, note: no PushT predictor has been trained}
-    - {id: retention, panel_keys: [floor, oracle, pafu, c2r, fm, ours], group: all methods, replay: {status: not_run}, retrain: {status: not_run},
-       note: no retention result exists for PushT}
+    - {id: v5b_v5c_marker_corpora, group: data, replay: {status: not_run}, retrain: {task: pusht.prepare_data, variant: [v5b, v5c], status: retrainable,
+       note: "collected on Torch (jobs 23864010, 24248904); regenerate with the PushT simulator packages"}}
+    - {id: predictor, group: predictor, source: runs/pusht_cog_20261124/, replay: {status: assets_missing, note: features and checkpoints are on a teammate's project storage},
+       retrain: {task: pusht.train_predictor, variant: [v5b, v5c], status: recorded},
+       note: "v5c, 3 seeds, +12: recent-only 0.743 / sibling ID 0.33, marker frames 0.474 / 0.86 (runs/pusht_cog_20261124/README.md)"}
+    - {id: retention, panel_keys: [floor, oracle, ours], group: all methods, source: runs/pusht_cog_20261124/,
+       replay: {status: assets_missing, note: needs the predictor checkpoints},
+       retrain: {task: pusht.retention, variant: [v5b, v5c], status: recorded},
+       note: "v5c, 3 seeds, +12 latent error: recent-only 0.743, visual diversity 0.618 (44% marker kept), ours 0.473 (100%), marker frames 0.474; literature baselines (PaFu-KV, Compress to Remember, FrameMorrow) not run on PushT"}

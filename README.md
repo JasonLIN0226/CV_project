@@ -19,14 +19,14 @@ browser). Its numbers are frozen in `configs/reference_values.json`; section 3 r
 | **Gate**: an arrow panel shows a direction once, early; later the ball takes the upper or lower route | route accuracy, validation, higher is better | 50.00 | 95.57 | 90.28 (PaFu-KV) | **94.53** |
 | **Synergy**: three cue cards arrive, one must be deleted; two cards decide the future together | prediction regret, locked confirmation, 2,304 S records, lower is better | 0.0476 (FIFO) | 0.0000 | −0.0046 (Compress to Remember) | **0.0036** |
 | **Motion v2**: a ball is kicked into a new lane, then hidden | position MSE at +3, validation, lower is better | 0.0231 | 0.0061 | 0.0091 (attention) | 0.0214 |
-| **PushT**, hidden centre of gravity | latent prediction at +12 | not run | not run | not run | not run |
+| **PushT** (v5c): the hidden centre of gravity is drawn on the block early, among distractor dots; a later push turns the block by class | latent prediction error at +12, validation, lower is better | 0.743 | 0.474 | 0.618 (visual diversity) | **0.473** |
 
 What to keep in mind when reading the table:
 
 - **Gate** is scored on the validation set (192 episodes, three predictor seeds, two horizons); there is no independent test set. The oracle knows where the cue is. Compress to Remember as published reads the whole history and reaches 95.31. Restricted to two slots, its training sometimes collapses to near chance (50–58), so a three-seed value is a draw: 79.51 in the release (50.5 / 93.8 / 94.3), 95.31 replayed on NYU Burst CPU (95.83 / 94.27 / 95.83), 55.2 and 52.9 on the two Torch GPU seeds tried. Over 10 training seeds on each predictor (30 runs per method, Torch CPU, 8 threads, `runs/gate_seed_sweep_20261124/aggregate/seed_sweep.md`), its three-seed value ranges from 69.01 to 95.14 and ours from 93.92 to 95.49; it is higher on 1 of the 10 training seeds. It collapsed in 5 of 30 runs and averaged 93.60 over the 25 that trained, 87.33 over all (PaFu-KV, one training seed per predictor, is 90.28); ours never collapsed and averaged **94.92**, higher in 24 of the 30 runs with the same predictor and seed number. With 8 threads pinned it still collapses, so the thread count is not the cause; the release's seed-17 collapse did not recur on Torch with 1 or 8 threads (90.89, 95.57). Torch GPU's 2 of 2 is unlikely at one in six but rests on two runs.
 - **Synergy**: regret is error above the best single deletion, not MSE. Compress to Remember blends the three cards into two learned items instead of deleting one and scores below its own teacher; the cause is untested. The next baselines are the distilled-sensitivity scorer (0.0046) and full-set sensitivity (0.0077).
 - **Motion v2**: our scorer never improved on its initial weights during training, so 0.0214 is an untrained network. The three literature baselines were not run on Motion v2. The online validation now replays on the frozen assets (28 of 28 methods identical on both intervals, `runs/motion_v2_frozen_replay_20261124/README.md`).
-- **PushT**: the corpora exist; no predictor has been trained.
+- **PushT** (v5c; 96 validation episodes, three predictor seeds; `runs/pusht_cog_20261124/README.md`): error is the mean squared error over 5,120 standardized I-JEPA features at query + 12; the oracle keeps the marker frames (privileged). Our scorer keeps a marker frame in 100% of episodes and matches the oracle; visual diversity keeps one in 44% (without distractors, on v5b, it kept 99% and tied ours at 0.498 vs 0.501); FIFO, temporal buckets and random deletion stay at no memory. Sibling identification (is the prediction closest to its own sibling's future; chance 0.33): ours 0.87, oracle 0.86, visual diversity 0.57. The literature baselines were not run on PushT.
 
 Every row of the panel (16 methods on Gate, 16 on Synergy, 14 on Motion v2), its dataset, split,
 seeds, checkpoints, tasks and status is listed in `configs/reproduction.yaml`.
@@ -137,7 +137,7 @@ training from checkpoints.
 | Gate | `gate.assets`: the team bundle (three predictors, the scorers for seeds 17/29/43, dataset, features), checksum-verified | `gate.retrain_scorer`: our scorer on the released predictors. `gate.retrain`: everything from scratch (dataset, I-JEPA features, three predictors, scorer, PaFu-KV) |
 | Synergy | `synergy.assets.release`: readers, basis, encoded confirmation set, released students | `synergy.assets.trainvaldev` then `synergy.retrain`: re-encoded train/validation features, teacher labels, all student arms. `synergy.retrain_readers`: the two readers |
 | Motion v2 | not released; the frozen readers, features and dataset are on a teammate's Burst scratch, checksum-verified by `configs/motion_v2/frozen.yaml` | `motion_v2.retrain.students`: the 54 students from the tracked teacher labels. Reader training is not runnable yet (see next steps) |
-| PushT | nothing to download | `pusht.prepare_data`: the two corpora. No predictor exists |
+| PushT | nothing to download (features and checkpoints are on a teammate's project storage) | `pusht.prepare_data` (v5, v4, v5b, v5c), then for v5b/v5c `pusht.encode` (GPU), `pusht.train_predictor`, `pusht.retention` |
 
 The released Gate predictors and Synergy features and readers were produced on a GPU, and a CPU
 gives slightly different features. The tasks above run on CPU. Each has a GPU twin that repeats it
@@ -194,7 +194,7 @@ deterministic replay, `tie_sensitive` where exactly tied candidates are broken b
 | Gate | every bar of the panel, from the team bundle | scorer on the released predictors; the full chain from scratch |
 | Synergy | every bar of the panel, from the public releases, for both readers and R/D/S | teacher labels and every student arm on the released readers; the two readers on re-encoded features |
 | Motion v2 | the published tables, recomputed from the tracked loss arrays; with the frozen assets, `scripts/evaluate/motion_v2_online.py` re-scores every policy online (one GPU) | the 54 students from tracked labels |
-| PushT | nothing to replay | data preparation only |
+| PushT | nothing to replay | the full chain: corpora, encoding and probes, predictor, retention (recorded in `runs/pusht_cog_20261124/`) |
 
 The latest run is `runs/repro_20261111/`; its tables and panel are in `runs/repro_20261111/aggregate/`,
 and `panel_check.json` there counts the bars that match the frozen values: 43 of 46 identical; 2 within
@@ -232,8 +232,10 @@ BM_SYN=<Synergy assets> BM_SYN_STUDENTS=<released students> python -m pytest -q 
    `src/bounded_memory/environments/motion_v2/pipeline/` re-registered.
 2. **Motion v2, our method.** The deletion-cost students kept their initial weights. Find out why
    the teacher labels are not learnable before comparing against baselines.
-3. **PushT.** Encode the v5 marker corpus, train a predictor, fix the metric (latent prediction at
-   +12), then run the same ladder: no memory, oracle, baselines, ours.
+3. **PushT.** v5c runs the full ladder except the literature baselines (`runs/pusht_cog_20261124/`).
+   Next: PaFu-KV, Compress to Remember and FrameMorrow on v5c; the natural variant v4 (the cue is a push
+   and the block's response, read against the present) with the same predictor and scorer; then planning
+   with the learned predictor.
 4. **Gate.** The comparison is on validation data; an independent test set has not been
    generated. The seed sweep ran on CPU only: two-slot Compress to Remember collapsed on 2 of 2
    Torch GPU runs, against 5 of 30 on CPU.
