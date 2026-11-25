@@ -11,10 +11,12 @@ source "$HERE/cluster.sh"
 bm_activate_venv
 cd "$BM_REPO"
 INITS=${*:-"101 202 303"}
+DEVICE=${BM_DEVICE:-cuda}                     # BM_DEVICE=cpu on a CPU session
+METHODS=${BM_METHODS:-"ours pacc_recurrent"}  # BM_METHODS=ours: only our scorer (cheap on CPU)
 [ -s "$BM_SCRATCH/gate_team/bundle_report.json" ] || python scripts/prepare_data/gate_team_bundle.py --work "$BM_SCRATCH/gate_team"
 OUT="$BM_SCRATCH/reproduction/gate_init_seeds"
-python scripts/train_baselines/gate_init_seeds.py --config configs/gate/team_bundle.yaml --seed 0 --device cuda --threads 4 \
-    --out "$OUT" --inits $INITS --methods ours
-python scripts/train_baselines/gate_init_seeds.py --config configs/gate/team_bundle.yaml --seed 0 --device cuda --threads 4 \
-    --out "$OUT" --inits $INITS --methods pacc_recurrent
+for M in $METHODS; do
+    python scripts/train_baselines/gate_init_seeds.py --config configs/gate/team_bundle.yaml --seed 0 --device "$DEVICE" \
+        --threads 4 --out "$OUT" --inits $INITS --methods "$M"
+done
 echo GATE_INIT_SEEDS_DONE
