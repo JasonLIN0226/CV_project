@@ -67,15 +67,26 @@ def pair_table(assets, ep, chunk=512):
     return out
 
 
-def continuation_cost(table, clock, pool, q):
-    """cost[j]: best reachable mean(+3, +6) loss after deleting pool[j] at `clock`."""
+def continuation_cost(table, clock, pool, q, temperature=0.0):
+    """cost[j]: best reachable mean(+3, +6) loss after deleting pool[j] at `clock`.
+
+    temperature > 0 replaces the minimum over the reachable pairs by a soft minimum,
+    low - T log mean exp(-(loss - low) / T): between the minimum (T -> 0) and the mean (T -> inf). The plain
+    minimum rewards whichever of ~200 pairs happens to give the readers their luckiest prediction; the soft
+    minimum credits a frame that is part of many good pairs.
+    """
     future = list(range(clock - 3, q - 3))
     mean = table.mean(0)
     cost = np.empty(3)
     for j in range(3):
         reach = np.array([t for i, t in enumerate(pool) if i != j] + future)
         sub = mean[np.ix_(reach, reach)]
-        cost[j] = sub.min()
+        if temperature <= 0:
+            cost[j] = sub.min()
+        else:
+            values = sub[np.triu_indices(len(reach), 1)]
+            low = values.min()
+            cost[j] = low - temperature * np.log(np.mean(np.exp(-(values - low) / temperature)))
     return cost
 
 
@@ -157,10 +168,14 @@ def schedule(step, steps, warmup=0.1, stable=0.6, floor=5e-3):
 
 
 @torch.inference_mode()
-def rollout(assets, episodes, model, norm, device):
-    """Online replay of the scorer on episodes; returns the final kept pair of each."""
+def rollout(assets, episodes, model, norm, device, record=False):
+    """Online replay of the scorer on episodes; returns the final kept pair of each.
+
+    record=True also returns the full-pool states (clock, pool) the scorer itself visited, per episode
+    (on-policy states for DAgger-style aggregation)."""
     model.eval()
     kept = {ep["rec"]["id"]: [] for ep in episodes}
+    visited = {ep["rec"]["id"]: [] for ep in episodes}
     for clock in range(4, max(ep["rec"]["query"] for ep in episodes) + 1):
         live = [ep for ep in episodes if ep["rec"]["query"] >= clock]
         full, rows = [], []
@@ -171,6 +186,7 @@ def rollout(assets, episodes, model, norm, device):
             else:
                 full.append((ep, pool))
                 rows.append(observe(assets, ep, clock, pool))
+                visited[ep["rec"]["id"]].append((clock, tuple(pool)))
         if not rows:
             continue
         items, context = normalize(norm, np.stack([r[0] for r in rows]), np.stack([r[1] for r in rows]))
@@ -179,7 +195,36 @@ def rollout(assets, episodes, model, norm, device):
         for (ep, pool), logit in zip(full, logits):
             drop = int(np.argmax(logit))                                 # ties: the first (oldest) candidate
             kept[ep["rec"]["id"]] = sorted(t for i, t in enumerate(pool) if i != drop)
-    return [kept[ep["rec"]["id"]] for ep in episodes]
+    final = [kept[ep["rec"]["id"]] for ep in episodes]
+    return (final, visited) if record else final
+
+
+def state_rows(assets, ep, table, states, temperature=0.0):
+    """Scorer inputs and deletion-cost labels of the given (clock, pool) states of one episode."""
+    q, out = ep["rec"]["query"], {"items": [], "context": [], "prior": [], "cost": []}
+    for clock, pool in states:
+        x, c, p = observe(assets, ep, clock, pool)
+        out["items"].append(x); out["context"].append(c); out["prior"].append(p)
+        out["cost"].append(continuation_cost(table, clock, pool, q, temperature))
+    return out
+
+
+@torch.inference_mode()
+def state_metrics(model, norm, data, device, informative=1e-5):
+    """Per-state quality of a scorer on labelled states: mean regret of its deletion against the cheapest one,
+    and how often it picks the cheapest, over all states and over states whose costs differ."""
+    model.eval()
+    items, context = normalize(norm, data["items"], data["context"])
+    logits = model(torch.as_tensor(items, device=device), torch.as_tensor(context, device=device),
+                   torch.as_tensor(data["prior"].astype(np.float32), device=device)).cpu().numpy()
+    cost = data["cost"]
+    chosen = cost[np.arange(len(cost)), logits.argmax(1)]
+    regret = chosen - cost.min(1)
+    hit = regret <= 1e-12
+    useful = (cost.max(1) - cost.min(1)) > informative
+    return {"states": int(len(cost)), "informative_share": float(useful.mean()), "regret": float(regret.mean()),
+            "top1": float(hit.mean()), "regret_informative": float(regret[useful].mean()) if useful.any() else 0.0,
+            "top1_informative": float(hit[useful].mean()) if useful.any() else 1.0}
 
 
 def table_loss(tables, episodes, pairs):
@@ -225,7 +270,9 @@ def train(data, tables, dev_episodes, assets, seed, device, steps=3000, batch=25
         nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         opt.step()
         sched.step()
+    final_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
     model.load_state_dict(best[2])
     return model.eval(), norm, {"selected_step": best[1], "selected_dev_mean": best[0], "history": history,
                                 "label_scale": scale, "states": int(len(items)), "steps": steps, "batch": batch,
-                                "lr": lr, "width": width, "dev_episodes": len(dev_episodes)}
+                                "lr": lr, "width": width, "dev_episodes": len(dev_episodes),
+                                "final_state": final_state}

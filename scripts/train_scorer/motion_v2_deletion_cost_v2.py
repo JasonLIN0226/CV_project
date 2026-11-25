@@ -126,7 +126,8 @@ def main():
             continue
         model, norm, meta = dc.train(data, tables, dev_eps, assets, seed, args.device, steps=args.steps,
                                      log=lambda m, s=seed: task.log(f"seed {s} {m}"))
-        state = {"model": {k: v.cpu() for k, v in model.state_dict().items()}, "norm": norm, "meta": meta}
+        meta.pop("final_state", None)
+        state ={"model": {k: v.cpu() for k, v in model.state_dict().items()}, "norm": norm, "meta": meta}
         torch.save(state, path)
         fits[seed] = state
     task.info["fits"] = {s: f["meta"] for s, f in fits.items()}
