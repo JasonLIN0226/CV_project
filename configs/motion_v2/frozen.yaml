@@ -18,7 +18,7 @@ fresh:              # environments/motion_v2/fresh.py: scenes no frozen reader h
   holdout_pairs: 96   # 608-703: one check of the chosen scorers before validation is read
 scorer:             # scripts/train_scorer/motion_v2_deletion_cost_v2.py (methods/deletion_cost/motion_v2.py)
   steps: 3000
-  checkpoints: ${BM_RUN}/motion_v2/fresh/scorers
+  checkpoints: ${BM_SCRATCH}/motion_v2_fresh/scorers   # BM_SCRATCH only, so a manual run needs no BM_RUN
   registered_tables: ${BM_SCRATCH}/motion_v2_registered/tables   # --episodes registered (the readers' own training episodes)
 baselines:          # scripts/train_baselines/motion_v2.py; the Gate settings (configs/gate/team_bundle.yaml)
   pafu_kv: {steps: 1000}
