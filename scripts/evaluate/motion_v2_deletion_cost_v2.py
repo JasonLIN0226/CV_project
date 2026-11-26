@@ -56,9 +56,12 @@ def main():
         holdout = json.loads(holdout_path.read_text()).get("result", {}) if holdout_path.exists() else {}
         files = {s: folder / f"{choice['chosen']}_seed{s}.pt" for s in SEEDS}
         hashes = {s: frozen.sha256(f) for s, f in files.items() if f.exists()}
-        if len(hashes) < len(files) or not scorer.validation_allowed(holdout, choice["chosen"], hashes):
-            raise SystemExit(f"validation not read: {choice['chosen']} shows no holdout gain over attention, or its "
-                             f"checkpoints in {folder} are missing or not the ones the holdout scored ({holdout_path})")
+        same_choice = holdout.get("chosen_on_dev") == choice["chosen"]          # the variant chosen before the holdout
+        complete = len(hashes) == len(files)
+        if not (same_choice and complete and scorer.validation_allowed(holdout, choice["chosen"], hashes)):
+            raise SystemExit(f"validation not read: {choice['chosen']} is not the variant the holdout recorded as chosen "
+                             f"on dev, shows no holdout gain over attention, or its checkpoints in {folder} are missing "
+                             f"or not the ones the holdout scored ({holdout_path})")
     torch.backends.cuda.matmul.allow_tf32 = False
     torch.backends.cudnn.allow_tf32 = False
     torch.use_deterministic_algorithms(True, warn_only=True)

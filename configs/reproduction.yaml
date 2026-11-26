@@ -333,7 +333,7 @@ tasks:
   # The same sweep on CUDA with training seeds of its own (101, 202, 303): two-slot Compress to Remember
   # collapsed on both Torch GPU runs tried. Pooled by gate_seed_sweep.py --sweep sweep_gpu. Not yet run in this form:
   # runs/gate_init_seeds_gpu_20261125/ was recorded on a Burst A100 with an earlier driver written to run the same
-  # fits (no collapse in 9 runs of either method); its setup differed (config file, thread count; see the record).
+  # fits (no collapse in 9 runs of either method); its setup differed (config file, TF32 off; see the record).
   gate.sweep_gpu.pacc_recurrent:
     script: scripts/train_baselines/gate.py
     config: configs/gate/seed_sweep_gpu.yaml

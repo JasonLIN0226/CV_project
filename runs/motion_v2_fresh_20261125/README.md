@@ -34,7 +34,7 @@ candidate), mean over seeds 17, 29 and 43. Attention: 0.010388.
 
 Chosen: min_dagger. Warning signs before the holdout: each seed's value is the best of about 50 checkpoints, and
 dev MSE moves by about 0.002 between neighbouring checkpoints (job logs of 43547); the last checkpoint of every round was worse than
-attention (0.0115 to 0.0135); and on dev states the scorers did not pick the cheapest deletion more often than
+attention (0.0115 to 0.0135); and on dev states the scorers did not systematically pick the cheapest deletion more often than
 attention does (top-1 0.634 to 0.649 against 0.646 with the minimum label).
 
 ## 3. Holdout check (`holdout.json`)
