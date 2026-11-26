@@ -1,8 +1,8 @@
 """Train our deletion-cost scorer (v2) on Motion v2 for one training seed and one variant, selected on dev.
 
-    BM_MOTION_ROOT=<study folders> BM_SCRATCH=<scratch> BM_RUN=<run folder> \\
-    python scripts/train_scorer/motion_v2_deletion_cost_v2.py --config configs/motion_v2/fresh.yaml \\
-        --seed 17 --device cuda --out <dir> --variant min_dagger [--episodes fresh|registered]
+    BM_MOTION_ROOT=<study folders> BM_SCRATCH=<scratch> python scripts/train_scorer/motion_v2_deletion_cost_v2.py \\
+        --config configs/motion_v2/fresh.yaml --seed 17 --device cuda --out <dir> --variant min_dagger \\
+        [--episodes fresh|registered] [--checkpoints <dir>]
 
 --seed is the scorer's training seed (17, 29 or 43); the labels and the dev score average the three frozen
 readers. Variants (methods/deletion_cost/motion_v2.VARIANTS) set the label (minimum or soft minimum over the
@@ -13,7 +13,8 @@ readers' own training episodes with 1 scene pair in 10 as dev, the setting the r
 Needs the loss tables of scripts/generate_teacher_labels/motion_v2.py. Writes, with <name> = <variant> for fresh
 episodes and <variant>_registered for registered ones: <out>/<name>_seed<seed>.json (the dev attention policy,
 every round: states, selected step and dev loss, last-step dev loss, per-state metrics; the checkpoint's SHA256)
-and the selected checkpoint <scorer.checkpoints>/<name>_seed<seed>.pt. Validation is not read.
+and the selected checkpoint <checkpoints>/<name>_seed<seed>.pt (--checkpoints, default <out>/checkpoints).
+Validation is not read.
 """
 import os
 import sys
@@ -34,6 +35,7 @@ def main():
     ap = runs.parser(__doc__)
     ap.add_argument("--variant", required=True, choices=list(scorer.VARIANTS))
     ap.add_argument("--episodes", default="fresh", choices=("fresh", "registered"))
+    ap.add_argument("--checkpoints", type=Path, help="folder for the selected checkpoint (default: <out>/checkpoints)")
     args = ap.parse_args()
     if args.seed not in SEEDS:
         raise SystemExit(f"--seed is the scorer's training seed: one of {SEEDS}")
@@ -66,7 +68,7 @@ def main():
 
     history, best = scorer.fit_variant(assets, fit, dev, tables, base_rows, dev_rows, behaviour, temperature, rounds,
                                        args.seed, args.device, steps=config["scorer"]["steps"], log=task.log)
-    checkpoint = Path(config["scorer"]["checkpoints"]) / f"{name}_seed{args.seed}.pt"
+    checkpoint = (args.checkpoints or Path(args.out) / "checkpoints") / f"{name}_seed{args.seed}.pt"
     digest = scorer.save_scorer(checkpoint, best, variant=args.variant, episodes=args.episodes, seed=args.seed)
     task.write(environment="motion_v2", method="deletion_cost_v2", variant=args.variant, episodes=args.episodes,
                temperature=temperature, rounds=rounds, best_round=best.round, best_dev_mean=best.dev_mean,

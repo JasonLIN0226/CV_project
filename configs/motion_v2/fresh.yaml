@@ -3,9 +3,9 @@
 # train_scorer/motion_v2_deletion_cost_v2.py and evaluate/motion_v2_deletion_cost_v2.py (manifest tasks motion_v2.fresh.*,
 # motion_v2.registered.*, motion_v2.validate.*).
 # `assets` is the block of configs/motion_v2/frozen.yaml, unchanged (tests/motion_v2/test_frozen.py checks it): set
-# BM_MOTION_ROOT as there. The fresh scenes and loss tables go to BM_SCRATCH; the scorers of a run go to BM_RUN,
-# so the holdout check and the validation look of a run read that run's own checkpoints (scripts/run_tasks.py sets
-# BM_RUN; set it yourself for a manual run).
+# BM_MOTION_ROOT as there. The fresh scenes and loss tables go to BM_SCRATCH. The scorers of a run go to the folder
+# the train and evaluate scripts get as --checkpoints (the manifest passes one under BM_RUN per run), so the holdout
+# check and the validation look of a run read that run's own checkpoints.
 environment: motion_v2
 assets:
   step2: ${BM_MOTION_ROOT}/motion-v2-20261031-deployment3/repo/results/motion_v2/v2_3_1/step2_gpu_attempt1
@@ -21,7 +21,6 @@ fresh:              # scene pairs drawn under the split name fresh_train_2026112
   holdout_pairs: 96   # 608-703: one check of the chosen scorers before validation is read
 scorer:
   steps: 3000
-  checkpoints: ${BM_RUN}/motion_v2/fresh/scorers                 # one folder per run
   registered_tables: ${BM_SCRATCH}/motion_v2_registered/tables   # --episodes registered (the readers' own training episodes)
 protocol:
   reader_seeds: [17, 29, 43]

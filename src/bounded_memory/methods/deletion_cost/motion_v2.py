@@ -20,9 +20,8 @@ What changes from the registered recipe (environments/motion_v2/step34_students.
     states     the behaviour policies' states, and with `rounds` > 0 the states the trained scorer visits
                itself, labelled from the tables and added before retraining (DAgger-style).
     selection  the checkpoint with the lowest online position loss on a dev split, step 0 included
-               (training loss is never used to select: it rewards fitting the labels, not choosing well). Validation is
-               never read while training or
-               selecting.
+               (training loss is never used to select: it rewards fitting the labels, not choosing well).
+               Validation is never read while training or selecting.
 
 The training episodes are either the registered ones (which the frozen readers memorised) or fresh scenes
 from the same generator (environments/motion_v2/fresh.py). Labels use the episodes' future positions
@@ -434,18 +433,25 @@ def validation_allowed(holdout, variant, hashes=None):
     return hashes is None or (bool(recorded) and recorded == {int(k): v for k, v in hashes.items()})
 
 
-def validation_scores(assets, paths, folder, variant, seeds, device, raw_dir, log=print):
+def validation_scores(assets, paths, folder, variant, seeds, device, raw_dir, hashes=None, log=print):
     """The chosen variant's scorers replayed on both validation intervals and scored by FrozenAssets.losses.
 
-    Saves each seed's per-episode losses and kept pairs to raw_dir/<interval>/<variant>_seed<seed>.npz, so the
-    single look can be analysed again without replaying."""
+    Each scorer is loaded once; with `hashes` (seed -> SHA256) a file that changed since it was checked stops the
+    look. Saves each seed's per-episode losses and kept pairs to raw_dir/<interval>/<variant>_seed<seed>.npz, so
+    the single look can be analysed again without replaying."""
+    loaded = {}
+    for seed in seeds:
+        model, norm, digest = load_scorer(Path(folder) / f"{variant}_seed{seed}.pt", device)
+        if hashes is not None and digest != hashes[seed]:
+            raise ValueError(f"{variant}_seed{seed}.pt changed after it was checked against the holdout")
+        loaded[seed] = (model, norm)
     results = {}
     for interval in frozen.INTERVALS:
         records, external = frozen.interval_inputs(assets, paths, interval)
         raw, _ = motion_episodes.split_episodes(assets, records, "validation", external)
         scores = {}
         for seed in seeds:
-            model, norm, _ = load_scorer(Path(folder) / f"{variant}_seed{seed}.pt", device)
+            model, norm = loaded[seed]
             kept = rollout(assets, raw, model, norm, device)
             scores[seed] = motion_episodes.score_frames(assets, raw, kept)
             target = Path(raw_dir) / interval / f"{variant}_seed{seed}.npz"

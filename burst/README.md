@@ -73,7 +73,8 @@ BM_CHAIN=4 bash burst/submit.sh --run-id motion_fresh --select motion_v2.fresh
 - To stop a chained run, cancel all of its copies by name: `submit.sh` prints the command
   (`scancel -u $USER --name=<chain name>`). Cancelling only the running copy starts the next standby.
 - A task that fails for a reason of its own is retried by each standby copy, so keep N small.
-- If sbatch refuses a standby copy, `submit.sh` cancels the copies it already queued and stops.
+- If sbatch refuses a standby copy, `submit.sh` cancels the copies it already submitted (queued or, rarely,
+  already running) and stops.
 - In an OOD Jupyter session the Slurm client is in `/opt/slurm/bin`; `cluster.sh` adds it to `PATH` when no
   `sbatch` is found.
 

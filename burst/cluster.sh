@@ -18,7 +18,7 @@
 #   BM_SBATCH_ARGS    extra sbatch options                        default: none
 #   BM_CHAIN          standby copies of a submitted job (submit.sh)  default: 0
 #   BM_MOTION_ROOT    the Motion v2 study's deployment folders    no default; set it (for example in burst/.env)
-#                     for the motion_v2.online/literature/fresh/registered tasks (configs/motion_v2/frozen.yaml)
+#                     for the motion_v2.* tasks (configs/motion_v2/frozen.yaml and fresh.yaml)
 
 _bm_here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 if [ -f "$_bm_here/.env" ]; then

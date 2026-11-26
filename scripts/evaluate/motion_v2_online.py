@@ -17,6 +17,7 @@ the full replay, about 40 to 80 MB of traces per interval, under <replay-dir>/on
 <replay-dir> = <out>). Each interval is written into <interval>.partial and renamed when complete, so a rerun
 skips a finished interval and redoes an unfinished one.
 """
+import json
 import os
 import shutil
 import sys
@@ -67,7 +68,8 @@ def main():
         partial = output.with_name(f"{interval}.partial")
         if output.exists():
             task.log(f"{interval}: complete replay found in {output}, comparing only")
-            summary = None
+            saved = output / "summary.json"
+            summary = json.loads(saved.read_text()) if saved.exists() else None
         else:
             if partial.exists():
                 shutil.rmtree(partial)                  # an unfinished replay of an earlier attempt

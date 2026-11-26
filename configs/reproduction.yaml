@@ -332,8 +332,8 @@ tasks:
   # ---------------------------------------------------------------- Gate, the seed sweep on a GPU
   # The same sweep on CUDA with training seeds of its own (101, 202, 303): two-slot Compress to Remember
   # collapsed on both Torch GPU runs tried. Pooled by gate_seed_sweep.py --sweep sweep_gpu. Not yet run in this form:
-  # runs/gate_init_seeds_gpu_20261125/ was recorded on a Burst A100 with an earlier driver that ran the same fits
-  # (no collapse in 9 runs of either method).
+  # runs/gate_init_seeds_gpu_20261125/ was recorded on a Burst A100 with an earlier driver written to run the same
+  # fits (no collapse in 9 runs of either method); its setup differed (config file, thread count; see the record).
   gate.sweep_gpu.pacc_recurrent:
     script: scripts/train_baselines/gate.py
     config: configs/gate/seed_sweep_gpu.yaml
@@ -867,6 +867,7 @@ tasks:
     seeds: [17, 29, 43]
     device: cuda
     variants: {variant: [min, min_dagger, soft, soft_dagger]}
+    args: --checkpoints ${BM_RUN}/motion_v2/fresh/scorers
     needs: [motion_v2.fresh.tables]
     resources: {cpus: 4, mem: 32G, time: "01:00:00", gpu: 1}
   motion_v2.fresh.choose:
@@ -881,7 +882,7 @@ tasks:
     out: motion_v2/fresh
     seeds: [0]
     device: cuda
-    args: --split holdout --choice ${BM_OUT}/motion_v2/fresh/variants.json
+    args: --split holdout --choice ${BM_OUT}/motion_v2/fresh/variants.json --checkpoints ${BM_RUN}/motion_v2/fresh/scorers
     needs: [motion_v2.fresh.choose]
     resources: {cpus: 4, mem: 32G, time: "00:30:00", gpu: 1}
   motion_v2.registered.tables:
@@ -900,7 +901,7 @@ tasks:
     seeds: [17, 29, 43]
     device: cuda
     variants: {variant: [min]}
-    args: --episodes registered
+    args: --episodes registered --checkpoints ${BM_RUN}/motion_v2/registered/scorers
     needs: [motion_v2.registered.tables]
     resources: {cpus: 4, mem: 32G, time: "01:00:00", gpu: 1}
   motion_v2.validate.deletion_cost_v2:
@@ -910,7 +911,7 @@ tasks:
     out: motion_v2/fresh
     seeds: [0]
     device: cuda
-    args: --split validation --choice ${BM_OUT}/motion_v2/fresh/variants.json
+    args: --split validation --choice ${BM_OUT}/motion_v2/fresh/variants.json --checkpoints ${BM_RUN}/motion_v2/fresh/scorers
     needs: [motion_v2.fresh.holdout]
     resources: {cpus: 4, mem: 32G, time: "00:30:00", gpu: 1}
   # ---------------------------------------------------------------- PushT: data, encoding, predictor, retention
@@ -1095,12 +1096,12 @@ results:
        replay: {task: motion_v2.replay.evidence, status: replayable, tolerance: exact}, retrain: {task: motion_v2.retrain.students, status: retrainable, tolerance: per_seed,
                  note: "refitted from the tracked teacher labels; compared with the recorded training histories"}}
     - {id: literature_baselines, panel_keys: [pafu, c2r, fm], group: literature, source: runs/memory_gaps_20261124/,
-       replay: {status: not_run}, retrain: {task: motion_v2.literature.train, status: retrainable, tolerance: per_seed,
-                 note: "needs the frozen study assets (BM_MOTION_ROOT)"},
+       replay: {status: not_run}, retrain: {task: motion_v2.literature.train, status: assets_missing, tolerance: per_seed,
+                 note: "needs the frozen study assets (BM_MOTION_ROOT), available only where the study folders are"},
        note: "on the frozen readers none beats the attention policy (+3 position MSE, ordinary: PaFu-KV 0.0094, two-slot Compress to Remember 0.0190, FrameMorrow 0.0207; attention 0.0091)"}
     - {id: deletion_cost_v2, group: ours, source: "runs/memory_gaps_20261124/, runs/motion_v2_fresh_20261125/",
-       replay: {status: not_run}, retrain: {task: motion_v2.fresh.scorer, status: retrainable, tolerance: per_seed,
-                 note: "needs the frozen study assets (BM_MOTION_ROOT); motion_v2.registered.scorer is the run on the readers' own training episodes"},
+       replay: {status: not_run}, retrain: {task: motion_v2.fresh.scorer, status: assets_missing, tolerance: per_seed,
+                 note: "needs the frozen study assets (BM_MOTION_ROOT), available only where the study folders are; motion_v2.registered.scorer is the run on the readers' own training episodes"},
        note: "development scorer; on the registered training episodes every trained checkpoint was worse than step 0 (the attention policy) on dev. The readers memorised those episodes (attention +3: 0.0044 there, 0.0095 on fresh scenes), so it was trained on fresh scenes (runs/motion_v2_fresh_20261125/): the variant chosen on fresh dev does not differ from attention on the fresh holdout (mean of +3 and +6: 0.0105 against 0.0108, 95% interval -0.0020 to +0.0014); validation not read"}
   pusht:
     - {id: v5_marker_corpus, group: data, replay: {status: not_run}, retrain: {task: pusht.prepare_data, variant: v5, status: retrainable,

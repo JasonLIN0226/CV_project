@@ -119,7 +119,8 @@ def test_fresh_config_reads_the_same_frozen_assets():
     import yaml
     frozen_config, fresh_config = (yaml.safe_load(p.read_text()) for p in (CONFIG, FRESH_CONFIG))
     assert fresh_config["assets"] == frozen_config["assets"] and fresh_config["protocol"] == frozen_config["protocol"]
-    assert "${BM_RUN}" in fresh_config["scorer"]["checkpoints"]                 # one checkpoint folder per run
+    text = FRESH_CONFIG.read_text().split("\n", 8)[-1]                           # past the header comment
+    assert "${BM_RUN}" not in text                  # loads without BM_RUN; checkpoints are a script argument
 
 
 @pytest.mark.skipif(not (os.environ.get("BM_MOTION_ROOT") and os.path.isdir(os.path.join(os.environ["BM_MOTION_ROOT"], STEP2))),

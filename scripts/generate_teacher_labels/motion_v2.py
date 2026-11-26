@@ -7,8 +7,10 @@ One <episode id>.npy per episode: the reader-mean decoded-position MSE at +3 and
 [2, n, n] with n = q - 3 (methods/deletion_cost/motion_v2.pair_table). A table gives the deletion-cost label of
 any state and scores any policy's final pair. fresh: every fresh scene pair (training, dev, holdout) into
 fresh.tables; registered: the registered training episodes into scorer.registered_tables. Finished tables are
-skipped, so a rerun continues. <out>/teacher_tables_<episodes>_seed<seed>.json records the code, the frozen-input
-check and the table folder. --seed is unused (the tables average the three readers).
+skipped after a shape check, so a rerun continues; a table written by other code is not detected, so delete the
+folder after changing pair_table. <out>/teacher_tables_<episodes>_seed<seed>.json records the code, the
+frozen-input check, the table folder and how many tables were built or reused. --seed is unused (the tables
+average the three readers).
 """
 import os
 import sys
@@ -49,6 +51,10 @@ def main():
     todo_all = [ep for part in parts.values() for ep in part]
     folder.mkdir(parents=True, exist_ok=True)
     todo = [ep for ep in todo_all if not (folder / f"{ep['rec']['id']}.npy").exists()]
+    for ep in todo_all:
+        path, n = folder / f"{ep['rec']['id']}.npy", ep["rec"]["query"] - 3
+        if path.exists() and np.load(path, mmap_mode="r").shape != (2, n, n):
+            raise SystemExit(f"{path} is not a [2, {n}, {n}] table for this episode; remove the folder and rerun")
     started = time.time()
     for i, ep in enumerate(todo):
         tmp = folder / f"{ep['rec']['id']}.tmp.npy"
@@ -57,7 +63,8 @@ def main():
         if i % 100 == 0 or i == len(todo) - 1:
             task.log(f"tables {i + 1}/{len(todo)} new ({len(todo_all) - len(todo)} cached), {time.time() - started:.0f}s")
     task.write(environment="motion_v2", episodes=args.episodes, tables=str(folder),
-               counts={part: len(eps) for part, eps in parts.items()})
+               counts={part: len(eps) for part, eps in parts.items()},
+               built=len(todo), reused=len(todo_all) - len(todo))
 
 
 if __name__ == "__main__":

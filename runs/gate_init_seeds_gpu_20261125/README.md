@@ -47,7 +47,10 @@ rate (5 of 30) nine runs without a collapse has probability about 0.19, so this 
 never collapse. On these 9 runs two-slot Compress to Remember matched our accuracy (+0.03 points, interval
 −0.78 to +0.95) and spread more (standard deviation 1.77 against 0.72). This is not true of Gate in general: in
 the CPU sweep its 25 runs that trained averaged 93.60 against our 94.92, and ours was higher in 24 of 30 cells.
-Across CPU and GPU, ours collapsed in 0 of 39 runs and two-slot Compress to Remember in 5 of 39.
+Over the 30 CPU sweep runs and these 9 Burst GPU runs, ours collapsed in 0 of 39 and two-slot Compress to
+Remember in 5 of 39; Compress to Remember also collapsed on both Torch GPU runs tried.
 
-The manifest form of this run, `gate.sweep_gpu.*`, has not been run itself; the numbers above come from the
-earlier driver named at the top, which ran the same fits.
+The manifest form of this run, `gate.sweep_gpu.*`, has not been run itself. The numbers above come from the
+earlier driver named at the top, written to run the same fits (same update rule and training seeds) but not
+identical in setup: it read `configs/gate/team_bundle.yaml`, used the default thread count and left
+`CUBLAS_WORKSPACE_CONFIG` unset.

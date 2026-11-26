@@ -3,7 +3,8 @@
 Code: branch `motion-v2/clean-rerun` (commits `ec4a10a`, `d8cb945`, `45b9266`). Full outputs stay on Burst
 under `/scratch/xy3257/mv2_runs/` (Motion v2) and `/scratch/xy3257/cv_project_runs/reproduction/synergy_gap/`
 (Synergy). Every number below is a development or confirmation result as labelled; nothing was tuned on it.
-`extract.json` holds the numbers of sections 1 and 2, with the SHA256 of the Burst files they come from.
+`extract.json` holds the numbers of sections 1 and 2 and the batch-equivalence and stage-A checks, with the SHA256
+of the Burst files they come from.
 
 The code was reorganised afterwards without changing what it computes: the Motion v2 baselines are the
 manifest tasks `motion_v2.literature.*` (one method and reader seed per call, pooled by
@@ -52,7 +53,9 @@ from training episodes reflect reader memorisation.
 
 Compress to Remember rerun with three seeds on TRAIN features re-encoded on the GPU (S regret per seed
 +0.0037 / +0.0057 / +0.0035; the original run reported 0.0037). Our released set students, replayed exactly.
-Stage A on the locked confirmation set reproduced the released arrays (max difference 4.7e-7, same choices).
+Stage A on the locked confirmation set reproduced the released arrays: largest absolute difference 3.3e-6 over
+all stage-A arrays of both readers (eval_cost 8.9e-7 item_attention, 2.2e-7 multihead), with the same argmin
+everywhere (`extract.json`, synergy_stage_a_against_released).
 `scripts/aggregate_results/synergy_paired.py`, 48 families, 10,000 bootstrap draws; negative = ours lower regret.
 
 | Task | Ours | Compress to Remember | Ours minus C2R | 95% interval | Families where ours is lower |
