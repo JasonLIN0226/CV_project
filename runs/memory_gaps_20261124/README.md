@@ -4,6 +4,12 @@ Code: branch `motion-v2/clean-rerun` (commits `ec4a10a`, `d8cb945`, `45b9266`). 
 under `/scratch/xy3257/mv2_runs/` (Motion v2) and `/scratch/xy3257/cv_project_runs/reproduction/synergy_gap/`
 (Synergy). Every number below is a development or confirmation result as labelled; nothing was tuned on it.
 
+The code was reorganised afterwards without changing what it computes: the Motion v2 baselines are the
+manifest tasks `motion_v2.literature.*` (one method and reader seed per call, pooled by
+`scripts/aggregate_results/motion_v2_literature.py`), the scorer of section 2 is
+`methods/deletion_cost/motion_v2.py` (task `motion_v2.registered.scorer`), and the Synergy reruns are
+`synergy.literature_gpu.train` and `synergy.literature_gpu.paired`.
+
 ## 1. Motion v2: the three literature baselines on the frozen readers
 
 `scripts/train_baselines/motion_v2.py`, every method trained against one reader (seeds 17, 29, 43) on the
@@ -56,4 +62,4 @@ Stage A on the locked confirmation set reproduced the released arrays (max diffe
 
 Ours has the lower S regret but the interval includes zero; ours is clearly worse on R and D. FrameMorrow on
 item_attention and Compress to Remember on multihead were still running when this was written
-(`burst/synergy_literature_gap.sh` resumes them).
+(both were completed in `runs/synergy_paired_20261125/`).

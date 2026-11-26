@@ -16,4 +16,7 @@ python scripts/run_tasks.py $BM_PACK_ARGS && code=0 || code=$?
 RUN_ID=$(echo "$BM_PACK_ARGS" | sed -n 's/.*--run-id \([^ ]*\).*/\1/p')
 python scripts/aggregate_results/aggregate.py --run "runs/$RUN_ID" || echo "aggregate failed (the run may be incomplete)"
 echo "== finished $(date -Is) with exit code $code; status: $BM_REPO/runs/$RUN_ID/pack_status.txt"
+if [ "$code" -eq 0 ] && [ -n "${BM_CHAIN_NAME:-}" ]; then     # BM_CHAIN: the standby copies of this run are not needed
+    scancel -u "$USER" --name="$BM_CHAIN_NAME" --state=PENDING || true
+fi
 exit $code

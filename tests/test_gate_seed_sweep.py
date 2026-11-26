@@ -162,3 +162,19 @@ def test_sweep_summary_refuses_a_score_of_the_wrong_scorer_checkpoint(tmp_path):
     result = subprocess.run([sys.executable, str(ROOT / "scripts/aggregate_results/gate_seed_sweep.py"), "--run", str(tmp_path / "run")],
                             capture_output=True, text=True)
     assert result.returncode != 0 and "student_17_t1.pt" in result.stderr
+
+
+def test_gpu_sweep_folder_gets_its_own_summary_with_a_paired_interval(tmp_path):
+    folder = tmp_path / "run/gate/sweep_gpu"
+    folder.mkdir(parents=True)
+    for predictor, n, c2r, ours in ((17, 101, 0.95, 0.94), (29, 101, 0.90, 0.95), (43, 101, 0.96, 0.96)):
+        sweep_file(folder, "pacc_recurrent", predictor, n, "pacc_recurrent", [c2r])
+        sweep_file(folder, "deletion_cost", predictor, n, "deletion_cost_student", [ours], students=f"student_{predictor}_t{n}.pt")
+    subprocess.run([sys.executable, str(ROOT / "scripts/aggregate_results/gate_seed_sweep.py"), "--run", str(tmp_path / "run"),
+                    "--sweep", "sweep_gpu"], check=True, capture_output=True, text=True)
+    summary = json.loads((tmp_path / "run/aggregate/seed_sweep_gpu.json").read_text())
+    assert summary["sweep"] == "sweep_gpu" and summary["head_to_head"]["cells"] == 3
+    paired = summary["paired_difference"]
+    assert paired["ours_minus_pacc_recurrent"] == pytest.approx((-0.01 + 0.05 + 0.0) / 3)
+    assert paired["ci95"][0] <= paired["ours_minus_pacc_recurrent"] <= paired["ci95"][1]
+    assert "sweep_gpu" in (tmp_path / "run/aggregate/seed_sweep_gpu.md").read_text().splitlines()[0]

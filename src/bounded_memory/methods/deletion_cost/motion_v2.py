@@ -1,43 +1,101 @@
-"""Deletion-cost scorer, development version 2, on Motion v2 (not the registered step-3/4 recipe).
+"""Our deletion-cost scorer on Motion v2, development version 2 (not the registered step-3/4 recipe).
 
 What stays from the proposal: a causal scorer reads only the three resident candidates and the four
 recent frames, and is trained offline to tell which deletion costs the frozen predictor least; at
 deployment the candidate with the highest deletion logit is dropped, irrevocably (B = 2, R = 4).
 
-What changes from the registered recipe (step34_students.py), and why:
+What changes from the registered recipe (environments/motion_v2/step34_students.py), and why:
 
     teacher    optimal-continuation deletion cost. After deleting candidate j at clock t, every pair of
                (the two residents left) U (frames still to arrive before the query) remains reachable,
-               so cost_j = the lowest +3/+6 position loss of the frozen readers over those pairs. The
-               registered labels assumed the attention policy decides afterwards. One all-pairs loss table
-               per training episode gives the label of any state, and scores any policy's final pair.
+               so cost_j = the lowest +3/+6 position loss of the frozen readers over those pairs (or a soft
+               minimum, `temperature`). The registered labels assumed the attention policy decides
+               afterwards. One all-pairs loss table per episode gives the label of any state and scores
+               any policy's final pair.
     prior      the readers' own pooling salience of each candidate (what the attention baseline keeps)
                enters the scorer, which is a zero-initialised residual on it: step 0 is exactly the
                attention policy (IndexMem: zero-initialised new branches start at the base policy).
     student    width-256 MLP with LayerNorm/GELU and set pooling; pairwise loss weighted by the cost gap;
                AdamW (0.9, 0.95), warmup-stable-decay schedule.
-    selection  the checkpoint with the lowest online position loss on a dev split of training scene
-               pairs, step 0 included (IndexMem: never select by training loss). Validation and the
-               confirmation set are never read while training or selecting.
+    states     the behaviour policies' states, and with `rounds` > 0 the states the trained scorer visits
+               itself, labelled from the tables and added before retraining (DAgger-style).
+    selection  the checkpoint with the lowest online position loss on a dev split, step 0 included
+               (IndexMem: never select by training loss). Validation is never read while training or
+               selecting.
 
-Labels use the training episodes' future positions (evaluation-only metadata) through the readers'
-losses, as the registered labels did; the scorer itself only ever sees observable inputs.
+The training episodes are either the registered ones (which the frozen readers memorised) or fresh scenes
+from the same generator (environments/motion_v2/fresh.py). Labels use the episodes' future positions
+(evaluation-only metadata) through the readers' losses, as the registered labels did; the scorer itself
+only ever sees observable inputs.
+
+    VARIANTS       the four label/state settings compared on fresh dev (label temperature, on-policy rounds)
+    pair_table     all-pairs loss table of one episode (the teacher)
+    fit_variant    train one variant for one seed, returning every round and the best one on dev
+    rollout        online replay of a scorer (step 0 is the attention policy)
 """
 from __future__ import annotations
 
 import hashlib
 import itertools
 import math
+from pathlib import Path
 
 import numpy as np
 import torch
 from torch import nn
 
-from . import step34_core as core
+from ...environments.motion_v2 import fresh as fresh_scenes
+from ...environments.motion_v2 import step34_core as core
 
 HORIZONS = np.array([3, 6])
 ITEM_DIM, CONTEXT_DIM = 259, 524          # step34_core.causal_features
 BEHAVIORS = ("fifo", "reservoir", "diversity", "temporal_buckets", "attention")
+VARIANTS = {                     # name: (label temperature in mean +3/+6 position MSE, on-policy rounds after the first)
+    "min": (0.0, 0),
+    "min_dagger": (0.0, 3),
+    "soft": (0.002, 0),
+    "soft_dagger": (0.002, 3),
+}
+BEHAVIOUR_SEED = 20261124        # random choices of the behaviour policies (reservoir, ties)
+
+
+def identity_norm():
+    """Input normalisation that leaves features unchanged: with it, an untrained ScorerV2 is the attention policy."""
+    return {"items_mean": np.zeros(ITEM_DIM), "items_std": np.ones(ITEM_DIM),
+            "context_mean": np.zeros(CONTEXT_DIM), "context_std": np.ones(CONTEXT_DIM)}
+
+
+def fresh_ranges(fresh):
+    """Scene-pair index ranges of the config's `fresh` block: training states, dev selection, holdout check."""
+    fit, dev, holdout = int(fresh["fit_pairs"]), int(fresh["dev_pairs"]), int(fresh["holdout_pairs"])
+    return {"fit": range(0, fit), "dev": range(fit, fit + dev), "holdout": range(fit + dev, fit + dev + holdout)}
+
+
+def fresh_episodes(assets, fresh, parts=("fit", "dev")):
+    """{part: episodes} of the fresh scenes (generated and encoded by scripts/prepare_data/motion_v2_fresh.py)."""
+    ranges = fresh_ranges(fresh)
+    total = max(r.stop for r in ranges.values())
+    records = fresh_scenes.generate(fresh["root"], total, log=lambda *_: None)     # writes nothing new once generated
+    return {part: [fresh_scenes.episode(assets, fresh["root"], r) for r in records if r["scene_index"] in ranges[part]]
+            for part in parts}
+
+
+def registered_episodes(assets):
+    """{fit, dev} of the registered training episodes, which the frozen readers were trained on (dev: dev_pairs)."""
+    records = assets.store.manifest["records"]
+    dev = dev_pairs(records)
+    train = [assets.episode(r) for r in records if r["split"] == "train"]
+    return {"fit": [ep for ep in train if ep["rec"]["pair"] not in dev],
+            "dev": [ep for ep in train if ep["rec"]["pair"] in dev]}
+
+
+def load_tables(folder, episodes):
+    """{episode id: all-pairs table} written by scripts/generate_teacher_labels/motion_v2.py."""
+    missing = [ep["rec"]["id"] for ep in episodes if not (Path(folder) / f"{ep['rec']['id']}.npy").exists()]
+    if missing:
+        raise FileNotFoundError(f"{len(missing)} loss tables missing in {folder} (first: {missing[0]}); "
+                                "run scripts/generate_teacher_labels/motion_v2.py first")
+    return {ep["rec"]["id"]: np.load(Path(folder) / f"{ep['rec']['id']}.npy") for ep in episodes}
 
 
 def dev_pairs(records, modulus=10):
@@ -276,3 +334,58 @@ def train(data, tables, dev_episodes, assets, seed, device, steps=3000, batch=25
                                 "label_scale": scale, "states": int(len(items)), "steps": steps, "batch": batch,
                                 "lr": lr, "width": width, "dev_episodes": len(dev_episodes),
                                 "final_state": final_state}
+
+
+def concat(parts):
+    """Stack labelled state rows (dicts of items, context, prior, cost); {} when there are none."""
+    parts = [p for p in parts if len(p["cost"])]
+    if not parts:
+        return {}
+    return {k: np.concatenate([np.asarray(p[k], np.float64 if k == "cost" else np.float32) for p in parts])
+            for k in ("items", "context", "prior", "cost")}
+
+
+def labelled(assets, episodes, tables, states, temperature=0.0):
+    """Labelled rows of the given states ({episode id: [(clock, pool), ...]}) of several episodes."""
+    return concat([state_rows(assets, ep, tables[ep["rec"]["id"]], states[ep["rec"]["id"]], temperature)
+                   for ep in episodes])
+
+
+def fit_variant(assets, fit, dev, tables, base_rows, dev_rows, behaviour, temperature, rounds, seed, device,
+                steps=3000, log=print):
+    """Train on the behaviour-state rows, then `rounds` times add the trained scorer's own states and retrain.
+
+    Returns (history, best): one entry per round (states, selected step and dev loss, the final checkpoint's dev
+    loss, per-state metrics on the dev rows), and (best dev mean, round, state dict, norm, meta) of the round
+    whose selected checkpoint has the lowest dev loss."""
+    seen = {ep["rec"]["id"]: set(behaviour[ep["rec"]["id"]]) for ep in fit}
+    data, history, best = base_rows, [], None
+    for r in range(rounds + 1):
+        model, norm, meta = train(data, tables, dev, assets, seed, device, steps=steps,
+                                  log=lambda m, r=r: log(f"round {r} {m}"))
+        final = ScorerV2(meta["width"]).to(device)
+        final.load_state_dict(meta.pop("final_state"))
+        metrics = {"selected": state_metrics(model, norm, dev_rows, device),
+                   "final": state_metrics(final, norm, dev_rows, device)}
+        last = meta["history"][-1]
+        entry = {"round": r, "states": int(len(data["cost"])), "selected_step": meta["selected_step"],
+                 "selected_dev_mean": meta["selected_dev_mean"],
+                 "final_dev_mean": float(np.mean([last["dev_position_+3"], last["dev_position_+6"]])),
+                 "dev_state_metrics": metrics}
+        history.append(entry)
+        log(f"round {r}: selected step {meta['selected_step']} dev {meta['selected_dev_mean']:.6f} final dev "
+            f"{entry['final_dev_mean']:.6f} | dev-state top1 (informative) selected "
+            f"{metrics['selected']['top1_informative']:.3f} final {metrics['final']['top1_informative']:.3f}")
+        if best is None or meta["selected_dev_mean"] < best[0]:
+            best = (meta["selected_dev_mean"], r, {k: v.cpu() for k, v in model.state_dict().items()}, norm, meta)
+        if r == rounds:
+            break
+        _, visited = rollout(assets, fit, final, norm, device, record=True)
+        new = {k: [s for s in v if s not in seen[k]] for k, v in visited.items()}
+        for k, v in new.items():
+            seen[k].update(v)
+        added = labelled(assets, fit, tables, new, temperature)
+        log(f"round {r}: +{len(added['cost']) if added else 0} on-policy states")
+        if added:
+            data = concat([data, added])
+    return history, best

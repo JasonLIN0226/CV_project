@@ -129,6 +129,42 @@ def test_the_job_runs_the_selected_tasks_and_returns_their_exit_code(checkout, e
     assert f"exit code {exit_code}" in done.stdout
 
 
+def test_chain_queues_standby_copies_that_each_wait_for_the_previous_one(checkout):
+    env = stand_ins(checkout)
+    record = checkout.parent / "record"
+    (checkout.parent / "bin/sbatch").write_text('#!/bin/bash\nn=$(ls "$RECORD" | grep -c call)\n'
+                                                'printf "%s\\n" "$@" > "$RECORD/call$n"\necho $((4242 + n))\n')
+    done = subprocess.run(["bash", str(checkout / "burst/submit.sh"), "--run-id", "r1", "--select", "gate"],
+                          env=dict(env, BM_CHAIN="2"), capture_output=True, text=True)
+    assert done.returncode == 0, done.stderr
+    calls = [(record / f"call{i}").read_text().splitlines() for i in range(3)]
+    assert all("--job-name=bm_burst_r1" in c for c in calls)
+    assert not any(a.startswith("--dependency") for a in calls[0])
+    assert "--dependency=afternotok:4242" in calls[1] and "--dependency=afternotok:4243" in calls[2]
+    assert "submitted job 4242" in done.stdout and "standby job 4244" in done.stdout
+
+
+@pytest.mark.parametrize("exit_code", [0, 1])
+def test_a_finished_chained_job_cancels_only_its_own_pending_standbys(checkout, exit_code):
+    env = stand_ins(checkout)
+    tmp = checkout.parent
+    (tmp / "bin/scancel").write_text('#!/bin/bash\nprintf "%s\\n" "$@" > "$RECORD/scancel"\n')
+    (tmp / "bin/scancel").chmod(0o755)
+    (checkout / "work.py").write_text(WORK)
+    (tmp / "manifest.yaml").write_text(yaml.safe_dump({"tasks": {"x.a": {
+        "script": "work.py", "args": f"{tmp / 'ran'} {exit_code}", "resources": {"cpus": 1, "mem": "1G", "time": "00:01:00"}}}}))
+    env.update(BM_PACK_ARGS=f"--run-id r1 --select x --manifest {tmp / 'manifest.yaml'}", SLURM_JOB_ID="1",
+               BM_POLL_SECONDS="0.05", BM_CHAIN_NAME="bm_burst_r1")
+    script = f'source "{checkout}/burst/cluster.sh"; bash "{checkout}/burst/job.sbatch"'
+    done = subprocess.run(["bash", "-c", script], env=env, capture_output=True, text=True, timeout=300)
+    assert done.returncode == exit_code, done.stdout + done.stderr
+    cancelled = tmp / "record/scancel"
+    if exit_code == 0:
+        assert cancelled.read_text().splitlines() == ["-u", "alice", "--name=bm_burst_r1", "--state=PENDING"]
+    else:
+        assert not cancelled.exists()
+
+
 def test_submit_dry_run_uses_the_venv_without_submitting(checkout):
     env = stand_ins(checkout)
     # Catch entry points that accidentally use the caller's Python.

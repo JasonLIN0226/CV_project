@@ -1,16 +1,17 @@
 """Pool a Gate seed sweep: two-slot Compress to Remember against our scorer over training seeds.
 
-    python scripts/aggregate_results/gate_seed_sweep.py --run runs/<run_id> [--collapse-below 0.75]
+    python scripts/aggregate_results/gate_seed_sweep.py --run runs/<run_id> [--sweep sweep] [--collapse-below 0.75]
 
-Reads <run>/gate/sweep/<task>_t<N>_seed<P>.json, written by scripts/train_baselines/gate.py and
-scripts/evaluate/gate.py with --train-seed: one run per method, predictor seed P and training seed N.
+Reads <run>/gate/<sweep>/<task>_t<N>_seed<P>.json (--sweep sweep_gpu for the GPU sweep, gate.sweep_gpu.*),
+written by scripts/train_baselines/gate.py and scripts/evaluate/gate.py with --train-seed: one run per method, predictor seed P and training seed N.
 A run's route accuracy is the mean over its rows (validation episodes x horizons); a run below
 --collapse-below collapsed, i.e. it did not learn to keep the cue. Per method: the collapse count, the
 mean route accuracy over all runs and over the runs that trained, and the panel-style value of each
-training seed (mean over the predictor seeds). Per (P, N) cell: which method is higher. A score of our
+training seed (mean over the predictor seeds). Per (P, N) cell: which method is higher, and the mean of ours
+minus Compress to Remember with a 95% interval that resamples the cells (10,000 draws). A score of our
 scorer must come from the checkpoint of its own training seed (student_<P>_t<N>.pt), and every file
 must record the training seed its name gives; anything else stops the summary.
-Writes <run>/aggregate/seed_sweep.json and <run>/aggregate/seed_sweep.md.
+Writes <run>/aggregate/seed_<sweep>.json and .md (seed_sweep.json and seed_sweep.md for the default).
 """
 import argparse
 import json
@@ -77,12 +78,25 @@ def head_to_head(found):
             "tied": sum(a[c]["route_accuracy"] == b[c]["route_accuracy"] for c in shared)}
 
 
+def paired_difference(found, resamples=10000, seed=20261125):
+    """Ours minus Compress to Remember per shared (P, N) cell: mean and a 95% interval over the cells."""
+    a, b = found.get("pacc_recurrent", {}), found.get("deletion_cost", {})
+    shared = sorted(set(a) & set(b))
+    if not shared:
+        return None
+    diff = np.array([b[c]["route_accuracy"] - a[c]["route_accuracy"] for c in shared])
+    draws = diff[np.random.default_rng(seed).integers(0, len(diff), size=(resamples, len(diff)))].mean(1)
+    return {"cells": len(shared), "ours_minus_pacc_recurrent": float(diff.mean()),
+            "ci95": [float(np.quantile(draws, 0.025)), float(np.quantile(draws, 0.975))]}
+
+
 def percent(value):
     return "n/a" if value is None else f"{100 * value:.2f}"
 
 
-def markdown(run, threshold, methods, found, versus):
-    lines = [f"# Gate seed sweep: run {run}", "",
+def markdown(run, threshold, methods, found, versus, paired=None, sweep="sweep"):
+    title = f"# Gate seed sweep: run {run}" + ("" if sweep == "sweep" else f", {sweep}")
+    lines = [title, "",
              f"Route accuracy (%) on the 192 validation episodes, both horizons. A run below {percent(threshold)} collapsed.", "",
              "| Method | Runs | Collapsed | Mean, all runs | Mean, runs that trained | Min | Max | Panel-style value per training seed: mean (min to max) | Threads |",
              "|---|---|---|---|---|---|---|---|---|"]
@@ -93,7 +107,11 @@ def markdown(run, threshold, methods, found, versus):
                      f"{percent(s['route_accuracy_mean_trained'])} | {percent(s['route_accuracy_min'])} | {percent(s['route_accuracy_max'])} | "
                      f"{spread} | {', '.join(map(str, s['threads'])) or 'n/a'} |")
     lines += ["", f"Same predictor and training seed, higher route accuracy: Compress to Remember in {versus['pacc_recurrent_higher']}, "
-              f"ours in {versus['deletion_cost_higher']}, tied in {versus['tied']} of {versus['cells']} cells.", ""]
+              f"ours in {versus['deletion_cost_higher']}, tied in {versus['tied']} of {versus['cells']} cells."]
+    if paired:
+        lines.append(f"Ours minus Compress to Remember, mean over cells: {100 * paired['ours_minus_pacc_recurrent']:+.2f} points "
+                     f"(95% interval over cells {100 * paired['ci95'][0]:+.2f} to {100 * paired['ci95'][1]:+.2f}).")
+    lines.append("")
     for method, cells in found.items():
         predictors = sorted({p for p, _ in cells})
         seeds = sorted({n for _, n in cells})
@@ -109,23 +127,26 @@ def markdown(run, threshold, methods, found, versus):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--run", type=Path, required=True)
+    ap.add_argument("--sweep", default="sweep", help="folder under <run>/gate with the sweep files (sweep, sweep_gpu)")
     ap.add_argument("--collapse-below", type=float, default=0.75, help="route accuracy below which a run collapsed")
     args = ap.parse_args()
-    found = load(args.run / "gate" / "sweep")
+    found = load(args.run / "gate" / args.sweep)
     if not found:
-        raise SystemExit(f"no sweep results under {args.run / 'gate' / 'sweep'}")
+        raise SystemExit(f"no sweep results under {args.run / 'gate' / args.sweep}")
     methods = {m: describe(found[m], args.collapse_below) for m in POLICY if m in found}
-    versus = head_to_head(found)
+    versus, paired = head_to_head(found), paired_difference(found)
     out = args.run / "aggregate"
     out.mkdir(parents=True, exist_ok=True)
-    (out / "seed_sweep.json").write_text(json.dumps(
-        {"run": args.run.name, "collapse_below": args.collapse_below, "methods": methods, "head_to_head": versus,
+    name = "seed_sweep" if args.sweep == "sweep" else f"seed_{args.sweep}"
+    (out / f"{name}.json").write_text(json.dumps(
+        {"run": args.run.name, "sweep": args.sweep, "collapse_below": args.collapse_below, "methods": methods,
+         "head_to_head": versus, "paired_difference": paired,
          "cells": {m: {f"{p}/{n}": c for (p, n), c in sorted(cells.items())} for m, cells in found.items()}}, indent=1) + "\n")
-    (out / "seed_sweep.md").write_text(markdown(args.run.name, args.collapse_below, methods, found, versus))
+    (out / f"{name}.md").write_text(markdown(args.run.name, args.collapse_below, methods, found, versus, paired, args.sweep))
     for method, s in methods.items():
         print(f"{method:16s} runs {s['runs']:3d}  collapsed {s['collapsed']:3d}  mean {percent(s['route_accuracy_mean'])}  "
               f"trained mean {percent(s['route_accuracy_mean_trained'])}")
-    print(f"wrote {out / 'seed_sweep.json'} and {out / 'seed_sweep.md'}")
+    print(f"wrote {out / (name + '.json')} and {out / (name + '.md')}")
 
 
 if __name__ == "__main__":

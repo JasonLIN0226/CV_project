@@ -1,9 +1,9 @@
-"""Software checks for environments/motion_v2/deletion_cost_v2.py on synthetic episodes (no measurement)."""
+"""Software checks for methods/deletion_cost/motion_v2.py on synthetic episodes (no measurement)."""
 import numpy as np
 import pytest
 import torch
 
-from bounded_memory.environments.motion_v2 import deletion_cost_v2 as dc
+from bounded_memory.methods.deletion_cost import motion_v2 as dc
 from bounded_memory.environments.motion_v2 import step34_core
 
 from motion_v2_fakes import FakeAssets, raw_episode  # tests/motion_v2 is on sys.path under pytest
@@ -90,9 +90,8 @@ def test_soft_continuation_cost_runs_from_the_minimum_to_the_mean():
 
 def test_rollout_records_its_own_full_pool_states(world):
     assets, eps = world
-    identity = {"items_mean": np.zeros(259), "items_std": np.ones(259), "context_mean": np.zeros(524), "context_std": np.ones(524)}
-    kept, visited = dc.rollout(assets, eps, dc.ScorerV2(width=16), identity, "cpu", record=True)
-    assert kept == dc.rollout(assets, eps, dc.ScorerV2(width=16), identity, "cpu")
+    kept, visited = dc.rollout(assets, eps, dc.ScorerV2(width=16), dc.identity_norm(), "cpu", record=True)
+    assert kept == dc.rollout(assets, eps, dc.ScorerV2(width=16), dc.identity_norm(), "cpu")
     for ep in eps:
         states = visited[ep["rec"]["id"]]
         q = ep["rec"]["query"]
@@ -100,21 +99,27 @@ def test_rollout_records_its_own_full_pool_states(world):
 
 
 def test_state_metrics_and_variant_loop(world):
-    import importlib.util
-    from pathlib import Path
     assets, eps = world
-    spec = importlib.util.spec_from_file_location(
-        "fresh_variants", Path(__file__).resolve().parents[2] / "scripts/train_scorer/motion_v2_fresh_variants.py")
-    script = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(script)
     tables = {ep["rec"]["id"]: dc.pair_table(assets, ep) for ep in eps}
     fit, dev = eps[:6], eps[6:]
     behaviour = {ep["rec"]["id"]: dc.behaviour_states(assets, ep, 1) for ep in eps}
-    base, dev_rows = (script.labelled(assets, part, tables, behaviour, 0.01) for part in (fit, dev))
-    identity = {"items_mean": np.zeros(259), "items_std": np.ones(259), "context_mean": np.zeros(524), "context_std": np.ones(524)}
-    m = dc.state_metrics(dc.ScorerV2(width=16), identity, dev_rows, "cpu")
+    base, dev_rows = (dc.labelled(assets, part, tables, behaviour, 0.01) for part in (fit, dev))
+    m = dc.state_metrics(dc.ScorerV2(width=16), dc.identity_norm(), dev_rows, "cpu")
     assert m["states"] == len(dev_rows["cost"]) and 0 <= m["top1"] <= 1 and m["regret"] >= 0
-    history, best = script.fit_variant(assets, fit, dev, tables, base, dev_rows, behaviour, 0.01, 1, 17, "cpu", 20,
-                                       log=lambda *_: None)
+    history, best = dc.fit_variant(assets, fit, dev, tables, base, dev_rows, behaviour, 0.01, 1, 17, "cpu", 20,
+                                   log=lambda *_: None)
     assert [h["round"] for h in history] == [0, 1] and history[1]["states"] >= history[0]["states"]
     assert best[0] == min(h["selected_dev_mean"] for h in history) and "final_state" not in best[4]
+
+
+def test_fresh_ranges_split_the_scene_pairs_without_overlap():
+    ranges = dc.fresh_ranges({"fit_pairs": 512, "dev_pairs": 96, "holdout_pairs": 96})
+    assert ranges["fit"] == range(0, 512) and ranges["dev"] == range(512, 608) and ranges["holdout"] == range(608, 704)
+
+
+def test_load_tables_names_what_is_missing(tmp_path, world):
+    _, eps = world
+    np.save(tmp_path / f"{eps[0]['rec']['id']}.npy", np.zeros((2, 3, 3)))
+    assert set(dc.load_tables(tmp_path, eps[:1])) == {eps[0]["rec"]["id"]}
+    with pytest.raises(FileNotFoundError, match="1 loss tables missing"):
+        dc.load_tables(tmp_path, eps[:2])

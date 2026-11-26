@@ -56,7 +56,7 @@ def test_fresh_episodes_feed_the_deletion_cost_pipeline(tmp_path):
     from types import SimpleNamespace
 
     import phase1.model as phase1_model
-    from bounded_memory.environments.motion_v2 import deletion_cost_v2 as dc
+    from bounded_memory.methods.deletion_cost import motion_v2 as dc
     from motion_v2_fakes import D, FakeAssets
 
     class StandInEncoder:

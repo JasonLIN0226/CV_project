@@ -1,9 +1,15 @@
 # Gate on GPU: our scorer and two-slot Compress to Remember over extra initialisation seeds (25 Nov 2026)
 
-Burst job 43212 (one A100, partition `c12m85-a100-1`), branch `motion-v2/clean-rerun` (driver as of `72d7614`).
-Driver `scripts/train_baselines/gate_init_seeds.py` via `burst/gate_init_seeds.sh`; summary
-`scripts/aggregate_results/gate_init_seeds.py` -> `summary.json` (this folder). Unit files stay on Burst under
+Burst job 43212 (one A100, partition `c12m85-a100-1`), branch `motion-v2/clean-rerun`: driver
+`scripts/train_baselines/gate_init_seeds.py` as of `72d7614`, summary `scripts/aggregate_results/gate_init_seeds.py`
+as of `d24666e` -> `summary.json` (this folder). Unit files stay on Burst under
 `/scratch/xy3257/cv_project_runs/reproduction/gate_init_seeds/`.
+
+Both scripts were later removed as duplicates: the driver's fit of our scorer is, statement for statement,
+`methods/deletion_cost/training.fit_scorers_with_training_seed`, and its Compress to Remember call is the one of
+`scripts/train_baselines/gate.py --train-seed` (only the checkpoint's tag differs). The same run is now the
+manifest tasks `gate.sweep_gpu.*` (`configs/gate/seed_sweep_gpu.yaml`), pooled by
+`scripts/aggregate_results/gate_seed_sweep.py --sweep sweep_gpu`, which also gives the paired interval over cells.
 
 **Question.** Yixiang's CPU sweep (`runs/gate_seed_sweep_20261124/` on `clean`: training seeds 1–10 on the three
 predictors, Torch CPU) found two-slot Compress to Remember collapsing in 5 of 30 runs and ours in 0 of 30, and

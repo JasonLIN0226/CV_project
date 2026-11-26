@@ -10,6 +10,16 @@ assets:
   evidence: ${BM_REPO}/results/motion_v2/step3_4_recovery1/terminal_evidence/repo/results/motion_v2/step3_4_recovery1/gpu
   longgap_receipt: ${BM_MOTION_ROOT}/motion-v2-20261101-step34-deployment2/repo/results/motion_v2/step3_4/cpu
   longgap_features: ${BM_MOTION_ROOT}/motion-v2-20261101-step34-deployment2/repo/results/motion_v2/step3_4_recovery1/gpu/longgap_features
+fresh:              # environments/motion_v2/fresh.py: scenes no frozen reader has seen, for our scorer's training only
+  root: ${BM_SCRATCH}/motion_v2_fresh/scenes        # scripts/prepare_data/motion_v2_fresh.py (generated and encoded)
+  tables: ${BM_SCRATCH}/motion_v2_fresh/scorer/tables   # scripts/generate_teacher_labels/motion_v2.py
+  fit_pairs: 512      # scene pairs 0-511: training states
+  dev_pairs: 96       # 512-607: checkpoint, round and variant selection
+  holdout_pairs: 96   # 608-703: one check of the chosen scorers before validation is read
+scorer:             # scripts/train_scorer/motion_v2_deletion_cost_v2.py (methods/deletion_cost/motion_v2.py)
+  steps: 3000
+  checkpoints: ${BM_RUN}/motion_v2/fresh/scorers
+  registered_tables: ${BM_SCRATCH}/motion_v2_registered/tables   # --episodes registered (the readers' own training episodes)
 baselines:          # scripts/train_baselines/motion_v2.py; the Gate settings (configs/gate/team_bundle.yaml)
   pafu_kv: {steps: 1000}
   pacc: {steps: 3000}

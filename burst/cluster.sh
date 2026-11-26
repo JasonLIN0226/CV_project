@@ -16,6 +16,8 @@
 #   UV_CACHE_DIR      uv package cache                            default: $BM_SCRATCH/.cache/uv
 #   UV_PYTHON_INSTALL_DIR   uv-managed Python installations       default: $BM_SCRATCH/uv-python
 #   BM_SBATCH_ARGS    extra sbatch options                        default: none
+#   BM_CHAIN          standby copies of a submitted job (submit.sh)  default: 0
+#   BM_MOTION_ROOT    the Motion v2 study's deployment folders    default: /scratch/$USER (configs/motion_v2/frozen.yaml)
 
 _bm_here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 if [ -f "$_bm_here/.env" ]; then
@@ -46,6 +48,9 @@ export BM_VENV="${BM_VENV:-$BM_REPO/.venv}"
 export UV_CACHE_DIR="${UV_CACHE_DIR:-$BM_SCRATCH/.cache/uv}"
 export UV_PYTHON_INSTALL_DIR="${UV_PYTHON_INSTALL_DIR:-$BM_SCRATCH/uv-python}"
 export BM_SBATCH_ARGS="${BM_SBATCH_ARGS:-}"
+export BM_MOTION_ROOT="${BM_MOTION_ROOT:-/scratch/$USER}"
+# OOD Jupyter sessions have the Slurm client in /opt/slurm/bin but not on PATH
+if [ -d /opt/slurm/bin ] && [[ ":$PATH:" != *":/opt/slurm/bin:"* ]]; then export PATH="/opt/slurm/bin:$PATH"; fi
 export HF_HOME="$BM_HF_HOME"
 unset _bm_here _bm_key _bm_value _bm_partition _bm_cpus _bm_mem
 

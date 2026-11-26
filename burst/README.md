@@ -58,6 +58,28 @@ tasks in its terminal instead (same arguments):
 nohup bash burst/run_here.sh --run-id burst_a100 --select ... > run_here.log 2>&1 &
 ```
 
+### Reclaimed nodes: standby copies
+
+Burst reclaims nodes, sometimes within half an hour, and a reclaimed job ends `CANCELLED` without being
+requeued. With `BM_CHAIN=N`, `submit.sh` also queues N standby copies of the job. Each starts only if the
+one before it did not finish successfully, picks up where it stopped (finished tasks are skipped), and the
+copy that finishes cancels the standby copies still pending:
+
+```bash
+BM_CHAIN=4 bash burst/submit.sh --run-id motion_fresh --select motion_v2.fresh
+```
+
+A task that fails for a reason of its own is retried by each standby copy, so keep N small.
+In an OOD Jupyter session the Slurm client is in `/opt/slurm/bin`; `cluster.sh` adds it to `PATH`.
+
+### Motion v2 on the frozen study assets
+
+The `motion_v2.online`, `motion_v2.literature`, `motion_v2.fresh`, `motion_v2.registered` and
+`motion_v2.validate` tasks read the original Motion v2 deployment folders under `BM_MOTION_ROOT` (default
+`/scratch/$USER`; see `configs/motion_v2/frozen.yaml`) and check every input against its recorded SHA256.
+`motion_v2.validate.deletion_cost_v2` reads validation once and refuses unless the scorer chosen on fresh dev
+beat attention on the fresh holdout (`motion_v2.fresh.holdout`); select it by its full name.
+
 ### Running the full reproduction in a two-GPU OOD session
 
 Request two A100s, 24 CPUs and 128 GB of host RAM. From the checkout in that session, run:

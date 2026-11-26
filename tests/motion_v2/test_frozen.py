@@ -6,7 +6,6 @@ The real-asset test needs the frozen study folders and runs only where BM_MOTION
 import hashlib
 import json
 import os
-from pathlib import Path
 
 import numpy as np
 import pytest
@@ -100,7 +99,8 @@ def test_compare_flags_a_changed_success_vector(tmp_path):
 
 
 def test_config_points_at_the_tracked_evidence(monkeypatch, tmp_path):
-    monkeypatch.setenv("BM_MOTION_ROOT", str(tmp_path))
+    for name in ("BM_MOTION_ROOT", "BM_SCRATCH", "BM_RUN"):        # the config also names the fresh scenes and scorers
+        monkeypatch.setenv(name, str(tmp_path))
     monkeypatch.setenv("BM_REPO", str(REPO))
     paths = frozen.Paths.from_config(runs.load_config(CONFIG)["assets"])
     assert paths.evidence == EVIDENCE.resolve()

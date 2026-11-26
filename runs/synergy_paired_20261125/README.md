@@ -1,7 +1,8 @@
 # Synergy: our released students against Compress to Remember and FrameMorrow, paired (25 Nov 2026)
 
 Burst jobs 42464 (24 Nov), 43211, 43322 and 43323 (25 Nov; each earlier one was reclaimed by Burst and the next
-resumed), one A100 each, `burst/synergy_literature_gap.sh` on branch `motion-v2/clean-rerun`. This completes the
+resumed), one A100 each, `burst/synergy_literature_gap.sh` on branch `motion-v2/clean-rerun` (commit `45b9266`;
+now the manifest tasks `synergy.literature_gpu.train` and `synergy.literature_gpu.paired`). This completes the
 comparison begun in `runs/memory_gaps_20261124/README.md` section 3.
 
 - Baselines retrained with three seeds (17, 29, 43) on TRAIN features re-encoded on the GPU

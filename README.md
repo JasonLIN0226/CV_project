@@ -25,7 +25,7 @@ What to keep in mind when reading the table:
 
 - **Gate** is scored on the validation set (192 episodes, three predictor seeds, two horizons); there is no independent test set. The oracle knows where the cue is. Compress to Remember as published reads the whole history and reaches 95.31. Restricted to two slots, its training sometimes collapses to near chance (50–58), so a three-seed value is a draw: 79.51 in the release (50.5 / 93.8 / 94.3), 95.31 replayed on NYU Burst CPU (95.83 / 94.27 / 95.83), 55.2 and 52.9 on the two Torch GPU seeds tried. Over 10 training seeds on each predictor (30 runs per method, Torch CPU, 8 threads, `runs/gate_seed_sweep_20261124/aggregate/seed_sweep.md`), its three-seed value ranges from 69.01 to 95.14 and ours from 93.92 to 95.49; it is higher on 1 of the 10 training seeds. It collapsed in 5 of 30 runs and averaged 93.60 over the 25 that trained, 87.33 over all (PaFu-KV, one training seed per predictor, is 90.28); ours never collapsed and averaged **94.92**, higher in 24 of the 30 runs with the same predictor and seed number. With 8 threads pinned it still collapses, so the thread count is not the cause; the release's seed-17 collapse did not recur on Torch with 1 or 8 threads (90.89, 95.57). Torch GPU's 2 of 2 is unlikely at one in six but rests on two runs. On a Burst A100, three new initialisation seeds on each predictor (`runs/gate_init_seeds_gpu_20261125/`), neither method collapsed in 9 runs: ours 94.62, two-slot Compress to Remember 94.59, tied (paired +0.03 points, 95% interval −0.78 to +0.95); ours varies less (standard deviation 0.72 against 1.77).
 - **Synergy**: regret is error above the best single deletion, not MSE. Compress to Remember blends the three cards into two learned items instead of deleting one and scores below its own teacher; the cause is untested. The next baselines are the distilled-sensitivity scorer (0.0046) and full-set sensitivity (0.0077). Paired against the retrained baselines (48 families, 95% intervals, `runs/synergy_paired_20261125/`): ours has clearly lower regret than FrameMorrow on R, D and S (item_attention); against Compress to Remember it is lower on S on item_attention but not significantly (−0.0023, interval −0.0051 to +0.0006), and clearly higher on R (both readers), on D (item_attention) and on S (multihead).
-- **Motion v2**: our scorer never improved on its initial weights during training, so 0.0214 is an untrained network. The three literature baselines now run on Motion v2 (`runs/memory_gaps_20261124/README.md`): none beats attention (+3: PaFu-KV 0.0094, two-slot Compress to Remember 0.0190, FrameMorrow 0.0207). The frozen readers memorised the training episodes (attention 0.0044 on them, 0.0095 on fresh scenes from the same generator), so our scorer is now trained on fresh scenes (`environments/motion_v2/fresh.py`); on fresh dev scenes the best variant scores 0.0097 against attention's 0.0104, chosen from many checkpoints, a second fresh holdout check is pending, and validation has not been read. The online validation now replays on the frozen assets (28 of 28 methods identical on both intervals, `runs/motion_v2_frozen_replay_20261124/README.md`).
+- **Motion v2**: our scorer never improved on its initial weights during training, so 0.0214 is an untrained network. The three literature baselines now run on Motion v2 (`runs/memory_gaps_20261124/README.md`): none beats attention (+3: PaFu-KV 0.0094, two-slot Compress to Remember 0.0190, FrameMorrow 0.0207). The frozen readers memorised the training episodes (attention 0.0044 on them, 0.0095 on fresh scenes from the same generator), so our scorer was trained on fresh scenes (`environments/motion_v2/fresh.py`, `runs/motion_v2_fresh_20261125/`): the variant chosen on fresh dev (0.0097 against attention's 0.0104) does not differ from attention on a fresh holdout (0.0105 against 0.0108, 95% interval −0.0020 to +0.0014), so validation was not read. The online validation now replays on the frozen assets (28 of 28 methods identical on both intervals, `runs/motion_v2_frozen_replay_20261124/README.md`).
 - **PushT** (v5c; 96 validation episodes, three predictor seeds; `runs/pusht_cog_20261124/README.md`): error is the mean squared error over 5,120 standardized I-JEPA features at query + 12; the oracle keeps the marker frames (privileged). Our scorer keeps a marker frame in 287 of 288 episode runs (96 episodes × 3 seeds; one miss in seed 43) and matches the oracle, because one marker frame carries almost all the value: with only one marker frame in memory the error is within ±0.02 of the oracle's two; visual diversity keeps one in 44% (without distractors, on v5b, it kept 99% and tied ours at 0.498 vs 0.501); FIFO, temporal buckets and random deletion stay at no memory. Sibling identification (is the prediction closest to its own sibling's future; chance 0.33): ours 0.87, oracle 0.86, visual diversity 0.57. The literature baselines were not run on PushT.
 
 Every row of the panel (16 methods on Gate, 16 on Synergy, 14 on Motion v2), its dataset, split,
@@ -179,11 +179,18 @@ python torch/make_jobs.py --run-id <run_id> --select gate.retrain_scorer gate.re
 
 # Gate seed sweep (optional): two-slot Compress to Remember and ours, training seeds 1 to 10 on each predictor
 python torch/make_jobs.py --run-id <run_id> --select gate.assets.team_bundle gate.sweep
+# the same on a GPU with training seeds 101, 202, 303 (gate.sweep_gpu); Synergy literature baselines on
+# GPU-encoded features, paired with our students per family (synergy.literature_gpu.train, synergy.literature_gpu.paired)
+
+# Motion v2 on the frozen study assets (BM_MOTION_ROOT; on Burst, see burst/README.md): online replay,
+# literature baselines, and our scorer on fresh scenes (holdout check; validation only after a holdout gain)
+bash burst/submit.sh --run-id <run_id> --select motion_v2.online motion_v2.literature motion_v2.fresh
 
 # pool the run and rebuild the panel (locally, once Mutagen has synced runs/<run_id>/ back)
 python scripts/aggregate_results/aggregate.py --run runs/<run_id>      # per-seed and pooled tables, differences from the frozen values
 python scripts/aggregate_results/build_panel.py --run runs/<run_id>    # runs/<run_id>/aggregate/panel.html and panel_check.json
 python scripts/aggregate_results/gate_seed_sweep.py --run runs/<run_id> # the seed sweep: collapses, means, head-to-head (aggregate/seed_sweep.md)
+python scripts/aggregate_results/gate_seed_sweep.py --run runs/<run_id> --sweep sweep_gpu  # the GPU sweep (aggregate/seed_sweep_gpu.md)
 ```
 
 `runs/<run_id>/aggregate/tables.md` lists every result per seed and pooled, with a verdict against
@@ -195,7 +202,7 @@ deterministic replay, `tie_sensitive` where exactly tied candidates are broken b
 |---|---|---|
 | Gate | every bar of the panel, from the team bundle | scorer on the released predictors; the full chain from scratch |
 | Synergy | every bar of the panel, from the public releases, for both readers and R/D/S | teacher labels and every student arm on the released readers; the two readers on re-encoded features |
-| Motion v2 | the published tables, recomputed from the tracked loss arrays; with the frozen assets, `scripts/evaluate/motion_v2_online.py` re-scores every policy online (one GPU) | the 54 students from tracked labels |
+| Motion v2 | the published tables, recomputed from the tracked loss arrays; with the frozen assets, `scripts/evaluate/motion_v2_online.py` re-scores every policy online (one GPU) | the 54 students from tracked labels; with the frozen assets, the literature baselines and our scorer on fresh scenes |
 | PushT | nothing to replay | the full chain: corpora, encoding and probes, predictor, retention (recorded in `runs/pusht_cog_20261124/`) |
 
 The latest run is `runs/repro_20261111/`; its tables and panel are in `runs/repro_20261111/aggregate/`,
@@ -229,10 +236,11 @@ BM_SYN=<Synergy assets> BM_SYN_STUDENTS=<released students> python -m pytest -q 
 1. **Motion v2 literature baselines.** Done on the frozen assets (`scripts/train_baselines/motion_v2.py`,
    `runs/memory_gaps_20261124/`). Retraining the readers still needs the original run scripts in
    `src/bounded_memory/environments/motion_v2/pipeline/` re-registered.
-2. **Motion v2, our method.** Labels built on the registered training episodes reflect the readers'
-   memorisation; fresh scenes remove that bias (`burst/motion_v2_fresh.sh`, then
-   `burst/motion_v2_fresh_variants.sh`). Check the dev-chosen variant on the second fresh holdout
-   (`scripts/evaluate/motion_v2_fresh_holdout.py`) before one validation look.
+2. **Motion v2, our method.** Training on fresh scenes (tasks `motion_v2.fresh.*`) removed the readers'
+   memorisation but the scorer still does not beat attention on the fresh holdout
+   (`runs/motion_v2_fresh_20261125/`). Find out why it cannot learn which frames to keep, although the best
+   pair is far better (0.0030 against 0.0108); validation stays unread (`motion_v2.validate.deletion_cost_v2`
+   refuses without a holdout gain).
 3. **PushT.** v5c runs the full ladder except the literature baselines (`runs/pusht_cog_20261124/`).
    Next: PaFu-KV, Compress to Remember and FrameMorrow on v5c; the natural variant v4 (the cue is a push
    and the block's response, read against the present) with the same predictor and scorer; then planning
