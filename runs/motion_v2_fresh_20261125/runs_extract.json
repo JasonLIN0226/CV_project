@@ -1,0 +1,389 @@
+{
+ "note": "Extract of files that stay on NYU Burst; each source file's SHA256 is given, so the numbers can be checked against it. Dev losses are mean +3/+6 position MSE; top1_informative = share of dev states with unequal costs where the scorer deletes the cheapest candidate.",
+ "first_run": {
+  "source": "/scratch/xy3257/cv_project_runs/motion_v2_fresh/scorer/deletion_cost_v2_fresh_seed0.json",
+  "source_sha256": "34a057e9cb601b3b8b56f8ee2b2ce670ef5ddd0db40289d2a2e7b4c5f5daddc6",
+  "slurm_job_id": "43438",
+  "train_states": 91636,
+  "dev_attention_policy": {
+   "+3": 0.009521244844943391,
+   "+6": 0.011254571561317017
+  },
+  "dev_best_pair_mean_of_horizons": 0.002582,
+  "seeds": {
+   "17": {
+    "selected_step": 0,
+    "last_step_dev_mean": 0.012352
+   },
+   "29": {
+    "selected_step": 0,
+    "last_step_dev_mean": 0.011501
+   },
+   "43": {
+    "selected_step": 0,
+    "last_step_dev_mean": 0.0116
+   }
+  }
+ },
+ "variants": {
+  "source_folder": "/scratch/xy3257/cv_project_runs/motion_v2_fresh/variants/",
+  "files": {
+   "min_seed17.json": "35c7280baed47d9da1f0fcaff461b72ee5fbfcc2994ce0c19ad4f08c039e5b0f",
+   "min_seed29.json": "44646171c11467eb6a7099115d87b36f03e6624b52edc74c72927f0d003c915b",
+   "min_seed43.json": "e4d6d8a53541623ad13ddb03e772ed38ddefda59384276e611912142d8f2b518",
+   "min_dagger_seed17.json": "424a0b528f63fafb4d2af064d2cb32ad5dda4f33b63b9db7404b5bcd3f7cecf7",
+   "min_dagger_seed29.json": "728d47347b1f83eb91ec910979fa803b42205486252fcf81b3abd7741e802f14",
+   "min_dagger_seed43.json": "dd72f0984ab7014aa2a6d6bae495dee03f57b0222165b1540fd8f6e25f6bcd41",
+   "soft_seed17.json": "310ba7d0c82511b851975e593d0e7b3971c4fef90cf63cda08cdba34657fa235",
+   "soft_seed29.json": "1462cd5c8aacfdb98d21ec0f1026c3e8f8e552c01dcedd9b9ae18319811a34d9",
+   "soft_seed43.json": "384afcad1a752004e9a950fa30945fb3659e7caad6c403eda91aea06d32697c6",
+   "soft_dagger_seed17.json": "3f0957ec339f1195b9a9568ba875574494ff9dad1d520f033f9827e9ce2b094c",
+   "soft_dagger_seed29.json": "6cc9a0791e9c81570f7069e9689b2d174923105a3faa6b36f85f0dc490bc68e8",
+   "soft_dagger_seed43.json": "6c70ed715ed12e593c4767abf20e387f758d0d93b045d079dd8a295402486d6a"
+  },
+  "runs": {
+   "min_seed17": {
+    "best_round": 0,
+    "best_dev_mean": 0.010388,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.012352,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.638529
+     }
+    ]
+   },
+   "min_seed29": {
+    "best_round": 0,
+    "best_dev_mean": 0.010388,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.011501,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.639747
+     }
+    ]
+   },
+   "min_seed43": {
+    "best_round": 0,
+    "best_dev_mean": 0.010388,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.0116,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.648942
+     }
+    ]
+   },
+   "min_dagger_seed17": {
+    "best_round": 3,
+    "best_dev_mean": 0.009806,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.012352,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.638529
+     },
+     {
+      "round": 1,
+      "states": 103614,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.013122,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.642738
+     },
+     {
+      "round": 2,
+      "states": 111022,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.012346,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.634762
+     },
+     {
+      "round": 3,
+      "states": 116393,
+      "selected_step": 500,
+      "selected_dev_mean": 0.009806,
+      "final_dev_mean": 0.011457,
+      "top1_informative_selected": 0.637532,
+      "top1_informative_final": 0.64152
+     }
+    ]
+   },
+   "min_dagger_seed29": {
+    "best_round": 3,
+    "best_dev_mean": 0.00921,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.011501,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.639747
+     },
+     {
+      "round": 1,
+      "states": 103508,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.012062,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.639747
+     },
+     {
+      "round": 2,
+      "states": 111045,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.012724,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.638972
+     },
+     {
+      "round": 3,
+      "states": 116442,
+      "selected_step": 250,
+      "selected_dev_mean": 0.00921,
+      "final_dev_mean": 0.012573,
+      "top1_informative_selected": 0.633544,
+      "top1_informative_final": 0.634873
+     }
+    ]
+   },
+   "min_dagger_seed43": {
+    "best_round": 2,
+    "best_dev_mean": 0.009974,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.0116,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.648942
+     },
+     {
+      "round": 1,
+      "states": 103605,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.013475,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.637753
+     },
+     {
+      "round": 2,
+      "states": 110978,
+      "selected_step": 1500,
+      "selected_dev_mean": 0.009974,
+      "final_dev_mean": 0.011997,
+      "top1_informative_selected": 0.636756,
+      "top1_informative_final": 0.641298
+     },
+     {
+      "round": 3,
+      "states": 116394,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.012561,
+      "top1_informative_selected": 0.646062,
+      "top1_informative_final": 0.64152
+     }
+    ]
+   },
+   "soft_seed17": {
+    "best_round": 0,
+    "best_dev_mean": 0.010388,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.011722,
+      "top1_informative_selected": 0.409082,
+      "top1_informative_final": 0.409763
+     }
+    ]
+   },
+   "soft_seed29": {
+    "best_round": 0,
+    "best_dev_mean": 0.010231,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 1750,
+      "selected_dev_mean": 0.010231,
+      "final_dev_mean": 0.013432,
+      "top1_informative_selected": 0.406559,
+      "top1_informative_final": 0.401514
+     }
+    ]
+   },
+   "soft_seed43": {
+    "best_round": 0,
+    "best_dev_mean": 0.010388,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.013149,
+      "top1_informative_selected": 0.409082,
+      "top1_informative_final": 0.405877
+     }
+    ]
+   },
+   "soft_dagger_seed17": {
+    "best_round": 1,
+    "best_dev_mean": 0.010203,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.011722,
+      "top1_informative_selected": 0.409082,
+      "top1_informative_final": 0.409763
+     },
+     {
+      "round": 1,
+      "states": 104245,
+      "selected_step": 500,
+      "selected_dev_mean": 0.010203,
+      "final_dev_mean": 0.012956,
+      "top1_informative_selected": 0.406218,
+      "top1_informative_final": 0.4099
+     },
+     {
+      "round": 2,
+      "states": 112464,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.012937,
+      "top1_informative_selected": 0.409082,
+      "top1_informative_final": 0.412695
+     },
+     {
+      "round": 3,
+      "states": 118578,
+      "selected_step": 750,
+      "selected_dev_mean": 0.010373,
+      "final_dev_mean": 0.013022,
+      "top1_informative_selected": 0.399195,
+      "top1_informative_final": 0.403491
+     }
+    ]
+   },
+   "soft_dagger_seed29": {
+    "best_round": 2,
+    "best_dev_mean": 0.009911,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 1750,
+      "selected_dev_mean": 0.010231,
+      "final_dev_mean": 0.013432,
+      "top1_informative_selected": 0.406559,
+      "top1_informative_final": 0.401514
+     },
+     {
+      "round": 1,
+      "states": 104136,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.012243,
+      "top1_informative_selected": 0.409082,
+      "top1_informative_final": 0.405809
+     },
+     {
+      "round": 2,
+      "states": 112506,
+      "selected_step": 250,
+      "selected_dev_mean": 0.009911,
+      "final_dev_mean": 0.012649,
+      "top1_informative_selected": 0.404718,
+      "top1_informative_final": 0.411877
+     },
+     {
+      "round": 3,
+      "states": 118595,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.012522,
+      "top1_informative_selected": 0.409082,
+      "top1_informative_final": 0.4069
+     }
+    ]
+   },
+   "soft_dagger_seed43": {
+    "best_round": 3,
+    "best_dev_mean": 0.00951,
+    "rounds": [
+     {
+      "round": 0,
+      "states": 91636,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.013149,
+      "top1_informative_selected": 0.409082,
+      "top1_informative_final": 0.405877
+     },
+     {
+      "round": 1,
+      "states": 104238,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.012184,
+      "top1_informative_selected": 0.409082,
+      "top1_informative_final": 0.404445
+     },
+     {
+      "round": 2,
+      "states": 112315,
+      "selected_step": 0,
+      "selected_dev_mean": 0.010388,
+      "final_dev_mean": 0.012195,
+      "top1_informative_selected": 0.409082,
+      "top1_informative_final": 0.402945
+     },
+     {
+      "round": 3,
+      "states": 118288,
+      "selected_step": 2000,
+      "selected_dev_mean": 0.00951,
+      "final_dev_mean": 0.012068,
+      "top1_informative_selected": 0.411332,
+      "top1_informative_final": 0.415627
+     }
+    ]
+   }
+  }
+ }
+}

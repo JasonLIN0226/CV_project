@@ -1,0 +1,378 @@
+{
+ "note": "Extract of files that stay on NYU Burst; source_sha256 is the SHA256 of the whole source file, so the numbers can be checked against it.",
+ "motion_v2_literature": {
+  "source": "/scratch/xy3257/mv2_runs/lit1/literature_summary.json",
+  "source_sha256": "aa1507b2973c14f493e27fd577fc1709040eb442b93c60b1c72e7642ac75e384",
+  "intervals": {
+   "ordinary": {
+    "literature/fm_ijepa_online": {
+     "memory": "bounded",
+     "+3": 0.024301,
+     "+6": 0.027911,
+     "+3_per_seed": [
+      0.023894,
+      0.024193,
+      0.024816
+     ]
+    },
+    "literature/fm_ijepa_published": {
+     "memory": "full history",
+     "+3": 0.020716,
+     "+6": 0.024554,
+     "+3_per_seed": [
+      0.020937,
+      0.01849,
+      0.022721
+     ]
+    },
+    "literature/fm_ijepa_teacher_top2": {
+     "memory": "privileged (reads the future)",
+     "+3": 0.01745,
+     "+6": 0.021113,
+     "+3_per_seed": [
+      0.01745,
+      0.01745,
+      0.01745
+     ]
+    },
+    "literature/pacc_full": {
+     "memory": "full history",
+     "+3": 0.020215,
+     "+6": 0.024244,
+     "+3_per_seed": [
+      0.021618,
+      0.019017,
+      0.02001
+     ]
+    },
+    "literature/pacc_recurrent": {
+     "memory": "bounded",
+     "+3": 0.01903,
+     "+6": 0.022648,
+     "+3_per_seed": [
+      0.015015,
+      0.018601,
+      0.023472
+     ]
+    },
+    "literature/pafu_kv": {
+     "memory": "bounded",
+     "+3": 0.009374,
+     "+6": 0.011395,
+     "+3_per_seed": [
+      0.008714,
+      0.009301,
+      0.010107
+     ]
+    },
+    "literature/pafu_teacher_top2": {
+     "memory": "privileged (reads the future)",
+     "+3": 0.009318,
+     "+6": 0.01144,
+     "+3_per_seed": [
+      0.009039,
+      0.009279,
+      0.009637
+     ]
+    },
+    "baseline/attention": {
+     "memory": "bounded",
+     "+3": 0.009147,
+     "+6": 0.011148
+    },
+    "baseline/fifo": {
+     "memory": "bounded",
+     "+3": 0.023793,
+     "+6": 0.027355
+    },
+    "reference/b": {
+     "memory": "privileged (the two cue frames)",
+     "+3": 0.006052,
+     "+6": 0.00686
+    },
+    "reference/last_visible": {
+     "memory": "privileged (reads visibility)",
+     "+3": 0.01112,
+     "+6": 0.01336
+    },
+    "reference/posthoc_best": {
+     "memory": "privileged (best pair in hindsight)",
+     "+3": 0.002535,
+     "+6": 0.003139
+    },
+    "student/set_future_attention": {
+     "memory": "bounded",
+     "+3": 0.009756,
+     "+6": 0.011751
+    },
+    "student/set_use_time_position": {
+     "memory": "bounded",
+     "+3": 0.021401,
+     "+6": 0.025305
+    }
+   },
+   "long_gap": {
+    "literature/fm_ijepa_online": {
+     "memory": "bounded",
+     "+3": 0.042066,
+     "+6": 0.044271,
+     "+3_per_seed": [
+      0.04206,
+      0.041883,
+      0.042254
+     ]
+    },
+    "literature/fm_ijepa_published": {
+     "memory": "full history",
+     "+3": 0.041604,
+     "+6": 0.04479,
+     "+3_per_seed": [
+      0.042771,
+      0.039755,
+      0.042287
+     ]
+    },
+    "literature/fm_ijepa_teacher_top2": {
+     "memory": "privileged (reads the future)",
+     "+3": 0.040327,
+     "+6": 0.043952,
+     "+3_per_seed": [
+      0.040327,
+      0.040327,
+      0.040327
+     ]
+    },
+    "literature/pacc_full": {
+     "memory": "full history",
+     "+3": 0.050327,
+     "+6": 0.0559,
+     "+3_per_seed": [
+      0.048926,
+      0.051892,
+      0.050163
+     ]
+    },
+    "literature/pacc_recurrent": {
+     "memory": "bounded",
+     "+3": 0.042064,
+     "+6": 0.044983,
+     "+3_per_seed": [
+      0.04275,
+      0.041565,
+      0.041878
+     ]
+    },
+    "literature/pafu_kv": {
+     "memory": "bounded",
+     "+3": 0.027428,
+     "+6": 0.032381,
+     "+3_per_seed": [
+      0.025978,
+      0.027524,
+      0.028783
+     ]
+    },
+    "literature/pafu_teacher_top2": {
+     "memory": "privileged (reads the future)",
+     "+3": 0.026249,
+     "+6": 0.03098,
+     "+3_per_seed": [
+      0.026251,
+      0.025466,
+      0.027029
+     ]
+    },
+    "baseline/attention": {
+     "memory": "bounded",
+     "+3": 0.025911,
+     "+6": 0.03022
+    },
+    "baseline/fifo": {
+     "memory": "bounded",
+     "+3": 0.042148,
+     "+6": 0.044306
+    },
+    "reference/b": {
+     "memory": "privileged (the two cue frames)",
+     "+3": 0.017639,
+     "+6": 0.021815
+    },
+    "reference/last_visible": {
+     "memory": "privileged (reads visibility)",
+     "+3": 0.029212,
+     "+6": 0.033822
+    },
+    "reference/posthoc_best": {
+     "memory": "privileged (best pair in hindsight)",
+     "+3": 0.004508,
+     "+6": 0.005062
+    },
+    "student/set_future_attention": {
+     "memory": "bounded",
+     "+3": 0.025384,
+     "+6": 0.030171
+    },
+    "student/set_use_time_position": {
+     "memory": "bounded",
+     "+3": 0.04154,
+     "+6": 0.044138
+    }
+   }
+  }
+ },
+ "motion_v2_deletion_cost_v2_registered": {
+  "source": "/scratch/xy3257/mv2_runs/dcv2/deletion_cost_v2_seed0.json",
+  "source_sha256": "401bfbb34501719b9d5e9a899f9f1a3454ae3da5c4f03a6969d6ef53ea8e41ef",
+  "slurm_job_id": "42464",
+  "source_code_sha256": "ccc37efff58dcf01f36cfa592b34342368986314be3d51ab1dbb4d117255c217",
+  "train_states": 81982,
+  "dev_pairs": 54,
+  "dev_attention_policy": {
+   "+3": 0.004369212362864453,
+   "+6": 0.005130325712211912
+  },
+  "seeds": {
+   "17": {
+    "selected_step": 0,
+    "best_trained": {
+     "step": 2000,
+     "+3": 0.005453
+    },
+    "last_step": {
+     "+3": 0.00726,
+     "+6": 0.008517
+    }
+   },
+   "29": {
+    "selected_step": 0,
+    "best_trained": {
+     "step": 1250,
+     "+3": 0.005687
+    },
+    "last_step": {
+     "+3": 0.009196,
+     "+6": 0.010326
+    }
+   },
+   "43": {
+    "selected_step": 0,
+    "best_trained": {
+     "step": 1500,
+     "+3": 0.005316
+    },
+    "last_step": {
+     "+3": 0.009457,
+     "+6": 0.011234
+    }
+   }
+  }
+ },
+ "motion_v2_batch_equivalence": {
+  "source_folder": "/scratch/xy3257/mv2_runs/lit1/",
+  "field": "info.batch_equivalence_max_abs",
+  "units": {
+   "pafu_kv_seed17.json": {
+    "max_abs": 0.0,
+    "source_sha256": "653562cab614ff88c78c3276fb344bba709dc3bbaa59cc201d154987a0e51ff7"
+   },
+   "pafu_kv_seed29.json": {
+    "max_abs": 0.0,
+    "source_sha256": "b293c14d92331451b5aea0514d7ba08d2c5ea3778def46fe6c877f35a0eaebd8"
+   },
+   "pafu_kv_seed43.json": {
+    "max_abs": 0.0,
+    "source_sha256": "1ef9969d34e577a344115edc25920d5f50ca250be53ba7ac5eef581be8a71ad1"
+   },
+   "pacc_full_seed17.json": {
+    "max_abs": 0.0,
+    "source_sha256": "38a76dbbdf6682d7c5f3c9b290b4db7209244066472a1f1d5fb32a8fd3870808"
+   },
+   "pacc_full_seed29.json": {
+    "max_abs": 0.0,
+    "source_sha256": "d800dbe767ae7f085ce49a9a8247a9820a32d2e779a4d45cd2d6d1ee11a81803"
+   },
+   "pacc_full_seed43.json": {
+    "max_abs": 0.0,
+    "source_sha256": "ddedcb2094956b06d8f1e44ee19276bca7d04dcd0a466d0c4f7ff7dacdc3a416"
+   },
+   "pacc_recurrent_seed17.json": {
+    "max_abs": 0.0,
+    "source_sha256": "755b7a30a8ce6b30b5e62c0ef6e3115d99294e8898448829cad227aee763548e"
+   },
+   "pacc_recurrent_seed29.json": {
+    "max_abs": 0.0,
+    "source_sha256": "675bbe6c4ba5c24bca5d8efaf3c52a29038daf315784903aa54d2a9c7679f499"
+   },
+   "pacc_recurrent_seed43.json": {
+    "max_abs": 0.0,
+    "source_sha256": "88e41cdc13f08b0ca0bac91813c6243380bb68e6e86e0d9b012696f98c83f39e"
+   },
+   "fm_ijepa_published_seed17.json": {
+    "max_abs": 0.0,
+    "source_sha256": "278ee1d73b4946420d037cba695fee645ab0febe09e57679ed448c60fd0d9c69"
+   },
+   "fm_ijepa_published_seed29.json": {
+    "max_abs": 0.0,
+    "source_sha256": "f0996b596b150a2133cf66a91a1d7ebafef421926283cba6b49d0148eea142fa"
+   },
+   "fm_ijepa_published_seed43.json": {
+    "max_abs": 0.0,
+    "source_sha256": "bdb1c12d92ab1855b09aa87f00827a596fed54778965564a3354a6ad7d59ff84"
+   },
+   "fm_ijepa_online_seed17.json": {
+    "max_abs": 0.0,
+    "source_sha256": "9e9eb8102dabb45ea0c87d579cfc33ac760652873068522a6fc26b12bbefbcba"
+   },
+   "fm_ijepa_online_seed29.json": {
+    "max_abs": 0.0,
+    "source_sha256": "67577b598a69fff9dc215e850fc037b3c0ed3f7d0f3fc76a3ad0ecc0d12f6a01"
+   },
+   "fm_ijepa_online_seed43.json": {
+    "max_abs": 0.0,
+    "source_sha256": "942757e07a1e88de0e62f3db947db9458c9b07b0721d6a285f08fda46c422ccc"
+   }
+  }
+ },
+ "synergy_stage_a_against_released": {
+  "source_folder": "/scratch/xy3257/cv_project_runs/reproduction/synergy_gap/synergy/replay/",
+  "field": "info.against_released",
+  "item_attention": {
+   "source": "stage_a_item_attention_confirmation_seed17.json",
+   "source_sha256": "17f9f77a18a69bc0868d9a33657ee47fc231059643433a127f51354216bae885",
+   "max_abs_diff": {
+    "medoid_sum": 3.316815994303113e-06,
+    "sensitivity": 1.37512386164107e-06,
+    "eval_cost": 8.882710499924507e-07,
+    "eval_losses": 1.0503385192706105e-06,
+    "teacher_eval": 2.0265579223632812e-06,
+    "attention": 2.8014183044433594e-06
+   },
+   "same_argmin": {
+    "medoid_sum": 1,
+    "sensitivity": 1,
+    "eval_cost": 1,
+    "teacher_eval": 1,
+    "attention": 1
+   }
+  },
+  "multihead": {
+   "source": "stage_a_multihead_confirmation_seed17.json",
+   "source_sha256": "60b182be70b53c2d7e7bcf882244f27e27fd661cf4d27603293dd68c5b0a56d7",
+   "max_abs_diff": {
+    "medoid_sum": 5.747091245122959e-07,
+    "sensitivity": 2.866790543565312e-07,
+    "eval_cost": 2.187896632754871e-07,
+    "eval_losses": 4.683723874854273e-07,
+    "teacher_eval": 2.980232238769531e-07,
+    "attention": 3.2782554626464844e-07
+   },
+   "same_argmin": {
+    "medoid_sum": 1,
+    "sensitivity": 1,
+    "eval_cost": 1,
+    "teacher_eval": 1,
+    "attention": 1
+   }
+  }
+ }
+}

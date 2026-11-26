@@ -112,7 +112,8 @@ environments:
     missing_assets: [frozen Motion v2 readers (seeds 17, 29, 43), I-JEPA feature caches, the dataset archive]
     from_scratch: "not attempted. The original run scripts (src/bounded_memory/environments/motion_v2/pipeline: run_step1.py, run_step2.py, run_step34_recovery1.py) are kept byte-identical but verify checksums registered under their old paths and require one A100; they need re-registration before they run"
     code: src/bounded_memory/environments/motion_v2/ (environment, generator, reader, metrics, students; tests/motion_v2) and pipeline/ (original run scripts, not runnable yet)
-    configs: {replay: configs/motion_v2/evidence.yaml}
+    configs: {replay: configs/motion_v2/evidence.yaml, frozen: configs/motion_v2/frozen.yaml, fresh: configs/motion_v2/fresh.yaml}
+    frozen_assets: "the study's readers, features and datasets, checked against recorded SHA256 (environments/motion_v2/frozen.py); under BM_MOTION_ROOT: the study owner's Burst /scratch, or the motion-v2-frozen-assets-v1 tar"
   pusht:
     summary: hidden centre-of-gravity PushT; a push after the query turns the block according to a class seen only early in the episode
     versions:
@@ -327,6 +328,52 @@ tasks:
     args: --threads 8
     needs: [gate.sweep.train_scorer]
     resources: {cpus: 8, mem: 8G, time: "00:30:00", throttle: 1}
+
+  # ---------------------------------------------------------------- Gate, the seed sweep on a GPU
+  # The same sweep on CUDA with training seeds of its own (101, 202, 303): two-slot Compress to Remember
+  # collapsed on both Torch GPU runs tried. Pooled by gate_seed_sweep.py --sweep sweep_gpu. Not yet run in this form:
+  # runs/gate_init_seeds_gpu_20261125/ was recorded on a Burst A100 with an earlier driver written to run the same
+  # fits (no collapse in 9 runs of either method); its setup differed (config file, TF32 off; see the record).
+  gate.sweep_gpu.pacc_recurrent:
+    script: scripts/train_baselines/gate.py
+    config: configs/gate/seed_sweep_gpu.yaml
+    out: gate/sweep_gpu
+    seeds: [17, 29, 43]
+    device: cuda
+    variants: {method: [pacc_recurrent], train-seed: [101, 202, 303]}
+    args: --threads 4 --checkpoints ${BM_RUN}/gate/sweep_gpu/checkpoints
+    needs: [gate.assets.team_bundle]
+    resources: {cpus: 4, mem: 16G, time: "02:00:00", gpu: 1}
+    resubmit: 1
+  gate.sweep_gpu.teacher_labels:
+    script: scripts/generate_teacher_labels/gate.py
+    config: configs/gate/seed_sweep_gpu.yaml
+    out: gate/sweep_gpu
+    seeds: [17, 29, 43]
+    device: cuda
+    args: --threads 4 --out ${BM_RUN}/gate/sweep_gpu/labels
+    needs: [gate.assets.team_bundle]
+    resources: {cpus: 4, mem: 16G, time: "01:00:00", gpu: 1}
+  gate.sweep_gpu.train_scorer:
+    script: scripts/train_scorer/gate.py
+    config: configs/gate/seed_sweep_gpu.yaml
+    out: gate/sweep_gpu
+    seeds: [17, 29, 43]
+    device: cuda
+    variants: {train-seed: [101, 202, 303]}
+    args: --threads 4 --labels ${BM_RUN}/gate/sweep_gpu/labels --checkpoints ${BM_RUN}/gate/sweep_gpu/students
+    needs: [gate.sweep_gpu.teacher_labels]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00", gpu: 1}
+  gate.sweep_gpu.deletion_cost:
+    script: scripts/evaluate/gate.py
+    config: configs/gate/seed_sweep_gpu.yaml
+    out: gate/sweep_gpu
+    seeds: [17, 29, 43]
+    device: cuda
+    variants: {train-seed: [101, 202, 303]}
+    args: --threads 4
+    needs: [gate.sweep_gpu.train_scorer]
+    resources: {cpus: 4, mem: 16G, time: "00:30:00", gpu: 1}
 
   # ---------------------------------------------------------------- Gate, everything retrained from scratch
   gate.retrain.assets:
@@ -651,6 +698,30 @@ tasks:
     needs: [synergy.retrain_gpu.students]
     resources: {cpus: 4, mem: 8G, time: "00:20:00"}
 
+  # ---------------------------------------------------------------- Synergy, literature baselines on GPU-encoded features
+  # Compress to Remember and FrameMorrow retrained with CUDA on the TRAIN features re-encoded on a GPU (the device
+  # class of the released features), then paired per family with our released students (synergy.replay.deletion_cost)
+  # on the locked confirmation set. Recorded: runs/synergy_paired_20261125/ (FrameMorrow on multihead was not run there).
+  synergy.literature_gpu.train:
+    script: scripts/train_baselines/synergy.py
+    config: configs/synergy/gpu_features.yaml
+    out: synergy/literature_gpu
+    seeds: [17, 29, 43]
+    device: cuda
+    variants: {reader: [item_attention, multihead], method: [pacc, framemorrow]}
+    args: --stage-a ${BM_RUN}/synergy/stageA
+    needs: [synergy.replay.stage_a, synergy.assets.trainvaldev_gpu]
+    resources: {cpus: 8, mem: 24G, time: "02:00:00", gpu: 1}
+  synergy.literature_gpu.paired:
+    script: scripts/aggregate_results/synergy_paired.py
+    config: configs/synergy/release.yaml
+    out: synergy/paired
+    seeds: [0]
+    variants: {reader: [item_attention, multihead], method: [pacc, framemorrow]}
+    args: --stage-a ${BM_RUN}/synergy/stageA --ours ${BM_OUT}/synergy/replay --baselines ${BM_OUT}/synergy/literature_gpu
+    needs: [synergy.replay.deletion_cost, synergy.literature_gpu.train]
+    resources: {cpus: 2, mem: 8G, time: "00:20:00"}
+
   # ---------------------------------------------------------------- Synergy, readers retrained
   synergy.retrain_readers.train:
     script: scripts/train_predictor/synergy.py
@@ -738,6 +809,111 @@ tasks:
     seeds: [0]
     args: --students ${BM_RUN}/motion_v2/students_retrained
     resources: {cpus: 4, mem: 8G, time: "01:00:00"}
+  # ---------------------------------------------------------------- Motion v2 on the frozen study assets
+  # Need the original deployment folders under BM_MOTION_ROOT (configs/motion_v2/frozen.yaml): the study owner's
+  # Burst /scratch, or the motion-v2-frozen-assets-v1 tar. Every input is checked against its recorded SHA256.
+  motion_v2.online.replay:
+    # the published online validation, run again with the unchanged step-3/4 code (runs/motion_v2_frozen_replay_20261124/);
+    # one unit per interval; the traces (40 to 80 MB per interval) stay on scratch
+    script: scripts/evaluate/motion_v2_online.py
+    config: configs/motion_v2/frozen.yaml
+    out: motion_v2/online
+    seeds: [0]
+    device: cuda
+    variants: {intervals: [ordinary, long_gap]}
+    args: --replay-dir ${BM_RUN}/motion_v2/online
+    resources: {cpus: 4, mem: 32G, time: "02:00:00", gpu: 1}
+  motion_v2.literature.train:
+    # PaFu-KV, Compress to Remember and FrameMorrow, each trained against one reader (runs/memory_gaps_20261124/)
+    script: scripts/train_baselines/motion_v2.py
+    config: configs/motion_v2/frozen.yaml
+    out: motion_v2/literature
+    seeds: [17, 29, 43]
+    device: cuda
+    variants: {method: [pafu_kv, pacc_full, pacc_recurrent, fm_ijepa_published, fm_ijepa_online]}
+    args: --checkpoints ${BM_RUN}/motion_v2/literature/checkpoints
+    resources: {cpus: 4, mem: 32G, time: "02:00:00", gpu: 1}
+  motion_v2.literature.aggregate:
+    script: scripts/aggregate_results/motion_v2_literature.py
+    config: configs/motion_v2/frozen.yaml
+    seeds: null
+    args: --baselines ${BM_OUT}/motion_v2/literature --out ${BM_OUT}/motion_v2/literature/literature_summary.json
+    needs: [motion_v2.literature.train]
+    resources: {cpus: 1, mem: 2G, time: "00:10:00"}
+  # Our scorer (v2, methods/deletion_cost/motion_v2.py) on fresh scenes the frozen readers never saw (configs/motion_v2/fresh.yaml):
+  # scene pairs 0-511 train it, 512-607 choose checkpoints, rounds and the variant, 608-703 check the choice. Validation
+  # is read only by motion_v2.validate.deletion_cost_v2, once, after a holdout gain, on the checkpoints the holdout
+  # scored; prefix selections such as `motion_v2` include it, so skip it (--skip motion_v2.validate) unless that holds.
+  # Recorded: runs/motion_v2_fresh_20261125/ (holdout: no gain; validation not read).
+  motion_v2.fresh.scenes:
+    script: scripts/prepare_data/motion_v2_fresh.py
+    config: configs/motion_v2/fresh.yaml
+    seeds: null
+    args: --device cuda
+    resources: {cpus: 8, mem: 32G, time: "01:00:00", gpu: 1}     # generated scenes and features are skipped on a rerun
+  motion_v2.fresh.tables:
+    script: scripts/generate_teacher_labels/motion_v2.py
+    config: configs/motion_v2/fresh.yaml
+    out: motion_v2/tables
+    seeds: [0]
+    device: cuda
+    args: --episodes fresh
+    needs: [motion_v2.fresh.scenes]
+    resources: {cpus: 4, mem: 32G, time: "01:00:00", gpu: 1}
+  motion_v2.fresh.scorer:
+    script: scripts/train_scorer/motion_v2_deletion_cost_v2.py
+    config: configs/motion_v2/fresh.yaml
+    out: motion_v2/fresh
+    seeds: [17, 29, 43]
+    device: cuda
+    variants: {variant: [min, min_dagger, soft, soft_dagger]}
+    args: --checkpoints ${BM_RUN}/motion_v2/fresh/scorers
+    needs: [motion_v2.fresh.tables]
+    resources: {cpus: 4, mem: 32G, time: "01:00:00", gpu: 1}
+  motion_v2.fresh.choose:
+    script: scripts/aggregate_results/motion_v2_scorer_variants.py
+    seeds: null
+    args: --runs ${BM_OUT}/motion_v2/fresh --out ${BM_OUT}/motion_v2/fresh/variants.json
+    needs: [motion_v2.fresh.scorer]
+    resources: {cpus: 1, mem: 2G, time: "00:10:00"}
+  motion_v2.fresh.holdout:
+    script: scripts/evaluate/motion_v2_deletion_cost_v2.py
+    config: configs/motion_v2/fresh.yaml
+    out: motion_v2/fresh
+    seeds: [0]
+    device: cuda
+    args: --split holdout --choice ${BM_OUT}/motion_v2/fresh/variants.json --checkpoints ${BM_RUN}/motion_v2/fresh/scorers
+    needs: [motion_v2.fresh.choose]
+    resources: {cpus: 4, mem: 32G, time: "00:30:00", gpu: 1}
+  motion_v2.registered.tables:
+    script: scripts/generate_teacher_labels/motion_v2.py
+    config: configs/motion_v2/fresh.yaml
+    out: motion_v2/tables
+    seeds: [0]
+    device: cuda
+    args: --episodes registered
+    resources: {cpus: 4, mem: 32G, time: "01:00:00", gpu: 1}
+  motion_v2.registered.scorer:
+    # the same scorer on the readers' own training episodes, which they memorised (the first, negative run)
+    script: scripts/train_scorer/motion_v2_deletion_cost_v2.py
+    config: configs/motion_v2/fresh.yaml
+    out: motion_v2/registered
+    seeds: [17, 29, 43]
+    device: cuda
+    variants: {variant: [min]}
+    args: --episodes registered --checkpoints ${BM_RUN}/motion_v2/registered/scorers
+    needs: [motion_v2.registered.tables]
+    resources: {cpus: 4, mem: 32G, time: "01:00:00", gpu: 1}
+  motion_v2.validate.deletion_cost_v2:
+    # the single validation look; the script refuses unless the chosen variant's holdout interval lies below attention
+    script: scripts/evaluate/motion_v2_deletion_cost_v2.py
+    config: configs/motion_v2/fresh.yaml
+    out: motion_v2/fresh
+    seeds: [0]
+    device: cuda
+    args: --split validation --choice ${BM_OUT}/motion_v2/fresh/variants.json --checkpoints ${BM_RUN}/motion_v2/fresh/scorers
+    needs: [motion_v2.fresh.holdout]
+    resources: {cpus: 4, mem: 32G, time: "00:30:00", gpu: 1}
   # ---------------------------------------------------------------- PushT: data, encoding, predictor, retention
   # The marker testbeds (v5b, v5c; v5c is the main one). Corpora, features and checkpoints under ${BM_SCRATCH}/pusht.
   # Recorded run: runs/pusht_cog_20261124/ (Torch, jobs listed there; seeds 17/29/43).
@@ -823,7 +999,7 @@ results:
        note: as published it reads the whole eligible history at the query}
     - {id: pacc_recurrent, panel_key: c2r_slots, group: literature, memory: bounded, method: methods/pacc (variant recurrent),
        replay: {task: gate.replay.pacc, variant: pacc_recurrent, status: retrainable, tolerance: unstable},
-       note: "not in the paper; training fails on one of three seeds on CPU and on both seeds tried on GPU, so per-seed values can flip between runs"}
+       note: "not in the paper; training fails on one of three seeds on CPU (5 of 30 in gate.sweep) and on both seeds tried on Torch GPU, but in none of 9 Burst GPU runs (runs/gate_init_seeds_gpu_20261125/, recorded with the driver that gate.sweep_gpu replaces), so per-seed values can flip between runs"}
     - {id: fm_dinov2_published, panel_key: fm, group: literature, memory: full_history, method: methods/framemorrow/gate.py select_published,
        replay: {task: gate.replay.framemorrow, variant: fm_dinov2_published, status: retrainable, tolerance: per_seed}}
     - {id: fm_dinov2_teacher_top2, panel_key: null, group: literature_teacher, memory: privileged, method: methods/framemorrow/gate.py select_teacher,
@@ -892,27 +1068,41 @@ results:
        replay: {task: synergy.replay.literature, variant: framemorrow, status: retrainable, tolerance: per_seed}}
     - {id: fm_teacher_top2, panel_key: null, group: literature_teacher, memory: privileged, method: methods/framemorrow/synergy.py framemorrow_teacher,
        replay: {task: synergy.replay.literature, variant: framemorrow, status: replayable, tolerance: exact}}
+    - {id: paired_with_literature, panel_key: null, group: comparison, metric: regret, source: runs/synergy_paired_20261125/,
+       replay: {status: not_run}, retrain: {task: synergy.literature_gpu.paired, status: retrainable, tolerance: per_seed,
+                 note: "baselines retrained with CUDA on GPU-encoded TRAIN features (synergy.literature_gpu.train)"},
+       note: "our released students against each baseline per family on the locked confirmation set, 95% intervals over 48 families: clearly lower regret than FrameMorrow on R, D and S (item_attention); against Compress to Remember lower on S on item_attention but not significantly, clearly higher on R (both readers), D (item_attention) and S (multihead)"}
     - {id: readers, panel_key: null, group: predictor, memory: null, method: predictors/readers.py,
        replay: {status: replayable, note: released checkpoints loaded by pinned SHA256},
        retrain: {tasks: [synergy.retrain_readers.train, synergy.retrain_readers.stage_a, synergy.retrain_readers.references, synergy.retrain_readers.rules],
                  status: retrainable, tolerance: per_seed,
                  note: "environments/synergy/train_readers.py on features re-encoded by environments/synergy/dataset.py (the original study only accepted the team's unpublished cache); the retrained readers are compared on the confirmation cost table and the reference policies, students are not retrained on them"}}
   motion_v2:
-    # Every number is recomputed from tracked loss arrays (status replayable); nothing can be rerun on the environment.
+    # The published numbers are recomputed from tracked loss arrays (motion_v2.replay.evidence). With the frozen study
+    # assets (BM_MOTION_ROOT), the online validation runs again (motion_v2.online.replay) and the literature baselines
+    # and our scorer on fresh scenes are trained (motion_v2.literature.*, motion_v2.fresh.*). Position MSE at +3
+    # unless a mean of +3 and +6 is stated.
     - {id: reference_arms, panel_keys: {a: floor, b: oracle}, group: reference, metric: position_mse,
        replay: {task: motion_v2.replay.evidence, status: replayable, tolerance: exact, source: step-2 reader qualification (v2.3.1)},
        retrain: {status: extracted_only, note: "reader training not attempted; see environments.motion_v2.from_scratch"}}
     - {id: online_validation, group: all methods, metric: position_mse,
        covers: "7 project baselines, 18 student arms (2 architectures x 9 labels), 3 references; ordinary and long-gap intervals; horizons +3 and +6",
-       replay: {task: motion_v2.replay.evidence, status: replayable, tolerance: exact, source: step 3/4 online validation (17925)},
+       replay: {task: motion_v2.replay.evidence, status: replayable, tolerance: exact, source: step 3/4 online validation (17925),
+                note: "with the frozen assets, motion_v2.online.replay runs it again with the unchanged code: 28 of 28 methods identical on both intervals (runs/motion_v2_frozen_replay_20261124/)"},
        retrain: {task: motion_v2.retrain.students, status: assets_missing,
                  note: "the 54 students are refitted from the tracked labels (motion_v2.retrain.students), but scoring them online needs the frozen readers and features"}}
     - {id: student_selection, group: negative_result,
        finding: "16 of 18 student arms, including every deletion-cost and shuffled-label arm, kept their initial weights: validation cross-entropy never improved on step 0; only the two future-attention arms trained",
        replay: {task: motion_v2.replay.evidence, status: replayable, tolerance: exact}, retrain: {task: motion_v2.retrain.students, status: retrainable, tolerance: per_seed,
                  note: "refitted from the tracked teacher labels; compared with the recorded training histories"}}
-    - {id: literature_baselines, panel_keys: [pafu, c2r, fm], group: literature, replay: {status: assets_missing}, retrain: {status: not_run},
-       note: "PaFu-KV, Compress to Remember and FrameMorrow were never run on Motion v2"}
+    - {id: literature_baselines, panel_keys: [pafu, c2r, fm], group: literature, source: runs/memory_gaps_20261124/,
+       replay: {status: not_run}, retrain: {task: motion_v2.literature.train, status: assets_missing, tolerance: per_seed,
+                 note: "needs the frozen study assets (BM_MOTION_ROOT), available only where the study folders are"},
+       note: "on the frozen readers none beats the attention policy (+3 position MSE, ordinary: PaFu-KV 0.0094, two-slot Compress to Remember 0.0190, FrameMorrow 0.0207; attention 0.0091)"}
+    - {id: deletion_cost_v2, group: ours, source: "runs/memory_gaps_20261124/, runs/motion_v2_fresh_20261125/",
+       replay: {status: not_run}, retrain: {task: motion_v2.fresh.scorer, status: assets_missing, tolerance: per_seed,
+                 note: "needs the frozen study assets (BM_MOTION_ROOT), available only where the study folders are; motion_v2.registered.scorer is the run on the readers' own training episodes"},
+       note: "development scorer; on the registered training episodes every trained checkpoint was worse than step 0 (the attention policy) on dev. The readers memorised those episodes (attention +3: 0.0044 there, 0.0095 on fresh scenes), so it was trained on fresh scenes (runs/motion_v2_fresh_20261125/): the variant chosen on fresh dev does not differ from attention on the fresh holdout (mean of +3 and +6: 0.0105 against 0.0108, 95% interval -0.0020 to +0.0014); validation not read"}
   pusht:
     - {id: v5_marker_corpus, group: data, replay: {status: not_run}, retrain: {task: pusht.prepare_data, variant: v5, status: retrainable,
        note: "needs the PushT simulator packages (gym-pusht, pymunk); not rerun in this reproduction"}}

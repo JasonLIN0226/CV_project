@@ -1,0 +1,19 @@
+# Gate seed sweep on a GPU: the same as seed_sweep.yaml (two-slot Compress to Remember and our scorer,
+# each trained with its own training seeds on the team's three frozen predictors), run on CUDA with training
+# seeds of its own (manifest tasks gate.sweep_gpu.*), to test whether GPU runs collapse.
+environment: gate
+path: sweep_gpu
+assets:
+  root: ${BM_SCRATCH}/gate_team/root
+  predictor_sha256: team
+  students: ${BM_RUN}/gate/sweep_gpu/students
+protocol:
+  recent: 4
+  budget: 2
+  horizons: [3, 6]
+  seeds: [17, 29, 43]
+  split: validation
+  train_episodes: 1024
+  validation_episodes: 192
+baselines:
+  pacc: {steps: 3000}

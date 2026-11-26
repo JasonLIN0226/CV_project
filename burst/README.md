@@ -58,6 +58,39 @@ tasks in its terminal instead (same arguments):
 nohup bash burst/run_here.sh --run-id burst_a100 --select ... > run_here.log 2>&1 &
 ```
 
+### Reclaimed nodes: standby copies
+
+Burst reclaims nodes, sometimes within half an hour, and a reclaimed job ends `CANCELLED` without being
+requeued. With `BM_CHAIN=N`, `submit.sh` also queues N standby copies of the job, all under a name of this
+submission (`bm_burst_<run id>_<time>_<pid>`). Each starts only if the one before it did not finish
+successfully (failed, timed out, was cancelled or reclaimed), picks up where it stopped (finished tasks are
+skipped), and the copy that finishes successfully cancels the standby copies still pending:
+
+```bash
+BM_CHAIN=4 bash burst/submit.sh --run-id motion_fresh --select motion_v2.fresh
+```
+
+- To stop a chained run, cancel all of its copies by name: `submit.sh` prints the command
+  (`scancel -u $USER --name=<chain name>`). Cancelling only the running copy starts the next standby.
+- A task that fails for a reason of its own is retried by each standby copy, so keep N small.
+- If sbatch refuses a standby copy, `submit.sh` cancels the copies it already submitted (queued or, rarely,
+  already running) and stops.
+- In an OOD Jupyter session the Slurm client is in `/opt/slurm/bin`; `cluster.sh` adds it to `PATH` when no
+  `sbatch` is found.
+
+### Motion v2 on the frozen study assets
+
+The `motion_v2.online`, `motion_v2.literature`, `motion_v2.fresh`, `motion_v2.registered` and
+`motion_v2.validate` tasks read the original Motion v2 deployment folders under `BM_MOTION_ROOT` and check
+every input against its recorded SHA256 (`configs/motion_v2/frozen.yaml`; our scorer's settings are in
+`configs/motion_v2/fresh.yaml`). There is no default: put the line `BM_MOTION_ROOT=<folder>` in `burst/.env`
+(on the study owner's account, `/scratch/<owner>`).
+
+`motion_v2.validate.deletion_cost_v2` reads validation once and refuses unless the scorer chosen on fresh dev
+beat attention on the fresh holdout (`motion_v2.fresh.holdout`), on the same checkpoints. Any prefix that
+matches it selects it (`--select motion_v2` does), so add `--skip motion_v2.validate` unless the holdout showed a
+gain; a refusal counts as a failed task and would start a standby copy of a chained run.
+
 ### Running the full reproduction in a two-GPU OOD session
 
 Request two A100s, 24 CPUs and 128 GB of host RAM. From the checkout in that session, run:
@@ -86,7 +119,7 @@ explicitly in the environment or `burst/.env` override these resource defaults.
 |---|---|
 | Is it queued or running | `squeue -u $USER` |
 | State of every task, rewritten whenever one starts or ends | `runs/burst_a100/pack_status.txt` |
-| Job log | `/scratch/$USER/cv_project_runs/logs/bm_burst_<job id>.log` |
+| Job log | `/scratch/$USER/cv_project_runs/logs/bm_burst_<job id>.log`; with `BM_CHAIN`, `bm_burst_<run id>_<time>_<pid>_<job id>.log`, one per copy |
 | Log of one task | `/scratch/$USER/cv_project_runs/reproduction/burst_a100/logs/<task>_<index>.log` |
 | Results per seed and pooled, compared with the frozen values | `runs/burst_a100/aggregate/tables.md` (written when the job ends) |
 | Result files | `runs/burst_a100/gate/retrain_gpu/`, `runs/burst_a100/synergy/retrain_gpu/`, `runs/burst_a100/synergy/retrain_readers_gpu/` |
