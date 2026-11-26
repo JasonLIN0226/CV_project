@@ -78,9 +78,35 @@ def scorer_states(episodes, seed):
             yield e, policy, state
 
 
-def scorer_selections(scorer, episodes):
+def verify_trace(trace, query, selected):
+    """Independent replay verifies exact arrival order and no resurrection."""
+    memory = []
+    if len(trace) != max(0, query - R + 1):
+        raise ValueError("incomplete online trace")
+    for clock, row in zip(range(R, query + 1), trace):
+        arrival = clock - R
+        actual = row["selected"]
+        if (
+            row["clock"] != clock
+            or row["previous"] != memory
+            or row["arrival"] != arrival
+            or len(actual) != min(B, len(memory) + 1)
+            or len(set(actual)) != len(actual)
+            or not set(actual) <= set(memory + [arrival])
+        ):
+            raise ValueError("invalid eviction trace or resurrection")
+        memory = actual
+    if memory != list(selected):
+        raise ValueError("final memory differs from trace")
+
+
+def scorer_selections(scorer, episodes, *, audit=False):
     out = []
     for e in episodes:
-        kept, _ = rollout(e.p[:e.q + 1].copy(), e.actions[:e.q].copy(), e.q, lambda s: score_update(scorer, s))
+        kept, trace = rollout(
+            e.p[: e.q + 1].copy(), e.actions[: e.q].copy(), e.q, lambda s: score_update(scorer, s)
+        )
+        if audit:
+            verify_trace(trace, e.q, kept)
         out.append(sorted(kept))
     return out

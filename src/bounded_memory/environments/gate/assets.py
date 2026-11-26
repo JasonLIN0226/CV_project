@@ -107,8 +107,25 @@ def load_episode_arrays(root, rec, kind, keys):
         return {k: f[k] for k in keys}
 
 
-def load_gate(root, device="cpu", *, predictor_sha256=None, basis_sha256=None):
-    """Load every Gate train/validation episode, the bases and the state decoder from `root`."""
+def read_gate_episode(root, c, rec, index, norm, basis):
+    """Read one checksummed episode using the supplied frozen training transforms."""
+    meta = load_episode_arrays(root, rec, "eval", ("classes", "evidence"))
+    actions = load_episode_arrays(root, rec, "obs", ("actions",))["actions"].astype(np.float32)
+    z = normalize(load_feature(root, rec, index), norm)
+    q = int(rec["query"])
+    if len(z) < q + max(HORIZONS) + 1 or len(actions) < q + max(HORIZONS):
+        raise ValueError("episode is shorter than query + horizon")
+    return Episode(
+        id=rec["id"], pair=rec["pair"], sibling=rec["sibling"], split=rec["split"], q=q,
+        cue=(int(rec["cue_start"]), int(rec["cue_end"])),
+        evidence=selected_evidence(c, rec, meta["evidence"]),
+        z=z, p=project(z, basis), actions=actions, classes=np.asarray(meta["classes"]),
+        prefix=np.concatenate([np.zeros((1, 2), np.float32), np.cumsum(actions, axis=0)]).astype(np.float32))
+
+
+def load_gate(root, device="cpu", *, predictor_sha256=None, basis_sha256=None,
+              episode_splits=("train", "validation")):
+    """Load the frozen transforms and decoder, and the requested train/validation episodes."""
     root = Path(root).resolve()
     c = read_json(root / "resolved_config.json")
     if (c["data"]["recent"], c["data"]["budget"], tuple(c["data"]["horizons"])) != (R, B, HORIZONS):
@@ -143,18 +160,8 @@ def load_gate(root, device="cpu", *, predictor_sha256=None, basis_sha256=None):
     for rec in records:
         if rec["task"] != "gate" or rec["split"] not in ("train", "validation"):
             raise ValueError("Gate train/validation records only")
-        meta = load_episode_arrays(root, rec, "eval", ("classes", "evidence"))
-        actions = load_episode_arrays(root, rec, "obs", ("actions",))["actions"].astype(np.float32)
-        z = normalize(load_feature(root, rec, index), norm)
-        q = int(rec["query"])
-        if len(z) < q + max(HORIZONS) + 1 or len(actions) < q + max(HORIZONS):
-            raise ValueError("episode is shorter than query + horizon")
-        episodes.append(Episode(
-            id=rec["id"], pair=rec["pair"], sibling=rec["sibling"], split=rec["split"], q=q,
-            cue=(int(rec["cue_start"]), int(rec["cue_end"])),
-            evidence=selected_evidence(c, rec, meta["evidence"]),
-            z=z, p=project(z, basis), actions=actions, classes=np.asarray(meta["classes"]),
-            prefix=np.concatenate([np.zeros((1, 2), np.float32), np.cumsum(actions, axis=0)]).astype(np.float32)))
+        if rec["split"] in episode_splits:
+            episodes.append(read_gate_episode(root, c, rec, index, norm, basis))
     return GateAssets(root=root, c=c, records=records, episodes=episodes, basis=basis,
                       decoder=LinearReadout.load(decoder_path), device=torch.device(device),
                       predictor_sha256=dict(predictor_sha256 or {}))
