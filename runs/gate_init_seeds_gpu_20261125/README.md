@@ -44,5 +44,10 @@ Paired over the 9 (predictor, init) units: ours minus Compress to Remember +0.03
 
 **Reading.** No collapse in 9 GPU runs on Burst, so the Torch GPU 2 of 2 did not recur here; at the CPU sweep's
 rate (5 of 30) nine runs without a collapse has probability about 0.19, so this does not show that GPU runs
-never collapse. When it trains, two-slot Compress to Remember matches our accuracy; our scorer's advantage on
-Gate is stability (0 collapses in 39 runs across CPU and GPU, against 5 of 39) and a smaller spread.
+never collapse. On these 9 runs two-slot Compress to Remember matched our accuracy (+0.03 points, interval
+−0.78 to +0.95) and spread more (standard deviation 1.77 against 0.72). This is not true of Gate in general: in
+the CPU sweep its 25 runs that trained averaged 93.60 against our 94.92, and ours was higher in 24 of 30 cells.
+Across CPU and GPU, ours collapsed in 0 of 39 runs and two-slot Compress to Remember in 5 of 39.
+
+The manifest form of this run, `gate.sweep_gpu.*`, has not been run itself; the numbers above come from the
+earlier driver named at the top, which ran the same fits.

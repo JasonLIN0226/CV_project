@@ -3,6 +3,7 @@
 Code: branch `motion-v2/clean-rerun` (commits `ec4a10a`, `d8cb945`, `45b9266`). Full outputs stay on Burst
 under `/scratch/xy3257/mv2_runs/` (Motion v2) and `/scratch/xy3257/cv_project_runs/reproduction/synergy_gap/`
 (Synergy). Every number below is a development or confirmation result as labelled; nothing was tuned on it.
+`extract.json` holds the numbers of sections 1 and 2, with the SHA256 of the Burst files they come from.
 
 The code was reorganised afterwards without changing what it computes: the Motion v2 baselines are the
 manifest tasks `motion_v2.literature.*` (one method and reader seed per call, pooled by

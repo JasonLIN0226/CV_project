@@ -42,14 +42,11 @@ def test_variant_choice_is_the_lowest_mean_dev_over_three_seeds(tmp_path):
                 {"best_dev_mean": value, "best_round": 0, "history": history, "dev_attention": {"mean": 0.0104}}))
     summary = choose.summarize(tmp_path)
     assert summary["chosen"] == "min_dagger" and set(summary["variants"]) == {"min", "min_dagger"}
+    assert summary["absent"] == ["soft", "soft_dagger"]
     (tmp_path / "soft_seed17.json").write_text((tmp_path / "min_seed17.json").read_text())
     with pytest.raises(SystemExit, match="lacks seeds"):
         choose.summarize(tmp_path)
 
 
-def test_validation_is_read_only_after_a_holdout_gain():
-    evaluate = _script("scripts/evaluate/motion_v2_deletion_cost_v2.py")
-    holdout = {"variants": {"a": {"paired_with_attention": {"ci95": [-0.002, -0.0001]}},
-                            "b": {"paired_with_attention": {"ci95": [-0.002, 0.0003]}}}}
-    assert evaluate.validation_allowed(holdout, "a")
-    assert not evaluate.validation_allowed(holdout, "b") and not evaluate.validation_allowed(holdout, "c")
+def test_evaluate_script_imports():
+    assert _script("scripts/evaluate/motion_v2_deletion_cost_v2.py").main

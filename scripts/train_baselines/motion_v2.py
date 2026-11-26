@@ -30,13 +30,11 @@ import torch  # noqa: E402
 
 from bounded_memory import runs  # noqa: E402
 from bounded_memory.environments.motion_v2 import episodes, frozen  # noqa: E402
+from bounded_memory.environments.motion_v2.episodes import MEMORY_CLASS  # noqa: E402
+from bounded_memory.environments.motion_v2.step34_core import SEEDS  # noqa: E402
 from bounded_memory.methods.pacc import motion_v2 as pacc_motion  # noqa: E402
 
 METHODS = ("pafu_kv", "pacc_full", "pacc_recurrent", "fm_ijepa_published", "fm_ijepa_online")
-SEEDS = (17, 29, 43)
-MEMORY = {"pafu_kv": "bounded", "pafu_teacher_top2": "privileged (reads the future)", "pacc_full": "full history",
-          "pacc_recurrent": "bounded", "fm_ijepa_published": "full history",
-          "fm_ijepa_teacher_top2": "privileged (reads the future)", "fm_ijepa_online": "bounded"}
 
 
 def train_and_select(args, hyper, assets, train, evals, task):
@@ -119,7 +117,7 @@ def main():
             target.parent.mkdir(parents=True, exist_ok=True)
             np.savez(target, kept=kept, episode_ids=np.array([r["rec"]["id"] for r in raw]), **scores)
             summary = episodes.summarize({args.seed: scores}, [args.seed])
-            results.setdefault(interval, {})[label] = {"memory": MEMORY[label], **summary}
+            results.setdefault(interval, {})[label] = {"memory": MEMORY_CLASS[label], **summary}
             task.log(f"{interval:9s} {label:24s} +3 position MSE {summary['position_mse_+3']:.6f} "
                      f"(matched reader {summary['position_mse_+3_matched_reader']:.6f})")
     task.write(environment="motion_v2", method=args.method, reader_seed=args.seed, results=results)

@@ -1,7 +1,7 @@
 """Generate and encode fresh Motion v2 scenes for training our scorer (environments/motion_v2/fresh.py).
 
-    BM_MOTION_ROOT=/scratch/$USER python scripts/prepare_data/motion_v2_fresh.py --config configs/motion_v2/frozen.yaml \\
-        --device cuda
+    BM_MOTION_ROOT=<study folders> BM_SCRATCH=<scratch> python scripts/prepare_data/motion_v2_fresh.py \\
+        --config configs/motion_v2/fresh.yaml --device cuda
 
 Writes the scene pairs the config's `fresh` block asks for (training states, dev, holdout) under fresh.root:
 dataset/ (observations, evaluation-only arrays, manifest.json) and features/ (raw I-JEPA features with the
@@ -19,7 +19,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
 from bounded_memory import runs  # noqa: E402
 from bounded_memory.environments.motion_v2 import fresh, frozen  # noqa: E402
-from bounded_memory.methods.deletion_cost import motion_v2 as scorer  # noqa: E402
 
 
 def main():
@@ -32,7 +31,7 @@ def main():
     paths = frozen.Paths.from_config(config["assets"])
     frozen.verify(paths, ["ordinary"])
     assets = frozen.load(paths, args.device)
-    pairs = max(r.stop for r in scorer.fresh_ranges(config["fresh"]).values())
+    pairs = max(r.stop for r in fresh.ranges(config["fresh"]).values())
     records = fresh.generate(config["fresh"]["root"], pairs, log=print)
     fresh.encode(assets, config["fresh"]["root"], records, args.device, log=print)
     print(json.dumps({"root": config["fresh"]["root"], "split": fresh.FRESH_SPLIT, "pairs": pairs,

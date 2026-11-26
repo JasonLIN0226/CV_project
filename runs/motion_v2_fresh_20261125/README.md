@@ -2,7 +2,8 @@
 
 Burst jobs 43438 (fresh scenes, loss tables, first scorer run), 43547 (variants) and 43573 (holdout check), one
 A100 each, branch `motion-v2/clean-rerun` at commits `995d299`, `88c7bc6` and `d0aa049`. The scripts were then
-reorganised into the manifest tasks `motion_v2.fresh.*` without changing what they compute. Full outputs stay on
+reorganised into the manifest tasks `motion_v2.fresh.*` (`configs/motion_v2/fresh.yaml`) without changing what they
+compute; the validation step now also saves per-episode losses. Full outputs stay on
 Burst under `/scratch/xy3257/cv_project_runs/motion_v2_fresh/`. Validation was not read.
 
 **Why fresh scenes.** The frozen readers were trained on the 1,024 registered training episodes and are far better
@@ -19,7 +20,7 @@ Attention policy on fresh dev: +3 0.0095, +6 0.0113 (validation 0.0091 / 0.0111;
 0.0044 / 0.0051). The best pair chosen after the fact scores 0.0026 (mean of +3 and +6) against attention's
 0.0104, so the room to improve is large.
 
-## 2. Variants, chosen on fresh dev (`variants_dev.json`)
+## 2. Variants, chosen on fresh dev (`variants_dev.json`; every round of every seed in `runs_extract.json`)
 
 Position MSE, mean of +3 and +6, of each seed's selected checkpoint (step 0, the attention policy, is always a
 candidate), mean over seeds 17, 29 and 43. Attention: 0.010388.
@@ -32,7 +33,7 @@ candidate), mean over seeds 17, 29 and 43. Attention: 0.010388.
 | soft_dagger | soft minimum | 3 | 0.009875 | 0.010203 / 0.009911 / 0.009510 |
 
 Chosen: min_dagger. Warning signs before the holdout: each seed's value is the best of about 50 checkpoints, and
-dev MSE moves by about 0.002 between neighbouring checkpoints; the last checkpoint of every round was worse than
+dev MSE moves by about 0.002 between neighbouring checkpoints (job logs of 43547); the last checkpoint of every round was worse than
 attention (0.0115 to 0.0135); and on dev states the scorers did not pick the cheapest deletion more often than
 attention does (top-1 0.634 to 0.649 against 0.646 with the minimum label).
 

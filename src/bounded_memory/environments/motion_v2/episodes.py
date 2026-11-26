@@ -12,20 +12,27 @@ DynamicsPredictor), so the Motion-specific parts are here and in methods/pacc/mo
     batch_equivalence   checks that Gate's batch builder and Motion's give the same predictions for the
                     same kept frames, which methods/pacc/motion_v2.score_tokens relies on
     summarize       pooled and matched-reader means of scored seeds
+    MEMORY_CLASS    what each literature policy may store (bounded, full history, privileged)
+    registered_parts    the registered training episodes split into training states and a dev set
 
 Each baseline is trained against one reader (its seed) and scored under all three readers, like the
 students; `matched` in the summaries is the trained-on reader alone.
 """
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass
 
 import numpy as np
 import torch
 
 from ..gate.protocol import item_batch
+from .step34_core import SEEDS
 
 HORIZONS = np.array([3, 6])
+MEMORY_CLASS = {"pafu_kv": "bounded", "pafu_teacher_top2": "privileged (reads the future)", "pacc_full": "full history",
+                "pacc_recurrent": "bounded", "fm_ijepa_published": "full history",
+                "fm_ijepa_teacher_top2": "privileged (reads the future)", "fm_ijepa_online": "bounded"}
 
 
 @dataclass
@@ -80,18 +87,36 @@ def batch_equivalence(assets, raw, episodes, kept, reader=0):
     return float((motion - gate).abs().max())
 
 
-def summarize(scores, seeds):
-    """Pooled and matched-reader means. scores: seed -> {position, feature [3 readers, pairs, 2, 2], success}."""
+def summarize(scores, seeds, matched=True):
+    """Pooled means over seeds and readers. scores: seed -> {position, feature [3 readers, pairs, 2, 2], success}.
+
+    matched=True also reports the mean under the reader each seed was trained against (seed = reader seed, as
+    for the literature baselines); leave it off for a method trained against all three readers at once."""
     position = np.stack([scores[s]["position"] for s in seeds])     # [seed, reader, pair, sibling, horizon]
     feature = np.stack([scores[s]["feature"] for s in seeds])
     success = np.stack([scores[s]["success"] for s in seeds]).astype(np.float64)
-    readers = (17, 29, 43)
-    matched = np.stack([position[i, readers.index(s)] for i, s in enumerate(seeds)])
     out = {"seeds": list(seeds)}
-    for j, h in enumerate((3, 6)):
+    for j, h in enumerate(HORIZONS):
         out[f"position_mse_+{h}"] = float(position[..., j].mean())
         out[f"feature_mse_+{h}"] = float(feature[..., j].mean())
-        out[f"position_mse_+{h}_matched_reader"] = float(matched[..., j].mean())
+        if matched:
+            same = np.stack([position[i, SEEDS.index(s)] for i, s in enumerate(seeds)])
+            out[f"position_mse_+{h}_matched_reader"] = float(same[..., j].mean())
         out[f"position_mse_+{h}_per_seed"] = [float(position[i, ..., j].mean()) for i in range(len(seeds))]
     out["success_rate"] = None if np.isnan(success).all() else float(np.nanmean(success))
     return out
+
+
+def registered_dev_pairs(records, modulus=10):
+    """Registered training scene pairs held out as a dev set (sha256 of the pair id, 1 in `modulus`)."""
+    return {r["pair"] for r in records if r["split"] == "train"
+            and int(hashlib.sha256(r["pair"].encode()).hexdigest(), 16) % modulus == 0}
+
+
+def registered_parts(assets):
+    """{fit, dev}: the registered training episodes, which the frozen readers were trained on, split by scene pair."""
+    records = assets.store.manifest["records"]
+    dev = registered_dev_pairs(records)
+    train = [assets.episode(r) for r in records if r["split"] == "train"]
+    return {"fit": [ep for ep in train if ep["rec"]["pair"] not in dev],
+            "dev": [ep for ep in train if ep["rec"]["pair"] in dev]}

@@ -45,8 +45,11 @@ def test_generate_writes_resumable_dataset(tmp_path):
     records = fresh.generate(tmp_path, 2, log=lambda *_: None)
     assert len(records) == 4 and {r["split"] for r in records} == {fresh.FRESH_SPLIT}
     first = (tmp_path / "dataset" / records[0]["obs"]).stat().st_mtime_ns
+    manifest = (tmp_path / "dataset" / "manifest.json").stat().st_mtime_ns
     again = fresh.generate(tmp_path, 2, log=lambda *_: None)
     assert again == records and (tmp_path / "dataset" / records[0]["obs"]).stat().st_mtime_ns == first
+    assert (tmp_path / "dataset" / "manifest.json").stat().st_mtime_ns == manifest     # not rewritten when unchanged
+    assert fresh.records(tmp_path) == records
     with np.load(tmp_path / "dataset" / records[0]["obs"]) as f:
         assert set(f.files) == {"rgb", "actions", "query"} and f["rgb"].shape == (records[0]["frames"], 96, 96, 3)
 
@@ -86,3 +89,16 @@ def test_fresh_episodes_feed_the_deletion_cost_pipeline(tmp_path):
     states = dc.behaviour_states(assets, ep, 0)
     items, context, prior = dc.observe(assets, ep, *states[0])
     assert items.shape == (3, dc.ITEM_DIM) and context.shape == (dc.CONTEXT_DIM,) and prior.shape == (3,)
+
+
+def test_ranges_split_the_scene_pairs_without_overlap():
+    ranges = fresh.ranges({"fit_pairs": 512, "dev_pairs": 96, "holdout_pairs": 96})
+    assert ranges["fit"] == range(0, 512) and ranges["dev"] == range(512, 608) and ranges["holdout"] == range(608, 704)
+
+
+def test_load_refuses_parts_that_are_not_generated(tmp_path):
+    fresh.generate(tmp_path, 2, log=lambda *_: None)
+    with pytest.raises(ValueError, match="not generated"):
+        fresh.load(None, {"root": tmp_path, "fit_pairs": 1, "dev_pairs": 1, "holdout_pairs": 1}, parts=("holdout",))
+    with pytest.raises(FileNotFoundError):
+        fresh.records(tmp_path / "missing")

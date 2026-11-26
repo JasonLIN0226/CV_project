@@ -21,10 +21,13 @@ What is new data and what is not:
                       train-split mean/std and projected with the frozen basis, as FrozenAssets does.
 
 Readers, decoder, normalisation and validation data are only read. Nothing here writes outside `root`.
+
+    ranges / records / load   the config's split of the fresh scene pairs (training states, dev, holdout), the
+                              written records, and FrozenAssets.episode-shaped episodes of chosen parts
+    generate / encode         writing the scenes and their raw I-JEPA features (resumable)
 """
 from __future__ import annotations
 
-import hashlib
 import json
 import os
 from pathlib import Path
@@ -32,6 +35,7 @@ from pathlib import Path
 import numpy as np
 
 from . import envs_v2
+from .frozen import sha256
 
 FRESH_SPLIT = "fresh_train_20261125"
 EVAL_KEYS = ("states", "visible", "t_c", "end", "sufficient")
@@ -157,14 +161,6 @@ def registered_scene_seeds():
             for split in envs_v2.ALLOWED_SPLITS for i in range(data["pairs"][split])}
 
 
-def _sha(path):
-    h = hashlib.sha256()
-    with open(path, "rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
 def _save_npz(path, arrays):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(path.stem + ".tmp.npz")
@@ -201,9 +197,13 @@ def generate(root, pairs, split=FRESH_SPLIT, log=print):
             log(f"fresh scenes {index + 1}/{pairs}")
     if len({r["id"] for r in records}) != len(records) or len({r["seed"] for r in records}) != pairs:
         raise ValueError("fresh episode id or scene seed collision")
-    manifest = {"split": split, "pairs": pairs, "generator": envs_v2.GENERATOR_VERSION,
-                "data": envs_v2.REGISTERED_DATA, "records": records}
-    (dataset / "manifest.json").write_text(json.dumps(manifest, indent=1) + "\n")
+    manifest = json.dumps({"split": split, "pairs": pairs, "generator": envs_v2.GENERATOR_VERSION,
+                           "data": envs_v2.REGISTERED_DATA, "records": records}, indent=1) + "\n"
+    path = dataset / "manifest.json"
+    if not path.exists() or path.read_text() != manifest:     # unchanged on a rerun, so readers never see it rewritten
+        tmp = path.with_name("manifest.tmp.json")
+        tmp.write_text(manifest)
+        os.replace(tmp, path)
     return records
 
 
@@ -231,7 +231,7 @@ def encode(assets, root, records, device, log=print):
         del encoder
         torch.cuda.empty_cache()
     index = {r["id"]: {"path": f"episodes/{r['id']}.npz", "frames": r["frames"],
-                       "sha256": _sha(folder / f"{r['id']}.npz")} for r in records}
+                       "sha256": sha256(folder / f"{r['id']}.npz")} for r in records}
     (Path(root) / "features" / "index.json").write_text(json.dumps({"episodes": index}, indent=1) + "\n")
     return index
 
@@ -253,3 +253,28 @@ def episode(assets, root, rec):
         meta = {k: f[k] for k in EVAL_KEYS}
     prefix = np.concatenate([np.zeros((1, 2), np.float32), np.cumsum(actions, axis=0)])
     return dict(rec=rec, z=z, p=p, actions=actions, prefix=prefix, meta=meta)
+
+
+def ranges(fresh):
+    """Scene-pair index ranges of a config's `fresh` block: training states, dev selection, holdout check."""
+    fit, dev, holdout = int(fresh["fit_pairs"]), int(fresh["dev_pairs"]), int(fresh["holdout_pairs"])
+    return {"fit": range(0, fit), "dev": range(fit, fit + dev), "holdout": range(fit + dev, fit + dev + holdout)}
+
+
+def records(root):
+    """The records written by generate (root/dataset/manifest.json), read only."""
+    path = Path(root) / "dataset" / "manifest.json"
+    if not path.exists():
+        raise FileNotFoundError(f"{path} missing: run scripts/prepare_data/motion_v2_fresh.py first")
+    return json.loads(path.read_text())["records"]
+
+
+def load(assets, fresh, parts=("fit", "dev")):
+    """{part: episodes} of the fresh scenes the config's `fresh` block names, from the written scenes and features."""
+    wanted = ranges(fresh)
+    written = records(fresh["root"])
+    missing = [p for p in parts if max(wanted[p], default=-1) >= len(written) // 2]
+    if missing:
+        raise ValueError(f"fresh scenes for {missing} are not generated yet: run scripts/prepare_data/motion_v2_fresh.py")
+    return {part: [episode(assets, fresh["root"], r) for r in written if r["scene_index"] in wanted[part]]
+            for part in parts}

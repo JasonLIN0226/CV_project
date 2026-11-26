@@ -63,7 +63,7 @@ def test_training_runs_and_selects_on_dev(world):
             x, c, p = dc.observe(assets, ep, clock, pool)
             rows.append((x, c, p, dc.continuation_cost(tables[ep["rec"]["id"]], clock, pool, ep["rec"]["query"])))
     data = {k: np.stack([r[i] for r in rows]) for i, k in enumerate(("items", "context", "prior", "cost"))}
-    model, norm, meta = dc.train(data, tables, eps[6:], assets, 17, "cpu", steps=20, batch=16, width=16,
+    model, norm, meta, final = dc.train(data, tables, eps[6:], assets, 17, "cpu", steps=20, batch=16, width=16,
                                  eval_every=10, log=lambda m: None)
     assert meta["selected_step"] in (0, 10, 20) and len(meta["history"]) == 3
     assert meta["history"][0]["alpha"] == 1.0
@@ -109,12 +109,8 @@ def test_state_metrics_and_variant_loop(world):
     history, best = dc.fit_variant(assets, fit, dev, tables, base, dev_rows, behaviour, 0.01, 1, 17, "cpu", 20,
                                    log=lambda *_: None)
     assert [h["round"] for h in history] == [0, 1] and history[1]["states"] >= history[0]["states"]
-    assert best[0] == min(h["selected_dev_mean"] for h in history) and "final_state" not in best[4]
-
-
-def test_fresh_ranges_split_the_scene_pairs_without_overlap():
-    ranges = dc.fresh_ranges({"fit_pairs": 512, "dev_pairs": 96, "holdout_pairs": 96})
-    assert ranges["fit"] == range(0, 512) and ranges["dev"] == range(512, 608) and ranges["holdout"] == range(608, 704)
+    assert best.dev_mean == min(h["selected_dev_mean"] for h in history)
+    assert best.round == [h["selected_dev_mean"] for h in history].index(best.dev_mean) and best.width == 256
 
 
 def test_load_tables_names_what_is_missing(tmp_path, world):
@@ -123,3 +119,23 @@ def test_load_tables_names_what_is_missing(tmp_path, world):
     assert set(dc.load_tables(tmp_path, eps[:1])) == {eps[0]["rec"]["id"]}
     with pytest.raises(FileNotFoundError, match="1 loss tables missing"):
         dc.load_tables(tmp_path, eps[:2])
+
+
+def test_saved_scorer_loads_back_with_its_hash(tmp_path):
+    model = dc.ScorerV2(width=16)
+    best = dc.Best(0.01, 1, {k: v.clone() for k, v in model.state_dict().items()}, dc.identity_norm(), 16)
+    digest = dc.save_scorer(tmp_path / "s.pt", best, variant="min")
+    loaded, norm, again = dc.load_scorer(tmp_path / "s.pt", "cpu")
+    assert digest == again and not list(tmp_path.glob("*.tmp"))
+    assert all(torch.equal(a, b) for a, b in zip(loaded.state_dict().values(), model.state_dict().values()))
+
+
+def test_validation_is_read_only_after_a_holdout_gain_on_the_same_checkpoints():
+    hashes = {17: "a", 29: "b", 43: "c"}
+    holdout = {"variants": {
+        "gain": {"paired_with_attention": {"ci95": [-0.002, -0.0001]}, "checkpoint_sha256": {str(k): v for k, v in hashes.items()}},
+        "tie": {"paired_with_attention": {"ci95": [-0.002, 0.0003]}, "checkpoint_sha256": hashes}}}
+    assert dc.validation_allowed(holdout, "gain", hashes)
+    assert not dc.validation_allowed(holdout, "gain", {**hashes, 43: "retrained"})
+    assert not dc.validation_allowed(holdout, "tie", hashes) and not dc.validation_allowed(holdout, "absent", hashes)
+    assert not dc.validation_allowed({}, "gain", hashes)

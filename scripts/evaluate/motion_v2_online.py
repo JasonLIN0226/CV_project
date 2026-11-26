@@ -12,9 +12,13 @@ BM_MOTION_ROOT is the folder holding the original deployment folders (/scratch/x
 wherever the motion-v2-frozen-assets-v1 tar was unpacked). BM_REPO defaults to this checkout. Runs on
 one GPU with the settings of the original run: deterministic algorithms, no TF32, four threads,
 CUBLAS_WORKSPACE_CONFIG=:4096:8. --seed is unused (reader, student and RNG seeds are fixed at 17/29/43).
-Writes <out>/online_replay_seed<seed>.json and the full replay under <out>/online/<interval>/.
+Writes <out>/online_replay[_<interval>]_seed<seed>.json (the interval in the name when one interval is given) and
+the full replay, about 40 to 80 MB of traces per interval, under <replay-dir>/online/<interval>/ (default
+<replay-dir> = <out>). Each interval is written into <interval>.partial and renamed when complete, so a rerun
+skips a finished interval and redoes an unfinished one.
 """
 import os
+import shutil
 import sys
 from pathlib import Path
 
@@ -33,9 +37,10 @@ def main():
     ap = runs.parser(__doc__)
     ap.add_argument("--intervals", nargs="+", default=["ordinary"], choices=frozen.INTERVALS)
     ap.add_argument("--verify-only", action="store_true")
+    ap.add_argument("--replay-dir", type=Path, help="folder for the full replay (default: --out)")
     args = ap.parse_args()
     os.environ.setdefault("BM_REPO", str(runs.REPO))
-    task = runs.Task(args, "online_replay")
+    task = runs.Task(args, "online_replay" + (f"_{args.intervals[0]}" if len(args.intervals) == 1 else ""))
     if task.done():
         return
     paths = frozen.Paths.from_config(runs.load_config(args.config)["assets"])
@@ -56,10 +61,19 @@ def main():
 
     assets = frozen.load(paths, args.device)
     results = {}
+    replay_dir = args.replay_dir or Path(args.out)
     for interval in args.intervals:
-        output = Path(args.out) / "online" / interval
-        task.log(f"replaying {interval} into {output}")
-        summary = frozen.replay(assets, paths, interval, output)
+        output = replay_dir / "online" / interval
+        partial = output.with_name(f"{interval}.partial")
+        if output.exists():
+            task.log(f"{interval}: complete replay found in {output}, comparing only")
+            summary = None
+        else:
+            if partial.exists():
+                shutil.rmtree(partial)                  # an unfinished replay of an earlier attempt
+            task.log(f"replaying {interval} into {output}")
+            summary = frozen.replay(assets, paths, interval, partial)
+            os.replace(partial, output)
         comparison = frozen.compare(output / "raw_losses", paths.evidence / "online" / interval / "raw_losses")
         task.log(f"{interval}: {comparison['counts']}")
         for name in HEADLINE:

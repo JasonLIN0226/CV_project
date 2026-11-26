@@ -5,24 +5,29 @@
 Reads <dir>/<variant>_seed<seed>.json written by scripts/train_scorer/motion_v2_deletion_cost_v2.py (fresh
 episodes). A variant's dev score is the mean over its three seeds of the selected checkpoint's dev position MSE
 (mean of +3 and +6; step 0, the attention policy, is always a candidate). The variant with the lowest score is
-chosen; every variant must have all three seeds. Writes the per-variant scores, the dev attention policy and
+chosen among the variants present; a variant present must have all three seeds, and the variants with no
+results are listed as absent. Writes the per-variant scores, the dev attention policy, the absent variants and
 the choice.
 """
 import argparse
 import json
+import sys
 from pathlib import Path
 
-import numpy as np
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
-VARIANTS = ("min", "min_dagger", "soft", "soft_dagger")
-SEEDS = (17, 29, 43)
+import numpy as np  # noqa: E402
+
+from bounded_memory.environments.motion_v2.step34_core import SEEDS  # noqa: E402
+from bounded_memory.methods.deletion_cost.motion_v2 import VARIANTS  # noqa: E402
 
 
 def summarize(folder):
-    variants, reference = {}, None
+    variants, reference, absent = {}, None, []
     for name in VARIANTS:
         records = {s: folder / f"{name}_seed{s}.json" for s in SEEDS}
         if not any(p.exists() for p in records.values()):
+            absent.append(name)
             continue
         missing = [s for s, p in records.items() if not p.exists()]
         if missing:
@@ -38,7 +43,7 @@ def summarize(folder):
     if not variants:
         raise SystemExit(f"no scorer results in {folder}")
     chosen = min(variants, key=lambda n: variants[n]["dev_mean"])
-    return {"dev_attention": reference, "variants": variants, "chosen": chosen}
+    return {"dev_attention": reference, "variants": variants, "absent": absent, "chosen": chosen}
 
 
 def main():
@@ -52,6 +57,8 @@ def main():
     print(f"dev attention policy {summary['dev_attention']['mean']:.6f}")
     for name, v in summary["variants"].items():
         print(f"{name:12s} dev {v['dev_mean']:.6f}  rounds {v['best_round_per_seed']}  steps {v['selected_step_per_seed']}")
+    if summary["absent"]:
+        print(f"absent (no results): {', '.join(summary['absent'])}")
     print(f"chosen on fresh dev: {summary['chosen']}")
 
 

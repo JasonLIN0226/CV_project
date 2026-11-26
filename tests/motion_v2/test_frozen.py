@@ -1,6 +1,6 @@
 """Checks for environments/motion_v2/frozen.py: input verification and replay comparison.
 
-The real-asset test needs the frozen study folders and runs only where BM_MOTION_ROOT is set
+The real-asset test needs the frozen study folders and runs only where BM_MOTION_ROOT points at them
 (on Burst: BM_MOTION_ROOT=/scratch/xy3257).
 """
 import hashlib
@@ -16,6 +16,8 @@ from bounded_memory.environments.motion_v2 import frozen
 REPO = runs.REPO
 EVIDENCE = REPO / "results/motion_v2/step3_4_recovery1/terminal_evidence/repo/results/motion_v2/step3_4_recovery1/gpu"
 CONFIG = REPO / "configs/motion_v2/frozen.yaml"
+FRESH_CONFIG = REPO / "configs/motion_v2/fresh.yaml"
+STEP2 = "motion-v2-20261031-deployment3/repo/results/motion_v2/v2_3_1/step2_gpu_attempt1"
 
 
 def _write(path, data):
@@ -99,8 +101,9 @@ def test_compare_flags_a_changed_success_vector(tmp_path):
 
 
 def test_config_points_at_the_tracked_evidence(monkeypatch, tmp_path):
-    for name in ("BM_MOTION_ROOT", "BM_SCRATCH"):        # the config also names the fresh scenes and scorers
-        monkeypatch.setenv(name, str(tmp_path))
+    monkeypatch.setenv("BM_MOTION_ROOT", str(tmp_path))          # the only variable the frozen config needs
+    monkeypatch.delenv("BM_SCRATCH", raising=False)
+    monkeypatch.delenv("BM_RUN", raising=False)
     monkeypatch.setenv("BM_REPO", str(REPO))
     paths = frozen.Paths.from_config(runs.load_config(CONFIG)["assets"])
     assert paths.evidence == EVIDENCE.resolve()
@@ -112,7 +115,15 @@ def test_replay_refuses_an_existing_output(tmp_path):
         frozen.replay(None, None, "ordinary", tmp_path)
 
 
-@pytest.mark.skipif(not os.environ.get("BM_MOTION_ROOT"), reason="needs the frozen Motion v2 folders: set BM_MOTION_ROOT")
+def test_fresh_config_reads_the_same_frozen_assets():
+    import yaml
+    frozen_config, fresh_config = (yaml.safe_load(p.read_text()) for p in (CONFIG, FRESH_CONFIG))
+    assert fresh_config["assets"] == frozen_config["assets"] and fresh_config["protocol"] == frozen_config["protocol"]
+    assert "${BM_RUN}" in fresh_config["scorer"]["checkpoints"]                 # one checkpoint folder per run
+
+
+@pytest.mark.skipif(not (os.environ.get("BM_MOTION_ROOT") and os.path.isdir(os.path.join(os.environ["BM_MOTION_ROOT"], STEP2))),
+                    reason="needs the frozen Motion v2 folders under BM_MOTION_ROOT")
 def test_real_frozen_inputs_match(monkeypatch):
     monkeypatch.setenv("BM_REPO", str(REPO))
     paths = frozen.Paths.from_config(runs.load_config(CONFIG)["assets"])

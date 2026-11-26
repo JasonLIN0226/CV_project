@@ -17,7 +17,8 @@
 #   UV_PYTHON_INSTALL_DIR   uv-managed Python installations       default: $BM_SCRATCH/uv-python
 #   BM_SBATCH_ARGS    extra sbatch options                        default: none
 #   BM_CHAIN          standby copies of a submitted job (submit.sh)  default: 0
-#   BM_MOTION_ROOT    the Motion v2 study's deployment folders    default: /scratch/$USER (configs/motion_v2/frozen.yaml)
+#   BM_MOTION_ROOT    the Motion v2 study's deployment folders    no default; set it (for example in burst/.env)
+#                     for the motion_v2.online/literature/fresh/registered tasks (configs/motion_v2/frozen.yaml)
 
 _bm_here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 if [ -f "$_bm_here/.env" ]; then
@@ -48,7 +49,6 @@ export BM_VENV="${BM_VENV:-$BM_REPO/.venv}"
 export UV_CACHE_DIR="${UV_CACHE_DIR:-$BM_SCRATCH/.cache/uv}"
 export UV_PYTHON_INSTALL_DIR="${UV_PYTHON_INSTALL_DIR:-$BM_SCRATCH/uv-python}"
 export BM_SBATCH_ARGS="${BM_SBATCH_ARGS:-}"
-export BM_MOTION_ROOT="${BM_MOTION_ROOT:-/scratch/$USER}"
 # OOD Jupyter sessions have the Slurm client in /opt/slurm/bin but not on PATH. Appended, and only when no sbatch
 # is found, so an sbatch earlier on PATH (a stand-in in tests, a user's own) always wins.
 if ! command -v sbatch >/dev/null 2>&1 && [ -x /opt/slurm/bin/sbatch ]; then export PATH="$PATH:/opt/slurm/bin"; fi
