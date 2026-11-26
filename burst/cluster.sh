@@ -49,8 +49,9 @@ export UV_CACHE_DIR="${UV_CACHE_DIR:-$BM_SCRATCH/.cache/uv}"
 export UV_PYTHON_INSTALL_DIR="${UV_PYTHON_INSTALL_DIR:-$BM_SCRATCH/uv-python}"
 export BM_SBATCH_ARGS="${BM_SBATCH_ARGS:-}"
 export BM_MOTION_ROOT="${BM_MOTION_ROOT:-/scratch/$USER}"
-# OOD Jupyter sessions have the Slurm client in /opt/slurm/bin but not on PATH
-if [ -d /opt/slurm/bin ] && [[ ":$PATH:" != *":/opt/slurm/bin:"* ]]; then export PATH="/opt/slurm/bin:$PATH"; fi
+# OOD Jupyter sessions have the Slurm client in /opt/slurm/bin but not on PATH. Appended, and only when no sbatch
+# is found, so an sbatch earlier on PATH (a stand-in in tests, a user's own) always wins.
+if ! command -v sbatch >/dev/null 2>&1 && [ -x /opt/slurm/bin/sbatch ]; then export PATH="$PATH:/opt/slurm/bin"; fi
 export HF_HOME="$BM_HF_HOME"
 unset _bm_here _bm_key _bm_value _bm_partition _bm_cpus _bm_mem
 
