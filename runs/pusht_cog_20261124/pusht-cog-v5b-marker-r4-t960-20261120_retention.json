@@ -1,0 +1,690 @@
+{
+  "completed_utc": "2026-11-23T10:29:43.654125+00:00",
+  "complete": true,
+  "seeds_done": [
+    17,
+    29,
+    43
+  ],
+  "data": "pusht-cog-v5b-marker-r4-t960-20261120",
+  "predictors": "/projects/work/yang-lab/users/yz12129/CV_project/build/pusht-cog-v5b-marker-r4-t960-20261120-ijepa/predictors_syang",
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "counts": {
+    "train_episodes": 2880,
+    "validation_episodes": 96
+  },
+  "behaviours": [
+    "fifo",
+    "reservoir",
+    "temporal_buckets",
+    "visual_diversity",
+    "random"
+  ],
+  "states_per_episode": 12,
+  "dagger_rounds": 2,
+  "teacher": "target-time deletion cost: frozen predictor error at query+6/+12 with the two kept frames",
+  "notes": {
+    "marker": "privileged reference (marker indices from evaluation_only)",
+    "prediction_surprise": "not included (needs a running forecast stream)",
+    "resume": "a resumed seed reuses saved rounds; its later sampling differs from an uninterrupted run"
+  },
+  "summary_mean_over_seeds": {
+    "recent_only": {
+      "marker_hit": 0.0,
+      "h6": {
+        "mse": 0.43241703960423666,
+        "sibling_id": 0.3333333333333333
+      },
+      "h12": {
+        "mse": 0.8098150092280574,
+        "sibling_id": 0.3333333333333333
+      }
+    },
+    "marker": {
+      "marker_hit": 1.0,
+      "h6": {
+        "mse": 0.3290889085166984,
+        "sibling_id": 0.7256944444444443
+      },
+      "h12": {
+        "mse": 0.49900918205579115,
+        "sibling_id": 0.8958333333333334
+      }
+    },
+    "fifo": {
+      "marker_hit": 0.0,
+      "h6": {
+        "mse": 0.4324066330057879,
+        "sibling_id": 0.3333333333333333
+      },
+      "h12": {
+        "mse": 0.8102717965634333,
+        "sibling_id": 0.3333333333333333
+      }
+    },
+    "reservoir": {
+      "marker_hit": 0.1284722222222222,
+      "h6": {
+        "mse": 0.42197803951178986,
+        "sibling_id": 0.3680555555555555
+      },
+      "h12": {
+        "mse": 0.7637509003592035,
+        "sibling_id": 0.40625
+      }
+    },
+    "temporal_buckets": {
+      "marker_hit": 0.0,
+      "h6": {
+        "mse": 0.4325644150893721,
+        "sibling_id": 0.3333333333333333
+      },
+      "h12": {
+        "mse": 0.810154182319012,
+        "sibling_id": 0.3333333333333333
+      }
+    },
+    "visual_diversity": {
+      "marker_hit": 0.9895833333333334,
+      "h6": {
+        "mse": 0.3300927124089665,
+        "sibling_id": 0.6805555555555555
+      },
+      "h12": {
+        "mse": 0.49746216580064767,
+        "sibling_id": 0.892361111111111
+      }
+    },
+    "random": {
+      "marker_hit": 0.0,
+      "h6": {
+        "mse": 0.4324810554583867,
+        "sibling_id": 0.3333333333333333
+      },
+      "h12": {
+        "mse": 0.8102473233722978,
+        "sibling_id": 0.3368055555555555
+      }
+    },
+    "deletion_cost": {
+      "marker_hit": 1.0,
+      "h6": {
+        "mse": 0.3277717704574267,
+        "sibling_id": 0.6979166666666666
+      },
+      "h12": {
+        "mse": 0.5011452182920443,
+        "sibling_id": 0.8993055555555555
+      }
+    }
+  },
+  "per_seed": {
+    "17": {
+      "recent_only": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.43170327398305136,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.1875,
+            "right": 0.09375
+          }
+        },
+        "h12": {
+          "mse": 0.8120292782162627,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.46875,
+            "left": 0.25,
+            "right": 0.28125
+          }
+        }
+      },
+      "marker": {
+        "marker_hit": 1.0,
+        "h6": {
+          "mse": 0.32995308221628267,
+          "sibling_id": 0.7291666666666666,
+          "per_class_sibling_id": {
+            "center": 0.8125,
+            "left": 0.625,
+            "right": 0.75
+          }
+        },
+        "h12": {
+          "mse": 0.5058146004254619,
+          "sibling_id": 0.8854166666666666,
+          "per_class_sibling_id": {
+            "center": 0.90625,
+            "left": 0.8125,
+            "right": 0.9375
+          }
+        }
+      },
+      "fifo": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.43160052799309295,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.1875,
+            "right": 0.09375
+          }
+        },
+        "h12": {
+          "mse": 0.8121902843316396,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.46875,
+            "left": 0.28125,
+            "right": 0.25
+          }
+        }
+      },
+      "reservoir": {
+        "marker_hit": 0.13541666666666666,
+        "h6": {
+          "mse": 0.42570733387644094,
+          "sibling_id": 0.3645833333333333,
+          "per_class_sibling_id": {
+            "center": 0.75,
+            "left": 0.21875,
+            "right": 0.125
+          }
+        },
+        "h12": {
+          "mse": 0.7784210929336647,
+          "sibling_id": 0.3958333333333333,
+          "per_class_sibling_id": {
+            "center": 0.53125,
+            "left": 0.34375,
+            "right": 0.3125
+          }
+        }
+      },
+      "temporal_buckets": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.43214970361441374,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.1875,
+            "right": 0.09375
+          }
+        },
+        "h12": {
+          "mse": 0.8125310068329176,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.46875,
+            "left": 0.25,
+            "right": 0.28125
+          }
+        }
+      },
+      "visual_diversity": {
+        "marker_hit": 1.0,
+        "h6": {
+          "mse": 0.3351549985818565,
+          "sibling_id": 0.6354166666666666,
+          "per_class_sibling_id": {
+            "center": 0.75,
+            "left": 0.5625,
+            "right": 0.59375
+          }
+        },
+        "h12": {
+          "mse": 0.5072322143241763,
+          "sibling_id": 0.8854166666666666,
+          "per_class_sibling_id": {
+            "center": 0.90625,
+            "left": 0.875,
+            "right": 0.875
+          }
+        }
+      },
+      "random": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.431358699221164,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.1875,
+            "right": 0.09375
+          }
+        },
+        "h12": {
+          "mse": 0.8123950433606902,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.46875,
+            "left": 0.28125,
+            "right": 0.25
+          }
+        }
+      },
+      "deletion_cost": {
+        "marker_hit": 1.0,
+        "h6": {
+          "mse": 0.3312999232051273,
+          "sibling_id": 0.6979166666666666,
+          "per_class_sibling_id": {
+            "center": 0.75,
+            "left": 0.625,
+            "right": 0.71875
+          }
+        },
+        "h12": {
+          "mse": 0.5117247405772408,
+          "sibling_id": 0.8854166666666666,
+          "per_class_sibling_id": {
+            "center": 0.90625,
+            "left": 0.84375,
+            "right": 0.90625
+          }
+        }
+      }
+    },
+    "29": {
+      "recent_only": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.4316015588119626,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.15625,
+            "right": 0.125
+          }
+        },
+        "h12": {
+          "mse": 0.8064526235684752,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.4375,
+            "left": 0.3125,
+            "right": 0.25
+          }
+        }
+      },
+      "marker": {
+        "marker_hit": 1.0,
+        "h6": {
+          "mse": 0.33415780247499544,
+          "sibling_id": 0.6875,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.59375,
+            "right": 0.75
+          }
+        },
+        "h12": {
+          "mse": 0.494853381998837,
+          "sibling_id": 0.90625,
+          "per_class_sibling_id": {
+            "center": 0.90625,
+            "left": 0.9375,
+            "right": 0.875
+          }
+        }
+      },
+      "fifo": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.43137414458518225,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.15625,
+            "right": 0.125
+          }
+        },
+        "h12": {
+          "mse": 0.806967630982399,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.40625,
+            "left": 0.34375,
+            "right": 0.25
+          }
+        }
+      },
+      "reservoir": {
+        "marker_hit": 0.13541666666666666,
+        "h6": {
+          "mse": 0.4204868256735305,
+          "sibling_id": 0.375,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.25,
+            "right": 0.15625
+          }
+        },
+        "h12": {
+          "mse": 0.7465578985090057,
+          "sibling_id": 0.4375,
+          "per_class_sibling_id": {
+            "center": 0.46875,
+            "left": 0.5,
+            "right": 0.34375
+          }
+        }
+      },
+      "temporal_buckets": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.4316227080610891,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.15625,
+            "right": 0.125
+          }
+        },
+        "h12": {
+          "mse": 0.8066509971395135,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.4375,
+            "left": 0.34375,
+            "right": 0.21875
+          }
+        }
+      },
+      "visual_diversity": {
+        "marker_hit": 0.9791666666666666,
+        "h6": {
+          "mse": 0.3322979942895472,
+          "sibling_id": 0.6875,
+          "per_class_sibling_id": {
+            "center": 0.75,
+            "left": 0.625,
+            "right": 0.6875
+          }
+        },
+        "h12": {
+          "mse": 0.4839695051002006,
+          "sibling_id": 0.875,
+          "per_class_sibling_id": {
+            "center": 0.90625,
+            "left": 0.84375,
+            "right": 0.875
+          }
+        }
+      },
+      "random": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.4314775348951419,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.15625,
+            "right": 0.125
+          }
+        },
+        "h12": {
+          "mse": 0.8062783048177758,
+          "sibling_id": 0.34375,
+          "per_class_sibling_id": {
+            "center": 0.40625,
+            "left": 0.375,
+            "right": 0.25
+          }
+        }
+      },
+      "deletion_cost": {
+        "marker_hit": 1.0,
+        "h6": {
+          "mse": 0.3293297888400654,
+          "sibling_id": 0.6666666666666666,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.59375,
+            "right": 0.6875
+          }
+        },
+        "h12": {
+          "mse": 0.4942508735693991,
+          "sibling_id": 0.8958333333333334,
+          "per_class_sibling_id": {
+            "center": 0.90625,
+            "left": 0.90625,
+            "right": 0.875
+          }
+        }
+      }
+    },
+    "43": {
+      "recent_only": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.4339462860176961,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.1875,
+            "right": 0.09375
+          }
+        },
+        "h12": {
+          "mse": 0.8109631258994341,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.46875,
+            "left": 0.28125,
+            "right": 0.25
+          }
+        }
+      },
+      "marker": {
+        "marker_hit": 1.0,
+        "h6": {
+          "mse": 0.3231558408588171,
+          "sibling_id": 0.7604166666666666,
+          "per_class_sibling_id": {
+            "center": 0.84375,
+            "left": 0.6875,
+            "right": 0.75
+          }
+        },
+        "h12": {
+          "mse": 0.4963595637430747,
+          "sibling_id": 0.8958333333333334,
+          "per_class_sibling_id": {
+            "center": 0.875,
+            "left": 0.84375,
+            "right": 0.96875
+          }
+        }
+      },
+      "fifo": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.4342452264390886,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.1875,
+            "right": 0.09375
+          }
+        },
+        "h12": {
+          "mse": 0.8116574743762612,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.4375,
+            "left": 0.3125,
+            "right": 0.25
+          }
+        }
+      },
+      "reservoir": {
+        "marker_hit": 0.11458333333333333,
+        "h6": {
+          "mse": 0.41973995898539823,
+          "sibling_id": 0.3645833333333333,
+          "per_class_sibling_id": {
+            "center": 0.6875,
+            "left": 0.25,
+            "right": 0.15625
+          }
+        },
+        "h12": {
+          "mse": 0.7662737096349398,
+          "sibling_id": 0.3854166666666667,
+          "per_class_sibling_id": {
+            "center": 0.5,
+            "left": 0.34375,
+            "right": 0.3125
+          }
+        }
+      },
+      "temporal_buckets": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.4339208335926135,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.1875,
+            "right": 0.09375
+          }
+        },
+        "h12": {
+          "mse": 0.8112805429846048,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.46875,
+            "left": 0.28125,
+            "right": 0.25
+          }
+        }
+      },
+      "visual_diversity": {
+        "marker_hit": 0.9895833333333334,
+        "h6": {
+          "mse": 0.32282514435549575,
+          "sibling_id": 0.71875,
+          "per_class_sibling_id": {
+            "center": 0.75,
+            "left": 0.625,
+            "right": 0.78125
+          }
+        },
+        "h12": {
+          "mse": 0.5011847779775659,
+          "sibling_id": 0.9166666666666666,
+          "per_class_sibling_id": {
+            "center": 0.90625,
+            "left": 0.90625,
+            "right": 0.9375
+          }
+        }
+      },
+      "random": {
+        "marker_hit": 0.0,
+        "h6": {
+          "mse": 0.43460693225885433,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.71875,
+            "left": 0.1875,
+            "right": 0.09375
+          }
+        },
+        "h12": {
+          "mse": 0.8120686219384273,
+          "sibling_id": 0.3333333333333333,
+          "per_class_sibling_id": {
+            "center": 0.4375,
+            "left": 0.3125,
+            "right": 0.25
+          }
+        }
+      },
+      "deletion_cost": {
+        "marker_hit": 1.0,
+        "h6": {
+          "mse": 0.3226855993270874,
+          "sibling_id": 0.7291666666666666,
+          "per_class_sibling_id": {
+            "center": 0.78125,
+            "left": 0.65625,
+            "right": 0.75
+          }
+        },
+        "h12": {
+          "mse": 0.4974600407294929,
+          "sibling_id": 0.9166666666666666,
+          "per_class_sibling_id": {
+            "center": 0.9375,
+            "left": 0.84375,
+            "right": 0.96875
+          }
+        }
+      }
+    }
+  },
+  "training_log": {
+    "17": [
+      {
+        "round": 0,
+        "states": 183692,
+        "seconds": 121.14515665918589
+      },
+      {
+        "round": 1,
+        "states": 220388,
+        "seconds": 186.02776332199574
+      },
+      {
+        "round": 2,
+        "states": 257115,
+        "seconds": 259.9752946139779
+      }
+    ],
+    "29": [
+      {
+        "round": 0,
+        "states": 183660,
+        "seconds": 75.21042404114269
+      },
+      {
+        "round": 1,
+        "states": 220360,
+        "seconds": 139.92401448916644
+      },
+      {
+        "round": 2,
+        "states": 257079,
+        "seconds": 211.33089275704697
+      }
+    ],
+    "43": [
+      {
+        "round": 0,
+        "states": 183674,
+        "seconds": 73.94436435122043
+      },
+      {
+        "round": 1,
+        "states": 220366,
+        "seconds": 137.61205537221394
+      },
+      {
+        "round": 2,
+        "states": 257117,
+        "seconds": 208.53524255822413
+      }
+    ]
+  }
+}

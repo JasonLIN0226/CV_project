@@ -16,6 +16,10 @@ Methods (one per call, so each is its own job):
 Hyperparameters come from the config's `baselines` block. --checkpoints makes the compressor
 training resumable: rerunning a stopped task continues from its last checkpoint.
 Writes <out>/<method>_seed<seed>.json.
+
+--train-seed N trains the baseline with seed N (initial weights, minibatches) on the predictor of
+--seed, for seed sweeps, and writes <out>/<method>_t<N>_seed<seed>.json; without it the training
+seed is the predictor seed, as in the published runs.
 """
 import sys
 from pathlib import Path
@@ -35,10 +39,13 @@ def main():
     ap = runs.parser(__doc__)
     ap.add_argument("--method", required=True, choices=METHODS)
     ap.add_argument("--checkpoints", type=Path)
+    ap.add_argument("--train-seed", type=int, help="training seed of the baseline (default: the predictor seed)")
     args = ap.parse_args()
-    task = runs.Task(args, args.method)
+    task = runs.Task(args, runs.seeded(args.method, args.train_seed))
     if task.done():
         return
+    seed = args.seed if args.train_seed is None else args.train_seed
+    task.info["train_seed"] = seed
     config = runs.load_config(args.config)
     hyper = config["baselines"]
     scorer = Scorer(open_assets(config, args.device), args.seed, task)
@@ -46,12 +53,12 @@ def main():
 
     if args.method == "pafu_kv":
         from bounded_memory.methods.pafu_kv import gate as pafu
-        head, task.info["pafu_kv"] = pafu.train(model, train, args.seed, device, steps=hyper["pafu_kv"]["steps"])
+        head, task.info["pafu_kv"] = pafu.train(model, train, seed, device, steps=hyper["pafu_kv"]["steps"])
         scorer.add("pafu_kv", pafu.select(head, val, device))
         scorer.add("pafu_teacher_top2", pafu.teacher_select(model, val, device))
     elif args.method == "pafu_kv_repo":
         from bounded_memory.methods.pafu_kv import repo_adaptation
-        student, task.info["pafu_kv_repo"] = repo_adaptation.train(model, train, args.seed, device,
+        student, task.info["pafu_kv_repo"] = repo_adaptation.train(model, train, seed, device,
                                                                    max_states=hyper["pafu_kv_repo"]["max_states"])
         scorer.add("pafu_kv_repo", repo_adaptation.select(student, val))
     elif args.method.startswith("pacc_"):
@@ -60,8 +67,10 @@ def main():
         checkpoint = None
         if args.checkpoints:
             args.checkpoints.mkdir(parents=True, exist_ok=True)
-            checkpoint = args.checkpoints / f"pacc_{variant}_seed{args.seed}_{device.type}.pt"
-        compressor, meta = pacc.train(model, train, args.seed, device, variant=variant, steps=hyper["pacc"]["steps"],
+            # the predictor seed and the training seed both name the file: the checkpoint's own identity holds only the training seed
+            trained = "" if args.train_seed is None else f"_t{args.train_seed}"
+            checkpoint = args.checkpoints / f"pacc_{variant}_seed{args.seed}{trained}_{device.type}.pt"
+        compressor, meta = pacc.train(model, train, seed, device, variant=variant, steps=hyper["pacc"]["steps"],
                                       checkpoint=checkpoint, tag=f"{config['assets']['root']}")
         prediction, gap = pacc.predict(model, compressor, val, device, variant=variant)
         task.info[args.method] = {**meta, "validation_gap_to_full_history": gap}
@@ -82,7 +91,7 @@ def main():
         if variant == "published":
             scorer.add(f"fm_{visual_name}_teacher_top2", fm.select_teacher(val, visual, device))
         h = hyper["framemorrow"]
-        selector, task.info[args.method] = fm.train(train, visual, args.seed, device, variant=variant,
+        selector, task.info[args.method] = fm.train(train, visual, seed, device, variant=variant,
                                                     epochs=h["epochs"], hidden=h["hidden"], layers=h["layers"])
         select = fm.select_published if variant == "published" else fm.select_online
         scorer.add(args.method, select(selector, val, visual, device))

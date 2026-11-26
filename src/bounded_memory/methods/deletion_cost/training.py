@@ -103,6 +103,32 @@ def fit_scorers(x, ya, yd, seed, device):
     return {"attention_proxy_student": models[0].state_dict(), "deletion_cost_student": models[1].state_dict()}
 
 
+def fit_scorers_with_training_seed(x, ya, yd, train_seed, device):
+    """fit_pair's paired 1,000-step fit, with a training seed of its own for the initial weights and the
+    minibatches, for seed sweeps on a fixed predictor. With train_seed equal to the predictor seed it
+    returns fit_pair's weights exactly (tests/test_gate_seed_sweep.py)."""
+    xt = torch.as_tensor(x, dtype=torch.float32, device=device)
+    labels = [torch.as_tensor(y, dtype=torch.float32, device=device) for y in (ya, yd)]
+    a, d = paired_initialization(train_seed)
+    models = [a.to(device), d.to(device)]
+    opts = [torch.optim.AdamW(m.parameters(), lr=0.001, weight_decay=0.0001) for m in models]
+    for batch in minibatch_indices(train_seed, len(xt)):
+        idx = torch.as_tensor(batch, device=device)
+        for m, opt, y in zip(models, opts, labels):
+            opt.zero_grad(set_to_none=True)
+            loss = -(y[idx] * torch.log_softmax(m(xt[idx]), dim=-1)).sum(dim=-1).mean()
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(m.parameters(), 1.0)
+            opt.step()
+    return {"attention_proxy_student": copy.deepcopy(models[0].state_dict()),
+            "deletion_cost_student": copy.deepcopy(models[1].state_dict())}
+
+
+def student_filename(train_seed=None):
+    """File name pattern of a matched scorer checkpoint; a run with its own training seed gets its own file."""
+    return "student_{seed}.pt" if train_seed is None else f"student_{{seed}}_t{train_seed}.pt"
+
+
 def as_models(states, device):
     out = {}
     for name, state in states.items():

@@ -1,0 +1,788 @@
+{
+  "completed_utc": "2026-11-20T17:35:25.579287+00:00",
+  "data": "pusht-cog-v5b-marker-r4-20261120",
+  "features": "/projects/work/yang-lab/users/yz12129/CV_project/build/pusht-cog-v5b-marker-r4-20261120-ijepa",
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "epochs": 300,
+  "counts": {
+    "train_episodes": 384,
+    "validation_episodes": 96
+  },
+  "train_conditions": [
+    "recent_only",
+    "random_pair",
+    "random_single",
+    "marker"
+  ],
+  "horizons": [
+    6,
+    12
+  ],
+  "rank": 128,
+  "notes": {
+    "marker": "marker frame indices are privileged (evaluation_only); used for the marker training condition and the marker reference only",
+    "pair_oracle": "selects with the validation target; an upper bound, not a policy",
+    "mse": "mean over 5120 standardized I-JEPA features"
+  },
+  "summary_mean_over_seeds": {
+    "recent_only": {
+      "h6": {
+        "mse": 0.4981983843673434,
+        "sibling_id": 0.3333333333333333
+      },
+      "h12": {
+        "mse": 0.9245037032912174,
+        "sibling_id": 0.3333333333333333
+      }
+    },
+    "fifo": {
+      "h6": {
+        "mse": 0.49794981214735246,
+        "sibling_id": 0.3333333333333333
+      },
+      "h12": {
+        "mse": 0.9233795268875028,
+        "sibling_id": 0.3333333333333333
+      }
+    },
+    "first_frame": {
+      "h6": {
+        "mse": 0.49838882260438466,
+        "sibling_id": 0.3333333333333333
+      },
+      "h12": {
+        "mse": 0.9235276121439205,
+        "sibling_id": 0.3333333333333333
+      }
+    },
+    "random_pair": {
+      "h6": {
+        "mse": 0.4931961920940214,
+        "sibling_id": 0.35763888888888884
+      },
+      "h12": {
+        "mse": 0.9174362007114624,
+        "sibling_id": 0.37152777777777773
+      }
+    },
+    "marker": {
+      "h6": {
+        "mse": 0.5355891518087851,
+        "sibling_id": 0.49652777777777773
+      },
+      "h12": {
+        "mse": 0.857374266307387,
+        "sibling_id": 0.5868055555555555
+      }
+    },
+    "pair_oracle": {
+      "h6": {
+        "mse": 0.46239666025050813,
+        "sibling_id": 0.4895833333333333
+      },
+      "h12": {
+        "mse": 0.6567681902605625,
+        "sibling_id": 0.6805555555555555
+      }
+    }
+  },
+  "per_seed": {
+    "17": {
+      "recent_only": {
+        "h6": {
+          "mse": 0.4992672298103571,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.3723254008218646,
+              "sibling_id": 0.625
+            },
+            "left": {
+              "mse": 0.5189664582721889,
+              "sibling_id": 0.1875
+            },
+            "right": {
+              "mse": 0.6065098303370178,
+              "sibling_id": 0.1875
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.9227876948813597,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.8496568948030472,
+              "sibling_id": 0.59375
+            },
+            "left": {
+              "mse": 0.988950815051794,
+              "sibling_id": 0.28125
+            },
+            "right": {
+              "mse": 0.929755374789238,
+              "sibling_id": 0.125
+            }
+          }
+        }
+      },
+      "fifo": {
+        "h6": {
+          "mse": 0.4984506028704345,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.376831348054111,
+              "sibling_id": 0.65625
+            },
+            "left": {
+              "mse": 0.5225656647235155,
+              "sibling_id": 0.1875
+            },
+            "right": {
+              "mse": 0.595954795833677,
+              "sibling_id": 0.15625
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.9207143522799015,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.8708146931603551,
+              "sibling_id": 0.53125
+            },
+            "left": {
+              "mse": 0.9632024923339486,
+              "sibling_id": 0.28125
+            },
+            "right": {
+              "mse": 0.9281258713454008,
+              "sibling_id": 0.1875
+            }
+          }
+        }
+      },
+      "first_frame": {
+        "h6": {
+          "mse": 0.4991271230392158,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.3763616536743939,
+              "sibling_id": 0.65625
+            },
+            "left": {
+              "mse": 0.519021762534976,
+              "sibling_id": 0.1875
+            },
+            "right": {
+              "mse": 0.6019979529082775,
+              "sibling_id": 0.15625
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.9187070544188222,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.865262359380722,
+              "sibling_id": 0.5625
+            },
+            "left": {
+              "mse": 0.9744591573253274,
+              "sibling_id": 0.3125
+            },
+            "right": {
+              "mse": 0.916399646550417,
+              "sibling_id": 0.125
+            }
+          }
+        }
+      },
+      "random_pair": {
+        "h6": {
+          "mse": 0.4931557510669033,
+          "sibling_id": 0.3645833333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.37746254401281476,
+              "sibling_id": 0.65625
+            },
+            "left": {
+              "mse": 0.5050201686099172,
+              "sibling_id": 0.25
+            },
+            "right": {
+              "mse": 0.5969845405779779,
+              "sibling_id": 0.1875
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.9210594429944953,
+          "sibling_id": 0.375,
+          "per_class": {
+            "center": {
+              "mse": 0.8808416733518243,
+              "sibling_id": 0.59375
+            },
+            "left": {
+              "mse": 0.9598032254725695,
+              "sibling_id": 0.3125
+            },
+            "right": {
+              "mse": 0.922533430159092,
+              "sibling_id": 0.21875
+            }
+          }
+        }
+      },
+      "marker": {
+        "h6": {
+          "mse": 0.5482692901665965,
+          "sibling_id": 0.46875,
+          "per_class": {
+            "center": {
+              "mse": 0.378324244171381,
+              "sibling_id": 0.75
+            },
+            "left": {
+              "mse": 0.5345111563801765,
+              "sibling_id": 0.375
+            },
+            "right": {
+              "mse": 0.7319724699482322,
+              "sibling_id": 0.28125
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.885889302007854,
+          "sibling_id": 0.5416666666666666,
+          "per_class": {
+            "center": {
+              "mse": 0.8337489841505885,
+              "sibling_id": 0.75
+            },
+            "left": {
+              "mse": 0.8926967391744256,
+              "sibling_id": 0.40625
+            },
+            "right": {
+              "mse": 0.9312221826985478,
+              "sibling_id": 0.46875
+            }
+          }
+        }
+      },
+      "pair_oracle": {
+        "h6": {
+          "mse": 0.4532264155956606,
+          "sibling_id": 0.4791666666666667,
+          "per_class": {
+            "center": {
+              "mse": 0.3432850604876876,
+              "sibling_id": 0.75
+            },
+            "left": {
+              "mse": 0.46134759159758687,
+              "sibling_id": 0.34375
+            },
+            "right": {
+              "mse": 0.5550465947017074,
+              "sibling_id": 0.34375
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.6520091236258546,
+          "sibling_id": 0.6666666666666666,
+          "per_class": {
+            "center": {
+              "mse": 0.5829115882515907,
+              "sibling_id": 0.96875
+            },
+            "left": {
+              "mse": 0.688958871178329,
+              "sibling_id": 0.53125
+            },
+            "right": {
+              "mse": 0.6841569114476442,
+              "sibling_id": 0.5
+            }
+          }
+        },
+        "oracle_pair_contains_marker_frame": 0.6979166666666666
+      }
+    },
+    "29": {
+      "recent_only": {
+        "h6": {
+          "mse": 0.4977954014514883,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.374865987803787,
+              "sibling_id": 0.625
+            },
+            "left": {
+              "mse": 0.5228678737767041,
+              "sibling_id": 0.1875
+            },
+            "right": {
+              "mse": 0.5956523427739739,
+              "sibling_id": 0.1875
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.9217746198798219,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.8715931968763471,
+              "sibling_id": 0.59375
+            },
+            "left": {
+              "mse": 0.9652777295559645,
+              "sibling_id": 0.25
+            },
+            "right": {
+              "mse": 0.9284529332071543,
+              "sibling_id": 0.15625
+            }
+          }
+        }
+      },
+      "fifo": {
+        "h6": {
+          "mse": 0.49744319279367727,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.3741979650221765,
+              "sibling_id": 0.65625
+            },
+            "left": {
+              "mse": 0.5247582346200943,
+              "sibling_id": 0.1875
+            },
+            "right": {
+              "mse": 0.593373378738761,
+              "sibling_id": 0.15625
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.9210574623818198,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.8620573058724403,
+              "sibling_id": 0.59375
+            },
+            "left": {
+              "mse": 0.9639598280191422,
+              "sibling_id": 0.21875
+            },
+            "right": {
+              "mse": 0.9371552532538772,
+              "sibling_id": 0.1875
+            }
+          }
+        }
+      },
+      "first_frame": {
+        "h6": {
+          "mse": 0.49678764523317415,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.37246056320145726,
+              "sibling_id": 0.65625
+            },
+            "left": {
+              "mse": 0.5230288431048393,
+              "sibling_id": 0.1875
+            },
+            "right": {
+              "mse": 0.5948735293932259,
+              "sibling_id": 0.15625
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.9210765684644381,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.8410619357600808,
+              "sibling_id": 0.5625
+            },
+            "left": {
+              "mse": 0.9755931124091148,
+              "sibling_id": 0.21875
+            },
+            "right": {
+              "mse": 0.9465746572241187,
+              "sibling_id": 0.21875
+            }
+          }
+        }
+      },
+      "random_pair": {
+        "h6": {
+          "mse": 0.4915555343031883,
+          "sibling_id": 0.375,
+          "per_class": {
+            "center": {
+              "mse": 0.3622513017617166,
+              "sibling_id": 0.71875
+            },
+            "left": {
+              "mse": 0.5183110670186579,
+              "sibling_id": 0.1875
+            },
+            "right": {
+              "mse": 0.5941042341291904,
+              "sibling_id": 0.21875
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.9016822188471755,
+          "sibling_id": 0.375,
+          "per_class": {
+            "center": {
+              "mse": 0.8375682849436998,
+              "sibling_id": 0.6875
+            },
+            "left": {
+              "mse": 0.9425534484907985,
+              "sibling_id": 0.25
+            },
+            "right": {
+              "mse": 0.924924923107028,
+              "sibling_id": 0.1875
+            }
+          }
+        }
+      },
+      "marker": {
+        "h6": {
+          "mse": 0.535150693419079,
+          "sibling_id": 0.5104166666666666,
+          "per_class": {
+            "center": {
+              "mse": 0.3754425384104252,
+              "sibling_id": 0.75
+            },
+            "left": {
+              "mse": 0.538686441257596,
+              "sibling_id": 0.375
+            },
+            "right": {
+              "mse": 0.6913231005892158,
+              "sibling_id": 0.40625
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.8288199227924148,
+          "sibling_id": 0.59375,
+          "per_class": {
+            "center": {
+              "mse": 0.7599651217460632,
+              "sibling_id": 0.875
+            },
+            "left": {
+              "mse": 0.8844577074050903,
+              "sibling_id": 0.40625
+            },
+            "right": {
+              "mse": 0.8420369392260909,
+              "sibling_id": 0.5
+            }
+          }
+        }
+      },
+      "pair_oracle": {
+        "h6": {
+          "mse": 0.46390524894619983,
+          "sibling_id": 0.4895833333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.34733363846316934,
+              "sibling_id": 0.78125
+            },
+            "left": {
+              "mse": 0.47680944949388504,
+              "sibling_id": 0.34375
+            },
+            "right": {
+              "mse": 0.5675726588815451,
+              "sibling_id": 0.34375
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.6471782742689053,
+          "sibling_id": 0.6770833333333334,
+          "per_class": {
+            "center": {
+              "mse": 0.5659966403618455,
+              "sibling_id": 0.9375
+            },
+            "left": {
+              "mse": 0.6982407299801707,
+              "sibling_id": 0.53125
+            },
+            "right": {
+              "mse": 0.6772974524646997,
+              "sibling_id": 0.5625
+            }
+          }
+        },
+        "oracle_pair_contains_marker_frame": 0.7395833333333334
+      }
+    },
+    "43": {
+      "recent_only": {
+        "h6": {
+          "mse": 0.4975325218401849,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.3715118346735835,
+              "sibling_id": 0.625
+            },
+            "left": {
+              "mse": 0.534745778888464,
+              "sibling_id": 0.1875
+            },
+            "right": {
+              "mse": 0.5863399519585073,
+              "sibling_id": 0.1875
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.9289487951124707,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.8664477858692408,
+              "sibling_id": 0.59375
+            },
+            "left": {
+              "mse": 0.9907666696235538,
+              "sibling_id": 0.25
+            },
+            "right": {
+              "mse": 0.9296319298446178,
+              "sibling_id": 0.15625
+            }
+          }
+        }
+      },
+      "fifo": {
+        "h6": {
+          "mse": 0.4979556407779455,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.3691407786682248,
+              "sibling_id": 0.65625
+            },
+            "left": {
+              "mse": 0.5405045412480831,
+              "sibling_id": 0.1875
+            },
+            "right": {
+              "mse": 0.5842216024175286,
+              "sibling_id": 0.15625
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.9283667660007874,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.8583303829655051,
+              "sibling_id": 0.5625
+            },
+            "left": {
+              "mse": 0.9943296881392598,
+              "sibling_id": 0.21875
+            },
+            "right": {
+              "mse": 0.9324402268975973,
+              "sibling_id": 0.21875
+            }
+          }
+        }
+      },
+      "first_frame": {
+        "h6": {
+          "mse": 0.4992516995407641,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.3725791722536087,
+              "sibling_id": 0.625
+            },
+            "left": {
+              "mse": 0.5370365125127137,
+              "sibling_id": 0.1875
+            },
+            "right": {
+              "mse": 0.5881394138559699,
+              "sibling_id": 0.1875
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.9307992135485014,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.8548356611281633,
+              "sibling_id": 0.59375
+            },
+            "left": {
+              "mse": 1.0012151980772614,
+              "sibling_id": 0.21875
+            },
+            "right": {
+              "mse": 0.9363467814400792,
+              "sibling_id": 0.1875
+            }
+          }
+        }
+      },
+      "random_pair": {
+        "h6": {
+          "mse": 0.4948772909119725,
+          "sibling_id": 0.3333333333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.37343156058341265,
+              "sibling_id": 0.625
+            },
+            "left": {
+              "mse": 0.5368405226618052,
+              "sibling_id": 0.21875
+            },
+            "right": {
+              "mse": 0.5743597894906998,
+              "sibling_id": 0.15625
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.929566940292716,
+          "sibling_id": 0.3645833333333333,
+          "per_class": {
+            "center": {
+              "mse": 0.8496754756197333,
+              "sibling_id": 0.59375
+            },
+            "left": {
+              "mse": 1.012904697097838,
+              "sibling_id": 0.21875
+            },
+            "right": {
+              "mse": 0.9261206481605768,
+              "sibling_id": 0.28125
+            }
+          }
+        }
+      },
+      "marker": {
+        "h6": {
+          "mse": 0.5233474718406796,
+          "sibling_id": 0.5104166666666666,
+          "per_class": {
+            "center": {
+              "mse": 0.376925160177052,
+              "sibling_id": 0.75
+            },
+            "left": {
+              "mse": 0.5242721252143383,
+              "sibling_id": 0.4375
+            },
+            "right": {
+              "mse": 0.6688451301306486,
+              "sibling_id": 0.34375
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.8574135741218925,
+          "sibling_id": 0.625,
+          "per_class": {
+            "center": {
+              "mse": 0.7911223815754056,
+              "sibling_id": 0.84375
+            },
+            "left": {
+              "mse": 0.872197194956243,
+              "sibling_id": 0.46875
+            },
+            "right": {
+              "mse": 0.9089211458340287,
+              "sibling_id": 0.5625
+            }
+          }
+        }
+      },
+      "pair_oracle": {
+        "h6": {
+          "mse": 0.47005831620966393,
+          "sibling_id": 0.5,
+          "per_class": {
+            "center": {
+              "mse": 0.3480929955840111,
+              "sibling_id": 0.78125
+            },
+            "left": {
+              "mse": 0.499193063005805,
+              "sibling_id": 0.375
+            },
+            "right": {
+              "mse": 0.5628888900391757,
+              "sibling_id": 0.34375
+            }
+          }
+        },
+        "h12": {
+          "mse": 0.671117172886928,
+          "sibling_id": 0.6979166666666666,
+          "per_class": {
+            "center": {
+              "mse": 0.5833584265783429,
+              "sibling_id": 0.96875
+            },
+            "left": {
+              "mse": 0.7139525841921568,
+              "sibling_id": 0.5
+            },
+            "right": {
+              "mse": 0.7160405078902841,
+              "sibling_id": 0.625
+            }
+          }
+        },
+        "oracle_pair_contains_marker_frame": 0.6979166666666666
+      }
+    }
+  }
+}
