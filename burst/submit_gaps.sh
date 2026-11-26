@@ -25,7 +25,8 @@ for what in ${*:-synergy gate}; do
         gate)    script="$HERE/gate_init_seeds.sh" ;;
         motion_fresh) script="$HERE/motion_v2_fresh.sh" ;;
         motion_variants) script="$HERE/motion_v2_fresh_variants.sh" ;;
-        *) echo "unknown run '$what' (use synergy, gate, motion_fresh or motion_variants)" >&2; exit 2 ;;
+        motion_holdout) script="$HERE/motion_v2_fresh_holdout.sh" ;;
+        *) echo "unknown run '$what' (use synergy, gate, motion_fresh, motion_variants or motion_holdout)" >&2; exit 2 ;;
     esac
     dependency=()
     # A copy that finishes cancels the standby copies still pending; otherwise Slurm would cancel the next one
